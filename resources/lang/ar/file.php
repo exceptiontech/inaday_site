@@ -60,6 +60,7 @@ return [
     'we_offer_you_complete_solutions_desc2' => 'بيكون عملك فية إجازة  وإجازتك فيها عمل !',
     'we_offer_you_complete_solutions_desc3' => 'ممتع؟ إذا تعتقد انك موهوب وتحب الشغل جرب أحسب دخلك',
     'more_mixes' => 'تعرف على الخلطات',
+    'subscriber_success' => 'تم اشتراكك بنجاح',
 
 
     /*Alerts*/
