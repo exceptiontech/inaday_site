@@ -49,7 +49,7 @@
                                         {{trans('file.folow_us')}}
                                     </li>
                                     <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <a href="" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
