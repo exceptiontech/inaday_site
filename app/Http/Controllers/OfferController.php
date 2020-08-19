@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Offer;
+use App\Team;
+use Illuminate\Http\Request;
+use Validator;
+use Auth;
+use App\Log;
+use Redirect;
+use Session;
+use Mail;
+
+class OfferController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+
+        $validator = Validator::make($request->all(), [
+            'project_id'        => 'required|integer',
+            'duration'          => 'required|integer',
+            'price'             => 'required|integer',
+            'offer'             => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect::back()->withErrors($validator)->withInput();
+        }
+
+
+        $offer= new Offer();
+        $offer->user_id=Auth::id();
+        if ($request->team_id) {
+            $team = Team::findorfail($request->team_id);
+            if ($team->user_id != Auth::user()->id) {
+                return redirect::back();
+            }
+            $offer->team_id=$request->team_id;  
+        }
+        $offer->project_id=$request->project_id;
+        $offer->price=$request->price;
+        $offer->duration =$request->duration;
+        $offer->offer =$request->offer;
+        $offer->save();
+
+        Mail::send('mail.offer', ['offer'=>$offer], function($message) use ($offer)
+            {
+                $message->to($offer->project->user->email, 'Email Message')->subject('تم اضافة عرض لطلبك');
+            }); 
+        // Mail::send('mail.offer', $offer, function ($message) use ($offer) {
+        //     $message->from('no_replay@inaday.cloud');
+        //     $message->to($offer->project->user->email);
+        //     $message->subject('تم اضافة عرض لطلبك');
+        // });
+
+
+        Session::flash('status', __('file.success'));
+        Session::flash('message', __('file.create_success_offer'));
+        return redirect::back();
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Offer $offer)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Offer $offer)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Offer $offer)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Offer $offer)
+    {
+        //
+    }
+}

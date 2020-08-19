@@ -1,0 +1,18 @@
+/*
+.nav-tabs {
+	margin-bottom: 20px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #fff;
+    cursor: default;
+    background-color: #f39c12;
+    border: 1px solid #f39c12;
+    border-bottom-color: transparent;
+}
+
+*/
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #f39c12;
+}

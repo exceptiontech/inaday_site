@@ -1,0 +1,53 @@
+#footer {
+    width:100%;
+    float:right;
+    background: #F8F8F8;
+
+    .widget {
+        h2 {
+            color: #005689;
+            font-size: 22px;
+        }
+
+        ul {
+            li {
+                line-height: 35px;
+                a {
+                    color: #444444;
+                    padding-right: 25px;
+                    position: relative;
+
+                    &:before {
+                        content:"";
+                        position: absolute;
+                        right: 0;
+                        top: 14px;
+                        width: 10px;
+                        height: 10px;
+                        -webkit-border-radius: 50%;
+                        border-radius: 50%;
+                        background-clip: padding-box;
+                        background: #00e689;
+                    }
+                }
+            }
+        }
+    }
+
+    p {
+        &.copyright {
+            color: #005689;
+        }
+    }
+
+    ul {
+        &.sociel {
+            li {
+                a {
+                    color: #444444;
+                }
+            }
+        }
+    }
+
+}

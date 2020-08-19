@@ -1,0 +1,53 @@
+.inner {
+	.widget {
+
+		.title {
+			h2 {
+				color: #005689;
+				font-size: 30px;
+				position: relative;
+
+				&:before,&::after {
+					content: '';
+				    position: absolute;
+				    bottom: 0;
+				    right: 0px;
+				    z-index: 1;
+				    width: 14px;
+				    height: 14px;
+				    -webkit-border-radius: 50%;
+				    border-radius: 50%;
+				    background-clip: padding-box;
+				    background: #00e689;
+				}
+
+				&::after  {
+					right: 22px;
+				}
+			}
+		}
+
+		&.widget-provider {
+			background: #005689 url('../images/providerBG.svg') no-repeat bottom left;
+			background-size: contain;
+			.title {
+				h2 {
+					color: #fff;
+				}
+			}
+
+		}
+
+		&.widget-entrepreneur {
+			background: #005689 url('../images/entrepreneurBG.svg') no-repeat bottom left;
+			background-size: contain;
+			.title {
+				h2 {
+					color: #fff;
+				}
+			}
+
+		}
+
+	}
+}

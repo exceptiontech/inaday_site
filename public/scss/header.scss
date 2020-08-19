@@ -1,0 +1,72 @@
+/* Header navbar */
+
+header {
+    .main-header {
+        .navbar {
+            ul.navbar-nav{
+                li+.nav-item {
+                    margin-right:8px;
+                }
+                li {
+                    margin: 0;
+                    a.nav-link {
+                        font-size: 16px;
+                        color: #005689;
+                        font-weight: bold;
+                        border-radius: 25px;
+                        padding: 8px 8px;
+                        margin-bottom:10px;
+
+                            &.active , &:hover  {
+                                background: #00EB80;
+                                border-radius: 50px;
+                                color: #fff;
+                            }
+
+                    }
+                   
+                }   
+            }
+            ul.login_menu {
+
+                li {
+                    margin: 0;
+                    a.nav-link {
+                        font-size: 16px;
+                        color: #505050;
+                        font-weight: bold;
+                        border-radius: 25px;
+                        padding: 8px 8px;
+                        border:solid 1px #E5E5E5;
+
+                            &.active , &:hover  {
+                                background: #005689;
+                                border-radius: 50px;
+                                color: #fff;
+                            }
+
+                            &.noborder {
+                                border:0;
+
+                            &.active , &:hover  {
+                                background: none;
+                                border-radius: 50px;
+                                color: #005689;
+                            }
+
+                            }
+
+                    }
+                   
+                }   
+            }
+
+        }
+
+    }
+}
+.front header {
+    background: none;
+    box-shadow: none;
+}
+

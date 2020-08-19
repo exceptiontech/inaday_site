@@ -1,0 +1,238 @@
+#intro{
+  background: url('/img/intro-bg-light-with-logo.png');
+  background-position: left center;
+  background-size: cover;
+  padding: 150px 0 50px;
+  .container{
+      .order-now {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 15px 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.315);
+        ul#myTab {
+          background: #d8d8d8;
+        }
+        .card{
+          .card-header{
+            background: #d7d8d9;
+          }
+          .form-section-title{
+            position: relative;
+            font-weight: bold;
+            cursor: pointer;
+            &::after{
+            content: "\F078";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            vertical-align: 0;
+            color: #ffffff;
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 4px;
+            background: #007aff;
+            border: 1px solid #e0e0e0;
+            }
+          }
+          .form-section-title:not(.collapsed)::after{
+            content: "\f077";
+            content: "\F422";
+
+          }
+        }
+        .send {
+            background: $sec-color;
+            @include gradient(to bottom, $list2);;
+            border: #000;
+            padding: 10px 20px;
+        }
+
+      }
+      .intro-cars{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $sec-color;
+        h1{
+          margin-bottom: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 767px){
+    .order-now{
+      margin: 0 -15px;
+      .card-body {
+        padding: 1.25rem .5rem;
+      }
+    }
+
+  }
+
+
+.company{
+  position: relative;
+  background-image: url('/img/car-parts6.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+  padding: 100px 0;
+  >div {
+      position: relative;
+      z-index: 1;
+  }
+  &::after {
+      content: "";
+      width: 100%;
+      background: rgba(255, 255, 255, 0.918);
+      background: rgba(0, 0, 0, 0.692);
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+  }
+  
+  .line {
+      position: relative;
+      &:after {
+          content: "";
+          display: block;
+          height: 3px;
+          width: 101px;
+          background: #fff;
+          position: absolute;
+          bottom: -12px;
+          left: 50%;
+          transform: translatex(-50%)
+      }
+      
+      
+      &:before {
+          content: "";
+          display: block;
+          height: 10px;
+          width: 23px;
+          background: #fff;
+      
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translatex(-50%);
+      
+      
+      }
+  }
+
+  .process-step{
+      position: relative;
+      .count{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          color: #fff;
+          opacity: 0.3;
+          font-size: 100px;
+          font-weight: bolder;
+          z-index: -1;
+      }
+  }
+  
+}
+
+
+
+
+
+
+// Our Services
+
+
+
+// Parts
+.parts{
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 3px 16px 0px rgba(0, 0, 0, 0.27);
+.part{
+  outline: none;
+  img{
+    max-height: 150px;
+    margin: 0 auto;
+  }
+}
+.NextArrow{
+  position:absolute;
+  top:50%;
+  right:0px;
+  width:45px;
+  height:45px;
+  background:rgba(0,0,0,.50);
+  border:0 none;
+  margin-top:-22.5px;
+  text-align:center;
+  font:20px/45px FontAwesome;
+  color:#FFF;
+  z-index:5;
+  &::before{
+    content:'\f105';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+}
+.PrevArrow{
+  position:absolute;
+  top:50%;
+  left:0px;
+  width:45px;
+  height:45px;
+  background:rgba(0,0,0,.50);
+  border:0 none;
+  margin-top:-22.5px;
+  text-align:center;
+  font:20px/45px FontAwesome;
+  color:#FFF;
+  z-index:5;
+  &::before{
+    content:'\f104';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+}
+.slick-dots{
+  position:absolute;
+  height:5px;
+  background:rgba(255,255,255,.20);
+  bottom:0px;
+  width:100%;
+  left:0px;
+  padding:0px;
+  margin:0px;
+  list-style-type:none;
+  li{
+    float:left;
+    width:0px;
+    height:5px;
+    background:#d62828;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    button{display:none;}
+    &.slick-active{
+      width:100%;
+      animation:ProgressDots 11s both;
+    }
+  }
+}
+}

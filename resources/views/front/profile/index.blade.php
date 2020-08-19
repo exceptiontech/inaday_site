@@ -1,0 +1,125 @@
+@extends('layouts.inner')
+
+@section('title')
+  {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
+@endsection
+
+
+@section('content')
+<div id="innerpage" class="pt-5 pb-5">
+        <div class="container">
+
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                </div>
+
+                <div class="row profile">
+                <!-- sidebar Begin -->
+                <div class="col-12 col-md-4 sidaber">
+                    <div class="bg-light rounded pt-3 pb-3 p-2 text-center">
+
+                        <div class="mt-n5 ">
+                            <div class="row">
+                                <div class="col-4 pt-2">
+                                    <a class="btn btn-light small" href="#"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
+                                </div>
+                                <div class="col-3 p-0">
+                                    <img src="{{ url($userdetail->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon80 img-fluid">
+                                </div>
+                                <div class="col-5 pt-2">
+                                    <a class="btn btn-light small" href="#"><i class="fa fa-gear" aria-hidden="true"></i> ادارة المشاريع</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="mt-5">{{Auth::user()->first_name. ' ' .Auth::user()->last_name}}</h2>
+
+                        <ul class="list-inline info">
+                            <li class="list-inline-item">{{ $userdetail->position }}</li>
+                            <li class="list-inline-item">السعودية/ الرياض</li>
+                        </ul>
+
+
+                        <div class="project-info mb-5 mt-5">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex">
+                                    <a href="#">نبذة عني</a>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <a href="#">خدماتي</a>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <a href="#">مهاراتي</a>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <a href="#">معرض الأعمال</a>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <a href="#">خبراتي</a>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <a href="#">تقييمات العملاء</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="col-12 contact_author align-bottom">
+                            <a href="#" class="btn btn-primary btn-block mb-2">تواصل معي</a>
+                            <p class="small">برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك</p>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- sidebar End -->
+
+
+                <!-- Content Begin -->
+                <div class="col-12 col-md-8 profile-content">
+                    <div class="alert alert-info bg-dark ">
+                        <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
+                        
+                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                    </div>
+
+                    <div class="bg-light rounded pt-2 pb-3 p-2">
+                        <div class="project">
+
+                        @if (!empty($userdetail->notes))
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
+                                       <p>{{ $userdetail->notes}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <h2 class="mb-3">{{ __('profile.skills') }}</h2> 
+                                       
+                                        <ul class="list-inline m-0 flex-shrink-1">
+                                        @if (count(Auth::user()->skills))
+                                            @foreach (Auth::user()->skills as $skill)
+                                            <li class="list-inline-item">
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">- {{ $skill->title[App::getLocale()] }}</div>
+                                            </li>
+                                            @endforeach
+                                        @endif
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <!-- sidebar End -->
+            </div>
+        </div>
+    </div>
+  @section('jquery')
+@endsection
+@endsection

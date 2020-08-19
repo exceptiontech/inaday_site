@@ -1,0 +1,151 @@
+.profile {
+
+	.sidaber {
+		.btn-light {
+			font-size: 14px;
+			border: solid 1px #E5E5E5;
+			border-radius: 20px;
+			padding-bottom: 14px;
+		}
+
+		h2 {
+			color: #005689;
+		}
+
+		ul  {
+			padding-left: 0;
+
+			&.list-group-flush {
+				li{
+					color: #505050;
+
+					&:first-child {
+						border-top:1px solid rgba(0,0,0,.125);
+					}
+
+					&:after {
+						content:"\f104";
+						position: absolute;
+						top: 14px;
+						left: 20px;
+						color: #505050;
+						font-weight: bold;
+					    display: inline-block;
+					    font: normal normal normal 18px/1 FontAwesome;
+   					}
+
+					a {
+						color: #505050;
+						position: relative;
+
+					}
+				}
+
+			}
+
+			&.info {
+				li{
+					margin-left: 30px;
+					color: #505050;
+
+					&:last-child {
+						margin-left:0;
+					}
+
+					a {
+						color: #505050;
+					}
+				}
+			}
+			
+		}
+
+	}
+	.profile-head-menu {
+		ul  {
+			li{
+				margin-left: 20px;
+
+				a {
+					color: #505050;
+
+					&.active {
+						padding-bottom: 12px;
+						color: #005689;
+						border-bottom: solid 3px #005689;
+					}
+				}
+			}
+		}
+	}
+
+	.profile-content {
+
+		.dropdown-menu  {
+			right:auto !important;
+			border:0;
+			.dropdown-item {
+				border:0;
+				color: #939393;
+			}
+		}
+
+		h2 {
+			&.dark {
+				font-size: 16px;
+				color: #939393;
+			}
+		}
+
+		.bg-dark {
+			background-color: #000000 !important;
+			color: #FCD462 !important;
+
+		}
+		span.circle {
+			width:32px;
+			height: 32px;
+			background-color: #005689 !important;
+			color: #FCD462;
+			display: inline-block;
+		}
+
+
+		.box {
+			border:solid 1px #E3E3E3;
+			box-shadow: 0 3px 6px #00000029;
+
+			h2 {
+				font-size: 16px;
+				color: #505050;
+			}
+
+			p {
+				color: #505050;
+				font-size: 13px;
+			}
+
+			.price {
+				color: #505050;
+				span {
+					padding: 0px 10px 0px;
+    				border-radius: 10px;
+					background:rgba(0, 86, 137, 0.13);
+					color: rgba(0, 86, 137, 1);
+
+					&.green {
+						background:rgba(209, 63, 63, 0.13);
+						color: rgba(209, 63, 63, 1);
+					}
+
+					&.red {
+						background:rgba(26, 193, 12, 0.13);
+						color: rgba(26, 193, 12, 1);
+					}
+
+				}
+			}
+
+		}
+	}
+}

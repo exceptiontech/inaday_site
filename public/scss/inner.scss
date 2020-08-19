@@ -1,0 +1,21 @@
+@import "variables.scss";
+@import "mixins.scss";
+@import "global.scss";
+@import "header.scss";
+
+/* import all needed inner files */
+@import "inner/widgets.scss";
+@import "inner/inner.scss";
+@import "inner/contact_page.scss";
+@import "inner/notifactions.scss";
+@import "inner/projects.scss";
+@import "inner/services.scss";
+@import "inner/profile.scss";
+@import "inner/search_page.scss";
+@import "inner/register.scss";
+@import "inner/mix-service-item.scss";
+
+/* import all needed inner files */
+
+@import "footer.scss";
+@import "responsive.scss";

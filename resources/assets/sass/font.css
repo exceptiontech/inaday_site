@@ -1,0 +1,361 @@
+@font-face{
+    font-family:'icomoon';
+    src:url("fonts/icomoon/icomoon.eot?6irssj");
+    src:url("fonts/icomoon/icomoon.eot?6irssj#iefix") format("embedded-opentype"),url("fonts/icomoon/icomoon.ttf?6irssj") format("truetype"),url("fonts/icomoon/icomoon.woff?6irssj") format("woff"),url("fonts/icomoon/icomoon.svg?6irssj#icomoon") format("svg");
+    font-weight:normal;
+    font-style:normal
+}
+.im{
+    font-family:'icomoon' !important;
+    speak:none;
+    font-style:normal;
+    font-weight:normal;
+    font-variant:normal;
+    text-transform:none;
+    line-height:1;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+.im-map-marker:before{
+    content:"\e929"
+}
+.im-list:before{
+    content:"\e958"
+}
+.im-area-circle:before{
+    content:"\e900"
+}
+.im-loader:before{
+    content:"\e901"
+}
+.im-bench:before{
+    content:"\e902"
+}
+.im-book-shelf:before{
+    content:"\e903"
+}
+.im-box:before{
+    content:"\e904"
+}
+.im-brick-wall:before{
+    content:"\e905"
+}
+.im-brick-wall2:before{
+    content:"\e906"
+}
+.im-bus:before{
+    content:"\e907"
+}
+.im-cabinet:before{
+    content:"\e908"
+}
+.im-calendar:before{
+    content:"\e909"
+}
+.im-photo:before{
+    content:"\e90a"
+}
+.im-car:before{
+    content:"\e90b"
+}
+.im-license:before{
+    content:"\e90c"
+}
+.im-comment:before{
+    content:"\e90d"
+}
+.im-check-list:before{
+    content:"\e90e"
+}
+.im-chevron-left:before{
+    content:"\e90f"
+}
+.im-chevron-right:before{
+    content:"\e910"
+}
+.im-clock2:before{
+    content:"\e911"
+}
+.im-cross:before{
+    content:"\e912"
+}
+.im-teacup:before{
+    content:"\e913"
+}
+.im-gears:before{
+    content:"\e914"
+}
+.im-gear:before{
+    content:"\e915"
+}
+.im-droplet:before{
+    content:"\e916"
+}
+.im-compass:before{
+    content:"\e917"
+}
+.im-compasses:before{
+    content:"\e918"
+}
+.im-construction-lift:before{
+    content:"\e919"
+}
+.im-shovel:before{
+    content:"\e91a"
+}
+.im-boxes:before{
+    content:"\e91b"
+}
+.im-drawer:before{
+    content:"\e91c"
+}
+.im-layers:before{
+    content:"\e91d"
+}
+.im-diamond:before{
+    content:"\e91e"
+}
+.im-road-sign:before{
+    content:"\e91f"
+}
+.im-double-ratchet:before{
+    content:"\e920"
+}
+.im-drum:before{
+    content:"\e921"
+}
+.im-eco-reuse:before{
+    content:"\e922"
+}
+.im-fence-caution:before{
+    content:"\e923"
+}
+.im-fire:before{
+    content:"\e924"
+}
+.im-lightning-bolt:before{
+    content:"\e925"
+}
+.im-flashlight:before{
+    content:"\e926"
+}
+.im-forklift:before{
+    content:"\e927"
+}
+.im-gauge:before{
+    content:"\e928"
+}
+.im-graduation-hat:before{
+    content:"\e92a"
+}
+.im-handdrill:before{
+    content:"\e92b"
+}
+.im-id-card:before{
+    content:"\e92c"
+}
+.im-loading2:before{
+    content:"\e92d"
+}
+.im-radioactive:before{
+    content:"\e92e"
+}
+.im-key:before{
+    content:"\e92f"
+}
+.im-refrigerator:before{
+    content:"\e930"
+}
+.im-ladder:before{
+    content:"\e931"
+}
+.im-lawn-mower:before{
+    content:"\e932"
+}
+.im-location-map:before{
+    content:"\e933"
+}
+.im-pin:before{
+    content:"\e934"
+}
+.im-lock:before{
+    content:"\e935"
+}
+.im-design:before{
+    content:"\e936"
+}
+.im-cash:before{
+    content:"\e937"
+}
+.im-cash2:before{
+    content:"\e938"
+}
+.im-music:before{
+    content:"\e939"
+}
+.im-bars:before{
+    content:"\e93a"
+}
+.im-paintbrush:before{
+    content:"\e93b"
+}
+.im-palette:before{
+    content:"\e93c"
+}
+.im-paint-roller:before{
+    content:"\e93d"
+}
+.im-pen-brush:before{
+    content:"\e93e"
+}
+.im-pencil:before{
+    content:"\e93f"
+}
+.im-pencil-ruler:before{
+    content:"\e940"
+}
+.im-phone:before{
+    content:"\e941"
+}
+.im-home:before{
+    content:"\e942"
+}
+.im-question:before{
+    content:"\e943"
+}
+.im-loading:before{
+    content:"\e944"
+}
+.im-gift:before{
+    content:"\e945"
+}
+.im-medal:before{
+    content:"\e946"
+}
+.im-ruler:before{
+    content:"\e947"
+}
+.im-bullhorn:before{
+    content:"\e948"
+}
+.im-share2:before{
+    content:"\e949"
+}
+.im-truck:before{
+    content:"\e94a"
+}
+.im-shovel2:before{
+    content:"\e94b"
+}
+.im-slider:before{
+    content:"\e94c"
+}
+.im-switch:before{
+    content:"\e94d"
+}
+.im-table:before{
+    content:"\e94e"
+}
+.im-tag:before{
+    content:"\e94f"
+}
+.im-toolbox:before{
+    content:"\e950"
+}
+.im-axe:before{
+    content:"\e951"
+}
+.im-screw:before{
+    content:"\e952"
+}
+.im-shovel3:before{
+    content:"\e953"
+}
+.im-trowel:before{
+    content:"\e954"
+}
+.im-construction-cone:before{
+    content:"\e955"
+}
+.im-trolley-box:before{
+    content:"\e956"
+}
+.im-truck-cement-mixer:before{
+    content:"\e957"
+}
+.im-flag:before{
+    content:"\e959"
+}
+.im-wallet:before{
+    content:"\e95a"
+}
+.im-warehouse:before{
+    content:"\e95b"
+}
+.im-text:before{
+    content:"\e95c"
+}
+.im-wrench-screwdriver:before{
+    content:"\e95d"
+}
+.im-wrench:before{
+    content:"\e95e"
+}
+
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("fonts/flaticon/Flaticon.eot");
+  src: url("fonts/flaticon/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("fonts/flaticon/Flaticon.woff") format("woff"),
+       url("fonts/flaticon/Flaticon.ttf") format("truetype"),
+       url("fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-air-compressor:before { content: "\f100"; }
+.flaticon-angle-grinder:before { content: "\f101"; }
+.flaticon-blower:before { content: "\f102"; }
+.flaticon-chainsaw:before { content: "\f103"; }
+.flaticon-circular-saw:before { content: "\f104"; }
+.flaticon-clamp:before { content: "\f105"; }
+.flaticon-concrete-mixer:before { content: "\f106"; }
+.flaticon-cutter:before { content: "\f107"; }
+.flaticon-driller:before { content: "\f108"; }
+.flaticon-hammer:before { content: "\f109"; }
+.flaticon-helmet:before { content: "\f10a"; }
+.flaticon-hydraulic-breaker:before { content: "\f10b"; }
+.flaticon-improvement:before { content: "\f10c"; }
+.flaticon-paint-brush:before { content: "\f10d"; }
+.flaticon-paint-roller:before { content: "\f10e"; }
+.flaticon-planer:before { content: "\f10f"; }
+.flaticon-pliers:before { content: "\f110"; }
+.flaticon-pliers-1:before { content: "\f111"; }
+.flaticon-plumb-bob:before { content: "\f112"; }
+.flaticon-saw:before { content: "\f113"; }
+.flaticon-saw-1:before { content: "\f114"; }
+.flaticon-screw:before { content: "\f115"; }
+.flaticon-screwdriver:before { content: "\f116"; }
+.flaticon-screwdriver-1:before { content: "\f117"; }
+.flaticon-shovel:before { content: "\f118"; }
+.flaticon-solder:before { content: "\f119"; }
+.flaticon-traffic-cone:before { content: "\f11a"; }
+.flaticon-wheelbarrow:before { content: "\f11b"; }
+.flaticon-wood-cutter:before { content: "\f11c"; }
+.flaticon-wrench:before { content: "\f11d"; }

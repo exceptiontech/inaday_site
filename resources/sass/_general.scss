@@ -1,0 +1,89 @@
+// Variables
+
+$main-color: #0c00a8;
+$bs-blue: #007aff;
+$sec-color: #fe0000;
+
+
+// Mixin
+
+$list1: $sec-color, darken($sec-color, 20); 
+$list2: #4783e6, #04246d; 
+
+@mixin gradient($direction, $list) { 
+  background: -webkit-linear-gradient($direction, $list);
+  background: -moz-linear-gradient($direction, $list);
+  background: -o-linear-gradient($direction, $list);
+  background: linear-gradient($direction, $list);  
+}
+
+
+
+html,
+body {
+  font-family: 'Changa', sans-serif;
+  background-color: #fff;
+}
+
+a{
+    color: #fff;
+}
+.ltr{
+    direction: ltr;
+}
+
+.loader{
+  background: #f6f6f6;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    animation: rot 3s infinite linear;
+  }
+}
+
+@keyframes rot{
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+.btn-loader i{
+  animation: rot 2s infinite linear;
+}
+
+
+.w-me{
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  z-index: 3;
+  background: green;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+footer{
+    color: darken(#fff, 30);
+    background: #333;
+    text-align: center;
+    .footer {
+        background: #222;
+        color: #fff;
+    }
+}

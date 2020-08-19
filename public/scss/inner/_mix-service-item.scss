@@ -1,0 +1,42 @@
+.numberCircle {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: #005689;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    display: inline-block;
+}
+
+.service{
+    .team {
+        img{
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            vertical-align: text-bottom;            
+        }
+        .team-info{
+            display: inline-block;
+            margin-top: 10px;
+            p {
+                margin: 0;
+            }
+        }
+    }
+    .comments{
+        .comment{
+            img{
+                display: inline-block;
+                width: 60px !important; 
+                height: 60px;
+                vertical-align: text-bottom;       
+            }
+        }
+    }
+    del {
+        color: red;
+    }
+
+}

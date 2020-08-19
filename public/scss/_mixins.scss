@@ -1,0 +1,127 @@
+  @mixin font-size($size, $base: 16) {
+	font-size: $size; // fallback for old browsers
+	font-size: ($size / $base) * 1rem;
+  }
+  
+  @mixin serif-font() {
+	font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  @mixin sans-serif-font() {
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  @mixin TheSans-font() {
+	font-family: 'TheSans', 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  @mixin HelveticaNeueLT-font() {
+	font-family: 'HelveticaNeueLT', 'HelveticaNeueLT-Bold', Arial, sans-serif;
+  }
+  
+  @mixin HelveticaNeueLTR-font() {
+	font-family: 'HelveticaNeueLTR', 'HelveticaNeueLT-Regular', Arial, sans-serif;
+  }
+
+
+
+    
+  @mixin icomoon-font() {
+	font-family: 'icomoon', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  
+  // @include font-face("MyFont", "path/to/MyFont", $style: normal, $weight: normal);
+  @mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+	@font-face {
+	  font-family: quote($font-name);
+	  src: url($file-name + '.eot');
+	  src: url($file-name + '.eot?#iefix') format('embedded-opentype'),
+	  url($file-name + '.woff') format('woff'),
+	  url($file-name + '.ttf') format('truetype'),
+	  url($file-name + '.svg##{$font-name}') format('svg');
+	  font-weight: $weight;
+	  font-style: $style;
+	}
+  }
+  
+  
+  // @include longshadow(darken($color, 5%));
+  @function makelongshadow($color) {
+	$val: 0px 0px $color;
+  
+	@for $i from 1 through 200 {
+	  $val: #{$val},
+	  #{$i}px #{$i}px #{$color};
+	}
+  
+	@return $val;
+  }
+  
+  @mixin longshadow($color) {
+	text-shadow: makelongshadow($color);
+  }
+  
+  
+  
+  // vendors
+  // @include prefix('box-sizing', 'border-box', moz webkit);
+  @mixin prefix($property, $value, $vendors: webkit moz ms o, $default: true) {
+	@if $vendors {
+	  @each $vendor in $vendors {
+		#{"-" + $vendor + "-" + $property}: #{$value};
+	  }
+	}
+  
+	@if $default {
+	  #{$property}: #{$value};
+	}
+  }
+  
+  // Media Queries
+  // @include screen('tablet')
+  @mixin screen($size) {
+	$desktop: "(min-width: 1024px)";
+	$tablet: "(min-width: 768px) and (max-width: 1023px)";
+	$mobile: "(max-width: 767px)";
+  
+	@if $size==desktop {
+	  @media #{$desktop} {
+		@content;
+	  }
+	}
+  
+	@else if $size==tablet {
+	  @media #{$tablet} {
+		@content;
+	  }
+	}
+  
+	@else if $size==mobile {
+	  @media #{$mobile} {
+		@content;
+	  }
+	}
+  
+	@else {
+	  @media (min-width: #{$size}px) {
+		@content;
+	  }
+	}
+  }
+  
+  // Key frames
+  // @include keyframes(animate) {50% {transform: rotate(90deg);}100% {transform: rotate(-90deg);}}
+  @mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+	  @content;
+	}
+  
+	@-moz-keyframes #{$name} {
+	  @content;
+	}
+  
+	@keyframes #{$name} {
+	  @content;
+	}
+  }

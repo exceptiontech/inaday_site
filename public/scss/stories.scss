@@ -1,0 +1,48 @@
+#stories {
+	background: #fff;
+	width: 100%;
+	float: right;
+	font-size: 16px;
+
+    .title {
+        h1{
+            color: #005689;
+            font-size: 30px;
+            position: relative;
+
+            &:before,&::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 49%;
+                z-index: 1;
+                width: 14px;
+                height: 14px;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background-clip: padding-box;
+                background: #00e689;
+            }
+
+            &::after  {
+                right: 51%;
+            }
+        }
+
+    }
+
+    .story {
+    	border:solid 1px #E3E3E3;
+ 		box-shadow: 0 3px 16px #00000029;
+
+ 		h2 {
+ 			color: #000000;
+ 			font-size: 25px;
+ 		}
+
+ 		p{
+ 			color: #505050;
+ 		}
+    }
+    
+}

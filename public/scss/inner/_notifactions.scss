@@ -1,0 +1,20 @@
+.notifactions {
+	.notifaction-item {
+		border-bottom: solid 1px #EEEEEE;
+
+		h2 {
+			font-size: 16px;
+			color: #005689;
+
+			span {
+				font-size: 13px;
+				color: #939393;
+				font-weight: normal;
+			}
+		}
+		p {
+			color: #505050;
+			font-size: 14px;
+		}
+	}
+}

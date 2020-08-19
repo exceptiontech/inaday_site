@@ -1,0 +1,44 @@
+#mix {
+	background: #F8F8F8;
+	width: 100%;
+	float: right;
+	font-size: 16px;
+
+    .title {
+        h1{
+            color: #005689;
+            font-size: 30px;
+            position: relative;
+
+            &:before,&::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 49%;
+                z-index: 1;
+                width: 14px;
+                height: 14px;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background-clip: padding-box;
+                background: #00e689;
+            }
+
+            &::after  {
+                right: 51%;
+            }
+        }
+
+    }
+
+
+	h2 {
+		font-size: 30px;
+        color: #005689;
+	}
+
+	p {
+		font-size: 16px;
+        color: #505050;
+	}
+}

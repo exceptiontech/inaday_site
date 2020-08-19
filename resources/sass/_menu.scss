@@ -1,0 +1,71 @@
+.navbar {
+  // background: linear-gradient(to right, #000099 0%, #cc3300 105%);
+  background: rgba(0, 0, 0, 0.76);
+  // background: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.192);
+  border-bottom: 1px solid $main-color;
+  padding: 0;
+  // color: #000;
+}
+
+.navbar-brand{
+  font-size: 0.9rem;
+}
+
+.icon-bar {
+width: 22px; 
+height: 2px;
+background-color: #B6B6B6;
+display: block;
+transition: all 0.2s;
+margin-top: 4px
+}
+
+.navbar-toggler {
+border: none;
+background: transparent !important;
+}
+
+.navbar-toggler .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+ 
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+ 
+.navbar-toggler .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+ 
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+ 
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+ 
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+
+.navbar .nav-item .nav-link{
+  // color: $bs-blue!important;
+}
+
+.navbar .nav-item.active .nav-link,.navbar .nav-item .nav-link:hover{
+  color: $main-color!important;
+  
+}
+
+@media(min-width: 767px){
+  .navbar{
+    padding: 0.5rem 1rem;
+  }
+  .navbar-brand{
+    font-size: 1.25rem;
+  }
+}

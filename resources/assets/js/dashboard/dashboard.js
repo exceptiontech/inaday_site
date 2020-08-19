@@ -1,0 +1,16 @@
+require('./bootstrap');
+import './libs/raphael/raphael.min.js';
+import './libs/morris.js/morris.min.js';
+import './libs/jquery-sparkline/dist/jquery.sparkline.min.js';
+import './libs/jvectormap/jquery-jvectormap-1.2.2.min.js';
+import './libs/jvectormap/jquery-jvectormap-world-mill-en.js';
+import './libs/jquery-knob/dist/jquery.knob.min.js';
+import './libs/moment/min/moment.min.js';
+//import './libs/bootstrap-daterangepicker/daterangepicker.js';
+import './libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
+// import './libs/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js';
+import './libs/jquery-slimscroll/jquery.slimscroll.min.js';
+import './libs/fastclick/lib/fastclick.js';
+import './adminlte.min.js';
+import './dashboardtheme.js';
+import './custom.js';

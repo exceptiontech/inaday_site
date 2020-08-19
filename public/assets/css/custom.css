@@ -1,0 +1,17 @@
+
+ .wizard > .actions > ul > li.disabled a {
+ 	display:none;
+ }
+
+ .signup .formsignup .inpusrach .texright .form-control, .login .formsignup .inpusrach .texright .form-control, .book-service-provider .formsignup .inpusrach .texright .form-control{
+
+ }
+
+ .signup .formsignup .inpusrach .texright .form-control option {
+ 	padding-right: -90px;
+ }
+
+
+.footer .boxfot .social a.icon-pinterest {
+	background-color: #cb2127;
+ }

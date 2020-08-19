@@ -1,0 +1,47 @@
+.login {
+  background-color: $BlueColor;
+  color: #ffffff;
+  .info-login {
+    p {
+      font-weight: bold;
+    }
+  }
+  .service_provider,
+  .project_owner {
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    margin-right: 10px;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      background: #fff;
+      color: #000;
+    }
+  }
+}
+.features {
+  .google-login {
+    a {
+      background: #DD4B39;
+      border: none;
+      border-radius: 0;
+      padding-right: 30px;
+      padding-left: 30px;
+      padding-top: 5px;
+      padding-bottom: 10px;
+      color: #fff;
+      margin-bottom: 50px;
+    }
+  }
+
+  .form-inputs {
+    input {
+      margin: 10px 0;
+      box-shadow: 1px 2px 2px #00000029;
+    }
+    
+  }
+  input[type="checkbox"] {
+    box-shadow: 1px 2px 2px #00000029;
+  }
+}
