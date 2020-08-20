@@ -14,7 +14,7 @@
               <li class="nav-item">
                   <a class="nav-link active" href="{{ url('/') }}" @if(\Request::route()->getName() == 'home' || \Request::route()->getName() == 'index') class="active" @endif title="{{ config('app.name', 'Home') }}">{{trans('file.home')}}</a>
               </li>
-              
+
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="{{ url('/services-provider') }}" @if(\Request::route()->getName() == 'service-providers') class="active" @endif id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{trans('file.service_providers')}}
@@ -27,8 +27,8 @@
                   </div>
                   @endif
                 </li>
-              
-              
+
+
                 <li class="nav-item dropdown">
                   <a  class="nav-link dropdown-toggle" href="{{ url('/entrepreneur') }}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{trans('file.entrepreneurs')}}
@@ -39,7 +39,7 @@
                   </div>
                   @endif
                 </li>
-              
+
               <li class="nav-item dropdown">
                   <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{trans('file.services_list')}}</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -57,7 +57,8 @@
               </li>
               @guest
                 <li class="nav-item not-active">
-                    <a class="nav-link" href="{{ route('login') }}">{{trans('file.login')}}</a>
+                    <a class="nav-link" data-toggle="modal"
+                       data-target="#exampleModal" href="{{ route('login') }}">{{trans('file.login')}}</a>
                 </li>
                 <li class="nav-item not-active">
                     <a class="nav-link" href="{{ url('/registration') }}">{{trans('file.register')}}</a>

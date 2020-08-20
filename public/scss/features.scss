@@ -1,8 +1,9 @@
 #features {
+    padding: 30px auto;
     .title {
         h1{
             color: #005689;
-            font-size: 30px;
+            font-size: 23px;
             position: relative;
 
             &:before,&::after {
@@ -33,11 +34,14 @@
 
     h2 {
         color: #005689;
-        font-size: 18px;
+        font-size: 16px;
     }
     p{
         color: #505050;
-        font-size: 16px;
+        font-size: 14px;
+    }
+    .item-of-features{
+        margin-bottom: 30px;
     }
     
 }
