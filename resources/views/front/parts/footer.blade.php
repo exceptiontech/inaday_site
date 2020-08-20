@@ -11,13 +11,13 @@
                                 <a href="{{url('pages/1')}}">{{trans('file.privacy_policy')}}</a>
                             </li>
                             <li>
-                                <a href="{{url('pages/2')}}">{{trans('file.usage_policy')}}</a>   
+                                <a href="{{url('pages/2')}}">{{trans('file.usage_policy')}}</a>
                             </li>
                             <li>
                                 <a href="{{url('/')}}">{{trans('file.refund_and_cancellation_policy')}}</a>
                             </li>
                             <li>
-                                <a href="{{ url('/faqs') }}">{{trans('file.faqs')}}</a> 
+                                <a href="{{ url('/faqs') }}">{{trans('file.faqs')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -25,16 +25,16 @@
                         <h2>{{trans('file.site_map')}}</h2>
                         <ul class="list-unstyled">
                             <li>
-                                <a href="{{url('/register/services_provider')}}">{{trans('file.servives_provider_register')}}</a>       
+                                <a href="{{url('/register/services_provider')}}">{{trans('file.servives_provider_register')}}</a>
                             </li>
                             <li>
-                                <a href="{{url('/register/entrepreneur')}}">{{trans('file.entrepreneur_register')}}</a>   
+                                <a href="{{url('/register/entrepreneur')}}">{{trans('file.entrepreneur_register')}}</a>
                             </li>
                             <li>
-                                <a href="{{ url('/projects') }}">{{trans('file.recent_projects')}}</a> 
+                                <a href="{{ url('/projects') }}">{{trans('file.recent_projects')}}</a>
                             </li>
                             <li>
-                                <a href="{{ url('/services') }}">{{trans('file.booking_servives')}}</a>  
+                                <a href="{{ url('/services') }}">{{trans('file.booking_servives')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
-                    {{ Form::open(['action' => 'SubscriberController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
+                    {{ Form::open(['action' => 'SubscriberController@store', 'method' => 'POST', 'files'=>true,'novalidate'=>'novalidate']) }}
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
@@ -85,11 +85,11 @@
                                 </ul>
                             </div>
                         @endif
-                        
+
                         <div class="col-12 col-md-9">
                         @if (Session::has('message'))
                             <div class="alert alert-dismissible alert-{{Session::get('status')}}">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     {{Session::get('message')}}
                             </div>
                         @endif
