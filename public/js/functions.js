@@ -2,7 +2,7 @@
 
     var HeroHeight = $(window).height()-$('header').height();
 
-    $('.slider').css("min-height" , HeroHeight);
+    $('.slider').css("min-height" , HeroHeight-100 +'px');
     //$('.hero-section .hero-content').css("min-height" , WindowHeight-300);
 
 

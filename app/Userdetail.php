@@ -19,4 +19,12 @@ class Userdetail extends Model
     {
         return $this->belongsTo('App\Prefer');
     }
+    public function country()
+    {
+        return $this->belongsTo(Country::Class, 'country_id');
+    }
+//    public function city()
+//    {
+//        return $this->belongsTo(City::Class, '');
+//    }
 }

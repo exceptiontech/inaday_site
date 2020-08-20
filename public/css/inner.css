@@ -180,7 +180,7 @@ header .main-header .navbar ul.navbar-nav li + .nav-item {
 header .main-header .navbar ul.navbar-nav li {
   margin: 0; }
   header .main-header .navbar ul.navbar-nav li a.nav-link {
-    font-size: 16px;
+    font-size: 12px;
     color: #005689;
     font-weight: bold;
     border-radius: 25px;
@@ -194,7 +194,7 @@ header .main-header .navbar ul.navbar-nav li {
 header .main-header .navbar ul.login_menu li {
   margin: 0; }
   header .main-header .navbar ul.login_menu li a.nav-link {
-    font-size: 16px;
+    font-size: 14px;
     color: #505050;
     font-weight: bold;
     border-radius: 25px;
@@ -647,6 +647,145 @@ header .main-header .navbar ul.login_menu li {
 .service del {
   color: red; }
 
+.services .service {
+  border-bottom: solid 1px #EEEEEE; }
+  .services .service h2 {
+    font-size: 16px;
+    color: #505050; }
+    .services .service h2 a {
+      color: #505050;
+      font-size: 18px; }
+  .services .service p {
+    color: #505050;
+    font-size: 14px; }
+  .services .service a {
+    font-size: 13px; }
+  .services .service ul {
+    padding: 0; }
+    .services .service ul li {
+      font-size: 14px;
+      color: #505050;
+      margin-right: 0;
+      margin-left: 5px; }
+      .services .service ul li img {
+        width: 20px;
+        height: 20px; }
+      .services .service ul li .bg-light {
+        border-radius: 20px; }
+  .services .service .service_bar .bg-light {
+    padding: 0px 20px 3px;
+    border-radius: 50px; }
+  .services .service .service_bar img {
+    width: 30px; }
+
+.service .block {
+  border-bottom: solid 1px #EEEEEE; }
+  .service .block h2 {
+    font-size: 18px;
+    color: #005689; }
+    .service .block h2.dark {
+      color: #939393; }
+  .service .block p {
+    color: #505050;
+    font-size: 14px;
+    line-height: 32px; }
+  .service .block ul {
+    padding: 0; }
+    .service .block ul li {
+      font-size: 14px;
+      color: #505050; }
+  .service .block .comment img {
+    width: 40px; }
+  .service .block label {
+    color: #505050; }
+  .service .block .form-check-input {
+    margin-right: auto; }
+  .service .block .form-control {
+    background-color: #fff;
+    border: solid 1px #E6E6E6;
+    box-shadow: 0 3px 6px #00000029;
+    line-height: 44px; }
+  .service .block button {
+    padding: 15px 60px; }
+
+.projects h2 {
+  font-size: 16px;
+  color: #005689; }
+
+.projects .sub-title h3 {
+  font-size: 17px;
+  color: #939393; }
+
+.projects .project {
+  border-bottom: solid 1px #EEEEEE; }
+  .projects .project h2 {
+    font-size: 16px;
+    color: #005689; }
+    .projects .project h2 a {
+      color: #505050; }
+  .projects .project p {
+    color: #000;
+    font-size: 14px; }
+  .projects .project a {
+    font-size: 13px; }
+  .projects .project ul {
+    padding: 0; }
+    .projects .project ul li {
+      font-size: 14px;
+      color: #505050;
+      margin-right: 0;
+      margin-left: 20px; }
+      .projects .project ul li img {
+        width: 30px;
+        height: 30px; }
+      .projects .project ul li .bg-light {
+        border-radius: 20px; }
+
+/* sidebar */
+.project-info .bg-success {
+  padding: 0 20px 3px;
+  background-color: #EFFFCC !important;
+  border: solid 1px #D5F889;
+  color: #505050;
+  border-radius: 20px;
+  font-size: 13px; }
+
+.project-info .bg-light {
+  padding: 0 20px 3px;
+  border-radius: 20px;
+  font-size: 13px; }
+
+.project .block {
+  border-bottom: solid 1px #EEEEEE; }
+  .project .block h2 {
+    font-size: 18px;
+    color: #005689; }
+    .project .block h2.dark {
+      color: #939393; }
+  .project .block p {
+    color: #000;
+    font-size: 14px;
+    line-height: 32px; }
+  .project .block ul {
+    padding: 0; }
+    .project .block ul li {
+      font-size: 14px;
+      color: #505050; }
+  .project .block .comment {
+    background: #FCFCFC;
+    border: solid 1px #E3E3E3; }
+    .project .block .comment .info img {
+      width: 40px; }
+  .project .block label {
+    color: #505050; }
+  .project .block .form-control {
+    background-color: #fff;
+    border: solid 1px #E6E6E6;
+    box-shadow: 0 3px 6px #00000029;
+    line-height: 44px; }
+  .project .block button {
+    padding: 15px 60px; }
+
 /* import all needed inner files */
 #footer {
   width: 100%;
@@ -675,6 +814,7 @@ header .main-header .navbar ul.login_menu li {
   #footer p.copyright {
     color: #005689; }
   #footer ul.sociel li a {
+    text-align: left;
     color: #444444; }
 
 .rtl .mr-auto, [dir=rtl] .mr-auto, .rtl .ml-auto, [dir=rtl] .ml-auto {

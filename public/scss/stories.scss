@@ -7,7 +7,7 @@
     .title {
         h1{
             color: #005689;
-            font-size: 30px;
+            font-size: 25px;
             position: relative;
 
             &:before,&::after {
@@ -37,12 +37,26 @@
 
  		h2 {
  			color: #000000;
- 			font-size: 25px;
+ 			font-size: 18px;
  		}
 
  		p{
- 			color: #505050;
- 		}
+            font-size: 14px;
+ 			color: #5c5b5b;
+         }
+         .btn-a {
+            background: #00C76D;
+            border: 1px;
+            width: 300px;
+            padding-bottom:10px; 
+            color:#fff;
+            @include HelveticaNeueLTR-font;
+            
+          
+            &:hover {
+              background: #6D6E70;
+            }
+          }
     }
     
 }
