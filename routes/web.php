@@ -28,6 +28,7 @@ Route::get('/{type}/facebook', 'UsersController@facebook')->name('facebook');
 Route::get('/auth/facebook/redirect', 'UsersController@facebookRedirect');
 
 Route::get('/search/','FrontController@SearchIndex');
+Route::post('/newsletter/subscribe', 'SubscriberController@store');
 
 
 Auth::routes(['verify' => true]);
@@ -35,6 +36,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'FrontController@index');
 Route::get('/contact_us', 'ContactusController@index')->name('contact_us');
 Route::post('/contact_us', 'ContactusController@store');
+
 
 Route::resource('blog','ArticleController');
 Route::resource('faqs','FaqController');
