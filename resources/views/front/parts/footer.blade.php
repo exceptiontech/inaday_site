@@ -49,7 +49,7 @@
                                         {{trans('file.folow_us')}}
                                     </li>
                                     <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <a href="https://www.pinterest.com/inadaybiz/boards/" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -75,11 +75,27 @@
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
-                    <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">
+                    {{ Form::open(['action' => 'SubscriberController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                         <div class="col-12 col-md-9">
+                        @if (Session::has('message'))
+                            <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                    {{Session::get('message')}}
+                            </div>
+                        @endif
                             <div class="row">
                             <div class="col-8 col-md-8  p-0">
-                                <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="query" type="text">
+                                <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="email" type="text">
                             </div>
                             <div class="col-4 col-md-4 p-0">
                                 <button class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>

@@ -11,7 +11,6 @@
     </div>
 </div>
 <!-- Hero Section End -->
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -88,6 +87,7 @@
                             <option value="{{$skill->id}}"> {{$skill->title['ar']}}</option>
                         @endforeach
                     </select>
+
                 </div>
                 <div class="col-12 col-md-2 p-0">
                     <button class="btn btn-block btn-primary h-100" type="submit">أبحث الآن </button>
