@@ -89,6 +89,8 @@ return [
     'booking_servives' => ' حجز خدمه',
     'booking_servives_provider' => ' حجز مقدم خدمه',
     'add_service' => ' أضف خدمه',
+    'about_service_provider' => 'عن مقدمي الخدمات',
+    'about_entrepreneur' => 'عن رواد الأعمال',
     'entrepreneurs' => ' رواد الاعمال',
     'start' => ' ابدأ ',
     'add_project' => ' أضف مشروع',
@@ -236,7 +238,7 @@ return [
     'offers'=>'عروض' ,
     'contact_the_project_owner'=>'تواصل مع صاحب المشروع' ,
     'you_must_log_in_first_to_use_the_platforms_services'=>'يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة' ,
-    
+
 
     //Errors
     'nothavepermissions'=>'لا تملك الصلاحيات',
@@ -291,7 +293,7 @@ return [
    'subject' => 'عنوان الموضوع',
 
 
-   //search 
+   //search
 
    'search' => 'بحث',
    'results' => 'نتائج البحث',
@@ -306,12 +308,12 @@ return [
    'fresh_verify'=>'تم ارسال بريد جديد بمعلومات التفعيل',
 
     //team
-    'team_name'=>'اسم الفريق',   
-    'team_name'=>'وصف الفريق',   
-    'image'=>'الصورة', 
+    'team_name'=>'اسم الفريق',
+    'team_name'=>'وصف الفريق',
+    'image'=>'الصورة',
 
 
     //notifications
-    'notifications' => 'الإشعارات', 
+    'notifications' => 'الإشعارات',
 
 ];

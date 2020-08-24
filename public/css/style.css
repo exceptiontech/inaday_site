@@ -148,7 +148,7 @@ label {
 
 .table {
   color: #505050;
-  font-size: 14px; }
+  font-size: 17px; }
 
 .table .thead-light th {
   background-color: #F2F2F2 !important;
@@ -235,6 +235,11 @@ header .main-header .navbar ul.login_menu li {
 .paragrapgh-login {
   font-size: 11px;
   color: #5c5b5b; }
+
+.modal h2 {
+  color: #005689;
+  font-size: 25px;
+  position: relative; }
 
 u {
   color: #005689;
