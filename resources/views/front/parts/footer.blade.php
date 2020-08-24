@@ -38,78 +38,86 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <p class="copyright">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <ul class="list-inline sociel">
-                                    <li class="list-inline-item">
-                                        {{trans('file.folow_us')}}
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://www.pinterest.com/inadaybiz/boards/" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="widget">
                     <h2>{{trans('file.available_payment_methods')}}</h2>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><img style="height:20px;" src="{{url('images/paytabs-logo.png') }}"></li>
-                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
-                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/visa.svg') }}"></li>
+                        <li class="list-inline-item payment-method-img"><img style="height:20px;" src="{{url('images/paytabs-logo.png') }}"></li>
+                        <li class="list-inline-item payment-method-img"><img style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
+                        <li class="list-inline-item payment-method-img"><img style="height:20px" src="{{url('images/visa.svg') }}"></li>
                     </ul>
                 </div>
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
                     {{ Form::open(['action' => 'SubscriberController@store', 'method' => 'POST', 'files'=>true,'novalidate'=>'novalidate']) }}
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                        <div class="col-12 col-md-9">
+                    <div class="col-12 col-md-9">
                         @if (Session::has('message'))
                             <div class="alert alert-dismissible alert-{{Session::get('status')}}">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    {{Session::get('message')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                {{Session::get('message')}}
                             </div>
                         @endif
-                            <div class="row">
+                        <div class="row">
                             <div class="col-8 col-md-8  p-0">
                                 <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="email" type="text">
                             </div>
                             <div class="col-4 col-md-4 p-0">
                                 <button class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>
                             </div>
-                            </div>
                         </div>
+                    </div>
                     </form>
                 </div>
+
+            </div>
+            <div class="col-12">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6">
+                        <p class="copyright">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
+{{--                        <p class="copyright">جميع الحقوق محفوظة © 2020 لـ inaday.biz</p>--}}
+{{--                        <p>موسسة حقل الورود للتجارة | رقم السجل المدني 1008367383</p>--}}
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ul class="list-inline sociel">
+                            <li class="list-inline-item">
+                                {{trans('file.folow_us')}}
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.pinterest.com/inadaybiz/boards/" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
 </footer>
 <!-- Footer Section End -->
-
 @guest
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
