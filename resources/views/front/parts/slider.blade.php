@@ -11,52 +11,7 @@
     </div>
 </div>
 <!-- Hero Section End -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>تسجيل الدخول </h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label> البريد الإلكتروني *</label>
-                        <input type="email" class="form-control d-block" aria-label="Username"
-                               aria-describedby="basic-addon1">
-                    </div>
-                    <div class="form-group">
-                        <label> كلمة المرور *</label>
-                        <input type="password" class="form-control d-block" aria-label="Username"
-                               aria-describedby="basic-addon1">
-                    </div>
-                    <div class="col-12">
-                        <input type="checkbox">
-                        <label class="col-6">تذكرني</label>
-                        <u class="col-6 mr-2" ><a href="#">نسيت كلمة المرور؟</a></u>
-                    </div>
-                    <a class="btn btn-modal text-center mt-4" href="#">تسجيل </a>
-                    <h5 class="or">أو</h5>
-                    <div class="text-center google-login mt-4">
-                        <a class="btn" href="#"> <i class="fa fa-google fa-lg"></i> التسجيل عن طريق جوجل</a>
-                    </div>
-                    <p class="paragrapgh-login">هذه الخاصية للاعضاء المسجلين بالفعل. في حالة التسجيل يرجي استخدام صفحات التسجيل بالاعلي . في
-                        حالة الدخول من خلال جوجل هنا ستكون صاحب عضوية بلا اي صلاحيات </p>
-                    <p>ليس لديك حساب مسجل! يمكنك <u><a href="#">تسجيل حساب جديد</a></u></p>
-                </form>
-            </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div> -->
-        </div>
-    </div>
-</div>
-<!-- Model Ended -->
+
 <!-- Start Search Section -->
 <div id="search-bar" class="col-12 mt-n5">
     <div class="container p-1 pr-0 pl-0">
