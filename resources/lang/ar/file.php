@@ -175,7 +175,7 @@ return [
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',
     'please_enter_your_e_mail?' => 'من فضلك ادخل الايميل الخاص بك',
     'processing_is_in_progress' => 'جاري المعالجه ...',
-    'signing_in' => 'جاري تسجيل الدخول ...',
+    'signing_in' => 'جاري تسجيل الدخول',
     'sign_in_successful' => 'تم تسجيل الدخول بنجاح',
     'sorry_the_email_or_password_are_incorrect' => 'عفوا الايميل او الباسورد غير صحيحين.',
     'important_links' => 'روابط مهمة',

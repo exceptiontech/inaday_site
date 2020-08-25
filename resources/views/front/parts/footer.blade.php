@@ -38,147 +38,194 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <p class="copyright">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <ul class="list-inline sociel">
+                                    <li class="list-inline-item">
+                                        {{trans('file.folow_us')}}
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="widget">
                     <h2>{{trans('file.available_payment_methods')}}</h2>
                     <ul class="list-inline">
-                        <li class="list-inline-item payment-method-img"><img style="height:20px;" src="{{url('images/paytabs-logo.png') }}"></li>
-                        <li class="list-inline-item payment-method-img"><img style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
-                        <li class="list-inline-item payment-method-img"><img style="height:20px" src="{{url('images/visa.svg') }}"></li>
+                        <li class="list-inline-item"><img style="height:20px;" src="{{url('images/paytabs-logo.png') }}"></li>
+                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
+                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/visa.svg') }}"></li>
                     </ul>
                 </div>
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
-                    {{ Form::open(['action' => 'SubscriberController@store', 'method' => 'POST', 'files'=>true,'novalidate'=>'novalidate']) }}
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <div class="col-12 col-md-9">
-                        @if (Session::has('message'))
-                            <div class="alert alert-dismissible alert-{{Session::get('status')}}">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                {{Session::get('message')}}
-                            </div>
-                        @endif
-                        <div class="row">
+                    <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">
+                        <div class="col-12 col-md-9">
+                            <div class="row">
                             <div class="col-8 col-md-8  p-0">
-                                <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="email" type="text">
+                                <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="query" type="text">
                             </div>
                             <div class="col-4 col-md-4 p-0">
                                 <button class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>
                             </div>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </div>
-
-            </div>
-            <div class="col-12">
-                <div class="row">
-
-                    <div class="col-12 col-sm-6">
-                        <p class="copyright">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
-{{--                        <p class="copyright">جميع الحقوق محفوظة © 2020 لـ inaday.biz</p>--}}
-{{--                        <p>موسسة حقل الورود للتجارة | رقم السجل المدني 1008367383</p>--}}
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <ul class="list-inline sociel">
-                            <li class="list-inline-item">
-                                {{trans('file.folow_us')}}
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://www.pinterest.com/inadaybiz/boards/" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
             </div>
         </div>
     </div>
 </footer>
 <!-- Footer Section End -->
-@guest
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-body">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">{{trans('file.signin')}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="img_memeber">
-                        <img src="{{url('site/images/logo.png')}}" />
-                    </div>
-                    <div class="error"></div>
-                        <form  class="login-form"  method="post" name="login-form"  id="login" class="nobottommargin">
-                            @csrf
-                            <div class="col_full">
-                                <label for="login-form-username">{{trans('file.email')}}</label>
-                                <input type="email"  name="email" id="email" id="login-form-username"  class="form-control not-dark  @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="user@ad.net.sa">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col_full">
-                                <label for="login-form-password">{{trans('file.password')}}</label>
-                                <input type="password" name="password" id="password" id="login-form-password" class="form-control not-dark @error('password') is-invalid @enderror" required autocomplete="current-password"  >
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <!--div class="col_full">
-                                <label>
-                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}><span class="label-text">  تذكرني{{-- __('RememberMe') --}}</span>
-                                </label>
 
-                            </div-->
-                            <div class="col_full nobottommargin center">
-                                <button  class="button button-rounded si-google si-colored  btn-login" name="btn-login" id="login-form-submit"  value="login">{{trans('file.signin')}}</button>
-                            </div>
-                            <div class="col_full">
-                                @if (Route::has('password.request'))
-                                    <a class="forgot" href="{{ route('password.request') }}">
-                                        {{trans('file.forgot_your_password?')}}
-                                        {{-- __('ForgotYourPassword?') --}}
-                                    </a>
-                                @endif
-                            </div>
-                        </form>
-                    </div>
-                </div>
+@guest
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>{{trans('file.signin')}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <div class="error" > </div>
+                <form  method="post" name="login-form" class="login-form"  id="login">
+                    @csrf
+                    <div class="form-group">
+                        <label> {{trans('file.email')}} *</label>
+                        <input type="email"  name="email" id="email" id="login-form-username"  class="form-control d-block  @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus aria-label="Username" aria-describedby="basic-addon1">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="login-form-password">{{trans('file.password')}}</label>
+                            <input type="password" name="password" id="password" id="login-form-password" class="form-control d-block @error('password') is-invalid @enderror" required autocomplete="current-password"  >
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label class="col-6">تذكرني</label>
+                        <u class="col-6 mr-2" >
+                            @if (Route::has('password.request'))
+                                <a class="forgot" href="{{ route('password.request') }}">
+                                    {{trans('file.forgot_your_password?')}}
+                                    {{-- __('ForgotYourPassword?') --}}
+                                </a>
+                            @endif
+                        </u>
+                    </div>
+                    <button  class="btn btn-modal text-center mt-4 btn-login" name="btn-login" id="login-form-submit"  value="login">{{trans('file.signin')}}</button>
+                    <h5 class="or">أو</h5>
+                    <div class="text-center google-login mt-4">
+                        <a class="btn" href="{{url('/user/google')}}">{{__('file.login_with_google')}}<i class="fa fa-google fa-lg"></i></a>
+                    </div>
+                    <p class="paragrapgh-login">هذه الخاصية للاعضاء المسجلين بالفعل. في حالة التسجيل يرجي استخدام صفحات التسجيل بالاعلي . في
+                        حالة الدخول من خلال جوجل هنا ستكون صاحب عضوية بلا اي صلاحيات </p>
+                        <p>ليس لديك حساب مسجل! يمكنك <u><a href="{{ route('register') }}">تسجيل حساب جديد</a></u></p>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div> -->
         </div>
     </div>
 </div>
+<!-- Model Ended -->
+<script type="text/javascript">
+    /// login by jquery ajax
+    $('document').ready(function()
+    {
+            /* validation */
+        $(".login-form").validate({
+            rules:
+            {
+                password: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+            },
+            messages:
+            {
+                password:{
+                    required: "{{trans('file.please_enter_the_password?')}}"
+                },
+                email: "{{trans('file.please_enter_your_e_mail?')}}",
+            },
+            submitHandler: submitForm
+        });
+        /* validation */
+        /* login submit */
+        function submitForm()
+        {
+            var data = $(".login-form").serialize();
+            $.ajax({
+                type : 'POST',
+                url  : "{{route("login")}}",
+                data : data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function()
+                {
+                    $(".error").fadeOut();
+                    $(".btn-login").html('<i class="icon-danger" ></i> {{trans("file.processing_is_in_progress")}} ');
+                },
+                success: function (data) {
+                    //console.log(data);
+                    $(".error").fadeIn(2000, function(){
+                        $(".error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> {{trans("file.sign_in_successful")}} </div>');
+                    });
+                    $(".btn-login").html('<img src="{{url("btn-ajax-loader.gif")}}" /> {{trans("file.signing_in")}} ');
+                    setTimeout('location.reload()',2000);
+                },
+                error: function (jqXHR) {
+                    var response = $.parseJSON(jqXHR.responseText);
+                    //console.log(response);
+                    $(".error").fadeIn(1000, function(){
+                            $(".error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> {{trans("file.sorry_the_email_or_password_are_incorrect")}}  </div>');
+                            $(".btn-login").html('<i class="icon-signin"></i> {{trans("file.signin")}} ');
+                        });
+                }
+            });
+            return false;
+        }
+            /* login submit */
+    });
+    //// end login
+    </script>
+
 @endguest
 
-{{-- <script src="{{url('js/jquery.validate.js')}}"></script> --}}
+
 
 @guest
 <!-- Hotjar Tracking Code for inaday.cloud -->
@@ -193,70 +240,10 @@
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
 
-<script type="text/javascript">
-/// login by jquery ajax
-$('document').ready(function()
-{
-        /* validation */
-    $(".login-form").validate({
-        rules:
-        {
-            password: {
-                required: true,
-            },
-            email: {
-                required: true,
-                email: true
-            },
-        },
-        messages:
-        {
-            password:{
-                required: "{{trans('file.please_enter_the_password?')}}"
-            },
-            email: "{{trans('file.please_enter_your_e_mail?')}}",
-        },
-        submitHandler: submitForm
-    });
-    /* validation */
-    /* login submit */
-    function submitForm()
-    {
-        var data = $(".login-form").serialize();
-        $.ajax({
-            type : 'POST',
-            url  : "{{route("login")}}",
-            data : data,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function()
-            {
-                $(".error").fadeOut();
-                $(".btn-login").html('<i class="icon-danger" ></i> "{{trans("file.processing_is_in_progress")}}" ');
-            },
-            success: function (data) {
-                //console.log(data);
-                $(".error").fadeIn(1000, function(){
-                    $(".error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> "{{trans("file.sign_in_successful")}}" </div>');
-                });
-                $(".btn-login").html('<img src="{{url("btn-ajax-loader.gif")}}" /> "{{trans("file.signing_in")}}" ');
-                setTimeout('location.reload()',3000);
-            },
-            error: function (jqXHR) {
-                var response = $.parseJSON(jqXHR.responseText);
-                //console.log(response);
-                $(".error").fadeIn(1000, function(){
-                        $(".error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> "{{trans("file.sorry_the_email_or_password_are_incorrect")}}"  </div>');
-                        $(".btn-login").html('<i class="icon-signin"></i> "{{trans("file.signin")}}" ');
-                    });
-            }
-        });
-        return false;
-    }
-        /* login submit */
-});
-//// end login
-</script>
+
+@section('jquery')
+<script src="{{url('js/jquery.validate.js')}}"></script>
+
+@endsection
 @endguest
 @yield('footer')

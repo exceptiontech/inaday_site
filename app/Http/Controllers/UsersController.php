@@ -109,7 +109,6 @@ class UsersController extends Controller
     public function show()
     {
 
-
         if (!Auth::user() || count(Auth::user()->roles) == 0 ) {
             return view('front.errors.denied');
         }

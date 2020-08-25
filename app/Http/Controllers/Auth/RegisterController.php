@@ -60,8 +60,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'user_type' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             // 'brith_day' => ['required', 'date_format:Y-m-d|before:today'],
@@ -78,19 +79,72 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        return User::create([
-            'name' => $data['name'],
+        $data_u= User::create([
+            'name' => $data['user_type'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
             'password' => Hash::make($data['password']),
+            'user_type'=> $data['user_type'],
         ]);
+        $data_u->sendEmailVerificationNotification();
+        if($data['user_type'] == "services_provider"){
+
+            $role = Role::where('name','services_provider')->first();
+            $user->assignRole([$role->id]);
+
+            if (count($data_u->userdetail) > 0) {
+                $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            }else {
+                $userdetail = new Userdetail;
+            }
+
+            if (Auth::user()) {
+                $userdetail->user_id = Auth::user()->id;
+            }else {
+                $userdetail->user_id = $data_u->id;
+            }
+            $userdetail->save();
+            // Create interview
+
+            $interview = new Interview;
+            $interview->user_id = $data_u->id;
+            $interview->skill_id = (int)@$data_u->DefaultSkill()->id;
+            $interview->total = 0;
+            $interview->is_passed = 0;
+            $interview->save();
+
+            //$this->guard()->login($data_u);
+
+            // if (Auth::user()->PassedInterview()) {
+            //     return redirect::to('/');
+            // }
+
+            return redirect::to('/account/interviews/'.$interview->id);
+
+        }elseif ($data['user_type'] == "entrepreneur") {
+
+            $role = Role::where('name','entrepreneur')->first();
+            $user->assignRole([$role->id]);
+
+        }elseif (str_contains($url, 'student')) {
+
+            $role = Role::where('name','student')->first();
+            $user->assignRole([$role->id]);
+
+        }
+        //$this->guard()->login($data);
+        //Auth::login($data);
+        return $data_u;
     }
 
 
-    public function register(Request $request)
-    {   
+
+
+
+    public function register1(Request $request)
+    {
         return $request;
 
         if($request->day < 10 ) {
@@ -125,7 +179,7 @@ class RegisterController extends Controller
             }else {
                 $userdetail->user_id = $user->id;
             }
-            
+
             $userdetail->jobtype_id = $request->jobtype_id;
             $userdetail->level_id = $request->level_id;
             $userdetail->prefer_id = $request->prefer_id;
@@ -147,7 +201,7 @@ class RegisterController extends Controller
             if (isset($avater)) {
                 $destinationPath = 'uploads/pages';
                 $extension =  $avater->getClientOriginalExtension();
-                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension; 
+                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
                 $upload_success = $avater->move($destinationPath, $fileName);
                 $userdetail->avater =  $destinationPath.'/'.$fileName;
             }
@@ -156,7 +210,7 @@ class RegisterController extends Controller
             if (isset($cv_file)) {
                 $destinationPath = 'uploads/pages';
                 $extension =  $cv_file->getClientOriginalExtension();
-                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension; 
+                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
                 $upload_success = $cv_file->move($destinationPath, $fileName);
                 $userdetail->cv_file =  $destinationPath.'/'.$fileName;
             }
@@ -172,7 +226,7 @@ class RegisterController extends Controller
                 }else {
 
                     $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
-                    
+
                     if ($item) {
                         $user->skills()->attach($skill);
                     }else {
@@ -186,13 +240,13 @@ class RegisterController extends Controller
                         $new_skill->save();
                         $user->skills()->attach($new_skill);
                     }
-                    
+
                 }
-                
+
             }
 
 
-            // Create interview 
+            // Create interview
 
             $interview = new Interview;
             $interview->user_id = $user->id;
@@ -206,7 +260,7 @@ class RegisterController extends Controller
             if (Auth::user()->PassedInterview()) {
                 return redirect::to('/');
             }
-        
+
             return redirect::to('/account/interviews/'.$interview->id);
 
         }elseif ($request->value == "entrepreneur") {

@@ -19,17 +19,13 @@
                   <a class="nav-link dropdown-toggle" href="{{ url('/services-provider') }}" @if(\Request::route()->getName() == 'service-providers') class="active" @endif id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{trans('file.service_providers')}}
                   </a>
-
-
+                  @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="{{ url('/services-provider') }}">{{trans('file.about_service_provider')}}</a>
-                      @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
-                        <a class="dropdown-item" href="{{ url('/account/services/create') }}">{{trans('file.add_service')}}</a>
-                        <a class="dropdown-item" href="{{ url('/account/profile#team') }}">{{trans('file.myteam')}}</a>
-                        <a class="dropdown-item" href="{{ url('/account/teams/create') }}">{{trans('file.add_team')}}</a>
-                      @endif
+                    <a class="dropdown-item" href="{{ url('/account/services/create') }}">{{trans('file.add_service')}}</a>
+                    <a class="dropdown-item" href="{{ url('/account/profile#team') }}">{{trans('file.myteam')}}</a>
+                    <a class="dropdown-item" href="{{ url('/account/teams/create') }}">{{trans('file.add_team')}}</a>
                   </div>
-
+                  @endif
                 </li>
 
 
@@ -37,14 +33,11 @@
                   <a  class="nav-link dropdown-toggle" href="{{ url('/entrepreneur') }}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{trans('file.entrepreneurs')}}
                   </a>
-
+                  @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="{{ url('/entrepreneur') }}">{{trans('file.about_entrepreneur')}}</a>
-                      @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
-                            <a class="dropdown-item" href="{{ url('/account/projects/create') }}">{{trans('file.add_project')}}</a>
-                      @endif
+                    <a class="dropdown-item" href="{{ url('/account/projects/create') }}">{{trans('file.add_project')}}</a>
                   </div>
-
+                  @endif
                 </li>
 
               <li class="nav-item dropdown">
@@ -64,11 +57,11 @@
               </li>
               @guest
                 <li class="nav-item not-active">
-                    <a class="nav-link" data-toggle="modal"
-                       data-target="#exampleModal" href="{{ route('login') }}">{{trans('file.login')}}</a>
+                    <a class="nav-link" href="#" data-toggle="modal"
+                    data-target="#exampleModal" >{{trans('file.login')}}</a>
                 </li>
                 <li class="nav-item not-active">
-                    <a class="nav-link" href="{{ url('/registration') }}">{{trans('file.register')}}</a>
+                    <a class="nav-link" href="{{ url('/register') }}">{{trans('file.register')}}</a>
                 </li>
                 @else
                   @if(Auth::user()->isAdmin())
