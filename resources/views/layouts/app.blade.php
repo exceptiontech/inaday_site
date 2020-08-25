@@ -14,7 +14,7 @@
         <!-- Bootstrap CSS -->
         <!--ltr link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
         <link href="{{url('vendor/bootstrap-rtl/css/bootstrap-rtl.min.css')}}" rel="stylesheet">
-    
+
         <!-- slick CSS -->
         <link href="{{url('vendor/slick/slick.css')}}" rel="stylesheet" type="text/css">
         <link href="{{url('vendor/slick/slick-theme.css')}}" rel="stylesheet" type="text/css">
@@ -24,6 +24,7 @@
 
         <!-- Custom styles -->
         <link href="{{url('css/style.css')}}" rel="stylesheet">
+        <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
     </head>
     <body class="front rtl">
         @include('front.parts.header')
@@ -32,7 +33,7 @@
         @include('front.parts.footer')
     </body>
 
-    <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
+
     <script src="{{url('vendor/popper/popper.min.js')}}"></script>
     <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- Plugins -->
