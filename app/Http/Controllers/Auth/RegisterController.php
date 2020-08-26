@@ -92,7 +92,7 @@ class RegisterController extends Controller
         if($data['user_type'] == "services_provider"){
 
             $role = Role::where('name','services_provider')->first();
-            $user->assignRole([$role->id]);
+            $data_u->assignRole([$role->id]);
 
             if (count($data_u->userdetail) > 0) {
                 $userdetail = Userdetail::find(Auth::user()->userdetail->id);
@@ -121,17 +121,17 @@ class RegisterController extends Controller
             //     return redirect::to('/');
             // }
 
-            return redirect::to('/account/interviews/'.$interview->id);
+            //return redirect::to('/account/interviews/'.$interview->id);
 
         }elseif ($data['user_type'] == "entrepreneur") {
 
             $role = Role::where('name','entrepreneur')->first();
-            $user->assignRole([$role->id]);
+            $data_u->assignRole([$role->id]);
 
         }elseif (str_contains($url, 'student')) {
 
             $role = Role::where('name','student')->first();
-            $user->assignRole([$role->id]);
+            $data_u->assignRole([$role->id]);
 
         }
         //$this->guard()->login($data);
