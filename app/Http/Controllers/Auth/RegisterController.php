@@ -79,8 +79,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        return User::create([
-            'name' => $data['first_name'].' '.$data['last_name'],
+        $data_u= User::create([
+            'name' => $data['user_type'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -116,7 +116,6 @@ class RegisterController extends Controller
         if($request->user_type == "services_provider"){
 
             $role = Role::where('name','services_provider')->first();
-
             $user->assignRole([$role->id]);
 
             if (count($user->userdetail) > 0) {
