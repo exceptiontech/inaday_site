@@ -161,6 +161,29 @@
     /// login by jquery ajax
     $('document').ready(function()
     {
+        $('#accepted1,#accepted2').click(function () {
+            if ($('#accepted1:checked,#accepted2:checked').length == 2)
+                $('#id_complete').removeAttr('disabled').css( "background-color", "#00e689" );
+
+            else
+                $('#id_complete').attr('disabled','disabled').css( "background-color", "silver" );
+
+        });
+        $("input[type='radio']").change(function () {
+            var newType = $("input[name='user_type']:checked").val();
+
+            // var oldUrl = $(this).attr("href"); // Get current url
+            if(newType == 'services_provider'){
+
+                var newUrl = '{!! url("services_provider/google") !!}'
+            }else{
+                var newUrl = '{!! url("entrepreneur/google") !!}'
+            }
+
+            $("#Type").attr("href", newUrl);
+
+        })
+
             /* validation */
         $(".login-form").validate({
             rules:

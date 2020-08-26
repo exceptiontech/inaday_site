@@ -16,13 +16,13 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class=" col-md-4 service_provider ">
-                        <input type="radio" id="service_provider" name="user_type" value="services_provider" checked="checked"> <span>مقدم خدمة</span>
-                        <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>
+                        <input type="radio" id="TypeUser" name="user_type" value="services_provider" checked="checked"> <span>مقدم خدمة</span>
+{{--                        <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
                         <p> باحث عن عمل و تريدالمساعدة في تنفيذ المشاريع</p>
                     </div>
                     <div class="col-md-4 project_owner">
-                        <input type="radio" id="service_provider2" name="user_type" value="entrepreneur"> <span>صاحب مشروع</span>
-                        <a href="{{ url('register/entrepreneur') }}" class="bottom" > {{trans('file.free_start')}} </a>
+                        <input type="radio" id="TypeUser2" name="user_type" value="entrepreneur"> <span>صاحب مشروع</span>
+{{--                        <a href="{{ url('register/entrepreneur') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
                         <p>صاحب فكرة وعزيمة لديه حلم في بدء أعمال تجارية</p>
                     </div>
                 </div>
@@ -31,7 +31,14 @@
         <div class="py-5 text-left features">
             <div class="container">
                 <div class="text-center google-login">
-                    <a class="btn" href="{{url('/services_provider/google')}}"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+{{--                    <form method="POST" action="{{route('google')}}">--}}
+{{--                        @csrf--}}
+{{--                        <input type="hidden" name="type" id="Type" value="services_provider">--}}
+{{--                        <button class="btn" type="submit" style="background-color: #DD4B39;border-radius: 0;padding-right: 30px;padding-left: 30px;padding-top: 5px;padding-bottom: 10px;color: #fff;margin-bottom: 50px;">--}}
+{{--                            <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}--}}
+{{--                        </button>--}}
+{{--                    </form>--}}
+                    <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -113,16 +120,6 @@
                         <u>وسياسة
                             الخصوصية</u></label>
                 </div>
-<script>
-    $('#accepted1,#accepted2').click(function () {
-      if ($('#accepted1:checked,#accepted2:checked').length == 2)
-        $('#id_complete').removeAttr('disabled').css( "background-color", "#00e689" );
-
-      else
-        $('#id_complete').attr('disabled','disabled').css( "background-color", "silver" );
-
-    });
-</script>
                 <button class="btn btn-primary" type="submit" id="id_complete" disabled="disabled" style="background-color:silver !important">تسجيل </button>
             </div>
         </div>
