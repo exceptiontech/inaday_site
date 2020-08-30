@@ -19,16 +19,17 @@
         <div class="row">
 
 
-            @if(!count($users) && !count($services) && !count($projects))
+{{--            @if(!count($users) && !count($services) && !count($projects))--}}
+            @if(!count($users))
                 <div class="col-12">
                     <div class="card mt-3">
                         <div class="card-body">
 
                             {!! trans('file.no_results')!!}
                         </div>
-                    </div>                          
+                    </div>
                 </div>
-            @else 
+            @else
                 <div class="col-12 text-center">
                     <h2 class="text-center">{!! trans('file.results')!!}</h2>
                 </div>
@@ -46,29 +47,29 @@
                 @endforeach
             @endif
 
-            @if(count($projects))
-                @foreach($projects as $project)
-                <div class="col-12">
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <a href="{{ url('/projects/'.$project->id) }}">{{$project->title}}</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            @endif
+{{--            @if(count($projects))--}}
+{{--                @foreach($projects as $project)--}}
+{{--                <div class="col-12">--}}
+{{--                    <div class="card mt-3">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <a href="{{ url('/projects/'.$project->id) }}">{{$project->title}}</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
 
-            @if(count($services))
-                @foreach($services as $service)
-                <div class="col-12">
-                    <div class="card mt-3">
-                    <div class="card-body">
-                        <a href="{{ url('/services/'.$service->id) }}">{{$service->title}}</a>
-                    </div>
-                    </div>
-                </div>
-                @endforeach
-            @endif
+{{--            @if(count($services))--}}
+{{--                @foreach($services as $service)--}}
+{{--                <div class="col-12">--}}
+{{--                    <div class="card mt-3">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <a href="{{ url('/services/'.$service->id) }}">{{$service->title}}</a>--}}
+{{--                    </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
 
         </div>
 

@@ -22,6 +22,7 @@
         "socialiteproviders/facebook": "^1.0",
         "socialiteproviders/google": "^3.0",
         "socialiteproviders/twitter": "^3.0",
+        "spatie/laravel-newsletter": "^4.8",
         "spatie/laravel-permission": "^3.13",
         "spatie/laravel-translatable": "^4.3"
     },

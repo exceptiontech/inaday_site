@@ -1,24 +1,26 @@
 #footer {
-    width:100%;
-    float:right;
+    width: 100%;
+    float: right;
     background: #F8F8F8;
 
     .widget {
         h2 {
             color: #005689;
-            font-size: 22px;
+            font-size: 14px;
         }
 
         ul {
             li {
                 line-height: 35px;
+
                 a {
+                    font-size: 12px;
                     color: #444444;
                     padding-right: 25px;
                     position: relative;
 
                     &:before {
-                        content:"";
+                        content: "";
                         position: absolute;
                         right: 0;
                         top: 14px;
@@ -35,19 +37,31 @@
     }
 
     p {
+        font-size: 12px;
+
         &.copyright {
             color: #005689;
+            font-weight: bold;
         }
     }
 
     ul {
         &.sociel {
+            margin-top: 20px;
+            text-align: left;
+            margin-left: 125px;
+
             li {
+
                 a {
+                    font-size: 12px;
                     color: #444444;
                 }
             }
         }
+    }
+    .payment-method-img{
+        margin-left: 15px;
     }
 
 }

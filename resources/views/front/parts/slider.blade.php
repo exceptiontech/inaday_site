@@ -11,34 +11,44 @@
     </div>
 </div>
 <!-- Hero Section End -->
-  
+
 <!-- Start Search Section -->
 <div id="search-bar" class="col-12 mt-n5">
     <div class="container p-1 pr-0 pl-0">
-        <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">
+{{--        <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">--}}
+        {{ Form::open(['action' => 'FrontController@SearchIndex','method' => 'get','class'=>'formsearch']) }}
             <div class="row m-1 ">
                 <div class="col-12 col-md-4 pt-1 pb-1">
-                    {{ Form::open(['action' => 'FrontController@SearchIndex','method' => 'get','class'=>'formsearch']) }}     
-                    {!! Form::text('query', null, ['required','class' => 'form-control search','id'=>'search','placeholder'=>trans('file.search_for')]) !!}
-                    {{ Form::close() }}
+                    <img class="icon-search-bar" src="images/search.svg" />
+                    {!! Form::text('query', null, ['required','class' => 'form-control search search-bar-field','id'=>'search','placeholder'=>trans('file.search_for')]) !!}
                 </div>
                 <div class="col-12 col-md-3  pt-1 pb-1">
-                    <select name="section_id" class="form-control required" id="service" required="required" aria-required="true">
-                        <option value="">اختر التصنيف</option>
-                        <option value="1"> خدمات متقدمة</option>
-                  </select>
+                    <img class="icon-search-bar" src="images/placeholder.svg" />
+                    <select name="city" class="form-control required search-bar-field" id="service" required="required" aria-required="true">
+                        <option value="all">كل المدن</option>
+                        @foreach($cities as $city)
+                            <option value="{{$city->slug}}"> {{$city->title['ar']}}</option>
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="col-12 col-md-3  pt-1 pb-1">
-                    <select name="section_id" class="form-control required" id="service" required="required" aria-required="true">
-                        <option value="">اختر التصنيف</option>
-                        <option value="1"> خدمات متقدمة</option>
-                  </select>
+                    <img class="icon-search-bar" src="images/layers.svg" />
+
+                    <select name="skill" class="form-control required search-bar-field" id="service"
+                            required="required" aria-required="true">
+                        <option value="all">في كل الاقسام</option>
+                        @foreach($skills as $skill)
+                            <option value="{{$skill->id}}"> {{$skill->title['ar']}}</option>
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="col-12 col-md-2 p-0">
                     <button class="btn btn-block btn-primary h-100" type="submit">أبحث الآن </button>
                 </div>
             </div>
-        </form>
+        {{ Form::close() }}
     </div>
 </div>
 <!-- Search Section End -->

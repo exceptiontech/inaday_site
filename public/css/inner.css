@@ -39,7 +39,7 @@ h6 {
   font-family: 'HelveticaNeueLT', 'HelveticaNeueLT-Bold', Arial, sans-serif; }
 
 p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px; }
 
@@ -115,9 +115,10 @@ a.link-dark {
 
 .btn-primary {
   background: #00C76D;
-  border: none;
+  border: 1px;
   padding-bottom: 10px;
   color: #fff;
+  padding: 10px 20px;
   font-family: 'HelveticaNeueLTR', 'HelveticaNeueLT-Regular', Arial, sans-serif; }
   .btn-primary:hover {
     background: #6D6E70; }
@@ -147,7 +148,7 @@ label {
 
 .table {
   color: #505050;
-  font-size: 14px; }
+  font-size: 17px; }
 
 .table .thead-light th {
   background-color: #F2F2F2 !important;
@@ -174,17 +175,21 @@ img.img-icon120 {
   height: 120px; }
 
 /* Header navbar */
+header .main-header .navbar .navbar-brand {
+  margin-left: 30px; }
+
 header .main-header .navbar ul.navbar-nav li + .nav-item {
-  margin-right: 8px; }
+  margin-right: 5px; }
 
 header .main-header .navbar ul.navbar-nav li {
   margin: 0; }
   header .main-header .navbar ul.navbar-nav li a.nav-link {
-    font-size: 16px;
+    font-size: 12px;
     color: #005689;
     font-weight: bold;
-    border-radius: 25px;
-    padding: 8px 8px;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-bottom: 10px; }
     header .main-header .navbar ul.navbar-nav li a.nav-link.active, header .main-header .navbar ul.navbar-nav li a.nav-link:hover {
       background: #00EB80;
@@ -194,11 +199,12 @@ header .main-header .navbar ul.navbar-nav li {
 header .main-header .navbar ul.login_menu li {
   margin: 0; }
   header .main-header .navbar ul.login_menu li a.nav-link {
-    font-size: 16px;
+    font-size: 12px;
     color: #505050;
     font-weight: bold;
     border-radius: 25px;
-    padding: 8px 8px;
+    padding-left: 20px;
+    padding-right: 20px;
     border: solid 1px #E5E5E5; }
     header .main-header .navbar ul.login_menu li a.nav-link.active, header .main-header .navbar ul.login_menu li a.nav-link:hover {
       background: #005689;
@@ -214,6 +220,65 @@ header .main-header .navbar ul.login_menu li {
 .front header {
   background: none;
   box-shadow: none; }
+
+.google-login a {
+  background: #DD4B39;
+  border: none;
+  border-radius: 1px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: #fff;
+  margin-bottom: 50px; }
+
+.paragrapgh-login {
+  font-size: 11px;
+  color: #5c5b5b; }
+
+.modal h2 {
+  color: #005689;
+  font-size: 25px;
+  position: relative; }
+
+u {
+  color: #005689;
+  text-align: left; }
+
+p {
+  font-size: 16px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+
+.form-inputs input {
+  margin: 10px 0;
+  box-shadow: 1px 2px 2px #00000029; }
+
+input[type="checkbox"] {
+  box-shadow: 1px 2px 2px #00000029; }
+
+.or {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px; }
+
+.btn-modal {
+  background: #00C76D;
+  font-family: 'HelveticaNeueLTR', 'HelveticaNeueLT-Regular', Arial, sans-serif;
+  border-radius: 1px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 232px;
+  color: #fff;
+  text-align: center;
+  margin-right: 120px; }
+  .btn-modal:hover {
+    background: #6D6E70;
+    color: #fff; }
 
 /* import all needed inner files */
 .inner .widget .title h2 {
@@ -654,10 +719,11 @@ header .main-header .navbar ul.login_menu li {
   background: #F8F8F8; }
   #footer .widget h2 {
     color: #005689;
-    font-size: 22px; }
+    font-size: 14px; }
   #footer .widget ul li {
     line-height: 35px; }
     #footer .widget ul li a {
+      font-size: 12px;
       color: #444444;
       padding-right: 25px;
       position: relative; }
@@ -672,10 +738,20 @@ header .main-header .navbar ul.login_menu li {
         border-radius: 50%;
         background-clip: padding-box;
         background: #00e689; }
-  #footer p.copyright {
-    color: #005689; }
-  #footer ul.sociel li a {
-    color: #444444; }
+  #footer p {
+    font-size: 12px; }
+    #footer p.copyright {
+      color: #005689;
+      font-weight: bold; }
+  #footer ul.sociel {
+    margin-top: 20px;
+    text-align: left;
+    margin-left: 125px; }
+    #footer ul.sociel li a {
+      font-size: 12px;
+      color: #444444; }
+  #footer .payment-method-img {
+    margin-left: 15px; }
 
 .rtl .mr-auto, [dir=rtl] .mr-auto, .rtl .ml-auto, [dir=rtl] .ml-auto {
   margin-right: 0 !important;

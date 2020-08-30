@@ -109,7 +109,6 @@ class UsersController extends Controller
     public function show()
     {
 
-
         if (!Auth::user() || count(Auth::user()->roles) == 0 ) {
             return view('front.errors.denied');
         }
@@ -355,7 +354,8 @@ class UsersController extends Controller
     }
 
     public function google(){
-        Session::put('url', URL::previous());
+
+        Session::put('url', URL::Current());
         return Socialite::with('google')->stateless()->redirect();
     }
 

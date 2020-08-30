@@ -60,8 +60,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'user_type' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             // 'brith_day' => ['required', 'date_format:Y-m-d|before:today'],
@@ -79,7 +80,7 @@ class RegisterController extends Controller
     {
 
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['first_name'].' '.$data['last_name'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -89,17 +90,20 @@ class RegisterController extends Controller
     }
 
 
+
+
+
     public function register(Request $request)
-    {   
-        return $request;
-
-        if($request->day < 10 ) {
-            $request->day = '0'.$request->day;
-        }
-
-        if($request->month < 10 ) {
-            $request->month = '0'.$request->month;
-        }
+    {
+//        return $request;
+//
+//        if($request->day < 10 ) {
+//            $request->day = '0'.$request->day;
+//        }
+//
+//        if($request->month < 10 ) {
+//            $request->month = '0'.$request->month;
+//        }
 
         $this->validator($request->all())->validate();
 
@@ -109,7 +113,7 @@ class RegisterController extends Controller
 
         $url = URL::previous();
 
-        if($request->value == "service_provider"){
+        if($request->user_type == "services_provider"){
 
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
@@ -125,91 +129,91 @@ class RegisterController extends Controller
             }else {
                 $userdetail->user_id = $user->id;
             }
-            
-            $userdetail->jobtype_id = $request->jobtype_id;
-            $userdetail->level_id = $request->level_id;
-            $userdetail->prefer_id = $request->prefer_id;
-            $userdetail->costkind_id = $request->costkind_id;
-            $userdetail->applykind_id = $request->applykind_id;
-            $userdetail->averagekind_id = $request->averagekind_id;
-            $userdetail->average_cost = $request->average_cost;
-            $userdetail->rewardkind_id = $request->rewardkind_id;
-            $userdetail->readinesskind_id = $request->readinesskind_id;
-            $userdetail->readiness_date = $request->readiness_date;
-            $userdetail->time_start = $request->time_start;
-            $userdetail->brith_day = $request->year.'-'.$request->month.'-'.$request->day;
-            $userdetail->country_id = $request->country_id;
-            $userdetail->position = $request->position;
-            $userdetail->notes = $request->notes;
-            $userdetail->save();
 
-            $avater =  $request->avater;
-            if (isset($avater)) {
-                $destinationPath = 'uploads/pages';
-                $extension =  $avater->getClientOriginalExtension();
-                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension; 
-                $upload_success = $avater->move($destinationPath, $fileName);
-                $userdetail->avater =  $destinationPath.'/'.$fileName;
-            }
-
-            $cv_file =  $request->cv_file;
-            if (isset($cv_file)) {
-                $destinationPath = 'uploads/pages';
-                $extension =  $cv_file->getClientOriginalExtension();
-                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension; 
-                $upload_success = $cv_file->move($destinationPath, $fileName);
-                $userdetail->cv_file =  $destinationPath.'/'.$fileName;
-            }
-
-            $userdetail->save();
-
-            $skills = $request->skills;
-
-            foreach ($skills as $skill) {
-
-                if (is_numeric($skill) && $skill > 0) {
-                    $user->skills()->attach([$skill=> ['is_default'=>'1']]);
-                }else {
-
-                    $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
-                    
-                    if ($item) {
-                        $user->skills()->attach($skill);
-                    }else {
-
-                        $title = array();
-                        $title['ar'] = $skill;
-                        $new_skill = new Skill;
-                        $new_skill->title = $title;
-                        $new_skill->slug = $skill;
-                        $new_skill->is_active = 0;
-                        $new_skill->save();
-                        $user->skills()->attach($new_skill);
-                    }
-                    
-                }
-                
-            }
-
-
-            // Create interview 
-
-            $interview = new Interview;
-            $interview->user_id = $user->id;
-            $interview->skill_id = $user->DefaultSkill()->id;
-            $interview->total = 0;
-            $interview->is_passed = 0;
-            $interview->save();
+//            $userdetail->jobtype_id = $request->jobtype_id;
+//            $userdetail->level_id = $request->level_id;
+//            $userdetail->prefer_id = $request->prefer_id;
+//            $userdetail->costkind_id = $request->costkind_id;
+//            $userdetail->applykind_id = $request->applykind_id;
+//            $userdetail->averagekind_id = $request->averagekind_id;
+//            $userdetail->average_cost = $request->average_cost;
+//            $userdetail->rewardkind_id = $request->rewardkind_id;
+//            $userdetail->readinesskind_id = $request->readinesskind_id;
+//            $userdetail->readiness_date = $request->readiness_date;
+//            $userdetail->time_start = $request->time_start;
+//            $userdetail->brith_day = $request->year.'-'.$request->month.'-'.$request->day;
+//            $userdetail->country_id = $request->country_id;
+//            $userdetail->position = $request->position;
+//            $userdetail->notes = $request->notes;
+//            $userdetail->save();
+//
+//            $avater =  $request->avater;
+//            if (isset($avater)) {
+//                $destinationPath = 'uploads/pages';
+//                $extension =  $avater->getClientOriginalExtension();
+//                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+//                $upload_success = $avater->move($destinationPath, $fileName);
+//                $userdetail->avater =  $destinationPath.'/'.$fileName;
+//            }
+//
+//            $cv_file =  $request->cv_file;
+//            if (isset($cv_file)) {
+//                $destinationPath = 'uploads/pages';
+//                $extension =  $cv_file->getClientOriginalExtension();
+//                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+//                $upload_success = $cv_file->move($destinationPath, $fileName);
+//                $userdetail->cv_file =  $destinationPath.'/'.$fileName;
+//            }
+//
+//            $userdetail->save();
+//
+//            $skills = $request->skills;
+//
+//            foreach ($skills as $skill) {
+//
+//                if (is_numeric($skill) && $skill > 0) {
+//                    $user->skills()->attach([$skill=> ['is_default'=>'1']]);
+//                }else {
+//
+//                    $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
+//
+//                    if ($item) {
+//                        $user->skills()->attach($skill);
+//                    }else {
+//
+//                        $title = array();
+//                        $title['ar'] = $skill;
+//                        $new_skill = new Skill;
+//                        $new_skill->title = $title;
+//                        $new_skill->slug = $skill;
+//                        $new_skill->is_active = 0;
+//                        $new_skill->save();
+//                        $user->skills()->attach($new_skill);
+//                    }
+//
+//                }
+//
+//            }
+//
+//
+//            // Create interview
+//
+//            $interview = new Interview;
+//            $interview->user_id = $user->id;
+//            $interview->skill_id = $user->DefaultSkill()->id;
+//            $interview->total = 0;
+//            $interview->is_passed = 0;
+//            $interview->save();
 
             $this->guard()->login($user);
 
-            if (Auth::user()->PassedInterview()) {
-                return redirect::to('/');
-            }
-        
-            return redirect::to('/account/interviews/'.$interview->id);
+//            if (Auth::user()->PassedInterview()) {
+//                return redirect::to('/');
+//            }
 
-        }elseif ($request->value == "entrepreneur") {
+            return redirect::to('email/verify');
+
+        }elseif ($request->user_type == "entrepreneur") {
 
             $role = Role::where('name','entrepreneur')->first();
             $user->assignRole([$role->id]);

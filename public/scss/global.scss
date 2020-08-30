@@ -1,17 +1,17 @@
-@include font-face(TheSans,'../fonts/TheSans/plain/TheSansArabic-Plain');
-@include font-face(HelveticaNeueLT,'../fonts/HelveticaNeueLT/bold/HelveticaNeueLT-Bold');
-@include font-face(HelveticaNeueLTR,'../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular');
+@include font-face(TheSans, '../fonts/TheSans/plain/TheSansArabic-Plain');
+@include font-face(HelveticaNeueLT, '../fonts/HelveticaNeueLT/bold/HelveticaNeueLT-Bold');
+@include font-face(HelveticaNeueLTR, '../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular');
 
 body,
 html {
   width: 100%;
   height: 100%;
   direction: rtl;
-  background: white;  
+  background: white;
   @include HelveticaNeueLTR-font;
 }
 
-body.ar{
+body.ar {
   text-align: right;
 }
 
@@ -25,7 +25,7 @@ h6 {
 }
 
 p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -63,16 +63,16 @@ body {
 
 //============================================= text direction
 
-.ltr{
+.ltr {
   direction: ltr
 }
 
-.ltr-bidi{
+.ltr-bidi {
   direction: ltr;
   unicode-bidi: bidi-override;
 }
 
-.rtl{
+.rtl {
   direction: rtl
 }
 
@@ -80,7 +80,7 @@ body {
 
 a {
   color: $darkBlueColor;
-  text-decoration: none!important;
+  text-decoration: none !important;
 
   &:focus,
   &:hover {
@@ -88,18 +88,18 @@ a {
   }
 }
 
-a.link-primary{
+a.link-primary {
   color: $darkGreenColor;
 }
 
-a.link-dark{
+a.link-dark {
   color: $darkGrayColor;
 }
 
 
 // Aligns 
 .ltr {
-    direction: ltr;
+  direction: ltr;
 }
 
 .rtl {
@@ -125,20 +125,23 @@ a.link-dark{
     color: #005689;
     border-bottom: 1px dashed #005689;
     padding: 16px 8px;
-    &:hover , &:focus {
+
+    &:hover,
+    &:focus {
       background: none;
-      border-color:#84939e;
+      border-color: #84939e;
     }
   }
 }
 
 .btn-primary {
   background: #00C76D;
-  border: none;
-  padding-bottom:10px; 
-  color:#fff;
+  border: 1px;
+  padding-bottom: 10px;
+  color: #fff;
+  padding: 10px 20px;
   @include HelveticaNeueLTR-font;
-  
+
 
   &:hover {
     background: #6D6E70;
@@ -148,10 +151,10 @@ a.link-dark{
 .btn-secondary {
   background: #005689;
   border: none;
-  padding-bottom:10px; 
-  color:#fff;
+  padding-bottom: 10px;
+  color: #fff;
   @include HelveticaNeueLTR-font;
-  
+
 
   &:hover {
     background: #6D6E70;
@@ -167,18 +170,18 @@ label {
 .form-control {
   background-color: #fff;
   border: solid 1px #E6E6E6;
-  box-shadow:  0 3px 6px #00000029;
+  box-shadow: 0 3px 6px #00000029;
   line-height: 32px;
-  min-height:50px;
+  min-height: 50px;
 }
 
 .nav-pills .nav-link.active {
-  background-color:#00C76D ; 
+  background-color: #00C76D;
 }
 
 .table {
   color: #505050;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .table .thead-light th {
@@ -195,21 +198,21 @@ button {
 }
 
 img.img-icon30 {
-  width:30px;
-  height:30px;
+  width: 30px;
+  height: 30px;
 }
 
 img.img-icon50 {
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
 }
 
 img.img-icon80 {
-  width:80px;
-  height:80px;
+  width: 80px;
+  height: 80px;
 }
 
 img.img-icon120 {
-  width:120px;
-  height:120px;
+  width: 120px;
+  height: 120px;
 }

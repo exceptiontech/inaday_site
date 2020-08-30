@@ -60,6 +60,7 @@ return [
     'we_offer_you_complete_solutions_desc2' => 'بيكون عملك فية إجازة  وإجازتك فيها عمل !',
     'we_offer_you_complete_solutions_desc3' => 'ممتع؟ إذا تعتقد انك موهوب وتحب الشغل جرب أحسب دخلك',
     'more_mixes' => 'تعرف على الخلطات',
+    'subscriber_success' => 'تم اشتراكك بنجاح',
 
 
     /*Alerts*/
@@ -88,6 +89,8 @@ return [
     'booking_servives' => ' حجز خدمه',
     'booking_servives_provider' => ' حجز مقدم خدمه',
     'add_service' => ' أضف خدمه',
+    'about_service_provider' => 'عن مقدمي الخدمات',
+    'about_entrepreneur' => 'عن رواد الأعمال',
     'entrepreneurs' => ' رواد الاعمال',
     'start' => ' ابدأ ',
     'add_project' => ' أضف مشروع',
@@ -172,7 +175,7 @@ return [
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',
     'please_enter_your_e_mail?' => 'من فضلك ادخل الايميل الخاص بك',
     'processing_is_in_progress' => 'جاري المعالجه ...',
-    'signing_in' => 'جاري تسجيل الدخول ...',
+    'signing_in' => 'جاري تسجيل الدخول',
     'sign_in_successful' => 'تم تسجيل الدخول بنجاح',
     'sorry_the_email_or_password_are_incorrect' => 'عفوا الايميل او الباسورد غير صحيحين.',
     'important_links' => 'روابط مهمة',
@@ -235,7 +238,7 @@ return [
     'offers'=>'عروض' ,
     'contact_the_project_owner'=>'تواصل مع صاحب المشروع' ,
     'you_must_log_in_first_to_use_the_platforms_services'=>'يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة' ,
-    
+
 
     //Errors
     'nothavepermissions'=>'لا تملك الصلاحيات',
@@ -290,7 +293,7 @@ return [
    'subject' => 'عنوان الموضوع',
 
 
-   //search 
+   //search
 
    'search' => 'بحث',
    'results' => 'نتائج البحث',
@@ -305,12 +308,12 @@ return [
    'fresh_verify'=>'تم ارسال بريد جديد بمعلومات التفعيل',
 
     //team
-    'team_name'=>'اسم الفريق',   
-    'team_name'=>'وصف الفريق',   
-    'image'=>'الصورة', 
+    'team_name'=>'اسم الفريق',
+    'team_name'=>'وصف الفريق',
+    'image'=>'الصورة',
 
 
     //notifications
-    'notifications' => 'الإشعارات', 
+    'notifications' => 'الإشعارات',
 
 ];
