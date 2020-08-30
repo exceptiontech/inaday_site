@@ -52,6 +52,7 @@ Route::get('registration', 'UsersController@registration');
 
 
 Route::get('projects', 'ProjectController@index')->name('projects.index');
+Route::post('projects/search', 'ProjectController@searchBySkills')->name('projects.searchBySkills');
 Route::get('projects/{id}', 'ProjectController@show')->name('projects.show');
 Route::get('services', 'ServiceController@index')->name('services.index');
 Route::get('services/{id}', 'ServiceController@show')->name('services.show');
