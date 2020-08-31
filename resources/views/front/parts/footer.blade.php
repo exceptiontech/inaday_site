@@ -159,6 +159,11 @@
 <!-- Model Ended -->
 <script type="text/javascript">
     /// login by jquery ajax
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $('document').ready(function()
     {
         $('#accepted1,#accepted2').click(function () {
@@ -182,7 +187,12 @@
 
             $("#Type").attr("href", newUrl);
 
-        })
+        });
+
+
+
+
+
 
             /* validation */
         $(".login-form").validate({
@@ -244,6 +254,7 @@
             /* login submit */
     });
     //// end login
+
     </script>
 
 @endguest

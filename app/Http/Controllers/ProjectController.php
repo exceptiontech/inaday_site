@@ -37,24 +37,6 @@ class ProjectController extends Controller
 
         $projects->where('is_approved',1);
 
-        if ($request->skill_id) {
-
-            $skill_id = $request->skill_id;
-
-            $projects->whereHas('skills', function ($query) use ($skill_id) {
-                $query->where('skill_id', $skill_id);
-            });
-
-        }
-
-        if ($request->section_id) {
-
-            $section_id = $request->section_id;
-
-            $projects->where('section_id',$section_id);
-        }
-
-
         if ($projects) {
 
             $skills = Skill::all();
@@ -62,6 +44,30 @@ class ProjectController extends Controller
 
             return view('front.projects.index')->withProjects($projects->latest()->paginate(15))->withSections($sections)->withSkills($skills);
         }
+    }
+
+    public function searchBySkills(Request $request, Project $projects)
+    {
+        $projects = $projects->newQuery();
+        $projects->where('is_approved',1);
+        if ($request->skill_id) {
+
+            $skill_id = $request->skill_id;
+
+            $projects->whereHas('skills', function ($query) use ($skill_id) {
+                $query->whereIn('skill_id', $skill_id);
+            });
+
+        }
+        if ($request->section_id) {
+
+            $section_id = $request->section_id;
+
+            $projects->whereIn('section_id',$section_id);
+        }
+
+
+        return view('front.projects._search')->withProjects($projects->latest()->paginate(15));
     }
 
     /**
