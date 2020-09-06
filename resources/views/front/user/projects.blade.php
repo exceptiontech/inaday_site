@@ -49,13 +49,10 @@
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/about')}}">نبذة عني</a>
                                 </li>
-                                @if($user->isEntrepreneur() )
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/projects')}}">خدماتي</a>
                                 </li>
-                                @endif
 
-                                @if($user->isServicesProvider() )
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/services')}}">خدماتي</a>
                                 </li>
@@ -68,7 +65,6 @@
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/experiences')}}">خبراتي</a>
                                 </li>
-                                @endif
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/reviews')}} ">تقييمات العملاء</a>
                                 </li>
