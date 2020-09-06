@@ -70,24 +70,24 @@
                                         <div class="row mb-4">
                                             <div class="col-12 col-sm-4">
                                                 <label class="col-12 mb-3" for="inputEmail4">اسم المهنة</label>
-                                                <input type="text" class="form-control" placeholder=" UI/ UX Designer">
+                                                <input type="text" class="form-control" value="{{$experience->position}}"  name="position">
                                             </div>
                                             <div class="col-12 col-sm-4">
                                                 <label class="col-12 mb-3" for="inputEmail4">اسم الشركة</label>
-                                                <input type="text" class="form-control" placeholder=" شركة البعد الفني">
+                                                <input type="text" class="form-control" value="{{$experience->company}}" name="company">
                                             </div>
                                             <div class="col-12 col-sm-2">
                                                 <label class="col-12 mb-3" for="inputEmail4">خلال الفترة من</label>
-                                                <input type="text" class="form-control" placeholder=" July 2018">
+                                                <input type="text" class="form-control" value="{{$experience->start_date}}" name="start_date">
                                             </div>
                                             <div class="col-12 col-sm-2">
                                                 <label class="col-12 mb-3" for="inputEmail4">الي</label>
-                                                <input type="text" class="form-control" placeholder=" July 2020">
+                                                <input type="text" class="form-control" name="end_date" value=" {{$experience->end_date}}">
                                             </div>
 
                                             <div class="col-12 mt-5">
                                                 <label class="col-12 mb-3" for="inputEmail4">المهارات التى تؤديها</label>
-                                                <textarea class="form-control" placeholder="المهارات التى تؤديها">خبرة بتصميم واجهات استخدام متجاوبة ومتوافقة مع جميع الاجهزة. تقديم الاقتراحات والافكار لانجاز العمل بطريقة مختلفة اذا كانت الآلية المقترحة لاتتناسب مع نوع التطبيق. دراسة المشروع وتقديم جدول زمني واضح المهام.</textarea> 
+                                                <textarea class="form-control" name="desc" placeholder="المهارات التى تؤديها">{{$experience->end_date}}</textarea> 
                                             </div>
 
                                         </div>
@@ -133,11 +133,11 @@
                                             </div>
                                             <div class="col-12 col-sm-2">
                                                 {!! Form::label('start_date', trans('forms.start_date'))!!}
-                                                {!! Form::text('start_date', null, ['required','class' => 'form-control','placeholder'=>'تاريخ البداية']) !!}
+                                                {!! Form::text('start_date', null, ['required','id' => 'start_date','class' => 'form-control','placeholder'=>'تاريخ البداية']) !!}
                                             </div>
                                             <div class="col-12 col-sm-2">
                                                 {!! Form::label('end_date', trans('forms.end_date'))!!}
-                                                {!! Form::text('start_date', null, ['class' => 'form-control','placeholder'=>'تاريخ النهاية']) !!}
+                                                {!! Form::text('end_date', null, ['id' => 'end_date','class' => 'form-control','placeholder'=>'تاريخ النهاية']) !!}
                                             </div>
 
                                             <div class="col-12 mt-5">
@@ -171,6 +171,22 @@
 @endsection
 
 @section('jquery')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+
+<script type="text/javascript">
+    $('#start_date').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true
+    });
+
+    $('#end_date').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true
+    });
+
+</script>
 
 @endsection
 
