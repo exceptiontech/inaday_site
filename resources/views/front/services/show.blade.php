@@ -28,7 +28,7 @@
                                     <div class="col-6 p-0"><span class="bg-light">{{ $service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">ميزانية المشروع</div>
+                                    <div class="col-6 p-0 text-dark">تكلفة الخدمة</div>
                                     <div class="col-6 p-0">{{$service->cost}} {{__('file.riyal')}}</div>
                                 </li>
                                 <li class="list-group-item d-flex">
@@ -51,7 +51,7 @@
 
                         
                         <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/messages/'.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                            <a href="{{url('/messages/'.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
                             
                             @guest
                             <p class="small">يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة</p>
