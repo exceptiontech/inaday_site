@@ -83,6 +83,15 @@ class ProjectController extends Controller
         $this->validate($request,[
             'title'      =>'required|max:500',
             'desc'      =>'required',
+            'section_id'      =>'required|integer',
+            'applykind_id'      =>'required',
+            'num_team'      =>'required',
+            'level_id'      =>'required',
+            'averagekind_id'      =>'required',
+            'cost'      =>'required',
+            'duration'      =>'required',
+            'reward'      =>'required',
+            'rewardkind_id'      =>'required',
         ]);
 
 
