@@ -136,18 +136,19 @@
                                 </div>
                                 <div class="col-sm-4 inpusrach">
                                     <label>{{ __('forms.target_clients') }}<em>*</em></label>
-                                    <input name="target_clients" class="form-control required" type="number" min="1" value="{{$project->phase->target_clients}}" required>
+                                    <input name="target_clients" class="form-control required" type="number" min="1" value="{{$project->phase->target_clients ?? ''}}" required>
                                 </div>
                                 <div class="col-sm-4 inpusrach">
                                     <label>{{ __('forms.target_sales') }}<em>*</em></label>
-                                    <input name="target_sales" class="form-control required" type="number" min="1" value="{{$project->phase->target_sales}}"  required>
+                                    <input name="target_sales" class="form-control required" type="number" min="1" value="{{$project->phase->target_sales ?? ''}}"  required>
                                 </div>
                                 <div class="col-sm-4 inpusrach">
                                     <label>{{ __('forms.target_profits') }}<em>*</em></label>
-                                    <input name="target_profits" class="form-control required" type="number" min="0" value="{{$project->phase->target_profits}}" required>
+                                    <input name="target_profits" class="form-control required" type="number" min="0" value="{{$project->phase->target_profits ?? ''}}" required>
                                 </div>
 
                             </div>
+
 
 
                             <div class="form-group">
