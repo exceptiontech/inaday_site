@@ -75,7 +75,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', null, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('reward', null, ['class' => 'form-control','placeholder'=>'1']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!}

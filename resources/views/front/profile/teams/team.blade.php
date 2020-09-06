@@ -118,7 +118,6 @@
                                 @endif
 
 
-                                @if(!Auth::user()->team)
                                 <div class="col-12 mt-5 mb-5">
 
                                     {{ Form::open(['action' => 'Account\TeamController@store', 'files'=>true]) }}
@@ -151,7 +150,6 @@
                                     {{ Form::close() }}
                                 </div>
 
-                                @endif
 
                             </div>
 
