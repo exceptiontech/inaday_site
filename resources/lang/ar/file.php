@@ -46,7 +46,7 @@ return [
     'booked' => 'تم الحجز',
     'contact' => 'اتصل بنا',
     'book_services' => 'حجز خدمة',
-    'in_a_day_features' => 'أهم ما يميزنا فى منصة .انادي.',
+    'in_a_day_features' => 'أهم ما يميزنا فى منصة .IN.A.DAY.',
     'start_now' => 'أبدا الان',
     'start_your_project' => 'نفذ مشروعك الآن',
     'job_seekers' => 'باحث عن عمل',
@@ -110,7 +110,7 @@ return [
 
     /* Slider*/
     'slider_title' => 'في كل يوم <br/> إنجاز و قصة نجاح تروى',
-    'slider_desc' => 'منصة .انادي. هي سوق لجذب الموهوبين و رواد الأعمال لخلق <br/> وظائف عن بعد و تأسيس أعمال تجارية ناجحة.',
+    'slider_desc' => 'منصة .IN.A.DAY. هي سوق لجذب الموهوبين و رواد الأعمال لخلق <br/> وظائف عن بعد و تأسيس أعمال تجارية ناجحة.',
     'free_start' => 'إبدأ مجاناً',
     'introduction' => ' تعريف بالمنصة',
 
@@ -146,7 +146,7 @@ return [
     'interview'=>'مقابلة الكترونية',
     'if_you_have_file_related_in_your_solution'=>'في حال وجود ملف مرتبط بالحل يرجى ارفاقه',
     'free_start' => 'ابدأ مجاناً',
-    'beneficiaries' => 'مستفيدي .انادي',
+    'beneficiaries' => 'مستفيدي .IN.A.DAY',
     'other_articles' => 'مقالات اخرى',
     'thank_you_for_being_ambitious_and_seeking_work' => 'شكرا لانك طموح وتسعي للعمل',
     'you_will_achieve_your_dreams_and_the_dreams_of_many_people_around_you..' => 'راح تحقق احلامك واحلام ناس كثير حولك..',
