@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Notifications\RegisterServicesProvider;
+use App\Notifications\RegisterEntrepreneur;
+use App\Notifications\UpdatedUser;
 
 use Session;
 use App\User;
@@ -22,6 +25,7 @@ use App\Readinesskind;
 use App\Userdetail;
 use App\Interview;
 use App\Beneficiary;
+use App\City;
 use Auth;
 use Socialite;
 use URL;
@@ -38,6 +42,18 @@ class UsersController extends Controller
     {
 
     }
+    public function ServicesProviderIndex()
+    {
+        return view('auth.services_provider');
+
+    }
+    public function EntrepreneurIndex()
+    {
+        return view('auth.entrepreneur');
+    }
+
+
+
 
     public function register($type)
     {
@@ -54,9 +70,10 @@ class UsersController extends Controller
             $rewardkinds= Rewardkind::all();
             $readinesskinds = Readinesskind::all();
             $countries = Country::all();
+            $cities = City::all();
 
             if (Auth::user()) {
-                return view('auth.logged_services_provider',compact('countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds'));
+                return view('auth.logged_services_provider',compact('countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds','cities'));
             }else{
                 return view('auth.register_services_provider',compact('countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds'));
             }
@@ -106,7 +123,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
+    {
+
+        $user = User::findorfail($id);
+
+        return view('front.user.show')->withUser($user);
+
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
     {
 
         if (!Auth::user() || count(Auth::user()->roles) == 0 ) {
@@ -121,7 +152,7 @@ class UsersController extends Controller
             //return Auth::user()->isServicesProviderNotCompleted();
 
             if (!Auth::user()->isServicesProviderNotCompleted()) {
-                return redirect('/register/services_provider');
+                return redirect('/account/profile/edit');
             }
 
             $jobtypes = Jobtype::all();
@@ -154,9 +185,23 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+
+
+        $jobtypes = Jobtype::all();
+        $skills = Skill::all();
+        $levels = Level::all();
+        $prefers= Prefer::all();
+        $costkinds= Costkind::all();
+        $applykinds= Applykind::all();
+        $averagekinds= Averagekind::all();
+        $rewardkinds= Rewardkind::all();
+        $readinesskinds = Readinesskind::all();
+        $countries = Country::all();
+        $cities = City::all();
+
+        return view('front.profile.edit',compact('countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds','cities'));
     }
 
     /**
@@ -173,7 +218,7 @@ class UsersController extends Controller
         }
 
         if (count(Auth::user()->userdetail) > 0) {
-            $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
         }else {
             $userdetail = new Userdetail;
         }
@@ -192,6 +237,7 @@ class UsersController extends Controller
         $userdetail->time_start = $request->time_start;
         $userdetail->brith_day = $request->brith_day;
         $userdetail->country_id = $request->country_id;
+        $userdetail->city_id = $request->city_id;
         $userdetail->position = $request->position;
         $userdetail->notes = $request->notes;
         $userdetail->save();
@@ -216,47 +262,58 @@ class UsersController extends Controller
 
         $userdetail->save();
 
+
         $skills = $request->skills;
 
-        foreach ($skills as $skill) {
 
-            if (is_numeric($skill) && $skill > 0) {
+        if ($skills) {
+            foreach ($skills as $skill) {
 
-                Auth::user()->skills()->attach([$skill=> ['is_default'=>'1']]);
-            }else {
-
-                $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
-
-                if ($item) {
-                    Auth::user()->skills()->attach($skill);
+                if (is_numeric($skill) && $skill > 0) {
+                    Auth::user()->skills()->detach();
+                    Auth::user()->skills()->attach([$skill=> ['is_default'=>'1']]);
                 }else {
-                    $title = array();
-                    $title['ar'] = $skill;
-                    $new_skill = new Skill;
-                    $new_skill->title = $title;
-                    $new_skill->slug = $skill;
-                    $new_skill->is_active = 0;
-                    $new_skill->save();
-                    Auth::user()->skills()->attach($new_skill);
-                }
 
+                    if (isset($skill)) {
+
+                        $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
+
+                        if ($item) {
+                            Auth::user()->skills()->detach();
+                            Auth::user()->skills()->attach($item);
+                        }else {
+                            $title = array();
+                            $title['ar'] = $skill;
+                            $new_skill = new Skill;
+                            $new_skill->title = $title;
+                            $new_skill->slug = $skill;
+                            $new_skill->is_active = 0;
+                            $new_skill->save();
+                            Auth::user()->skills()->attach($new_skill);
+                        }
+                    }
+
+                }
             }
         }
 
+        Auth::user()->notify(new UpdatedUser(Auth::user()));
 
-        if (Auth::user()->PassedInterview()) {
-            return redirect::to('/');
-        }
+        return redirect::to('/account/profile');
 
-        // Create interview
-        $interview = new Interview;
-        $interview->user_id = Auth::user()->id;
-        $interview->skill_id = Auth::user()->DefaultSkill()->id;
-        $interview->total = 0;
-        $interview->is_passed = 0;
-        $interview->save();
+        // if (Auth::user()->PassedInterview()) {
+        //     return redirect::to('/');
+        // }
 
-        return redirect::to('/account/interviews/'.$interview->id);
+        // // Create interview
+        // $interview = new Interview;
+        // $interview->user_id = Auth::user()->id;
+        // $interview->skill_id = Auth::user()->DefaultSkill()->id;
+        // $interview->total = 0;
+        // $interview->is_passed = 0;
+        // $interview->save();
+
+        // return redirect::to('/account/interviews/'.$interview->id);
 
     }
 
@@ -323,6 +380,7 @@ class UsersController extends Controller
             //$userdetail->time_start = $request->time_start;
             $userdetail->brith_day = $request->brith_day;
             $userdetail->country_id = $request->country_id;
+            $userdetail->city_id = $request->city_id;
             $userdetail->position = $request->position;
             $userdetail->notes = $request->notes;
             $userdetail->save();
@@ -418,10 +476,11 @@ class UsersController extends Controller
                 $user->assignRole([$role->id]);
 
                 $user->sendEmailVerificationNotification();
+                $user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
 
-                return redirect('/register/services_provider');
+                return redirect('/account/profile');
 
             }
 
@@ -469,6 +528,7 @@ class UsersController extends Controller
             $user->assignRole([$role->id]);
 
             $user->sendEmailVerificationNotification();
+            $user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
             return redirect('/');
@@ -650,4 +710,51 @@ class UsersController extends Controller
         return Auth::user()->unreadNotifications;
     }
 
+    public function getCities(Request $request){
+
+        $cities = City::where('country_id', $request->country_id)->get();
+        if (count($cities) > 0) {
+            return response()->json($cities);
+        }
+    }
+
+    public function account() {
+        return view('front.profile.settings'); 
+    }
+
+    public function about($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.about')->withUser($user);
+    }
+
+    public function services($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.services')->withUser($user);
+    }
+
+    public function skills($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.skills')->withUser($user);
+    }
+
+    public function portfolios($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.portfolios')->withUser($user);
+    }
+
+    public function experiences($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.about')->withUser($user);
+    }
+
+    public function reviews($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.reviews')->withUser($user);
+    }
 }

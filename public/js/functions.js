@@ -15,4 +15,8 @@ $(document).ready(function(){
         $("#service_provider").prop("checked", false);
         $("#service_provider2").prop("checked", true);
     });
+
+    if ($("ul.pagination").length > 0) {
+        $("ul.pagination").addClass('justify-content-center');
+    }
 });

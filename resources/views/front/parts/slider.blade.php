@@ -5,7 +5,7 @@
             <div class="hero-content text-white col-12 col-md-6">
                 <h2 class="pb-5 mb-5">{!!trans('file.slider_title')!!}</h2>
                 <p  class="mb-5">{!!trans('file.slider_desc')!!}</p>
-                <a class="btn btn-primary" href="{{ url('register/services_provider') }}">{{trans('file.free_start')}}</a>
+                <a class="btn btn-primary" href="{{ url('register') }}">{{trans('file.free_start')}}</a>
             </div>
         </div>
     </div>
@@ -15,12 +15,12 @@
 <!-- Start Search Section -->
 <div id="search-bar" class="col-12 mt-n5">
     <div class="container p-1 pr-0 pl-0">
-{{--        <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">--}}
+
         {{ Form::open(['action' => 'FrontController@SearchIndex','method' => 'get','class'=>'formsearch']) }}
             <div class="row m-1 ">
                 <div class="col-12 col-md-4 pt-1 pb-1">
                     <img class="icon-search-bar" src="images/search.svg" />
-                    {!! Form::text('query', null, ['required','class' => 'form-control search search-bar-field','id'=>'search','placeholder'=>trans('file.search_for')]) !!}
+                    {!! Form::text('title', null, ['required','class' => 'form-control search search-bar-field','id'=>'title','placeholder'=>trans('file.search_for')]) !!}
                 </div>
                 <div class="col-12 col-md-3  pt-1 pb-1">
                     <img class="icon-search-bar" src="images/placeholder.svg" />

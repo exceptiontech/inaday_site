@@ -1,0 +1,134 @@
+@extends('layouts.inner')
+@section('title')
+  {{__('file.servives_provider_register')}}
+@endsection
+@section('content')
+
+
+    <div id="innerpage" class="pt-4 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                </div>
+
+                <div class="col-12">
+                    <div class="bg-light mt-5 p-3  wrapper profile rounded">
+                        <div class="row">
+
+                            <div class="col-12  profile-head-menu mb-5">
+
+                                @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
+                                    <ul class="list-inline ">
+                                        <li class="list-inline-item"><a class="active" href="#">خدماتي</a></li>
+                                        <li class="list-inline-item"><a href="#">خلطاتي</a></li>
+                                        <li class="list-inline-item"><a href="#">فريقي</a></li>
+                                        <li class="list-inline-item"><a href="#">الفرق المشارك بها</a></li>
+                                        <li class="list-inline-item"><a  href="#">الطلبات</a></li>
+                                        <li class="list-inline-item"><a href="#">محفظتي</a></li>
+                                    </ul>
+                                @elseif(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive())
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{url('/account/projects')}}">مشاريعي</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{url('/account/bookings')}}">الحجوزات</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{url('/account/notifications')}}">الاشعارات</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{url('/account/')}}">الاعدادات</a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            </div>
+
+                            <div class="col-12 title mb-3">
+                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->projects)}}</span></h2>
+                            </div>
+
+                            <div class="col-12 col-sm-8 projects">
+                                <div class="sub-title mb-2">
+                                    <h3>المشاريع</h3>
+                                </div>
+                                
+
+                                @if(count(Auth::user()->projects))
+                                    @foreach(Auth::user()->projects as $project)
+                                        <div class="col-12 project pb-3 pt-2">
+                                            <h2>{{$project->title}}</h2>
+
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <ul class="list-inline m-0 flex-shrink-1">
+                                                        <li class="list-inline-item">
+                                                            <img src="{{ url($project->user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-fluid">
+                                                            {{$project->user->first_name .' '.$project->user->last_name }}
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="bg-light pt-1 pb-1 p-2 ">{{$project->section->title[App::getLocale()] ?? 'بدون تصنيف' }} </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                            10/07/2020 
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
+                                                    <a class="btn btn-secondary rounded" href="{{ url('account/projects/'.$project->id.'/edit') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>لم تقم باضافة اي مشاريع في الوقت الحالي</p>
+                                @endif
+                                
+
+
+
+                                <div class="col-12 mt-4">
+                                    <a href="{{url('/account/projects/create')}}" class="btn btn-primary">اضافة مشروع جديد</a>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4">
+                                <div class="bg-light dark p-3">
+                                    <div class="text-center mt-n5">
+                                        <img src="{{url('/images/lamp.svg')}}">
+                                    </div>
+                                    <p class="mt-5">
+                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
+                                    </p>
+                                    <p class="mt-5">
+                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
+                                    </p>
+                                    <p class="mt-5">
+                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+
+
+
+
+@endsection
+
+@section('jquery')
+
+@endsection
+

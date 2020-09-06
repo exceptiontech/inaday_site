@@ -37,12 +37,37 @@ class ProjectController extends Controller
 
         $projects->where('is_approved',1);
 
+
+        if ($request->targetskills) {
+
+            $targetskills = $request->targetskills;
+
+            $projects->whereHas('skills', function ($query) use ($targetskills) {
+                $query->whereIn('skill_id', $targetskills);
+            });
+        }
+
+
+        if ($request->section_id) {
+
+            $section_id = $request->section_id;
+
+            $projects->whereIn('section_id',$section_id);
+        }
+
+
         if ($projects) {
+
+            if ($request->targetskills) {
+                $targetskills = $request->targetskills;
+            }else {
+                $targetskills =  array();
+            }
 
             $skills = Skill::all();
             $sections = Section::all();
 
-            return view('front.projects.index')->withProjects($projects->latest()->paginate(15))->withSections($sections)->withSkills($skills);
+            return view('front.projects.index')->withProjects($projects->latest()->paginate(10))->withSections($sections)->withSkills($skills)->withTargetskills($targetskills);
         }
     }
 
@@ -50,6 +75,7 @@ class ProjectController extends Controller
     {
         $projects = $projects->newQuery();
         $projects->where('is_approved',1);
+
         if ($request->skill_id) {
 
             $skill_id = $request->skill_id;
@@ -67,7 +93,7 @@ class ProjectController extends Controller
         }
 
 
-        return view('front.projects._search')->withProjects($projects->latest()->paginate(15));
+        return view('front.projects._search')->withProjects($projects->latest()->paginate(1));
     }
 
     /**

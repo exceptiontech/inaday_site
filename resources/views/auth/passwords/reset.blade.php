@@ -1,19 +1,16 @@
 @extends('layouts.inner')
 
 @section('content')
-<section class="banner">
-    <div class="container">
-      <h1 class="title">نسيت كلمة المرور</h1>
-    </div>
-  </section><!-- End Section panner Top -->
+<div id="innerpage" class="pt-4 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">استرجاع كلمة المرور</h2>
+                </div>
 
-  <section class="login">
-    <div class="container">
-      <div class="signupfilde">
-        <div class="title-sig">
-            <h3 class="titlebold"> استرجاع كلمة المرور</h3>
-            <p class="text-center">  الرجاء إدخال كلمه المرور الجديده</p>
-          </div>
+
+                <div class="bg-light mt-5 p-3  wrapper col-12 col-sm-6 offset-sm-3 rounded">
+
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
@@ -38,7 +35,7 @@
                 </div>
 
                 <div class="col_full">
-                    <label for="login-form-password">{{ __('ms_lang.pass_t') }} <br/><small style="color:red"> (هنا يتم ادخال كلمة المرور التي تستخدم فقط في الدخول  للموقع الإلكتروني الخاص بمجموعة البعد الفني ‎)</small></label>
+                    <label for="login-form-password">كلمة المرور <br/><small style="color:red"> (هنا يتم ادخال كلمة المرور التي تستخدم فقط في الدخول  للموقع الإلكتروني الخاص بمجموعة البعد الفني ‎)</small></label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
@@ -49,16 +46,20 @@
                 </div>
 
                 <div class="col_full">
-                    <label for="login-form-password">{{ __('ms_lang.repass_t') }}  <br/><small style="color:red"> (هنا يتم ادخال تأكيد كلمة المرور التي تستخدم فقط في الدخول  للموقع الإلكتروني الخاص بمجموعة البعد الفني ‎)</small></label>
+                    <label for="login-form-password">تأكيد كلمة المرور <br/><small style="color:red"> (هنا يتم ادخال تأكيد كلمة المرور التي تستخدم فقط في الدخول  للموقع الإلكتروني الخاص بمجموعة البعد الفني ‎)</small></label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
-                <div class="col_full">
-                    <button type="submit" class="button button-rounded si-google si-colored" >
-                        {{ __('ms_lang.btn_edit') }}
+                <div class="mt-2 text-center">
+                    <button type="submit" class="btn btn-primary" >
+                        ارسال
                     </button>
                 </div>
             </form>
-        </div>
+
+
+      </div>
     </div>
-</section>
+  </div>
+</div>
+
 @endsection

@@ -21,10 +21,10 @@ class Userdetail extends Model
     }
     public function country()
     {
-        return $this->belongsTo(Country::Class, 'country_id');
+        return $this->belongsTo('App\Country');
     }
-//    public function city()
-//    {
-//        return $this->belongsTo(City::Class, '');
-//    }
+    public function city()
+    {
+       return $this->belongsTo('App\City');
+    }
 }

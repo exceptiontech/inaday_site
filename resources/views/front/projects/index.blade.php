@@ -8,6 +8,10 @@
             <!-- sidebar Begin -->
             <div class="col-12 col-md-4">
                 <div class="bg-light rounded pt-3 pb-3 p-2">
+                    
+                    {{ Form::open(['action' => 'ProjectController@index','method' => 'get']) }}
+
+
                     <!-- block Begin -->
                     <div class="block mb-4">
                         <div class="block-title mb-3">
@@ -38,20 +42,32 @@
                         <div class="block-title mb-3">
                             <h2>{{trans('file.skills')}}</h2>
                         </div>
+                        <div class="col-12">
                         @if (count($skills))
-                            @foreach ($skills as $skill)
-                                <div class="check-item">
-                                    <div class="chicksign">
-                                        <label class="che-box">
-                                            <input type="checkbox"  class="skillsIds" id="skillId" name="skills[]" value="{{$skill->id}}" aria-required="true"><span class="label-text">
-                                          {{ @$skill->title[App::getLocale()] }}</span>
-                                        </label>
-                                    </div>
+                            @foreach($skills as $skill)
+                            <div class="check-item">
+                                <div class="chicksign">
+                                    <label class="che-box">
+                                    <input @if(in_array($skill->id, $targetskills )) checked="checked" @endif  name="targetskills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
+                                      {{$skill->title[App::getLocale()]}} <em>*</em></span>
+                                    </label>
                                 </div>
+                            </div>
+
                             @endforeach
                         @endif
+                        </div>
                     </div>
                     <!-- block End -->
+
+                    <div class="col-12">
+
+                      {!! Form::button(trans('admin.search'), array('class'=>'btn btn-block btn-success','id'=>'search-button', 'type'=>'submit')) !!}
+                    </div>
+                    
+                    {{ Form::close() }}
+
+
                 </div>
             </div>
             <!-- sidebar End -->
@@ -66,7 +82,7 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
         $(document).ready(function () {
 
             var skillsIds = [];
@@ -106,5 +122,5 @@
         });
 
     </script>
-@endsection
+ -->@endsection
 

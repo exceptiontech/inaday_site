@@ -29,7 +29,7 @@ class ProjectCreated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return explode(',', $notifiable->notification_preference);
     }
 
     /**
@@ -45,6 +45,16 @@ class ProjectCreated extends Notification
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'image'=> url('/images/notifications/add.svg'),
+            'title'=> __('notification.ProjectCreated'),
+            'desc'=>__('notification.ProjectCreatedDesc'),
+        ];
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Skill;
+use App\Message;
 use Illuminate\Http\Request;
 
-class SkillController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,21 +41,21 @@ class SkillController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Skill  $skill
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Skill $skill)
+    public function show($id)
     {
-        //
+        return '<h2><center>This feature in phase two isA</center></h2>';
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Skill  $skill
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit(Skill $skill)
+    public function edit(Message $message)
     {
         //
     }
@@ -64,10 +64,10 @@ class SkillController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Skill  $skill
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(Request $request, Message $message)
     {
         //
     }
@@ -75,10 +75,10 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Skill  $skill
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy(Message $message)
     {
         //
     }

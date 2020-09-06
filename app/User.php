@@ -84,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill');
+        return $this->belongsToMany('App\Skill')->where('is_active',1);
     }
 
     public function DefaultSkill()
@@ -100,7 +100,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userdetail()
     {
-        return $this->hasMany('App\Userdetail')->latest();
+        return $this->hasMany('App\Userdetail');
+    }
+
+    public function userdetailComplete()
+    {
+        return $this->hasMany('App\Userdetail')->where('position', '!=', null)->orWhere('country_id', '!=', null)->orWhere('city_id', '!=', null);
     }
 
     public function services()
@@ -136,8 +141,66 @@ class User extends Authenticatable implements MustVerifyEmail
     public function teams()
     {
         // 2 mean is refused invitation
+        // 3 mean cancel invitation
         return $this->belongsToMany('App\Team')->where('team_user.is_approved','!=',2)->where('team_user.is_approved','!=',3)->withPivot('is_approved');
     }
+
+    public function hasTeamInvitation($id)
+    {
+        $result = $this->whereHas('teams', function ($query) use ($id) {
+                $query->where('team_id' , $id);
+            })->get();
+
+        if (count($result) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function portfolios()
+    {
+        return $this->hasMany('App\Portfolio')->where('deleted_at', '=', null);
+    }
+    
+    public function experiences()
+    {
+        return $this->hasMany('App\Experience')->where('deleted_at', '=', null);
+    }
+    
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany('App\Favorite');
+    }
+
+    public function ServicehasFavorite($id)
+    {
+        $result = $this->whereHas('favorites', function ($query) use ($id) {
+                $query->where('service_id' , $id);
+            })->get();
+
+        if (count($result) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function ProjecthasFavorite($id)
+    {
+        $result = $this->whereHas('favorites', function ($query) use ($id) {
+                $query->where('project_id' , $id);
+            })->get();
+
+        if (count($result) > 0) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

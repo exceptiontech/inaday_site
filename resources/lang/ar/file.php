@@ -14,6 +14,7 @@ return [
     */
     'direction' => 'rtl',
     'adminpanel' => 'لوحة تحكم الادارة',
+    'profile' => 'الملف الشخصي',
     'login' => 'دخول',
     'signin' => 'تسجيل دخول',
     'register' => 'تسجيل عضوية',
@@ -223,9 +224,9 @@ return [
     'approve'=>'اعتمد' ,
     'this_project_for_teams'=>'هذا المشروع مخصص للفرق' ,
     'not_available_right_now'=>'لم يعد هذا المشروع متاح' ,
-    'progect_details'=>'تفاصيل المشروع' ,
-    'progect_owner'=>'صاحب المشروع' ,
-    'progect_status'=>'حالة المشروع' ,
+    'project_details'=>'تفاصيل المشروع' ,
+    'project_owner'=>'صاحب المشروع' ,
+    'project_status'=>'حالة المشروع' ,
     'category_section'=>'تصنيف القسم' ,
     'targeted_skills'=>'المهارات المستهدفة' ,
     'project_time_duration'=>'مدة التنفيذ' ,
@@ -315,5 +316,6 @@ return [
 
     //notifications
     'notifications' => 'الإشعارات',
+    'no_notifications' => 'لا يوجد اي إشعارات حالية',
 
 ];

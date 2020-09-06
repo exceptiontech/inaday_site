@@ -35,10 +35,36 @@ class ServiceController extends Controller
 
         }
 
-        if ($services) {
 
-            $sections = Section::all();
-            return view('front.services.index')->withServices($services->latest()->paginate(15))->withSections($sections);
+        if ($request->targetskills) {
+
+            $targetskills = $request->targetskills;
+
+            $services->whereHas('skills', function ($query) use ($targetskills) {
+                $query->whereIn('skill_id', $targetskills);
+            });
+        }
+
+
+
+        if ($request->title) {
+
+            $title = $request->title;
+
+            $services->where('title', 'like', '%' . $title . '%');
+
+        }
+
+        if ($services) {
+            if ($request->targetskills) {
+                $targetskills = $request->targetskills;
+            }else {
+                $targetskills =  array();
+            }
+
+            $sections = Section::where('is_active',1)->get();
+            $skills = Skill::where('is_active',1)->get();
+            return view('front.services.index')->withServices($services->latest()->paginate(15))->withSections($sections)->withSkills($skills)->withTargetskills($targetskills);
         }
     }
 

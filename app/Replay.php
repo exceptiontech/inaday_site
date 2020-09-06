@@ -11,4 +11,14 @@ class Replay extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function service()
+    {
+        return $this->belongsTo('App\Service');
+    }
+
+    public function booking()
+    {
+        return $this->belongsTo('App\Booking');
+    }
+
 }
