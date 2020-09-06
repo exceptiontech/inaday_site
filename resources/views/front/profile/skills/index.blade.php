@@ -81,7 +81,7 @@
 
 
                                 <div class="col-12 mt-4">
-                                    <a href="{{url('/account/profile/edit')}}" class="btn btn-primary">اضافة مهارة جديدة</a>
+                                    <a href="{{url('/account/profile/edit')}}" class="btn btn-primary">تعديل مهارة جديدة</a>
                                 </div>
                             </div>
 

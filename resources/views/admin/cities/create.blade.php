@@ -60,6 +60,11 @@
 
                     </div>
 
+                    <div class="form-group mt-2">
+                        {!! Form::label('country_id', trans('admin.country')) !!}
+                        {!!Form::select('country_id', $countries->pluck('title.ar','id'), '1', ['required', 'class' => 'form-control']) !!}
+                    </div>
+
 
                     <div class="form-group">
                         {!! Form::label('slug', trans('admin.slug')) !!}
