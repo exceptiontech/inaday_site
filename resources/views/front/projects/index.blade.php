@@ -124,3 +124,38 @@
     </script>
  -->@endsection
 
+
+
+
+@section('jquery')
+<script type="text/javascript">
+    $(".updateFav").click(function(event) {
+        event.preventDefault();
+
+        var data = {'id' : $(this).data("id")};
+
+        $.ajax({    
+            type  : 'get',
+            url   : '{!!URL::route('updateFavorite')!!}',
+            data  : data ,      
+            success:function(data){
+
+                console.log(data.result);
+
+                if (data.result == 'done') {
+                    $('.updateFav .fa').addClass('starred');
+                }else {
+                    $('.updateFav .fa').removeClass('starred');
+                }
+            },
+        error:function(data){
+            console.log(data.err)
+        }
+      });
+    });   
+
+
+</script>
+
+@endsection
+

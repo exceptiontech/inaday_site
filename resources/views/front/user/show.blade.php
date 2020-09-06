@@ -30,7 +30,12 @@
                                 </div>
                                 <div class="col-5 pt-2">
                                     @if($user->id == Auth::user()->id)
-                                    <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
+                                    @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
+                                        <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
+                                    @else
+                                        <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة المشاريع</a>
+                                    @endif
+
                                     @endif
                                 </div>
                             </div>

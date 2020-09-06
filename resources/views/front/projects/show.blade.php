@@ -138,8 +138,9 @@
                                           </div>
 
                                         </li>
-
+                                        @if(Auth::user())
                                         <li class="list-inline-item">
+
                                             @if(Auth::user()->ProjecthasFavorite($project->id))
                                                 <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" href="#">
                                                 <i class="fa fa-star starred" aria-hidden="true"></i></a>
@@ -148,6 +149,7 @@
                                                 <i class="fa fa-star-o" aria-hidden="true"></i></a>
                                             @endif
                                         </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

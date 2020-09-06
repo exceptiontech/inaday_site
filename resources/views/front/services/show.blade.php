@@ -125,12 +125,14 @@
                                             </li>
 
                                              <li class="list-inline-item">
+                                                @if(Auth::user())
                                                 @if(Auth::user()->ServicehasFavorite($service->id))
                                                     <a id="RemoveFromFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}" href="#">
                                                     <i class="fa fa-star starred" aria-hidden="true"></i></a>
                                                 @else
                                                     <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}"  href="#">
                                                     <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                @endif
                                                 @endif
                                             </li>
                                         </ul>

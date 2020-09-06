@@ -9,6 +9,7 @@
         <title>{{ config('app.name', 'AD Co') }}   | @yield('title') </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+        <meta name="google-site-verification" content="google-site-verification=KjoKm9LLbbnS39MSVg5csdEOW1RaqvIpVTUgqDHas3o">
         <link rel="canonical" href="{{ config('app.url', 'ad.net.sa') }}">
         <link rel="icon" href="{{url('assets/images/favicon.png')}}" type="image/png">
         <!-- Bootstrap CSS -->
@@ -39,6 +40,11 @@
     <!-- Plugins -->
     <script src="{{url('vendor/jquery-easing/jquery.easing.js')}}"></script>
     <script type="text/javascript" src="{{url('vendor/slick/slick.min.js')}}"></script>
+    <script src="{{url('js/jquery.validate.js')}}"></script>
     <script src="{{url('js/functions.js')}}"></script>
+
+
+
+
     @yield('jquery')
 </html>
