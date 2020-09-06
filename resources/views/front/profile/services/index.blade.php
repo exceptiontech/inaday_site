@@ -136,7 +136,7 @@
 
                                         <div class="row mb-4">
                                             <div class="col-12">
-                                              {!! Form::label('skills', trans('forms.skills'))!!}
+                                              الخبرات
                                               <div class="row">
                                                 @if (count($skills))
                                                   @foreach ($skills as $skill)

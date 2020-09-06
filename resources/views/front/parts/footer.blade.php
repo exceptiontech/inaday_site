@@ -25,10 +25,10 @@
                         <h2>{{trans('file.site_map')}}</h2>
                         <ul class="list-unstyled">
                             <li>
-                                <a href="{{url('/register/services_provider')}}">{{trans('file.servives_provider_register')}}</a>
+                                <a href="{{url('/register')}}">{{trans('file.servives_provider_register')}}</a>
                             </li>
                             <li>
-                                <a href="{{url('/register/entrepreneur')}}">{{trans('file.entrepreneur_register')}}</a>
+                                <a href="{{url('/register')}}">{{trans('file.entrepreneur_register')}}</a>
                             </li>
                             <li>
                                 <a href="{{ url('/projects') }}">{{trans('file.recent_projects')}}</a>
