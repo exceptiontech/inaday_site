@@ -11,8 +11,18 @@ class Service extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
     
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
+    }
+    
     public function skills()
     {
         return $this->belongsToMany('App\Skill');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 }

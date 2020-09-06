@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Replay;
+use App\Booking;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use App\Log;
 use Redirect;
 use Session;
+
+use App\Notifications\ReplayCreated;
 
 class ReplayController extends Controller
 {
@@ -57,6 +60,10 @@ class ReplayController extends Controller
         $replay->booking_id=$request->booking_id;
         $replay->replay=$request->replay;
         $replay->save();
+
+
+        $replay->booking->user->notify(new ReplayCreated($replay));
+
 
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.create_success_replay'));

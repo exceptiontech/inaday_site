@@ -13,7 +13,7 @@
                             @if($project->user )
                                 @if(count($project->user->userdetail) > 0)
                                     @if($project->user->userdetail->first()->avater)
-                                      <img src="{{ url($project->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
+                                      <img src="{{ url($project->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$project->title}}" title="{{$project->title}}" />
                                     @else
                                       <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
                                     @endif
@@ -24,7 +24,7 @@
                               <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
                             @endif  
                             <div class="ml-2">
-                                <span class="small">{{trans('file.progect_owner')}}</span> 
+                                <span class="small">{{trans('file.project_owner')}}</span> 
                                 <div class="mt-2 small">
                                     <h2>{{ $project->user->first_name.' '.$project->user->last_name }}</h2>                                    
                                 </div>
@@ -35,8 +35,17 @@
                     <div class="project-info mb-5">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex">
-                                <div class="col-6 p-0 text-dark">{{trans('file.progect_status')}}</div>
-                                <div class="col-6 p-0"><span class="bg-success">مفتوح</span> </div>
+                                <div class="col-6 p-0 text-dark">{{trans('file.project_status')}}</div>
+                                <div class="col-6 p-0">
+                                    
+                                      @if($project->section)
+                                        
+                                        <span class="bg-success">{{@$project->status->title[App::getLocale()]}}</span> 
+                                      @else 
+                                        {{trans('file.without_section')}}
+                                      @endif
+
+                                 </div>
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.category_section')}}</div>
@@ -56,17 +65,17 @@
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.execution_time')}}</div>
-                                <div class="col-6 p-0">وقت التنفيذ </div>
+                                <div class="col-6 p-0">{{$project->duration}}  {{trans('file.day')}}  </div>
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.number_of_offers')}}</div>
-                                <div class="col-6 p-0">3 {{trans('file.offers')}}</div>
+                                <div class="col-6 p-0">{{count($project->offers)}} {{trans('file.offers')}}</div>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-12 contact_author align-bottom">
-                        <a href="#" class="btn btn-primary btn-block mb-2">{{trans('file.contact_the_project_owner')}}</a>
+                        <a href="{{url('/messages/'.$project->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_the_project_owner')}}</a>
                         <p class="small">{{trans('file.you_must_log_in_first_to_use_the_platforms_services')}}</p>
                     </div>
                 </div>
@@ -82,12 +91,63 @@
                             <div class="row">
                                 <div class="col-sm-10">
                                     <h2 class="mb-3">{{$project->title}}</h2> 
-                                    <p>تصميم موقع لشركة مطاعم واجهة للشركة ومبيعات الوجبات</p>
+                                    <p>{!! \Illuminate\Support\Str::words($project->desc,100,'....')  !!}</p>
                                 </div>
                                 <div class="col-sm-2 text-right">
                                     <ul class="list-inline">
-                                        <li class="list-inline-item"><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-                                        <li class="list-inline-item"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                        <li class="list-inline-item">
+                                          
+                                          <div id="socialHolder">
+                                            <div id="socialShare" class=" share-group">
+                                              <a data-toggle="dropdown" class="btn">
+                                                   <i class="fa fa-share-alt"></i>
+                                              </a>
+                                              <ul class="dropdown-menu">
+                                                  <li>
+                                                    <a data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/share?url={{url('/projects/'.$project->title)}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" class="btn btn-twitter" >
+                                                  <i class="fa fa-twitter"></i>
+                                                </a>
+                                                </li>
+                                                <li>
+                                                  <a target="_blank"  href="http://www.facebook.com/sharer.php?u={{url('/projects/'.$project->title)}}" class="btn btn-facebook" >
+                                                  <i class="fa fa-facebook"></i>
+                                                </a>
+                                                </li>         
+                                                <li>
+                                                  <a  rel="tooltip"  href="https://plus.google.com/share?url={{url('/projects/'.$project->title)}}" class="btn btn-google" >
+                                                  <i class="fa fa-google-plus"></i>
+                                                </a>
+                                                </li>
+                                                  <li>
+                                                  <a hhref="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/projects/'.$project->title)}}" class="btn btn-linkedin" data-placement="left">
+                                                  <i class="fa fa-linkedin"></i>
+                                                </a>
+                                                </li>
+                                                <li>
+                                                  <a class="btn btn-pinterest" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" >
+                                                  <i class="fa fa-pinterest"></i>
+                                                </a>
+                                                </li>
+                                                <li>
+                                                  <a  class="btn btn-mail" href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{url('/projects/'.$project->title)}}">
+                                                  <i class="fa fa-envelope"></i>
+                                                </a>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                          </div>
+
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            @if(Auth::user()->ProjecthasFavorite($project->id))
+                                                <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" href="#">
+                                                <i class="fa fa-star starred" aria-hidden="true"></i></a>
+                                            @else
+                                                <a id="AddToFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}"  href="#">
+                                                <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            @endif
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -97,8 +157,8 @@
                         <div class="block col-12 pt-3 pb-2 mb-1">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h2 class="mb-3">{{trans('file.progect_details')}}</h2> 
-                                    <p>{!! \Illuminate\Support\Str::words($project->desc,350,'....')  !!}</p>
+                                    <h2 class="mb-3">{{trans('file.project_details')}}</h2> 
+                                    <p>{!! $project->desc !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -126,104 +186,281 @@
                                     <h2 class="mb-3">{{trans('file.project_attach')}}</h2> 
                                 </div>
                                 <div class="col-sm-12">
-                                    <p></p>
+                                    @if(count($project->files) > 0)
+
+                                        @foreach($project->files as $file)
+                                            <p>
+                                                <a download="download" href="{{url($file->url)}}">
+                                                    <i class="fa fa-file-word-o" aria-hidden="true"></i> {{url($file->name)}}
+                                                </a>
+                                            </p>
+                                        @endforeach
+
+                                    @else
+                                        <p>لا توجد اي ملفات تخص هذا المشروع</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        @if(!$project->booking)
-                            @if(count($project->offers)>0)
-                                @if($project->num_team == 1)
-                                    @foreach($project->offers as $offer)
-                                        <div class="block col-12 pt-3 pb-2 mb-1">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <h2 class="mb-4">العروض المقدمة</h2> 
-                                                </div>
-                                                <div class="col-12 pt-3 pb-3 comment">
-                                                    <div class="row info">
-                                                        <div class="col-sm-8 d-flex align-items-center">
-                                                            <img src="images/19571f92333dd5fba2598f637b68739c.png" class="rounded-circle img-thumbnail img-fluid pull-right">
-                                                            <div class="ml-2">
-                                                                <span>محمد الغالي</span> 
-                                                                <div class="m-0 small">
-                                                                    <span class="mr-2">مقدم خدمة</span>
-                                                                    <span>بتاريخ 10/11/2019</span>
-                                                                </div>
-                                                            </div> 
-                                                        </div>
-                                                        <div class="col-sm-4 text-right">
-                                                            <ul class="list-inline">
-                                                                <li class="list-inline-item">
-                                                                    <span class="bg-light rounded p-1">1500 ر.س</span>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <span class="bg-light rounded p-1">10 ساعة</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <p>السلام عليكم ورحمة الله وبركاته ، قرأت المطلوب وبإمكاني توفير كل ما يتطلبه موقع ، بالمُميزات الأتية : تصميم عالي الجودة ، عصري وسلس بأحدث تقنيات لغات التصميم</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                    @else
-                                      @foreach($project->offers as $offer)
-                                        @if($offer->user_id == Auth::user()->id)
-                                            <div class="block col-12 pt-3 pb-2 mb-3 border-0">
-                                              {{ Form::open(['action' => 'OfferController@store']) }}
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <h2 class="mb-3 dark">اضافة العروض</h2> 
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <form>
-                                                            <div class="row mb-3">
-                                                                <div class="col-6">
-                                                                    <label for="inputEmail4">{{trans('file.price')}} <em>* </em></label>
-                                                                    <input type="text" class="form-control" placeholder="{{trans('file.price')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
-                                                                </div>
-                                                                <div class="col-3">
-                                                                    <label for="inputEmail4">{{trans('file.project_time_duration')}} <em>* </em></label>
-                                                                    <input type="text" class="form-control" placeholder="{{trans('file.project_time_duration')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
-                                                                </div>
-                                                                <div class="col-3">
-                                                                    <label for="inputEmail4">{{trans('file.day_hour')}} <em>* </em></label>
-                                                                    <select class="form-control" name="type">
-                                                                        <option value="d">{{trans('file.day')}}</option>
-                                                                        <option value="h">{{trans('file.hour')}}</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                                <div class="col-12">
-                                                                    <label for="inputEmail4">{{trans('file.offer_details')}} <em>* </em></label>
-                                                                    <textarea class="form-control" placeholder="{{trans('file.offer_details')}}"></textarea> 
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                                <div class="col-12">
-                                                                  {!! Form::submit(trans('file.addoffer'), array('class'=>'btn btn-primary')) !!}
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                              {{ Form::close() }}
-                                            </div>
-                                        @endif
-                                      @endforeach
-                                @endif
-                            @endif
-                        @endif
-                                
+
+                    
+                        @guest    
                         <!-- alert -->
                         <div class="col-12">
                             <div class="alert alert-info text-center">
                                 <p>يتوجب عليك تسجيل الدخول أولاً لكي تتمكن من تقديم عرضك لهذا المشروع</p>
-                                <a class="btn btn-primary" href="#">تسجيل</a>
+                                <a class="btn btn-primary" href="{{url('/register')}}">تسجيل</a>
                             </div>
                         </div>
+
+                        @else
+
+
+
+
+                        @if(!$project->booking)
+
+
+                        @if(count($project->offers)>0)
+                        <div class="block col-12 pt-3 pb-5 mb-1">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 class="mb-3">العروض</h2> 
+                                </div>
+                            </div>
+                            <div class=" comments">
+
+
+                            @if($project->num_team == 1)
+                              @foreach($project->offers as $offer)
+                                <div class="col-12 pt-3 pb-3 comment mb-4">
+                                    <div class="row info">
+                                        <div class="col-sm-8 d-flex align-items-center">
+                                            <img src="{{ url($offer->user->userdetail->first()->avater ?? 'assets/images/img3.jpg') }}" class="rounded-circle img-thumbnail img-fluid pull-right">
+                                            <div class="ml-2">
+                                                <span>{{ $offer->user->first_name.' '.$offer->user->last_name }}</span> 
+                                                <div class="m-0 small">
+                                                    <span class="mr-2">{{ $offer->user->userdetail->first()->position ?? '' }}</span>
+                                                    <span>بتاريخ {{ $offer->created_at }}</span>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-sm-4 text-right">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <span class="bg-light rounded p-1">{{ $offer->price }} ر.س</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span class="bg-light rounded p-1">{{ $offer->duration }} يوم</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>{{ $offer->offer }}</p>
+
+                                    @if(Auth::user() && $project->user_id == Auth::user()->id)
+                                    <form action="{{ url('paypal/'.$project->title.'/'.$offer->id.'/charge') }}" method="post">
+                                        <input type="hidden" name="amount" value="{{ $offer->price}}" />
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-secondary btn-block">{{__('file.approve')}}</button>
+                                    </form>
+
+                                    @endif
+
+                                </div>
+
+                              @endforeach
+                            @else
+                              @foreach($project->offers as $offer)
+                                @if($offer->user_id == Auth::user()->id)
+
+                                <div class="col-12 pt-3 pb-3 comment">
+                                    <div class="row info">
+                                        <div class="col-sm-8 d-flex align-items-center">
+                                            <img src="{{ url($offer->user->team->image ?? 'assets/images/img3.jpg') }}" class="rounded-circle img-thumbnail img-fluid pull-right">
+                                            <div class="ml-2">
+                                                <span>{{ $offer->user->team->title }}</span> 
+                                                <div class="m-0 small">
+                                                    <span class="mr-2">مسئول الفريق : {{ $offer->user->first_name.' '.$offer->user->last_name }}</span>
+                                                    <span>بتاريخ {{ $offer->created_at }}</span>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="col-sm-4 text-right">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <span class="bg-light rounded p-1">{{ $offer->price }} ر.س</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span class="bg-light rounded p-1">{{ $offer->duration }} يوم</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>{{ $offer->offer }}</p>
+
+                                    @if(Auth::user() && $project->user_id == Auth::user()->id)
+                                    <form action="{{ url('paypal/'.$project->title.'/'.$offer->id.'/charge') }}" method="post">
+                                        <input type="hidden" name="amount" value="{{ $offer->price}}" />
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-secondary btn-block">{{__('file.approve')}}</button>
+                                    </form>
+
+                                    @endif
+
+                                </div>
+
+
+                                @endif
+                              @endforeach
+                            @endif
+
+
+                        @else
+
+                          @if(Auth::user() && Auth::user()->isServicesProvider())
+
+                            @if($project->num_team == 1)
+                              <div class="alert alert-success">{{trans('file.be_the_first_services_provider_add_offer')}}</div>
+
+                            @else
+                              <div class="alert alert-info">{{trans('file.this_project_for_teams')}}</div>
+
+                            @endif
+
+                          @else
+                            <p>{{trans('file.no_offer_at_this_time')}}</p>
+
+                          @endif
+                        @endif
+
+                    </div>
+                </div>
+
+
+
+                        @if(Auth::user() && Auth::user()->isServicesProvider() &&  $project->num_team == 1)
+
+
+                        <div class="block col-12 pt-3 pb-2 mb-3 border-0">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 class="mb-3 dark">اضافة العروض</h2> 
+                                </div>
+                                <div class="col-sm-12">
+
+                                @if (Session::has('message'))
+                                <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                      <h6>{{Session::get('message')}}</h6>
+                                </div>
+                                @endif
+
+
+                                @if (count($errors) > 0)
+                                  <div class="alert alert-danger">
+                                      <ul>
+                                          @foreach ($errors->all() as $error)
+                                              <li>{{ $error }}</li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                                @endif
+
+
+                                {{ Form::open(['action' => 'OfferController@store']) }}
+                                <div class="row mb-3">
+
+                                  <div class="col-sm-6 form-group">
+                                    <label>{{trans('file.price')}}<em>* </em></label>
+                                    <input class="form-control" type="text" name="price" placeholder="{{trans('file.add_your_offer_price_to_this_project')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                    <input class="form-control" type="hidden" name="project_id" value="{{$project->id}}" >
+                                  </div>
+                                  <div class="col-sm-6 form-group">
+                                    <label>{{trans('file.duration')}}<em>* </em></label>
+                                    <input class="form-control" type="text" name="duration" placeholder="{{trans('file.add_your_offer_duration_to_this_project')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-sm-12 form-group">
+                                    <label>{{trans('file.offer_details')}}<em>* </em></label>
+                                    <textarea class="form-control" name="offer" placeholder="{{trans('file.add_your_offer_desc_to_this_project')}}"></textarea>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-sm-12 form-group">
+
+                                    {!! Form::submit(trans('file.addoffer'), array('class'=>'btn btn-primary')) !!}
+                                  </div>
+                                </div>
+                                {{ Form::close() }}
+
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                          @if(Auth::user() && Auth::user()->team)
+                          @if(count(Auth::user()->team->users) >= 1)
+
+                            <div class="block col-12 pt-3 pb-2 mb-3 border-0">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h2 class="mb-3 dark">اضافة العروض</h2> 
+                                    </div>
+                                    <div class="col-sm-12">
+
+                                    {{ Form::open(['action' => 'OfferController@store']) }}
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-6 inpudata">
+                                          <label>{{trans('file.price')}}<em>* </em></label>
+                                          <input class="form-control" type="text" name="price" placeholder="{{trans('file.add_your_offer_price_to_this_project')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                          <input class="form-control" type="hidden" name="project_id" value="{{$project->id}}" >
+                                          <input class="form-control" type="hidden" name="team_id" value="{{Auth::user()->team->id}}" >
+                                        </div>
+                                        <div class="col-sm-6 inpudata">
+                                          <label>{{trans('file.duration')}}<em>* </em></label>
+                                          <input class="form-control" type="text" name="duration" placeholder="{{trans('file.add_your_offer_duration_to_this_project')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12 inpudata">
+                                          <label>{{trans('file.offer_details')}}<em>* </em></label>
+                                          <textarea class="form-control" name="offer" placeholder="{{trans('file.add_your_offer_desc_to_this_project')}}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12 inpudata">
+
+                                        {!! Form::submit(trans('file.addoffer'), array('class'=>'btn btn-primary')) !!}
+                                        </div>
+                                    </div>
+                                    {{ Form::close() }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                          @endif
+                          @endif
+
+                        @endif
+
+
+                        @else
+                          {{trans('file.not_available_right_now')}}
+                        @endif
+
+
+
+                           
+             
+
+                            </div>
+                        </div>
+
+
+                        @endguest
                     </div> 
                 </div>
             </div>
@@ -232,3 +469,38 @@
     </div>
 </div>
 @endsection
+
+
+
+@section('jquery')
+<script type="text/javascript">
+    $(".updateFav").click(function(event) {
+        event.preventDefault();
+
+        var data = {'id' : $(this).data("id")};
+
+        $.ajax({    
+            type  : 'get',
+            url   : '{!!URL::route('updateFavorite')!!}',
+            data  : data ,      
+            success:function(data){
+
+                console.log(data.result);
+
+                if (data.result == 'done') {
+                    $('.updateFav .fa').addClass('starred');
+                }else {
+                    $('.updateFav .fa').removeClass('starred');
+                }
+            },
+        error:function(data){
+            console.log(data.err)
+        }
+      });
+    });   
+
+
+</script>
+
+@endsection
+

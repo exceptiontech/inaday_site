@@ -1,5 +1,5 @@
 <!-- Footer begin-->
-<footer id="footer" class="mt-5 pt-5 pb-5">
+<footer id="footer" class="mt-5 pt-5">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -41,23 +41,6 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 col-sm-6">
-                                <p class="copyright">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <ul class="list-inline sociel">
-                                    <li class="list-inline-item">
-                                        {{trans('file.folow_us')}}
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -67,26 +50,55 @@
                 <div class="widget">
                     <h2>{{trans('file.available_payment_methods')}}</h2>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><img style="height:20px;" src="{{url('images/paytabs-logo.png') }}"></li>
-                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
-                        <li class="list-inline-item"><img style="height:20px" src="{{url('images/visa.svg') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" style="height:26px;" src="{{url('images/paytabs-logo.png') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/visa.svg') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
+
                     </ul>
                 </div>
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
-                    <form method="GET" action="https://inaday.cloud/search" accept-charset="UTF-8" class="formsearch">
+                    <form method="GET" action="#" id="subscribe-form">
                         <div class="col-12 col-md-9">
                             <div class="row">
                             <div class="col-8 col-md-8  p-0">
-                                <input required="" class="form-control h-100 search" id="search" placeholder="{{trans('file.email')}}" name="query" type="text">
+                                <input required="required" class="form-control h-100" id="search" placeholder="{{trans('file.email')}}" name="email" type="text">
                             </div>
-                            <div class="col-4 col-md-4 p-0">
-                                <button class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>
+                            <div class="col-4 col-md-4 p-0 mr-n1">
+                                <button id="subscribe" class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>
                             </div>
+                            <div class="col-12 result mt-2"></div>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyrights pb-2 pt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <p class="copyright font-weight-bolder mb-2">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
+                    <p class="mb-1"><span class="font-weight-bolder">مؤسسة حقل الورود للتجارة |</span> رقم السجل المدني : 1008367383</p>
+                </div>
+                <div class="col-12 col-sm-6 text-right">
+                    <ul class="list-inline sociel mt-3">
+                        <li class="list-inline-item">
+                            {{trans('file.folow_us')}}
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -142,7 +154,8 @@
                     <button  class="btn btn-modal text-center mt-4 btn-login" name="btn-login" id="login-form-submit"  value="login">{{trans('file.signin')}}</button>
                     <h5 class="or">أو</h5>
                     <div class="text-center google-login mt-4">
-                        <a class="btn" href="{{url('/user/google')}}">{{__('file.login_with_google')}}<i class="fa fa-google fa-lg"></i></a>
+                        <a class="btn" href="{{url('/user/google')}}">
+                            <i class="fa fa-google fa-lg"></i>  {{__('file.login_with_google')}}</a>
                     </div>
                     <p class="paragrapgh-login">هذه الخاصية للاعضاء المسجلين بالفعل. في حالة التسجيل يرجي استخدام صفحات التسجيل بالاعلي . في
                         حالة الدخول من خلال جوجل هنا ستكون صاحب عضوية بلا اي صلاحيات </p>
@@ -158,6 +171,10 @@
 </div>
 <!-- Model Ended -->
 <script type="text/javascript">
+
+
+
+
     /// login by jquery ajax
     $.ajaxSetup({
         headers: {
@@ -255,6 +272,32 @@
     });
     //// end login
 
+
+
+    $("#subscribe-form button").click(function(event) {
+        event.preventDefault();
+
+        var data = {'email' : $('#subscribe-form input').val()};
+
+        $.ajax({    
+            type  : 'post',
+            url   : '{!!URL::route('subscribe')!!}',
+            data  : data ,      
+            success:function(data){
+
+
+                if (data.result == 'done') {
+                    $('#subscribe-form .result').html('<p class="text-success">تم الاشتراك بنجاح</p>');
+                }else {
+                    $('#subscribe-form .result').html('<p class="text-danger">البريد المدخل غير صحيح</p>');
+                }
+            },
+        error:function(data){
+            console.log(data.err)
+        }
+      });
+    }); 
+
     </script>
 
 @endguest
@@ -276,7 +319,7 @@
 
 
 @section('jquery')
-<script src="{{url('js/jquery.validate.js')}}"></script>
+    <script src="{{url('js/jquery.validate.js')}}"></script>
 
 @endsection
 @endguest

@@ -33,36 +33,106 @@ class FrontController extends Controller
     }
 
 
-    public function SearchIndex(Request $request)
+    public function SearchIndex(Request $request , User $users)
     {
+        $users = $users->newQuery();
+
+        //check roles
+        $role = 'services_provider';
+        $users->whereHas('roles', function ($query) use ($role) {
+                $query->where('name', $role);
+            });
+
+        // Services provider with uncomplete profile
+        $users->whereHas('userdetailComplete');
 
 
-        $services = Service::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
-        $userId = [];
-        foreach ($services as $service)
-        {
-            array_push($userId, $service->user_id);
+
+        //check exists team member
+        // $team = Auth::user()->team->id;
+        // $users->whereDoesntHave('teams', function ($query) use ($team) {
+        //         $query->where('team_id' , $team);
+        //     });
+
+
+
+
+        if ($request->targetskills) {
+            $targetskills = $request->targetskills;
+
+            $users->whereHas('skills', function ($query) use ($targetskills) {
+                $query->whereIn('skill_id', $targetskills);
+            });
         }
 
-//        $projects = Project::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
-//
-//        $pages = Page::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
-//
-//        $articles = Article::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
+        if ($request->country_id) {
 
-        $users = User::whereHas('roles',function($q){
-                            $q->where('name', 'services_provider');
-                        })->whereIn('id',$userId)->paginate(15);
+            $country_id = $request->country_id;
+
+            $users->whereHas('userdetails', function ($query) use ($targetskills) {
+                $query->where('country_id', $country_id);
+            });
+        }
+
+        if ($request->title) {
+
+            $name = $request->title;
+            // $users->where('first_name', 'like', '%' . $name . '%')->orWhere('last_name', 'like', '%' . $name . '%');
+
+            $users->whereHas('userdetails', function ($query) use ($name) {
+                $query->where('position', 'like', '%' . $name . '%');
+            });
+
+        }
 
 
-//        $users = User::whereHas('roles',function($q){
-//                            $q->where('name', 'services_provider');
-//                        })->where('name','like','%'.$request['query'].'%')->orWhere('first_name','like','%'.$request['query'].'%')->orWhere('last_name','like','%'.$request['query'].'%')->get();
+        if ($users) {
 
-//        return view('front.search.index')->withServices($services)->withProjects($projects)->withUsers($users)->withArticles($articles)->withPages($pages);
-        return view('front.search.list')->withServices($services)->withUsers($users);
+            if ($request->targetskills) {
+                $targetskills = $request->targetskills;
+            }else {
+                $targetskills =  array();
+            }
+
+            $skills = Skill::where('is_active',1)->get();
+            return view('front.search.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills);
+        }
 
     }
+
+
+        //Eng/ Adel function
+
+//     public function SearchIndex(Request $request)
+//     {
+
+
+//         $services = Service::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
+//         $userId = [];
+//         foreach ($services as $service)
+//         {
+//             array_push($userId, $service->user_id);
+//         }
+
+// //        $projects = Project::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
+// //
+// //        $pages = Page::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
+// //
+// //        $articles = Article::where('title','like','%'.$request['query'].'%')->orWhere('desc','like','%'.$request['query'].'%')->latest()->get();
+
+//         $users = User::whereHas('roles',function($q){
+//                             $q->where('name', 'services_provider');
+//                         })->whereIn('id',$userId)->paginate(15);
+
+
+// //        $users = User::whereHas('roles',function($q){
+// //                            $q->where('name', 'services_provider');
+// //                        })->where('name','like','%'.$request['query'].'%')->orWhere('first_name','like','%'.$request['query'].'%')->orWhere('last_name','like','%'.$request['query'].'%')->get();
+
+// //        return view('front.search.index')->withServices($services)->withProjects($projects)->withUsers($users)->withArticles($articles)->withPages($pages);
+//         return view('front.search.list')->withServices($services)->withUsers($users);
+
+//     }
 
 
 }

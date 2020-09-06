@@ -20,7 +20,7 @@ class Team extends Model
 
     public function hasUser($id){
 
-        if ($this->users()->where('team_user.user_id',$id)->first()) {
+        if ($this->users()->where('team_user.user_id',$id)->where('team_user.is_approved','!=',3)->where('team_user.is_approved','!=',2)->first()) {
             return true;
         }
         return false;

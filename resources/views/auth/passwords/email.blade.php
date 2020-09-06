@@ -1,19 +1,17 @@
 @extends('layouts.inner')
 
 @section('content')
-<section class="banner">
-    <div class="container">
-      <h1 class="title">نسيت كلمة المرور</h1>
-    </div>
-  </section><!-- End Section panner Top -->
 
-  <section class="login">
-    <div class="container">
-      <div class="signupfilde">
-        <div class="title-sig">
-          <h3 class="titlebold"> استرجاع كلمة المرور</h3>
-          <p class="text-center">هل تواجه مشكلة في تذكر كلمة مرور الخاصة بك؟<br/>  الرجاء إدخال عنوان البريد الإلكتروني الخاص بك</p>
-        </div>
+<div id="innerpage" class="pt-4 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">نسيت كلمة المرور</h2>
+                </div>
+
+
+                <div class="bg-light mt-5 p-3  wrapper col-12 col-sm-6 offset-sm-3 rounded">
+
         <form class="formsignup" method="POST" action="{{ route('password.email') }}">
             @csrf
             @if (session('status'))
@@ -35,11 +33,15 @@
             @enderror
             </div>
           </div>
-          <div class="text-center">
-            <button class="bottom" type="submit">استرجاع الان</button>
+          <div class="text-center mt-2">
+            <button class="btn btn-primary" type="submit">استرجاع الان</button>
           </div>
         </form>
+
+
+
       </div>
     </div>
-  </section>
+  </div>
+</div>
 @endsection

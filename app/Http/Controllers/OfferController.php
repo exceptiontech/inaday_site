@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use App\Offer;
 use App\Team;
 use Illuminate\Http\Request;
@@ -11,6 +12,10 @@ use App\Log;
 use Redirect;
 use Session;
 use Mail;
+
+use App\Notifications\OfferCreated;
+use App\Notifications\OfferConfirm;
+
 
 class OfferController extends Controller
 {
@@ -72,15 +77,17 @@ class OfferController extends Controller
         $offer->offer =$request->offer;
         $offer->save();
 
+
+        $project = Project::findorfail($request->project_id);
+
+
         Mail::send('mail.offer', ['offer'=>$offer], function($message) use ($offer)
             {
                 $message->to($offer->project->user->email, 'Email Message')->subject('تم اضافة عرض لطلبك');
             }); 
-        // Mail::send('mail.offer', $offer, function ($message) use ($offer) {
-        //     $message->from('no_replay@inaday.cloud');
-        //     $message->to($offer->project->user->email);
-        //     $message->subject('تم اضافة عرض لطلبك');
-        // });
+
+
+        $project->user->notify(new OfferCreated($offer));
 
 
         Session::flash('status', __('file.success'));

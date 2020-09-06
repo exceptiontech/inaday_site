@@ -104,16 +104,16 @@
                     <p class="job-title mb-2">{{trans('file.job_seekers')}}</p>
                     <h2 class="profile-name mb-3">{{trans('file.service_providers')}}</h2>
                     <p class="profile-descrition mb-5">{{trans('file.service_provider_desc')}}</p>
-                    <a class="btn btn-primary mb-5 btn-group-lg" href="{{ url('register/services_provider') }}">{{trans('file.start_now')}}</a>
+                    <a class="btn btn-primary mb-5 btn-group-lg" href="{{ url('register') }}">{{trans('file.start_now')}}</a>
                 </div>
             </div>
             <div class="col-12 col-md-6 pt-5 pb-5">
                 <div class="col-8 offset-2">
                     <img class="mb-2" src="{{url('images/entrepreneur.svg') }}" alt="profile-image">
                     <p class="job-title mb-2">{{trans('file.new_entrepreneurs')}}</p>
-                    <h1 class="profile-name mb-3">{{trans('file.owne_entrepreneurs')}}</h1>
+                    <h2 class="profile-name mb-3">{{trans('file.owne_entrepreneurs')}}</h2>
                     <p class="profile-descrition mb-5">{{trans('file.entrepreneur_desc')}}</p>
-                    <a class="btn btn-primary mb-5" href="{{ url('register/entrepreneur') }}">{{trans('file.start_your_project')}}</a>
+                    <a class="btn btn-primary mb-5" href="{{ url('register') }}">{{trans('file.start_your_project')}}</a>
                 </div>
             </div>
         </div>
@@ -189,3 +189,4 @@
 </div> -->
 <!-- Stories Section End -->
 @endsection
+

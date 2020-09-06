@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Account;
 
-use App\ServicesProvider;
-use App\Department;
-use App;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Notifications;
 
-class ServicesProviderController extends Controller
+use Session;
+use Auth;
+use Socialite;
+use URL;
+use Redirect;
+
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +22,8 @@ class ServicesProviderController extends Controller
      */
     public function index()
     {
-
-        return view('front.ServicesProvider.index');
+        Auth::user()->unreadNotifications->markAsRead();
+        return view('front.profile.notifications.index');
     }
 
     /**
@@ -45,21 +50,23 @@ class ServicesProviderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ServicesProvider  $ServicesProvider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ServicesProvider $ServicesProvider)
+    public function show($id)
     {
-        //
+        $notification = Notifications::findorfail($id);
+
+        return $notification;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ServicesProvider  $ServicesProvider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServicesProvider $ServicesProvider)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +75,10 @@ class ServicesProviderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ServicesProvider  $ServicesProvider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServicesProvider $ServicesProvider)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +86,10 @@ class ServicesProviderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ServicesProvider  $ServicesProvider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServicesProvider $ServicesProvider)
+    public function destroy($id)
     {
         //
     }

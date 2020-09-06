@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Account;
 
-use App\Entrepreneur;
-use App\Department;
-use App;
+use App\Http\Controllers\Controller;
 
+use App\Message;
 use Illuminate\Http\Request;
 
-class EntrepreneurController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class EntrepreneurController extends Controller
      */
     public function index()
     {
-
-        return view('front.Entrepreneur.index');
+        return '<h2><center>This feature in phase two isA</center></h2>';
     }
 
     /**
@@ -45,21 +43,21 @@ class EntrepreneurController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Entrepreneur  $Entrepreneur
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Entrepreneur $Entrepreneur)
+    public function show($id)
     {
-        //
+        return '<h2><center>This feature in phase two isA</center></h2>';
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Entrepreneur  $Entrepreneur
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit(Entrepreneur $Entrepreneur)
+    public function edit(Message $message)
     {
         //
     }
@@ -68,10 +66,10 @@ class EntrepreneurController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Entrepreneur  $Entrepreneur
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Entrepreneur $Entrepreneur)
+    public function update(Request $request, Message $message)
     {
         //
     }
@@ -79,10 +77,10 @@ class EntrepreneurController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Entrepreneur  $Entrepreneur
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Entrepreneur $Entrepreneur)
+    public function destroy(Message $message)
     {
         //
     }

@@ -55,9 +55,17 @@ class SubscriberController extends Controller
         $subscriber->is_active = 1;
         $subscriber->save();
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('file.subscriber_success'));
-        return redirect::back();
+        if ($subscriber) {
+            return response()->json(['result'=>'done']);
+        }else {
+            return response()->json(['result'=>'fails']);
+        }
+        
+
+
+        // Session::flash('status', __('admin.success'));
+        // Session::flash('message', __('file.subscriber_success'));
+        // return redirect::back();
     }
 
     /**

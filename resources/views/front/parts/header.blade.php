@@ -76,17 +76,77 @@
                     <li class="nav-item not-active">
                         <a class="nav-link" href="{{ url('/admin') }}">{{trans('file.adminpanel')}}</a>
                     </li>
-                  @else
                     <li class="nav-item not-active">
-                        <a class="nav-link" href="{{ route('account.profile') }}">{{Auth::user()->first_name. ' ' .Auth::user()->last_name}}</a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link" href="#">{{trans('file.logout')}}</a>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
+
+                  @else
+
+                    <li class="nav-item not-active notification-item">
+                      <div class="dropdown">
+                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-bell" aria-hidden="true"></i> 
+                          @if(count(Auth::user()->unreadNotifications))
+                            <span class="count">{{count(Auth::user()->unreadNotifications) ?? '0'}}</span>
+                          @endif
+                        </button>
+
+                        <div class="dropdown-menu notification-dropdown" aria-labelledby="dropdownMenuButton">
+                          @if(count(Auth::user()->unreadNotifications))
+                            @foreach(Auth::user()->unreadNotifications->take(10) as $notification) 
+                              <a class="dropdown-item" href="{{ url('account/notifications/') }}">
+                                <div class="d-flex">
+                                    <div class="d-flex d-inline-block w-100">
+                                        <div class="img mr-2">
+                                          <img src="{{url($notification->data['image'] ?? 'images/research.png')}}" >
+                                        </div>
+                                        <div class="w-100">
+                                          <h6 class="mb-1">{{ $notification->data['title'] ?? __('notification.undefined') }} <span class="pull-left ml-5">{{ $notification->created_at }}</span></h6>
+                                          <p class="mb-1 p-0">{{ $notification->data['desc'] ?? __('notification.undefined') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                              </a>
+                            @endforeach
+                          @else
+                            <a class="dropdown-item disabled text-center" href="#">{{trans('file.no_notifications')}}</a>
+                          @endif
+                          <div class="d-flex text-center">
+                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/notifications/') }}">
+                              <i class="fa fa-bars" aria-hidden="true"></i> كل الإشعارات
+                            </a>
+                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/') }}">   <i class="fa fa-cog" aria-hidden="true"></i> إعدادات الإشعارات
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+                    </li>
+
+
+                    <li class="nav-item not-active">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('account.profile') }}">
+                          {{trans('file.profile')}}
+                        </a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item" href="#">{{trans('file.logout')}}</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                        </form>
+
+                      </div>
+                    </div>
                     </li>
                   @endif
-                  <li class="nav-item not-active">
-                      <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link" href="#">{{trans('file.logout')}}</a>
-                  </li>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                  </form>
+
               @endguest
             </ul>
           </div>

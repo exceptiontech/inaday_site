@@ -28,7 +28,15 @@ Route::get('/{type}/facebook', 'UsersController@facebook')->name('facebook');
 Route::get('/auth/facebook/redirect', 'UsersController@facebookRedirect');
 
 Route::get('/search/','FrontController@SearchIndex');
-Route::post('/newsletter/subscribe', 'SubscriberController@store');
+Route::post('/newsletter/subscribe', 'SubscriberController@store')->name('subscribe');
+
+Route::get('/user/{id}', 'UsersController@show');
+Route::get('/user/{id}/about', 'UsersController@about');
+Route::get('/user/{id}/services', 'UsersController@services');
+Route::get('/user/{id}/skills', 'UsersController@skills');
+Route::get('/user/{id}/portfolios', 'UsersController@portfolios');
+Route::get('/user/{id}/experiences', 'UsersController@experiences');
+Route::get('/user/{id}/reviews', 'UsersController@reviews');
 
 
 Auth::routes(['verify' => true]);
@@ -37,56 +45,94 @@ Route::get('/home', 'FrontController@index');
 Route::get('/contact_us', 'ContactusController@index')->name('contact_us');
 Route::post('/contact_us', 'ContactusController@store');
 
-
+Route::get('services-provider','UsersController@ServicesProviderIndex');
+Route::get('entrepreneur','UsersController@EntrepreneurIndex');
 Route::resource('blog','ArticleController');
 Route::resource('faqs','FaqController');
-Route::resource('services-provider','ServicesProviderController');
-Route::resource('entrepreneur','EntrepreneurController');
 Route::resource('sponsors','SponsorController');
 Route::resource('pages','PageController');
+Route::resource('messages','MessageController');
 
-Route::get('register/{type}', 'UsersController@register')->name('account');
-Route::post('register/services_provider/update', 'UsersController@update')->name('services_provider_update');
+// Route::get('register/{type}', 'UsersController@register')->name('account');
+// Route::post('register/services_provider/update', 'UsersController@update')->name('services_provider_update');
 
 Route::get('registration', 'UsersController@registration');
-
-
 Route::get('projects', 'ProjectController@index')->name('projects.index');
 Route::post('projects/search', 'ProjectController@searchBySkills')->name('projects.searchBySkills');
 Route::get('projects/{id}', 'ProjectController@show')->name('projects.show');
 Route::get('services', 'ServiceController@index')->name('services.index');
 Route::get('services/{id}', 'ServiceController@show')->name('services.show');
 
+
+
 Route::group(['middleware'=>'verified'], function() {
 
     // Profile
-    Route::get('account/profile', 'UsersController@show')->name('account.profile');
-    Route::post('update-profile', 'UsersController@update_profile')->name('update_profile');
-    // Profile
+    Route::get('account', 'UsersController@account');
+    Route::get('account/profile', 'UsersController@profile')->name('account.profile');
+    Route::get('/getCities', ['uses' => 'UsersController@getCities','as' => 'getCities']);  
+    Route::get('account/profile/edit', 'UsersController@edit');
+    Route::post('account/profile/update', 'UsersController@update');
+
+    // Projects
+    Route::resource('account/projects', 'Account\ProjectController', ['names' => 'front_projects']);
+    Route::get('account/projects/delete/{id}', 'Account\ProjectController@delete')->name('projects.delete');
+
+    // Message
+    Route::resource('account/messages', 'Account\MessageController', ['names' => 'front_messages']);
+
+    // Services
+    Route::resource('account/services', 'Account\ServiceController', ['names' => 'front_services']);
+    Route::get('account/services/delete/{id}', 'Account\ServiceController@delete')->name('services.delete');
+    // fav
+    Route::get('/account/favorite', ['uses' => 'FavoriteController@update','as' => 'updateFavorite']);  
+
+
+    // Portfolios
+    Route::resource('account/portfolios', 'Account\PortfolioController', ['names' => 'front_portfolios']);
+    Route::get('account/portfolios/delete/{id}', 'Account\PortfolioController@delete')->name('portfolio.delete');
+
+    // Experiences
+    Route::resource('account/experiences', 'Account\ExperienceController', ['names' => 'front_experiences']);
+    Route::get('account/experiences/delete/{id}', 'Account\ExperienceController@delete')->name('experiences.delete');
+
+    // Skills
+    Route::resource('account/skills', 'Account\SkillController', ['names' => 'front_skills']);
+    Route::get('account/skills/delete/{id}', 'Account\SkillController@delete')->name('skills.delete');
+
+    // Credit
+    Route::resource('account/credit', 'Account\CreditController', ['names' => 'front_credit']);
+
+    // Reviews
+    Route::resource('account/reviews', 'Account\ReviewController', ['names' => 'front_reviews']);
+
+    // bookings
+    Route::resource('account/bookings', 'Account\BookingController');
+
+    // notifications
+    Route::resource('account/notifications', 'Account\NotificationController');
+
+
+    // Interview
     Route::resource('account/interviews', 'InterviewController', ['names' => 'front_interviews']);
-    //notifications
-    Route::get('account/notifications', 'UsersController@notifications');
 
 
-    //projects
-    Route::resource('account/projects', 'ProjectController', ['names' => 'front_projects'])->except(['index','show']);
-    Route::get('projects/delete/{id}', 'ProjectController@delete')->name('projects.delete');
 
     //teams
-    Route::resource('account/teams', 'TeamController', ['names' => 'front_teams'])->except(['destory']);
-    Route::get('list/services_provider', 'TeamController@listServicesProvider');
-    Route::post('account/teams/add', 'TeamController@addUserToTeam');
-    Route::post('account/teams/accept', 'TeamController@acceptRequest');
-    Route::post('account/teams/refused', 'TeamController@refusedRequest');
-    Route::post('account/teams/cancel', 'TeamController@cancelRequest');
+    Route::resource('account/teams', 'Account\TeamController', ['names' => 'front_teams'])->except(['destory']);
+    Route::get('account/teams/delete/{id}', 'Account\TeamController@delete')->name('teams.delete');
+    Route::get('list/services_provider', 'Account\TeamController@listServicesProvider');
+    Route::get('account/team', 'Account\TeamController@team');
+    Route::post('account/teams/add', 'Account\TeamController@addUserToTeam');
+    Route::post('account/teams/accept', 'Account\TeamController@acceptRequest');
+    Route::post('account/teams/refused', 'Account\TeamController@refusedRequest');
+    Route::post('account/teams/cancel', 'Account\TeamController@cancelRequest');
 
     //offers
     Route::resource('offers', 'OfferController')->except(['index','show']);
 
-    // services
-    Route::resource('account/services', 'ServiceController', ['names' => 'front_services'])->except(['index','show']);
-    Route::get('services/delete/{id}', 'ServiceController@delete')->name('services.delete');
-    //
+
+
     Route::get('payment', 'PaymentController@index');
     Route::post('paypal/{title}/{id}/charge', 'PaymentController@charge');
     Route::get('paymentsuccess', 'PaymentController@payment_success');
@@ -102,6 +148,7 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
 
 	Route::get('/', 'AdminController@index');
     Route::resource('articles','Admin\ArticleController');
+    Route::resource('faqs','Admin\FaqController');
     Route::resource('pages','Admin\PageController');
     Route::resource('levels','Admin\LevelController');
     Route::resource('prefers','Admin\PreferController');

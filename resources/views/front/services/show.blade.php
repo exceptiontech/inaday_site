@@ -1,7 +1,7 @@
 @extends('layouts.inner')
 
 @section('title')
-  {{$service->title}}
+   {{$service->title}}
 @endsection
 
 @section('content')
@@ -12,12 +12,8 @@
                 <!-- sidebar Begin -->
                 <div class="col-12 col-md-4">
                     <div class="bg-light rounded pt-3 pb-3 p-2">
-                        <div class="img mb-3" >
-                        @if($service->user->userdetail->first())
-                  <img class="img-fluid" src="{{ url('/'.$service->user->userdetail->first()->avater) ?? '/assets/images/logo.png' }}" alt="" title="" />
-                @else
-                  <img class="img-fluid" src="{{ url('/assets/images/logo.png') }}" alt="" title="" />
-                @endif
+                        <div class="img mb-3 text-center" >
+                          <img class="img-fluid" src="{{ url($service->img ?? '/assets/images/logo.png' )}}" alt="" title="" />
                          
                         </div>
 
@@ -29,7 +25,7 @@
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">تصميم المواقع</span> </div>
+                                    <div class="col-6 p-0"><span class="bg-light">{{ $service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">ميزانية المشروع</div>
@@ -53,11 +49,15 @@
                           
                         </div>
 
-
+                        
                         <div class="col-12 contact_author align-bottom">
-                            <a href="#" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                            <a href="{{url('/messages/'.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                            
+                            @guest
                             <p class="small">يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة</p>
+                            @endguest
                         </div>
+                        
 
 
                     </div>
@@ -76,12 +76,63 @@
                                 <div class="row">
                                     <div class="col-sm-10">
                                        <h2 class="mb-3">{{$service->title}}</h2> 
-                                       <p>{{$service->user->userdetail->first()->notes}}</p>
+                                       <p>{{$service->desc}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                         <ul class="list-inline">
-                                            <li class="list-inline-item"><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-                                            <li class="list-inline-item"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li class="list-inline-item">
+                                              
+                                              <div id="socialHolder">
+                                                <div id="socialShare" class=" share-group">
+                                                  <a data-toggle="dropdown" class="btn">
+                                                       <i class="fa fa-share-alt"></i>
+                                                  </a>
+                                                  <ul class="dropdown-menu">
+                                                      <li>
+                                                        <a data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/share?url={{url('/services/'.$service->title)}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" class="btn btn-twitter" >
+                                                      <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                    </li>
+                                                    <li>
+                                                      <a target="_blank"  href="http://www.facebook.com/sharer.php?u={{url('/services/'.$service->title)}}" class="btn btn-facebook" >
+                                                      <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    </li>         
+                                                    <li>
+                                                      <a  rel="tooltip"  href="https://plus.google.com/share?url={{url('/services/'.$service->title)}}" class="btn btn-google" >
+                                                      <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                    </li>
+                                                      <li>
+                                                      <a hhref="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/services/'.$service->title)}}" class="btn btn-linkedin" data-placement="left">
+                                                      <i class="fa fa-linkedin"></i>
+                                                    </a>
+                                                    </li>
+                                                    <li>
+                                                      <a class="btn btn-pinterest" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" >
+                                                      <i class="fa fa-pinterest"></i>
+                                                    </a>
+                                                    </li>
+                                                    <li>
+                                                      <a  class="btn btn-mail" href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{url('/services/'.$service->title)}}">
+                                                      <i class="fa fa-envelope"></i>
+                                                    </a>
+                                                    </li>
+                                                  </ul>
+                                                </div>
+                                              </div>
+
+                                            </li>
+
+                                             <li class="list-inline-item">
+                                                @if(Auth::user()->ServicehasFavorite($service->id))
+                                                    <a id="RemoveFromFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}" href="#">
+                                                    <i class="fa fa-star starred" aria-hidden="true"></i></a>
+                                                @else
+                                                    <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}"  href="#">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                @endif
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -97,29 +148,31 @@
                                 </div>
                             </div>
 
-                            <div class="block col-12 pt-3 pb-5 mb-1">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h2 class="mb-3">باقات اضافة للخدمة</h2> 
-                                    </div>
+                            @if(1 == 2)
+                                <div class="block col-12 pt-3 pb-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h2 class="mb-3">باقات اضافة للخدمة</h2> 
+                                        </div>
 
-                                    <div class="col-8">
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                          بنر إعلاني متحرك
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div class="col-2">
-                                      <span>2 ساعات</span>
-                                    </div>
-                                    <div class="col-2">
-                                      <span>30 ريال</span>
-                                    </div>
+                                        <div class="col-8">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                              بنر إعلاني متحرك
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-2">
+                                          <span>2 ساعات</span>
+                                        </div>
+                                        <div class="col-2">
+                                          <span>30 ريال</span>
+                                        </div>
 
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
 
                             <div class="block col-12 pt-3 pb-5 mb-1">
@@ -129,57 +182,73 @@
                                     </div>
                                 </div>
                                 <div class="row comments">
+
+                                    @if(count($service->reviews) > 0)
+
+                                    @foreach($service->reviews as $review)
                                     
                                     <div class="col-12 comment">
                                         <div class="d-flex align-items-center mb-2">
-                                            <img src="images/19571f92333dd5fba2598f637b68739c.png" class="rounded-circle img-thumbnail img-fluid ">
+                                            <img src="{{url($review->user->userdetail->first()->avater ?? '/assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid ">
 
                                             <div class="ml-2">
                                                 <div class="mt-2 small">
                                                     <h2>محمد المأمون</h2>
                                                 </div>
-                                                <span class="small">صاحب المشروع بتاريخ 10/11/2019</span> 
+                                                <span class="small">{{ $review->user->first_name.' '.$review->user->last_name }} 10/11/2019</span> 
                                             </div>
                                         </div>
 
                                         <div class="comment-body">
-                                            <p>انجز العمل بكل احترافيه تعامل وجوده وتواصل كل شي بكل دقه واحتراف ليس فقط انجز العمل بل استفدت الكثير من نصائحه ومعلوماته القيمه مليار شكر والله يوفقك ان شاءالله</p>
+                                            <p>{{$review->review}}</p>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-12 comment">
-                                        <div class="d-flex align-items-center mb-2">
-                                            <img src="images/19571f92333dd5fba2598f637b68739c.png" class="rounded-circle img-thumbnail img-fluid ">
+                                    @endforeach
+                                    @else
+                                        <p>لا يوجد اي تقييمات لهذة الخدمة</p>
 
-                                            <div class="ml-2">
-                                                <div class="mt-2 small">
-                                                    <h2>محمد المأمون</h2>
-                                                </div>
-                                                <span class="small">صاحب المشروع بتاريخ 10/11/2019</span> 
+
+                                    @endif
+
+                                    <div class="block col-12 pt-3 pb-2 mb-3 border-0">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h2 class="mb-3 dark">اضافة تقييم</h2> 
+                                            </div>
+                                            <div class="col-sm-12">
+                                                {{ Form::open(['action' => 'Account\ReviewController@store', 'files'=>true]) }}
+                                                
+                                                {!! Form::hidden('service_id',$service->id ) !!}
+                                                @if(count($errors) > 0)
+                                                    @foreach ($errors->all() as $error)
+                                                        <div class="alert alert-danger alert-dismissable" >
+                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                            <h4>{{ $error}}</h4>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                                    <div class="row mb-3">
+                                                        <div class="col-12">
+                                                            {!! Form::label('title', trans('forms.title'))!!}
+                                                            {!! Form::text('title', null, ['required','class' => 'form-control']) !!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col-12">
+                                                            {!! Form::label('review', trans('forms.review'))!!}
+                                                            {!! Form::textarea('review',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col-12">
+                                                            {!! Form::submit(trans('forms.add'), array('class'=>'btn btn-primary')) !!}
+                                                        </div>
+                                                    </div>
+                                                {{ Form::close() }}                  
                                             </div>
                                         </div>
-
-                                        <div class="comment-body">
-                                            <p>انجز العمل بكل احترافيه تعامل وجوده وتواصل كل شي بكل دقه واحتراف ليس فقط انجز العمل بل استفدت الكثير من نصائحه ومعلوماته القيمه مليار شكر والله يوفقك ان شاءالله</p>
-                                        </div>
                                     </div>
-                                    
-                                    <div class="col-12 comment">
-                                        <div class="d-flex align-items-center mb-2">
-                                            <img src="images/19571f92333dd5fba2598f637b68739c.png" class="rounded-circle img-thumbnail img-fluid ">
-
-                                            <div class="ml-2">
-                                                <div class="mt-2 small">
-                                                    <h2>محمد المأمون</h2>
-                                                </div>
-                                                <span class="small">صاحب المشروع بتاريخ 10/11/2019</span> 
-                                            </div>
-                                        </div>
-
-                                        <div class="comment-body">
-                                            <p>انجز العمل بكل احترافيه تعامل وجوده وتواصل كل شي بكل دقه واحتراف ليس فقط انجز العمل بل استفدت الكثير من نصائحه ومعلوماته القيمه مليار شكر والله يوفقك ان شاءالله</p>
-                                        </div>
-                                    </div>
+                 
 
                                 </div>
                             </div>
@@ -195,3 +264,37 @@
     </div>
 
 @endsection
+
+
+@section('jquery')
+<script type="text/javascript">
+    $(".updateFav").click(function(event) {
+        event.preventDefault();
+
+        var data = {'id' : $(this).data("id")};
+
+        $.ajax({    
+            type  : 'get',
+            url   : '{!!URL::route('updateFavorite')!!}',
+            data  : data ,      
+            success:function(data){
+
+                console.log(data.result);
+
+                if (data.result == 'done') {
+                    $('.updateFav .fa').addClass('starred');
+                }else {
+                    $('.updateFav .fa').removeClass('starred');
+                }
+            },
+        error:function(data){
+            console.log(data.err)
+        }
+      });
+    });   
+
+
+</script>
+
+@endsection
+

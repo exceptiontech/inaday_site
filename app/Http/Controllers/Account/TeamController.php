@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Account;
+
+use App\Http\Controllers\Controller;
+
 use Spatie\Permission\Models\Role;
 
 
@@ -18,6 +21,15 @@ use URL;
 use Redirect;
 use Session;
 
+use App\Notifications\TeamCreated;
+use App\Notifications\TeamUpdated;
+use App\Notifications\TeamDeleted;
+use App\Notifications\TeamRequest;
+use App\Notifications\TeamRefusedRequest;
+use App\Notifications\TeamCancelRequest;
+use App\Notifications\TeamAcceptRequest;
+
+
 class TeamController extends Controller
 {
     /**
@@ -27,6 +39,7 @@ class TeamController extends Controller
      */
     public function index()
     {
+        return view('front.profile.teams.index');
 
     }
 
@@ -41,7 +54,7 @@ class TeamController extends Controller
             return view('front.errors.denied');
         }
 
-        return view('front.teams.create');
+        return view('front.profile.teams.create');
     }
 
     /**
@@ -88,7 +101,11 @@ class TeamController extends Controller
             $log->save();
         }
 
-        return view('front.teams.success');
+        Auth::user()->notify(new TeamCreated($team));
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.create_success'));
+        return redirect('/account/profile');
     }
 
     /**
@@ -115,7 +132,7 @@ class TeamController extends Controller
         }
 
         $team = Team::find($id);
-        return view('front.teams.edit',compact('team'));
+        return view('front.profile.teams.edit',compact('team'));
     }
 
     /**
@@ -127,6 +144,15 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return view('front.errors.denied');
+        }
+        elseif(is_null(Team::where('user_id',Auth::id())->first()) == 1)
+        {
+            return view('front.errors.denied');
+        }
 
         $team= Team::find($id);
         $team->user_id=Auth::id();
@@ -156,10 +182,59 @@ class TeamController extends Controller
             $log->save();
         }
 
-        Session::flash('status', __('file.info'));
-        Session::flash('message', __('file.success'));        
+        Auth::user()->notify(new TeamUpdated($team));
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.update_success'));
+
         return redirect::to('/account/profile');
     }
+
+
+    /**
+     * Delete the specified resource from storage.
+     *
+     * @param  \App\Service  $service
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id)
+    {
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return view('front.errors.denied');
+        }
+        elseif(is_null(Team::where('user_id',Auth::id())->first()) == 1)
+        {
+            return view('front.errors.denied');
+        }
+
+
+        if (Auth::user() && Auth::user()->isServicesProvider() == 1)
+        {
+            $team = Team::find($id);
+            $team->deleted_at = now();
+            $team->save();
+        }
+
+        if ($team) {
+            $log           = new Log;
+            $log->user_id  = Auth::user()->id;
+            $log->action   = 'delete';
+            $log->model    = 'team';
+            $log->url      = $request->server()['REQUEST_URI'];
+            $log->ip       = $request->server()['REMOTE_ADDR'];
+            $log->save();
+        }
+
+        Auth::user()->notify(new TeamDeleted($team));
+
+
+        Session::flash('status', __('admin.danger'));
+        Session::flash('message', __('admin.delete_success'));
+        return redirect('/account/profile');
+
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -172,9 +247,18 @@ class TeamController extends Controller
         //
     }
 
+    public function team() {
+        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return view('front.errors.denied');
+        }
+
+        return view('front.profile.teams.team');
+    }
+
 
     public function listServicesProvider(Request $request , User $users)
     {
+
 
         $users = $users->newQuery();
 
@@ -185,23 +269,30 @@ class TeamController extends Controller
                 $query->where('name', $role);
             });
 
+        // Services provider with uncomplete profile
+        $users->whereHas('userdetailComplete');
+
+
+        // Team Owner
+        $users->where('id','!=',Auth::user()->id);
+
 
         //check exists team member
         // $team = Auth::user()->team->id;
-        // $users->whereHas('teams', function ($query) use ($team) {
-        //         $query->where('team_id', '==' , $team);
+        // $users->whereDoesntHave('teams', function ($query) use ($team) {
+        //         $query->where('team_id' , $team);
         //     });
 
-        // not team owner
-        //$users->where('id','!=',Auth::user()->id);
 
-        if ($request->skill_id) {
-            $skill_id = $request->skill_id;
 
-            $users->whereHas('skills', function ($query) use ($skill_id) {
-                $query->where('skill_id', $skill_id);
+        if ($request->targetskills) {
+            $targetskills = $request->targetskills;
+
+            $users->whereHas('skills', function ($query) use ($targetskills) {
+                $query->whereIn('skill_id', $targetskills);
             });
         }
+
 
         if ($request->name) {
 
@@ -213,14 +304,23 @@ class TeamController extends Controller
 
         if ($users) {
 
+            if ($request->targetskills) {
+                $targetskills = $request->targetskills;
+            }else {
+                $targetskills =  array();
+            }
+
+
             $skills = Skill::where('is_active',1)->get();
-            return view('front.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills);
+            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills);
         }
     }
 
     public function addUserToTeam(Request $request)
     {
         $id = $request->id;
+
+        $user = User::findorfail($id);
 
         if (Auth::user()->team->hasUser($id)) {
             Session::flash('status', __('file.danger'));
@@ -229,7 +329,9 @@ class TeamController extends Controller
         }
 
         $team = Auth::user()->team;
-        $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
+        $team->users()->sync([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
+
+        $user->notify(new TeamRequest($team));
 
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.add_user_to_team'));
@@ -242,6 +344,8 @@ class TeamController extends Controller
 
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'2','note'=>__('file.invitation_refused')]);
+
+        $team->user->notify(new TeamRefusedRequest($team));
 
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_refused'));
@@ -256,6 +360,8 @@ class TeamController extends Controller
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'1','note'=>__('file.invitation_accept')]);
 
+        $team->user->notify(new TeamAcceptRequest($team));
+
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_accept'));
         return redirect::back();
@@ -268,6 +374,8 @@ class TeamController extends Controller
 
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'3','note'=>__('file.invitation_cancel')]);
+
+        $team->user->notify(new TeamCancelRequest($team));
 
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_cancel'));

@@ -17,8 +17,9 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $departments = Department::where('type','faqs')->get();
+        $departments = Department::where('type','faqs')->with('faqs')->get();
         $faqs = Faq::all();
+
         return view('front.faqs.index')->withDepartments($departments)->withFaqs($faqs);
     }
 

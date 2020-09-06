@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Project extends Model
 {
+    use Notifiable;
 
     public function user()
     {
@@ -26,6 +28,18 @@ class Project extends Model
     {
         return $this->belongsTo('App\Section');
     }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
+
+    public function phases()
+    {
+        return $this->hasMany('App\Phase');
+    }
+
+
     public function offers()
     {
         return $this->hasMany('App\Offer');
@@ -41,8 +55,6 @@ class Project extends Model
         return $this->belongsTo('App\Offer')->where('is_confirmed',1);
     }
 
-    public function phase(){
-        return $this->hasOne('App\Phase');
-    }
+
 
 }

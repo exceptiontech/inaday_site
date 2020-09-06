@@ -29,8 +29,7 @@ class ServiceCreated extends Notification
      */
     public function via($notifiable)
     {
-        return explode(', ', $notifiable->notification_preference);
-        //return ['mail','database'];
+        return explode(',', $notifiable->notification_preference);
     }
 
     /**
@@ -47,13 +46,15 @@ class ServiceCreated extends Notification
                     ->line('Thank you for using our application!');
     }
 
-    public function toDatabase()
+    public function toDatabase($notifiable)
     {
         return [
-            'mount'=>'1000',
-            'action'=>'pay now',
+            'image'=> url('/images/notifications/add.svg'),
+            'title'=> __('notification.ServiceCreated'),
+            'desc'=>__('notification.ServiceCreatedDesc'),
         ];
     }
+
 
     /**
      * Get the array representation of the notification.
