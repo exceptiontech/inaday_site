@@ -757,4 +757,12 @@ class UsersController extends Controller
         $user = User::findorfail($id);
         return view('front.user.reviews')->withUser($user);
     }
+
+    public function projects($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.projects')->withUser($user);
+    }
+
+    
 }

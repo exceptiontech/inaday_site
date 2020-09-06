@@ -21,11 +21,17 @@
                         <div class="mt-n5 ">
                             <div class="row">
                                 <div class="col-4 pt-2">
+                                    @if($user->id == Auth::user()->id)
+                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
+                                    @endif
                                 </div>
                                 <div class="col-3 p-0">
                                     <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon80 img-fluid">
                                 </div>
                                 <div class="col-5 pt-2">
+                                    @if($user->id == Auth::user()->id)
+                                    <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -43,6 +49,15 @@
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/about')}}">نبذة عني</a>
                                 </li>
+
+
+                                @if($user->isEntrepreneur() )
+                                <li class="list-group-item d-flex">
+                                    <a href="{{url('/user/'.$user->id.'/projects')}}">خدماتي</a>
+                                </li>
+                                @endif
+
+                                @if($user->isServicesProvider() )
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/services')}}">خدماتي</a>
                                 </li>
@@ -55,6 +70,8 @@
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/experiences')}}">خبراتي</a>
                                 </li>
+                                @endif
+
                                 <li class="list-group-item d-flex">
                                     <a href="{{url('/user/'.$user->id.'/reviews')}} ">تقييمات العملاء</a>
                                 </li>

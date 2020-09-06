@@ -37,6 +37,7 @@ Route::get('/user/{id}/skills', 'UsersController@skills');
 Route::get('/user/{id}/portfolios', 'UsersController@portfolios');
 Route::get('/user/{id}/experiences', 'UsersController@experiences');
 Route::get('/user/{id}/reviews', 'UsersController@reviews');
+Route::get('/user/{id}/projects', 'UsersController@projects');
 
 
 Auth::routes(['verify' => true]);

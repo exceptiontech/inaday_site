@@ -132,7 +132,7 @@
                         {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ route('account.profile') }}">
+                        <a class="dropdown-item" href="{{ url('/user/'.Auth::user()->id ) }}">
                           {{trans('file.profile')}}
                         </a>
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item" href="#">{{trans('file.logout')}}</a>
