@@ -97,6 +97,7 @@
 
 
 
+
                     <div class="bg-light rounded pt-2 pb-3 p-2">
                         <div class="project">
 
@@ -113,19 +114,42 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">معرض الاعمال</h2> 
+                                       <h2 class="mb-3">المشاريع</h2> 
                                        
-                                        <ul class="list-inline m-0 flex-shrink-1">
-                                        @if (count($user->portfolios))
-                                            @foreach ($user->portfolios as $portfolio)
-                                            <div class="position-relative">
-                                                <img class="mr-2 img-icon120" src="{{url($portfolio->image)}}">
-                                            </div>
+                                        @if (count($user->projects))
+                                            @foreach ($user->projects as $project)
+                                                <div class="col-12 project pb-3 pt-2">
+                                                    <h2>{{$project->title}}</h2>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <ul class="list-inline m-0 flex-shrink-1">
+                                                                <li class="list-inline-item">
+                                                                    <img src="{{ url($project->user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-fluid">
+                                                                    {{$project->user->first_name .' '.$project->user->last_name }}
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <div class="bg-light pt-1 pb-1 p-2 ">{{$project->section->title[App::getLocale()] ?? 'بدون تصنيف' }} </div>
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                    10/07/2020 
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            @if(Auth::user()->id == $user->id)
+                                                            <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
+                                                            <a class="btn btn-secondary rounded" href="{{ url('account/projects/'.$project->id.'/edit') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
                                         @else
-                                            <p>لا يوجد اي عمل مضاف</p>
+                                            <p>لا يوجد اي مشاريع </p>
                                         @endif
-                                        </ul>
 
                                     </div>
                                 </div>
