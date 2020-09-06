@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="col-12 contact_author align-bottom">
-                        <a href="{{url('/messages/'.$project->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_the_project_owner')}}</a>
+                        <a href="{{url('/messages/'.$project->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
                         <p class="small">{{trans('file.you_must_log_in_first_to_use_the_platforms_services')}}</p>
                     </div>
                 </div>

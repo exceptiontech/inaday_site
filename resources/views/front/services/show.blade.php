@@ -193,9 +193,9 @@
 
                                             <div class="ml-2">
                                                 <div class="mt-2 small">
-                                                    <h2>محمد المأمون</h2>
+                                                    <h2>{{ $review->user->first_name.' '.$review->user->last_name }}</h2>
                                                 </div>
-                                                <span class="small">{{ $review->user->first_name.' '.$review->user->last_name }} 10/11/2019</span> 
+                                                <span class="small"> 10/11/2019</span> 
                                             </div>
                                         </div>
 

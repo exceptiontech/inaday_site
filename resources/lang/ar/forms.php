@@ -62,7 +62,7 @@ return [
     'upload_txt'            =>   " تصفح",
     'service_section'            =>   " تصنيف الخدمه",
     'service_cost'            =>   " التكلفه",
-    'service_duration'            =>   " مدة التنفيذ",
+    'service_duration'            =>   " مدة التنفيذ (بالساعة)",
     'your_skills'            =>   " اهم المهارات التي تجيدها",
     'othr_skills'            =>   " مهارات اخري",
     'addservice'            =>   "أضف الخدمة",
