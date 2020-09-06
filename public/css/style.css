@@ -3,7 +3,7 @@
   src: url("../fonts/TheSans/plain/TheSansArabic-Plain.eot");
   src: url("../fonts/TheSans/plain/TheSansArabic-Plain.eot?#iefix") format("embedded-opentype"), url("../fonts/TheSans/plain/TheSansArabic-Plain.woff") format("woff"), url("../fonts/TheSans/plain/TheSansArabic-Plain.ttf") format("truetype"), url("../fonts/TheSans/plain/TheSansArabic-Plain.svg#TheSans") format("svg");
   font-weight: normal;
-  font-style: normal; } 
+  font-style: normal; }
 
 @font-face {
   font-family: "HelveticaNeueLT";
@@ -343,6 +343,9 @@ img.img-icon120 {
 @media (max-width: 238px) {
   .mobile-social-share h3 {
     font-size: 12px; } }
+
+.rtl .dropdown-menu, [dir=rtl] .dropdown-menu {
+  right: auto; }
 
 /* Header navbar */
 header .main-header .navbar .navbar-brand {
