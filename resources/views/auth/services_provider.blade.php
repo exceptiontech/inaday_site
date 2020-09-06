@@ -68,7 +68,6 @@
 
                     <a class="btn btn-primary mt-5" href="{{url('/')}}">اضف خلطة</a>
 
-                    <a class="btn btn-primary mt-5" href="#">تعرف على الخلطات</a>
                 </div>
 
                 <div class="col-12 col-md-6">
