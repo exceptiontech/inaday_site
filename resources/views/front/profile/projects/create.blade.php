@@ -92,7 +92,8 @@
                                           <div class="col-sm-6 check-item">
                                             <div class="chicksign">
                                               <label class="che-box">
-                                                <input
+                                                <input 
+                                                    required="required" 
                                                   class="required"
                                                   type="checkbox"
                                                   name="skills[]"

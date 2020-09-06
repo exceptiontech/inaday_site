@@ -110,7 +110,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12">
                                       {!! Form::label('skills', trans('forms.skills'))!!}
-                                      {{ Form::select('skills[]', $skills->pluck('title.'.App::getLocale(),'id'), array_pluck($project->skills, 'id'), ['multiple', 'class' => 'form-control']) }}
+                                      {{ Form::select('skills[]', $skills->pluck('title.'.App::getLocale(),'id'), array_pluck($project->skills, 'id'), ['required'=>'required','multiple', 'class' => 'form-control']) }}
 
                                     </div>
                                 </div>
