@@ -147,7 +147,7 @@ class ServiceController extends Controller
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
 
     }
 
@@ -238,7 +238,7 @@ class ServiceController extends Controller
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
 
     }
 
@@ -263,7 +263,7 @@ class ServiceController extends Controller
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
 
     }
 

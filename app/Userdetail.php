@@ -19,6 +19,19 @@ class Userdetail extends Model
     {
         return $this->belongsTo('App\Prefer');
     }
+    public function applykind()
+    {
+        return $this->belongsTo('App\Applykind');
+    }
+    public function averagekind()
+    {
+        return $this->belongsTo('App\Averagekind');
+    }
+
+    public function costkind()
+    {
+        return $this->belongsTo('App\Costkind');
+    }
     public function country()
     {
         return $this->belongsTo('App\Country');

@@ -223,6 +223,19 @@ class UsersController extends Controller
             $userdetail = new Userdetail;
         }
 
+        $user = Auth::user();
+        if(!empty($request['password']))
+        {
+            $this->validate($request,[
+                'password'=> 'required|string|min:8|max:25'
+            ]);
+            $user->password = Hash::make($request['password']);
+        }
+        $user->first_name=$request->first_name;
+        $user->last_name=@$request->last_name;
+        $user->mobile=@$request->mobile;
+        $user->save();
+
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
         $userdetail->level_id = $request->level_id;
@@ -299,7 +312,7 @@ class UsersController extends Controller
 
         Auth::user()->notify(new UpdatedUser(Auth::user()));
 
-        return redirect::to('/account/profile');
+        return redirect::to('/account/edit');
 
         // if (Auth::user()->PassedInterview()) {
         //     return redirect::to('/');
@@ -749,7 +762,7 @@ class UsersController extends Controller
     public function experiences($id)
     {
         $user = User::findorfail($id);
-        return view('front.user.about')->withUser($user);
+        return view('front.user.experiences')->withUser($user);
     }
 
     public function reviews($id)
@@ -761,7 +774,7 @@ class UsersController extends Controller
     public function projects($id)
     {
         $user = User::findorfail($id);
-        return view('front.user.project')->withUser($user);
+        return view('front.user.projects')->withUser($user);
     }
 
 

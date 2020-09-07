@@ -54,12 +54,14 @@ class ExperienceController extends Controller
             'position' => 'required',
             'company' => 'required',
             'desc' => 'required',
-            'start_date' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
         ]);
 
         $experience = new Experience();
         $experience->user_id=Auth::id();
         $experience->position=$request->position;
+        $experience->company=$request->company;
         $experience->desc=$request->desc;
         $experience->start_date=$request->start_date;
         $experience->end_date=$request->end_date;
@@ -79,7 +81,7 @@ class ExperienceController extends Controller
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
     }
 
     /**
@@ -99,9 +101,15 @@ class ExperienceController extends Controller
      * @param  \App\Experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function edit(Experience $experience)
+    public function edit($id)
     {
-        //
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return view('front.errors.denied');
+        }
+
+        $experience=Experience::find($id);
+
+        return view('front.profile.experiences.edit',compact('experience'));
     }
 
     /**
@@ -111,7 +119,7 @@ class ExperienceController extends Controller
      * @param  \App\Experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Experience $experience)
+    public function update(Request $request, $id)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             return view('front.errors.denied');
@@ -132,14 +140,15 @@ class ExperienceController extends Controller
         $experience->user_id=Auth::id();
         $experience->position=$request->position;
         $experience->desc=$request->desc;
+        $experience->company=$request->company;
         $experience->start_date=$request->start_date;
         $experience->end_date=$request->end_date;
         $experience->save();
 
-        if ($service) {
+        if ($experience) {
             $log           = new Log;
             $log->user_id  = Auth::user()->id;
-            $log->action   = 'create';
+            $log->action   = 'update';
             $log->model    = 'experience';
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
@@ -148,11 +157,11 @@ class ExperienceController extends Controller
 
         }
 
-        Auth::user()->notify(new ExperienceUpdated($service));
+        Auth::user()->notify(new ExperienceUpdated($experience));
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
     }
 
     /**
@@ -176,7 +185,7 @@ class ExperienceController extends Controller
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
 
     }
     /**
