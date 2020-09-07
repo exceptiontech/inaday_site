@@ -105,7 +105,7 @@ class TeamController extends Controller
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
     }
 
     /**
@@ -187,7 +187,7 @@ class TeamController extends Controller
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.update_success'));
 
-        return redirect::to('/account/profile');
+        return redirect::to('/account/edit');
     }
 
 
@@ -231,7 +231,7 @@ class TeamController extends Controller
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect('/account/profile');
+        return redirect::to('/account/edit');
 
     }
 

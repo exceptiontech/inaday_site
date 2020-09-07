@@ -14,76 +14,9 @@
                 </div>
 
                 <div class="row profile">
-                <!-- sidebar Begin -->
-                <div class="col-12 col-md-4 sidaber">
-                    <div class="bg-light rounded pt-3 pb-3 p-2 text-center">
-
-                        <div class="mt-n5 ">
-                            <div class="row">
-                                <div class="col-4 pt-2">
-                                    @if($user->id == Auth::user()->id)
-                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
-                                    @endif
-                                </div>
-                                <div class="col-3 p-0">
-                                    <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon80 img-fluid">
-                                </div>
-                                <div class="col-5 pt-2">
-                                    @if($user->id == Auth::user()->id)
-                                    @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
-                                        <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
-                                    @else
-                                        <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة المشاريع</a>
-                                    @endif
-
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <h2 class="mt-5">{{$user->first_name. ' ' .$user->last_name}}</h2>
-
-                        <ul class="list-inline info">
-                            <li class="list-inline-item">{{ $user->userdetail->first()->position ?? 'رائد أعمال' }}</li>
-                            <li class="list-inline-item">                                              {{ $user->userdetail->first()->country->title[App::getLocale()] ?? 'دولة غير محددة'}} / {{ $user->userdetail->first()->city->title[App::getLocale()] ?? 'مدينة غير محددة '}}</li>
-                        </ul>
-
-
-                        <div class="project-info mb-5 mt-5">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/about')}}">نبذة عني</a>
-                                </li>
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/projects')}}">خدماتي</a>
-                                </li>
-
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/services')}}">خدماتي</a>
-                                </li>
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/skills')}}">مهاراتي</a>
-                                </li>
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/portfolios')}}">معرض الأعمال</a>
-                                </li>
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/experiences')}}">خبراتي</a>
-                                </li>
-                                <li class="list-group-item d-flex">
-                                    <a href="{{url('/user/'.$user->id.'/reviews')}} ">تقييمات العملاء</a>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/messages/'.$user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- sidebar End -->
+                    <!-- sidebar Begin -->
+                    @include('front.user.parts.sidebar')
+                    <!-- sidebar End -->
 
 
                 <!-- Content Begin -->
@@ -107,18 +40,48 @@
 
 
                     <div class="bg-light rounded pt-2 pb-3 p-2">
+
+
                         <div class="project">
 
-                        @if (!empty($user->userdetail->notes))
+
+
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                       <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
-                                       <p>{{ $user->userdetail->notes}}</p>
+                                    <div class="col-sm-6">
+                                        <h2 class="mb-3">التكلفة بالساعة</h2> 
+                                        <ul class="list-inline m-0 flex-shrink-1">
+                                            <li class="list-inline-item">
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->costkind->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->prefer->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h2 class="mb-3">نوع الدوام</h2> 
+                                        <ul class="list-inline m-0 flex-shrink-1">
+                                            <li class="list-inline-item">
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->jobtype->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        @endif
+
+
+
+                            @if (!empty($user->userdetail->first()->notes))
+                                <div class="block col-12 pt-3 pb-2 mb-1">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                           <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
+                                           <p>{{ $user->userdetail->first()->notes}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -137,6 +100,37 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+
+
+                                    <div class="cv-history">
+                                        <h2 class="mb-3">الخبرات</h2>
+
+
+                                        @if (count($user->experiences))
+                                            @foreach ($user->experiences as $experience)
+
+                                            <div class="cv-item pl-3 pb-3">
+                                                <h2>{{$experience->position}}</h2>
+                                                <p class="date mb-1">
+                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse($experience->start_date)->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? 'الان'}} </span>
+                                                </p>
+                                                <p class="details">
+                                                    {{$experience->desc ?? ''}}
+                                                </p>
+                                            </div>
+
+                                            @endforeach
+                                        @else
+                                            <p>لا يوجد اي خبرات مضافة لهذا العضو</p>
+                                        @endif
+
+                                    </div>
+                            </div>
+
                         </div> 
                     </div>
                 </div>

@@ -170,7 +170,7 @@ return [
     'newsleter_register' => 'سجل في القائمة البريدية',
     'email' => 'البريد الإلكترونى',
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ inaday.biz',
+    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ inaday',
     'password' => 'كلمة المرور',
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',

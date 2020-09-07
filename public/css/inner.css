@@ -936,6 +936,33 @@ input[type="checkbox"] {
   height: 60px;
   vertical-align: text-bottom; }
 
+.cv-history h3 {
+  font-size: 22px; }
+
+.cv-history .cv-item {
+  position: relative;
+  border-right: solid 1px #505050; }
+  .cv-history .cv-item:last-child {
+    border-right: 0; }
+  .cv-history .cv-item:first-child {
+    border-right: solid 1px #505050; }
+  .cv-history .cv-item h2 {
+    font-size: 20px;
+    color: #505050; }
+  .cv-history .cv-item p {
+    color: #000000; }
+    .cv-history .cv-item p span {
+      color: #939393; }
+  .cv-history .cv-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -7px;
+    width: 14px;
+    height: 14px;
+    background: #505050;
+    border-radius: 50%; }
+
 .login {
   background-color: #005689;
   color: #ffffff; }

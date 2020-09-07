@@ -42,53 +42,55 @@
                     <div class="bg-light rounded pt-2 pb-3 p-2">
                         <div class="project">
 
-                        @if (!empty($user->userdetail->first()->notes))
+                        @if (!empty($user->userdetail->notes))
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
-                                       <p>{{ $user->userdetail->first()->notes}}</p>
+                                       <p>{{ $user->userdetail->notes}}</p>
                                     </div>
                                 </div>
                             </div>
-                        @else
-                            <div class="block col-12 pt-3 pb-2 mb-1">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                       <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
-                                       <p>لا يوجد اي تفاصيل عن هذا العضو</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        
-                            
                         @endif
+                        
                             <div class="block col-12 pt-3 pb-2 mb-1">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                       <h2 class="mb-3">{{ __('profile.skills') }}</h2> 
-                                       
-                                        <ul class="list-inline m-0 flex-shrink-1">
-                                        @if (count($user->skills))
-                                            @foreach ($user->skills as $skill)
-                                            <li class="list-inline-item">
-                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">- {{ $skill->title[App::getLocale()] }}</div>
-                                            </li>
+
+
+                                    <div class="cv-history">
+                                        <h2 class="mb-3">الخبرات</h2>
+
+
+                                        @if (count($user->experiences))
+                                            @foreach ($user->experiences as $experience)
+
+                                            <div class="cv-item pl-3 pb-3">
+                                                <h2>{{$experience->position}}</h2>
+                                                <p class="date mb-1">
+                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse($experience->start_date)->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? 'الان'}} </span>
+                                                </p>
+                                                <p class="details">
+                                                    {{$experience->desc ?? ''}}
+                                                </p>
+                                            </div>
+
                                             @endforeach
+                                        @else
+                                            <p>لا يوجد اي خبرات مضافة لهذا العضو</p>
                                         @endif
-                                        </ul>
 
                                     </div>
-                                </div>
                             </div>
+
+
                         </div> 
                     </div>
                 </div>
-                <!-- sidebar End -->
+
             </div>
         </div>
     </div>
-  @section('jquery')
 @endsection
+
+@section('jquery')
 @endsection
+

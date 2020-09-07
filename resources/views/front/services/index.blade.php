@@ -105,7 +105,7 @@
                             <div class="service col-12 pt-3 pb-2 mb-3">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <img class="img-fluid" src="{{ url($service->img) }}" alt="{{ $service->user->first_name.' '.$service->user->last_name }}" title="{{ $service->user->first_name.' '.$service->user->last_name }}">
+                                        <img class="img-fluid" src="{{ url($service->img) }}" alt="{{ $service->title }}" title="{{ $service->title }}">
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="row">
@@ -178,10 +178,12 @@
                                             <div class="col-sm-7">
 
                                                 <ul class="list-inline">
+                                                    @if($service->user)
                                                     <li class="list-inline-item">
                                                         <img src="{{ url($service->user->userdetail->first()->avater  ?? 'images/19571f92333dd5fba2598f637b68739c.png')}}" class="rounded-circle img-thumbnail img-fluid">
                                                         {{ $service->user->first_name.' '.$service->user->last_name }}
                                                     </li>
+                                                    @endif
                                                     <li class="list-inline-item">
                                                         <span class="bg-light">{{$service->section->title[App::getLocale()]}}</span>
                                                     </li>

@@ -61,41 +61,34 @@
                                     <h2 class="dark mt-5 mb-4">الخبرات المعروضة</h2>
                                 </div>
 
+                                    <div class="cv-history">
+                                        @if (count(Auth::user()->experiences))
+                                            @foreach (Auth::user()->experiences as $experience)
 
-                                @if(count(Auth::user()->experiences))
-                                    @foreach(Auth::user()->experiences as $experience)
-
-                                    <div class="col-12 bg-light light-dark pt-4 mb-5">
-
-                                        <div class="row mb-4">
-                                            <div class="col-12 col-sm-4">
-                                                <label class="col-12 mb-3" for="inputEmail4">اسم المهنة</label>
-                                                <input type="text" class="form-control" value="{{$experience->position}}"  name="position">
-                                            </div>
-                                            <div class="col-12 col-sm-4">
-                                                <label class="col-12 mb-3" for="inputEmail4">اسم الشركة</label>
-                                                <input type="text" class="form-control" value="{{$experience->company}}" name="company">
-                                            </div>
-                                            <div class="col-12 col-sm-2">
-                                                <label class="col-12 mb-3" for="inputEmail4">خلال الفترة من</label>
-                                                <input type="text" class="form-control" value="{{$experience->start_date}}" name="start_date">
-                                            </div>
-                                            <div class="col-12 col-sm-2">
-                                                <label class="col-12 mb-3" for="inputEmail4">الي</label>
-                                                <input type="text" class="form-control" name="end_date" value=" {{$experience->end_date}}">
+                                            <div class="cv-item pl-3 pb-3">
+                                                <h2>{{$experience->position}}</h2>
+                                                <p class="date mb-1">
+                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse($experience->start_date)->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? 'الان'}} </span>
+                                                </p>
+                                                <p class="details">
+                                                    {{$experience->desc ?? ''}}
+                                                </p>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <a href="{{url('/account/experiences/'.$experience->id.'/edit')}}" class="btn btn-primary">تعديل</a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="{{url('/account/experiences/delete/'.$experience->id)}}" class="btn btn-danger">حذف</a>
+                                                    </li>
+                                                </ul>
                                             </div>
 
-                                            <div class="col-12 mt-5">
-                                                <label class="col-12 mb-3" for="inputEmail4">المهارات التى تؤديها</label>
-                                                <textarea class="form-control" name="desc" placeholder="المهارات التى تؤديها">{{$experience->end_date}}</textarea> 
-                                            </div>
-
-                                        </div>
+                                            @endforeach
+                                        @else
+                                            <p>لا يوجد اي خبرات مضافة لهذا العضو</p>
+                                        @endif
                                     </div>
-                                    @endforeach
-                                @else
-                                    <p>لم تقم باضافة اي خبرات في الوقت الحالي</p>
-                                @endif
+
 
 
 
@@ -116,7 +109,7 @@
                                             @foreach ($errors->all() as $error)
                                                 <div class="alert alert-danger alert-dismissable" >
                                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                    <h4>{{ $error}}</h4>
+                                                    <h6>{{ $error}}</h6>
                                                 </div>
                                             @endforeach
                                         @endif
