@@ -105,7 +105,7 @@
                             <div class="service col-12 pt-3 pb-2 mb-3">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <img class="img-fluid" src="{{ url($service->img) }}" alt="{{ $service->title }}" title="{{ $service->title }}">
+                                        <img class="img-fluid" src="{{ url($service->img ?? 'assets/images/logo.png') }}" alt="{{ $service->title }}" title="{{ $service->title }}">
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="row">
