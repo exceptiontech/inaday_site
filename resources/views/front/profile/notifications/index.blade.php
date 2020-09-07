@@ -9,6 +9,8 @@
     <div id="innerpage" class="pt-4 pb-5">
         <div class="container">
             <div class="row">
+
+
                 <div class="col-12 title">
                     <h2 class="text-white mb-5">التنبيهات</h2>
                 </div>

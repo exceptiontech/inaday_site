@@ -62,8 +62,11 @@ class ReplayController extends Controller
         $replay->save();
 
 
-        $replay->booking->user->notify(new ReplayCreated($replay));
 
+        if (Auth::user()->usersettings && Auth::user()->usersettings->replay_notifications)
+        {
+            $replay->booking->user->notify(new ReplayCreated($replay));
+        } 
 
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.create_success_replay'));

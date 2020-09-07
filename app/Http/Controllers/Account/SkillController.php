@@ -79,11 +79,14 @@ class SkillController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new SkillUpdated($skill));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new SkillUpdated($skill));
+        }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect('/account/profile');
+        Session::flash('status', __('admin.danger'));
+        Session::flash('message', __('admin.delete_success'));
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 

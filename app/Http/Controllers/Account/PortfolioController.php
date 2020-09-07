@@ -83,11 +83,15 @@ class PortfolioController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new PortfolioCreated($portfolio));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new PortfolioCreated($portfolio));
+        }
 
         Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::to('/account/edit');
+        Session::flash('message', __('admin.edit_success'));
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 
@@ -141,12 +145,16 @@ class PortfolioController extends Controller
             $portfolio->save();
         }
         
-        Auth::user()->notify(new PortfolioDeleted($portfolio));
 
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new PortfolioDeleted($portfolio));
+        }
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 

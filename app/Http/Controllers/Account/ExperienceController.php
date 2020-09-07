@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 
 use App\Experience;
+use App\Usersettings;
 use Illuminate\Http\Request;
 
 use App\Log;
@@ -77,11 +78,18 @@ class ExperienceController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new ExperienceCreated($experience));
+        //return Auth::user()->usersettings;
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ExperienceCreated($experience));
+        }
+
+
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
     }
 
     /**
@@ -157,11 +165,15 @@ class ExperienceController extends Controller
 
         }
 
-        Auth::user()->notify(new ExperienceUpdated($experience));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ExperienceUpdated($experience));
+        }
+
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
     }
 
     /**
@@ -180,13 +192,16 @@ class ExperienceController extends Controller
             $experience->save();
         }
         
-        Auth::user()->notify(new ExperienceDeleted($experience));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ExperienceDeleted($experience));
+        }
 
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/account/edit');
-
+        return redirect::to('/user/'.Auth::user()->id);
     }
     /**
      * Remove the specified resource from storage.

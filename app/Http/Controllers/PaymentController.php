@@ -22,6 +22,10 @@ use App\Booking;
 use App\Project;
 use App\Offer;
 use URL;
+
+
+use App\Notifications\BookingCreated;
+
  
 class PaymentController extends Controller
 {
@@ -171,6 +175,12 @@ class PaymentController extends Controller
                             $booking->save();
 
 
+                            if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                            {
+                                $offer->user->notify(new BookingCreated($booking));
+                            } 
+
+
                             // Mail::send('mail.booking.offer', ['booking'=>$booking], function($message) use ($booking)
                             //     {
                             //         $message->to($offer->user->email, 'Email Message')->subject('تم اعتماد العرض الخاص بك');
@@ -219,6 +229,12 @@ class PaymentController extends Controller
                             $booking->save();
 
 
+
+                            if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                            {
+                                $service->user->notify(new BookingCreated($booking));
+                            } 
+
                             // Mail::send('mail.booking.service', ['booking'=>$booking], function($message) use ($booking)
                             //     {
                             //         $message->to($service->user->email, $booking->offeer->user->email)->subject('تم حجز احدى الخدمات الخاص بك');
@@ -263,6 +279,13 @@ class PaymentController extends Controller
                         $booking->user_id = Auth::user()->id;
                         $booking->payment_id = $payment->id;
                         $booking->save();
+
+                        $service = Service::findorfail($id);
+
+                        if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                        {
+                            $service->user->notify(new BookingCreated($booking));
+                        } 
 
                         if ($payment && $booking) {
                             $log           = new Log;

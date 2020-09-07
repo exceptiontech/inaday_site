@@ -11,8 +11,14 @@
                 </div>
 
 
-                <div class="bg-light mt-5 p-3  wrapper rounded">
+                <div class="bg-light mt-5 p-3 profile  wrapper rounded">
                     <div class="row">
+                        <div class="col-12  profile-head-menu mb-5">
+
+                            @include('front.profile.parts.menu')
+                        </div>
+
+
                         <div class="col-12 title mb-5">
                             <h2>{{__('forms.edit')}}</h2>
                         </div>

@@ -3,17 +3,19 @@
 @endsection
 @section('content')
 <div id="innerpage" class="pt-4 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 title">
+                <h2 class="text-white mb-5">الخبرات</h2>
+            </div>
 
-
-                <div class="bg-light mt-5 p-3  wrapper rounded">
+            <div class="col-12">
+                <div class="bg-light mt-5 p-3  profile rounded">
                     <div class="row">
-                        <div class="col-12 title mb-5">
-                            <h2>{{__('forms.edit')}}</h2>
+                        <div class="col-12  profile-head-menu mb-5">
+
+                        @include('front.profile.parts.menu')
+
                         </div>
 
                         <div class="col-12 col-sm-8">

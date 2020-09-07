@@ -201,6 +201,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function usersettings()
+    {
+        return $this->hasOne('App\Usersettings');
+    }
+
 
 
 }

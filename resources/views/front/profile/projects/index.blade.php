@@ -18,34 +18,7 @@
 
                             <div class="col-12  profile-head-menu mb-5">
 
-                                @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
-                                    <ul class="list-inline ">
-                                        <li class="list-inline-item"><a class="active" href="#">خدماتي</a></li>
-                                        <li class="list-inline-item"><a href="#">خلطاتي</a></li>
-                                        <li class="list-inline-item"><a href="#">فريقي</a></li>
-                                        <li class="list-inline-item"><a href="#">الفرق المشارك بها</a></li>
-                                        <li class="list-inline-item"><a  href="#">الطلبات</a></li>
-                                        <li class="list-inline-item"><a href="#">محفظتي</a></li>
-                                    </ul>
-                                @elseif(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive())
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/projects')}}">مشاريعي</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/bookings')}}">الحجوزات</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/notifications')}}">الاشعارات</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/')}}">الاعدادات</a>
-                                        </li>
-                                    </ul>
-                                @endif
+                                @include('front.profile.parts.menu')
                             </div>
 
                             <div class="col-12 title mb-3">

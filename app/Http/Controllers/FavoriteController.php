@@ -96,7 +96,13 @@ class FavoriteController extends Controller
                 $log->save();
             }
 
-            $service->user->notify(new FavoriteDeleted($favorite));
+
+            if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+            {
+                $service->user->notify(new FavoriteDeleted($favorite));
+            } 
+
+            
 
             return response()->json(['result'=>'remove']);
 
@@ -116,7 +122,12 @@ class FavoriteController extends Controller
                 $log->save();
             }
 
-            $service->user->notify(new FavoriteCreated($favorite));
+            if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+            {
+                $service->user->notify(new FavoriteCreated($favorite));
+            } 
+
+            
             return response()->json(['result'=>'done']);
         }
 

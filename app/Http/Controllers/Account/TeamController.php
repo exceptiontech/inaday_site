@@ -101,11 +101,15 @@ class TeamController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new TeamCreated($team));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            Auth::user()->notify(new TeamCreated($team));
+        }
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
     }
 
     /**
@@ -182,12 +186,18 @@ class TeamController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new TeamUpdated($team));
+
+
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            Auth::user()->notify(new TeamUpdated($team));
+        }
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.update_success'));
+        return redirect::to('/user/'.Auth::user()->id);
 
-        return redirect::to('/account/edit');
     }
 
 
@@ -226,12 +236,14 @@ class TeamController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new TeamDeleted($team));
-
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            Auth::user()->notify(new TeamDeleted($team));
+        } 
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 
@@ -331,7 +343,10 @@ class TeamController extends Controller
         $team = Auth::user()->team;
         $team->users()->sync([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
-        $user->notify(new TeamRequest($team));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            $user->notify(new TeamRequest($team));
+        } 
 
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.add_user_to_team'));
@@ -345,8 +360,13 @@ class TeamController extends Controller
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'2','note'=>__('file.invitation_refused')]);
 
-        $team->user->notify(new TeamRefusedRequest($team));
 
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            $team->user->notify(new TeamRefusedRequest($team));
+        } 
+
+    
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_refused'));
         return redirect::back();
@@ -360,7 +380,13 @@ class TeamController extends Controller
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'1','note'=>__('file.invitation_accept')]);
 
-        $team->user->notify(new TeamAcceptRequest($team));
+        
+
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            $team->user->notify(new TeamAcceptRequest($team));
+        } 
 
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_accept'));
@@ -375,7 +401,10 @@ class TeamController extends Controller
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'3','note'=>__('file.invitation_cancel')]);
 
-        $team->user->notify(new TeamCancelRequest($team));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            $team->user->notify(new TeamCancelRequest($team));
+        } 
 
         Session::flash('status', __('file.info'));
         Session::flash('message', __('file.invitation_cancel'));

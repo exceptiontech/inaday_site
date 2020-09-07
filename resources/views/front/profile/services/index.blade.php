@@ -16,18 +16,8 @@
                         <div class="row">
 
                             <div class="col-12  profile-head-menu mb-5">
-                                <ul class="list-inline ">
-                                    <li class="list-inline-item"><a class="active" href="{{url('/account/services')}}">خدماتي</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/experiences')}}">خبراتي</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/portfolios')}}">معرض الاعمال</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/skills')}}">مهاراتي</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/reviews')}}">اراء العملاء</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/packages')}}">خلطاتي</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/team')}}">فريقي</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/teams')}}">الفرق المشارك بها</a></li>
-                                    <li class="list-inline-item"><a  href="{{url('/account/bookings')}}">الطلبات</a></li>
-                                    <li class="list-inline-item"><a href="{{url('/account/credit')}}">محفظتي</a></li>
-                                </ul>
+
+                                @include('front.profile.parts.menu')
                             </div>
 
                             <div class="col-12 col-sm-8 profile-content services mb-5">

@@ -208,11 +208,16 @@ class ProjectController extends Controller
 
         }
 
-        Auth::user()->notify(new ProjectCreated($project));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ProjectCreated($project));
+        }
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
+
     }
 
     /**
@@ -364,12 +369,18 @@ class ProjectController extends Controller
 
         }
 
-        Auth::user()->notify(new ProjectUpdated($project));
+        
+
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ProjectUpdated($project));
+        }
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
 
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
     /**
@@ -398,12 +409,17 @@ class ProjectController extends Controller
             $log->save();
         }
 
-        Auth::user()->notify(new ProjectDeleted($service));
 
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ProjectDeleted($project));
+        }
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
+
 
     }
     /**

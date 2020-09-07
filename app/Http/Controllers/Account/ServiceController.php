@@ -143,11 +143,16 @@ class ServiceController extends Controller
             }
         }
 
-        Auth::user()->notify(new ServiceCreated($service));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ServiceCreated($service));
+        }
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
+
 
     }
 
@@ -234,11 +239,14 @@ class ServiceController extends Controller
 
         }
 
-        Auth::user()->notify(new ServiceUpdated($service));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ServiceUpdated($service));
+        }
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 
@@ -258,12 +266,15 @@ class ServiceController extends Controller
             $service->save();
         }
         
-        Auth::user()->notify(new ServiceDeleted($service));
 
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new ServiceDeleted($service));
+        }
 
         Session::flash('status', __('admin.danger'));
         Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/account/edit');
+        return redirect::to('/user/'.Auth::user()->id);
 
     }
 
