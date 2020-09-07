@@ -310,9 +310,13 @@ class UsersController extends Controller
             }
         }
 
-        Auth::user()->notify(new UpdatedUser(Auth::user()));
 
-        return redirect::to('/account/edit');
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            Auth::user()->notify(new UpdatedUser(Auth::user()));
+        } 
+
+        return redirect::to('/user/'.Auth::user()->id);
 
         // if (Auth::user()->PassedInterview()) {
         //     return redirect::to('/');

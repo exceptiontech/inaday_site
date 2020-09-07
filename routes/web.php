@@ -72,8 +72,11 @@ Route::group(['middleware'=>'verified'], function() {
     Route::get('account', 'UsersController@account');
     Route::get('account/profile', 'UsersController@profile')->name('account.profile');
     Route::get('/getCities', ['uses' => 'UsersController@getCities','as' => 'getCities']);  
-    Route::get('account/profile/edit', 'UsersController@edit');
+    Route::get('account/profile/edit', 'UsersController@edit')->name('account.edit');
     Route::post('account/profile/update', 'UsersController@update');
+
+    // Projects
+    Route::resource('account/settings', 'Account\UsersettingsController', ['names' => 'front_settings']);
 
     // Projects
     Route::resource('account/projects', 'Account\ProjectController', ['names' => 'front_projects']);
@@ -123,7 +126,7 @@ Route::group(['middleware'=>'verified'], function() {
     Route::resource('account/teams', 'Account\TeamController', ['names' => 'front_teams'])->except(['destory']);
     Route::get('account/teams/delete/{id}', 'Account\TeamController@delete')->name('teams.delete');
     Route::get('list/services_provider', 'Account\TeamController@listServicesProvider');
-    Route::get('account/team', 'Account\TeamController@team');
+    Route::get('account/team', 'Account\TeamController@team')->name('front_team');
     Route::post('account/teams/add', 'Account\TeamController@addUserToTeam');
     Route::post('account/teams/accept', 'Account\TeamController@acceptRequest');
     Route::post('account/teams/refused', 'Account\TeamController@refusedRequest');

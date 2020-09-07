@@ -347,6 +347,31 @@ img.img-icon120 {
 .rtl .dropdown-menu, [dir=rtl] .dropdown-menu {
   right: auto; }
 
+div.custom-control-right {
+  padding-right: 24px;
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0; }
+
+div.custom-control-right .custom-control-label::after {
+  right: -1.5rem;
+  left: auto; }
+
+div.custom-control-right .custom-control-label::before {
+  right: -2.35rem;
+  left: auto; }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #00EB80;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  border: solid 1px #C6C6C6;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); }
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: #00EB80;
+  transform: translateX(0.75rem); }
+
 /* Header navbar */
 header .main-header .navbar .navbar-brand {
   margin-left: 30px; }

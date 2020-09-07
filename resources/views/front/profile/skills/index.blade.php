@@ -18,38 +18,7 @@
 
                             <div class="col-12  profile-head-menu mb-5">
 
-                                @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
-                                    <ul class="list-inline ">
-                                        <li class="list-inline-item"><a href="{{url('/account/services')}}">خدماتي</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/experiences')}}">خبراتي</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/portfolios')}}">معرض الاعمال</a></li>
-                                        <li class="list-inline-item"><a class="active" href="{{url('/account/skills')}}">مهاراتي</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/reviews')}}">اراء العملاء</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/packages')}}">خلطاتي</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/team')}}">فريقي</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/teams')}}">الفرق المشارك بها</a></li>
-                                        <li class="list-inline-item"><a  href="{{url('/account/bookings')}}">الطلبات</a></li>
-                                        <li class="list-inline-item"><a href="{{url('/account/credit')}}">محفظتي</a></li>
-                                    </ul>
-                                @elseif(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive())
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/projects')}}">مشاريعي</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/bookings')}}">الحجوزات</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/notifications')}}">الاشعارات</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{url('/account/')}}">الاعدادات</a>
-                                        </li>
-                                    </ul>
-                                @endif
+                                @include('front.profile.parts.menu')
                             </div>
 
 

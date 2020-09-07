@@ -78,7 +78,11 @@ class ReviewController extends Controller
 
         }
 
-        Auth::user()->notify(new ReviewCreated($review));
+        if (Auth::user()->usersettings && Auth::user()->usersettings->review_notifications)
+        {
+            Auth::user()->notify(new ReviewCreated($review));
+        } 
+
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
