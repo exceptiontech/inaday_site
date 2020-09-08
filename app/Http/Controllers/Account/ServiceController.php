@@ -54,7 +54,13 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return view('front.errors.denied');
+        }
+        $skills = Skill::where('is_active',1)->get();
+        $sections= Section::all();
+
+        return view('front.profile.services.create',compact('skills','sections'));
     }
 
     /**

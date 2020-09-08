@@ -37,22 +37,22 @@
 
                                 <div class="row mb-4">
                                     <div class="col-6">
-                                        {!! Form::label('title', trans('forms.project_name'))!!}
-                                        {!! Form::text('title', null, ['required','class' => 'form-control']) !!}
+                                        {!! Form::label('title', trans('forms.project_name'))!!} <em class="text-danger">*</em>
+                                        {!! Form::text('title', null, ['required','class' => 'form-control']) !!} 
                                     </div>
                                     <div class="col-6">
-                                        {!! Form::label('title', trans('forms.section'))!!}
+                                        {!! Form::label('title', trans('forms.section'))!!} <em class="text-danger">*</em>
                                         {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-12">
-                                        {!! Form::label('desc', trans('forms.project_desc'))!!}
+                                        {!! Form::label('desc', trans('forms.project_desc'))!!} <em class="text-danger">*</em>
                                         {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-12">
+                                    <div class="col-12"> 
                                         {!! Form::label('files', trans('forms.files'))!!}
                                         {!! Form::file('files', array( 'class' => 'form-control')) !!}
                                     </div>
@@ -65,7 +65,7 @@
                                         {!! Form::select('applykind_id',$applykinds->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('num_team', trans('forms.num_team'))!!}
+                                        {!! Form::label('num_team', trans('forms.num_team'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('num_team', 1, ['required','class' => 'form-control','placeholder'=>'1']) !!}
                                     </div>
 
@@ -74,11 +74,11 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub>
+                                        {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em><em class="text-danger">*</em>
                                         {!! Form::text('cost', null, ['required','class' => 'form-control','placeholder'=>'1000']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
-                                        {!! Form::label('duration', trans('forms.duration'))!!}
+                                        {!! Form::label('duration', trans('forms.duration'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('duration', null, ['required','class' => 'form-control','placeholder'=>'1']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
@@ -93,14 +93,14 @@
                                         {!! Form::text('reward', null, ['class' => 'form-control','placeholder'=>'1']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!}
+                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} <em class="text-danger">*</em>
                                         {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
                                 </div>
 
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                      {!! Form::label('skills', trans('forms.skills'))!!}
+                                      {!! Form::label('skills', trans('forms.skills'))!!} <em class="text-danger">*</em>
                                       <div class="row">
                                         @if (count($skills))
                                           @foreach ($skills as $skill)

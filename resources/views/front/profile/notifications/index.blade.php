@@ -15,7 +15,12 @@
                     <h2 class="text-white mb-5">التنبيهات</h2>
                 </div>
 
-                <div class="col-12 bg-light pt-4 pb-4 notifactions rounded">
+                <div class="col-12 bg-light pt-4 pb-4 profile notifactions rounded">
+
+                    <div class="col-12  profile-head-menu mb-5">
+
+                        @include('front.profile.parts.menu')
+                    </div>
 
 
                     @if(count(Auth::user()->notifications))
