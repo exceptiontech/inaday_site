@@ -37,7 +37,7 @@
                                             <div class="cv-item pl-3 pb-3">
                                                 <h2>{{$experience->position}}</h2>
                                                 <p class="date mb-1">
-                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse($experience->start_date)->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? 'الان'}} </span>
+                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse($experience->start_date)->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse(strtotime($experience->end_date))->format('m-Y ') ?? 'الان'}} </span>
                                                 </p>
                                                 <p class="details">
                                                     {{$experience->desc ?? ''}}
