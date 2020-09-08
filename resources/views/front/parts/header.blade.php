@@ -117,7 +117,7 @@
                             <a class="dropdown-item col-6 bg text-center" href="{{ url('account/notifications/') }}">
                               <i class="fa fa-bars" aria-hidden="true"></i> كل الإشعارات
                             </a>
-                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/') }}">   <i class="fa fa-cog" aria-hidden="true"></i> إعدادات الإشعارات
+                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/settings') }}">   <i class="fa fa-cog" aria-hidden="true"></i> إعدادات الإشعارات
                             </a>
                           </div>
                         </div>

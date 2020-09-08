@@ -311,7 +311,7 @@ class UsersController extends Controller
         }
 
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new UpdatedUser(Auth::user()));
         } 
