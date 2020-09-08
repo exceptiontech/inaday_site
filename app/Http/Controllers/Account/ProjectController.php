@@ -86,11 +86,11 @@ class ProjectController extends Controller
             'section_id'      =>'required|integer',
             'applykind_id'      =>'required',
             'num_team'      =>'required',
-            'level_id'      =>'required',
-            'averagekind_id'      =>'required',
+            //'level_id'      =>'required',
+            //'averagekind_id'      =>'required',
             'cost'      =>'required',
             'duration'      =>'required',
-            'reward'      =>'required',
+            //'reward'      =>'required',
             'rewardkind_id'      =>'required',
         ]);
 

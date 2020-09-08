@@ -46,12 +46,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('first_name', trans('profile.first_name'))!!}
+                                        {!! Form::label('first_name', trans('profile.first_name'))!!}<em class="text-danger">*</em>
                                         {!! Form::text('first_name', Auth::user()->first_name, ['required','class' => 'form-control']) !!}
 
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('last_name', trans('profile.first_name'))!!}
+                                        {!! Form::label('last_name', trans('profile.last_name'))!!}<em class="text-danger">*</em>
                                         {!! Form::text('last_name', Auth::user()->last_name, ['required','class' => 'form-control']) !!}
 
                                     </div>
@@ -59,7 +59,7 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('mobile', trans('profile.mobile'))!!}
+                                        {!! Form::label('mobile', trans('profile.mobile'))!!}<em class="text-danger">*</em>
                                         {!! Form::text('mobile', Auth::user()->mobile, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-4">
@@ -79,16 +79,16 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('position', trans('profile.position'))!!}
+                                        {!! Form::label('position', trans('profile.position'))!!}<em class="text-danger">*</em>
                                         {!! Form::text('position', Auth::user()->userdetail->first()->position ?? '', ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('country_id', trans('profile.country'))!!}
+                                        {!! Form::label('country_id', trans('profile.country'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('country_id',$countries->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->country_id ?? '',['required', 'class' => 'form-control']) !!} 
 
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('city_id', trans('profile.city'))!!}
+                                        {!! Form::label('city_id', trans('profile.city'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('city_id',$cities->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->city_id ?? '',['required', 'class' => 'form-control']) !!} 
 
                                     </div>
@@ -134,7 +134,7 @@
 
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('costkind_id', trans('profile.costkind'))!!}
+                                        {!! Form::label('costkind_id', trans('profile.costkind'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('costkind_id',$costkinds->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->costkind_id ?? '' ,['required', 'class' => 'form-control']) !!} 
 
                                     </div>
@@ -143,13 +143,13 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('level_id', trans('profile.levels'))!!}
+                                        {!! Form::label('level_id', trans('profile.levels'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control']) !!} 
 
                                     </div>
 
                                     <div class="col-12 col-sm-4">
-                                        {!! Form::label('skills[]', trans('profile.skills'))!!}
+                                        {!! Form::label('skills[]', trans('profile.skills'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->skill_id ?? '',['required', 'class' => 'form-control']) !!} 
                                     </div>
                                     <div class="col-12 col-sm-4">

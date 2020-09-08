@@ -76,94 +76,10 @@
 
 
 
-
-                                <div class="col-12 mt-5 mb-5">
-
-                                    {{ Form::open(['action' => 'Account\ServiceController@store', 'files'=>true]) }}
-                                    
-                                    @if(count($errors) > 0)
-                                        @foreach ($errors->all() as $error)
-                                            <div class="alert alert-danger alert-dismissable" >
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                <h4>{{ $error}}</h4>
-                                            </div>
-                                        @endforeach
-                                    @endif
-
-                                        <div class="row mb-4">
-                                            <div class="col-12 col-sm-6">
-                                                {!! Form::label('title', trans('forms.service_name'))!!}
-                                                {!! Form::text('title', null, ['required','class' => 'form-control']) !!}
-                                            </div>
-                                            <div class="col-12 col-sm-6">
-                                                {!! Form::label('title', trans('forms.service_section'))!!}
-                                                {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-12 col-sm-3">
-                                                {!! Form::label('cost', trans('forms.service_cost'))!!}
-                                                {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
-                                            </div>
-                                            <div class="col-12 col-sm-3">
-                                                {!! Form::label('duration', trans('forms.service_duration'))!!}
-                                                {!! Form::text('duration', null, ['required','class' => 'form-control']) !!}
-
-                                            </div>
-                                            <div class="col-12 col-sm-6">
-                                                {!! Form::label('img', trans('forms.service_image'))!!}
-                                                {!! Form::file('img', array( 'class' => 'form-control')) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-12 mt-5">
-                                                {!! Form::label('img', trans('forms.service_desc'))!!}
-                                                {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-12">
-                                              الخبرات
-                                              <div class="row">
-                                                @if (count($skills))
-                                                  @foreach ($skills as $skill)
-                                                  <div class="col-sm-6 check-item">
-                                                    <div class="chicksign">
-                                                      <label class="che-box">
-                                                        <input
-                                                          class="required"
-                                                          type="checkbox"
-                                                          name="skills[]"
-                                                          value="{{$skill->id}}"
-                                                        /><span class="label-text">
-                                                            {{ @$skill->title[App::getLocale()] }}<em>*</em></span
-                                                        >
-                                                      </label>
-                                                    </div>
-                                                  </div>
-                                                  @endforeach
-                                                @endif
-                                              </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-12">
-                                              {!! Form::label('skills[]', trans('forms.other_skills'))!!}
-                                              {!! Form::text('skills[]', null, ['class' => 'form-control']) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="row mt-5 mb-3">
-                                            <div class="col-12">
-                                                {!! Form::submit(trans('forms.addservice'), array('class'=>'btn btn-primary')) !!}
-                                            </div>
-                                        </div>
-                                    {{ Form::close() }}
+                                <div class="col-12 mt-4">
+                                    <a href="{{url('/account/services/create')}}" class="btn btn-primary">اضافة خدمة جديدة</a>
                                 </div>
+
 
 
                             </div>

@@ -104,7 +104,7 @@
                                               </a>
                                               <ul class="dropdown-menu">
                                                   <li>
-                                                    <a data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/share?url={{url('/projects/'.$project->title)}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" class="btn btn-twitter" >
+                                                    <a target="_blank" data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/share?url={{url('/projects/'.$project->title)}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" class="btn btn-twitter" >
                                                   <i class="fa fa-twitter"></i>
                                                 </a>
                                                 </li>
@@ -114,18 +114,8 @@
                                                 </a>
                                                 </li>         
                                                 <li>
-                                                  <a  rel="tooltip"  href="https://plus.google.com/share?url={{url('/projects/'.$project->title)}}" class="btn btn-google" >
-                                                  <i class="fa fa-google-plus"></i>
-                                                </a>
-                                                </li>
-                                                  <li>
-                                                  <a hhref="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/projects/'.$project->title)}}" class="btn btn-linkedin" data-placement="left">
+                                                  <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/projects/'.$project->title)}}" class="btn btn-linkedin" data-placement="left">
                                                   <i class="fa fa-linkedin"></i>
-                                                </a>
-                                                </li>
-                                                <li>
-                                                  <a class="btn btn-pinterest" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" >
-                                                  <i class="fa fa-pinterest"></i>
                                                 </a>
                                                 </li>
                                                 <li>
