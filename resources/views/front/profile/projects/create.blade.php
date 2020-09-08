@@ -25,7 +25,16 @@
 
                         <div class="col-12 col-sm-8">
                           {{ Form::open(['action' => 'Account\ProjectController@store', 'files'=>true]) }}
-                            
+
+                                @if(count($errors) > 0)
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger alert-dismissable" >
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h6>{{ $error}}</h6>
+                                        </div>
+                                    @endforeach
+                                @endif
+
                                 <div class="row mb-4">
                                     <div class="col-6">
                                         {!! Form::label('title', trans('forms.project_name'))!!}

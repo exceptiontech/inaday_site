@@ -1,6 +1,6 @@
 @extends('layouts.inner')
 @section('title')
-  {{__('file.servives_provider_register')}}
+  الخدمات
 @endsection
 @section('content')
 

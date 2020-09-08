@@ -1,5 +1,6 @@
 @extends('layouts.inner')
 @section('title')
+تعديل البيانات
 @endsection
 @section('content')
 <div id="innerpage" class="pt-4 pb-5">
