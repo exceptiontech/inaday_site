@@ -268,7 +268,7 @@ class TeamController extends Controller
     }
 
 
-    public function listServicesProvider(Request $request , User $users)
+    public function listServicesProvider(Request $request , $team_id ,User $users)
     {
 
 
@@ -324,7 +324,7 @@ class TeamController extends Controller
 
 
             $skills = Skill::where('is_active',1)->get();
-            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills);
+            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeam_id($team_id);
         }
     }
 

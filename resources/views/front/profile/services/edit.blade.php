@@ -4,12 +4,13 @@
 @endsection
 @section('content')
 <div id="innerpage" class="pt-4 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 title">
+                <h2 class="text-white mb-5">ادارة الخدمات</h2>
+            </div>
 
+            <div class="col-12">
 
                 <div class="bg-light mt-5 p-3  profile rounded">
                     <div class="row">
@@ -124,8 +125,8 @@
                         </div>
                     </div>
                 </div>
-                    
-            </div>
+            </div>   
         </div>
     </div>
+</div>
 @endsection

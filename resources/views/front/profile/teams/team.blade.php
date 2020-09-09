@@ -75,8 +75,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4 text-right">
-                                                    <a class="btn btn-primary rounded" href="{{url('list/services_provider')}}">اضافة أعضاء للفريق</a>
+                                                <div class="col-4 text-right hide" style="display: none">
+                                                    <a class="btn btn-primary rounded" href="{{url($team->id.'/list/services_provider')}}">اضافة أعضاء للفريق</a>
                                                 </div>
                                             </div>
                                         </div>

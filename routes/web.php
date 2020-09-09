@@ -125,7 +125,7 @@ Route::group(['middleware'=>'verified'], function() {
     //teams
     Route::resource('account/teams', 'Account\TeamController', ['names' => 'front_teams'])->except(['destory']);
     Route::get('account/teams/delete/{id}', 'Account\TeamController@delete')->name('teams.delete');
-    Route::get('list/services_provider', 'Account\TeamController@listServicesProvider');
+    Route::get('{team_id}/list/services_provider', 'Account\TeamController@listServicesProvider');
     Route::get('account/team', 'Account\TeamController@team')->name('front_team');
     Route::post('account/teams/add', 'Account\TeamController@addUserToTeam');
     Route::post('account/teams/accept', 'Account\TeamController@acceptRequest');
