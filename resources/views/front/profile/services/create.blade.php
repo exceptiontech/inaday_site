@@ -39,18 +39,18 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('title', trans('forms.service_name'))!!}
+                                        {!! Form::label('title', trans('forms.service_name'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('title', null, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('title', trans('forms.service_section'))!!}
+                                        {!! Form::label('title', trans('forms.service_section'))!!} <em class="text-danger">*</em>
                                         {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
                                 </div>
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-3">
-                                        {!! Form::label('cost', trans('forms.service_cost'))!!}
+                                        {!! Form::label('cost', trans('forms.service_cost'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
@@ -66,14 +66,14 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 mt-5">
-                                        {!! Form::label('img', trans('forms.service_desc'))!!}
-                                        {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
+                                        {!! Form::label('img', trans('forms.service_desc'))!!} <em class="text-danger">*</em>
+                                        {!! Form::textarea('desc',null, array('required','class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
                                     </div>
                                 </div>
 
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                      الخبرات
+                                      الخبرات <em class="text-danger">*</em>
                                       <div class="row">
                                         @if (count($skills))
                                           @foreach ($skills as $skill)

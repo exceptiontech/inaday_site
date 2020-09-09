@@ -82,8 +82,8 @@ class ServiceController extends Controller
         $this->validate($request,[
             'title'     =>'required|max:500',
             'desc'      =>'required|max:500',
-            'cost'      =>'required|max:10',
-            'duration'  =>'required|max:8',
+            'cost'      =>'integer|required|max:10',
+            'duration'  =>'integer|required|max:8',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
 
