@@ -22,7 +22,7 @@
 
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
-                        <a class="dropdown-item" href="{{ url('/account/services') }}">{{trans('file.add_service')}}</a>
+                        <a class="dropdown-item" href="{{ url('/account/services/create') }}">{{trans('file.add_service')}}</a>
                         <a class="dropdown-item" href="{{ url('/account/team') }}">{{trans('file.myteam')}}</a>
                       @else
                           <a class="dropdown-item" href="{{ url('/services-provider') }}">{{trans('file.about_service_provider')}}</a>

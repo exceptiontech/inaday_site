@@ -23,7 +23,7 @@
                 <div class="col-12 col-md-4">
                     <div class="bg-light rounded pt-3 pb-3 p-2">
 
-                        {{ Form::open(['action' => 'Account\TeamController@listServicesProvider','method' => 'get']) }}
+                        {{ Form::open(['action' => 'Account\TeamController@listServicesProvider','team_id'=>$team_id,'method' => 'get']) }}
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">

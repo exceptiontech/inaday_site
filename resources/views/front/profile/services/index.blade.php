@@ -34,7 +34,7 @@
 
                                         <div class="row">
                                             <div class="col-sm-2">
-                                                <img class="img-fluid" src="{{ url($service->image ?? '/assets/images/logo.png' ) }}">
+                                                <img class="img-fluid" src="{{ url($service->img ?? '/assets/images/logo.png' ) }}">
                                             </div>
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
