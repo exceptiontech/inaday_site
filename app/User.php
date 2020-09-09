@@ -145,13 +145,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Team')->where('team_user.is_approved','!=',2)->where('team_user.is_approved','!=',3)->withPivot('is_approved');
     }
 
-    public function hasTeamInvitation($id)
+    public function hasTeamInvitation($teamID,$userID)
     {
-        $result = $this->whereHas('teams', function ($query) use ($id) {
-                $query->where('team_id' , $id);
-            })->get();
+        $user = User::findorfail($userID);
 
-        if (count($result) > 0) {
+        $result = $user->whereHas('teams', function ($query) use ($teamID) {
+                $query->where('team_id' , $teamID);
+            })->first();
+
+        if ($user->id == $result->id ) {
             return true;
         }
         return false;
