@@ -21,7 +21,7 @@
                                 @include('front.profile.parts.menu')
                             </div>
 
-                            <div class="col-12 col-sm-9 profile-content services mb-5">
+                            <div class="col-12 col-sm-8 profile-content services mb-5">
 
                                 <!-- services -->
                                 <div class="col-12 sub-title mt-5">
@@ -78,7 +78,7 @@
 
                             </div>
 
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-4">
                                 <div class="bg-light dark p-3">
                                     <div class="text-center mt-n5">
                                         <img src="{{url('/images/lamp.svg')}}">

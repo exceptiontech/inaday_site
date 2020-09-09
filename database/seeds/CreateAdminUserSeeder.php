@@ -109,6 +109,7 @@ class CreateAdminUserSeeder extends Seeder
 
 
 
+
         $title  = array();
         $title['ar'] = 'مقدمي الخدمات';
         $title['en'] = 'services provider';
@@ -143,6 +144,19 @@ class CreateAdminUserSeeder extends Seeder
         $title['ar'] = 'رواد الاعمال';
         $title['en'] = 'entrepreneurs';
         $department2 = Department::create(['title' => $title ,'slug' => 'entrepreneurs','type' => 'faqs','desc' =>  $title]);
+
+
+
+        $title  = array();
+        $title['ar'] = 'اقتراح';
+        $title['en'] = 'suggest';
+        $department = Department::create(['title' => $title,'slug' => 'suggest','type' => 'support','desc' =>  $title]);
+
+
+        $title  = array();
+        $title['ar'] = 'شكوى';
+        $title['en'] = 'Complaint';
+        $department = Department::create(['title' => $title,'slug' => 'Complaint','type' => 'support','desc' =>  $title]);
 
 
 

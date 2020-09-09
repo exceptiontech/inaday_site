@@ -11,8 +11,10 @@ use DB;
 use Auth;
 use Config;
 use App;
+use Mail;
 
 use App\Contactus;
+use App\Department;
 use App\Log;
 
 class ContactusController extends Controller
@@ -24,7 +26,8 @@ class ContactusController extends Controller
      */
     public function index()
     {
-        return view('front.contact.index');
+        $departments = Department::where('type','support')->get();
+        return view('front.contact.index')->withDepartments($departments);
     }
 
     /**
@@ -46,11 +49,12 @@ class ContactusController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'      =>'required|max:200',
+            //'name'      =>'required|max:200',
+            'department_id'     => 'required',
             'email'     => 'required|email',
             'subject'   => 'required',
             'mobile'   => 'required',
-            'message'   => 'required|min:50'
+            'message'   => 'required|min:15'
         ]);
 
         if (isset($request->validator) && $request->validator->fails()) {
@@ -62,23 +66,28 @@ class ContactusController extends Controller
 
         if(!$contact){
 
-            $data= new Contactus();
-            $data->name=$request->name;
-            $data->email=$request->email;
-            $data->mobile=$request->mobile;
-            $data->subject=$request->subject;
-            $data->message=$request->message;
-            $data->save();
-
-            if ($data) {
-                $log           = new Log;
-                $log->user_id  = Auth::user()->id;
-                $log->action   = 'create';
-                $log->model    = 'country';
-                $log->url      = $request->server()['REQUEST_URI'];
-                $log->ip       = $request->server()['REMOTE_ADDR'];
-                $log->save();
+            $contact= new Contactus();
+            $file = $request->file;
+            if ($file) {
+                $destinationPath = 'uploads/contactus';
+                $extension =  $file->getClientOriginalExtension();
+                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+                $upload_success = $file->move($destinationPath, $fileName);
+                $contact->file = $destinationPath.'/'.$fileName;
             }
+            $contact->name=$request->name;
+            $contact->email=$request->email;
+            $contact->mobile=$request->mobile;
+            $contact->subject=$request->subject;
+            $contact->message=$request->message;
+            $contact->department_id=$request->department_id;
+            $contact->save();
+
+
+            Mail::send('mail.contactus', ['contactus'=>$contact], function($message) use ($contact)
+                {
+                    $message->to($contact->email, 'info@inaday.sa')->subject($contact->department->title[App::getLocale()]);
+                }); 
 
             Session::flash('status', __('file.success'));
             Session::flash('message', __('file.sent_succesfully'));

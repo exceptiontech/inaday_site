@@ -102,6 +102,30 @@
                             </div>
 
 
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <h2 class="mb-3">معرض الاعمال</h2> 
+                                       
+                                        <div class="d-flex d-inline-flex mb-5">
+
+                                        @if(count($user->portfolios))
+                                            @foreach($user->portfolios as $portfolio)
+                                                <div class="position-relative">
+                                                    <img class="mr-2 img-icon120" src="{{url($portfolio->image)}}">
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <p>لم تقم باضافة اي اعمال في الوقت الحالي</p>
+                                        @endif
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="block col-12 pt-3 pb-2 mb-1">
 

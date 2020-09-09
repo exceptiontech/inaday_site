@@ -31,24 +31,25 @@
                                 </div>
                                 
 
-                                @if(Auth::user()->team)
+                                @if(Auth::user()->myteams)
                                 
+                                @foreach(Auth::user()->myteams as $team)
                                 <div class="col-12 service pb-3 pt-2">
 
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <img class="img-fluid" src="{{url(Auth::user()->team->image ?? '/assets/images/logo.png')}}">
+                                            <img class="img-fluid" src="{{url($team->image ?? '/assets/images/logo.png')}}">
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="row mb-2">
                                                 <div class="col-10">
-                                                    <h2 class="mb-3">{{Auth::user()->team->title ?? 'فريق بدون اسم' }}</h2>
+                                                    <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
                                                 </div>
                                                 <div class="col-2 sociel text-right">
-                                                    <a class="mr-2" href="{{url('account/teams/'.Auth::user()->team->id.'/edit')}}">
+                                                    <a class="mr-2" href="{{url('account/teams/'.$team->id.'/edit')}}">
                                                         <img src="{{url('/images/edit.svg')}}">
                                                     </a>
-                                                    <a class="" href="{{url('/account/teams/delete/'.Auth::user()->team->id)}}">
+                                                    <a class="" href="{{url('/account/teams/delete/'.$team->id)}}">
                                                         <img src="{{url('images/delete.svg')}}">
                                                     </a>
                                                 </div>
@@ -61,8 +62,8 @@
                                                         اعضاء الفريق
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="memberWrapper">
-                                                            @if(count(Auth::user()->team->users)>0)
-                                                                @foreach(Auth::user()->team->users as $user)
+                                                            @if(count($team->users)>0)
+                                                                @foreach($team->users as $user)
                                                                 <a class="dropdown-item" href="{{url('user/'.$user->id)}}">
                                                                     {{$user->first_name. ' ' .$user->last_name}}
                                                                 </a>
@@ -81,6 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
 
                                 @else
                                     <p>انت لا تمتلك فريق حتى الان كون فريقك الان </p>

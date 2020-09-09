@@ -21,7 +21,7 @@
 
                                         <li class="list-inline-item"><a class=" @if( \Request::route()->getName() =='front_teams.index' ) active @endif" href="{{url('/account/teams')}}">الفرق المشارك بها</a></li>
 
-                                        <li class="list-inline-item "><a class="disabled @if( \Request::route()->getName() =='front_bookings.index' ) active @endif"   href="#">الطلبات</a></li>
+                                        <li class="list-inline-item "><a class=" @if( \Request::route()->getName() =='front_bookings.index' ) active @endif"   href="{{url('/account/bookings')}}">الطلبات</a></li>
 
                                         <li class="list-inline-item"><a class="@if( \Request::route()->getName() =='front_credit.index' ) active @endif" href="{{url('/account/credit')}}">محفظتي</a></li>
 

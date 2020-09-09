@@ -49,17 +49,20 @@
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">معرض الاعمال</h2> 
                                        
-                                        <ul class="list-inline m-0 flex-shrink-1">
-                                        @if (count($user->portfolios))
-                                            @foreach ($user->portfolios as $portfolio)
-                                            <div class="position-relative">
-                                                <img class="mr-2 img-icon120" src="{{url($portfolio->image)}}">
-                                            </div>
+                                        <div class="d-flex d-inline-flex mb-5">
+
+                                        @if(count($user->portfolios))
+                                            @foreach($user->portfolios as $portfolio)
+                                                <div class="position-relative">
+                                                    <img class="mr-2 img-icon120" src="{{url($portfolio->image)}}">
+                                                </div>
                                             @endforeach
                                         @else
-                                            <p>لا يوجد اي عمل مضاف</p>
+                                            <p>لم تقم باضافة اي اعمال في الوقت الحالي</p>
                                         @endif
-                                        </ul>
+
+
+                                        </div>
 
                                     </div>
                                 </div>
