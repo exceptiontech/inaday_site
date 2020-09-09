@@ -23,7 +23,9 @@
                 <div class="col-12 col-md-4">
                     <div class="bg-light rounded pt-3 pb-3 p-2">
 
-                        {{ Form::open(['action' => 'Account\TeamController@listServicesProvider','team_id'=>$team_id,'method' => 'get']) }}
+
+                      {{Form::open(array("url"=>$teamid."/list/services_provider/"))}}
+
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">
@@ -108,7 +110,7 @@
                                               {{__('file.no_skills')}}
                                           @endif
 
-                                          @if($user->hasTeamInvitation(Auth::user()->team->id))
+                                          @if($user->hasTeamInvitation($teamid,$user->id))
                                             <a class="btn btn-secondary mt-4 disabled" href="#">تم ارسال دعوة او منضم  </a>
                                           @else
                                             {{ Form::open(['action' => 'Account\TeamController@addUserToTeam']) }}

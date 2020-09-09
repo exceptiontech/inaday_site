@@ -324,23 +324,25 @@ class TeamController extends Controller
 
 
             $skills = Skill::where('is_active',1)->get();
-            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeam_id($team_id);
+            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeamid($team_id);
         }
     }
 
     public function addUserToTeam(Request $request)
     {
         $id = $request->id;
+        $teamid = $request->team_id;
 
         $user = User::findorfail($id);
+        $team = Team::findorfail($teamid);
 
-        if (Auth::user()->team->hasUser($id)) {
+        if ($team->hasUser($id)) {
             Session::flash('status', __('file.danger'));
             Session::flash('message', __('file.user_already_added_to_team'));
             return redirect::back();
         }
 
-        $team = Auth::user()->team;
+        //$team = Auth::user()->team;
         $team->users()->sync([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
