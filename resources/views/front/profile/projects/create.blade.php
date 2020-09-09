@@ -75,11 +75,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em><em class="text-danger">*</em>
-                                        {!! Form::text('cost', null, ['required','class' => 'form-control','placeholder'=>'1000']) !!}
+                                        {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration', trans('forms.duration'))!!} <em class="text-danger">*</em>
-                                        {!! Form::text('duration', null, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('duration', null, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration_type', trans('forms.duration_type'))!!}
@@ -90,11 +90,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', null, ['class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('reward', null, ['class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} <em class="text-danger">*</em>
-                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} 
+                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['class' => 'form-control']) !!} 
                                     </div>
                                 </div>
 

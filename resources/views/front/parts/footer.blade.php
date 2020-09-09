@@ -126,20 +126,20 @@
                     <div class="form-group">
                         <label> {{trans('file.email')}} *</label>
                         <input type="email"  name="email" id="email" id="login-form-username"  class="form-control d-block  @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus aria-label="Username" aria-describedby="basic-addon1">
-                            @error('email')
+<!--                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                    </div>
+ -->                    </div>
                     <div class="form-group">
                         <label for="login-form-password">{{trans('file.password')}}</label>
                             <input type="password" name="password" id="password" id="login-form-password" class="form-control d-block @error('password') is-invalid @enderror" required autocomplete="current-password"  >
-                            @error('password')
+<!--                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                            @enderror -->
                     </div>
                     <div class="col-12">
                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
