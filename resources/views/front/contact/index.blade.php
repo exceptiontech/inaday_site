@@ -15,12 +15,13 @@
 
 
                 <div class="col-12 ">
-                    <div class="bg-light rounded pt-3 pb-3 p-2">
-                      <div class="col-12">
-                      <h2>صوتك مسموع</h2>
+                    <div class="bg-light contact_us rounded pt-3 pb-3 p-2">
+                      <div class="p-4 project">
+                      <div class="block">
+                      <h2 class="mb-3">صوتك مسموع</h2>
                       <p>كيف نقدر نخدمك، من خلال هذة الصفحة يمكنك التواصل معنا وابلاغنا بالمقترحات او الاستفسارات او المشاكل التي تواجهك، وسوف نتواصل معك في اقرب وقت ممكن.</p>
 
-                    {{ Form::open(['action' => 'ContactusController@store']) }}
+                    {{ Form::open(['action' => 'ContactusController@store','files'=>true]) }}
 
                       @if (Session::has('message'))
                         <div class="alert alert-dismissible alert-{{Session::get('status')}}">
@@ -42,29 +43,48 @@
 
 
                       <div class="row">
-                        <div class="col-sm-6 form-group">
-                          {!! Form::text('name', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.name')]) !!}
+                        <div class="col-sm-4 form-group">
+                            <label class="font-weight-bold mb-3">تصنيف الرسالة <em class="text-danger">*</em> </label>
+                            {!! Form::select('department_id',$departments->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
 
                         </div>
-                        <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 form-group">
+                            <label class="font-weight-bold mb-3">عنوان الرسالة <em class="text-danger">*</em> </label>
+                            {!! Form::text('subject', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.subject')]) !!}
+                        </div>
+
+                        <div class="col-sm-12 form-group">
+                            <label class="font-weight-bold mb-3">محتوى الرسالة <em class="text-danger">*</em> </label>
+                          {!! Form::textarea('message', null, array('required','class'=>'textarea form-control','placeholder'=>'يمكنك كتابة محتوى الرسالة هنا','rows'=>3)) !!}
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 form-group">
+                          <label class="font-weight-bold mb-3">البريد الالكتروني <em class="text-danger">*</em> </label>
                           {!! Form::email('email', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.email')]) !!}
                         </div>
-                        <div class="col-sm-6 form-group">
-                          {!! Form::text('mobile', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.mobile')]) !!}
-                        </div>
-                        <div class="col-sm-6 form-group">
-                          {!! Form::text('subject', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.subject')]) !!}
-                        </div>
-                        <div class="col-sm-12 form-group">
-                          {!! Form::textarea('message', null, array('required','class'=>'textarea form-control','placeholder'=>trans('file.message'),'row'=>3)) !!}
 
+                        <div class="col-sm-4 form-group">
+                            <label class="font-weight-bold mb-3">الهاتف <em class="text-danger">*</em> </label>
+
+                            {!! Form::text('mobile', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.mobile')]) !!}
                         </div>
+                        <div class="col-sm-4 form-group">
+                            <label class="font-weight-bold mb-3">تحميل مرفقات  </label>
+
+                            {!! Form::file('file', array( 'class' => 'form-control')) !!}
+                        </div>
+                      </div>
+
+                      <div class="row mt-3">
                         <div class="col-sm-12 form-group">
-                          {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
+                          {!! Form::submit('ارسال الرسالة', array('class'=>'btn btn-primary')) !!}
 
                         </div>
                       </div>
                       {{ Form::close() }}
+                    </div>
                 </div>
             </div>
         </div>

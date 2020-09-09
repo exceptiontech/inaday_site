@@ -318,4 +318,9 @@ return [
     'notifications' => 'الإشعارات',
     'no_notifications' => 'لا يوجد اي إشعارات حالية',
 
+
+    'sent_succesfully' => 'تم الارسال',
+    'sent_before' => 'مرسل من قبل',
+
+
 ];
