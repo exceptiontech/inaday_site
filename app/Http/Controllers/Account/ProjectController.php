@@ -72,6 +72,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
             $num = range(9, 0);
@@ -88,10 +89,10 @@ class ProjectController extends Controller
             'num_team'      =>'required',
             //'level_id'      =>'required',
             //'averagekind_id'      =>'required',
-            'cost'      =>'required',
-            'duration'      =>'required',
-            //'reward'      =>'required',
-            'rewardkind_id'      =>'required',
+            'cost'      =>'required|integer',
+            'duration'      =>'required|integer',
+            // 'reward'      =>'integer',
+            // 'rewardkind_id'      =>'integer',
         ]);
 
 
@@ -108,7 +109,7 @@ class ProjectController extends Controller
         $project->cost=convert($request->cost);
         $project->duration=$request->duration;
         $project->costkind_id=$request->costkind_id;
-        $project->reward=convert($request->reward);
+        $project->reward=$request->reward;
         $project->rewardkind_id=$request->rewardkind_id;
         $project->rule=$request->rule;
         $project->is_active=0;
@@ -123,25 +124,25 @@ class ProjectController extends Controller
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
 
-            $phase = new Phase;
-            $phase->target_clients=convert($request->target_clients);
-            $phase->target_sales=convert($request->target_sales);
-            $phase->target_profits=convert($request->target_profits);
-            $phase->readinesskind_id=$request->readinesskind_id;
-            $phase->next_status=0;
-            $phase->date=$request->date;
-            $phase->project_id=$project->id;
-            $phase->save();
+            // $phase = new Phase;
+            // $phase->target_clients=convert($request->target_clients);
+            // $phase->target_sales=convert($request->target_sales);
+            // $phase->target_profits=convert($request->target_profits);
+            // $phase->readinesskind_id=$request->readinesskind_id;
+            // $phase->next_status=0;
+            // $phase->date=$request->date;
+            // $phase->project_id=$project->id;
+            // $phase->save();
 
-            if ($phase) {
-                $log           = new Log;
-                $log->user_id  = Auth::user()->id;
-                $log->action   = 'create';
-                $log->model    = 'phase';
-                $log->url      = $request->server()['REQUEST_URI'];
-                $log->ip       = $request->server()['REMOTE_ADDR'];
-                $log->save();
-            }
+            // if ($phase) {
+            //     $log           = new Log;
+            //     $log->user_id  = Auth::user()->id;
+            //     $log->action   = 'create';
+            //     $log->model    = 'phase';
+            //     $log->url      = $request->server()['REQUEST_URI'];
+            //     $log->ip       = $request->server()['REMOTE_ADDR'];
+            //     $log->save();
+            // }
 
             $files = $request->files;
             if ($files) {

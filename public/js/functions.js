@@ -10,10 +10,13 @@
 $(document).ready(function(){
     $(".service_provider").click(function(){
         $("#service_provider").prop("checked", true);
+        $("#service_provider2").prop("checked", false);
+        $(this).addClass('active');
     });
     $(".project_owner").click(function(){
         $("#service_provider").prop("checked", false);
         $("#service_provider2").prop("checked", true);
+        $(this).addClass('active');
     });
 
     if ($("ul.pagination").length > 0) {

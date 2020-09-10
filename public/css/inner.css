@@ -372,6 +372,9 @@ div.custom-control-right .custom-control-label::before {
   background-color: #00EB80;
   transform: translateX(0.75rem); }
 
+.form-group .error {
+  display: none !important; }
+
 /* Header navbar */
 header .main-header .navbar .navbar-brand {
   margin-left: 30px; }
@@ -1021,8 +1024,9 @@ input[type="checkbox"] {
     transition: all 0.5s ease-in-out;
     padding-right: 10px;
     padding-left: 0px; }
-    .login .service_provider:hover,
-    .login .project_owner:hover {
+    .login .service_provider:hover, .login .service_provider.active,
+    .login .project_owner:hover,
+    .login .project_owner.active {
       background: #fff;
       color: #000; }
 

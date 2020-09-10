@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!} <em class="text-danger">*</em>
-                                        {!! Form::text('num_team', 1, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('num_team', 1, ['required','class' => 'form-control']) !!}
                                     </div>
 
                                 </div>
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} 
-                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['class' => 'form-control']) !!} 
+                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['class' => 'form-control','placeholder'=>'اختر طريقة المكافأة']) !!} 
                                     </div>
                                 </div>
 
@@ -136,29 +136,6 @@
                                     <div class="col-12">
                                         {!! Form::label('rule', trans('forms.rule'))!!}
                                         {!! Form::textarea('rule',null, array('class'=>'textarea form-control', 'rows'=>'3', 'placeholder'=>'مثال: عند الانتهاء من المشروع في اقل من اسبوع')) !!}
-                                    </div>
-                                </div>
-
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                      <div class="title mb-5">
-                                          <h2>{{ __('forms.phase_1text') }}</h2>
-                                          <p>{{ __('forms.phase_1text2') }}</p>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_clients') }}<em>*</em></label>
-                                            <input name="target_clients" class="form-control required" type="number" min="1" value="1" required>
-                                        </div>
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_sales') }}<em>*</em></label>
-                                            <input name="target_sales" class="form-control required" type="number" min="1" value="1"  required>
-                                        </div>
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_profits') }}<em>*</em></label>
-                                            <input name="target_profits" class="form-control required" type="number" min="0" value="1" required>
-                                        </div>
-                                      </div>
                                     </div>
                                 </div>
 

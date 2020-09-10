@@ -30,6 +30,8 @@ use App\Phase;
 use App\User;
 use App\Log;
 
+use App\Notifications\ProjectApproved;
+
 class ProjectController extends Controller
 {
     /**
@@ -197,6 +199,9 @@ class ProjectController extends Controller
 
         }
 
+        if ($project->is_approved) {
+            $project->user->notify(new ProjectApproved($project));
+        }
 
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));

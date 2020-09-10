@@ -18,7 +18,7 @@
                     <p>كثير من رواد الأعمال يأخرون بدء مشاريعهم من أجل مهام ليس لها علاقة حقيقة بنجاح المشروع، فالانتظار أشهر من أجل اختيار اسم او شعار او بناء موقع الكتروني، او انتظار تمويل هي أهم أسباب تعطل كثير من المشاريع وإصابة اصحابها بالإحباط قبل البدء. </p>
 
                     @guest
-                        <a class="btn btn-primary mt-5 " href="{{url('/register')}}">سجل الان</a>
+                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=entrepreneur')}}">سجل الان</a>
 
                     @else
                         <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>

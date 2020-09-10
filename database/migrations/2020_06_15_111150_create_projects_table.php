@@ -28,7 +28,7 @@ class CreateProjectsTable extends Migration
             $table->integer('cost')->default(0);
             $table->integer('costkind_id')->default(0)->references('id')->on('costkinds');
 
-            $table->integer('reward')->default(0);
+            $table->integer('reward')->nullable()->default(0);
             $table->integer('rewardkind_id')->default(0)->references('id')->on('rewardkinds')->nullable();
             $table->string('rule',500)->nullable();
             $table->boolean('is_active')->default(1);
