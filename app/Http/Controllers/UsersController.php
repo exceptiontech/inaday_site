@@ -602,6 +602,7 @@ class UsersController extends Controller
 
             $user = User::where('email',$return_user->email)->first();
 
+
             if(isset($user)) {
 
                 Auth::login($user, true);
@@ -615,6 +616,8 @@ class UsersController extends Controller
 
         $user = User::where('email',$return_user->email)->first();
 
+
+    
         if(isset($user)) {
             Auth::login($user, true);
             return redirect('/');
@@ -646,6 +649,10 @@ class UsersController extends Controller
             $user->password = Hash::make($return_user->nickname);
 
             $user->save();
+
+            $role = Role::where('name','services_provider')->first();
+            $user->assignRole([$role->id]);
+            
             $user->sendEmailVerificationNotification();
 
         }

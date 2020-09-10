@@ -18,7 +18,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class=" col-md-4 service_provider ">
-                    <input type="radio" id="service_provider" name="type" value="service_provider" checked="checked"> <span>مقدم خدمة</span>
+                    <input type="radio" id="service_provider" name="type" value="service_provider" > <span>مقدم خدمة</span>
                     <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>
                     <p> باحث عن عمل و تريدالمساعدة في تنفيذ المشاريع</p>
                 </div>
