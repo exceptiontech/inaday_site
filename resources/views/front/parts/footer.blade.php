@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="widget">
+                <!-- <div class="widget">
                     <h2>{{trans('file.available_payment_methods')}}</h2>
                     <ul class="list-inline">
                         <li class="list-inline-item"><img class="mr-2" style="height:26px;" src="{{url('images/paytabs-logo.png') }}"></li>
@@ -57,7 +57,7 @@
                         <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
 
                     </ul>
-                </div>
+                </div> -->
                 <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
