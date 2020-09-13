@@ -9,7 +9,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse mt-3" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                   <a class="nav-link @if(\Request::route()->getName() == 'home' || \Request::route()->getName() == 'index') active @endif" href="{{ url('/') }}"  title="{{ config('app.name', 'Home') }}">{{trans('file.home')}}</a>
@@ -54,8 +54,11 @@
                     <a class="dropdown-item" href="{{ url('/services') }}">{{trans('file.booking_servives')}}</a>
                   </div>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link @if(\Request::route()->getName() == 'faqs.index') active @endif" href="{{ url('/faqs') }}">{{trans('file.faqs')}}</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link @if(\Request::route()->getName() == 'contact_us') active @endif" href="{{ url('/contact_us') }}">{{trans('file.contact_us')}}</a>
               </li>
             </ul>
             <ul class="navbar-nav ml-auto login_menu">
