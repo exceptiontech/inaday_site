@@ -94,8 +94,8 @@ a.link-dark {
 
 /* bootstrap overwrite */
 .dropdown-menu {
-  background: rgba(255, 255, 255, 0.69);
-  border: 1px solid #005689;
+  background: #fff;
+  border: 0;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   border-radius: 0;
   padding-top: 0;
@@ -107,7 +107,7 @@ a.link-dark {
     line-height: 21.54px;
     text-align: right;
     color: #005689;
-    border-bottom: 1px dashed #005689;
+    border-bottom: 1px solid #E5E5E5;
     padding: 16px 8px; }
     .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus {
       background: none;

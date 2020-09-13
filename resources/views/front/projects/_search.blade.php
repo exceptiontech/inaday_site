@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-9">
+                    <div class="col-12 col-sm-8">
                         <ul class="list-inline">
                             <li class="list-inline-item">
                               @if($project->user )
@@ -62,8 +62,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12 col-sm-3">
-                        <a class="btn btn-primary btn-block rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
+                    <div class="col-12 col-sm-4 text-right">
+                        <a class="btn btn-secondary rounded" href="#">{{ $project->cost }}</a>
+                        <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>
                 </div>
             </div>
