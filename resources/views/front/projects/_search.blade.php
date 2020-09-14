@@ -2,6 +2,7 @@
     <!-- project -->
     @if (count($projects))
         @foreach ($projects as $project)
+            @if($project->user)
             <div class="project col-12 pt-3 pb-2 mb-3">
                 <div class="row">
                     <div class="col-sm-11">
@@ -63,11 +64,12 @@
                         </ul>
                     </div>
                     <div class="col-12 col-sm-4 text-right">
-                        <a class="btn btn-secondary rounded" href="#">{{ $project->cost }}</a>
+                        <a class="btn btn-secondary rounded" href="#">{{ $project->cost }} ريال</a>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>
                 </div>
             </div>
+            @endif
         @endforeach
 
         {{ $projects->appends(request()->input())->links() }}

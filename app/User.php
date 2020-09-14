@@ -153,6 +153,10 @@ class User extends Authenticatable implements MustVerifyEmail
                 $query->where('team_id' , $teamID);
             })->first();
 
+        if (!$user || !$result) {
+            return false;
+        }
+        
         if ($user->id == $result->id ) {
             return true;
         }

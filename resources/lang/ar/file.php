@@ -272,7 +272,7 @@ return [
    'user_already_added_to_team'=>'مقدم الخدمة مضاف فعليا للفريق',
    'no_services_providers_right_now'=>'لا يوجد مقدم خدمات ينطبق عليه الخيارات المطلوبة',
    'no_skills'=>'لا يوجد مهارات مضافة',
-   'notfound'=>'الصفحة غير موجودة او ليس لديك الصلاحيات',
+   'notfound'=>'ليس لديك الصلاحيات',
 
    //booking
    'mount' => 'المبلغ',

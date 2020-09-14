@@ -24,7 +24,8 @@
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-newsletter": "^4.8",
         "spatie/laravel-permission": "^3.13",
-        "spatie/laravel-translatable": "^4.3"
+        "spatie/laravel-translatable": "^4.3",
+        "pusher/pusher-php-server": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
