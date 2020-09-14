@@ -991,6 +991,93 @@ input[type="checkbox"] {
     background: #505050;
     border-radius: 50%; }
 
+/* chat */
+.messages {
+  /* Track */
+  /* Handle */
+  /* Handle on hover */ }
+  .messages ::-webkit-scrollbar {
+    width: 7px; }
+  .messages ::-webkit-scrollbar-track {
+    background: #f1f1f1; }
+  .messages ::-webkit-scrollbar-thumb {
+    background: #a7a7a7; }
+  .messages ::-webkit-scrollbar-thumb:hover {
+    background: #929292; }
+  .messages ul {
+    margin: 0;
+    padding: 0; }
+  .messages li {
+    list-style: none; }
+  .messages .user-wrapper, .messages .message-wrapper {
+    border: 1px solid #dddddd;
+    overflow-y: auto; }
+  .messages .user-wrapper {
+    height: 600px; }
+  .messages .user {
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative; }
+  .messages .user:hover {
+    background: #eeeeee; }
+  .messages .user:last-child {
+    margin-bottom: 0; }
+  .messages .pending {
+    position: absolute;
+    left: 13px;
+    top: 9px;
+    background: #b600ff;
+    margin: 0;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 5px;
+    color: #ffffff;
+    font-size: 12px; }
+  .messages .media-left {
+    margin: 0 10px; }
+  .messages .media-left img {
+    width: 64px;
+    border-radius: 64px; }
+  .messages .media-body p {
+    margin: 6px 0; }
+  .messages .message-wrapper {
+    padding: 10px;
+    height: 536px;
+    background: #eeeeee; }
+  .messages .messages .message {
+    margin-bottom: 15px; }
+  .messages .messages .message:last-child {
+    margin-bottom: 0; }
+  .messages .received, .messages .sent {
+    width: 45%;
+    padding: 3px 10px;
+    border-radius: 10px; }
+  .messages .received {
+    background: #ffffff; }
+  .messages .sent {
+    background: #3bebff;
+    float: right;
+    text-align: right; }
+  .messages .message p {
+    margin: 5px 0; }
+  .messages .date {
+    color: #777777;
+    font-size: 12px; }
+  .messages .active {
+    background: #eeeeee; }
+  .messages input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #cccccc; }
+  .messages input[type=text]:focus {
+    border: 1px solid #aaaaaa; }
+
 .login {
   background-color: #005689;
   color: #ffffff; }
