@@ -156,6 +156,9 @@ class ServiceController extends Controller
     {
         if (is_numeric($id)) {
             $service = Service::find($id);
+            if (!$service) {
+                $service = Service::where('title',$id)->first();
+            }
         }else{
             $service = Service::where('title',$id)->first();
         }

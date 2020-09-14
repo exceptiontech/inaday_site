@@ -9,15 +9,13 @@
             <div class="row">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">الملف الخدمات</h2>
                 </div>
                 <!-- sidebar Begin -->
                 <div class="col-12 col-md-4">
                     <div class="bg-light rounded pt-3 pb-3 p-2">
 
                         {{ Form::open(['action' => 'ServiceController@index','method' => 'get']) }}
-
-
 
 
                         <!-- block Begin -->
