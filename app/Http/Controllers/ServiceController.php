@@ -155,7 +155,7 @@ class ServiceController extends Controller
     public function show($id)
     {
         if (is_numeric($id)) {
-            $service = Service::find($id);
+            $service = Service::findorfail($id);
             if (!$service) {
                 $service = Service::where('title',$id)->first();
             }
@@ -163,7 +163,7 @@ class ServiceController extends Controller
             $service = Service::where('title',$id)->first();
         }
         
-        if (!$service  || !$service->user  || count($service->user->userdetail) == 0 || Auth::user() &&  count(Auth::user()->roles) == 0) {
+        if (!$service  || !$service->user  ||  Auth::user() &&  count(Auth::user()->roles) == 0) {
             return view('front.errors.notfound');
         }
 
