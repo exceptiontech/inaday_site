@@ -26,7 +26,7 @@
 
                         <div class="col-12 col-sm-8">
 
-                            {{ Form::model($service, array('route' => array('front_services.update', $service->id), 'method' => 'PUT')) }}
+                            {{ Form::model($service, array('route' => array('front_services.update', $service->id), 'method' => 'PUT', 'files'=>true)) }}
 
                                 @if(count($errors) > 0)
                                     @foreach ($errors->all() as $error)
