@@ -64,7 +64,7 @@
                         </ul>
                     </div>
                     <div class="col-12 col-sm-4 text-right">
-                        <a class="btn btn-secondary rounded" href="#">{{ $project->cost }} ريال</a>
+                        <label class="btn btn-secondary rounded" href="#">{{ $project->cost }} ريال</label>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>
                 </div>

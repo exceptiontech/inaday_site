@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-12  profile-head-menu mb-5">
 
-                            @include('front.profile.parts.menu')
+                            @include('front.profile.parts.edit')
 
                             </div>
 
@@ -34,6 +34,16 @@
                               @endif
 
                               {{ Form::open(['action' => 'UsersController@update', 'files'=>true,'novalidate'=>'novalidate']) }}
+
+
+                            @if(count($errors) > 0)
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger alert-dismissable" >
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        {{ $error}}
+                                    </div>
+                                @endforeach
+                            @endif
 
                                 <h2 class="dark mb-4">{{__('profile.personal_information')}}</h2>
 

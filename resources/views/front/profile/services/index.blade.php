@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
                 </div>
 
                 <div class="col-12">
@@ -51,7 +51,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-6">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -60,8 +60,8 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-4 text-right">
-                                                        <a class="btn btn-secondary rounded" href="#">{{$service->cost}} ريال</a>
+                                                    <div class="col-6 text-right">
+                                                        <label class="btn btn-secondary rounded">{{$service->cost}} ريال</label>
                                                         <a class="btn btn-primary rounded" href="{{url('/services/'.$service->id)}}">تفاصيل الخدمة</a>
                                                     </div>
                                                 </div>

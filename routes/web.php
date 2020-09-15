@@ -134,6 +134,7 @@ Route::group(['middleware'=>'verified'], function() {
     Route::post('account/teams/accept', 'Account\TeamController@acceptRequest');
     Route::post('account/teams/refused', 'Account\TeamController@refusedRequest');
     Route::post('account/teams/cancel', 'Account\TeamController@cancelRequest');
+    Route::post('account/teams/delete', 'Account\TeamController@DeleteUser');
 
     //offers
     Route::resource('offers', 'OfferController')->except(['index','show']);

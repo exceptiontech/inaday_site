@@ -116,6 +116,7 @@
                                             {{ Form::open(['action' => 'Account\TeamController@addUserToTeam']) }}
                                                                         
                                             {!! Form::hidden('id',$user->id , []) !!}
+                                            {!! Form::hidden('team_id',$teamid , []) !!}
 
                                             {!! Form::submit(trans('file.add_user_to_your_team'), array('class'=>'btn btn-primary mt-4')) !!}
                                             {{ Form::close() }}

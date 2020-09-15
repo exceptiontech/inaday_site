@@ -69,7 +69,7 @@ class TeamController extends Controller
         $this->validate($request,[
             'title'     =>'required|max:500',
             'desc'      =>'required|max:500',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
 
         $team= new Team();
@@ -330,6 +330,9 @@ class TeamController extends Controller
 
     public function addUserToTeam(Request $request)
     {
+
+
+
         $id = $request->id;
         $teamid = $request->team_id;
 
@@ -353,6 +356,29 @@ class TeamController extends Controller
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.add_user_to_team'));
         return redirect::back();
+    }
+
+
+    public function DeleteUser(Request $request)
+    {
+        $id = $request->id;
+        $teamid = $request->team_id;
+
+        $user = User::findorfail($id);
+        $team = Team::findorfail($teamid);
+
+        $team->users()->detach($id);
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        {
+            $team->user->notify(new TeamRefusedRequest($team));
+        } 
+
+    
+        Session::flash('status', __('file.info'));
+        Session::flash('message', __('file.invitation_refused'));
+        return redirect::back();
+
     }
 
     public function refusedRequest(Request $request)
