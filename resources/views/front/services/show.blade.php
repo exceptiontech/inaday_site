@@ -121,7 +121,7 @@
                                                     <i class="fa fa-star starred" aria-hidden="true"></i></a>
                                                 @else
                                                     <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}"  href="#">
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                    <i class="fa fa-star" aria-hidden="true"></i></a>
                                                 @endif
                                                 @endif
                                             </li>
@@ -202,6 +202,8 @@
 
                                     @endif
 
+                                    @if(count($service->booking) > 0)
+                                    @if(Auth::user()->id == $service->booking->user->id)
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -240,6 +242,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                    @endif
+
                  
 
                                 </div>

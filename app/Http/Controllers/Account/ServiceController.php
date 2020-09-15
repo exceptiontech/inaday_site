@@ -90,6 +90,7 @@ class ServiceController extends Controller
         $service= new Service();
 
         $file = $request->img;
+
         if ($file) {
             $destinationPath = 'uploads/services';
             $extension =  $file->getClientOriginalExtension();
@@ -215,14 +216,17 @@ class ServiceController extends Controller
             //'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
         $service= Service::find($id);
-        if ($request->hasFile('img')) {
-            $file=$request->file('img');
-            $file_name = date('Y_m_d_h_i_s_').($request->title).'.'.$file->getClientOriginalExtension();
-            $destinationPath = public_path('/uploads');
-            $filePath = $destinationPath. "/".  $file_name;
-            $file->move($destinationPath, $file_name);
-            $service->img = $file_name;
+
+        $file = $request->img;
+        
+        if ($file) {
+            $destinationPath = 'uploads/services';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $service->img = $destinationPath.'/'.$fileName;
         }
+
         $service->user_id=Auth::id();
         $service->title=$request->title;
         $service->desc=$request->desc;

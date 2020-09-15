@@ -153,7 +153,7 @@
                                                     <i class="fa fa-star starred" aria-hidden="true"></i></a>
                                                 @else
                                                     <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}"  href="#">
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                    <i class="fa fa-star" aria-hidden="true"></i></a>
                                                 @endif
                                                 @endif
                                             </li>
