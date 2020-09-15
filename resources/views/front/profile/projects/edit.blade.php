@@ -25,7 +25,7 @@
 
                         <div class="col-12 col-sm-8">
 
-                            {{ Form::model($project, array('route' => array('front_projects.update', $project->id), 'method' => 'PUT')) }}
+                            {{ Form::model($project, array('route' => array('front_projects.update', $project->id), 'method' => 'PUT', 'files'=>true)) }}
 
                                 @if(count($errors) > 0)
                                     @foreach ($errors->all() as $error)
