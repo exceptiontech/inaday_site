@@ -13,6 +13,7 @@ $(document).ready(function(){
         $("#service_provider2").prop("checked", false);
         $(this).parent().addClass('active');
         $('.project_owner').removeClass('active');
+        $('#Type').removeClass('disabled');
 
     });
     $(".project_owner input").click(function(){
@@ -20,6 +21,8 @@ $(document).ready(function(){
         $("#service_provider2").prop("checked", true);
         $(this).parent().addClass('active');
         $('.service_provider').removeClass('active');
+        $('#Type').removeClass('disabled');
+
     });
 
     if ($("ul.pagination").length > 0) {

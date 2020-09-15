@@ -38,7 +38,14 @@
 {{--                            <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}--}}
 {{--                        </button>--}}
 {{--                    </form>--}}
-                    <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+
+                    @if(Request()->type == 'entrepreneur') 
+                        <a class="btn" href="{{url('/entrepreneur/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                    @elseif(Request()->type == 'services_provider') 
+                        <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                    @else
+                        <a class="btn disabled" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                    @endif
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
