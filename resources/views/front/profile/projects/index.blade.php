@@ -37,7 +37,7 @@
                                             <h2>{{$project->title}}</h2>
 
                                             <div class="row">
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-7">
                                                     <ul class="list-inline m-0 flex-shrink-1">
                                                         <li class="list-inline-item">
                                                             <img src="{{ url($project->user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-fluid">
@@ -48,14 +48,20 @@
                                                         </li>
                                                         <li class="list-inline-item">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                            10/07/2020 
+                                                            {{ Carbon\Carbon::parse(strtotime($project->created_at))->format('d-m-Y') }}
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+                                                            {{$project->offers->count()}}  عرض
                                                         </li>
                                                     </ul>
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-5 text-right">
                                                     <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
                                                     <a class="btn btn-secondary rounded" href="{{ url('account/projects/'.$project->id.'/edit') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    <a class="btn btn-danger" href="{{url('/account/projects/delete/'.$project->id)}}">
+                                                        <i class="fa fa-remove" aria-hidden="true"></i> </a>
                                                 </div>
                                             </div>
                                         </div>

@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-8">
+                    <div class="col-12 col-sm-7">
                         <ul class="list-inline">
                             <li class="list-inline-item">
                               @if($project->user )
@@ -55,7 +55,7 @@
                             </li>
                             <li class="list-inline-item">
                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                {{ $project->created_at }}
+                                {{ Carbon\Carbon::parse(strtotime($project->created_at))->format('d-m-Y') }}
                             </li>
                             <li class="list-inline-item">
                                 <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
@@ -63,8 +63,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12 col-sm-4 text-right">
-                        <label class="btn btn-secondary rounded" href="#">{{ $project->cost }} ريال</label>
+                    <div class="col-12 col-sm-5 text-right">
+                        <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} ريال</label>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>
                 </div>

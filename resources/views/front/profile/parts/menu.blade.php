@@ -25,20 +25,20 @@
                                     </ul>
                                 @elseif(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive())
                                     <ul class="list-inline">
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='account.edit' ) active @endif">
-                                            <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
+                                        <li class="list-inline-item">
+                                            <a class="@if( \Request::route()->getName() =='front_projects.index' ) active @endif" href="{{url('/account/projects')}}">مشاريعي</a>
                                         </li>
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_projects.index' ) active @endif">
-                                            <a href="{{url('/account/projects')}}">مشاريعي</a>
+                                        <li class="list-inline-item ">
+                                            <a class="@if( \Request::route()->getName() =='front_bookings.index' ) active @endif" href="{{url('/account/bookings')}}">الحجوزات</a>
                                         </li>
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_bookings.index' ) active @endif">
-                                            <a href="{{url('/account/bookings')}}">الحجوزات</a>
+                                        <li class="list-inline-item ">
+                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" href="{{url('/account/notifications')}}">الاشعارات</a>
                                         </li>
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_notifications.index' ) active @endif">
-                                            <a href="{{url('/account/notifications')}}">الاشعارات</a>
+                                        <li class="list-inline-item">
+                                            <a class="@if( \Request::route()->getName() =='front_credit.index' ) active @endif" href="{{url('/account/credit')}}">محفظتي</a>
                                         </li>
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_settings.index' ) active @endif">
-                                            <a href="{{url('/account/settings')}}">الاعدادات</a>
+                                        <li class="list-inline-item ">
+                                            <a class="@if( \Request::route()->getName() =='front_settings.index' ) active @endif" href="{{url('/account/settings')}}">الاعدادات</a>
                                         </li>
                                     </ul>
                                 @endif
