@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-12  profile-head-menu mb-5">
 
-                        @include('front.profile.parts.edit')
+                            @include('front.profile.parts.menu')
 
                         </div>
 
