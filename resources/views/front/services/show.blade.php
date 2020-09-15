@@ -202,50 +202,6 @@
 
                                     @endif
 
-                                    @if(count($service->booking) > 0)
-                                    @if(Auth::user()->id == $service->booking->user->id)
-                                    <div class="block col-12 pt-3 pb-2 mb-3 border-0">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">اضافة تقييم</h2> 
-                                            </div>
-                                            <div class="col-sm-12">
-                                                {{ Form::open(['action' => 'Account\ReviewController@store', 'files'=>true]) }}
-                                                
-                                                {!! Form::hidden('service_id',$service->id ) !!}
-                                                @if(count($errors) > 0)
-                                                    @foreach ($errors->all() as $error)
-                                                        <div class="alert alert-danger alert-dismissable" >
-                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                            <h4>{{ $error}}</h4>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                                    <div class="row mb-3">
-                                                        <div class="col-12">
-                                                            {!! Form::label('title', trans('forms.title'))!!}
-                                                            {!! Form::text('title', null, ['required','class' => 'form-control']) !!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-12">
-                                                            {!! Form::label('review', trans('forms.review'))!!}
-                                                            {!! Form::textarea('review',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-12">
-                                                            {!! Form::submit(trans('forms.add'), array('class'=>'btn btn-primary')) !!}
-                                                        </div>
-                                                    </div>
-                                                {{ Form::close() }}                  
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @endif
-
-                 
 
                                 </div>
                             </div>
