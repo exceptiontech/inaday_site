@@ -25,6 +25,7 @@ use App\Readinesskind;
 use App\Userdetail;
 use App\Interview;
 use App\Beneficiary;
+use App\Usersettings;
 use App\City;
 use Auth;
 use Socialite;
@@ -487,7 +488,23 @@ class UsersController extends Controller
                 }
                 $user->password = Hash::make($return_user->nickname);
 
+                $user->notification_preference = 'mail,database';
+
                 $user->save();
+
+                $usersettings = new Usersettings;
+                $usersettings->blog_notifications= 1;
+                $usersettings->offer_notifications=1;
+                $usersettings->booking_notifications=1;
+                $usersettings->review_notifications=1;
+                $usersettings->team_notifications=1;
+                $usersettings->profile_notifications=1;
+                $usersettings->favorite_notifications=1;
+                $usersettings->replay_notifications=1;
+                $usersettings->message_notifications=1;
+                $usersettings->support_notifications=1;
+                $usersettings->user_id = $user->id;
+                $usersettings->save();
 
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
@@ -538,7 +555,23 @@ class UsersController extends Controller
                 }
                 $user->password = Hash::make($return_user->nickname);
 
+                $user->notification_preference = 'mail,database';
+
                 $user->save();
+
+                $usersettings = new Usersettings;
+                $usersettings->blog_notifications= 1;
+                $usersettings->offer_notifications=1;
+                $usersettings->booking_notifications=1;
+                $usersettings->review_notifications=1;
+                $usersettings->team_notifications=1;
+                $usersettings->profile_notifications=1;
+                $usersettings->favorite_notifications=1;
+                $usersettings->replay_notifications=1;
+                $usersettings->message_notifications=1;
+                $usersettings->support_notifications=1;
+                $usersettings->user_id = $user->id;
+                $usersettings->save();
             }
 
             $role = Role::where('name','entrepreneur')->first();
@@ -648,7 +681,23 @@ class UsersController extends Controller
             }
             $user->password = Hash::make($return_user->nickname);
 
+            $user->notification_preference = 'mail,database';
+
             $user->save();
+
+            $usersettings = new Usersettings;
+            $usersettings->blog_notifications= 1;
+            $usersettings->offer_notifications=1;
+            $usersettings->booking_notifications=1;
+            $usersettings->review_notifications=1;
+            $usersettings->team_notifications=1;
+            $usersettings->profile_notifications=1;
+            $usersettings->favorite_notifications=1;
+            $usersettings->replay_notifications=1;
+            $usersettings->message_notifications=1;
+            $usersettings->support_notifications=1;
+            $usersettings->user_id = $user->id;
+            $usersettings->save();
 
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);

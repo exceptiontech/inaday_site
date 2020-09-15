@@ -687,8 +687,9 @@ input[type="checkbox"] {
   .projects .project p {
     color: #505050;
     font-size: 14px; }
-  .projects .project a {
-    font-size: 13px; }
+  .projects .project a, .projects .project label {
+    font-size: 13px;
+    margin-bottom: 0; }
   .projects .project ul {
     padding: 0; }
     .projects .project ul li {
@@ -758,8 +759,9 @@ input[type="checkbox"] {
   .services .service p {
     color: #505050;
     font-size: 14px; }
-  .services .service a {
-    font-size: 13px; }
+  .services .service a, .services .service label {
+    font-size: 13px;
+    margin-bottom: 0; }
   .services .service ul {
     padding: 0; }
     .services .service ul li {

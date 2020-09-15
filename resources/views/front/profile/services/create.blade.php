@@ -32,7 +32,7 @@
                                 @foreach ($errors->all() as $error)
                                     <div class="alert alert-danger alert-dismissable" >
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                        <h4>{{ $error}}</h4>
+                                        {{ $error}}
                                     </div>
                                 @endforeach
                             @endif
@@ -59,7 +59,7 @@
 
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('img', trans('forms.service_image'))!!}
+                                        {!! Form::label('img', trans('forms.service_image'))!!} <em class="text-danger">*</em>
                                         {!! Form::file('img', array( 'class' => 'form-control')) !!}
                                     </div>
                                 </div>

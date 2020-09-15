@@ -135,7 +135,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function myteams()
     {
-        return $this->hasMany('App\Team');
+        return $this->hasMany('App\Team')->where('deleted_at', '=', null);
     }
 
     public function teams()

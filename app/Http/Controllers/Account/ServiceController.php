@@ -84,7 +84,7 @@ class ServiceController extends Controller
             'desc'      =>'required|max:500',
             'cost'      =>'integer|required',
             'duration'  =>'integer|required',
-            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
 
         $service= new Service();

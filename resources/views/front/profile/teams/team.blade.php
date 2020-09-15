@@ -66,6 +66,17 @@
                                                                 @foreach($team->users as $user)
                                                                 <a class="dropdown-item" href="{{url('user/'.$user->id)}}">
                                                                     {{$user->first_name. ' ' .$user->last_name}}
+                                                                    <span class="float-left">
+                                                                    {{ Form::open(['action' => 'Account\TeamController@DeleteUser']) }}
+                                                                                                
+                                                                    {!! Form::hidden('id',$user->id , []) !!}
+                                                                    {!! Form::hidden('team_id',$team->id , []) !!}
+
+                                                                    {!! Form::submit('X', array('class'=>'btn p-0')) !!}
+                                                                    {{ Form::close() }}
+                                                                    </span>
+
+
                                                                 </a>
                                                                 @endforeach
                                                             @else
@@ -92,20 +103,31 @@
                                 <div class="col-12 mt-5 mb-5">
 
                                     {{ Form::open(['action' => 'Account\TeamController@store', 'files'=>true]) }}
+
+                                        @if(count($errors) > 0)
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissable" >
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                    {{ $error}}
+                                                </div>
+                                            @endforeach
+                                        @endif
+
+
                                         <div class="row mb-4">
                                             <div class="col-12 col-sm-6">
-                                                {!! Form::label('title', trans('file.team_name')) !!}
+                                                {!! Form::label('title', trans('file.team_name')) !!} <em class="text-danger">*</em>
                                                 {!! Form::text('title', old('title'), ['required', 'class' => 'form-control required','autofocus']) !!}
                                             </div>
                                             <div class="col-12 col-sm-6">
-                                                {!! Form::label('team_image', trans('file.team_logo'))!!}
+                                                {!! Form::label('team_image', trans('file.team_logo'))!!} <em class="text-danger">*</em>
                                                 {!! Form::file('image', array( 'class' => 'form-control')) !!}
                                             </div>
                                         </div>
 
                                         <div class="row mb-4">
                                             <div class="col-12 ">
-                                                {!! Form::label('desc', trans('file.team_desc')) !!}
+                                                {!! Form::label('desc', trans('file.team_desc')) !!} <em class="text-danger">*</em>
                                                 {!! Form::textarea('desc', null, 
                                                   array('required', 
                                                         'class'=>'textarea form-control', 

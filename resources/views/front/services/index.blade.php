@@ -9,7 +9,7 @@
             <div class="row">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الخدمات</h2>
+                    <h2 class="text-white mb-5">الخدمات</h2>
                 </div>
                 <!-- sidebar Begin -->
                 <div class="col-12 col-md-4">
@@ -181,7 +181,7 @@
                                             <div class="col-sm-5 pt-2">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
-                                                        <a class="btn btn-secondary rounded" href="#">{{ $service->cost}} {{trans('file.sr')}}</a>
+                                                        <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $service->cost}} {{trans('file.sr')}}</label>
                                                     </li>
                                                     <li class="list-inline-item">
                                                         <a class="btn btn-primary rounded" href="{{url('/services/'.$service->title)}}">{{__('file.service_details')}}</a>
