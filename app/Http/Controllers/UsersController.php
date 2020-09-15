@@ -129,7 +129,11 @@ class UsersController extends Controller
 
         $user = User::findorfail($id);
 
-        return view('front.user.show')->withUser($user);
+        if ($user->isEntrepreneur()) {
+            return view('front.user.show_entrepreneur')->withUser($user);
+        }else {
+            return view('front.user.show')->withUser($user);
+        }
 
     }
     /**

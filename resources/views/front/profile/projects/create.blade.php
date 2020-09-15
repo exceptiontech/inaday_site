@@ -53,8 +53,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-12"> 
-                                        {!! Form::label('files', trans('forms.files'))!!}
-                                        {!! Form::file('files', array( 'class' => 'form-control')) !!}
+                                        {!! Form::label('files', trans('forms.files'))!!} <em class="text-danger">*</em>
+                                        {!! Form::file('files', array( 'class' => 'form-control','required')) !!}
                                     </div>
                                 </div>
 
@@ -74,7 +74,7 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em><em class="text-danger">*</em>
+                                        {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em>
                                         {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">

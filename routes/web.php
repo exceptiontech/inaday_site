@@ -75,7 +75,7 @@ Route::group(['middleware'=>'verified'], function() {
     Route::get('account/profile/edit', 'UsersController@edit')->name('account.edit');
     Route::post('account/profile/update', 'UsersController@update');
 
-    // Projects
+    // settings
     Route::resource('account/settings', 'Account\UsersettingsController', ['names' => 'front_settings']);
 
     // Projects

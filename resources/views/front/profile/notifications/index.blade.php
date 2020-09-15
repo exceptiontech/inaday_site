@@ -12,11 +12,15 @@
 
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">التنبيهات</h2>
+                    @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
+                      <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    @else
+                      <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    @endif
                 </div>
 
-                <div class="col-12 bg-light pt-4 pb-4 profile notifactions rounded">
-
+                <div class="col-12 ">
+                <div class="bg-light mt-5 pt-4 pb-4 profile notifactions rounded">
                     <div class="col-12  profile-head-menu mb-5">
 
                         @include('front.profile.parts.menu')
@@ -45,6 +49,7 @@
                     @endif
 
                     
+                </div>
                 </div>
   
             </div>

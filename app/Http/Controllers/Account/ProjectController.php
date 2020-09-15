@@ -21,6 +21,7 @@ use App\Log;
 use Auth;
 use Redirect;
 use Session;
+use Validator;
 
 use App\Notifications\ProjectCreated;
 use App\Notifications\ProjectUpdated;
@@ -80,21 +81,24 @@ class ProjectController extends Controller
             return $englishNumbersOnly;
         }
 
-
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'title'      =>'required|max:500',
             'desc'      =>'required',
             'section_id'      =>'required|integer',
             'applykind_id'      =>'required',
             'num_team'      =>'required',
-            //'level_id'      =>'required',
-            //'averagekind_id'      =>'required',
-            'cost'      =>'required|integer',
+            'cost'      =>'required',
+            'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
             'duration'      =>'required|integer',
-            // 'reward'      =>'integer',
-            // 'rewardkind_id'      =>'integer',
+            'skills'      =>'required',
         ]);
 
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $project= new Project();
         $project->user_id=Auth::id();
@@ -216,7 +220,7 @@ class ProjectController extends Controller
         }
 
         Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
+        Session::flash('message', 'نم انشاء المشروع سيتم الموافقة عليه قريبا من خلال مسئولي الموقع');
         return redirect::to('/user/'.Auth::user()->id);
 
     }
@@ -390,10 +394,10 @@ class ProjectController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(Request $request ,$id)
     {
 
-        if (Auth::user() && Auth::user()->isServicesProvider() == 1)
+        if (Auth::user() && Auth::user()->isEntrepreneur() == 1)
         {
             $project= Project::find($id);
             $project->deleted_at = now();

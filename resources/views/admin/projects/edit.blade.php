@@ -116,7 +116,7 @@
 
                             <div class="form-group">
                                 {!! Form::label('reward', trans('admin.reward')) !!}
-                                {!! Form::text('reward', $project->reward, ['required','class' => 'form-control','id'=>'reward']) !!}
+                                {!! Form::text('reward', $project->reward, ['class' => 'form-control','id'=>'reward']) !!}
                             </div>
 
                             <div class="form-group">
@@ -126,7 +126,7 @@
 
                             <div class="form-group">
                                 {!! Form::label('rule', trans('admin.rule')) !!}
-                                {!! Form::text('rule', $project->rule, ['required','class' => 'form-control','id'=>'rule']) !!}
+                                {!! Form::text('rule', $project->rule, ['class' => 'form-control','id'=>'rule']) !!}
                             </div>
 
                             <div class="form-group row">
@@ -135,16 +135,16 @@
                                 <p>{{ __('forms.phase_1text2') }}</p>
                                 </div>
                                 <div class="col-sm-4 inpusrach">
-                                    <label>{{ __('forms.target_clients') }}<em>*</em></label>
-                                    <input name="target_clients" class="form-control required" type="number" min="1" value="{{$project->phase->target_clients ?? ''}}" required>
+                                    <label>{{ __('forms.target_clients') }}</label>
+                                    <input name="target_clients" class="form-control " type="number" min="1" value="{{$project->phase->target_clients ?? ''}}" >
                                 </div>
                                 <div class="col-sm-4 inpusrach">
-                                    <label>{{ __('forms.target_sales') }}<em>*</em></label>
-                                    <input name="target_sales" class="form-control required" type="number" min="1" value="{{$project->phase->target_sales ?? ''}}"  required>
+                                    <label>{{ __('forms.target_sales') }}</label>
+                                    <input name="target_sales" class="form-control " type="number" min="1" value="{{$project->phase->target_sales ?? ''}}"  >
                                 </div>
                                 <div class="col-sm-4 inpusrach">
-                                    <label>{{ __('forms.target_profits') }}<em>*</em></label>
-                                    <input name="target_profits" class="form-control required" type="number" min="0" value="{{$project->phase->target_profits ?? ''}}" required>
+                                    <label>{{ __('forms.target_profits') }}</label>
+                                    <input name="target_profits" class="form-control" type="number" min="0" value="{{$project->phase->target_profits ?? ''}}" >
                                 </div>
 
                             </div>

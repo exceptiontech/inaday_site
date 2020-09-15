@@ -49,7 +49,11 @@
                                 <td>{{@$project->title }}</td>
                                 <td>{!! \Illuminate\Support\Str::words($project->desc,350,'....')  !!}</td>
                                 <td>
+                                    @if($project->user)
                                     {{$project->user->first_name.' '  .$project->user->last_name }}
+                                    @else
+                                        المستخدم محذوف
+                                    @endif
                                 </td>
                                 <th> 
                                     @if($project->is_approved == 1)
