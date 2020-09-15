@@ -31,6 +31,7 @@
 
                                 @if(count(Auth::user()->bookings))
                                     @foreach(Auth::user()->bookings as $booking)
+                                    @if($booking->service)
                                     <div class="col-12 service pb-3 pt-2">
 
                                         <div class="row">
@@ -69,7 +70,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    @endif
                                     @endforeach
                                 @else
                                     <p>لم تقم بحجز اي خدمة يمكنك التوجه للخدمات المعروضة في السوق من خلال هذا  <a href="{{url('/services')}}">الرابط </a> واختيار احدى الخدمات الاحترافية </p>

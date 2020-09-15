@@ -10,7 +10,7 @@
                                         <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_experiences.index' ) active @endif" href="{{url('/account/experiences')}}">خبراتي</a></li>
 
                                         <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_portfolios.index' ) active @endif" href="{{url('/account/portfolios')}}">معرض الاعمال</a></li>
-                                        <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_skills.index' ) active @endif" href="{{url('/account/skills')}}">مهاراتي</a></li>
+                                        <!-- <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_skills.index' ) active @endif" href="{{url('/account/skills')}}">مهاراتي</a></li> -->
 
                                         <!-- <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_reviews.index' ) active @endif" href="{{url('/account/reviews')}}">اراء العملاء</a></li> -->
 
