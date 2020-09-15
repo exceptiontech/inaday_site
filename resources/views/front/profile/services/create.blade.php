@@ -73,7 +73,7 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                      الخبرات <em class="text-danger">*</em>
+                                      الخبرات 
                                       <div class="row">
                                         @if (count($skills))
                                           @foreach ($skills as $skill)

@@ -64,7 +64,7 @@
                                         @endif
 
 
-                                        <div class="row mb-4">
+                                        <!-- <div class="row mb-4">
                                             <div class="col-12 col-sm-6">
                                                 {!! Form::label('title', trans('forms.title'))!!}
                                                 {!! Form::text('title', null, ['class' => 'form-control']) !!}
@@ -73,19 +73,19 @@
                                                 {!! Form::label('url', trans('forms.url'))!!}
                                                 {!! Form::text('url', null, ['class' => 'form-control','placeholder' => 'http://inaday.cloud']) !!}
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row mb-4">
                                             <div class="col-12">
                                                 {!! Form::label('image', trans('forms.image'))!!}
                                                 {!! Form::file('image', array( 'class' => 'form-control')) !!}
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <!-- <div class="row mb-4">
                                             <div class="col-12">
                                                 {!! Form::label('desc', trans('forms.desc'))!!}
                                                 {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc')) !!}
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row mt-5 mb-3">
                                             <div class="col-12">
                                                 {!! Form::submit(trans('forms.save'), array('class'=>'btn btn-primary')) !!}

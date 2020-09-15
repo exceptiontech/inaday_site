@@ -114,10 +114,10 @@ Route::group(['middleware'=>'verified'], function() {
     Route::resource('account/reviews', 'Account\ReviewController', ['names' => 'front_reviews']);
 
     // bookings
-    Route::resource('account/bookings', 'Account\BookingController');
+    Route::resource('account/bookings', 'Account\BookingController', ['names' => 'front_bookings']);
 
     // notifications
-    Route::resource('account/notifications', 'Account\NotificationController');
+    Route::resource('account/notifications', 'Account\NotificationController', ['names' => 'front_notifications']);
 
 
     // Interview

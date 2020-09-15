@@ -322,9 +322,10 @@ class TeamController extends Controller
                 $targetskills =  array();
             }
 
+            $team = Team::find($team_id);
 
             $skills = Skill::where('is_active',1)->get();
-            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeamid($team_id);
+            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeamid($team_id)->withTeam($team);
         }
     }
 
@@ -346,7 +347,7 @@ class TeamController extends Controller
         }
 
         //$team = Auth::user()->team;
-        $team->users()->sync([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
+        $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {

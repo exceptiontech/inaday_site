@@ -14,8 +14,8 @@
 
                                         <li class="list-inline-item"><a class="@if( \Request::route()->getName() =='front_credit.index' ) active @endif" href="{{url('/account/credit')}}">محفظتي</a></li>
 
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_notifications.index' ) active @endif">
-                                            <a href="{{url('/account/notifications')}}">الاشعارات</a>
+                                        <li class="list-inline-item">
+                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" c href="{{url('/account/notifications')}}">الاشعارات</a>
                                         </li>
 
                                         <li class="list-inline-item">

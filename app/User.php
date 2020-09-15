@@ -149,18 +149,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $user = User::findorfail($userID);
 
-        $result = $user->whereHas('teams', function ($query) use ($teamID) {
+        return $this->whereHas('teams', function ($query) use ($teamID) {
                 $query->where('team_id' , $teamID);
             })->first();
-
-        if (!$user || !$result) {
-            return false;
-        }
         
-        if ($user->id == $result->id ) {
-            return true;
-        }
-        return false;
     }
 
     public function portfolios()
