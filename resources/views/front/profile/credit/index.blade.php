@@ -9,7 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
+                      <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    @else
+                      <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    @endif
                 </div>
 
                 <div class="col-12">

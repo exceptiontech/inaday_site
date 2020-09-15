@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الخبرات</h2>
+                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
                 </div>
 
                 <div class="col-12">
@@ -49,14 +49,14 @@
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-9">
-                                                        <h2 class="mb-3">{{Auth::user()->team->title ?? 'فريق بدون اسم' }}</h2>
+                                                        <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
                                                         <div class="dropdown">
                                                             <button class="btn bg-light dropdown-toggle" type="button" id="memberWrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             اعضاء الفريق
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="memberWrapper">
-                                                                @if(count(Auth::user()->team->users)>0)
-                                                                    @foreach(Auth::user()->team->users as $user)
+                                                                @if(count($team->users)>0)
+                                                                    @foreach($team->users as $user)
                                                                     <a class="dropdown-item" href="#">
                                                                         {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
                                                                     </a>
