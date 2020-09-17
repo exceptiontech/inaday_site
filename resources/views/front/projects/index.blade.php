@@ -133,10 +133,11 @@
 
 @section('jquery')
 <script type="text/javascript">
-    
+
     $(".updateFav").click(function(event) {
         event.preventDefault();
-
+        
+        var id = $(this).data("id");
         var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
 
         $.ajax({    
