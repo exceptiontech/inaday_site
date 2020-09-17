@@ -15,7 +15,9 @@
                     <!-- block Begin -->
                     <div class="block mb-4">
                         <div class="block-title mb-3">
-                            <h2>{{trans('file.category')}}</h2>
+                            <div class="col-12">
+                                <h2>{{trans('file.category')}}</h2>
+                            </div>
                         </div>
                         <div class="block-content">
                             <div class="col-12">
@@ -40,7 +42,9 @@
                     <!-- block Begin -->
                     <div class="block mb-4">
                         <div class="block-title mb-3">
-                            <h2>{{trans('file.skills')}}</h2>
+                            <div class="col-12">
+                                <h2>{{trans('file.skills')}}</h2>
+                            </div>
                         </div>
                         <div class="col-12">
                         @if (count($skills))
@@ -132,7 +136,7 @@
     $(".updateFav").click(function(event) {
         event.preventDefault();
 
-        var data = {'id' : $(this).data("id")};
+        var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
 
         $.ajax({    
             type  : 'get',

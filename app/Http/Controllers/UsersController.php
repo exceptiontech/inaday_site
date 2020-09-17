@@ -841,5 +841,11 @@ class UsersController extends Controller
         return view('front.user.projects')->withUser($user);
     }
 
+    public function mixtures($id)
+    {
+        $user = User::findorfail($id);
+        return view('front.user.mixtures')->withUser($user);
+    }
+
 
 }

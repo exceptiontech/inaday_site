@@ -86,4 +86,22 @@ return [
 
 
     'review' => 'التقييم',
+
+
+    // 
+    'add_mixture'           =>   "اضافه خلطة",
+    'mixture_name'           =>   "اسم الخلطة",
+    'mixture_desc'       =>   " التفاصيل",
+    'mixture_image'            =>   "تحميل صوره",
+    'upload_txt'            =>   " تصفح",
+    'mixture_section'            =>   " تصنيف الخلطة",
+    'mixture_cost'            =>   " التكلفه",
+    'mixture_duration'            =>   " مدة التنفيذ (بالساعة)",
+    'your_skills'            =>   " اهم المهارات التي تجيدها",
+    'othr_skills'            =>   " مهارات اخري",
+    'addmixture'            =>   "أضف الخدمة",
+    'team'            =>   "الفريق",
+    'team_members'            =>   "اعضاء الفريق",
+    'team_services'            =>   "خدمات اعضاء الفريق",
+
 ];

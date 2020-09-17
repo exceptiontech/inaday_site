@@ -117,6 +117,23 @@ return [
     'skills'     => 'المهارات',
 
     /**/
+    'mixtures'     => 'الخلطات',
+    'mixture'     => 'خلطة',
+    'addmixture'     => 'إضف خلطة',
+    'editmixture'     => 'تعديل خلطة',
+
+
+    'teams'     => 'الفرق',
+    'team'     => 'الفريق',
+    'addteam'     => 'إضف فريق',
+    'editteam'     => 'تعديل فريق',
+
+    /**/
+    'sections'     => 'الاقسام',
+    'addsection'     => 'إضف قسم',
+    'editsection'     => 'تعديل القسم',
+
+    /**/
     'bookings'     => 'الخدمات',
     'addbooking'     => 'إضف خدمة',
     'editbooking'     => 'تعديل خدمة',

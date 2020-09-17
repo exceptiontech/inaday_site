@@ -13,10 +13,10 @@
                         @if(Auth::user())
 
                             @if(Auth::user()->ProjecthasFavorite($project->id))
-                                <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" href="#">
+                                <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" data-type="project" href="#">
                                 <i class="fa fa-star starred" aria-hidden="true"></i></a>
                             @else
-                                <a id="AddToFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}"  href="#">
+                                <a id="AddToFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" data-type="project"  href="#">
                                 <i class="fa fa-star" aria-hidden="true"></i></a>
                             @endif
                         @endif

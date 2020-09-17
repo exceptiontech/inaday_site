@@ -109,6 +109,21 @@
                     <span class="item-name">{{trans('admin.services')}}</span>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="{{ Route::currentRouteName()=='mixtures.index' ? 'open' : '' }}"
+                    href="{{ url('/admin/mixtures') }}">
+                    <i class="nav-icon i-Clock-3"></i>
+                    <span class="item-name">{{trans('admin.mixtures')}}</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="{{ Route::currentRouteName()=='sections.index' ? 'open' : '' }}"
+                    href="{{ url('/admin/sections') }}">
+                    <i class="nav-icon i-Clock-3"></i>
+                    <span class="item-name">{{trans('admin.sections')}}</span>
+                </a>
+            </li>
 
 
             <li class="nav-item ">

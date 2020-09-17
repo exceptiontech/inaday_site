@@ -52,6 +52,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ url('/projects') }}">{{trans('file.recent_projects')}}</a>
                     <a class="dropdown-item" href="{{ url('/services') }}">{{trans('file.booking_servives')}}</a>
+                    <a class="dropdown-item" href="{{ url('/mixtures') }}">{{trans('file.booking_mixtures')}}</a>
                   </div>
               </li>
               <!-- <li class="nav-item">

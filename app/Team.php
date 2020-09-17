@@ -33,4 +33,11 @@ class Team extends Model
         return $this->hasMany('App\Project')->where('status_id',3);
     }
 
+    public function mixtures()
+    {
+        return $this->hasMany('App\Mixture')->where('is_approved',1)->where('deleted_at', '=', null);
+    }
+
+
+
 }

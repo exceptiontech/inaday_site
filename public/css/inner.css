@@ -609,6 +609,8 @@ input[type="checkbox"] {
       background-color: #FCFCFC !important;
       border: solid 1px #DEDEDE;
       box-shadow: 0 3px 6px #00000029; }
+      .inner #innerpage .bg-light.light-dark a {
+        color: #212529; }
   .inner #innerpage .alert-info {
     color: #B59302;
     background-color: #FFFCF4;
@@ -655,6 +657,95 @@ input[type="checkbox"] {
     z-index: 1; }
     .inner #innerpage .wrapper .title h2 {
       color: #005689; }
+  .inner #innerpage #ExperienceBox {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear; }
+    .inner #innerpage #ExperienceBox.open {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s; }
+  .inner #innerpage .gallery-card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: .25rem;
+    margin-bottom: 14px;
+    /*--checkbox--*/
+    /* Hide the browser's default checkbox */
+    /* Create a custom checkbox */
+    /* On mouse-over, add a grey background color */
+    /* When the checkbox is checked, add a blue background */
+    /* Create the checkmark/indicator (hidden when not checked) */
+    /* Show the checkmark when checked */
+    /* Style the checkmark/indicator */ }
+    .inner #innerpage .gallery-card .gallery-card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      /*padding: 1.25rem;*/ }
+    .inner #innerpage .gallery-card .gallery-card img {
+      height: 100px;
+      width: 100%; }
+    .inner #innerpage .gallery-card label {
+      margin-bottom: 0 !important; }
+    .inner #innerpage .gallery-card .block-check {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+    .inner #innerpage .gallery-card .block-check input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer; }
+    .inner #innerpage .gallery-card .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      cursor: pointer; }
+    .inner #innerpage .gallery-card .block-check:hover input ~ .checkmark {
+      background-color: #ccc; }
+    .inner #innerpage .gallery-card .block-check input:checked ~ .checkmark {
+      background-color: #2196F3; }
+    .inner #innerpage .gallery-card .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none; }
+    .inner #innerpage .gallery-card .block-check input:checked ~ .checkmark:after {
+      display: block; }
+    .inner #innerpage .gallery-card .block-check .checkmark:after {
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg); }
+    .inner #innerpage .gallery-card .mycard-footer {
+      height: 25px;
+      background: #333333;
+      font-size: 15px;
+      text-indent: 10px;
+      /* border-radius: 0 0px 4px 4px;*/ }
 
 .notifactions .notifaction-item {
   border-bottom: solid 1px #EEEEEE; }
@@ -941,6 +1032,10 @@ input[type="checkbox"] {
         .profile .profile-content .box .price span.red {
           background: rgba(26, 193, 12, 0.13);
           color: #1ac10c; }
+  .profile .profile-content .btn-primary.rounded {
+    margin-bottom: 0; }
+  .profile .profile-content .btn-secondary.rounded {
+    margin-bottom: 0; }
 
 .profile .galleries .position-relative a {
   position: absolute;

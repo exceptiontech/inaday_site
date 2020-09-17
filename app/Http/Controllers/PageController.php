@@ -88,6 +88,19 @@ class PageController extends Controller
     }
 
     /**
+     * Denied the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function denied()
+    {
+        return view('front.errors.denied');
+    }
+
+
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

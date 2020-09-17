@@ -144,18 +144,19 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
+        $type = $request->type;
 
         if (!Auth::user() ) {
             return redirect::to('/');
         }
 
         $user = User::findOrFail($id);
-        if(!empty($request['password']))
+        if(!empty($request->password))
         {
             $this->validate($request,[
                 'password'=> 'required|string|min:8|max:25'
             ]);
-            $data->password = Hash::make($request['password']);
+            $user->password = Hash::make($request->password);
         }
         $user->first_name=$request->first_name;
         $user->last_name=@$request->last_name;

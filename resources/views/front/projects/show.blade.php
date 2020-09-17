@@ -132,10 +132,10 @@
                                         <li class="list-inline-item">
 
                                             @if(Auth::user()->ProjecthasFavorite($project->id))
-                                                <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" href="#">
+                                                <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" data-type="project" href="#">
                                                 <i class="fa fa-star starred" aria-hidden="true"></i></a>
                                             @else
-                                                <a id="AddToFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}"  href="#">
+                                                <a id="AddToFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}"  data-type="project"  href="#">
                                                 <i class="fa fa-star" aria-hidden="true"></i></a>
                                             @endif
                                         </li>
@@ -469,7 +469,7 @@
     $(".updateFav").click(function(event) {
         event.preventDefault();
 
-        var data = {'id' : $(this).data("id")};
+        var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
 
         $.ajax({    
             type  : 'get',

@@ -4,7 +4,7 @@
                                         <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_services.index' ) active @endif" href="{{url('/account/services')}}">خدماتي</a></li>
 
 
-                                        <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_teams.index' ) active @endif" href="#">خلطاتي</a></li>
+                                        <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_mixures.index' ) active @endif" href="{{url('/account/mixtures')}}">خلطاتي</a></li>
 
                                         <li class="list-inline-item"><a class="@if( \Request::route()->getName() =='front_team' ) active @endif" href="{{url('/account/team')}}">فريقي</a></li>
 
