@@ -100,7 +100,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12">
                                       {!! Form::label('skills[]', trans('forms.other_skills'))!!}
-                                      {!! Form::text('skills[]', null, ['class' => 'form-control']) !!}
+                                      {!! Form::text('other_skill', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
