@@ -90,7 +90,8 @@ class ProjectController extends Controller
             'cost'      =>'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
             'duration'      =>'required|integer',
-            'skills.*'      =>'required|not_in:0',
+            'skills' =>'required|array',
+            'skills.*' =>'required|integer'
         ]);
 
 
@@ -181,35 +182,36 @@ class ProjectController extends Controller
 
             $skills = $request->skills;
 
-            foreach ($skills as $skill) {
+            if ($skills) {
+                foreach ($skills as $skill) {
+                    $service->skills()->attach($skill);
+                }
+            }
 
 
-                if (is_numeric($skill) && $skill > 0) {
-                    $project->skills()->attach($skill);
 
+            $other_skill = $request->other_skill;
+
+            if ($other_skill) {
+                $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+
+
+                if ($item) {
+                    $service->skills()->attach($item);
                 }else {
 
-                    $item = Skill::where('title', 'like', '%' . $skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+                    $title = array();
+                    $title['ar'] = $skill;
+                    $new_skill = new Skill;
+                    $new_skill->title = $title;
+                    $new_skill->slug = $skill;
+                    $new_skill->is_active = 0;
+                    $new_skill->save();
 
-
-                    if ($item) {
-                        $project->skills()->attach($item);
-                    }else {
-
-                        $title = array();
-                        $title['ar'] = $skill;
-                        $new_skill = new Skill;
-                        $new_skill->title = $title;
-                        $new_skill->slug = $skill;
-                        $new_skill->is_active = 0;
-                        $new_skill->save();
-
-                        $project->skills()->attach($new_skill);
-                    }
-
+                    $service->skills()->attach($new_skill);
                 }
-
             }
+
 
         }
 

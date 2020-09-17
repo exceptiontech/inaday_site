@@ -86,8 +86,6 @@ class ServiceController extends Controller
             'cost'      =>'integer|required',
             'duration'  =>'integer|required',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
-            'skills' =>'required|array',
-            'skills.*' =>'required|integer'
         ]);
 
 
@@ -129,8 +127,10 @@ class ServiceController extends Controller
 
             $skills = $request->skills;
 
-            foreach ($skills as $skill) {
-                $service->skills()->attach($skill);
+            if ($skills) {
+                foreach ($skills as $skill) {
+                    $service->skills()->attach($skill);
+                }
             }
 
 
