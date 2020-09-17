@@ -133,6 +133,7 @@
 
 @section('jquery')
 <script type="text/javascript">
+    
     $(".updateFav").click(function(event) {
         event.preventDefault();
 
@@ -147,10 +148,11 @@
                 console.log(data.result);
 
                 if (data.result == 'done') {
-                    $('.updateFav .fa').addClass('starred');
+                    $('.updateFav'+ id +' .fa').addClass('starred');
                 }else {
-                    $('.updateFav .fa').removeClass('starred');
+                    $('.updateFav'+ id +' .fa').removeClass('starred');
                 }
+
             },
         error:function(data){
             console.log(data.err)

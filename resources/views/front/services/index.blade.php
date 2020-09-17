@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="row service_bar">
                                             
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-6">
 
                                                 <ul class="list-inline">
                                                     @if($service->user)
@@ -184,7 +184,7 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="col-sm-5 pt-2">
+                                            <div class="col-sm-6 pt-2">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $service->cost}} {{trans('file.sr')}}</label>
@@ -226,8 +226,9 @@
 
 @section('jquery')
 <script type="text/javascript">
-    $(".updateFav").click(function() {
-
+    
+    $(".updateFav").click(function(event) {
+        event.preventDefault();
         var id = $(this).data("id");
 
         var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
