@@ -161,6 +161,7 @@ return [
     'i_have_read_and_accept_the_policy_of_posting_services_and_all_the_terms_of_its_contract' => 'قرأت وقبلت سياسة نشر الخدمات وكافة بنود العقد الخاص بها',
     'please_see_if_you_are_not' => 'الرجاء الإطلاع في حالة عدم الاطلاع',
     'no_services' => 'لا يوجد خدمات',
+    'no_mixtures' => 'لا يوجد خلطات مطابقة',
     'your_payment_id' => 'رقم مستند التحويل هو',
     'your_booking_id' => 'رقم الحجز الخاص بك هو',
     'please_wait_service_provider' => 'من فضلك انتظر رد مقدم الخدمة',
