@@ -221,6 +221,7 @@
 
 @section('jquery')
 <script type="text/javascript">
+    
     $(".updateFav").click(function(event) {
         event.preventDefault();
 
