@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!} <em class="text-danger">*</em>
-                                        {!! Form::text('num_team', 1, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('num_team', 1, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
 
                                 </div>
@@ -75,11 +75,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em>
-                                        {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('cost', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration', trans('forms.duration'))!!} <em class="text-danger">*</em>
-                                        {!! Form::text('duration', null, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('duration', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration_type', trans('forms.duration_type'))!!}
@@ -90,7 +90,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', null, ['class' => 'form-control']) !!}
+                                        {!! Form::text('reward', null, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} 

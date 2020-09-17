@@ -22,7 +22,7 @@
                                         <li class="list-inline-item @if( \Request::route()->getName() =='account.edit' ) active @endif">
                                             <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
                                         </li>
-                                        <li class="list-inline-item @if( \Request::route()->getName() =='front_projects.index' ) active @endif">
+<!--                                         <li class="list-inline-item @if( \Request::route()->getName() =='front_projects.index' ) active @endif">
                                             <a href="{{url('/account/projects')}}">مشاريعي</a>
                                         </li>
                                         <li class="list-inline-item @if( \Request::route()->getName() =='front_bookings.index' ) active @endif">
@@ -34,5 +34,5 @@
                                         <li class="list-inline-item @if( \Request::route()->getName() =='front_settings.index' ) active @endif">
                                             <a href="{{url('/account/settings')}}">الاعدادات</a>
                                         </li>
-                                    </ul>
+ -->                                    </ul>
                                 @endif

@@ -135,6 +135,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Project')->where('is_approved',1)->where('deleted_at', '=', null);
     }
 
+    public function bookedprojects()
+    {
+        return $this->whereHas('projects', function ($query) {
+                $query->whereHas('booking');
+            })->get();
+    }
+
     public function bookings()
     {
         return $this->hasMany('App\Booking');
