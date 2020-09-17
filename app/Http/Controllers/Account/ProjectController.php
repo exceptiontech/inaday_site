@@ -184,7 +184,7 @@ class ProjectController extends Controller
 
             if ($skills) {
                 foreach ($skills as $skill) {
-                    $service->skills()->attach($skill);
+                    $project->skills()->attach($skill);
                 }
             }
 
@@ -197,7 +197,7 @@ class ProjectController extends Controller
 
 
                 if ($item) {
-                    $service->skills()->attach($item);
+                    $project->skills()->attach($item);
                 }else {
 
                     $title = array();
@@ -208,7 +208,7 @@ class ProjectController extends Controller
                     $new_skill->is_active = 0;
                     $new_skill->save();
 
-                    $service->skills()->attach($new_skill);
+                    $project->skills()->attach($new_skill);
                 }
             }
 
