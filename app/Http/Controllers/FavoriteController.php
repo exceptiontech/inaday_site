@@ -79,10 +79,11 @@ class FavoriteController extends Controller
     public function update(Request $request)
     {
         
-        if ($request->type = 'service') {
+        if ($request->type == 'service') {
+
             $service = Service::find($request->id);
             if (Auth::user()->ServicehasFavorite($request->id)) {
-                $favorite = Favorite::where('service_id',$request->id);
+                $favorite = Favorite::where('service_id',$request->id)->where('user_id',Auth::user()->id);
                 $favorite->delete();
 
                 if ($favorite) {
@@ -123,10 +124,10 @@ class FavoriteController extends Controller
                 } 
                 return response()->json(['result'=>'done']);
             }
-        }elseif ($request->type = 'project') {
+        }elseif ($request->type == 'project') {
             $project = Service::find($request->id);
             if (Auth::user()->ProjecthasFavorite($request->id)) {
-                $favorite = Favorite::where('project_id',$request->id);
+                $favorite = Favorite::where('project_id',$request->id)->where('user_id',Auth::user()->id);
                 $favorite->delete();
 
                 if ($favorite) {
@@ -167,10 +168,10 @@ class FavoriteController extends Controller
                 } 
                 return response()->json(['result'=>'done']);
             }
-        }elseif ($request->type = 'mixture') {
+        }elseif ($request->type == 'mixture') {
             $mixture = Mixture::find($request->id);
             if (Auth::user()->MixturehasFavorite($request->id)) {
-                $favorite = Favorite::where('mixture_id',$request->id);
+                $favorite = Favorite::where('mixture_id',$request->id)->where('user_id',Auth::user()->id);
                 $favorite->delete();
 
                 if ($favorite) {
