@@ -85,7 +85,9 @@ class ServiceController extends Controller
             'desc'      =>'required|max:500',
             'cost'      =>'integer|required',
             'duration'  =>'integer|required',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
+            'skills' =>'required|array',
+            'skills.*' =>'required|integer'
         ]);
 
 
@@ -128,34 +130,33 @@ class ServiceController extends Controller
             $skills = $request->skills;
 
             foreach ($skills as $skill) {
+                $service->skills()->attach($skill);
+            }
 
 
-                if (is_numeric($skill) && $skill > 0) {
-                    $service->skills()->attach($skill);
 
+            $other_skill = $request->other_skill;
+
+            if ($other_skill) {
+                $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+
+
+                if ($item) {
+                    $service->skills()->attach($item);
                 }else {
 
-                    $item = Skill::where('title', 'like', '%' . $skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+                    $title = array();
+                    $title['ar'] = $skill;
+                    $new_skill = new Skill;
+                    $new_skill->title = $title;
+                    $new_skill->slug = $skill;
+                    $new_skill->is_active = 0;
+                    $new_skill->save();
 
-
-                    if ($item) {
-                        $service->skills()->attach($item);
-                    }else {
-
-                        $title = array();
-                        $title['ar'] = $skill;
-                        $new_skill = new Skill;
-                        $new_skill->title = $title;
-                        $new_skill->slug = $skill;
-                        $new_skill->is_active = 0;
-                        $new_skill->save();
-
-                        $service->skills()->attach($new_skill);
-                    }
-
+                    $service->skills()->attach($new_skill);
                 }
-
             }
+
         }
 
 
