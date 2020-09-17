@@ -130,7 +130,6 @@
                                         </li>
                                         @if(Auth::user())
                                         <li class="list-inline-item">
-
                                             @if(Auth::user()->ProjecthasFavorite($project->id))
                                                 <a id="RemoveFromFav" class="updateFav updateFav{{$project->id}}" data-id="{{$project->id}}" data-type="project" href="#">
                                                 <i class="fa fa-star starred" aria-hidden="true"></i></a>
