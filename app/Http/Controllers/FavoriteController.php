@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Project;
+use App\Mixture;
 use App\Favorite;
 use App\Log;
 use Illuminate\Http\Request;
@@ -125,7 +127,8 @@ class FavoriteController extends Controller
                 return response()->json(['result'=>'done']);
             }
         }elseif ($request->type == 'project') {
-            $project = Service::find($request->id);
+            $project = Project::find($request->id);
+
             if (Auth::user()->ProjecthasFavorite($request->id)) {
                 $favorite = Favorite::where('project_id',$request->id)->where('user_id',Auth::user()->id);
                 $favorite->delete();
@@ -186,7 +189,7 @@ class FavoriteController extends Controller
 
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
-                    $project->user->notify(new FavoriteDeleted($favorite));
+                    $mixture->team->user->notify(new FavoriteDeleted($favorite));
                 } 
                 return response()->json(['result'=>'remove']);
 

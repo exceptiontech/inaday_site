@@ -21,6 +21,7 @@ use App\Log;
 use App\Booking;
 use App\Project;
 use App\Offer;
+use App\Mixture;
 use URL;
 
 
@@ -45,20 +46,21 @@ class PaymentController extends Controller
         return view('payment');
     }
  
-    public function charge(Request $request,$title,$id)
+    public function charge(Request $request,$title,$model_id,$offer_id)
     {
 
         $url = URL::previous();
 
         if (str_contains($url, 'projects')) {
 
-            $project = Project::where('title', 'like', '%' . $title . '%')->first();
-            $offer = Offer::findorfail($id);
+            $project = Project::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();
+
+            $offer = Offer::findorfail($offer_id);
+
 
             if (!$project || $project->id != $offer->project_id) {
                 return 'access denied';
             }
-
 
             if($project || $offer)
             {
@@ -66,7 +68,9 @@ class PaymentController extends Controller
                 Session::put('type','offer');
                 Session::put('id',$offer->id);
 
-                $mount = round($request->input('amount')/3.75,2);
+                if ($request->input('amount') == $offer->price) {
+                    $mount = round($request->input('amount')/3.75,2);
+                }
 
                 try {
                     $response = $this->gateway->purchase(array(
@@ -89,7 +93,7 @@ class PaymentController extends Controller
 
         }elseif (str_contains($url, 'services')) {
 
-            $service = Service::where('title', 'like', '%' . $title . '%')->first();
+            $service = Service::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
             
             if ($id != $service->id) {
                 return 'access denied';
@@ -101,7 +105,45 @@ class PaymentController extends Controller
                 Session::put('type','service');
                 Session::put('id',$service->id);
 
-                $mount = round($request->input('amount')/3.75,2);
+                if ($request->input('amount') == $service->cost) {
+                    $mount = round($request->input('amount')/3.75,2);
+                }
+
+                try {
+                    $response = $this->gateway->purchase(array(
+                        'amount' => $mount,
+                        'currency' => 'USD',
+                        'returnUrl' => url('paymentsuccess'),
+                        'cancelUrl' => url('paymenterror'),
+                    ))->send();
+              
+                    if ($response->isRedirect()) {
+                        $response->redirect(); // this will automatically forward the customer
+                    } else {
+                        // not successful
+                        return $response->getMessage();
+                    }
+                } catch(Exception $e) {
+                    return $e->getMessage();
+                }
+            }            
+        }elseif (str_contains($url, 'mixtures')) {
+
+            $mixture = Mixture::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
+            
+            if ($id != $mixture->id) {
+                return 'access denied';
+            }
+
+            if($mixture)
+            {
+
+                Session::put('type','mixture');
+                Session::put('id',$mixture->id);
+
+                if ($request->input('amount') == $mixture->cost) {
+                    $mount = round($request->input('amount')/3.75,2);
+                }
 
                 try {
                     $response = $this->gateway->purchase(array(
@@ -125,7 +167,7 @@ class PaymentController extends Controller
 
 
     }
- 
+
     public function payment_success(Request $request)
     {
 
@@ -136,27 +178,34 @@ class PaymentController extends Controller
                 'payer_id'             => $request->input('PayerID'),
                 'transactionReference' => $request->input('paymentId'),
             ));
+
             $response = $transaction->send();
          
+
             if ($response->isSuccessful())
             {
+
+
                 $id = Session::get('id');
                 $type = Session::get('type');
+
                 Session::forget('id');        
                 Session::forget('type');        
 
 
                 if ($type == 'offer') {
 
+
                     $offer = Offer::findorfail($id);
+
+
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
              
                     // Insert transaction data into the database
-                    $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
+                    $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->latest();
              
-                    if(!$isPaymentExist)
-                    {
+
                         $payment = new Payment;
                         $payment->payment_id = $arr_body['id'];
                         $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
@@ -181,11 +230,6 @@ class PaymentController extends Controller
                             } 
 
 
-                            // Mail::send('mail.booking.offer', ['booking'=>$booking], function($message) use ($booking)
-                            //     {
-                            //         $message->to($offer->user->email, 'Email Message')->subject('تم اعتماد العرض الخاص بك');
-                            //     }); 
-
                             if ($payment && $booking) {
                                 $log           = new Log;
                                 $log->user_id  = Auth::user()->id;
@@ -196,12 +240,12 @@ class PaymentController extends Controller
                                 $log->save();
                             }
                         }
-                    }
+
+                        return redirect('bookings/'.$booking->id);
              
-                    return redirect('bookings/'.$booking->id);
 
 
-                }else {
+                }elseif($type == 'service') {
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
              
@@ -210,8 +254,6 @@ class PaymentController extends Controller
              
                     $service = Service::findorfail($id);
 
-                    if(!$isPaymentExist)
-                    {
                         $payment = new Payment;
                         $payment->payment_id = $arr_body['id'];
                         $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
@@ -235,10 +277,6 @@ class PaymentController extends Controller
                                 $service->user->notify(new BookingCreated($booking));
                             } 
 
-                            // Mail::send('mail.booking.service', ['booking'=>$booking], function($message) use ($booking)
-                            //     {
-                            //         $message->to($service->user->email, $booking->offeer->user->email)->subject('تم حجز احدى الخدمات الخاص بك');
-                            //     }); 
 
                             if ($payment && $booking) {
                                 $log           = new Log;
@@ -249,21 +287,19 @@ class PaymentController extends Controller
                                 $log->ip       = $request->server()['REMOTE_ADDR'];
                                 $log->save();
                             }
-                        }
+
+                        return redirect('bookings/'.$booking->id);
                     }
              
-                    return redirect('bookings/'.$booking->id);
 
-                }
+                }elseif($type == 'mixtures') {
 
-                // The customer has successfully paid.
-                $arr_body = $response->getData();
-         
-                // Insert transaction data into the database
-                $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
-         
-                if(!$isPaymentExist)
-                {
+                    // The customer has successfully paid.
+                    $arr_body = $response->getData();
+             
+                    // Insert transaction data into the database
+                    $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
+             
                     $payment = new Payment;
                     $payment->payment_id = $arr_body['id'];
                     $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
@@ -275,16 +311,16 @@ class PaymentController extends Controller
 
                     if ($payment) {
                         $booking = new Booking;
-                        $booking->service_id = $id;
+                        $booking->mixture_id = $id;
                         $booking->user_id = Auth::user()->id;
                         $booking->payment_id = $payment->id;
                         $booking->save();
 
-                        $service = Service::findorfail($id);
+                        $mixture = Mixture::findorfail($id);
 
                         if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                         {
-                            $service->user->notify(new BookingCreated($booking));
+                            $mixture->team->user->notify(new BookingCreated($booking));
                         } 
 
                         if ($payment && $booking) {
@@ -296,16 +332,17 @@ class PaymentController extends Controller
                             $log->ip       = $request->server()['REMOTE_ADDR'];
                             $log->save();
                         }
+
+                        return redirect('bookings/'.$booking->id);
                     }
-                }
          
-                return redirect('bookings/'.$booking->id);
+                } else {
+                    return $response->getMessage();
+                }
 
             } else {
-                return $response->getMessage();
+                return 'Transaction is declined';
             }
-        } else {
-            return 'Transaction is declined';
         }
     }
  

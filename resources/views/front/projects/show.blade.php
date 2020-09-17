@@ -9,19 +9,19 @@
             <div class="col-12 col-md-4 sidaber">
                 <div class="bg-light rounded pt-3 pb-3 p-2">
                     <div class="author">
-                        <div class="col-sm-8 d-flex align-items-center mb-5">
+                        <div class="col-sm-12 d-flex align-items-center mb-5">
                             @if($project->user )
                                 @if(count($project->user->userdetail) > 0)
                                     @if($project->user->userdetail->first()->avater)
                                       <img src="{{ url($project->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$project->title}}" title="{{$project->title}}" />
                                     @else
-                                      <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
+                                      <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$project->title}}" title="{{$project->title}}" />
                                     @endif
                                 @else
-                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
+                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$project->title}}" title="{{$project->title}}" />
                                 @endif
                             @else
-                              <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right" alt="{{$project->title}}" title="{{$project->title}}" />
+                              <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$project->title}}" title="{{$project->title}}" />
                             @endif  
                             <div class="ml-2">
                                 <span class="small">{{trans('file.project_owner')}}</span> 
@@ -157,7 +157,8 @@
                         <div class="block col-12 pt-3 pb-2 mb-1">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h2 class="mb-3">{{trans('file.targeted_skills')}}</h2> 
+                                    <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2> 
+                                    <div class="clearfix">
                                     @if(count($project->skills))
                                         <ul class="list-inline">
                                             @foreach($project->skills as $skill)
@@ -167,6 +168,7 @@
                                             @endforeach
                                         </ul>
                                     @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -178,15 +180,25 @@
                                 </div>
                                 <div class="col-sm-12">
                                     @if(count($project->files) > 0)
-
+                                        <div class="row">
                                         @foreach($project->files as $file)
-                                            <p>
-                                                <a download="download" href="{{url($file->url)}}">
-                                                    <i class="fa fa-file-word-o" aria-hidden="true"></i> {{url($file->name)}}
+                                            <div class="col-sm-6">
+                                                <a class="d-flex" download="download" href="{{url($file->url)}}">
+                                                    <div class="col-4  bg-light shadow-sm text-center p-2 align-middle">
+                                                        @if(pathinfo($file->url, PATHINFO_EXTENSION)  == 'png' || pathinfo($file->url, PATHINFO_EXTENSION) == 'jpg' || pathinfo($file->url, PATHINFO_EXTENSION) == 'jpeg')
+                                                            <img class="img-fluid" src="{{url($file->url)}}">
+                                                        @else
+                                                            <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-8 " dir="ltr">
+                                                     <p class="m-0">{{$file->name}}</p>
+                                                     <p class="m-0">{{ Carbon\Carbon::parse($file->created_at)->format('d-m-Y ') ?? 'غير محدد'}}</p>
+                                                    </div>
                                                 </a>
-                                            </p>
+                                            </div>
                                         @endforeach
-
+                                        </div>
                                     @else
                                         <p>لا توجد اي ملفات تخص هذا المشروع</p>
                                     @endif
@@ -214,14 +226,10 @@
 
                         @if(count($project->offers)>0)
                         <div class="block col-12 pt-3 pb-5 mb-1">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h2 class="mb-3">العروض</h2> 
-                                </div>
+                            <div class="col-sm-12">
+                                <h2 class="mb-3">العروض</h2> 
                             </div>
                             <div class=" comments">
-
-
                             @if($project->num_team == 1)
                               @foreach($project->offers as $offer)
                                 <div class="col-12 pt-3 pb-3 comment mb-4">
@@ -250,7 +258,7 @@
                                     <p>{{ $offer->offer }}</p>
 
                                     @if(Auth::user() && $project->user_id == Auth::user()->id)
-                                    <form action="{{ url('paypal/'.$project->title.'/'.$offer->id.'/charge') }}" method="post">
+                                    <form action="{{ url('paypal/'.$project->title.'/'.$project->id.'/'.$offer->id.'/charge') }}" method="post">
                                         <input type="hidden" name="amount" value="{{ $offer->price}}" />
                                         {{ csrf_field() }}
                                         <button class="btn btn-secondary btn-block">{{__('file.approve')}}</button>
@@ -262,6 +270,7 @@
 
                               @endforeach
                             @else
+                            <div class=" comments">
                               @foreach($project->offers as $offer)
                                 @if($offer->user_id == Auth::user()->id)
 
@@ -303,9 +312,9 @@
 
 
                                 @endif
+                                </div>
                               @endforeach
                             @endif
-
 
                         @else
 
@@ -323,14 +332,14 @@
                             <p>{{trans('file.no_offer_at_this_time')}}</p>
 
                           @endif
+                        </div>
                         @endif
 
-                    </div>
-                </div>
 
 
 
                         @if(Auth::user() && Auth::user()->isServicesProvider() &&  $project->num_team == 1)
+                        <div class=" projects">
 
 
                         <div class="block col-12 pt-3 pb-2 mb-3 border-0">
@@ -389,10 +398,11 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                         @else
                           @if(Auth::user() && Auth::user()->team)
                           @if(count(Auth::user()->team->users) >= 1)
-
+                            <div class="projects">
                             <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -431,7 +441,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            </div>
                           @endif
                           @endif
 

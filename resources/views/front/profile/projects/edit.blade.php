@@ -90,11 +90,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub>
-                                        {!! Form::text('cost', $project->cost, ['required','class' => 'form-control','placeholder'=>'1000']) !!}
+                                        {!! Form::text('cost', $project->cost, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration', trans('forms.duration'))!!}
-                                        {!! Form::text('duration', $project->duration, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('duration', $project->duration, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration_type', trans('forms.duration_type'))!!}
@@ -105,7 +105,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', $project->reward, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('reward', $project->reward, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!}
@@ -128,30 +128,6 @@
                                         {!! Form::textarea('rule',$project->rule, array('class'=>'textarea form-control', 'rows'=>'3', 'placeholder'=>'مثال: عند الانتهاء من المشروع في اقل من اسبوع')) !!}
                                     </div>
                                 </div>
-
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                      <div class="title mb-5">
-                                          <h2>{{ __('forms.phase_1text') }}</h2>
-                                          <p>{{ __('forms.phase_1text2') }}</p>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_clients') }}<em>*</em></label>
-                                            <input name="target_clients" class="form-control required" type="number" min="1" value="{{$project->phases->last()->target_clients ?? ''}}" required>
-                                        </div>
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_sales') }}<em>*</em></label>
-                                            <input name="target_sales" class="form-control required" type="number" min="1" value="{{$project->phases->last()->target_sales ?? ''}}"  required>
-                                        </div>
-                                        <div class="col-sm-4 inpusrach">
-                                            <label>{{ __('forms.target_profits') }}<em>*</em></label>
-                                            <input name="target_profits" class="form-control required" type="number" min="0" value="{{$project->phases->last()->target_profits ?? ''}}" required>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">

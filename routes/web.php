@@ -154,7 +154,7 @@ Route::group(['middleware'=>'verified'], function() {
 
 
     Route::get('payment', 'PaymentController@index');
-    Route::post('paypal/{title}/{id}/charge', 'PaymentController@charge');
+    Route::post('paypal/{title}/{model_id}/{offer_id}/charge', 'PaymentController@charge');
     Route::get('paymentsuccess', 'PaymentController@payment_success');
     Route::get('paymenterror', 'PaymentController@payment_error');
 

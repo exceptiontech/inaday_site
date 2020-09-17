@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="col-12">
-                    <div class="bg-light mt-5 p-3  wrapper profile rounded">
+                    <div class="bg-light mt-5 p-3  wrapper profile  services rounded">
                         <div class="row">
 
                             <div class="col-12  profile-head-menu mb-5">
@@ -22,8 +22,10 @@
                             </div>
 
                             <div class="col-12 title mb-3">
-                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->projects)}}</span></h2>
+                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->bookedprojects())}}</span></h2>
                             </div>
+
+                            
 
                             <div class="col-12 col-sm-8 projects">
                                 <div class="sub-title mb-2">
@@ -33,38 +35,53 @@
 
                                 @if(count(Auth::user()->projects))
                                     @foreach(Auth::user()->projects as $project)
-                                        <div class="col-12 project pb-3 pt-2">
-                                            <h2>{{$project->title}}</h2>
+                                    <div class="col-12 service pb-3 pt-2">
 
-                                            <div class="row">
-                                                <div class="col-sm-7">
-                                                    <ul class="list-inline m-0 flex-shrink-1">
-                                                        <li class="list-inline-item">
-                                                            <img src="{{ url($project->user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-fluid">
-                                                            {{$project->user->first_name .' '.$project->user->last_name }}
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <div class="bg-light pt-1 pb-1 p-2 ">{{$project->section->title[App::getLocale()] ?? 'بدون تصنيف' }} </div>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                            {{ Carbon\Carbon::parse(strtotime($project->created_at))->format('d-m-Y') }}
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                            {{$project->offers->count()}}  عرض
-                                                        </li>
-                                                    </ul>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <img class="img-fluid" src="{{ url($service->img ?? '/assets/images/logo.png' ) }}">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="row mb-2">
+                                                    <div class="col-10">
+                                                        <h2 class="mb-3">{{$project->title}}</h2>
+                                                    </div>
+                                                    <div class="col-2 sociel text-right">
+                                                        <a class="mr-2" href="{{url('account/projects/'.$project->id.'/edit/')}}">
+                                                            <img src="{{url('images/edit.svg')}}">
+                                                        </a>
+                                                        <a class="" href="{{url('/account/projects/delete/'.$project->id)}}">
+                                                            <img src="{{url('images/delete.svg')}}">
+                                                        </a>
+                                                    </div>
                                                 </div>
-
-                                                <div class="col-sm-5 text-right">
-                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
-                                                    <a class="btn btn-secondary rounded" href="{{ url('account/projects/'.$project->id.'/edit') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    <a class="btn btn-danger" href="{{url('/account/projects/delete/'.$project->id)}}">
-                                                        <i class="fa fa-remove" aria-hidden="true"></i> </a>
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <ul class="list-inline m-0 flex-shrink-1">
+                                                            <li class="list-inline-item">
+                                                                <div class="bg-light pt-1 pb-1 p-2 ">
+                                                                    {{$project->section->title[App::getLocale()] ?? ' بدون تصنيف'}}
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                {{ Carbon\Carbon::parse(strtotime($project->created_at))->format('d-m-Y') }}
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+                                                                {{$project->offers->count()}}  عرض
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-5 text-right">
+                                                        <label class="btn btn-secondary rounded text-white">{{$project->cost}} ريال</label>
+                                                        <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">تفاصيل الخدمة</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
                                     @endforeach
                                 @else
                                     <p>لم تقم باضافة اي مشاريع في الوقت الحالي</p>
