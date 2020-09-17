@@ -58,6 +58,10 @@
                         <li class="list-group-item d-flex">
                             <a href="{{url('/user/'.$user->id.'/services')}}">خدماتي</a>
                         </li>
+
+                        <!-- <li class="list-group-item d-flex">
+                            <a href="{{url('/user/'.$user->id.'/mixtures')}}">خلطاتي</a>
+                        </li> -->
                         <li class="list-group-item d-flex">
                             <a href="{{url('/user/'.$user->id.'/skills')}}">مهاراتي</a>
                         </li>

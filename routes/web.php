@@ -38,6 +38,7 @@ Route::get('/user/{id}/portfolios', 'UsersController@portfolios');
 Route::get('/user/{id}/experiences', 'UsersController@experiences');
 Route::get('/user/{id}/reviews', 'UsersController@reviews');
 Route::get('/user/{id}/projects', 'UsersController@projects');
+Route::get('/user/{id}/mixtures', 'UsersController@mixtures');
 
 
 Auth::routes(['verify' => true]);
@@ -58,11 +59,16 @@ Route::resource('messages','MessageController');
 // Route::post('register/services_provider/update', 'UsersController@update')->name('services_provider_update');
 
 Route::get('registration', 'UsersController@registration');
+Route::get('/errors/denied', 'PageController@denied');
+
 Route::get('projects', 'ProjectController@index')->name('projects.index');
-Route::post('projects/search', 'ProjectController@searchBySkills')->name('projects.searchBySkills');
 Route::get('projects/{id}', 'ProjectController@show')->name('projects.show');
+
 Route::get('services', 'ServiceController@index')->name('services.index');
 Route::get('services/{id}', 'ServiceController@show')->name('services.show');
+
+Route::get('mixtures', 'MixtureController@index')->name('mixtures.index');
+Route::get('mixtures/{id}', 'MixtureController@show')->name('mixtures.show');
 
 
 
@@ -93,6 +99,12 @@ Route::group(['middleware'=>'verified'], function() {
     Route::get('account/services/delete/{id}', 'Account\ServiceController@delete')->name('services.delete');
     // fav
     Route::get('/account/favorite', ['uses' => 'FavoriteController@update','as' => 'updateFavorite']);  
+
+
+    // mixture
+    Route::resource('account/mixtures', 'Account\MixtureController', ['names' => 'front_mixtures']);
+    Route::get('account/mixtures/create/{id}', 'Account\MixtureController@create')->name('mixtures.create');
+    Route::get('account/mixtures/delete/{id}', 'Account\MixtureController@delete')->name('mixtures.delete');
 
 
     // Portfolios
@@ -178,6 +190,7 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::resource('users','Admin\UserController');
     Route::resource('projects','Admin\ProjectController');
     Route::resource('stages','Admin\StageController');
+    Route::resource('mixtures','Admin\MixtureController');
     Route::resource('services','Admin\ServiceController');
     Route::resource('interviews','Admin\InterviewController');
     Route::resource('questions','Admin\QuestionController');

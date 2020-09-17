@@ -21,7 +21,9 @@
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">
-                                <h2>حسب المهارة</h2>
+                                <div class="col-12">
+                                    <h2>حسب المهارة</h2>
+                                </div>
                             </div>
                             <div class="block-content">
 
@@ -47,7 +49,9 @@
 
                         <div class="block mb-4">
                             <div class="block-title mb-3">
-                                <h2>حسب تصنيف الأقسام</h2>
+                                <div class="col-12">
+                                    <h2>حسب تصنيف الأقسام</h2>
+                                </div>
                             </div>
                             <div class="block-content">
 
@@ -64,7 +68,9 @@
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">
-                                <h2>حسب اسم الخدمة</h2>
+                                <div class="col-12">
+                                    <h2>حسب اسم الخدمة</h2>
+                                </div>
                             </div>
                             <div class="block-content">
 
@@ -149,10 +155,10 @@
                                              <li class="list-inline-item">
                                                 @if(Auth::user())
                                                 @if(Auth::user()->ServicehasFavorite($service->id))
-                                                    <a id="RemoveFromFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}" href="#">
+                                                    <a id="RemoveFromFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}" data-type="service" href="#">
                                                     <i class="fa fa-star starred" aria-hidden="true"></i></a>
                                                 @else
-                                                    <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}"  href="#">
+                                                    <a id="AddToFav" class="updateFav updateFav{{$service->id}}" data-id="{{$service->id}}" data-type="service"  href="#">
                                                     <i class="fa fa-star" aria-hidden="true"></i></a>
                                                 @endif
                                                 @endif
@@ -224,7 +230,7 @@
 
         var id = $(this).data("id");
 
-        var data = {'id' : $(this).data("id")};
+        var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
 
         $.ajax({    
             type  : 'get',

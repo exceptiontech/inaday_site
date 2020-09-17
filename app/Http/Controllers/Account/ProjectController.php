@@ -73,7 +73,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
             $num = range(9, 0);
@@ -90,7 +90,7 @@ class ProjectController extends Controller
             'cost'      =>'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
             'duration'      =>'required|integer',
-            'skills'      =>'required',
+            'skills.*'      =>'required|not_in:0',
         ]);
 
 

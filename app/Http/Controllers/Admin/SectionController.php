@@ -56,7 +56,7 @@ class SectionController extends Controller
             'title' => 'required|unique:sections',
             'desc' => 'required',
             'slug' => 'required|unique:sections|max:255|min:3',
-            'image' => 'required|mimes:svg,jpeg,jpg,png|max:2000',
+            //'image' => 'required|mimes:svg,jpeg,jpg,png|max:2000',
             'is_active' => 'required|integer',
         ]);
 

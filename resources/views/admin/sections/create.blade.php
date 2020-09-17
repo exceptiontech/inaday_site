@@ -1,10 +1,13 @@
 @extends('layouts.admin')
 @section('content')
 <section class="content">
-	<div class="row">
-		<div class="col-xs-12">
+    <div class="row">
+        
+        <div class="col-12">
 
-				<div class="box box-warning">
+        <div class="box box-warning">
+            <div class="box-body">
+
 				    <div class="box-header">
 				    	<h3 class="box-title">{{trans('admin.addsection')}}</h3>
 				    </div>
@@ -20,21 +23,27 @@
 						    </div>
 						@endif
 					    
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
+                    <div class="card text-left">
+                        <div class="card-body">
+
+                            <ul class="nav nav-pills" id="myPillTab" role="tablist">
+
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    
+
+                                    <li class="nav-item"><a class="nav-link @if ($lang  == App::getLocale()) active show @endif " id="{{$lang}}-icon-pill" data-toggle="pill" href="#{{$lang}}" role="tab" aria-controls="homePIll" aria-selected="true">{{$language}}</a></li>
+
+                                @endforeach
+
+                                
+                            </ul>
+
+                            <div class="tab-content" id="myPillTabContent">
+
                         @foreach (Config::get('languages') as $lang => $language)
-                            
-                            <li class="@if ($lang == App::getLocale()) active @endif"><a data-toggle="tab" href="#{{$lang}}">{{$language}}</a></li>
-
-                        @endforeach
-                        </ul>
-
-                        <div class="tab-content">
-
-                        @foreach (Config::get('languages') as $lang => $language)
 
 
-                            <div id="{{$lang}}" class="tab-pane fade  @if ($lang == App::getLocale()) in active @endif">
+                                <div class="tab-pane  @if ($lang == App::getLocale()) fade active show @endif " id="{{$lang}}" role="tabpanel" aria-labelledby="{{$lang}}-icon-pill">
 
 
                                 <div class="form-group">
@@ -54,8 +63,12 @@
                             </div>
 
                         @endforeach
+                            </div>
                         </div>
                     </div>
+
+                    </div>
+
                     
 				    <div class="form-group">
 				        {!! Form::label('slug',trans('admin.slug')) !!}
@@ -73,7 +86,7 @@
                     
 				    <div class="form-group">
 				        {!! Form::label('icon',trans('admin.icon')) !!}
-				        {!! Form::text('icon', null, ['required', 'class' => 'form-control']) !!}
+				        {!! Form::text('icon', null, ['class' => 'form-control']) !!}
 				    </div>
 
 

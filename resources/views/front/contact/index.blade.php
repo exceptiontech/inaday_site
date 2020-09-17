@@ -71,9 +71,15 @@
                             {!! Form::text('mobile', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.mobile')]) !!}
                         </div>
                         <div class="col-sm-4 form-group">
-                            <label class="font-weight-bold mb-3">تحميل مرفقات  </label>
+                          <label class="font-weight-bold mb-3">تحميل مرفقات  </label>
 
-                            {!! Form::file('file', array( 'class' => 'form-control')) !!}
+                          <div class="input-group">
+                            <span class="form-control overflow-hidden"></span>
+                            <span class="input-group-btn">
+                              <input name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                              <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل صورة</span>
+                            </span>
+                          </div>
                         </div>
                       </div>
 

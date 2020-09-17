@@ -39,6 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+
     public function isActive()
     {
 
@@ -110,7 +117,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function services()
     {
-        return $this->hasMany('App\Service')->where('deleted_at', '=', null);
+        return $this->hasMany('App\Service')->where('is_approved',1)->where('deleted_at', '=', null);
     }
 
     public function interviews()
@@ -136,6 +143,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function myteams()
     {
         return $this->hasMany('App\Team')->where('deleted_at', '=', null);
+    }
+
+    public function hasTeam($id)
+    {
+        return $this->whereHas('teams', function ($query) use ($id) {
+                $query->where('team_id' , $id);
+            })->first();
+        
+    }
+
+    public function hasOwnTeam($id)
+    {
+        return $this->hasMany('App\Team')->where('id', $id)->first();
+        
     }
 
     public function teams()
@@ -191,6 +212,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $result = $this->whereHas('favorites', function ($query) use ($id) {
                 $query->where('project_id' , $id);
+            })->get();
+
+        if (count($result) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function MixturehasFavorite($id)
+    {
+        $result = $this->whereHas('favorites', function ($query) use ($id) {
+                $query->where('mixture_id' , $id);
             })->get();
 
         if (count($result) > 0) {

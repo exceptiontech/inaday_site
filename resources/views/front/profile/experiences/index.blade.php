@@ -65,55 +65,59 @@
                                 <div class="col-12  pt-4 mb-5">
 
                                     <div class="bg-light light-dark d-inline p-2">
+                                        <a id="openExperienceBox" href="#">
                                         <i class="fa fa-plus" aria-hidden="true"></i>  اضافة خبرات اخرى
+                                        </a>
                                     </div>
 
-                                    <div class="sub-title mb-5">
-                                        <h2 class="dark mt-5 mb-4">اضافة خبرات اخرى</h2>
-                                    </div>
+                                    <div id="ExperienceBox">
+                                        <div class="sub-title mb-5">
+                                            <h2 class="dark mt-5 mb-4">اضافة خبرات اخرى</h2>
+                                        </div>
 
-                                    {{ Form::open(['action' => 'Account\ExperienceController@store', 'files'=>true]) }}
+                                        {{ Form::open(['action' => 'Account\ExperienceController@store', 'files'=>true]) }}
 
-                                        @if(count($errors) > 0)
-                                            @foreach ($errors->all() as $error)
-                                                <div class="alert alert-danger alert-dismissable" >
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                    <h6>{{ $error}}</h6>
+                                            @if(count($errors) > 0)
+                                                @foreach ($errors->all() as $error)
+                                                    <div class="alert alert-danger alert-dismissable" >
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <h6>{{ $error}}</h6>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+
+
+                                            <div class="row mb-4">
+                                                <div class="col-12 col-sm-4">
+                                                    {!! Form::label('position', trans('forms.position'))!!}
+                                                    {!! Form::text('position', null, ['required','class' => 'form-control','placeholder'=>'مطور']) !!}
                                                 </div>
-                                            @endforeach
-                                        @endif
+                                                <div class="col-12 col-sm-4">
+                                                    {!! Form::label('company', trans('forms.company'))!!}
+                                                    {!! Form::text('company', null, ['required','class' => 'form-control','placeholder'=>'شركة البعد الفني']) !!}
+                                                </div>
+                                                <div class="col-12 col-sm-2">
+                                                    {!! Form::label('start_date', trans('forms.start_date'))!!}
+                                                    {!! Form::text('start_date', null, ['required','id' => 'start_date','class' => 'form-control','placeholder'=>'تاريخ البداية']) !!}
+                                                </div>
+                                                <div class="col-12 col-sm-2">
+                                                    {!! Form::label('end_date', trans('forms.end_date'))!!}
+                                                    {!! Form::text('end_date', null, ['id' => 'end_date','class' => 'form-control','placeholder'=>'تاريخ النهاية']) !!}
+                                                </div>
 
+                                                <div class="col-12 mt-5">
+                                                    {!! Form::label('desc', trans('forms.skills'))!!}
+                                                    {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc','placeholder'=>trans('forms.skills'))) !!}
+                                                </div>
 
-                                        <div class="row mb-4">
-                                            <div class="col-12 col-sm-4">
-                                                {!! Form::label('position', trans('forms.position'))!!}
-                                                {!! Form::text('position', null, ['required','class' => 'form-control','placeholder'=>'مطور']) !!}
                                             </div>
-                                            <div class="col-12 col-sm-4">
-                                                {!! Form::label('company', trans('forms.company'))!!}
-                                                {!! Form::text('company', null, ['required','class' => 'form-control','placeholder'=>'شركة البعد الفني']) !!}
+                                            <div class="row mt-5 mb-3">
+                                                <div class="col-12">
+                                                    {!! Form::submit(trans('forms.save'), array('class'=>'btn btn-primary')) !!}
+                                                </div>
                                             </div>
-                                            <div class="col-12 col-sm-2">
-                                                {!! Form::label('start_date', trans('forms.start_date'))!!}
-                                                {!! Form::text('start_date', null, ['required','id' => 'start_date','class' => 'form-control','placeholder'=>'تاريخ البداية']) !!}
-                                            </div>
-                                            <div class="col-12 col-sm-2">
-                                                {!! Form::label('end_date', trans('forms.end_date'))!!}
-                                                {!! Form::text('end_date', null, ['id' => 'end_date','class' => 'form-control','placeholder'=>'تاريخ النهاية']) !!}
-                                            </div>
-
-                                            <div class="col-12 mt-5">
-                                                {!! Form::label('desc', trans('forms.skills'))!!}
-                                                {!! Form::textarea('desc',null, array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'desc','placeholder'=>trans('forms.skills'))) !!}
-                                            </div>
-
-                                        </div>
-                                        <div class="row mt-5 mb-3">
-                                            <div class="col-12">
-                                                {!! Form::submit(trans('forms.save'), array('class'=>'btn btn-primary')) !!}
-                                            </div>
-                                        </div>
-                                    {{ Form::close() }}
+                                        {{ Form::close() }}
+                                    </div>
                                 </div>
 
 
@@ -147,6 +151,17 @@
       format: 'yyyy-mm-dd',
       autoclose: true
     });
+
+    $('#openExperienceBox').click(function(e) {
+        e.preventDefault();
+
+        if ($('#ExperienceBox').hasClass('open')) {
+            $('#ExperienceBox').removeClass('open')
+        }else {
+            $('#ExperienceBox').addClass('open')
+        }
+    });
+    
 
 </script>
 

@@ -21,7 +21,13 @@
                         <a class="btn btn-primary mt-5 " href="{{url('/register?type=entrepreneur')}}">سجل الان</a>
 
                     @else
-                        <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                        @if(Auth::user() && Auth::user()->isEntrepreneur())
+
+                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                        @else
+                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">سجل</a>
+                            
+                        @endif
                     @endguest
 
                 </div>
@@ -49,7 +55,14 @@
 
                     <p>العمل عن بعد هو أسلوب الحياة الجديد، في منصة .انادي. بتكون تشتغل بالوقت اللي يناسبك، وبالقيمة اللي تناسبك، وفي المكان اللي يناسبك. بيكون عملك فيه إجازة، و إجازتك فيها عمل! ممتع؟ إذا تعتقد انك موهوب، وتحب الشغل، جرب احسب دخلك.</p>
 
-                    <a class="btn btn-primary mt-5" href="{{url('account/projects/create')}}">نفّذ مشروعك الآن</a>
+                    @if(Auth::user() && Auth::user()->isEntrepreneur())
+
+                        <a class="btn btn-primary mt-5" href="{{url('account/projects/create')}}">نفّذ مشروعك الآن</a>
+                    @else
+                        <a class="btn btn-primary mt-5 " href="{{url('/projects')}}">تعرف على المشاريع</a>
+                        
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -68,7 +81,7 @@
                     
                     <p>يعتبر تحليل المشروع من الأمور التى لا غنى عنها دائماً أثناء العمل وهى خطوة شديدة الأهمية فى مراحل بناء أى مشروع ناجح ، وتكمن أهميتها فى أنها تعطيك الفرصة لمعرفة أين أنت بالتحديد ونقاط الضعف والقوة لديك وكيف تتعامل مع العمل مدى ملائمة مشروعك للواقع الحالى.</p>
 
-                    <a class="btn btn-primary mt-5" href="{{url('/')}}">تعرف على الخلطات</a>
+                    <a class="btn btn-primary mt-5" href="{{url('/mixtures')}}">تعرف على الخلطات</a>
                 </div>
 
                 <div class="col-12 col-md-6">

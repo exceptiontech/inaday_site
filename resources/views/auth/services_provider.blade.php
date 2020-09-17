@@ -16,11 +16,18 @@
                     </div>
                     
                     <p>انت كمقدم خدمة، تعتبر حجر الأساس في المنصة، وأنت سبب نجاحها، عشان كذا، دائماً نبحث عن حلول في إنك تكون مرتاح و مبسوط. كل يوم نفكر، كيف تكون منصة .انادي. هي خيارك الأفضل وخيار كل مبدع و صاحب موهبة، و ابتكرنا حزمة من المميزات اللي ممكن تلفت انتباهك </p>
+
                     @guest
                         <a class="btn btn-primary mt-5 " href="{{url('/register?type=services_provider')}}">سجل الان</a>
 
                     @else
-                        <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                        @if(Auth::user() && Auth::user()->isServicesProvider())
+
+                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                        @else
+                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">سجل</a>
+                            
+                        @endif
                     @endguest
                 </div>
 
@@ -66,7 +73,15 @@
 
                     <p>العمل عن بعد هو أسلوب الحياة الجديد، في منصة .انادي. بتكون تشتغل بالوقت اللي يناسبك، وبالقيمة اللي تناسبك، وفي المكان اللي يناسبك. بيكون عملك فيه إجازة، و إجازتك فيها عمل! ممتع؟ إذا تعتقد انك موهوب، وتحب الشغل، جرب احسب دخلك.</p>
 
-                    <a class="btn btn-primary mt-5" href="{{url('/')}}">اضف خلطة</a>
+                        @if(Auth::user() && Auth::user()->isServicesProvider())
+
+                            <a class="btn btn-primary mt-5" href="{{url('/account/mixtures/create')}}">اضف خلطة</a>
+                        @else
+                            <a class="btn btn-primary mt-5 " href="{{url('/mixtures')}}">تعرف على الخلطات</a>
+                            
+                        @endif
+
+
 
                 </div>
 

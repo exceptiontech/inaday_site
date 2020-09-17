@@ -79,56 +79,138 @@ class FavoriteController extends Controller
     public function update(Request $request)
     {
         
-        $service = Service::findorfail($request->id);
+        if ($request->type = 'service') {
+            $service = Service::find($request->id);
+            if (Auth::user()->ServicehasFavorite($request->id)) {
+                $favorite = Favorite::where('service_id',$request->id);
+                $favorite->delete();
 
-        if (Auth::user()->ServicehasFavorite($request->id)) {
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'delete';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
 
-            $favorite = Favorite::where('service_id',$request->id);
-            $favorite->delete();
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $service->user->notify(new FavoriteDeleted($favorite));
+                } 
+                return response()->json(['result'=>'remove']);
 
-            if ($favorite) {
-                $log           = new Log;
-                $log->user_id  = Auth::user()->id;
-                $log->action   = 'delete';
-                $log->model    = 'favorite';
-                $log->url      = $request->server()['REQUEST_URI'];
-                $log->ip       = $request->server()['REMOTE_ADDR'];
-                $log->save();
+            }else {
+                $favorite = new Favorite;
+                $favorite->service_id = $request->id;
+                $favorite->user_id = Auth::user()->id;
+                $favorite->save();
+
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'create';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
+
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $service->user->notify(new FavoriteCreated($favorite));
+                } 
+                return response()->json(['result'=>'done']);
             }
+        }elseif ($request->type = 'project') {
+            $project = Service::find($request->id);
+            if (Auth::user()->ProjecthasFavorite($request->id)) {
+                $favorite = Favorite::where('project_id',$request->id);
+                $favorite->delete();
 
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'delete';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
 
-            if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
-            {
-                $service->user->notify(new FavoriteDeleted($favorite));
-            } 
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $project->user->notify(new FavoriteDeleted($favorite));
+                } 
+                return response()->json(['result'=>'remove']);
 
-            
+            }else {
+                $favorite = new Favorite;
+                $favorite->project_id = $request->id;
+                $favorite->user_id = Auth::user()->id;
+                $favorite->save();
 
-            return response()->json(['result'=>'remove']);
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'create';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
 
-        }else {
-            $favorite = new Favorite;
-            $favorite->service_id = $request->id;
-            $favorite->user_id = Auth::user()->id;
-            $favorite->save();
-
-            if ($favorite) {
-                $log           = new Log;
-                $log->user_id  = Auth::user()->id;
-                $log->action   = 'create';
-                $log->model    = 'favorite';
-                $log->url      = $request->server()['REQUEST_URI'];
-                $log->ip       = $request->server()['REMOTE_ADDR'];
-                $log->save();
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $project->user->notify(new FavoriteCreated($favorite));
+                } 
+                return response()->json(['result'=>'done']);
             }
+        }elseif ($request->type = 'mixture') {
+            $mixture = Mixture::find($request->id);
+            if (Auth::user()->MixturehasFavorite($request->id)) {
+                $favorite = Favorite::where('mixture_id',$request->id);
+                $favorite->delete();
 
-            if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
-            {
-                $service->user->notify(new FavoriteCreated($favorite));
-            } 
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'delete';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
 
-            
-            return response()->json(['result'=>'done']);
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $project->user->notify(new FavoriteDeleted($favorite));
+                } 
+                return response()->json(['result'=>'remove']);
+
+            }else {
+                $favorite = new Favorite;
+                $favorite->mixture_id = $request->id;
+                $favorite->user_id = Auth::user()->id;
+                $favorite->save();
+
+                if ($favorite) {
+                    $log           = new Log;
+                    $log->user_id  = Auth::user()->id;
+                    $log->action   = 'create';
+                    $log->model    = 'favorite';
+                    $log->url      = $request->server()['REQUEST_URI'];
+                    $log->ip       = $request->server()['REMOTE_ADDR'];
+                    $log->save();
+                }
+
+                if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
+                {
+                    $project->user->notify(new FavoriteCreated($favorite));
+                } 
+                return response()->json(['result'=>'done']);
+            }
         }
 
 
