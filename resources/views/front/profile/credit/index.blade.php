@@ -30,18 +30,18 @@
 
                                 <ul class="nav nav-pills mb-4">
                                   <li class="nav-item">
-                                    <a class="nav-link active" href="#">معلومات الرصيد</a>
+                                    <a class="nav-link active" href="#summary">معلومات الرصيد</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="#">العمليات المالية</a>
+                                    <a class="nav-link" href="#records">العمليات المالية</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="#">سحب المبالغ</a>
+                                    <a class="nav-link" href="#withdraw">سحب المبالغ</a>
                                   </li>
                                 </ul>
 
 
-                                <div class="row text-center mb-5">
+                                <div id="summary" class="row text-center mb-5">
 
                                     <div class="col-12 col-sm-4">
                                         <div class="bg-light pt-3 box rounded">
@@ -53,23 +53,23 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class=" bg-light pt-3 box rounded">
-                                            <h2 class="mb-3">الرصيد الكلي</h2>
+                                            <h2 class="mb-3">الرصيد المعلّق</h2>
                                             <p class="price mb-1"><span class="red mr-1">200</span>ريال سعودي</p>
-                                            <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
+                                            <p class="p-3">هو الرصيد المعلق الذي لا يمكن سحبه إلا بعد تأكيد صاحب المشروع بالإستلام</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="bg-light pt-3 box rounded">
-                                            <h2 class="mb-3">الرصيد الكلي</h2>
+                                            <h2 class="mb-3">آرباح ممكن سحبها</h2>
                                             <p class="price mb-1"><span  class="green mr-1">200</span>ريال سعودي</p>
-                                            <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
+                                            <p class="p-3">هو المبلغ الذي حققتهه من عملك ويمكن سحبه الي حسابك</p>
                                         </div>
                                     </div>
 
                                 </div>
 
-
-                                <div class="table-responsive ">
+                                <div id="records">
+                                  <div class="table-responsive">
                                     <table class="table mt-4 mb-5">
                                       <thead class="thead-light">
                                         <tr>
@@ -101,10 +101,10 @@
 
                                       </tbody>
                                     </table>
-
+                                  </div>
                                 </div>
 
-                                <div class="col-12">
+                                <div id="withdraw" class="col-12">
                                     <form>
                                         <div class="row mb-4">
                                             <div class="col-12 col-sm-6">

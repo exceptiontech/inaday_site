@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Booking;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -135,12 +136,37 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Project')->where('is_approved',1)->where('deleted_at', '=', null);
     }
 
-    public function bookedprojects()
+
+
+    public function ServiceOrders()
     {
-        return $this->whereHas('projects', function ($query) {
-                $query->whereHas('booking');
+        $id = $this->id;
+
+        return Booking::whereHas('service', function ($query) use ($id) {
+                $query->where('user_id' , $id);
             })->get();
     }
+
+    public function MixtureOrders()
+    {
+        $id = $this->id;
+
+        return Booking::whereHas('mixture', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->get();
+    }
+
+    public function ProjectOrders()
+    {
+        $id = $this->id;
+
+        return Booking::whereHas('offer', function ($query) use ($id) {
+                    $query->where('user_id' , $id);
+            })->get();
+    }
+
+
+
 
     public function bookings()
     {
@@ -242,6 +268,27 @@ class User extends Authenticatable implements MustVerifyEmail
     public function usersettings()
     {
         return $this->hasOne('App\Usersettings');
+    }
+
+
+
+    public function BookedProjects()
+    {
+
+        return $this->bookings->where('project_id','!=', '');
+    }
+
+    public function BookedServices()
+    {
+
+        return $this->bookings->where('service_id','!=', '');
+
+    }
+
+    public function BookedMixtures()
+    {
+        return $this->bookings->where('mixture_id','!=', '');
+
     }
 
 

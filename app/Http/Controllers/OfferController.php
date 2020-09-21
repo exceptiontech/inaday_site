@@ -81,16 +81,16 @@ class OfferController extends Controller
         $project = Project::findorfail($request->project_id);
 
 
-        // Mail::send('mail.offer', ['offer'=>$offer], function($message) use ($offer)
-        //     {
-        //         $message->to($offer->project->user->email, 'Email Message')->subject('تم اضافة عرض لطلبك');
-        //     }); 
-
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->offer_notifications)
         {
+            $offer->user->notify(new OfferCreated($offer));
+        }
+
+        if ($project->user->usersettings && $project->user->usersettings->offer_notifications) {
             $project->user->notify(new OfferCreated($offer));
         }
+
 
 
         Session::flash('status', __('file.success'));

@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-12 contact_author align-bottom">
                           
-                              <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/charge') }}" method="post">
+                              <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
                                   {{ csrf_field() }}
                                   <button class="btn btn-primary btn-block mb-2">{{__('file.book_mixture')}}</button>

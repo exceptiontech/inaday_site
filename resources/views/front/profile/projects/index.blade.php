@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="col-12 title mb-3">
-                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->bookedprojects())}}</span></h2>
+                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->BookedProjects())}}</span></h2>
                             </div>
 
                             
@@ -75,7 +75,7 @@
                                                     </div>
                                                     <div class="col-5 text-right">
                                                         <label class="btn btn-secondary rounded text-white">{{$project->cost}} ريال</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">تفاصيل الخدمة</a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">تفاصيل المشروع</a>
                                                     </div>
                                                 </div>
                                             </div>

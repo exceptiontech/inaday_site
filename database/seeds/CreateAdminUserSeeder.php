@@ -662,5 +662,41 @@ The service provider may be an employee who wants to convert his work to be remo
         $beneficiary = Beneficiary::create(['title' => $title,'subtitle' => $subtitle,'desc' =>  $desc ,'image'=>'assets/images/img2.jpg']);
 
 
+
+
+        $title  = array();
+        $title['ar'] = 'تعليق او استفسار';
+        $title['en'] = 'comment';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'comment',
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'طلب مهلة';
+        $title['en'] = 'request duration';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'request_duration',
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'طلب تعميد تسلم المشروع';
+        $title['en'] = 'confirm booking';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'confirm_booking',
+        ]);
+
+
+        $title  = array();
+        $title['ar'] = 'أخرى';
+        $title['en'] = 'other';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'other',
+        ]);
+
+
     }
 }

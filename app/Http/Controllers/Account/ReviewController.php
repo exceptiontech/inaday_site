@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 
 use App\Review;
+use App\Booking;
 use Illuminate\Http\Request;
 
 use App\Log;
@@ -51,9 +52,8 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
 
-
         $this->validate($request,[
-            'title'     =>'required|max:500',
+            //'title'     =>'required|max:500',
             'review'     =>'required|max:500',
         ]);
 
@@ -78,10 +78,23 @@ class ReviewController extends Controller
 
         }
 
+        if ($request->is_confirmed) {
+            $booking = Booking::find($request->booking_id);
+            $booking->status_id = 3;
+            $booking->save();
+        }
+
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->review_notifications)
         {
             Auth::user()->notify(new ReviewCreated($review));
         } 
+
+        if ($request->is_confirmed == 0) {
+            $admin = User::find(1);
+            $admin->notify(new ReviewCreated($review));
+        }
+
 
 
         Session::flash('status', __('admin.success'));

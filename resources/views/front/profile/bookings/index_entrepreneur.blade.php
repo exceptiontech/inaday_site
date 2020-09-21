@@ -22,19 +22,14 @@
 
                             <div class="col-12 col-sm-8 profile-content services mb-5">
 
-                                <!-- services -->
-                                <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">الطلبات</h3>
-                                </div>
-                                
                                 <!-- projects -->
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">طلبات المشاريع</h3>
                                 </div>
 
-                                @if(count(Auth::user()->ProjectOrders()))
+                                @if(count(Auth::user()->BookedProjects()))
 
-                                    @foreach(Auth::user()->ProjectOrders() as $booking)
+                                    @foreach(Auth::user()->BookedProjects() as $booking)
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
@@ -79,8 +74,8 @@
                                 </div>
 
 
-                                @if(count(Auth::user()->ServiceOrders()))
-                                    @foreach(Auth::user()->ServiceOrders() as $booking)
+                                @if(count(Auth::user()->BookedServices()))
+                                    @foreach(Auth::user()->BookedServices() as $booking)
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
                                             <div class="col-sm-2">
@@ -121,8 +116,8 @@
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">طلبات الخلطات</h3>
                                 </div>
-                                @if(count(Auth::user()->MixtureOrders()))
-                                    @foreach(Auth::user()->MixtureOrders() as $booking)
+                                @if(count(Auth::user()->BookedMixtures()))
+                                    @foreach(Auth::user()->BookedMixtures() as $booking)
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">

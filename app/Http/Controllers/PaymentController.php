@@ -95,7 +95,7 @@ class PaymentController extends Controller
 
             $service = Service::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
             
-            if ($id != $service->id) {
+            if ($model_id != $service->id) {
                 return 'access denied';
             }
 
@@ -131,7 +131,7 @@ class PaymentController extends Controller
 
             $mixture = Mixture::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
             
-            if ($id != $mixture->id) {
+            if ($model_id != $mixture->id) {
                 return 'access denied';
             }
 
@@ -195,9 +195,7 @@ class PaymentController extends Controller
 
                 if ($type == 'offer') {
 
-
                     $offer = Offer::findorfail($id);
-
 
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
@@ -219,9 +217,12 @@ class PaymentController extends Controller
                             $booking = new Booking;
                             $booking->offer_id = $id;
                             $booking->project_id = $offer->project_id;
-                            $booking->user_id = $offer->user_id;
+                            $booking->user_id = Auth::id();
                             $booking->payment_id = $payment->id;
                             $booking->save();
+
+                            $offer->is_confirmed = 1;
+                            $offer->save();
 
 
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
@@ -266,7 +267,7 @@ class PaymentController extends Controller
                         if ($payment) {
                             $booking = new Booking;
                             $booking->service_id = $id;
-                            $booking->user_id = $service->user_id;
+                            $booking->user_id = Auth::id();
                             $booking->payment_id = $payment->id;
                             $booking->save();
 
@@ -292,7 +293,7 @@ class PaymentController extends Controller
                     }
              
 
-                }elseif($type == 'mixtures') {
+                }elseif($type == 'mixture') {
 
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
