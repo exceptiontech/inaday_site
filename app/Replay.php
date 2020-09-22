@@ -21,4 +21,19 @@ class Replay extends Model
         return $this->belongsTo('App\Booking');
     }
 
+    public function replaykind()
+    {
+        return $this->belongsTo('App\Replaykind');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Replay','replay_id');
+    }
+
+    public function replays()
+    {
+        return $this->hasMany('App\Replay');
+    }
+
 }

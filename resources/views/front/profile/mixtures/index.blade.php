@@ -16,7 +16,7 @@
                                 @include('front.profile.parts.menu')
                             </div>
 
-                            <div class="col-12 col-sm-8 profile-content mixtures mb-5">
+                            <div class="col-12 col-sm-8 profile-content services mb-5">
 
                                 <!-- mixtures -->
                                 
@@ -29,7 +29,7 @@
 
                                 @if(count($team->mixtures))
                                     @foreach($team->mixtures as $mixture)
-                                    <div class="col-12 mixture pb-3 pt-2">
+                                    <div class="col-12 service pb-3 pt-2">
 
                                         <div class="row">
                                             <div class="col-sm-2">
@@ -61,7 +61,7 @@
                                                     </div>
                                                     <div class="col-6 text-right">
                                                         <label class="btn btn-secondary rounded">{{$mixture->cost}} ريال</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">تفاصيل الخدمة</a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">تفاصيل الخلطة</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,7 +69,7 @@
                                     </div>
 
                                     @endforeach
-                                    <a href="{{url('/account/mixtures/create/'.$team->id)}}" class="btn btn-sm btn-primary">اضافة خلطة جديدة لفريق {{$team->title}}</a>
+                                    <a  href="{{url('/account/mixtures/create/'.$team->id)}}" class="btn btn-sm btn-primary mt-3">اضافة خلطة جديدة لفريق {{$team->title}}</a>
                                 @else
                                     <p>لم تقم باضافة اي خلطة في الوقت الحالي في هذا الفريق
                                         

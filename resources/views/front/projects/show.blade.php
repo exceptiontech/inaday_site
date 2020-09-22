@@ -223,7 +223,6 @@
 
                         @if(!$project->booking)
 
-
                         @if(count($project->offers)>0)
                         <div class="block col-12 pt-3 pb-5 mb-1">
                             <div class="col-sm-12">
@@ -321,16 +320,21 @@
                           @if(Auth::user() && Auth::user()->isServicesProvider())
 
                             @if($project->num_team == 1)
-                              <div class="alert alert-success">{{trans('file.be_the_first_services_provider_add_offer')}}</div>
-
+                                <div class="alert alert-success">
+                                    {{trans('file.be_the_first_services_provider_add_offer')}}
+                                </div>
                             @else
-                              <div class="alert alert-info">{{trans('file.this_project_for_teams')}}</div>
+                              <div class="alert alert-info">{{trans('file.this_project_for_teams')}}
+                              </div>
 
                             @endif
 
                           @else
-                            <p>{{trans('file.no_offer_at_this_time')}}</p>
-
+                            <div class="col-12 mt-5">
+                                <div class="alert alert-info">
+                                    {{trans('file.no_offer_at_this_time')}} 
+                                </div>
+                            </div>
                           @endif
                         </div>
                         @endif
@@ -449,7 +453,11 @@
 
 
                         @else
-                          {{trans('file.not_available_right_now')}}
+                            <div class="col-12 mt-5">
+                                <div class="alert alert-info">
+                                    {{trans('file.not_available_right_now')}} 
+                                </div>
+                            </div>
                         @endif
 
 

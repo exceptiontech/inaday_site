@@ -57,8 +57,8 @@
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">المشاريع</h2> 
                                 
-                                      @if(count(Auth::user()->projects))
-                                        @foreach(Auth::user()->projects as $project)
+                                      @if(count($user->projects))
+                                        @foreach($user->projects as $project)
                                         <div class="col-12 project pb-3 pt-2">
                                             <h2>{{$project->title}}</h2>
 
@@ -79,7 +79,7 @@
                                                             @else
                                                               <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid" alt="{{$project->title}}" title="{{$project->title}}" />                                                             
                                                             @endif                                                             
-                                                            {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
+                                                            {{$user->first_name. ' ' .$user->last_name}}
                                                         </li>
                                                         <li class="list-inline-item">
                                                             <div class="bg-light pt-1 pb-1 p-2 ">

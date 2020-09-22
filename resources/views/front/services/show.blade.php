@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-12 contact_author align-bottom">
                           
-                              <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/charge') }}" method="post">
+                              <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $service->cost}}" />
                                   {{ csrf_field() }}
                                   <button class="btn btn-primary btn-block mb-2">{{__('file.book_service')}}</button>
@@ -187,7 +187,7 @@
                                                 <div class="mt-2 small">
                                                     <h2>{{ $review->user->first_name.' '.$review->user->last_name }}</h2>
                                                 </div>
-                                                <span class="small"> 10/11/2019</span> 
+                                                <span class="small"> {{ $review->created_at }} </span> 
                                             </div>
                                         </div>
 

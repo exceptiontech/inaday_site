@@ -22,6 +22,7 @@ use App\Stage;
 use App\Section;
 use App\Qtype;
 use App\Beneficiary;
+use App\Replaykind;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -660,6 +661,42 @@ The service provider may be an employee who wants to convert his work to be remo
         $desc['ar'] = 'هو كل مبادر و صاحب فكرة وعزيمة لديه حلم في بدء أعمال تجارية، تخدمه وتخدم مجتمعه و تكون سبب في خلق الوظائف، و يكون ملهم و قدوة ومثال لجيل الرؤية.';
         $desc['en'] = 'He is every entrepreneur and one who has an idea and a determination that has a dream in starting a business, serving him and serving his community and being a reason in creating jobs, and it is an inspiration and role model and example for the generation of vision.';
         $beneficiary = Beneficiary::create(['title' => $title,'subtitle' => $subtitle,'desc' =>  $desc ,'image'=>'assets/images/img2.jpg']);
+
+
+
+
+        $title  = array();
+        $title['ar'] = 'تعليق او استفسار';
+        $title['en'] = 'comment';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'comment',
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'طلب مهلة';
+        $title['en'] = 'request duration';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'request_duration',
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'طلب تعميد تسلم المشروع';
+        $title['en'] = 'confirm booking';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'confirm_booking',
+        ]);
+
+
+        $title  = array();
+        $title['ar'] = 'أخرى';
+        $title['en'] = 'other';
+        $replaykind = Replaykind::create([
+            'title' => $title,
+            'slug' => 'other',
+        ]);
 
 
     }

@@ -18,6 +18,11 @@ class Booking extends Model
         return $this->belongsTo('App\Project');
     }
 
+    public function mixture()
+    {
+        return $this->belongsTo('App\Mixture');
+    }
+
     public function offer()
     {
         return $this->belongsTo('App\Offer');
@@ -40,9 +45,56 @@ class Booking extends Model
 
     public function replays()
     {
-        return $this->hasMany('App\Replay');
+        return $this->hasMany('App\Replay')->where('replay_id', null);
+    }
+
+    public function requestDuration()
+    {
+        return $this->hasMany('App\Replay')->where('duration', '!=', null)->where('is_confirmed',0)->where('replay_id',null)->latest()->first();
     }
 
 
+    public function requestConfirm()
+    {
+        return $this->hasMany('App\Replay')->where('replaykind_id',3)->latest()->first();
+    }
+
+
+    public function getModel() {
+
+        if ($this->service) {
+            return $this->service;
+        }elseif ($this->project) {
+            return $this->project;
+        }elseif ($this->mixture) {
+            return $this->mixture;
+        }
+    }
+
+
+    // public function status() {
+
+    //     $now = Carbon::now();
+
+    //     $end_date = Carbon::parse($this->end_date);
+
+    //     $lengthOfAd = $now->diffInDays($end_date, false);
+
+    //     $status ='منتهي';
+
+    //     if ($lengthOfAd > 6 && $end_date > $now ) {
+    //         $status ='عادي';
+    //     }elseif ($lengthOfAd > 3 && $end_date > $now) {
+    //         $status ='متوسط';
+    //     }elseif ($lengthOfAd > 0 && $end_date > $now) {
+    //         $status ='عاجل لم يتبقي الا وقت وجيز تواصل مع العميل';
+    //     }elseif ($lengthOfAd == 0 && $end_date > $now) {
+    //         $status ='عاجل لم يتبقي الا يوم واحد تواصل مع العميل';
+    //     }elseif ($lengthOfAd < 0  && $end_date > $now) {
+    //         $status ='منتهي';
+    //     }
+
+    //     return $status ;
+    // }
 
 }

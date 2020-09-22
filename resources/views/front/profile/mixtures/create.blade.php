@@ -180,7 +180,7 @@
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
-                                        <button class="btn btn-primary">اضافة المشروع</button>
+                                        <button class="btn btn-primary">اضافة خلطة</button>
                                     </div>
                                 </div>
 

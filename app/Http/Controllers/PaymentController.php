@@ -22,6 +22,7 @@ use App\Booking;
 use App\Project;
 use App\Offer;
 use App\Mixture;
+use App\Transaction;
 use URL;
 
 
@@ -41,13 +42,19 @@ class PaymentController extends Controller
         $this->gateway->setTestMode(env('PAYPAL_TEST_MODE')); //set it to 'false' when go live
     }
  
-    public function index()
-    {
-        return view('payment');
-    }
  
     public function charge(Request $request,$title,$model_id,$offer_id)
     {
+
+        function percentPlus($number,$percent) {
+            $total = ($number / $percent ) + $number;
+            return $total;
+        }
+
+        function percentMinus($number,$percent) {
+            $total = $number - ($number / $percent ) ;
+            return $total;
+        }
 
         $url = URL::previous();
 
@@ -69,7 +76,8 @@ class PaymentController extends Controller
                 Session::put('id',$offer->id);
 
                 if ($request->input('amount') == $offer->price) {
-                    $mount = round($request->input('amount')/3.75,2);
+                    $total = percentPlus($request->input('amount') , 10);
+                    $mount = round($total/3.75,2);
                 }
 
                 try {
@@ -95,7 +103,7 @@ class PaymentController extends Controller
 
             $service = Service::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
             
-            if ($id != $service->id) {
+            if ($model_id != $service->id) {
                 return 'access denied';
             }
 
@@ -106,7 +114,8 @@ class PaymentController extends Controller
                 Session::put('id',$service->id);
 
                 if ($request->input('amount') == $service->cost) {
-                    $mount = round($request->input('amount')/3.75,2);
+                    $total = percentPlus($request->input('amount') , 10);
+                    $mount = round($total/3.75,2);
                 }
 
                 try {
@@ -131,7 +140,7 @@ class PaymentController extends Controller
 
             $mixture = Mixture::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
             
-            if ($id != $mixture->id) {
+            if ($model_id != $mixture->id) {
                 return 'access denied';
             }
 
@@ -142,7 +151,8 @@ class PaymentController extends Controller
                 Session::put('id',$mixture->id);
 
                 if ($request->input('amount') == $mixture->cost) {
-                    $mount = round($request->input('amount')/3.75,2);
+                    $total = percentPlus($request->input('amount') , 10);
+                    $mount = round($total/3.75,2);
                 }
 
                 try {
@@ -171,6 +181,19 @@ class PaymentController extends Controller
     public function payment_success(Request $request)
     {
 
+
+
+        function percentPlus($number,$percent) {
+            $total = ($number / $percent ) + $number;
+            return $total;
+        }
+
+        function percentMinus($number,$percent) {
+            $total = $number - ($number / $percent ) ;
+            return $total;
+        }
+
+
         // Once the transaction has been approved, we need to complete it.
         if ($request->input('paymentId') && $request->input('PayerID'))
         {
@@ -195,9 +218,7 @@ class PaymentController extends Controller
 
                 if ($type == 'offer') {
 
-
                     $offer = Offer::findorfail($id);
-
 
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
@@ -219,9 +240,36 @@ class PaymentController extends Controller
                             $booking = new Booking;
                             $booking->offer_id = $id;
                             $booking->project_id = $offer->project_id;
-                            $booking->user_id = $offer->user_id;
+                            $booking->user_id = Auth::id();
+                            $booking->provider_id = $offer->user->id;
                             $booking->payment_id = $payment->id;
                             $booking->save();
+
+                            $offer->is_confirmed = 1;
+                            $offer->save();
+
+                            if ($booking) {
+
+                                // for services provider
+                                $transaction = new Transaction;
+                                $transaction->mount = percentMinus($offer->price,10);
+                                $transaction->type = 'plus'; // plus or minus
+                                $transaction->title = 'ربح';
+                                $transaction->user_id = $offer->user->id;
+                                $transaction->booking_id = $booking->id;
+                                $transaction->is_confirmed = 0; // except project complete 
+                                $transaction->save();
+
+                                // for entrupeneur 
+                                $transaction = new Transaction;
+                                $transaction->mount = percentPlus($offer->price,10);
+                                $transaction->type = 'sell'; // sell or refund
+                                $transaction->title = 'شراء';
+                                $transaction->user_id = Auth::user()->id;
+                                $transaction->booking_id = $booking->id;
+                                $transaction->is_confirmed = 1;  
+                                $transaction->save();
+                            }
 
 
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
@@ -266,10 +314,34 @@ class PaymentController extends Controller
                         if ($payment) {
                             $booking = new Booking;
                             $booking->service_id = $id;
-                            $booking->user_id = $service->user_id;
+                            $booking->user_id = Auth::id();
+                            $booking->provider_id = $service->user->id;
                             $booking->payment_id = $payment->id;
                             $booking->save();
 
+
+                            if ($booking) {
+
+                                // for services provider
+                                $transaction = new Transaction;
+                                $transaction->mount = percentMinus($service->cost,10);
+                                $transaction->type = 'plus'; // plus or minus
+                                $transaction->title = 'ربح';
+                                $transaction->user_id = $service->user->id;
+                                $transaction->booking_id = $booking->id;
+                                $transaction->is_confirmed = 0; // except project complete 
+                                $transaction->save();
+
+                                // for entrupeneur 
+                                $transaction = new Transaction;
+                                $transaction->mount = percentPlus($service->cost,10);
+                                $transaction->type = 'sell'; // sell or refund
+                                $transaction->title = 'شراء';
+                                $transaction->user_id = Auth::user()->id;
+                                $transaction->booking_id = $booking->id;
+                                $transaction->is_confirmed = 1;  
+                                $transaction->save();
+                            }
 
 
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
@@ -292,14 +364,16 @@ class PaymentController extends Controller
                     }
              
 
-                }elseif($type == 'mixtures') {
+                }elseif($type == 'mixture') {
 
                     // The customer has successfully paid.
                     $arr_body = $response->getData();
              
                     // Insert transaction data into the database
                     $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
-             
+
+                    $mixture = Mixture::findorfail($id);
+
                     $payment = new Payment;
                     $payment->payment_id = $arr_body['id'];
                     $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
@@ -313,10 +387,34 @@ class PaymentController extends Controller
                         $booking = new Booking;
                         $booking->mixture_id = $id;
                         $booking->user_id = Auth::user()->id;
+                        $booking->provider_id = $mixture->team->user->id;
                         $booking->payment_id = $payment->id;
                         $booking->save();
 
-                        $mixture = Mixture::findorfail($id);
+
+                        if ($booking) {
+
+                            // for services provider
+                            $transaction = new Transaction;
+                            $transaction->mount = percentMinus($mixture->cost,10);
+                            $transaction->type = 'plus'; // plus or minus
+                            $transaction->title = 'ربح';
+                            $transaction->user_id = $mixture->team->user->id;
+                            $transaction->booking_id = $booking->id;
+                            $transaction->is_confirmed = 0; // except project complete 
+                            $transaction->save();
+
+                            // for entrupeneur 
+                            $transaction = new Transaction;
+                            $transaction->mount = percentPlus($mixture->cost,10);
+                            $transaction->type = 'sell'; // sell or refund
+                            $transaction->title = 'شراء';
+                            $transaction->user_id = Auth::user()->id;
+                            $transaction->booking_id = $booking->id;
+                            $transaction->is_confirmed = 1;  
+                            $transaction->save();
+                        }
+
 
                         if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                         {

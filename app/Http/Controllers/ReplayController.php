@@ -42,12 +42,14 @@ class ReplayController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
+
 
         $validator = Validator::make($request->all(), [
             'booking_id'        => 'required|integer',
-            'replay'             => 'required',
-
+            //'replaykind_id'     => 'required|integer',
+            'replay'            => 'required',
+            //'file'            => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:8048',
         ]);
 
         if ($validator->fails()) {
@@ -59,9 +61,35 @@ class ReplayController extends Controller
         $replay->user_id=Auth::id();
         $replay->booking_id=$request->booking_id;
         $replay->replay=$request->replay;
+        $replay->replaykind_id=$request->replaykind_id;
+        $replay->duration=$request->duration;
+
+        if (!$replay->is_confirmed) {
+            $replay->is_confirmed=0;
+        }else {
+            $replay->is_confirmed=$request->is_confirmed;
+        }
+        
+        $replay->replay_id=$request->replay_id;
+
+        $file = $request->file;
+
+        if ($file) {
+            $destinationPath = 'uploads/replay';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $replay->file = $destinationPath.'/'.$fileName;
+        }
+
         $replay->save();
 
 
+        if ($request->replay_id) {
+            $replay = Replay::find($request->replay_id);
+            $replay->is_confirmed=$request->is_confirmed;
+            $replay->save();
+        }
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->replay_notifications)
         {

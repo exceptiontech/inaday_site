@@ -132,7 +132,8 @@
 
                     <li class="nav-item not-active">
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle rounded pt-1 pb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle img-thumbnail img-icon30 img-fluid" src="{{ url(Auth::user()->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}">
                         {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
