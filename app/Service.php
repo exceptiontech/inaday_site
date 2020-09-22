@@ -30,4 +30,11 @@ class Service extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+
+    public function files()
+    {
+        return $this->hasMany('App\File');
+    }
+
 }

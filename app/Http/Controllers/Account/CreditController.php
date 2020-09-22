@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Transaction;
+use App\Log;
+use Auth;
+use Redirect;
+use Session;
+
 class CreditController extends Controller
 {
     /**
@@ -12,9 +18,57 @@ class CreditController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request  ,Transaction $transactions)
     {
-        return view('front.profile.credit.index');
+
+        $transactions = $transactions->newQuery();
+
+        $transactions->where('user_id',Auth::id());
+
+        if ($request->title) {
+            $title = $request->title;
+
+            $transactions->whereHas('booking', function ($query) use ($title) {
+                $query->whereHas('project', function ($query) use ($title) {
+                    $query->where('title', 'like', '%' . $title . '%');
+                });
+            });
+
+            $transactions->whereHas('booking', function ($query) use ($title) {
+                $query->whereHas('service', function ($query) use ($title) {
+                    $query->where('title', 'like', '%' . $title . '%');
+                });
+            });
+
+            $transactions->whereHas('booking', function ($query) use ($title) {
+                $query->whereHas('mixture', function ($query) use ($title) {
+                    $query->where('title', 'like', '%' . $title . '%');
+                });
+            });
+        }
+
+        if ($request->type) {
+            $type = $request->type;
+            $transactions->where('type',$type);
+        }
+
+        if ($request->start_date) {
+            $start_date = $request->start_date;
+            $transactions->whereDate('created_at','>=', $start_date);
+        }
+
+        if ($request->end_date) {
+            $end_date = $request->end_date;
+            $transactions->whereDate('created_at','<=', $end_date);
+        }
+
+
+        if (Auth::user()->isServicesProvider()) {
+            return view('front.profile.credit.services_provider.index')->withTransactions($transactions->latest()->get());
+        }elseif(Auth::user()->isEntrepreneur()) {
+            return view('front.profile.credit.entrepreneur.index')->withTransactions($transactions->latest()->get());
+        }
+        
     }
 
     /**

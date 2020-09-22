@@ -1,7 +1,4 @@
 @extends('layouts.inner')
-@section('title')
-  {{__('file.servives_provider_register')}}
-@endsection
 @section('content')
 
 
@@ -28,6 +25,13 @@
 
                             <div class="col-12 col-sm-8 profile-content mb-5">
 
+                                @if (Session::has('message'))
+                                  <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                        {{Session::get('message')}}
+                                  </div>
+                                @endif
+
                                 <ul class="nav nav-pills mb-4">
                                   <li class="nav-item">
                                     <a class="nav-link active" href="#summary">معلومات الرصيد</a>
@@ -46,7 +50,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="bg-light pt-3 box rounded">
                                             <h2 class="mb-3">الرصيد الكلي</h2>
-                                            <p class="price mb-1"><span class="mr-1">200</span>ريال سعودي</p>
+                                            <p class="price mb-1"><span class="mr-1">{{Auth::user()->totalProfit()}}</span>ريال سعودي</p>
                                             <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
                                         </div>
                                         
@@ -54,14 +58,14 @@
                                     <div class="col-12 col-sm-4">
                                         <div class=" bg-light pt-3 box rounded">
                                             <h2 class="mb-3">الرصيد المعلّق</h2>
-                                            <p class="price mb-1"><span class="red mr-1">200</span>ريال سعودي</p>
+                                            <p class="price mb-1"><span class="red mr-1">{{Auth::user()->pendingProfit()}}</span>ريال سعودي</p>
                                             <p class="p-3">هو الرصيد المعلق الذي لا يمكن سحبه إلا بعد تأكيد صاحب المشروع بالإستلام</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="bg-light pt-3 box rounded">
                                             <h2 class="mb-3">آرباح ممكن سحبها</h2>
-                                            <p class="price mb-1"><span  class="green mr-1">200</span>ريال سعودي</p>
+                                            <p class="price mb-1"><span  class="green mr-1">{{Auth::user()->confirmedProfit()}}</span>ريال سعودي</p>
                                             <p class="p-3">هو المبلغ الذي حققتهه من عملك ويمكن سحبه الي حسابك</p>
                                         </div>
                                     </div>
@@ -70,7 +74,7 @@
 
                                 <div id="records">
                                   <div class="table-responsive">
-                                    <table class="table mt-4 mb-5">
+                                    <table class="table table-bordered mt-4 mb-5">
                                       <thead class="thead-light">
                                         <tr>
                                           <th scope="col">نوع العملية</th>
@@ -80,58 +84,76 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                        @if(count($transactions)> 0)
+                                          @foreach($transactions as $transaction)
+
+
+                                            <tr>
+                                              <td>{{$transaction->title}}</td>
+                                              <td>
+                                                @if($transaction->booking)
+                                                {{$transaction->booking->getModel()->title}}
+                                                @else
+                                                  سحب ارباح
+                                                @endif
+                                              </td>
+                                              <td>@if($transaction->type == 'minus') - @endif
+                                                {{$transaction->mount}} ريال</td>
+                                              <td dir="ltr">{{$transaction->created_at}}</td>
+                                            </tr>
+                                          @endforeach
+                                        @else
                                         <tr>
-                                          <th scope="row">ايداع</th>
-                                          <td>تنفيذ الخدمة - تصميم شعار</td>
-                                          <td>200 ريال</td>
-                                          <td>10/07/2020 | 03:45 PM</td></td>
+                                          <td colspan="4"> لا يوجد اي عمليات</td>
                                         </tr>
-                                        <tr>
-                                          <th scope="row">ايداع</th>
-                                          <td>تنفيذ الخدمة - تصميم شعار</td>
-                                          <td>200 ريال</td>
-                                          <td>10/07/2020 | 03:45 PM</td></td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">ايداع</th>
-                                          <td>تنفيذ الخدمة - تصميم شعار</td>
-                                          <td>200 ريال</td>
-                                          <td>10/07/2020 | 03:45 PM</td></td>
-                                        </tr>
+
+                                        @endif
 
                                       </tbody>
                                     </table>
                                   </div>
+
                                 </div>
 
+                                @if(Auth::user()->requestedProfit())
                                 <div id="withdraw" class="col-12">
-                                    <form>
+                                    {{ Form::open(['action' => 'Account\TransactionController@store']) }}
+                                                
+
+                                        @if(count($errors) > 0)
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissable" >
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                    {{ $error}}
+                                                </div>
+                                            @endforeach
+                                        @endif
                                         <div class="row mb-4">
                                             <div class="col-12 col-sm-6">
-                                                <label class="mb-3" for="inputEmail4">ادخال المبلغ المراد سحبه</label>
-                                                <input type="text" class="form-control" placeholder="100">
+                                                <label class="mb-3" for="">ادخال المبلغ المراد سحبه</label>
+                                                {!! Form::text('mount', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                             </div>
                                         </div>
 
                                         <div class="row mb-4">
                                             <div class="col-12">
-                                                <label class="mb-3" for="inputEmail4">ملاحظات</label>
-                                                <textarea class="form-control" placeholder="مثال: يمكنك كتابة ملاحظات تذكيرة للمبلغ الذي قمت بسحبة"></textarea> 
+                                                <label class="mb-3" for="">ملاحظات</label>
+                                                {!! Form::textarea('desc', null,  array('required', 'class'=>'textarea form-control', 'rows'=>'3')) !!}
                                             </div>
                                         </div>
 
                                         <div class="row mt-5 mb-3">
                                             <div class="col-12">
-                                                <button class="btn btn-primary">سحب المبلغ</button>
+                                              {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
                                             </div>
                                         </div>
-                                    </form>
-
-
-                                </div>
-
-
-
+                                  {{ Form::close() }}                  
+                                  </div>
+                                  @else
+                                    <div class="alert alert-info">
+                                      هناك طلب لسحب الارباح ، فريق عمل الموقع يعمل على الطلب حال الانتهاء سيتم تفعيل خاصية السحب مرة اخرى 
+                                    </div>
+                                  @endif
                             </div>
 
                             <div class="col-12 col-sm-4">
@@ -139,12 +161,6 @@
                                     <div class="text-center mt-n5">
                                         <img src="{{url('images/lamp.svg')}}">
                                     </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
                                     <p class="mt-5">
                                         - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
                                     </p>

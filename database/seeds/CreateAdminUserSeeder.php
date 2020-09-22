@@ -22,6 +22,7 @@ use App\Stage;
 use App\Section;
 use App\Qtype;
 use App\Beneficiary;
+use App\Replaykind;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;

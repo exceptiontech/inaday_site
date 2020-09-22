@@ -119,61 +119,6 @@
                                        <p>{!! \Illuminate\Support\Str::words($booking->project->desc,350,'....')  !!}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                              
-                                              <div id="socialHolder">
-                                                <div id="socialShare" class=" share-group">
-                                                  <a data-toggle="dropdown" class="btn">
-                                                       <i class="fa fa-share-alt"></i>
-                                                  </a>
-                                                  <ul class="dropdown-menu">
-                                                      <li>
-                                                        <a data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/share?url={{url('/projects/'.$booking->project->title)}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" class="btn btn-twitter" >
-                                                      <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                    </li>
-                                                    <li>
-                                                      <a target="_blank"  href="http://www.facebook.com/sharer.php?u={{url('/projects/'.$booking->project->title)}}" class="btn btn-facebook" >
-                                                      <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                    </li>         
-                                                    <li>
-                                                      <a  rel="tooltip"  href="https://plus.google.com/share?url={{url('/projects/'.$booking->project->title)}}" class="btn btn-google" >
-                                                      <i class="fa fa-google-plus"></i>
-                                                    </a>
-                                                    </li>
-                                                      <li>
-                                                      <a hhref="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/projects/'.$booking->project->title)}}" class="btn btn-linkedin" data-placement="left">
-                                                      <i class="fa fa-linkedin"></i>
-                                                    </a>
-                                                    </li>
-                                                    <li>
-                                                      <a class="btn btn-pinterest" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" >
-                                                      <i class="fa fa-pinterest"></i>
-                                                    </a>
-                                                    </li>
-                                                    <li>
-                                                      <a  class="btn btn-mail" href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{url('/projects/'.$booking->project->title)}}">
-                                                      <i class="fa fa-envelope"></i>
-                                                    </a>
-                                                    </li>
-                                                  </ul>
-                                                </div>
-                                              </div>
-
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                @if(Auth::user()->projecthasFavorite($booking->project->id))
-                                                    <a id="RemoveFromFav" class="updateFav updateFav{{$booking->project->id}}" data-id="{{ $booking->project->id}}" href="#" >
-                                                    <i class="fa fa-star starred" aria-hidden="true"></i></a>
-                                                @else
-                                                    <a id="AddToFav" class="updateFav updateFav{{ $booking->project->id}}" data-id="{{ $booking->project->id}}" href="#" >
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                @endif
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +191,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تعليقات الطلب</h2> 
+                                        <h2 class="mb-3">مسار المشروع والتعليقات</h2> 
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -299,7 +244,7 @@
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
                                                 <div class="alert alert-info mt-4">
-                                                        تم تمديد الطل {{$replay->duration}} بالملاحظات التالية : 
+                                                        تم تمديد الطلب {{$replay->duration}} بالملاحظات التالية : 
                                                         <br>
                                                         {{$replay->replay}}
                                                 </div>
@@ -321,7 +266,19 @@
                                         </div>
                                     @endif
 
-                                    @if($booking->status_id != 3)
+                                    @if($booking->status_id == 3)
+                                    <div class="col-12">
+                                        <div class="alert alert-success">
+                                            المشروع مكتمل
+                                        </div>
+                                    </div>
+                                    @elseif($booking->status_id == 4)
+                                    <div class="col-12">
+                                        <div class="alert alert-danger">
+                                            المشروع غير مكتمل او ملغي
+                                        </div>
+                                    </div>
+                                    @else
 
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
@@ -362,14 +319,15 @@
 
                                                         <div class="col-6">
                                                             {!! Form::label('replaykind_id', 'نوع الاخطار')!!} 
-                                                            {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,['class' => 'form-control']) !!} 
+
+                                                            {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,[ 'class' => 'form-control']) !!} 
                                                         </div>
                                                     </div>
-
-                                                    <div id="duration" class="row mb-4" style="display: none;">
+                                                    <div id="duration" class="row mb-3" style="display: none;">
                                                         <div class="col-6">
-                                                            {!! Form::label('files', 'مدة المهلة ( بالساعه )')!!} 
-                                                            {!! Form::text('duration', null, [ 'class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
+                                                            {!! Form::label('duration', 'مدة المهلة ( بالساعه)')!!} 
+
+                                                            {!! Form::text('duration', null, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
@@ -382,7 +340,8 @@
                                         </div>
                                     </div>
                                     @endif
-                 
+
+
 
                                 </div>
                             </div>
@@ -413,7 +372,7 @@
 
         var id = $("#replaykind_id option:selected").val();
 
-        if (id == 3) {
+        if (id == 2) {
             $('#duration').fadeIn();
         }else {
             $('#duration').fadeOut();

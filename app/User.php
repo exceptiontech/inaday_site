@@ -167,6 +167,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 
+    public function ServiceProviderTotalProfit()
+    {
+        $total_services = Payment::whereHas('booking', function ($query) use ($id) {
+                $query->whereHas('service', function ($query) use ($id) {
+                    $query->where('user_id' , $id);
+                });
+            })->get();
+
+
+        return $total_services;
+    }
+
 
     public function bookings()
     {
@@ -290,6 +302,31 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->bookings->where('mixture_id','!=', '');
 
     }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
+
+    public function totalProfit()
+    {
+        return $this->transactions->where('type','plus')->sum('mount');
+    }
+
+    public function pendingProfit()
+    {
+        return $this->transactions->where('type','plus')->where('is_confirmed',0)->sum('mount');
+    }
+
+    public function requestedProfit() {
+        $this->transactions->where('type','minus')->where('is_confirmed',0)->sum('mount');
+    }
+
+    public function confirmedProfit()
+    {
+        return $this->transactions->where('type','plus')->where('is_confirmed',1)->sum('mount') - $this->transactions->where('type','minus')->sum('mount') ;
+    }
+
 
 
 

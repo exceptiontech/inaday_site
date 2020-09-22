@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use App\Review;
 use App\Booking;
+use App\User;
+use App\Transaction;
 use Illuminate\Http\Request;
 
 use App\Log;
@@ -82,6 +84,15 @@ class ReviewController extends Controller
             $booking = Booking::find($request->booking_id);
             $booking->status_id = 3;
             $booking->save();
+
+            $transaction = Transaction::where('booking_id',$booking->id)->first();
+            $transaction->is_confirmed = 1;
+            $transaction->save();
+
+        }else {
+            $booking = Booking::find($request->booking_id);
+            $booking->status_id = 4;
+            $booking->save();
         }
 
 
@@ -94,7 +105,6 @@ class ReviewController extends Controller
             $admin = User::find(1);
             $admin->notify(new ReviewCreated($review));
         }
-
 
 
         Session::flash('status', __('admin.success'));

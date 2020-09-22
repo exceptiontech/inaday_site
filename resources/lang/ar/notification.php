@@ -59,6 +59,16 @@ return [
 	'OfferConfirm' => 'تم اختيار عرضك',
 	'FavoriteUpdatedDesc' => 'تهانينا تم اختيار عرضك',
 
+	'BookingCreated' => 'طلب جديد',
+	'BookingCreatedDesc' => 'تم استقبال طلب جديد',
+
+	'ReplayCreated' => 'تعليق جديد',
+	'ReplayCreatedDesc' => 'تم اضافة تعليق جديد',
+
+	'ReviewCreated' => 'تقييم جديد',
+	'ReviewCreatedDesc' => 'تم اضافة تقييم جديد',
+
+
 ] 
 
 ?>

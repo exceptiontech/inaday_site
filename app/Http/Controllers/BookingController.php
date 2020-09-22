@@ -70,7 +70,7 @@ class BookingController extends Controller
             }elseif (Auth::user()->isEntrepreneur()) {
 
                 if (Auth::user()->id == $booking->user_id) {
-                    return view('front.bookings.service.show')->withBooking($booking)->withReplaykinds($replaykinds);
+                    return view('front.bookings.service.entrepreneur.show')->withBooking($booking)->withReplaykinds($replaykinds);
                 }
 
             }else{
@@ -81,7 +81,8 @@ class BookingController extends Controller
 
         }elseif ($booking->project_id ) {
 
-            if (Auth::user()->id == $booking->user_id || Auth::user()->id == $booking->project->user_id) {
+
+            if (Auth::user()->id == $booking->user_id || Auth::user()->id == $booking->offer->user_id) {
 
                     if (Auth::user()->isServicesProvider()) {
                         return view('front.bookings.project.show')->withBooking($booking)->withReplaykinds($replaykinds);

@@ -121,6 +121,7 @@ Route::group(['middleware'=>'verified'], function() {
 
     // Credit
     Route::resource('account/credit', 'Account\CreditController', ['names' => 'front_credit']);
+    Route::resource('account/transactions', 'Account\TransactionController', ['names' => 'front_transactions']);
 
     // Reviews
     Route::resource('account/reviews', 'Account\ReviewController', ['names' => 'front_reviews']);

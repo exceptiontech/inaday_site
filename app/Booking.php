@@ -56,7 +56,19 @@ class Booking extends Model
 
     public function requestConfirm()
     {
-        return $this->hasMany('App\Replay')->where('replaykind_id',4)->latest()->first();
+        return $this->hasMany('App\Replay')->where('replaykind_id',3)->latest()->first();
+    }
+
+
+    public function getModel() {
+
+        if ($this->service) {
+            return $this->service;
+        }elseif ($this->project) {
+            return $this->project;
+        }elseif ($this->mixture) {
+            return $this->mixture;
+        }
     }
 
 

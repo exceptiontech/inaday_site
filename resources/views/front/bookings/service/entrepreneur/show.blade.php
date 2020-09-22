@@ -7,7 +7,7 @@
             <div class="row">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5"> {{$booking->project->title}}</h2>
+                    <h2 class="text-white mb-5"> {{$booking->service->title}}</h2>
                 </div>
 
                 <!-- sidebar Begin -->
@@ -15,25 +15,25 @@
                     <div class="bg-light rounded pt-3 pb-3 p-2">
                         <div class="author">
                             <div class="col-sm-12 d-flex align-items-center mb-5">
-                                @if($booking->project->user )
-                                    @if(count($booking->project->user->userdetail) > 0)
-                                        @if($booking->project->user->userdetail->first()->avater)
-                                          <img src="{{ url($booking->project->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->project->title}}" title="{{$booking->project->title}}" />
+                                @if($booking->service->user )
+                                    @if(count($booking->service->user->userdetail) > 0)
+                                        @if($booking->service->user->userdetail->first()->avater)
+                                          <img src="{{ url($booking->service->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
                                         @else
-                                          <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->project->title}}" title="{{$booking->project->title}}" />
+                                          <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
                                         @endif
                                     @else
-                                      <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->project->title}}" title="{{$booking->project->title}}" />
+                                      <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
                                     @endif
                                 @else
-                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->project->title}}" title="{{$booking->project->title}}" />
+                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
                                 @endif  
 
 
                                 <div class="ml-2">
-                                    <span class="small">{{trans('file.project_owner')}}</span> 
+                                    <span class="small">صاحب الخدمة</span> 
                                     <div class="mt-2 small">
-                                        <h2>{{ $booking->project->user->first_name.' '.$booking->project->user->last_name }}</h2>                                    
+                                        <h2>{{ $booking->service->user->first_name.' '.$booking->service->user->last_name }}</h2>                                    
                                     </div>
                                 </div>                   
                             </div>
@@ -49,23 +49,19 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">{{ $booking->project->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="bg-light">{{ $booking->service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">ميزانية المتوقعة</div>
-                                    <div class="col-6 p-0">{{ $booking->project->cost}} {{__('file.riyal')}}</div>
+                                    <div class="col-6 p-0">{{ $booking->service->cost}} {{__('file.riyal')}}</div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{ $booking->project->duration}} يوم </div>
+                                    <div class="col-6 p-0">{{ $booking->service->duration}} يوم </div>
                                 </li>
 
-                                <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">عدد العروض</div>
-                                    <div class="col-6 p-0">{{ count($booking->project->offers)}} عروض </div>
-                                </li>
                             </ul>
 
 
@@ -89,7 +85,7 @@
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->user->id)
-                                <a href="{{url('/messages/'.$booking->project->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                                <a href="{{url('/messages/'.$booking->service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
                             @else
                                 <a href="{{url('/messages/'.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مقدم الخدمة</a>
                             @endif
@@ -111,12 +107,12 @@
                     <div class="bg-light rounded pt-2 pb-3 p-2">
                         <div class="project">
 
-                            <!-- project -->
+                            <!-- service -->
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{ $booking->project->title}}</h2> 
-                                       <p>{!! \Illuminate\Support\Str::words($booking->project->desc,350,'....')  !!}</p>
+                                       <h2 class="mb-3">{{ $booking->service->title}}</h2> 
+                                       <p>{!! \Illuminate\Support\Str::words($booking->service->desc,350,'....')  !!}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                     </div>
@@ -127,8 +123,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تفاصيل المشروع</h2> 
-                                        <p>{{ $booking->project->desc}}</p>
+                                        <h2 class="mb-3">تفاصيل الخدمة</h2> 
+                                        <p>{{ $booking->service->desc}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +135,9 @@
                                     <div class="col-sm-12">
                                         <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2> 
                                         <div class="clearfix">
-                                        @if(count($booking->project->skills))
+                                        @if(count($booking->service->skills))
                                             <ul class="list-inline">
-                                                @foreach($booking->project->skills as $skill)
+                                                @foreach($booking->service->skills as $skill)
                                                     <li class="list-inline-item">
                                                         <span class="bg-light p-2 rounded">{{@$skill->title[App::getLocale()]}}</span>
                                                     </li>
@@ -153,45 +149,13 @@
                                 </div>
                             </div>
 
-                            <div class="block col-12 pt-3 pb-2 mb-1">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h2 class="mb-3">{{trans('file.project_attach')}}</h2> 
-                                    </div>
-                                    <div class="col-sm-12">
-                                        @if(count($booking->project->files) > 0)
-                                            <div class="row">
-                                            @foreach($booking->project->files as $file)
-                                                <div class="col-sm-6">
-                                                    <a class="d-flex" download="download" href="{{url($file->url)}}">
-                                                        <div class="col-4  bg-light shadow-sm text-center p-2 align-middle">
-                                                            @if(pathinfo($file->url, PATHINFO_EXTENSION)  == 'png' || pathinfo($file->url, PATHINFO_EXTENSION) == 'jpg' || pathinfo($file->url, PATHINFO_EXTENSION) == 'jpeg')
-                                                                <img class="img-fluid" src="{{url($file->url)}}">
-                                                            @else
-                                                                <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-8 " dir="ltr">
-                                                         <p class="m-0">{{$file->name}}</p>
-                                                         <p class="m-0">{{ Carbon\Carbon::parse($file->created_at)->format('d-m-Y ') ?? 'غير محدد'}}</p>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                            </div>
-                                        @else
-                                            <p>لا توجد اي ملفات تخص هذا المشروع</p>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
 
 
 
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">مسار المشروع والتعليقات</h2> 
+                                        <h2 class="mb-3">مسار الخدمة والتعليقات</h2> 
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -326,6 +290,7 @@
                                         </div>
                                     </div>
                                     @endif
+
                  
                                     @if($booking->requestDuration())
                                     {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
@@ -344,8 +309,7 @@
                                         @endforeach
                                     @endif
 
-                                    @if($booking->status_id != 3)
-
+                                    @if($booking->status_id != 4)
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -374,6 +338,7 @@
 
                                         </div>
                                     </div>
+
                                     @endif
 
                                     <div class=" mb-3">
@@ -398,7 +363,6 @@
                                             </div>
                                         @endforeach
                                     @endif
-
 
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
