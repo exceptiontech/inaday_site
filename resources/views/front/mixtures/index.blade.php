@@ -1,8 +1,5 @@
 @extends('layouts.inner')
-@section('title')
-{{__('file.mixtures')}}
 
-@endsection
 @section('content')
 <div id="innerpage" class="pt-5 pb-5">
         <div class="container">
@@ -179,11 +176,9 @@
                                                     </li>
                                                     @endif
                                                     @if(count($mixture->services) > 0)
-                                                    @foreach($mixture->services as $service)
-                                                    <li class="list-inline-item">
-                                                        <span class="bg-light">{{$service->title}}</span>
-                                                    </li>
-                                                    @endforeach
+                                                        <li class="list-inline-item">
+                                                            <span class="bg-light">عدد الخدمات : {{ count($mixture->services) }}</span>
+                                                        </li>
                                                     @else
                                                     <li class="list-inline-item">
                                                         <span class="bg-light">بدون خدمات</span>

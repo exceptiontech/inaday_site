@@ -295,7 +295,7 @@
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12">
-                                                          {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
+                                                          {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
                                                 {{ Form::close() }}                  

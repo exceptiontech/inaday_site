@@ -46,6 +46,10 @@ class PaymentController extends Controller
     public function charge(Request $request,$title,$model_id,$offer_id)
     {
 
+        if (Auth::user()->isServicesProvider()) {
+            return view('front.errors.denied');
+        }
+        
         function percentPlus($number,$percent) {
             $total = ($number / $percent ) + $number;
             return $total;

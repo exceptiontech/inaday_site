@@ -62,6 +62,23 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-12">
                                         {!! Form::label('team_members', trans('forms.team_members'))!!} <em class="text-danger">*</em>
+
+
+                                        @if(count($team->users) > 0 )
+
+                                        <div class="col-12 form-control" style="height: 60px">
+                                            <ul class="list-inline m-0 flex-shrink-1">
+                                                @foreach($team->users as $user)
+                                                    <li class="list-inline-item">
+                                                        <div class="bg-light rounded p-1 pb-0"> <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon30 img-fluid" /> {{$user->first_name. ' ' .$user->last_name}}</div>
+                                                    </li>
+                                                @endforeach
+                                            </ul> 
+
+                                        </div>
+                                        @endif
+
+                                        <div class="d-none">
                                         @if(count($team->users) > 0 )
                                             <div class="d-flex">
                                             @foreach($team->users as $user)
@@ -70,7 +87,7 @@
                                                     <div class="gallery-card-body">
                                                       <label class="block-check">
                                                      <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="img-fluid" />
-                                                     <input type="checkbox" name="users[]" value="{{$user->id}}" >
+                                                     <input type="checkbox" name="users[]" value="{{$user->id}}" checked="checked" >
                                                       <span class="checkmark"></span>
                                                       </label>
                                                        <div class="bg-secondary p-2 text-white text-center">{{$user->first_name. ' ' .$user->last_name}}
@@ -81,6 +98,7 @@
                                             @endforeach
                                             </div>
                                         @endif
+                                        </div>
 
                                     </div>
                                 </div>
