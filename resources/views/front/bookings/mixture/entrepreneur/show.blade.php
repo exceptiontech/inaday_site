@@ -138,8 +138,8 @@
                                         @if(count($booking->service->skills))
                                             <ul class="list-inline">
                                                 @foreach($booking->service->skills as $skill)
-                                                    <li class="list-inline-item">
-                                                        <span class="bg-light p-2 rounded">{{@$skill->title[App::getLocale()]}}</span>
+                                                    <li class="list-inline-item bg-light p-2 rounded mb-1">
+                                                        {{@$skill->title[App::getLocale()]}}
                                                     </li>
                                                 @endforeach
                                             </ul>

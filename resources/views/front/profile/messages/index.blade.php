@@ -17,7 +17,7 @@
                             <div class="user-wrapper">
                                 <ul class="users">
                                     @foreach($users as $user)
-                                        <li class="user" id="{{ $user->id }}">
+                                        <li class="user user-{{ $user->id }}" id="{{ $user->id }}">
                                             {{--will show unread count notification--}}
                                             @if($user->unread)
                                                 <span class="pending">{{ $user->unread }}</span>
@@ -25,7 +25,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <img src="{{ $user->userdetail->first()->avater ?? '' }}" alt="" class="media-object">
+                                                    <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" alt="" class="media-object">
                                                 </div>
 
                                                 <div class="media-body">
@@ -71,14 +71,20 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
-        var pusher = new Pusher('e1993980d924f3b362e6', {
+        var pusher = new Pusher('7ceb9866972d25486671', {
           cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+          alert(JSON.stringify(data));
         });
 
 
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function(data) {
             alert(JSON.stringify(data));
+
             if (my_id == data.from) {
                 $('#' + data.to).click();
             } else if (my_id == data.to) {
@@ -130,6 +136,7 @@
                     data: datastr,
                     cache: false,
                     success: function (data) {
+                        $('.user-'+receiver_id).click();
                     },
                     error: function (jqXHR, status, err) {
                     },
