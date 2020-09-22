@@ -261,6 +261,7 @@ return [
    'add_team'=>'إضف فريق',
    'services_providers'=>'مقدمي الخدمات',
    'myteam'=>'فريقي',
+   'mixtures'=>'خلطاتي',
    'team_name'=>'اسم الفريق',
    'team_desc'=>'وصف الفريق',
    'team_logo'=>'شعار الفريق',
