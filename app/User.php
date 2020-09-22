@@ -319,7 +319,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function requestedProfit() {
-        $this->transactions->where('type','minus')->where('is_confirmed',0)->sum('mount');
+        $this->transactions->where('booking_id',null)->where('type','minus')->where('is_confirmed',0)->sum('mount');
     }
 
     public function confirmedProfit()

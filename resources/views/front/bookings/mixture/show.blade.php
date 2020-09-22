@@ -103,8 +103,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{ $booking->mixture->title}}</h2> 
-                                       <p>{!! \Illuminate\Support\Str::words($booking->mixture->desc,350,'....')  !!}</p>
+                                       <h2 class="mb-3">أسم الخلطة</h2> 
+                                       <p>{{ $booking->mixture->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                     </div>
@@ -286,7 +286,7 @@
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12">
-                                                          {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
+                                                          {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
                                                 {{ Form::close() }}                  
