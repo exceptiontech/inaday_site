@@ -7,8 +7,14 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
 use Pusher\Pusher;
 
 class MessageController extends Controller
@@ -65,6 +71,8 @@ class MessageController extends Controller
     {
         $my_id = Auth::id();
 
+        $other_user = User::find($id);
+
         // Make read all unread message
         Message::where(['from' => $id, 'to' => $my_id])->update(['is_read' => 1]);
 
@@ -75,7 +83,7 @@ class MessageController extends Controller
             $query->where('from', $my_id)->where('to', $id);
         })->get();
 
-        return view('front.profile.messages.show', ['messages' => $messages]);
+        return view('front.profile.messages.show', ['messages' => $messages,'other_user' => $other_user]);
     }
 
     /**
@@ -132,9 +140,26 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request)
     {
+
+
         $from = Auth::id();
         $to = $request->receiver_id;
-        $message = $request->message;
+
+        if ($request->file) {
+            $file = $request->file;
+
+            if ($file) {
+                $destinationPath = 'uploads/messages';
+                $extension =  $file->getClientOriginalExtension();
+                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+                $upload_success = $file->move($destinationPath, $fileName);
+                $message = $destinationPath.'/'.$fileName;
+            }
+
+        }else {
+            $message = $request->message;
+        }
+        
 
         $data = new Message();
         $data->from = $from;
@@ -157,7 +182,7 @@ class MessageController extends Controller
         );
 
         $data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
-        
+
         $pusher->trigger('my-channel', 'my-event', $data);
     }
 

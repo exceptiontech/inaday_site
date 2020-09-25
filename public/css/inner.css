@@ -1107,14 +1107,26 @@ input[type="checkbox"] {
   .messages li {
     list-style: none; }
   .messages .user-wrapper, .messages .message-wrapper {
-    border: 1px solid #dddddd;
     overflow-y: auto; }
+  .messages .voiceNote {
+    width: 40px;
+    height: 40px;
+    border: solid 1px #939393;
+    border-radius: 50%;
+    text-align: center;
+    color: #A3A3A3;
+    line-height: 40px; }
+    .messages .voiceNote a {
+      color: #A3A3A3; }
   .messages .user-wrapper {
-    height: 600px; }
+    height: 560px; }
   .messages .user {
     cursor: pointer;
     padding: 5px 0;
-    position: relative; }
+    position: relative;
+    background-color: #F8F8F8;
+    border: solid 1px #D6D6D6;
+    border-right: 0; }
   .messages .user:hover {
     background: #eeeeee; }
   .messages .user:last-child {
@@ -1141,8 +1153,8 @@ input[type="checkbox"] {
     margin: 6px 0; }
   .messages .message-wrapper {
     padding: 10px;
-    height: 536px;
-    background: #eeeeee; }
+    height: 480px;
+    background: #fff; }
   .messages .messages .message {
     margin-bottom: 15px; }
   .messages .messages .message:last-child {
@@ -1152,28 +1164,54 @@ input[type="checkbox"] {
     padding: 3px 10px;
     border-radius: 10px; }
   .messages .received {
-    background: #ffffff; }
+    float: left;
+    text-align: left; }
+    .messages .received .message_content {
+      background: #EDEDED;
+      text-align: right;
+      color: #3C3C3C;
+      border-radius: 0 20px 20px 20px; }
   .messages .sent {
-    background: #3bebff;
-    float: right;
-    text-align: right; }
+    float: right; }
+    .messages .sent .message_content {
+      background: #005689;
+      color: #fff;
+      text-align: right;
+      border-radius: 20px 20px 0 20px; }
   .messages .message p {
     margin: 5px 0; }
   .messages .date {
     color: #777777;
     font-size: 12px; }
   .messages .active {
-    background: #eeeeee; }
+    background: #fff;
+    border-left: 0; }
+  .messages #inputArea {
+    background: #F8F8F8; }
   .messages input[type=text] {
     width: 100%;
     padding: 12px 20px;
     display: inline-block;
-    border-radius: 4px;
+    border-radius: 15px;
     box-sizing: border-box;
     outline: none;
-    border: 1px solid #cccccc; }
+    border: 1px solid #939393;
+    color: #97A3AE;
+    background-color: #fff; }
   .messages input[type=text]:focus {
     border: 1px solid #aaaaaa; }
+  .messages .attach_file {
+    position: absolute;
+    left: 20px;
+    color: #939393; }
+    .messages .attach_file i {
+      margin: 10px;
+      cursor: pointer;
+      font-size: 20px; }
+    .messages .attach_file i:hover {
+      opacity: 0.6; }
+    .messages .attach_file input {
+      display: none; }
 
 .login {
   background-color: #005689;

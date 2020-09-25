@@ -77,9 +77,9 @@
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->mixture->team->user->id)
-                                <a href="{{url('/messages/'.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
                             @else
-                                <a href="{{url('/messages/'.$booking->mixture->team->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مدير الفريق</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->mixture->team->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مدير الفريق</a>
                             @endif
 
                             @guest

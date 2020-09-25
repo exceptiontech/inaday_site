@@ -91,7 +91,7 @@ Route::group(['middleware'=>'verified'], function() {
     // Message
     Route::resource('account/messages', 'Account\MessageController', ['names' => 'front_messages']);
     Route::get('account/messages/{id}', 'Account\MessageController@getMessage')->name('message');
-    Route::post('account/message', 'Account\MessageController@sendMessage');
+    Route::post('account/message', 'Account\MessageController@sendMessage')->name('sendMessage');;
 
 
     // Services

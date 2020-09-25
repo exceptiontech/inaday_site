@@ -114,7 +114,7 @@
                                                 <h2><a href="{{url('/mixtures/'.$mixture->title)}}">{{$mixture->title}}</a></h2>
                                             </div>
                                             <div class="col-sm-2">
-<!--                                         <ul class="list-inline">
+                                            <ul class="list-inline">
                                             <li class="list-inline-item">
                                               
                                               <div id="socialHolder">
@@ -160,7 +160,7 @@
                                                 @endif
                                                 @endif
                                             </li>
-                                        </ul> -->
+                                        </ul> 
 
                                             </div>
                                         </div>

@@ -211,7 +211,7 @@ class FavoriteController extends Controller
 
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
-                    $project->user->notify(new FavoriteCreated($favorite));
+                    $mixture->team->user->notify(new FavoriteCreated($favorite));
                 } 
                 return response()->json(['result'=>'done']);
             }
