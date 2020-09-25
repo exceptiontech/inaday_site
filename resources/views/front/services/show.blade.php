@@ -51,7 +51,7 @@
 
                         
                         <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/messages/'.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
+                            <a href="{{url('/account/messages/?user_id='.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
                             
                             @guest
                             <p class="small">يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة</p>
