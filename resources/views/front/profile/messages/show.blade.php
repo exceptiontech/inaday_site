@@ -34,7 +34,7 @@
 </div>
 <div id="inputArea" class="form-inline p-3">
     <div class="form-group col-1 p-0">
-        <div class="voiceNote">
+        <div class="voiceNote d-none">
             <a href="#" ><i class="fa fa-microphone" aria-hidden="true"></i></a>
         </div>
     </div>
