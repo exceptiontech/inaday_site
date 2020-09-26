@@ -185,6 +185,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Booking');
     }
 
+    public function service_bookings()
+    {
+        return $this->hasMany('App\Booking','provider_id');
+    }
+
+
+
     public function myteams()
     {
         return $this->hasMany('App\Team')->where('deleted_at', '=', null);
@@ -327,7 +334,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->transactions->where('type','plus')->where('is_confirmed',1)->sum('mount') - $this->transactions->where('type','minus')->sum('mount') ;
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message','from');
+    }
 
+    public function last_messages()
+    {
+        return $this->hasMany('App\Message','from')->latest()->first();
+    }
 
 
 }

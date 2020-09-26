@@ -8,7 +8,6 @@
                     <h2 class="text-white mb-5">الشات والدردشة</h2>
                 </div>
 
-
                 <div class="col-12">
 
                     <div class="bg-light mt-5 messages  wrapper rounded">
@@ -19,6 +18,7 @@
                             </div>
                             <div class="user-wrapper">
                                 <ul class="users">
+                                    @if(count($users) > 0)
                                     @foreach($users as $user)
                                         <li class="user user-{{ $user->id }}" id="{{ $user->id }}">
                                             {{--will show unread count notification--}}
@@ -33,11 +33,25 @@
 
                                                 <div class="media-body">
                                                     <p class="name">{{ $user->name }}</p>
-                                                    <p class="email">{{ $user->email }}</p>
+                                                    <p class="email">{{ $user->last_messages()->message ?? 'لا يوجد اي رسائل' }}</p>
                                                 </div>
                                             </div>
                                         </li>
                                     @endforeach
+                                    @else
+                                        <li class="user">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="{{ url('/assets/images/logo.png' ) }}" alt="" class="media-object">
+                                                </div>
+
+                                                <div class="media-body">
+                                                    <p class="name">لا يوجد اعضاء للمحادثة</p>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -59,7 +73,6 @@
 @section('jquery')
 
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
 
 
 <script>
@@ -122,7 +135,7 @@
             receiver_id = $(this).attr('id');
             $.ajax({
                 type: "get",
-                url: "/account/messages/" + receiver_id, // need to create this route
+                url: "/account/messages/" + receiver_id, 
                 data: "",
                 cache: false,
                 success: function (data) {
@@ -136,15 +149,13 @@
         $(document).on('keyup', '.input-text input', function (e) {
             var message = $(this).val();
 
-
-            // check if enter key is pressed and message is not null also receiver is selected
             if (e.keyCode == 13 && message != '' && receiver_id != '') {
-                $(this).val(''); // while pressed enter text box will be empty
+                $(this).val(''); 
 
                 var datastr = "receiver_id=" + receiver_id + "&message=" + message;
                 $.ajax({
                     type: "post",
-                    url: "/account/message", // need to create this post route
+                    url: "{{ route('sendMessage') }}", 
                     data: datastr,
                     cache: false,
                     success: function (data) {
@@ -160,6 +171,37 @@
         });
 
 
+
+        $(document).delegate(".upload_form","submit",function(e){ 
+            e.preventDefault();
+            $(this).val(''); 
+            var receiver_id = $(this).data('id');
+
+            $.ajax({
+                url: '{{ route('sendMessage') }}',
+                type: 'POST',              
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+
+                success: function(result)
+                {
+                    alert(receiver_id);
+                    $('.user-'+receiver_id).click();
+
+                },
+                error: function (jqXHR, status, err) {
+                },
+                complete: function () {
+                    scrollToBottomFunc();
+                }
+            });
+
+        });
+
+
     });
 
 
@@ -172,91 +214,9 @@
             //$("#upload_submit_"+id).trigger('click');
             var message = $(this).val();
 
-            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-
-            $.ajax({
-                type: "post",
-                url: "/account/message", 
-                data: datastr,
-                cache: false,
-                success: function (data) {
-                    $('.user-'+receiver_id).click();
-                },
-                error: function (jqXHR, status, err) {
-                },
-                complete: function () {
-                    scrollToBottomFunc();
-                }
-            });
         });
-
-
     }
 
-
-        $(".upload_submit").on('submit',function(e){
-            e.preventDefault();
-
-            var $form = $(this);
-
-            $.ajax({
-                type: "post",
-                url: "/account/message", 
-                data: $form.serializeArray(),
-                cache: false,
-                success: function (data) {
-                    $('.user-'+receiver_id).click();
-                },
-                error: function (jqXHR, status, err) {
-                },
-                complete: function () {
-                    scrollToBottomFunc();
-                }
-            });
-
-
-            // $(".upload_form").ajaxForm(options);
-
-
-            // var options = { 
-            //     complete: function(response) 
-            //     {
-            //         if($.isEmptyObject(response.responseJSON.error)){
-            //             $("input[name='title']").val('');
-            //             alert('Image Upload Successfully.');
-            //         }else{
-            //             printErrorMsg(response.responseJSON.error);
-            //         }
-            //     }
-            // };
-
-        });
-
-
-    function AddMessage(id) {
-        var message = $('.input-text-'+id+' input').val();
-
-        if ( message != '' && receiver_id != '') {
-
-            $(this).val(''); 
-
-            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-            $.ajax({
-                type: "post",
-                url: "/account/message", 
-                data: datastr,
-                cache: false,
-                success: function (data) {
-                    $('.user-'+receiver_id).click();
-                },
-                error: function (jqXHR, status, err) {
-                },
-                complete: function () {
-                    scrollToBottomFunc();
-                }
-            });
-        }
-    }
 
     // make a function to scroll down auto
     function scrollToBottomFunc() {
