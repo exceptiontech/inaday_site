@@ -19,6 +19,9 @@ use Illuminate\Auth\Events\Registered;
 use URL;
 use Auth;
 
+use App\Usersettings;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -224,6 +227,24 @@ class RegisterController extends Controller
             $user->assignRole([$role->id]);
 
         }
+
+        $user->notification_preference = 'mail,database';
+
+        $user->save();
+
+        $usersettings = new Usersettings;
+        $usersettings->blog_notifications= 1;
+        $usersettings->offer_notifications=1;
+        $usersettings->booking_notifications=1;
+        $usersettings->review_notifications=1;
+        $usersettings->team_notifications=1;
+        $usersettings->profile_notifications=1;
+        $usersettings->favorite_notifications=1;
+        $usersettings->replay_notifications=1;
+        $usersettings->message_notifications=1;
+        $usersettings->support_notifications=1;
+        $usersettings->user_id = $user->id;
+        $usersettings->save();
 
 
         $this->guard()->login($user);

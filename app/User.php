@@ -152,7 +152,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $id = $this->id;
 
         return Booking::whereHas('mixture', function ($query) use ($id) {
+            $query->whereHas('team', function ($query) use ($id) {
                 $query->where('user_id' , $id);
+            });
             })->get();
     }
 
@@ -275,7 +277,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function MixturehasFavorite($id)
     {
         $result = $this->whereHas('favorites', function ($query) use ($id) {
-                $query->where('mixture_id' , $id)->where('user_id' , $this->id);;
+                $query->where('mixture_id' , $id)->where('user_id' , $this->id);
             })->get();
 
         if (count($result) > 0) {

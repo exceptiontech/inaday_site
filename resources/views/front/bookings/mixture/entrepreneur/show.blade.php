@@ -7,7 +7,7 @@
             <div class="row">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5"> {{$booking->service->title}}</h2>
+                    <h2 class="text-white mb-5"> {{$booking->mixture->title}}</h2>
                 </div>
 
                 <!-- sidebar Begin -->
@@ -15,25 +15,17 @@
                     <div class="bg-light rounded pt-3 pb-3 p-2">
                         <div class="author">
                             <div class="col-sm-12 d-flex align-items-center mb-5">
-                                @if($booking->service->user )
-                                    @if(count($booking->service->user->userdetail) > 0)
-                                        @if($booking->service->user->userdetail->first()->avater)
-                                          <img src="{{ url($booking->service->user->userdetail->first()->avater) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
-                                        @else
-                                          <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
-                                        @endif
-                                    @else
-                                      <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
-                                    @endif
+                                @if($booking->mixture->team )
+                                  <img src="{{ url($booking->mixture->team->image) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->mixture->title}}" title="{{$booking->mixture->title}}" />
                                 @else
-                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
+                                  <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->mixture->title}}" title="{{$booking->mixture->title}}" />
                                 @endif  
 
 
                                 <div class="ml-2">
                                     <span class="small">فريق الخطلة</span> 
                                     <div class="mt-2 small">
-                                        <h2>{{ $booking->service->team->title }}</h2>                                    
+                                        <h2>{{ $booking->mixture->team->title }}</h2>                                    
                                     </div>
                                 </div>                   
                             </div>
@@ -49,17 +41,17 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">{{ $booking->service->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="bg-light">{{ $booking->mixture->section->title[App::getLocale()] }}</span> </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">ميزانية المتوقعة</div>
-                                    <div class="col-6 p-0">{{ $booking->service->cost}} {{__('file.riyal')}}</div>
+                                    <div class="col-6 p-0">{{ $booking->mixture->cost}} {{__('file.riyal')}}</div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{ $booking->service->duration}} يوم </div>
+                                    <div class="col-6 p-0">{{ $booking->mixture->duration}} يوم </div>
                                 </li>
 
                             </ul>
@@ -85,9 +77,9 @@
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->user->id)
-                                <a href="{{url('/account/messages/?user_id='.$booking->service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->mixture->team->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مقدم الخدمة</a>
                             @else
-                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مقدم الخدمة</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
                             @endif
 
                             @guest
@@ -107,7 +99,7 @@
                     <div class="bg-light rounded pt-2 pb-3 p-2">
                         <div class="project">
 
-                            <!-- service -->
+                            <!-- mixture -->
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
@@ -124,7 +116,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h2 class="mb-3">تفاصيل الخلطة</h2> 
-                                        <p>{{ $booking->service->desc}}</p>
+                                        <p>{{ $booking->mixture->desc}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -135,9 +127,9 @@
                                     <div class="col-sm-12">
                                         <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2> 
                                         <div class="clearfix">
-                                        @if(count($booking->service->skills))
+                                        @if(count($booking->mixture->skills))
                                             <ul class="list-inline">
-                                                @foreach($booking->service->skills as $skill)
+                                                @foreach($booking->mixture->skills as $skill)
                                                     <li class="list-inline-item bg-light p-2 rounded mb-1">
                                                         {{@$skill->title[App::getLocale()]}}
                                                     </li>
@@ -191,18 +183,18 @@
                                         <p>{{$replay->replay}}</p>
 
                                         @if($replay->file)
-
-                                        <a class="d-flex" download="download" href="{{url($replay->file)}}">
-                                            <div class="col-3  bg-light shadow-sm text-center p-2 align-middle">
-                                                @if(pathinfo($replay->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($replay->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($replay->file, PATHINFO_EXTENSION) == 'jpeg')
-                                                    <img class="img-fluid" src="{{url($replay->file)}}">
-                                                @else
-                                                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
-                                                @endif
-                                            </div>
-                                        </a>
-
+                                            <a class="d-flex" download="download" href="{{url($replay->file)}}">
+                                                <div class="col-3  bg-light shadow-sm text-center p-2 align-middle">
+                                                    @if(pathinfo($replay->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($replay->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($replay->file, PATHINFO_EXTENSION) == 'jpeg')
+                                                        <img class="img-fluid" src="{{url($replay->file)}}">
+                                                    @else
+                                                        <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                                                    @endif
+                                                </div>
+                                            </a>
                                         @endif
+
+                                        @include('front.bookings.mixture.entrepreneur.parts.requestDuration')
 
                                         @if(count($replay->replays) > 0)
                                             @foreach($replay->replays as $replay)
@@ -211,6 +203,8 @@
                                                         تم تمديد الطلب {{$replay->duration}} بالملاحظات التالية : 
                                                         <br>
                                                         {{$replay->replay}}
+
+
                                                 </div>
                                                 @else
                                                 <div class="alert alert-danger mt-4">
@@ -292,62 +286,6 @@
                                     @endif
 
                  
-                                    @if($booking->requestDuration())
-                                    {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
-                                    
-                                    {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
-
-                                    {!! Form::hidden('replay_id', $booking->requestDuration()->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
-
-                                    
-                                    @if(count($errors) > 0)
-                                        @foreach ($errors->all() as $error)
-                                            <div class="alert alert-danger alert-dismissable" >
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                {{ $error}}
-                                            </div>
-                                        @endforeach
-                                    @endif
-
-                                    @if($booking->status_id != 4)
-                                    <div class="block col-12 pt-3 pb-2 mb-3 border-0">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">الاجراء</h2> 
-                                            </div>
-                                            <div class="col-sm-12 mb-4">
-                                                <div class="col-12 mb-4">طلب تمديد مهلة لمدة {{$replay->duration}} ساعة</div>
-
-                                                <div class="col-12">
-                                                <div class="form-check form-check-inline ml-4">
-                                                  <input class="form-check-input" type="radio" name="is_confirmed" id="approve" value="1">
-                                                  <label class="form-check-label" for="approve">موافق على طلب المهلة</label>
-                                                </div>
-                                                <div class="form-check form-check-inline ml-4">
-                                                  <input class="form-check-input" type="radio" name="is_confirmed" id="refuse" value="-1">
-                                                  <label class="form-check-label" for="refuse">غير موافق</label>
-                                                </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 mb-4">
-                                                <label><b>ملاحظات</b></label>
-                                                {!! Form::textarea('replay', null,  array('required', 'class'=>'textarea form-control', 'rows'=>'2')) !!}
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                    @endif
-
-                                    <div class=" mb-3">
-                                        <div class="col-12">
-                                          {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
-                                        </div>
-                                    </div>
-                                    {{ Form::close() }}                  
-                                    @endif
 
                                     @if($booking->requestConfirm() && $booking->status_id != 3 && $booking->status_id != 4)
                                     {{ Form::open(['action' => 'Account\ReviewController@store']) }}
