@@ -85,7 +85,13 @@
                                             <tr>
                                               <td>{{$transaction->id}}</td>
                                               <td>{{$transaction->title}}</td>
-                                              <td>{{$transaction->booking->getModel()->title}}</td>
+                                              <td>
+                                                @if($transaction->booking)
+                                                {{$transaction->booking->getModel()->title}}
+                                                @else
+                                                  سحب ارباح
+                                                @endif
+                                              </td>
                                               <td>{{$transaction->mount}} ريال</td>
                                               <td dir="ltr">{{$transaction->created_at}}</td>
                                             </tr>
