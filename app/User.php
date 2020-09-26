@@ -251,7 +251,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ServicehasFavorite($id)
     {
         $result = $this->whereHas('favorites', function ($query) use ($id) {
-                $query->where('service_id' , $id);
+                $query->where('service_id' , $id)->where('user_id' , $this->id);
             })->get();
 
         if (count($result) > 0) {
@@ -263,7 +263,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ProjecthasFavorite($id)
     {
         $result = $this->whereHas('favorites', function ($query) use ($id) {
-                $query->where('project_id' , $id);
+                $query->where('project_id' , $id)->where('user_id' , $this->id);;
             })->get();
 
         if (count($result) > 0) {
@@ -275,7 +275,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function MixturehasFavorite($id)
     {
         $result = $this->whereHas('favorites', function ($query) use ($id) {
-                $query->where('mixture_id' , $id);
+                $query->where('mixture_id' , $id)->where('user_id' , $this->id);;
             })->get();
 
         if (count($result) > 0) {

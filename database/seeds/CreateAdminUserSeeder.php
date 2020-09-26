@@ -690,14 +690,6 @@ The service provider may be an employee who wants to convert his work to be remo
         ]);
 
 
-        $title  = array();
-        $title['ar'] = 'أخرى';
-        $title['en'] = 'other';
-        $replaykind = Replaykind::create([
-            'title' => $title,
-            'slug' => 'other',
-        ]);
-
 
     }
 }
