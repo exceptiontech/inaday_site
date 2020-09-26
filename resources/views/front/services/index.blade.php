@@ -22,7 +22,7 @@
                         <div class="block mb-4">
                             <div class="block-title mb-3">
                                 <div class="col-12">
-                                    <h2>حسب المهارة</h2>
+                                    <h2>حسب الخبرة</h2>
                                 </div>
                             </div>
                             <div class="block-content">

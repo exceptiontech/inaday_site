@@ -232,13 +232,13 @@
                                     @if($booking->status_id == 3)
                                     <div class="col-12">
                                         <div class="alert alert-success">
-                                            المشروع مكتمل
+                                            الخلطة مكتملة
                                         </div>
                                     </div>
                                     @elseif($booking->status_id == 4)
                                     <div class="col-12">
                                         <div class="alert alert-danger">
-                                            المشروع غير مكتمل او ملغي
+                                            الخلطة غير مكتمل او ملغي
                                         </div>
                                     </div>
                                     @else
@@ -343,7 +343,7 @@
 
                                     <div class=" mb-3">
                                         <div class="col-12">
-                                          {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
+                                          {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
                                         </div>
                                     </div>
                                     {{ Form::close() }}                  
