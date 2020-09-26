@@ -27,97 +27,100 @@
                                     <h3 class="mb-3">طلبات المشاريع</h3>
                                 </div>
 
-                                @if(count(Auth::user()->BookedProjects()))
+                                @if(count(Auth::user()->bookings))
 
-                                    @foreach(Auth::user()->BookedProjects() as $booking)
+                                    @foreach(Auth::user()->bookings as $booking)
 
-                                    <div class="col-12 service pb-3 pt-2">
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                                <img class="img-fluid" src="{{ url($booking->project->image ?? '/assets/images/logo.png' ) }}">
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <div class="row mb-2">
-                                                    <div class="col-10">
-                                                        <h2 class="mb-3">{{$booking->project->title}}</h2>
-                                                    </div>
+                                        @if($booking->project)
+                                        <div class="col-12 service pb-3 pt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <img class="img-fluid" src="{{ url($booking->project->image ?? '/assets/images/logo.png' ) }}">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <ul class="list-inline m-0 flex-shrink-1">
-                                                            <li class="list-inline-item">
-                                                                <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$booking->offer->user->first_name .' '. $booking->offer->user->last_name ?? ' بدون تصنيف'}}
-                                                                </div>
-                                                            </li>
-                                                        </ul>
+                                                <div class="col-sm-10">
+                                                    <div class="row mb-2">
+                                                        <div class="col-10">
+                                                            <h2 class="mb-3">{{$booking->project->title}}</h2>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-5 text-right">
-                                                        <a class="btn btn-secondary rounded" href="#">{{$booking->offer->price}} ريال</a>
-                                                        <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <ul class="list-inline m-0 flex-shrink-1">
+                                                                <li class="list-inline-item">
+                                                                    <div class="bg-light pt-1 pb-1 p-2 ">
+                                                                        {{$booking->offer->user->first_name .' '. $booking->offer->user->last_name ?? ' بدون تصنيف'}}
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-5 text-right">
+                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->offer->price}} ريال</a>
+                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        @endif
                                     @endforeach
-                                @else
-                                    <div class="col-12">
-                                        <p>لم تقم بحجز اي مشروع يمكنك التوجه للمشاريع المعروضة في السوق من خلال هذا  <a href="{{url('/projects')}}">الرابط </a> واختيار احدى الخدمات الاحترافية </p>
-                                    </div>
+
                                 @endif
 
-
-                                <!-- services -->
+                                <!-- service -->
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">طلبات الخدمات</h3>
                                 </div>
 
+                                @if(count(Auth::user()->bookings))
 
-                                @if(count(Auth::user()->BookedServices()))
-                                    @foreach(Auth::user()->BookedServices() as $booking)
-                                    <div class="col-12 service pb-3 pt-2">
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                                <img class="img-fluid" src="{{ url($booking->service->img ?? '/assets/images/logo.png' ) }}">
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <div class="row mb-2">
-                                                    <div class="col-10">
-                                                        <h2 class="mb-3">{{$booking->service->title}}</h2>
-                                                    </div>
+                                    @foreach(Auth::user()->bookings as $booking)
+
+                                        @if($booking->service)
+                                        <div class="col-12 service pb-3 pt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <img class="img-fluid" src="{{ url($booking->service->img ?? '/assets/images/logo.png' ) }}">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <ul class="list-inline m-0 flex-shrink-1">
-                                                            <li class="list-inline-item">
-                                                                <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$booking->service->user->first_name .' '. $booking->service->user->last_name ?? ' بدون تصنيف'}}
-                                                                </div>
-                                                            </li>
-                                                        </ul>
+                                                <div class="col-sm-10">
+                                                    <div class="row mb-2">
+                                                        <div class="col-10">
+                                                            <h2 class="mb-3">{{$booking->service->title}}</h2>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-5 text-right">
-                                                        <a class="btn btn-secondary rounded" href="#">{{$booking->service->cost}} ريال</a>
-                                                        <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <ul class="list-inline m-0 flex-shrink-1">
+                                                                <li class="list-inline-item">
+                                                                    <div class="bg-light pt-1 pb-1 p-2 ">
+                                                                        {{$service->user->first_name .' '. $booking->offer->user->last_name ?? ' بدون تصنيف'}}
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-5 text-right">
+                                                            <a class="btn btn-secondary rounded" href="#">{{$service->price}} ريال</a>
+                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        @endif
                                     @endforeach
-                                @else
-                                    <div class="col-12">
-                                        <p>لم تقم بحجز اي خدمة يمكنك التوجه للخدمات المعروضة في السوق من خلال هذا  <a href="{{url('/services')}}">الرابط </a> واختيار احدى الخدمات الاحترافية </p>
-                                    </div>
+
                                 @endif
 
-                                <!-- mixtures -->
+
+                                <!-- service -->
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">طلبات الخلطات</h3>
                                 </div>
-                                @if(count(Auth::user()->BookedMixtures()))
-                                    @foreach(Auth::user()->BookedMixtures() as $booking)
+
+                                @if(count(Auth::user()->bookings))
+
+                                @foreach(Auth::user()->bookings as $booking)
+
+                                    @if($booking->mixture)
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
@@ -148,12 +151,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     @endforeach
-                                @else
-                                    <div class="col-12">
-                                        <p>لم تقم بحجز اي خلطة يمكنك التوجه للخلطات المعروضة في السوق من خلال هذا  <a href="{{url('/mixtures')}}">الرابط </a> واختيار احدى الخدمات الاحترافية </p>
-                                    </div>
-                                    
                                 @endif
 
 

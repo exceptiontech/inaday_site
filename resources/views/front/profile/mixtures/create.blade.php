@@ -66,7 +66,7 @@
 
                                         @if(count($team->users) > 0 )
 
-                                        <div class="col-12 form-control" style="height: 60px">
+                                        <div class="col-12 form-control" style="min-height: 60px">
                                             <ul class="list-inline m-0 flex-shrink-1">
                                                 @foreach($team->users as $user)
                                                     <li class="list-inline-item">
