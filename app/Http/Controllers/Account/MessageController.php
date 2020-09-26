@@ -24,20 +24,35 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $users)
     {
-        // select all users except logged in user
-        // $users = User::where('id', '!=', Auth::id())->get();
+        $users = $users->newQuery();
 
-        // count how many message are unread from the selected user
-        // $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
-        // from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
-        // where users.id != " . Auth::id() . " 
-        // group by users.id, users.name, users.avatar, users.email");
+        $users->orwhereHas('service_bookings', function ($query)  {
+                $query->where('provider_id','!=', Auth::id());
+            });
 
-        $users = User::all();
+        $users->orwhereHas('bookings', function ($query)  {
+                $query->where('user_id','!=', Auth::id());
+            });
 
-        return view('front.profile.messages.index', ['users' => $users]);
+
+        if (Auth::user()->isServicesProvider()) {
+            $users->orwhereHas('roles',function($q) {
+                        $q->where('name', 'services_provider');
+                    })->get();
+
+        }elseif (Auth::user()->isEntrepreneur()) {
+            $users->orwhereHas('roles',function($q) {
+                        $q->where('name', 'entrepreneur');
+                    })->get();
+        }
+
+        $users->where('id', '!=', Auth::id());
+        $users->where('id', '!=', 1);
+
+
+        return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
     }
 
     /**
@@ -141,23 +156,17 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
 
-
         $from = Auth::id();
         $to = $request->receiver_id;
+        $message = $request->message;
 
-        if ($request->file) {
-            $file = $request->file;
-
-            if ($file) {
-                $destinationPath = 'uploads/messages';
-                $extension =  $file->getClientOriginalExtension();
-                $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
-                $upload_success = $file->move($destinationPath, $fileName);
-                $message = $destinationPath.'/'.$fileName;
-            }
-
-        }else {
-            $message = $request->message;
+        $file = $request->file;
+        if ($file) {
+            $destinationPath = 'uploads/messages';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $file = $destinationPath.'/'.$fileName;
         }
         
 
@@ -165,6 +174,17 @@ class MessageController extends Controller
         $data->from = $from;
         $data->to = $to;
         $data->message = $message;
+
+        $file = $request->file;
+        if ($file) {
+            $destinationPath = 'uploads/messages';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $file = $destinationPath.'/'.$fileName;
+            $data->file = $file;
+        }
+
         $data->is_read = 0; // message will be unread when sending message
         $data->save();
 

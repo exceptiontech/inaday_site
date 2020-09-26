@@ -24,7 +24,21 @@
                 @endif
                 <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
                     <div class="message_content p-2">
-                        <p>{{ $message->message }}</p>
+                        @if($message->file)
+                            <a class="d-flex" download="download" href="{{url($message->file)}}">
+
+                                @if(pathinfo($message->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpeg')
+                                    <img class="img-fluid" src="{{url($message->file)}}">
+                                @else
+                                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                                @endif
+                            </a>
+
+
+                            <p>{{ $message->message }}</p>
+                        @else
+                            <p>{{ $message->message }}</p>
+                        @endif
                     </div>
                     <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
                 </div>
@@ -32,29 +46,31 @@
         @endforeach
     </ul>
 </div>
+
+
 <div id="inputArea" class="form-inline p-3">
+<form class="upload_form upload_form_{{ $other_user->id}} form-inline col-12" enctype="multipart/form-data" data-id="{{ $other_user->id}}">
+
     <div class="form-group col-1 p-0">
         <div class="voiceNote d-none">
             <a href="#" ><i class="fa fa-microphone" aria-hidden="true"></i></a>
         </div>
     </div>
+
     <div class="input-text input-text-{{ $other_user->id}} col-9">
 
         <div class="attach_file">
-
-
-            <form class="upload_form upload_form_{{ $other_user->id}}" action="{{ route('sendMessage') }}" enctype="multipart/form-data" method="POST">
-                <a onclick="addAttach({{ $other_user->id}});"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
-                {{ csrf_field() }}
-                <input class="upload_file file-{{ $other_user->id}}" type="file" name="file">
-                <input type="hidden" name="receiver_id" value="{{$other_user->id}}">
-                <input type="submit" id="upload_submit_{{ $other_user->id}}" class="upload_submit border-0 btn p-0 d-none">
-            </form>
+            <a onclick="addAttach({{ $other_user->id}});"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
+            {{ csrf_field() }}
+            <input class="upload_file file-{{ $other_user->id}}" type="file" name="file">
+            <input type="hidden" class="receiver_id_{{ $other_user->id}}" name="receiver_id" value="{{$other_user->id}}">
         </div>
         
-        <input type="text" name="message" class="submit">
+        <input type="text" class="message_{{ $other_user->id}}" name="message" class="submit">
     </div>
     <div class="form-group col-2 p-0">
-        <a id="AddMessage" class="btn btn-block btn-secondary rounded text-white" onclick="AddMessage({{ $other_user->id}});">  إرسال</a>
+        <button type="submit" id="upload_submit_{{ $other_user->id}}" class="upload_submit btn btn-block btn-secondary rounded text-white" data-id="{{ $other_user->id}}">إرسال</button>
     </div>
+</form>
+
 </div>
