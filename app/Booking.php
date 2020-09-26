@@ -48,9 +48,12 @@ class Booking extends Model
         return $this->hasMany('App\Replay')->where('replay_id', null);
     }
 
-    public function requestDuration()
+    public function requestDuration($id)
     {
-        return $this->hasMany('App\Replay')->where('duration', '!=', null)->where('is_confirmed',0)->where('replay_id',null)->latest()->first();
+
+        return $this->whereHas('replays', function ($query) use ($id) {
+                $query->where('replay_id' , $id)->where('replaykind_id',2)->where('duration', '!=', null)->where('is_confirmed',0);
+            })->get();
     }
 
 

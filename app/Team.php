@@ -15,7 +15,7 @@ class Team extends Model
     public function users()
     {
 
-        return $this->belongsToMany('App\User')->withPivot('is_approved');
+        return $this->belongsToMany('App\User')->withPivot('is_approved')->where('is_approved',1);
     }
 
     public function hasUser($id){

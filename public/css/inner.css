@@ -138,6 +138,9 @@ a.link-dark {
     background: #6D6E70 !important;
     box-shadow: none !important; }
 
+.bg-primary {
+  background: #00C76D !important; }
+
 label {
   color: #505050;
   font-size: 15px; }

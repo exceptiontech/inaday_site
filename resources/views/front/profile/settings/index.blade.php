@@ -76,7 +76,7 @@
 
                                     </div>                                        
 
-                                    <div class="col-12 col-sm-6 form-group">
+                                    <!-- <div class="col-12 col-sm-6 form-group ">
                                       <label class="mb-1 font-weight-bold">تنبيهات التقييم والاراء</label>
 
                                       <div class="custom-control custom-control-right custom-switch">
@@ -84,7 +84,7 @@
                                           <label class="custom-control-label" for="review_notifications">استلم رسائل البريد الإلكتروني بشأن التقييمات</label>
                                       </div>
 
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -220,7 +220,7 @@
 
                                     </div>                                        
 
-                                    <div class="col-12 col-sm-6 form-group">
+                                    <!-- <div class="col-12 col-sm-6 form-group">
                                       <label class="mb-1 font-weight-bold">تنبيهات التقييم والاراء</label>
 
                                       <div class="custom-control custom-control-right custom-switch">
@@ -228,9 +228,9 @@
                                           @if(Auth::user()->usersettings->review_notifications == 1) checked="checked" @endif >
 
                                           <label class="custom-control-label" for="review_notifications">استلم رسائل البريد الإلكتروني بشأن التقييمات</label>
-                                      </div>
+                                      </div> 
 
-                                    </div>
+                                    </div>-->
                                 </div>
 
 

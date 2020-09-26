@@ -99,7 +99,14 @@ class BookingController extends Controller
         } elseif ($booking->mixture_id ) {
 
             if (Auth::user()->id == $booking->user_id || Auth::user()->id == $booking->mixture->team->user_id) {
-                    return view('front.bookings.mixture.show')->withBooking($booking)->withReplaykinds($replaykinds);
+
+                    if (Auth::user()->isServicesProvider()) {
+                        return view('front.bookings.mixture.show')->withBooking($booking)->withReplaykinds($replaykinds);
+                    }else {
+                        return view('front.bookings.mixture.entrepreneur.show')->withBooking($booking)->withReplaykinds($replaykinds);
+                    }
+
+
             }else {
                 return view('front.errors.denied');
             }

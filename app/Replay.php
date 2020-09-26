@@ -36,4 +36,9 @@ class Replay extends Model
         return $this->hasMany('App\Replay');
     }
 
+    public function requestDuration()
+    {
+        return $this->where('replaykind_id',2)->where('duration', '!=', null)->where('is_confirmed',0);
+    }
+
 }
