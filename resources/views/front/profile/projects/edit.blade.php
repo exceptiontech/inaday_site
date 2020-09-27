@@ -66,6 +66,10 @@
                                                   <a download="download" href="{{url($file->url)}}">
                                                       <i class="fa fa-file-word-o" aria-hidden="true"></i> {{$file->name}}
                                                   </a>
+
+                                                  <a class="float-left text-danger" href="{{url('/files/delete/'.$file->id)}}">
+                                                      <i class="fa fa-trash"></i>
+                                                  </a>
                                               </p>
                                           @endforeach
                                       @endif
@@ -75,11 +79,11 @@
 
 
                                 <div class="row mb-4">
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6 d-none">
                                         {!! Form::label('applykind_id', trans('forms.applying_type'))!!}
                                         {!! Form::select('applykind_id',$applykinds->pluck('title.'.App::getLocale(),'id'), $project->applykind_id,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-12">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!}
                                         {!! Form::text('num_team', $project->num_team, ['required','class' => 'form-control','placeholder'=>'1']) !!}
                                     </div>
@@ -92,26 +96,12 @@
                                         {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub>
                                         {!! Form::text('cost', $project->cost, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('duration', trans('forms.duration'))!!}
                                         {!! Form::text('duration', $project->duration, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
-                                    <div class="col-12 col-sm-3">
-                                        {!! Form::label('duration_type', trans('forms.duration_type'))!!}
-                                        {!! Form::select('costkind_id',$costkinds->pluck('title.'.App::getLocale(),'id') , $project->costkind_id,['required', 'class' => 'form-control']) !!} 
-                                    </div>
                                 </div>
 
-                                <div class="row mb-4">
-                                    <div class="col-12 col-sm-6">
-                                        {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', $project->reward, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!}
-                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), $project->rewardkind_id,['required', 'class' => 'form-control']) !!} 
-                                    </div>
-                                </div>
 
                                 <div class="row mb-4">
                                     <div class="col-12">
