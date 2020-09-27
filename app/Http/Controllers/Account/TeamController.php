@@ -73,7 +73,7 @@ class TeamController extends Controller
     {
 
         $this->validate($request,[
-            'title'     =>'required|min:3|max:500',
+            'title'     =>'required|min:3|max:100|string',
             'desc'      =>'required|min:3|max:500',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
@@ -227,6 +227,14 @@ class TeamController extends Controller
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
+            if (count($team->mixtures) > 0) {
+                foreach ($team->mixtures as $key => $mix) {
+                    $mixture = mixture::find($mix->id);
+                    $mixture->deleted_at = now();
+                    $mixture->save();
+                }
+            }
+
             $team = Team::find($id);
             $team->deleted_at = now();
             $team->save();

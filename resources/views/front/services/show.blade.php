@@ -25,7 +25,7 @@
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">{{ $service->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="">{{ $service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">تكلفة الخدمة</div>
@@ -33,7 +33,7 @@
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{$service->duration}} يوم </div>
+                                    <div class="col-6 p-0">{{$service->duration}} ساعة </div>
                                 </li>
 
                             </ul>

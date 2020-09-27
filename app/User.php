@@ -113,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userdetailComplete()
     {
-        return $this->hasMany('App\Userdetail')->where('position', '!=', null)->where('country_id', '!=', null)->where('city_id', '!=', null);
+        return $this->hasOne('App\Userdetail')->where('position', '!=', null)->where('country_id', '!=', null)->where('city_id', '!=', null);
     }
 
     public function services()

@@ -26,7 +26,7 @@ class MixtureController extends Controller
         $mixtures = $mixtures->newQuery();
 
         $mixtures->where('is_approved',1);
-        $mixtures->where('deleted_at', '=', null);
+        $mixtures->where('deleted_at', null);
 
         if ($request->section_id) {
 
