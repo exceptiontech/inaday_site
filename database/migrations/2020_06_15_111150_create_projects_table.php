@@ -26,7 +26,7 @@ class CreateProjectsTable extends Migration
             $table->integer('level_id')->default(1)->references('id')->on('levels')->nullable();
 
             $table->integer('cost')->default(0);
-            $table->integer('costkind_id')->default(0)->references('id')->on('costkinds');
+            $table->integer('costkind_id')->default(1)->references('id')->on('costkinds')->nullable();
 
             $table->integer('reward')->nullable()->default(0);
             $table->integer('rewardkind_id')->default(0)->references('id')->on('rewardkinds')->nullable();

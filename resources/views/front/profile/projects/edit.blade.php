@@ -25,6 +25,14 @@
 
                         <div class="col-12 col-sm-8">
 
+
+                            @if (Session::has('message'))
+                              <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                    {{Session::get('message')}}
+                              </div>
+                            @endif
+
                             {{ Form::model($project, array('route' => array('front_projects.update', $project->id), 'method' => 'PUT', 'files'=>true)) }}
 
                                 @if(count($errors) > 0)
@@ -35,6 +43,7 @@
                                         </div>
                                     @endforeach
                                 @endif
+
 
 
                                 <div class="row mb-4">

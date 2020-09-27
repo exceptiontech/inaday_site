@@ -45,7 +45,9 @@
 
                         @endforeach
                     @else
-                        <p>لا يوجد اي إشعارات في الوقت الحالي</p>
+                        <div class="col-12 mb-2 pb-2 notifaction-item">
+                            <p>لا يوجد اي إشعارات في الوقت الحالي</p>
+                        </div>
                     @endif
 
                     

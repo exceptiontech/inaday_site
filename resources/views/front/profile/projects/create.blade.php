@@ -24,7 +24,16 @@
                         </div>
 
                         <div class="col-12 col-sm-8">
-                          {{ Form::open(['action' => 'Account\ProjectController@store', 'files'=>true]) }}
+
+                            @if (Session::has('message'))
+                              <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                    {{Session::get('message')}}
+                              </div>
+                            @endif
+
+
+                            {{ Form::open(['action' => 'Account\ProjectController@store', 'files'=>true]) }}
 
                                 @if(count($errors) > 0)
                                     @foreach ($errors->all() as $error)

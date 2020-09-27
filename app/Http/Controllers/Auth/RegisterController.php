@@ -63,11 +63,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_type' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'user_type' => ['required', 'string'],
+            'first_name' => ['required', 'string', 'min:3','alpha'],
+            'last_name' => ['required', 'string', 'min:3','alpha'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8',
+                        'regex:/[a-z]/',      // must contain at least one lowercase letter
+            'regex:/[A-Z]/',      // must contain at least one uppercase letter
+            'regex:/[0-9]/',      // must contain at least one digit
+            'regex:/[@$!%*#?&]/', // must contain a special character
+             'confirmed'],
+            'mobile' =>['required','digits:10']
             // 'brith_day' => ['required', 'date_format:Y-m-d|before:today'],
             // 'average_cost' => ['regex:/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/'],
         ]);

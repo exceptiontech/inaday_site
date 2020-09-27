@@ -23,15 +23,12 @@
 
                             <div class="col-12 profile-content mb-5">
 
-                              @if ($errors->any())
-                                  <div class="alert alert-danger">
-                                      <ul>
-                                          @foreach ($errors->all() as $error)
-                                              <li>{{ $error }}</li>
-                                          @endforeach
-                                      </ul>
-                                  </div>
-                              @endif
+                            @if (Session::has('message'))
+                              <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                    {{Session::get('message')}}
+                              </div>
+                            @endif
 
                               {{ Form::open(['action' => 'UsersController@update', 'files'=>true,'novalidate'=>'novalidate']) }}
 
@@ -51,7 +48,9 @@
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('avater', trans('profile.avater'))!!}
                                         <div class="d-flex d-inline-flex">
+                                            <a class="text-danger" href="{{url('/account/profile/removeAvater')}}"><i class="fa fa-trash"></i></a>
                                             <img class=" rounded-circle img-icon50 mr-1" src="{{ url(Auth::user()->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}">
+                                            
                                             {!! Form::file('avater', array( 'class' => 'form-control')) !!}
                                         </div>
                                     </div>
@@ -70,7 +69,7 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('mobile', trans('profile.mobile'))!!}<em class="text-danger">*</em>
-                                        {!! Form::text('mobile', Auth::user()->mobile, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('mobile', Auth::user()->mobile, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('email', trans('profile.email'))!!}
@@ -109,10 +108,11 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         {!! Form::label('cv_file', trans('profile.cv_file'))!!}
-                                        @if(count(Auth::user()->userdetail) && Auth::user()->userdetail->first()->cv_file)
+                                        @if(count(Auth::user()->userdetail) && Auth::user()->userdetails->first()->cv_file)
                                           <div class="d-flex d-inline-flex w-100">
+                                                <a class="text-danger"  href="{{url('/account/profile/removeCV')}}"><i class="fa fa-trash"></i></a>
                                               <a download="download" href="{{ url(Auth::user()->userdetail->first()->cv_file) }}">
-                                               <i class="fa fa-file-word-o fa-3x mr-4" aria-hidden="true"></i>
+                                               <i class="fa fa-file-o fa-3x mr-4" aria-hidden="true"></i>
                                               </a>
                                               {!! Form::file('cv_file', array( 'class' => 'form-control')) !!}
                                           </div>
