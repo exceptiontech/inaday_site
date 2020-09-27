@@ -21,6 +21,7 @@ use App\Skill;
 use App\Stage;
 use App\Section;
 use App\Qtype;
+use App\City;
 use App\Beneficiary;
 use App\Replaykind;
 

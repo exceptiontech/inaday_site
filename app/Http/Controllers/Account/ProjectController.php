@@ -51,6 +51,13 @@ class ProjectController extends Controller
             return view('front.errors.denied');
         }
 
+        if (Auth::user()->userdetailComplete()) {
+            Session::flash('status', __('admin.info'));
+            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خدمات');
+            return redirect::to('/account/profile/edit');
+
+        }
+
         $stages = Stage::where('is_active', 1)->get();
         $skills = Skill::all();
         $averagekinds= Averagekind::all();

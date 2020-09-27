@@ -233,7 +233,9 @@ class UsersController extends Controller
         if(!empty($request['password']))
         {
             $this->validate($request,[
-                'password'=> 'required|string|min:8|max:25'
+                'first_name'=> 'required|string|min:8|max:25|alpha',
+                'last_name'=> 'required|string|min:8|max:25|alpha',
+                'mobile'      =>'required|digits:10',
             ]);
             $user->password = Hash::make($request['password']);
         }
@@ -245,7 +247,6 @@ class UsersController extends Controller
 
         $validator = Validator::make($request->all(), [
             'avater' => 'mimes:jpg,jpeg,png',
-            'mobile'      =>'required|digits:10',
             'position'      =>'min:3|alpha',
             'cv_file'      =>'mimes:pdf,docx,doc',
         ]);
@@ -363,7 +364,12 @@ class UsersController extends Controller
             return redirect::to('/');
         }
         
-        $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        if (count(Auth::user()->userdetail) > 0) {
+            $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        }else {
+            $userdetail = new Userdetail;
+        }
+
         $userdetail->cv_file = null;
         $userdetail->save();
 
@@ -379,7 +385,11 @@ class UsersController extends Controller
             return redirect::to('/');
         }
 
-        $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        if (count(Auth::user()->userdetail) > 0) {
+            $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        }else {
+            $userdetail = new Userdetail;
+        }
         $userdetail->avater = null;
         $userdetail->save();
 
