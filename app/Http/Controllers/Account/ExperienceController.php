@@ -143,9 +143,9 @@ class ExperienceController extends Controller
             return view('front.errors.denied');
         }
         $this->validate($request,[
-            'position'     =>'required|max:500',
-            'company'      =>'required|max:500',
-            'desc'      =>'required',
+            'position'     =>'required|min:3|max:500',
+            'company'      =>'required|min:3|max:500',
+            'desc'      =>'required|min:3|max:500',
             'start_date'      =>'required|max:10',
         ]);
 
