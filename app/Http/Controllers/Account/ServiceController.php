@@ -147,7 +147,7 @@ class ServiceController extends Controller
             $other_skill = $request->other_skill;
 
             if ($other_skill) {
-                $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+                $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $other_skill . '%')->first();
 
 
                 if ($item) {
