@@ -54,6 +54,12 @@ class TeamController extends Controller
             return view('front.errors.denied');
         }
 
+        if (!Auth::user()->userdetailComplete()) {
+            Session::flash('status', __('admin.info'));
+            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة فريق');
+            return redirect::to('/account/profile/edit');
+        }
+
         return view('front.profile.teams.create');
     }
 
@@ -347,6 +353,7 @@ class TeamController extends Controller
         }
 
         //$team = Auth::user()->team;
+        $team->users()->detach();
         $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)

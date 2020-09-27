@@ -30,6 +30,12 @@ class PortfolioController extends Controller
         }
 
 
+        if (!Auth::user()->userdetailComplete()) {
+            Session::flash('status', __('admin.info'));
+            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة معرض اعمال');
+            return redirect::to('/account/profile/edit');
+        }
+
         return view('front.profile.portfolios.index');
     }
 

@@ -56,15 +56,15 @@ class ServiceController extends Controller
      */
     public function create()
     {
+
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             return view('front.errors.denied');
         }
 
-        if (Auth::user()->userdetailComplete()) {
+        if (!Auth::user()->userdetailComplete()) {
             Session::flash('status', __('admin.info'));
             Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خدمات');
             return redirect::to('/account/profile/edit');
-
         }
 
         $skills = Skill::where('is_active',1)->get();

@@ -110,7 +110,6 @@
                                               {{__('file.no_skills')}}
                                           @endif
 
-
                                           @if($team->hasUser($user->id))
                                             <a class="btn btn-secondary mt-4 disabled" href="#">تم ارسال دعوة او منضم  </a> 
                                           @else

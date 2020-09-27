@@ -30,6 +30,12 @@ class ExperienceController extends Controller
             return view('front.errors.denied');
         }
 
+        if (!Auth::user()->userdetailComplete()) {
+            Session::flash('status', __('admin.info'));
+            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خبرات');
+            return redirect::to('/account/profile/edit');
+        }
+
         return view('front.profile.experiences.index');
     }
 
