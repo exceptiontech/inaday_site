@@ -88,8 +88,8 @@ class ProjectController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title'      =>'required|max:500',
-            'desc'      =>'required',
+            'title'     =>'required|min:3|max:100',
+            'desc'      =>'required|min:3|max:500',
             'section_id'      =>'required|integer',
             'applykind_id'      =>'required',
             'num_team'      =>'required',

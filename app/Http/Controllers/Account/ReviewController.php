@@ -56,7 +56,7 @@ class ReviewController extends Controller
 
         $this->validate($request,[
             //'title'     =>'required|max:500',
-            'review'     =>'required|max:500',
+            'review'     =>'required|min:3|max:500',
         ]);
 
         $review= new Review();

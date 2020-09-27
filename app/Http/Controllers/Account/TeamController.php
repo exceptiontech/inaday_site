@@ -73,8 +73,8 @@ class TeamController extends Controller
     {
 
         $this->validate($request,[
-            'title'     =>'required|max:500',
-            'desc'      =>'required|max:500',
+            'title'     =>'required|min:3|max:500',
+            'desc'      =>'required|min:3|max:500',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
 
