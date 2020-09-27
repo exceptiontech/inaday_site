@@ -158,7 +158,7 @@ class ServiceController extends Controller
                     $title['ar'] = $other_skill;
                     $new_skill = new Skill;
                     $new_skill->title = $title;
-                    $new_skill->slug = $skill;
+                    $new_skill->slug = $other_skill;
                     $new_skill->is_active = 0;
                     $new_skill->save();
 
