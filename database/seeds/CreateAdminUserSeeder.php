@@ -65,7 +65,7 @@ class CreateAdminUserSeeder extends Seeder
 
         $country = Country::create([
             'title' => $title,
-            'slug' => 'holding',
+            'slug' => 'saudi_arabia',
         ]);
 
         $title  = array();
@@ -74,8 +74,43 @@ class CreateAdminUserSeeder extends Seeder
 
         $country = Country::create([
             'title' => $title,
-            'slug' => 'holding',
+            'slug' => 'emirates',
         ]);
+
+
+        $title  = array();
+        $title['ar'] = 'الرياض';
+        $title['en'] = 'Riyadh';
+
+        $country = City::create([
+            'title' => $title,
+            'slug' => 'riyadh',
+            'country_id' => '1',
+        ]);
+
+
+        $title  = array();
+        $title['ar'] = 'الدمام';
+        $title['en'] = 'Dammam';
+
+        $country = City::create([
+            'title' => $title,
+            'slug' => 'Dammam',
+            'country_id' => '1',
+        ]);
+
+
+        $title  = array();
+        $title['ar'] = 'دبي';
+        $title['en'] = 'dubai';
+
+        $country = City::create([
+            'title' => $title,
+            'slug' => 'dubai',
+            'country_id' => '2',
+        ]);
+
+
 
         $title  = array();
         $title['ar'] = 'تحت الانتظار';

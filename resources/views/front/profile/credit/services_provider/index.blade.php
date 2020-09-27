@@ -115,8 +115,16 @@
 
                                 </div>
 
-                                @if(Auth::user()->requestedProfit())
+
                                 <div id="withdraw" class="col-12">
+
+                                    @if(Auth::user()->requestedProfit())
+                                        <div class="alert alert-info">
+                                          هناك طلب لسحب الارباح ، فريق عمل الموقع يعمل على الطلب حال الانتهاء سيتم تفعيل خاصية السحب مرة اخرى 
+                                        </div>
+                                    @endif
+
+
                                     {{ Form::open(['action' => 'Account\TransactionController@store']) }}
                                                 
 
@@ -149,11 +157,6 @@
                                         </div>
                                   {{ Form::close() }}                  
                                   </div>
-                                  @else
-                                    <div class="alert alert-info">
-                                      هناك طلب لسحب الارباح ، فريق عمل الموقع يعمل على الطلب حال الانتهاء سيتم تفعيل خاصية السحب مرة اخرى 
-                                    </div>
-                                  @endif
                             </div>
 
                             <div class="col-12 col-sm-4">

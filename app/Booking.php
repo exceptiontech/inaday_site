@@ -53,7 +53,7 @@ class Booking extends Model
 
         return $this->whereHas('replays', function ($query) use ($id) {
                 $query->where('replay_id' , $id)->where('replaykind_id',2)->where('duration', '!=', null)->where('is_confirmed',0);
-            })->get();
+            })->count();
     }
 
 
