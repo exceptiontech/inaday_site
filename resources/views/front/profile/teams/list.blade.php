@@ -24,7 +24,7 @@
                     <div class="bg-light rounded pt-3 pb-3 p-2">
 
 
-                      {{Form::open(array("url"=>$teamid."/list/services_provider/"))}}
+                      {{Form::open(array("url"=>$teamid."/list/services_provider/","method" => "get"))}}
 
                         <!-- block Begin -->
                         <div class="block mb-4">
