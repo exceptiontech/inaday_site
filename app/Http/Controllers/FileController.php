@@ -5,6 +5,18 @@ namespace App\Http\Controllers;
 use App\File;
 use Illuminate\Http\Request;
 
+use Validator;
+use Session;
+use Redirect;
+use Input;
+use Carbon\Carbon;
+use DB;
+use Auth;
+use Config;
+use App;
+
+use App\User;
+use App\Log;
 class FileController extends Controller
 {
     /**
@@ -89,9 +101,28 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(Request $request,$id)
     {
-        return $id;
+        if (Auth::user())
+        {
+            $file= File::find($id);
+            $file->delete();
+        }
+
+        if ($file) {
+            $log           = new Log;
+            $log->user_id  = Auth::user()->id;
+            $log->action   = 'delete';
+            $log->model    = 'file';
+            $log->url      = $request->server()['REQUEST_URI'];
+            $log->ip       = $request->server()['REMOTE_ADDR'];
+            $log->save();
+        }
+
+
+        Session::flash('status', __('admin.danger'));
+        Session::flash('message', __('admin.delete_success'));
+        return redirect::back();
     }
 
 

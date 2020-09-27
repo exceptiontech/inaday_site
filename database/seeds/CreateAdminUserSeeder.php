@@ -581,11 +581,43 @@ class CreateAdminUserSeeder extends Seeder
 
 
         $title  = array();
-        $title['ar'] = 'خدمات متقدمة';
-        $title['en'] = 'Advenced Services';
+        $title['ar'] = 'التصميم الجرافيكي ( هوية المشروع )';
+        $title['en'] = 'التصميم الجرافيكي ( هوية المشروع )';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'advenced_services', 
+            'slug' => 'graphic_design', 
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'تصميم موقع إلكتروني UI/UX';
+        $title['en'] = 'تصميم موقع إلكتروني UI/UX';
+        $section = Section::create([
+            'title' => $title,
+            'slug' => 'ui_ux', 
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'إنشاء موقع إلكتروني Web Development';
+        $title['en'] = 'إنشاء موقع إلكتروني Web Development';
+        $section = Section::create([
+            'title' => $title,
+            'slug' => 'web', 
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'إنهاء الإجراءات الحكومية للبدء بالمشروع';
+        $title['en'] = 'إنهاء الإجراءات الحكومية للبدء بالمشروع';
+        $section = Section::create([
+            'title' => $title,
+            'slug' => 'graphic_design', 
+        ]);
+
+        $title  = array();
+        $title['ar'] = 'الهوية البصرية';
+        $title['en'] = 'الهوية البصرية';
+        $section = Section::create([
+            'title' => $title,
+            'slug' => 'graphic_design', 
         ]);
         
 

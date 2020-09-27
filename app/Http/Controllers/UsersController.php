@@ -10,7 +10,6 @@ use App\Notifications\RegisterServicesProvider;
 use App\Notifications\RegisterEntrepreneur;
 use App\Notifications\UpdatedUser;
 
-use Session;
 use App\User;
 use App\Country;
 use App\Jobtype;
@@ -27,10 +26,12 @@ use App\Interview;
 use App\Beneficiary;
 use App\Usersettings;
 use App\City;
-use Auth;
 use Socialite;
 use URL;
+use Auth;
 use Redirect;
+use Session;
+use Validator;
 
 class UsersController extends Controller
 {
@@ -241,6 +242,21 @@ class UsersController extends Controller
         $user->mobile=@$request->mobile;
         $user->save();
 
+
+        $validator = Validator::make($request->all(), [
+            'avater' => 'mimes:jpg,jpeg,png',
+            'mobile'      =>'required|digits:10',
+            'position'      =>'min:3|alpha',
+            'cv_file'      =>'mimes:pdf,docx,doc',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
         $userdetail->level_id = $request->level_id;
@@ -270,7 +286,7 @@ class UsersController extends Controller
         }
 
         $cv_file =  $request->cv_file;
-        if (isset($cv_file)) {
+        if ($cv_file) {
             $destinationPath = 'uploads/users';
             $extension =  $cv_file->getClientOriginalExtension();
             $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
@@ -321,6 +337,9 @@ class UsersController extends Controller
             Auth::user()->notify(new UpdatedUser(Auth::user()));
         } 
 
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.edit_success'));
+
         return redirect::to('/user/'.Auth::user()->id);
 
         // if (Auth::user()->PassedInterview()) {
@@ -338,6 +357,40 @@ class UsersController extends Controller
         // return redirect::to('/account/interviews/'.$interview->id);
 
     }
+
+    public function removeCV(Request $request) {
+        if (!Auth::user() ) {
+            return redirect::to('/');
+        }
+        
+        $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        $userdetail->cv_file = null;
+        $userdetail->save();
+
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.edit_success'));
+
+        return redirect::to('/user/'.Auth::user()->id);
+
+    }
+
+    public function removeAvater(Request $request) {
+        if (!Auth::user() ) {
+            return redirect::to('/');
+        }
+
+        $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        $userdetail->avater = null;
+        $userdetail->save();
+
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.edit_success'));
+
+        return redirect::to('/user/'.Auth::user()->id);
+
+    }
+
+
 
     public function update_profile(Request $request)
     {

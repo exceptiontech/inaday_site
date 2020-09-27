@@ -43,7 +43,7 @@
 
 
                                 <div class="row mb-4">                                        
-                                    <div class="col-12 col-sm-6 form-group">
+                                    <div class="col-12 col-sm-6 form-group d-none">
                                       <label class="mb-1 font-weight-bold">تنبيهات المدونة والاخبار</label>
 
                                       <div class="custom-control custom-control-right custom-switch">
@@ -52,6 +52,16 @@
                                       </div>
 
                                     </div>
+
+                                    <div class="col-12 col-sm-6 form-group">
+                                      <label class="mb-1 font-weight-bold">تنبيهات الطلبات</label>
+
+                                      <div class="custom-control custom-control-right custom-switch">
+                                          <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  checked="checked">
+                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
+                                      </div>
+
+                                    </div>                                        
 
                                         
                                     <div class="col-12 col-sm-6 form-group">
@@ -66,15 +76,6 @@
                                 </div>
 
                                 <div class="row mb-4">                                        
-                                    <div class="col-12 col-sm-6 form-group">
-                                      <label class="mb-1 font-weight-bold">تنبيهات الطلبات</label>
-
-                                      <div class="custom-control custom-control-right custom-switch">
-                                          <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
-                                      </div>
-
-                                    </div>                                        
 
                                     <!-- <div class="col-12 col-sm-6 form-group ">
                                       <label class="mb-1 font-weight-bold">تنبيهات التقييم والاراء</label>
@@ -183,7 +184,7 @@
                                 @endif
 
                                 <div class="row mb-4">                                        
-                                    <div class="col-12 col-sm-6 form-group">
+                                    <div class="col-12 col-sm-6 form-group d-none">
                                       <label class="mb-1 font-weight-bold">تنبيهات المدونة والاخبار</label>
 
                                       <div class="custom-control custom-control-right custom-switch">
@@ -193,6 +194,19 @@
                                       </div>
 
                                     </div>
+
+
+                                    <div class="col-12 col-sm-6 form-group">
+                                      <label class="mb-1 font-weight-bold">تنبيهات الطلبات</label>
+
+                                      <div class="custom-control custom-control-right custom-switch">
+                                          <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  
+                                          @if(Auth::user()->usersettings->booking_notifications == 1) checked="checked" @endif >
+
+                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
+                                      </div>
+
+                                    </div>                                        
 
                                         
                                     <div class="col-12 col-sm-6 form-group">
@@ -208,17 +222,6 @@
                                 </div>
 
                                 <div class="row mb-4">                                        
-                                    <div class="col-12 col-sm-6 form-group">
-                                      <label class="mb-1 font-weight-bold">تنبيهات الطلبات</label>
-
-                                      <div class="custom-control custom-control-right custom-switch">
-                                          <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  
-                                          @if(Auth::user()->usersettings->booking_notifications == 1) checked="checked" @endif >
-
-                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
-                                      </div>
-
-                                    </div>                                        
 
                                     <!-- <div class="col-12 col-sm-6 form-group">
                                       <label class="mb-1 font-weight-bold">تنبيهات التقييم والاراء</label>

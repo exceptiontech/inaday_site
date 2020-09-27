@@ -80,6 +80,8 @@ Route::group(['middleware'=>'verified'], function() {
     Route::get('/getCities', ['uses' => 'UsersController@getCities','as' => 'getCities']);  
     Route::get('account/profile/edit', 'UsersController@edit')->name('account.edit');
     Route::post('account/profile/update', 'UsersController@update');
+    Route::get('account/profile/removeCV', 'UsersController@removeCV');
+    Route::get('account/profile/removeAvater', 'UsersController@removeAvater');
 
     // settings
     Route::resource('account/settings', 'Account\UsersettingsController', ['names' => 'front_settings']);
