@@ -98,7 +98,7 @@
                                                             </ul>
                                                         </div>
                                                         <div class="col-5 text-right">
-                                                            <a class="btn btn-secondary rounded" href="#">{{$service->price}} ريال</a>
+                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->service->price}} ريال</a>
                                                             <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
                                                         </div>
                                                     </div>
