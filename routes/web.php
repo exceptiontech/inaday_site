@@ -163,6 +163,10 @@ Route::group(['middleware'=>'verified'], function() {
     Route::resource('bookings', 'BookingController', ['names' => 'front_bookings'])->only(['show']);
     Route::resource('replays', 'ReplayController')->except(['index','show']);
 
+    Route::resource('files', 'FileController', ['names' => 'front_teams'])->only(['destory']);
+    Route::get('files/delete/{id}', 'FileController@delete')->name('file.delete');
+
+
 });
 
 Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admin'], function() {

@@ -92,7 +92,7 @@
                                                             <ul class="list-inline m-0 flex-shrink-1">
                                                                 <li class="list-inline-item">
                                                                     <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                        {{$service->user->first_name .' '. $service->user->last_name ?? ' بدون تصنيف'}}
+                                                                        {{$booking->service->user->first_name .' '. $booking->service->user->last_name ?? ' بدون تصنيف'}}
                                                                     </div>
                                                                 </li>
                                                             </ul>

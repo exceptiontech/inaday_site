@@ -60,11 +60,11 @@
 
 
                                 <div class="row mb-4">
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6 d-none">
                                         {!! Form::label('applykind_id', trans('forms.applying_type'))!!}
                                         {!! Form::select('applykind_id',$applykinds->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-12">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('num_team', 1, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
@@ -77,26 +77,12 @@
                                         {!! Form::label('cost', trans('forms.cost'))!!} <sub>(تكلفة المشروع المتوقعة)</sub> <em class="text-danger">*</em>
                                         {!! Form::text('cost', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('duration', trans('forms.duration'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('duration', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
-                                    <div class="col-12 col-sm-3">
-                                        {!! Form::label('duration_type', trans('forms.duration_type'))!!}
-                                        {!! Form::select('costkind_id',$costkinds->pluck('title.'.App::getLocale(),'id') , null,['required', 'class' => 'form-control']) !!} 
-                                    </div>
                                 </div>
 
-                                <div class="row mb-4">
-                                    <div class="col-12 col-sm-6">
-                                        {!! Form::label('reward', trans('forms.reward'))!!}
-                                        {!! Form::text('reward', null, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        {!! Form::label('rewardkind_id', trans('forms.rewardkind'))!!} 
-                                        {!! Form::select('rewardkind_id',$rewardkinds->pluck('title.'.App::getLocale(),'id'), null,['class' => 'form-control','placeholder'=>'اختر طريقة المكافأة']) !!} 
-                                    </div>
-                                </div>
 
                                 <div class="row mb-4">
                                     <div class="col-12">
