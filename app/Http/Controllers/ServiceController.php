@@ -25,6 +25,10 @@ class ServiceController extends Controller
 
         $services = $services->newQuery();
 
+
+
+        $services->where('deleted_at', '=', null);
+
         $services->where('is_approved',1);
 
         if ($request->section_id) {

@@ -15,6 +15,7 @@ return [
     'direction' => 'rtl',
     'adminpanel' => 'لوحة تحكم الادارة',
     'profile' => 'الملف الشخصي',
+    'chat' => 'الشات',
     'login' => 'دخول',
     'signin' => 'تسجيل دخول',
     'register' => 'تسجيل عضوية',

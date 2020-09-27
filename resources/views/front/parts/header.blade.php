@@ -141,6 +141,9 @@
                         <a class="dropdown-item" href="{{ url('/user/'.Auth::user()->id ) }}">
                           {{trans('file.profile')}}
                         </a>
+                        <a class="dropdown-item" href="{{ url('/account/messages' ) }}">
+                          {{trans('file.chat')}}
+                        </a>
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item" href="#">{{trans('file.logout')}}</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
