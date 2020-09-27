@@ -1,4 +1,3 @@
-@if(count($booking->requestDuration($replay->id) ) > 0)
         {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
                                     
         {!! Form::hidden('booking_id', $replay->booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
@@ -51,4 +50,3 @@
         </div>
     </div>
 {{ Form::close() }}                  
-@endif

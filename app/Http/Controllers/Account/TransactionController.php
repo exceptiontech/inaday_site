@@ -72,7 +72,7 @@ class TransactionController extends Controller
 
 
         Session::flash('status', __('file.success'));
-        Session::flash('message', __('file.create_success'));
+        Session::flash('message', 'تم ارسال طلب سحب ارباح');
         return redirect::back();
     }
 

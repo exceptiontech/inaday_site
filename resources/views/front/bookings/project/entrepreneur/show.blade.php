@@ -240,6 +240,14 @@
 
                                         @endif
 
+
+                                        @if($replay->requestDuration($replay->id))
+
+                                            @include('front.bookings.parts.requestDuration')
+
+                                        @endif
+
+
                                         @if(count($replay->replays) > 0)
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
@@ -344,45 +352,7 @@
                                         @endforeach
                                     @endif
 
-                                    @if($booking->status_id != 3)
-
-                                    <div class="block col-12 pt-3 pb-2 mb-3 border-0">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">الاجراء</h2> 
-                                            </div>
-                                            <div class="col-sm-12 mb-4">
-                                                <div class="col-12 mb-4">طلب تمديد مهلة لمدة {{$replay->duration}} ساعة</div>
-
-                                                <div class="col-12">
-                                                <div class="form-check form-check-inline ml-4">
-                                                  <input class="form-check-input" type="radio" name="is_confirmed" id="approve" value="1">
-                                                  <label class="form-check-label" for="approve">موافق على طلب المهلة</label>
-                                                </div>
-                                                <div class="form-check form-check-inline ml-4">
-                                                  <input class="form-check-input" type="radio" name="is_confirmed" id="refuse" value="-1">
-                                                  <label class="form-check-label" for="refuse">غير موافق</label>
-                                                </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12 mb-4">
-                                                <label><b>ملاحظات</b></label>
-                                                {!! Form::textarea('replay', null,  array('required', 'class'=>'textarea form-control', 'rows'=>'2')) !!}
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    @endif
-
-                                    <div class=" mb-3">
-                                        <div class="col-12">
-                                          {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
-                                        </div>
-                                    </div>
-                                    {{ Form::close() }}                  
-                                    @endif
+  
 
                                     @if($booking->requestConfirm() && $booking->status_id != 3 && $booking->status_id != 4)
                                     {{ Form::open(['action' => 'Account\ReviewController@store']) }}

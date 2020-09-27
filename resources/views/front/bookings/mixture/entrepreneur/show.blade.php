@@ -194,8 +194,13 @@
                                             </a>
                                         @endif
 
-                                        @include('front.bookings.mixture.entrepreneur.parts.requestDuration')
+                                        @if($replay->requestDuration($replay->id))
 
+                                            @include('front.bookings.parts.requestDuration')
+
+                                        @endif
+
+                                        
                                         @if(count($replay->replays) > 0)
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
