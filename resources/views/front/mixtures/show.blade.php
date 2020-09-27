@@ -25,7 +25,7 @@
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">{{ $mixture->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="">{{ $mixture->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">التكلفة</div>
@@ -33,7 +33,7 @@
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{round($mixture->duration/24 ,2)}} يوم </div>
+                                    <div class="col-6 p-0">{{$mixture->duration}} ساعة </div>
                                 </li>
 
                             </ul>

@@ -50,7 +50,7 @@
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.category_section')}}</div>
                                 <div class="col-6 p-0">
-                                  <span class="bg-light">
+                                  <span class="">
                                       @if($project->section)
                                         {{@$project->section->title[App::getLocale()]}} 
                                       @else 
@@ -65,7 +65,7 @@
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.execution_time')}}</div>
-                                <div class="col-6 p-0">{{$project->duration}}  {{trans('file.day')}}  </div>
+                                <div class="col-6 p-0">{{$project->duration}}  ساعة  </div>
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.number_of_offers')}}</div>

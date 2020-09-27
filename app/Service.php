@@ -23,7 +23,7 @@ class Service extends Model
     
     public function skills()
     {
-        return $this->belongsToMany('App\Skill');
+        return $this->belongsToMany('App\Skill')->where('is_active',1);
     }
 
     public function reviews()
