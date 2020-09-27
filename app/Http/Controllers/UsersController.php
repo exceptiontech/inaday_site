@@ -233,8 +233,8 @@ class UsersController extends Controller
         if(!empty($request['password']))
         {
             $this->validate($request,[
-                'first_name'=> 'required|string|min:8|max:25|alpha',
-                'last_name'=> 'required|string|min:8|max:25|alpha',
+                'first_name'=> 'required|string|min:3|max:25',
+                'last_name'=> 'required|string|min:3|max:25',
                 'mobile'      =>'required|digits:10',
             ]);
             $user->password = Hash::make($request['password']);
@@ -247,7 +247,7 @@ class UsersController extends Controller
 
         $validator = Validator::make($request->all(), [
             'avater' => 'mimes:jpg,jpeg,png',
-            'position'      =>'min:3|alpha',
+            'position'      =>'min:3|string',
             'cv_file'      =>'mimes:pdf,docx,doc',
         ]);
 

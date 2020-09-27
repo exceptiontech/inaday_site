@@ -75,31 +75,26 @@
                                 </div>
 
 
+
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-12">
                                         {!! Form::label('team_members', trans('forms.team_members'))!!} <em class="text-danger">*</em>
+
                                         @if(count($mixture->team->users) > 0 )
-                                            <div class="d-flex">
 
-                                            @foreach($mixture->team->users as $user)
+                                        <div class="col-12 form-control" style="min-height: 60px">
+                                            <ul class="list-inline m-0 flex-shrink-1">
+                                                @foreach($mixture->team->users as $user)
+                                                    <li class="list-inline-item">
+                                                        <div class="bg-light rounded p-1 pb-0"> <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon30 img-fluid" /> {{$user->first_name. ' ' .$user->last_name}}</div>
+                                                    </li>
+                                                @endforeach
+                                            </ul> 
 
-                                                <div class="col-md-4">
-                                                  <div class="gallery-card">
-                                                    <div class="gallery-card-body">
-                                                      <label class="block-check">
-                                                     <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="img-fluid" />
-                                                     <input type="checkbox" name="users[]" value="{{$user->id}}" @if(in_array($user->id, $mixture->users->pluck('id')->toArray() )) checked="checked" @endif >
-                                                      <span class="checkmark"></span>
-                                                      </label>
-                                                       <div class="bg-secondary p-2 text-white text-center">{{$user->first_name. ' ' .$user->last_name}}
-                                                        </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            @endforeach
-                                            </div>
+                                        </div>
                                         @endif
 
+                                        
                                     </div>
                                 </div>
 
@@ -139,7 +134,7 @@
 
                                             @if(count($mixture->team->user->services) > 0)
                                                 @foreach($mixture->team->user->services as $service)
-                                                <div class="d-flex border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-info border-0 @endif">
+                                                <div class="d-flex border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-primary border-0 @endif">
                                                     <div class="col-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
                                                         <p class="mt-2">{{$service->title}}</p>
@@ -167,12 +162,22 @@
                                     </div>
                                 </div>
 
-
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                      {!! Form::label('skills', trans('forms.skills'))!!}
-                                      {{ Form::select('skills[]', $skills->pluck('title.'.App::getLocale(),'id'), array_pluck($mixture->skills, 'id'), ['multiple', 'class' => 'form-control']) }}
+                                    {!! Form::label('skills', trans('forms.skills'))!!}
+                                    @if (count($skills))
+                                        @foreach($skills as $skill)
+                                        <div class="check-item">
+                                            <div class="chicksign">
+                                                <label class="che-box">
+                                                <input @if($mixture->skills->contains($skill->id)) checked="checked" @endif  name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
+                                                  {{$skill->title[App::getLocale()]}} <em>*</em></span>
+                                                </label>
+                                            </div>
+                                        </div>
 
+                                        @endforeach
+                                    @endif
                                     </div>
                                 </div>
 
