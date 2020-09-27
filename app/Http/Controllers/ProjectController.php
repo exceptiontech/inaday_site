@@ -36,6 +36,7 @@ class ProjectController extends Controller
         $projects = $projects->newQuery();
 
         $projects->where('is_approved',1);
+        $projects->where('deleted_at', '=', null);
 
 
         if ($request->targetskills) {

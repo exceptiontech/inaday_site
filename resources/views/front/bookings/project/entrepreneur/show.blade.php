@@ -240,14 +240,6 @@
 
                                         @endif
 
-
-                                        @if($replay->requestDuration($replay->id))
-
-                                            @include('front.bookings.parts.requestDuration')
-
-                                        @endif
-
-
                                         @if(count($replay->replays) > 0)
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
@@ -335,29 +327,20 @@
                                     </div>
                                     @endif
                  
-                                    @if($booking->requestDuration())
-                                    {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
-                                    
-                                    {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
-                                    {!! Form::hidden('replay_id', $booking->requestDuration()->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    @if($replay->requestDuration($replay->id))
 
-                                    
-                                    @if(count($errors) > 0)
-                                        @foreach ($errors->all() as $error)
-                                            <div class="alert alert-danger alert-dismissable" >
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                {{ $error}}
-                                            </div>
-                                        @endforeach
+                                        @include('front.bookings.parts.requestDuration')
+
                                     @endif
 
-  
 
                                     @if($booking->requestConfirm() && $booking->status_id != 3 && $booking->status_id != 4)
                                     {{ Form::open(['action' => 'Account\ReviewController@store']) }}
                                     
                                     {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+
+                                    {!! Form::hidden('project_id', $booking->project->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
                                     
                                     @if(count($errors) > 0)

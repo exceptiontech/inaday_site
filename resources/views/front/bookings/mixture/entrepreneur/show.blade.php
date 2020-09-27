@@ -297,6 +297,8 @@
                                     
                                     {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
+                                    {!! Form::hidden('mixture_id', $booking->mixture->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+
                                     
                                     @if(count($errors) > 0)
                                         @foreach ($errors->all() as $error)

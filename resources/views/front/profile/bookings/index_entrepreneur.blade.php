@@ -92,7 +92,7 @@
                                                             <ul class="list-inline m-0 flex-shrink-1">
                                                                 <li class="list-inline-item">
                                                                     <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                        {{$service->user->first_name .' '. $booking->offer->user->last_name ?? ' بدون تصنيف'}}
+                                                                        {{$service->user->first_name .' '. $service->user->last_name ?? ' بدون تصنيف'}}
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -163,12 +163,6 @@
                                     <div class="text-center mt-n5">
                                         <img src="{{url('/images/lamp.svg')}}">
                                     </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
                                     <p class="mt-5">
                                         - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
                                     </p>
