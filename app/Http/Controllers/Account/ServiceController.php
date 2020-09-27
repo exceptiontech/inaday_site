@@ -90,8 +90,8 @@ class ServiceController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title'     =>'required|max:500',
-            'desc'      =>'required|max:500',
+            'title'     =>'required|min:3|max:100',
+            'desc'      =>'required|min:3|max:500',
             'cost'      =>'integer|required',
             'duration'  =>'integer|required',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
