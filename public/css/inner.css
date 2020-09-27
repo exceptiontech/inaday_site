@@ -1136,17 +1136,17 @@ input[type="checkbox"] {
     margin-bottom: 0; }
   .messages .pending {
     position: absolute;
-    left: 13px;
+    left: 8px;
     top: 9px;
-    background: #b600ff;
+    background: #00c76d;
     margin: 0;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    padding-left: 5px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
     color: #ffffff;
-    font-size: 12px; }
+    font-size: 12px;
+    text-align: center; }
   .messages .media-left {
     margin: 0 10px; }
   .messages .media-left img {

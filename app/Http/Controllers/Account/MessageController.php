@@ -159,15 +159,6 @@ class MessageController extends Controller
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
-
-        $file = $request->file;
-        if ($file) {
-            $destinationPath = 'uploads/messages';
-            $extension =  $file->getClientOriginalExtension();
-            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
-            $upload_success = $file->move($destinationPath, $fileName);
-            $file = $destinationPath.'/'.$fileName;
-        }
         
 
         $data = new Message();
