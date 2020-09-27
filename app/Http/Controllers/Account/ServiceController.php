@@ -155,7 +155,7 @@ class ServiceController extends Controller
                 }else {
 
                     $title = array();
-                    $title['ar'] = $skill;
+                    $title['ar'] = $other_skill;
                     $new_skill = new Skill;
                     $new_skill->title = $title;
                     $new_skill->slug = $skill;
