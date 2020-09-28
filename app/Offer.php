@@ -16,4 +16,9 @@ class Offer extends Model
         return $this->belongsTo('App\Project');
     }
 
+    public function team()
+    {
+        return $this->belongsTo('App\Team');
+    }
+
 }
