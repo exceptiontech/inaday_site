@@ -60,8 +60,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        
                             
                         @endif
                             <div class="block col-12 pt-3 pb-2 mb-1">
