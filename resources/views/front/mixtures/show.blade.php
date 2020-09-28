@@ -48,11 +48,6 @@
                               </form>
                         </div>
                         @endif
-
-                        
-                        
-
-
                     </div>
                 </div>
                 <!-- sidebar End -->
