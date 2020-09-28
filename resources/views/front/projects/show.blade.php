@@ -404,8 +404,8 @@
                         </div>
                         </div>
                         @else
-                          @if(Auth::user() && Auth::user()->team)
-                          @if(count(Auth::user()->team->users) >= 1)
+                          @if(Auth::user() && Auth::user()->myteams)
+                          @if(count(Auth::user()->myteams->first()->users) >= 1)
                             <div class="projects">
                             <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                 <div class="row">
