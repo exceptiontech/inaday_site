@@ -72,16 +72,28 @@
 
 
 
-                            @if (!empty($user->userdetail->first()->notes))
-                                <div class="block col-12 pt-3 pb-2 mb-1">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                           <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
-                                           <p>{{ $user->userdetail->first()->notes}}</p>
-                                        </div>
+                        @if (!empty($user->userdetail->first()->notes))
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
+                                       <p>{{ $user->userdetail->first()->notes}}</p>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
+                        @else
+                            <div class="block col-12 pt-3 pb-2 mb-1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
+                                       <p>لا يوجد اي تفاصيل عن هذا العضو</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        @endif
+
+
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
