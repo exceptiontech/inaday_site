@@ -26,6 +26,10 @@ class Team extends Model
 
     public function hasUser($id){
 
+
+        return  $this->pendingUsers()->where('team_user.user_id',$id)->where('team_user.is_approved','!=',3)->where('team_user.is_approved','!=',2)->first();  
+
+
         if ($this->pendingUsers()->where('team_user.user_id',$id)->where('team_user.is_approved','!=',3)->where('team_user.is_approved','!=',2)->first()) {
             return true;
         }
