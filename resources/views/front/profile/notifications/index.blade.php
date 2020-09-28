@@ -1,7 +1,4 @@
 @extends('layouts.inner')
-@section('title')
-  {{__('file.servives_provider_register')}}
-@endsection
 @section('content')
 
 
