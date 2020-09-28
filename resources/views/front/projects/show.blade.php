@@ -404,7 +404,7 @@
                         </div>
                         </div>
                         @else
-                          @if(Auth::user() && Auth::user()->myteams)
+                          @if(Auth::user() &&  Auth::user()->isServicesProvider() && Auth::user()->myteams)
                             <div class="projects">
                             <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                 <div class="row">
