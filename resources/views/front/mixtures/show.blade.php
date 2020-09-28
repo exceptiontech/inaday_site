@@ -38,6 +38,7 @@
 
                             </ul>
                         </div>
+                        @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
                           
                               <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
@@ -45,9 +46,8 @@
                                   {{ csrf_field() }}
                                   <button class="btn btn-primary btn-block mb-2">{{__('file.book_mixture')}}</button>
                               </form>
-
-                          
                         </div>
+                        @endif
 
                         
                         

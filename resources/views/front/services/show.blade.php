@@ -38,16 +38,16 @@
 
                             </ul>
                         </div>
+                        @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
-                          
+                            
                               <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $service->cost}}" />
                                   {{ csrf_field() }}
                                   <button class="btn btn-primary btn-block mb-2">{{__('file.book_service')}}</button>
                               </form>
-
-                          
                         </div>
+                        @endif
 
                         
                         <div class="col-12 contact_author align-bottom">
