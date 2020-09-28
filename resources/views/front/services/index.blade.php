@@ -169,12 +169,12 @@
                                         </div>
                                         <div class="row service_bar">
                                             
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-7">
 
                                                 <ul class="list-inline">
                                                     @if($service->user)
                                                     <li class="list-inline-item">
-                                                        <img src="{{ url($service->user->userdetail->first()->avater  ?? 'images/19571f92333dd5fba2598f637b68739c.png')}}" class="rounded-circle img-thumbnail img-fluid">
+                                                        <img src="{{ url($service->user->userdetail->first()->avater  ?? 'assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid">
                                                         {{ $service->user->first_name.' '.$service->user->last_name }}
                                                     </li>
                                                     @endif
@@ -184,7 +184,7 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="col-sm-6 pt-2">
+                                            <div class="col-sm-5 pt-2">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $service->cost}} {{trans('file.sr')}}</label>

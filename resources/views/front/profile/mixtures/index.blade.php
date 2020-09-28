@@ -50,7 +50,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-7">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -59,7 +59,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-6 text-right">
+                                                    <div class="col-5 text-right">
                                                         <label class="btn btn-secondary rounded">{{$mixture->cost}} ريال</label>
                                                         <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">تفاصيل الخلطة</a>
                                                     </div>
