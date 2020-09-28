@@ -57,6 +57,15 @@ class ProjectController extends Controller
         }
 
 
+        if ($request->title) {
+
+            $title = $request->title;
+
+            $projects->where('title', 'like', '%' . $title . '%');
+
+        }
+
+
         if ($projects) {
 
             if ($request->targetskills) {
