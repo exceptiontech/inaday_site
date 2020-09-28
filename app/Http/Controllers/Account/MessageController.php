@@ -164,7 +164,6 @@ class MessageController extends Controller
         $data = new Message();
         $data->from = $from;
         $data->to = $to;
-        $data->message = $message;
 
         $file = $request->file;
         if ($file) {
@@ -173,7 +172,12 @@ class MessageController extends Controller
             $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
             $upload_success = $file->move($destinationPath, $fileName);
             $file = $destinationPath.'/'.$fileName;
+            
             $data->file = $file;
+            $data->message = $file;
+
+        }else {
+            $data->message = $message;
         }
 
         $data->is_read = 0; // message will be unread when sending message

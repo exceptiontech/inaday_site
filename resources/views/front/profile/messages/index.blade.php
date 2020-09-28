@@ -146,31 +146,6 @@
         });
 
 
-        // $(document).on('keyup', '.input-text input', function (e) {
-        //     var message = $(this).val();
-
-        //     if (e.keyCode == 13 && message != '' && receiver_id != '') {
-        //         $(this).val(''); 
-
-        //         var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-        //         $.ajax({
-        //             type: "post",
-        //             url: "{{ route('sendMessage') }}", 
-        //             data: datastr,
-        //             cache: false,
-        //             success: function (data) {
-        //                 //$('.user-'+receiver_id).click();
-        //             },
-        //             error: function (jqXHR, status, err) {
-        //             },
-        //             complete: function () {
-        //                 scrollToBottomFunc();
-        //             }
-        //         })
-        //     }
-        // });
-
-
 
         $(document).delegate(".upload_form","submit",function(e){ 
             e.preventDefault();
@@ -211,7 +186,7 @@
         $(".file-"+id).trigger('click');
 
         $(".file-"+id).on('change', function() {
-            //$("#upload_submit_"+id).trigger('click');
+            $("#upload_submit_"+id).trigger('click');
             //var message = $(this).val();
 
         });
