@@ -15,6 +15,7 @@ use App\Skill;
 use App\Applykind;
 use App\Log;
 use App\User;
+use App\Mixture;
 use Auth;
 use Socialite;
 use URL;
