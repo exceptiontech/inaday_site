@@ -405,7 +405,6 @@
                         </div>
                         @else
                           @if(Auth::user() && Auth::user()->myteams)
-                          @if(count(Auth::user()->myteams->first()->users) >= 1)
                             <div class="projects">
                             <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                 <div class="row">
@@ -417,11 +416,14 @@
                                     {{ Form::open(['action' => 'OfferController@store']) }}
 
                                     <div class="row mb-3">
+                                        <div class="col-12">
+                                        <label>{{trans('file.team')}}<em>* </em></label>
+                                        {!! Form::select('team_id',Auth::user()->myteams, null,['required', 'class' => 'form-control']) !!} 
+                                        </div>
                                         <div class="col-sm-6 inpudata">
                                           <label>{{trans('file.price')}}<em>* </em></label>
                                           <input class="form-control" type="text" name="price" placeholder="{{trans('file.add_your_offer_price_to_this_project')}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                           <input class="form-control" type="hidden" name="project_id" value="{{$project->id}}" >
-                                          <input class="form-control" type="hidden" name="team_id" value="{{Auth::user()->team->id}}" >
                                         </div>
                                         <div class="col-sm-6 inpudata">
                                           <label>{{trans('file.duration')}}<em>* </em></label>
@@ -446,7 +448,6 @@
                                 </div>
                             </div>
                             </div>
-                          @endif
                           @endif
 
                         @endif
