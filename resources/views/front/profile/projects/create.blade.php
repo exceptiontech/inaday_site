@@ -127,13 +127,13 @@
                                 </div>
 
 
-                                <div class="row mb-4">
+<!--                                 <div class="row mb-4">
                                     <div class="col-12">
                                         {!! Form::label('rule', trans('forms.rule'))!!}
                                         {!! Form::textarea('rule',null, array('class'=>'textarea form-control', 'rows'=>'3', 'placeholder'=>'مثال: عند الانتهاء من المشروع في اقل من اسبوع')) !!}
                                     </div>
                                 </div>
-
+ -->
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
