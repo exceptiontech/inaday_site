@@ -41,7 +41,7 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">تصنيف القسم</div>
-                                    <div class="col-6 p-0"><span class="bg-light">{{ $booking->mixture->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="">{{ $booking->mixture->section->title[App::getLocale()] }}</span> </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
@@ -51,7 +51,7 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{ $booking->mixture->duration}} يوم </div>
+                                    <div class="col-6 p-0">{{ $booking->mixture->duration}} ساعة </div>
                                 </li>
 
                             </ul>
