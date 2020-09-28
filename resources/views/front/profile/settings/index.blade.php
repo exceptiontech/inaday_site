@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
 
-
+                                <!--
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6 form-group">
                                       <label class="mb-1 font-weight-bold">تنبيهات التفضيل للخدمات والمشاريع</label>
@@ -161,6 +161,7 @@
 
                                     </div>
                                 </div>
+                              -->
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
@@ -291,7 +292,7 @@
                                     </div>
                                 </div>
 
-
+                                <!--
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6 form-group">
                                       <label class="mb-1 font-weight-bold">تنبيهات التفضيل للخدمات والمشاريع</label>
@@ -314,6 +315,7 @@
 
                                     </div>
                                 </div>
+                              -->
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">

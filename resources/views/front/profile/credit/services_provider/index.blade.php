@@ -32,92 +32,84 @@
                                   </div>
                                 @endif
 
-                                <ul class="nav nav-pills mb-4">
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
                                   <li class="nav-item">
-                                    <a class="nav-link active" href="#summary">معلومات الرصيد</a>
+                                    <a class="nav-link active" id="records-tab" data-toggle="tab" href="#records" role="tab" aria-controls="records" aria-selected="true">العمليات المالية</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="#records">العمليات المالية</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="#withdraw">سحب المبالغ</a>
+                                    <a class="nav-link" id="withdraw-tab" data-toggle="tab" href="#withdraw" role="tab" aria-controls="withdraw" aria-selected="false">سحب المبالغ</a>
                                   </li>
                                 </ul>
+                                <div class="tab-content" id="myTabContent">
+                                  <div class="tab-pane fade show active" id="records" role="tabpanel" aria-labelledby="records-tab">
+                                    <div class="row">
+                                       <div class="col-12 col-sm-4 ">
+                                              <div class="bg-light pt-3 box rounded text-center">
+                                                  <h2 class="mb-3">الرصيد الكلي</h2>
+                                                  <p class="price mb-1"><span class="mr-1">{{Auth::user()->totalProfit()}}</span>ريال سعودي</p>
+                                                  <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
+                                              </div>
+                                              
+                                          </div>
+                                          <div class="col-12 col-sm-4">
+                                              <div class=" bg-light pt-3 box rounded text-center">
+                                                  <h2 class="mb-3">الرصيد المعلّق</h2>
+                                                  <p class="price mb-1"><span class="red mr-1">{{Auth::user()->pendingProfit()}}</span>ريال سعودي</p>
+                                                  <p class="p-3">هو الرصيد المعلق الذي لا يمكن سحبه إلا بعد تأكيد صاحب المشروع بالإستلام</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-12 col-sm-4">
+                                              <div class="bg-light pt-3 box rounded text-center">
+                                                  <h2 class="mb-3">آرباح ممكن سحبها</h2>
+                                                  <p class="price mb-1"><span  class="green mr-1">{{Auth::user()->confirmedProfit()}}</span>ريال سعودي</p>
+                                                  <p class="p-3">هو المبلغ الذي حققتهه من عملك ويمكن سحبه الي حسابك</p>
+                                              </div>
+                                          </div>  
+                                          <div class="col-12">
+                                          <div class="table-responsive">
+                                            <table class="table table-bordered mt-4 mb-5">
+                                              <thead class="thead-light">
+                                                <tr>
+                                                  <th scope="col">نوع العملية</th>
+                                                  <th scope="col">الوصف</th>
+                                                  <th scope="col">المبلغ</th>
+                                                  <th scope="col">تاريخ العملية</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                @if(count($transactions)> 0)
+                                                  @foreach($transactions as $transaction)
 
 
-                                <div id="summary" class="row text-center mb-5">
-
-                                    <div class="col-12 col-sm-4">
-                                        <div class="bg-light pt-3 box rounded">
-                                            <h2 class="mb-3">الرصيد الكلي</h2>
-                                            <p class="price mb-1"><span class="mr-1">{{Auth::user()->totalProfit()}}</span>ريال سعودي</p>
-                                            <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class=" bg-light pt-3 box rounded">
-                                            <h2 class="mb-3">الرصيد المعلّق</h2>
-                                            <p class="price mb-1"><span class="red mr-1">{{Auth::user()->pendingProfit()}}</span>ريال سعودي</p>
-                                            <p class="p-3">هو الرصيد المعلق الذي لا يمكن سحبه إلا بعد تأكيد صاحب المشروع بالإستلام</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="bg-light pt-3 box rounded">
-                                            <h2 class="mb-3">آرباح ممكن سحبها</h2>
-                                            <p class="price mb-1"><span  class="green mr-1">{{Auth::user()->confirmedProfit()}}</span>ريال سعودي</p>
-                                            <p class="p-3">هو المبلغ الذي حققتهه من عملك ويمكن سحبه الي حسابك</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div id="records">
-                                  <div class="table-responsive">
-                                    <table class="table table-bordered mt-4 mb-5">
-                                      <thead class="thead-light">
-                                        <tr>
-                                          <th scope="col">نوع العملية</th>
-                                          <th scope="col">الوصف</th>
-                                          <th scope="col">المبلغ</th>
-                                          <th scope="col">تاريخ العملية</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        @if(count($transactions)> 0)
-                                          @foreach($transactions as $transaction)
-
-
-                                            <tr>
-                                              <td>{{$transaction->title}}</td>
-                                              <td>
-                                                @if($transaction->booking)
-                                                {{$transaction->booking->getModel()->title}}
+                                                    <tr>
+                                                      <td>{{$transaction->title}}</td>
+                                                      <td>
+                                                        @if($transaction->booking)
+                                                        {{$transaction->booking->getModel()->title}}
+                                                        @else
+                                                          سحب ارباح
+                                                        @endif
+                                                      </td>
+                                                      <td>@if($transaction->type == 'minus') - @endif
+                                                        {{$transaction->mount}} ريال</td>
+                                                      <td dir="ltr">{{$transaction->created_at}}</td>
+                                                    </tr>
+                                                  @endforeach
                                                 @else
-                                                  سحب ارباح
+                                                <tr>
+                                                  <td colspan="4"> لا يوجد اي عمليات</td>
+                                                </tr>
+
                                                 @endif
-                                              </td>
-                                              <td>@if($transaction->type == 'minus') - @endif
-                                                {{$transaction->mount}} ريال</td>
-                                              <td dir="ltr">{{$transaction->created_at}}</td>
-                                            </tr>
-                                          @endforeach
-                                        @else
-                                        <tr>
-                                          <td colspan="4"> لا يوجد اي عمليات</td>
-                                        </tr>
 
-                                        @endif
-
-                                      </tbody>
-                                    </table>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                          </div>
+                                        </div>
                                   </div>
-
-                                </div>
-
-
-                                <div id="withdraw" class="col-12">
-
+                                  <div class="tab-pane fade" id="withdraw" role="tabpanel" aria-labelledby="withdraw-tab">
                                     @if(Auth::user()->requestedProfit())
                                         <div class="alert alert-info">
                                           هناك طلب لسحب الارباح ، فريق عمل الموقع يعمل على الطلب حال الانتهاء سيتم تفعيل خاصية السحب مرة اخرى 
@@ -155,8 +147,15 @@
                                               {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
                                             </div>
                                         </div>
-                                  {{ Form::close() }}                  
+                                    {{ Form::close() }}                  
+
                                   </div>
+                                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                                </div>
+
+
+
+
                             </div>
 
                             <div class="col-12 col-sm-4">
