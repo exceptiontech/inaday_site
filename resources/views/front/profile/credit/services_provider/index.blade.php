@@ -67,6 +67,44 @@
                                               </div>
                                           </div>  
                                           <div class="col-12">
+
+
+
+                                            {{ Form::open(['action' => 'Account\CreditController@index','method' => 'get']) }}
+                                            <div  id="searchform" class="row mb-3 mt-5">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                      {!! Form::label('title','بحث')!!}
+                                                      {!!Form::text('title', Request::get('title'), ['id' => 'title','class' => 'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                      {!! Form::label('type', 'نوع العملية')!!}
+                                                      {!!Form::select('type', ['plus'=>'ربح','minus'=>'سحب'], Request::get('type'), ['id' => 'type','class' => 'form-control','placeholder'=>'الكل']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                      {!! Form::label('start_date', 'خلال الفترة من')!!}
+                                                      {!!Form::text('start_date', Request::get('start_date'), ['id' => 'start_date','class' => 'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                      {!! Form::label('end_date', 'إلى')!!}
+                                                      {!!Form::text('end_date', Request::get('end_date'), ['id' => 'end_date','class' => 'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                      {!! Form::button(trans('admin.search'), 
+                                                      array('class'=>'btn btn-block btn-success','id'=>'search-button', 'type'=>'submit')) !!}
+                                                </div>
+
+                                              </div>
+                                              {{ Form::close() }}
+
+
                                           <div class="table-responsive">
                                             <table class="table table-bordered mt-4 mb-5">
                                               <thead class="thead-light">
