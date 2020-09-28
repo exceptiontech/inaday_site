@@ -364,7 +364,7 @@ class TeamController extends Controller
         }
 
         //$team = Auth::user()->team;
-        $team->users()->detach();
+        //$team->users()->detach();
         $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)

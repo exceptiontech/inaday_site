@@ -84,9 +84,9 @@
                       <div class="col">
                         {{ Form::open(['action' => 'TeamController@addUserToTeam']) }}
                                                     
-                        {!! Form::hidden('id',$user->id , []) !!}
+                          {!! Form::hidden('id',$user->id , []) !!}
 
-                        {!! Form::submit(trans('file.add_user_to_your_team'), array('class'=>'bottom')) !!}
+                          {!! Form::submit(trans('file.add_user_to_your_team'), array('class'=>'bottom')) !!}
                         {{ Form::close() }}
 
                     </div>
