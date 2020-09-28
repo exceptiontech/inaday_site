@@ -227,6 +227,9 @@ class TeamController extends Controller
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
+
+            $team = Team::find($id);
+
             if (count($team->mixtures) > 0) {
                 foreach ($team->mixtures as $key => $mix) {
                     $mixture = mixture::find($mix->id);
@@ -235,7 +238,6 @@ class TeamController extends Controller
                 }
             }
 
-            $team = Team::find($id);
             $team->deleted_at = now();
             $team->save();
         }
