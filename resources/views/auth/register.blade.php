@@ -16,12 +16,20 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class=" col-md-4 service_provider @if(Request()->type == 'services_provider') active  @endif ">
-                        <input type="radio" id="TypeUser" name="user_type" value="services_provider"  @if(Request()->type == 'services_provider') checked="checked"  @endif > <span>مقدم خدمة</span>
+                        <input type="radio" id="TypeUser" name="user_type" value="services_provider"  
+                        @if(Request()->type == 'services_provider') checked="checked"  @endif
+                         @if(old('user_type') == 'services_provider') checked="checked"  @endif 
+
+                         > <span>مقدم خدمة</span>
 {{--                        <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
                         <p> باحث عن عمل و تريدالمساعدة في تنفيذ المشاريع</p>
                     </div>
                     <div class="col-md-4 project_owner @if(Request()->type == 'entrepreneur') active  @endif">
-                        <input type="radio" @if(Request()->type == 'entrepreneur') checked="checked"  @endif id="TypeUser2" name="user_type" value="entrepreneur"> <span>صاحب مشروع</span>
+                        <input type="radio"
+                         @if(Request()->type == 'entrepreneur') checked="checked"  @endif 
+                         @if(old('user_type') == 'entrepreneur') checked="checked"  @endif 
+
+                         id="TypeUser2" name="user_type" value="entrepreneur"> <span>صاحب مشروع</span>
 {{--                        <a href="{{ url('register/entrepreneur') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
                         <p>صاحب فكرة وعزيمة لديه حلم في بدء أعمال تجارية</p>
                     </div>

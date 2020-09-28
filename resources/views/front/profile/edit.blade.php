@@ -93,12 +93,12 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('country_id', trans('profile.country'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('country_id',$countries->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->country_id ?? '',['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('country_id',$countries->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->country_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
 
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('city_id', trans('profile.city'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('city_id',$cities->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->city_id ?? '',['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('city_id',$cities->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->city_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
 
                                     </div>
                                 </div>
