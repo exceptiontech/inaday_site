@@ -51,11 +51,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('cost', trans('forms.service_cost'))!!} <em class="text-danger">*</em>
-                                        {!! Form::text('cost', null, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('cost', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
                                     <div class="col-12 col-sm-3">
                                         {!! Form::label('duration', trans('forms.service_duration'))!!}
-                                        {!! Form::text('duration', null, ['required','class' => 'form-control']) !!}
+                                        {!! Form::text('duration', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
 
                                     </div>
                                     <div class="col-12 col-sm-6">

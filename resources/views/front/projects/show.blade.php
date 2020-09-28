@@ -76,7 +76,9 @@
 
                     <div class="col-12 contact_author align-bottom">
                         <a href="{{url('/account/messages/?user_id='.$project->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
+                        @guest
                         <p class="small">{{trans('file.you_must_log_in_first_to_use_the_platforms_services')}}</p>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -298,7 +300,7 @@
                                     <p>{{ $offer->offer }}</p>
 
                                     @if(Auth::user() && $project->user_id == Auth::user()->id)
-                                    <form action="{{ url('paypal/'.$project->title.'/'.$offer->id.'/charge') }}" method="post">
+                                    <form action="{{ url('paypal/'.$project->title.'/'.$project->id.'/'.$offer->id.'/charge') }}" method="post">
                                         <input type="hidden" name="amount" value="{{ $offer->price}}" />
                                         {{ csrf_field() }}
                                         <button class="btn btn-secondary btn-block">{{__('file.approve')}}</button>
@@ -402,7 +404,7 @@
                         </div>
                         </div>
                         @else
-                          @if(Auth::user() &&  Auth::user()->isServicesProvider() && Auth::user()->myteams)
+                          @if(Auth::user() &&  Auth::user()->isServicesProvider() && count(Auth::user()->myteams) > 0)
                             <div class="projects">
                             <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                 <div class="row">

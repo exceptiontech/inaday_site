@@ -40,7 +40,7 @@ return [
     'ease' => 'سهولة إدارة ومتابعة المشاريع',
     'project_management_and_follow_up' => 'إدارة ومتابعة المشاريع',
     'choose' => 'اختر',
-    'password_is_not_less_than_8_characters' => 'كلمة المرورلا تقل عن ٨ أحرف',
+    'password_is_not_less_than_8_characters' => 'كلمة المرور لا تقل عن ٨ أحرف ولا بد ان تحتوي @,#,$, وحروف كابتل وسمول وأرقام',
     'all_posts' =>'كل المقالات',
     'all_faqs' =>'كل الاسئلة',
     'faqs' => 'الاسئلة المتكررة',

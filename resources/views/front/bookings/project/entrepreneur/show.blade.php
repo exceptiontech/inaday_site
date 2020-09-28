@@ -240,6 +240,12 @@
 
                                         @endif
 
+                                        @if($replay->requestDuration($replay->id))
+
+                                            @include('front.bookings.parts.requestDuration')
+
+                                        @endif
+
                                         @if(count($replay->replays) > 0)
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
@@ -327,13 +333,6 @@
                                     </div>
                                     @endif
                  
-                                    @if(isset($replay))
-                                    @if($replay->requestDuration($replay->id))
-
-                                        @include('front.bookings.parts.requestDuration')
-
-                                    @endif
-                                    @endif
 
 
                                     @if($booking->requestConfirm() && $booking->status_id != 3 && $booking->status_id != 4)
