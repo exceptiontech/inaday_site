@@ -215,7 +215,7 @@
                                 </div>
                             @endif
 
-
+                                {{-- 
                             <div class="block col-12 pt-3 pb-5 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -254,6 +254,7 @@
 
                                 </div>
                             </div>
+                            --}}
                             
                         </div> 
 
