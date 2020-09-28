@@ -49,6 +49,12 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
 
+        if ($request->mount > Auth::user()->confirmedProfit()) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'المبلغ المطلوب اكثر من المستحق');
+            return redirect::back();
+        }
+
         $validator = Validator::make($request->all(), [
             'mount'     =>'required|integer|numeric:10,'.Auth::user()->confirmedProfit(),
             'desc'      =>'required|max:500',
