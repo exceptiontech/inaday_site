@@ -163,7 +163,7 @@
                                         <ul class="list-inline">
                                             @foreach($project->skills as $skill)
                                                 <li class="list-inline-item">
-                                                    <span class="bg-light p-2 rounded-lg">{{@$skill->title[App::getLocale()]}}</span>
+                                                    <div class="bg-light p-2 rounded-lg mb-2">{{@$skill->title[App::getLocale()]}}</div>
                                                 </li>
                                             @endforeach
                                         </ul>
