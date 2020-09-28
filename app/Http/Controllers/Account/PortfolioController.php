@@ -30,7 +30,7 @@ class PortfolioController extends Controller
         }
 
 
-        if (Auth::user()->userdetailComplete) {
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
             Session::flash('status', __('admin.info'));
             Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة معرض اعمال');
             return redirect::to('/account/profile/edit');
