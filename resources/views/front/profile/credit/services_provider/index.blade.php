@@ -221,5 +221,20 @@
 
 @section('jquery')
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+
+<script type="text/javascript">
+    $('#start_date').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true
+    });
+
+    $('#end_date').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true
+    });
+</script>
 @endsection
+
 
