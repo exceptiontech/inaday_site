@@ -418,7 +418,7 @@
                                     <div class="row mb-3">
                                         <div class="col-12">
                                         <label>{{trans('file.team')}}<em>* </em></label>
-                                        {!! Form::select('team_id',Auth::user()->myteams('title','id'), null,['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('team_id',Auth::user()->myteams->pluck('title','id'), null,['required', 'class' => 'form-control']) !!} 
                                         </div>
                                         <div class="col-sm-6 inpudata">
                                           <label>{{trans('file.price')}}<em>* </em></label>
