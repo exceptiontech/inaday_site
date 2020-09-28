@@ -34,8 +34,6 @@
                                 @endif
                             </a>
 
-
-                            <p>{{ $message->message }}</p>
                         @else
                             <p>{{ $message->message }}</p>
                         @endif
