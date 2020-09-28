@@ -54,7 +54,7 @@ class TeamController extends Controller
             return view('front.errors.denied');
         }
 
-        if (!Auth::user()->userdetailComplete) {
+        if (Auth::user()->userdetailComplete) {
             Session::flash('status', __('admin.info'));
             Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة فريق');
             return redirect::to('/account/profile/edit');
