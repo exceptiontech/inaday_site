@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="col-12 col-sm-12">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!}
-                                        {!! Form::text('num_team', $project->num_team, ['required','class' => 'form-control','placeholder'=>'1']) !!}
+                                        {!! Form::text('num_team', $project->num_team, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
 
                                 </div>

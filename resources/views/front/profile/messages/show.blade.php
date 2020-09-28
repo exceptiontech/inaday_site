@@ -25,12 +25,13 @@
                 <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
                     <div class="message_content p-2">
                         @if($message->file)
-                            <a class="d-flex" download="download" href="{{url($message->file)}}">
+                            <a class="d-flex text-white" download="download" href="{{url($message->file)}}">
 
                                 @if(pathinfo($message->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpeg')
                                     <img class="img-fluid" src="{{url($message->file)}}">
                                 @else
-                                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-file-o fa-2x mr-2" aria-hidden="true"></i>
+                                    حمل هذا الملف
                                 @endif
                             </a>
 

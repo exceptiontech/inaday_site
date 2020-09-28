@@ -62,6 +62,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'user_type' => ['required', 'string'],
             'first_name' => ['required', 'string', 'min:3','alpha'],
@@ -72,8 +73,10 @@ class RegisterController extends Controller
             'regex:/[A-Z]/',      // must contain at least one uppercase letter
             'regex:/[0-9]/',      // must contain at least one digit
             'regex:/[@$!%*#?&]/', // must contain a special character
-             'confirmed'],
-            'mobile' =>['required','digits:10']
+            'confirmed'],
+            'mobile' =>['required','digits:10'],[
+                'password.regex'  => 'كلمة المرور لا تقل عن ٨ أحرف ولا بد ان تحتوي @,#,$, وحروف كابتل وسمول وأرقام',
+            ]
             // 'brith_day' => ['required', 'date_format:Y-m-d|before:today'],
             // 'average_cost' => ['regex:/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/'],
         ]);
