@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="row service_bar">
                                             
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-7 pt-1">
 
                                                 <ul class="list-inline">
                                                     @if($service->user)
@@ -179,12 +179,13 @@
                                                     </li>
                                                     @endif
                                                     <li class="list-inline-item">
-                                                        <span class="bg-light">{{$service->section->title[App::getLocale()]}}</span>
+                                                        <span class="bg-light">
+                            {{ \Illuminate\Support\Str::words($service->section->title[App::getLocale()],3,'....')  }}</span>
                                                     </li>
                                                 </ul>
 
                                             </div>
-                                            <div class="col-sm-5 pt-2">
+                                            <div class="col-sm-5 ">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $service->cost}} {{trans('file.sr')}}</label>
