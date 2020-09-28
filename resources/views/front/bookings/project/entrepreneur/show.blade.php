@@ -327,11 +327,12 @@
                                     </div>
                                     @endif
                  
-
+                                    @if($replay)
                                     @if($replay->requestDuration($replay->id))
 
                                         @include('front.bookings.parts.requestDuration')
 
+                                    @endif
                                     @endif
 
 

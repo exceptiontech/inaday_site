@@ -271,7 +271,6 @@
                             @else
                             <div class=" comments">
                               @foreach($project->offers as $offer)
-                                @if($offer->user_id == Auth::user()->id)
 
                                 <div class="col-12 pt-3 pb-3 comment">
                                     <div class="row info">
@@ -310,7 +309,6 @@
                                 </div>
 
 
-                                @endif
                                 </div>
                               @endforeach
                             @endif
