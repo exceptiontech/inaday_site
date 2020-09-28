@@ -153,7 +153,11 @@
                                                 <span>{{$service->pivot->duration}} ساعة</span>
                                             </div>
                                             <div class="col-2">
-                                                <span><del> {{$service->cost}} ريال</del> </span>
+                                                <span>
+                                                    @if($service->pivot->cost != $service->cost )
+                                                    <del> {{$service->cost}} ريال</del>
+                                                    @endif
+                                                </span>
                                             </div>
                                             <div class="col-2">
                                                 <span>{{$service->pivot->cost}} ريال</span>
