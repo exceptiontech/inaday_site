@@ -278,7 +278,7 @@
                                         <div class="col-sm-8 d-flex align-items-center">
                                             <img src="{{ url($offer->user->team->image ?? 'assets/images/img3.jpg') }}" class="rounded-circle img-thumbnail img-fluid pull-right">
                                             <div class="ml-2">
-                                                <span>{{ $offer->user->team->title }}</span> 
+                                                <span>{{ $offer->team->title }}</span> 
                                                 <div class="m-0 small">
                                                     <span class="mr-2">مسئول الفريق : {{ $offer->user->first_name.' '.$offer->user->last_name }}</span>
                                                     <span>بتاريخ {{ $offer->created_at }}</span>
@@ -418,7 +418,7 @@
                                     <div class="row mb-3">
                                         <div class="col-12">
                                         <label>{{trans('file.team')}}<em>* </em></label>
-                                        {!! Form::select('team_id',Auth::user()->myteams, null,['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('team_id',Auth::user()->myteams('title','id'), null,['required', 'class' => 'form-control']) !!} 
                                         </div>
                                         <div class="col-sm-6 inpudata">
                                           <label>{{trans('file.price')}}<em>* </em></label>

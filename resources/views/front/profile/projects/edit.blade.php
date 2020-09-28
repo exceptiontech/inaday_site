@@ -112,13 +112,26 @@
                                 </div>
 
 
+
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                      {!! Form::label('skills', trans('forms.skills'))!!}
-                                      {{ Form::select('skills[]', $skills->pluck('title.'.App::getLocale(),'id'), array_pluck($project->skills, 'id'), ['required'=>'required','multiple', 'class' => 'form-control']) }}
+                                    {!! Form::label('skills', trans('forms.skills'))!!}
+                                    @if (count($skills))
+                                        @foreach($skills as $skill)
+                                        <div class="check-item">
+                                            <div class="chicksign">
+                                                <label class="che-box">
+                                                <input @if($project->skills->contains($skill->id)) checked="checked" @endif  name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
+                                                  {{$skill->title[App::getLocale()]}} <em>*</em></span>
+                                                </label>
+                                            </div>
+                                        </div>
 
+                                        @endforeach
+                                    @endif
                                     </div>
                                 </div>
+
 
 
                                 <div class="row mb-4">
