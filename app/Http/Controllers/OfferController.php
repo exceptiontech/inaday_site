@@ -58,19 +58,12 @@ class OfferController extends Controller
 
         $validator = Validator::make($request->all(), [
             'project_id'        => 'required|integer',
-            'duration'          => 'required|integer|numeric:1,24',
+            'duration'          => 'required|numeric|min:1|max:24',
             'price'             => 'required|integer',
             'offer'             => 'required',
 
         ]);
 
-
-        if ($request->duration > 24) {
-            Session::flash('status', __('admin.danger'));
-            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
-            return redirect::back()->withErrors($validator)
-                        ->withInput();
-        }
 
         if ($validator->fails()) {
             return redirect::back()->withErrors($validator)->withInput();

@@ -33,6 +33,16 @@
                                 @endif
 
 
+                                @if(count($errors) > 0)
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger alert-dismissable" >
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $error}}
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                   <li class="nav-item">
                                     <a class="nav-link active" id="records-tab" data-toggle="tab" href="#records" role="tab" aria-controls="records" aria-selected="true">العمليات المالية</a>
@@ -157,15 +167,6 @@
 
                                     {{ Form::open(['action' => 'Account\TransactionController@store']) }}
                                                 
-
-                                        @if(count($errors) > 0)
-                                            @foreach ($errors->all() as $error)
-                                                <div class="alert alert-danger alert-dismissable" >
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                    {{ $error}}
-                                                </div>
-                                            @endforeach
-                                        @endif
                                         <div class="row mb-4">
                                             <div class="col-12 col-sm-6">
                                                 <label class="mb-3" for="">ادخال المبلغ المراد سحبه</label>
