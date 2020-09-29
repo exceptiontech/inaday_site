@@ -442,13 +442,13 @@ class CreateAdminUserSeeder extends Seeder
             'slug' => '1',
         ]);
 
-        $title  = array();
-        $title['ar'] = 'تكلفة بالمشروع';
-        $title['en'] = 'تكلفة بالمشروع';
-        $Costkind = Costkind::create([
-            'title' => $title,
-            'slug' => '2',
-        ]);
+        // $title  = array();
+        // $title['ar'] = 'تكلفة بالمشروع';
+        // $title['en'] = 'تكلفة بالمشروع';
+        // $Costkind = Costkind::create([
+        //     'title' => $title,
+        //     'slug' => '2',
+        // ]);
 
 
         $title  = array();

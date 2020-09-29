@@ -134,39 +134,39 @@
                                 <h2 class="dark mt-5 mb-4">{{__('profile.job_information')}}</h2>
 
                                 <div class="row mb-4">
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('jobtype_id', trans('profile.jobtype'))!!}
                                         {!! Form::select('jobtype_id',$jobtypes->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->jobtype_id ?? '' ,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('prefer_id', trans('profile.prefer'))!!}
                                         {!! Form::select('prefer_id',$prefers->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->prefer_id ?? '',['required', 'class' => 'form-control']) !!} 
 
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    <!-- <div class="col-12 col-sm-4">
                                         {!! Form::label('costkind_id', trans('profile.costkind'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('costkind_id',$costkinds->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->costkind_id ?? '' ,['required', 'class' => 'form-control']) !!} 
 
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
                                 <div class="row mb-4">
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('level_id', trans('profile.levels'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control']) !!} 
 
                                     </div>
 
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('skills[]', trans('profile.skills'))!!}<em class="text-danger">*</em>
                                         {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->skill_id ?? '',['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    <!-- <div class="col-12 col-sm-4">
                                         {!! Form::label('skills[]', trans('profile.anthor_skill'))!!}
                                         {!! Form::text('skills[]', null, ['required','class' => 'form-control']) !!}
 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 @endif
 
