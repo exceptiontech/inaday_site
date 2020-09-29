@@ -137,7 +137,7 @@ return [
     'add_offer'=>'إضافة عرضك',
     'price'=>'السعر بالريال السعودي',
     'add_your_offer_price_to_this_project'=>'ضع السعر الذي تراه مناسب للمشروع',
-    'duration'=>'المدة بالأيام',
+    'duration'=>'المدة بالساعات',
     'add_your_offer_duration_to_this_project'=>'ضع المدة التي تراها مناسبه للمشروع',
     'offer_details'=>'رسالتك لرائد الأعمال',
     'add_your_offer_desc_to_this_project'=>'إضافة تفاصيل عرضك أو أي استفسارات',

@@ -236,7 +236,7 @@
                                 <div class="col-12 pt-3 pb-3 comment mb-4">
                                     <div class="row info">
                                         <div class="col-sm-8 d-flex align-items-center">
-                                            <img src="{{ url($offer->user->userdetail->first()->avater ?? 'assets/images/img3.jpg') }}" class="rounded-circle img-thumbnail img-fluid pull-right">
+                                            <img src="{{ url($offer->user->userdetail->first()->avater ?? 'assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right">
                                             <div class="ml-2">
                                                 <span>{{ $offer->user->first_name.' '.$offer->user->last_name }}</span> 
                                                 <div class="m-0 small">

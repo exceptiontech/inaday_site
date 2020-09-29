@@ -49,6 +49,13 @@ class OfferController extends Controller
     {
 
 
+        if ($request->price > 24) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
+            return redirect::back();
+        }
+
+
         $validator = Validator::make($request->all(), [
             'project_id'        => 'required|integer',
             'duration'          => 'required|integer',
