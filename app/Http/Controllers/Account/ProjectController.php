@@ -96,7 +96,7 @@ class ProjectController extends Controller
             'num_team'      =>'required',
             'cost'      =>'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
-            'duration'      =>'required|integer',
+            'duration'      =>'required|integer|numeric:1,24',
             'skills' =>'required|array',
             'skills.*' =>'required|integer'
         ]);
