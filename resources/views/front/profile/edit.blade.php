@@ -194,6 +194,39 @@
 @section('jquery')
   <script type="text/javascript">
 
+
+    $(document).ready(function(){
+
+    $('#city_id').empty();
+
+      var data = {'country_id' : 1};
+
+      $.ajax({    
+        type  : 'get',
+        url   : '{!!URL::route('getCities')!!}',
+        data  : data ,      
+        success:function(data){
+
+        if (data.length > 0) {
+            html = "";
+
+            for (i = 0; i < data.length; i++) { 
+                html += '<option value="'+data[i].id+'">'+data[i].title.ar+'</option>'; 
+            } 
+            $('#city_id').removeAttr('disabled','disabled');
+            $('#city_id').html(html);
+        }else {
+            $('#city_id').attr('disabled','disabled');
+        }
+
+        },
+        error:function(data){
+          console.log(data.err)
+        }
+      });
+    }); 
+
+
     $("#country_id").change(function() {
 
     $('#city_id').empty();
