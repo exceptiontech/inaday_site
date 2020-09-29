@@ -127,7 +127,9 @@ class RegisterController extends Controller
 
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
-
+            $user->notification_preference = 'mail,database';
+            $user->save();
+            
             if (count($user->userdetail) > 0) {
                 $userdetail = Userdetail::find(Auth::user()->userdetail->id);
             }else {
@@ -139,6 +141,8 @@ class RegisterController extends Controller
             }else {
                 $userdetail->user_id = $user->id;
             }
+
+
 
 //            $userdetail->jobtype_id = $request->jobtype_id;
 //            $userdetail->level_id = $request->level_id;
@@ -155,7 +159,7 @@ class RegisterController extends Controller
 //            $userdetail->country_id = $request->country_id;
 //            $userdetail->position = $request->position;
 //            $userdetail->notes = $request->notes;
-//            $userdetail->save();
+           $userdetail->save();
 //
 //            $avater =  $request->avater;
 //            if (isset($avater)) {
