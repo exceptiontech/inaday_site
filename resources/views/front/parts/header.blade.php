@@ -65,7 +65,7 @@
             </ul>
             <ul class="navbar-nav ml-auto login_menu">
               <li class="nav-item">
-                  <a class="nav-link noborder" href="#"> كيف يعمل انادي ؟ </a>
+                  <a class="nav-link noborder" href="{{url('pages/4')}}">{{trans('file.how_inaday_work')}}  </a>
               </li>
               @guest
                 <li class="nav-item not-active">
@@ -120,9 +120,9 @@
                           @endif
                           <div class="d-flex text-center">
                             <a class="dropdown-item col-6 bg text-center" href="{{ url('account/notifications/') }}">
-                              <i class="fa fa-bars" aria-hidden="true"></i> كل الإشعارات
+                              <i class="fa fa-bars ml-2" aria-hidden="true"></i>  {{trans('file.notifications')}} 
                             </a>
-                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/settings') }}">   <i class="fa fa-cog" aria-hidden="true"></i> إعدادات الإشعارات
+                            <a class="dropdown-item col-6 bg text-center" href="{{ url('account/settings') }}">   <i class="fa fa-cog" aria-hidden="true"></i> {{trans('file.notifications_settings')}}
                             </a>
                           </div>
                         </div>

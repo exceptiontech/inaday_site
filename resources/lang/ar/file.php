@@ -19,8 +19,15 @@ return [
     'signin' => 'تسجيل الدخول',
     'register' => 'تسجيل عضوية',
     'home' => 'الرئيسية',
+    'chat' => 'الشات',
+    'how_inaday_work' => 'كيف يعمل انادي ؟',
+    'notifications_settings' => 'إعدادات الإشعارات',
+
+
+
     'select' => 'اختر',
     'send' => 'إرسال',
+    'file' => 'ملف',
     'file' => 'ملف',
     'thanks' => 'تهانينا',
     'we_seek_to_create_jobs_remotely' => 'نسعى لخلق وظائف عن بعد',
