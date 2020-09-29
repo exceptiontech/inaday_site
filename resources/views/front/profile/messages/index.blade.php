@@ -159,7 +159,7 @@
 
             $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
             $(this).val(''); 
-            var receiver_id = $(this).data('id');
+            var receiver_id = $(this).data('id'); 
 
             $.ajax({
                 url: '{{ route('sendMessage') }}',
