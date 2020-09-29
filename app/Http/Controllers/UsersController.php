@@ -507,8 +507,6 @@ class UsersController extends Controller
         $url = Session::get('url');
         Session::forget('url');
 
-
-
         $return_user = Socialite::driver('google')->stateless()->user();
 
         if (str_contains($url, 'user')) {
