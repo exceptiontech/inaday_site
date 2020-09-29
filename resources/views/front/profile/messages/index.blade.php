@@ -14,7 +14,7 @@
                     <div class="d-flex">
                         <div class="col-md-4 p-0">
                             <div class="p-3 border-left">
-                                <input class="form-control" type="search" name="search" placeholder="بحث">
+                                <input class="form-control" id="searchKeywords" type="text" name="search" placeholder="بحث">
                             </div>
                             <div class="user-wrapper">
                                 <ul class="users">
@@ -79,6 +79,13 @@
     var receiver_id = '';
     var my_id = "{{ Auth::id() }}";
     $(document).ready(function () {
+
+        $("#searchKeywords").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("ul.users li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
 
         // ajax setup form csrf token
         $.ajaxSetup({

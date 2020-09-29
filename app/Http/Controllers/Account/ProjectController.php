@@ -80,13 +80,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         
-
-        if ($request->duration > 24) {
-            Session::flash('status', __('admin.danger'));
-            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
-            return redirect::back();
-        }
-
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
             $num = range(9, 0);
@@ -102,11 +95,18 @@ class ProjectController extends Controller
             'num_team'      =>'required',
             'cost'      =>'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
-            'duration'      =>'required|integer',
+            'duration'      =>'required|integer|numeric:1,24',
             'skills' =>'required|array',
             'skills.*' =>'required|integer'
         ]);
 
+
+        if ($request->duration > 24) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
+            return redirect::back()->withErrors($validator)
+                        ->withInput();
+        }
 
         if ($validator->fails()) {
             return redirect::back()
