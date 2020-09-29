@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                       <h2 class="mb-3"> نبذة عني</h2>
-                                      <p> {{ $userdetail->notes ?? 'من فضلك قم بتحديث الملف الشخصي' }}</p>
+                                      <p> {{ $user->userdetail->first()->notes ?? 'من فضلك قم بتحديث الملف الشخصي' }}</p>
                                     </div>
                                 </div>
                             </div>
