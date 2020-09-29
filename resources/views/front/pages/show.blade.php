@@ -6,19 +6,23 @@
 
 
 @section('content')
-<section class="banner">
-  <div class="container">
-    <h1 class="title">{{$page->title[App::getLocale()]}}</h1>
-  </div>
-</section>
 
+<div id="innerpage" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
 
-<section class="terms-conditions">
-  <div class="container">
-    <h2 class="title"> {{$page->title[App::getLocale()]}}</h2>
-    <p class="text">  {{$page->desc[App::getLocale()]}} </p>
-  </div>
-</section>
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">{{$page->title[App::getLocale()]}}</h2>
+                </div>
+                <div class="col-12">
+                    <div class="bg-light faqs rounded pt-3 pb-3 p-5">
+                    	{!!$page->desc[App::getLocale()]!!}
+                	</div>
+            	</div>
+        </div>
+    </div>
+</div>
+
 
 
 @endsection

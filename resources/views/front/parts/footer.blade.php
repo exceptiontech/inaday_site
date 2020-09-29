@@ -14,7 +14,7 @@
                                 <a href="{{url('pages/2')}}">{{trans('file.usage_policy')}}</a>
                             </li>
                             <li>
-                                <a href="{{url('/')}}">{{trans('file.refund_and_cancellation_policy')}}</a>
+                                <a href="{{url('pages/3')}}">{{trans('file.refund_and_cancellation_policy')}}</a>
                             </li>
                             <li>
                                 <a href="{{ url('/faqs') }}">{{trans('file.faqs')}}</a>
