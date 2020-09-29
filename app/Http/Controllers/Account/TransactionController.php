@@ -50,16 +50,10 @@ class TransactionController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'mount'     =>'required|integer|numeric:10,'.Auth::user()->confirmedProfit(),
+            'mount'     =>'required|numeric|min:1|max:'.Auth::user()->confirmedProfit(),
             'desc'      =>'required|max:500',
         ]);
 
-        if ($request->mount > Auth::user()->confirmedProfit()) {
-            Session::flash('status', __('admin.danger'));
-            Session::flash('message', 'المبلغ المطلوب اكثر من المستحق');
-            return redirect::back()->withErrors($validator)
-                        ->withInput();
-        }
 
         if ($validator->fails()) {
             return redirect::back()

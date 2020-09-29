@@ -95,17 +95,17 @@ class ServiceController extends Controller
             'title'     =>'required|min:3|max:100|string',
             'desc'      =>'required|min:3|max:500',
             'cost'      =>'integer|required',
-            'duration'  =>'integer|required',
+            'duration'  =>'required|numeric|min:1|max:24',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
         ]);
 
 
-        if ($request->duration > 24) {
-            Session::flash('status', __('admin.danger'));
-            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
-            return redirect::back()->withErrors($validator)
-                        ->withInput();
-        }
+        // if ($request->duration > 24) {
+        //     Session::flash('status', __('admin.danger'));
+        //     Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
+        //     return redirect::back()->withErrors($validator)
+        //                 ->withInput();
+        // }
 
 
         if ($validator->fails()) {
