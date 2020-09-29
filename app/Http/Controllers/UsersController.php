@@ -146,6 +146,7 @@ class UsersController extends Controller
     public function profile()
     {
 
+
         if (!Auth::user() || count(Auth::user()->roles) == 0 ) {
             return view('front.errors.denied');
         }
@@ -162,7 +163,7 @@ class UsersController extends Controller
             }
 
             $jobtypes = Jobtype::all();
-            $skills = Skill::all();
+            $skills = Skill::where('is_active',1)->get();
             $levels = Level::all();
             $prefers= Prefer::all();
             $costkinds= Costkind::all();
@@ -172,6 +173,8 @@ class UsersController extends Controller
             $readinesskinds = Readinesskind::all();
             $countries = Country::all();
 
+
+            return $skills;
 
 
             return view('front.profile.index',compact('userdetail','countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds'));
@@ -194,9 +197,8 @@ class UsersController extends Controller
     public function edit()
     {
 
-
         $jobtypes = Jobtype::all();
-        $skills = Skill::all();
+        $skills = Skill::where('is_active',1)->get();
         $levels = Level::all();
         $prefers= Prefer::all();
         $costkinds= Costkind::all();
