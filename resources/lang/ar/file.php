@@ -54,6 +54,8 @@ return [
     'booked' => 'تم الحجز',
     'contact' => 'اتصل بنا',
     'book_services' => 'حجز خدمة',
+    'mixtures' => 'خلطاتي',
+    'no_mixtures' => 'لا يوجد خلطات مطابقة',
     'in_a_day_features' => 'أهم ما يميزنا فى منصة .IN.A.DAY.',
     'start_now' => 'ابدأ الآن',
     'start_your_project' => 'نفذ مشروعك الآن',
@@ -148,6 +150,9 @@ return [
     'add_servives'=>'إضافة خدمة',
     'service_details'=>'تفاصيل الخدمة',
     'book_service'=>'حجز الخدمة',
+    'book_mixture' => 'حجز الخلطة',
+    'mixture_details'=>'تفاصيل الخلطة',
+
     'add_servives'=>'إضافة خدمة',
     'riyal'=>'ريال',
     'privacy_policy'=>'سياسة الخصوصية',
