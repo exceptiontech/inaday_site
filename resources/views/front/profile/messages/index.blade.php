@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الشات والدردشة</h2>
+                    <h2 class="text-white mb-5">المحادثات</h2>
                 </div>
 
                 <div class="col-12">
