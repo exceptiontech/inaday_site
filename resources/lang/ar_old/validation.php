@@ -32,7 +32,7 @@ return [
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
-    'digits'               => 'The :attribute must be :digits digits.',
+    'digits'               => 'حقل :attribute لا بد ان يكون :digits ارقام.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'dimensions'           => 'The :attribute has invalid image dimensions.',
     'distinct'             => 'The :attribute field has a duplicate value.',
@@ -64,7 +64,7 @@ return [
     'numeric'              => 'The :attribute must be a number.',
     'present'              => 'The :attribute field must be present.',
     'regex'                => 'The :attribute format is invalid.',
-    'required'             => 'The :attribute field is required.',
+    'required'             => 'حقل :attribute مطلوب.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => 'The :attribute field is required unless :other is in :values.',
     'required_with'        => 'The :attribute field is required when :values is present.',
@@ -96,9 +96,6 @@ return [
     */
 
     'custom' => [
-        'password' => [
-            'regex' => 'كلمة المرور لا بد ان تحتوي @$!%*#?& وحروف كابتل وسمول وأرقام',
-        ],
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
@@ -115,18 +112,6 @@ return [
     |
     */
 
-    'attributes' => [
-        'first_name' => 'الاسم الأخير',
-        'last_name' => 'الاسم الاول',
-        'password' => 'كلمة المرور',
-        'mobile' => 'الجوال',
-        'user_type' => 'نوع العضوية',
-        'email' => 'البريد الالكتروني',
-        'password' => 'كلمة المرور',
-        'password' => 'كلمة المرور',
-        'password' => 'كلمة المرور',
-        'password' => 'كلمة المرور',
-        'password' => 'كلمة المرور',
-    ],
+    'attributes' => [],
 
 ];

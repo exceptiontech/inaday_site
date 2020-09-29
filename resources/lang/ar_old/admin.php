@@ -23,9 +23,9 @@ return [
 
 
     /* General */
-    'fullname'     => 'الاسم الكامل',
+    'fullname'     => 'الأسم الكامل',
     'name'     => 'العنوان',  
-    'name_en'     => 'العنوان - بالإنجليزي',  
+    'name_en'     => 'العنوان - بالانجليزي',  
     'fullname'     => 'الاسم الكامل ',    
     'password'     => 'كلمة المرور  ',    
     'confirm_password'     => 'تأكيد كلمة المرور   ',    
@@ -36,14 +36,14 @@ return [
     'no'     => 'لا',    
     'previous' => '&laquo; السابق',
     'next'     => 'القادم &raquo;',
-    'create_success'     => 'تمت الإضافة بنجاح',
+    'create_success'     => 'تم الاضافة بنجاح',
     'edit_success'     => 'تم التعديل بنجاح',
     'update_success'     => 'تم التعديل بنجاح',
     'delete_success'     => 'تم الحذف بنجاح',
-    'no_items'     => 'لايوجد عناصر',
+    'no_items'     => 'لا يوجد عناصر',
     'riyal'     => 'ر.س',
     'more'     => 'المزيد',
-    'totalprofit'     => 'إجمالي الأرباح',
+    'totalprofit'     => 'إجمالي الارباح',
 
     'Name'     => 'اسم المستخدم',
     'title'     => 'العنوان',
@@ -56,11 +56,11 @@ return [
     'not_active'     => 'غير مفعل',
     'actions'     => 'التحكم',
     'image'     => 'صورة',
-    'add'     => 'اضف',
-    'createnew'     => 'إضافة جديد',
+    'add'     => 'أضف',
+    'createnew'     => 'إضف جديد',
     'save'     => 'حفظ',
     'edit'     => 'تعديل',
-    'create'     => 'إنشاء / إضافة',
+    'create'     => 'انشاء / اضافة',
     'update'     => 'تعديل / تحديث',
     'delete'     => 'حذف',
     'dashboard'     => 'لوحة التحكم',
@@ -68,9 +68,9 @@ return [
     'profile'     => 'الملف الشخصي',
     'membersince'     => 'عضو منذ',
     'home'     => 'الرئيسية',
-    'main_navigation'     => 'القائمة الأساسية',
+    'main_navigation'     => 'القائمة الاساسية',
     'withoutsubscribers'     => 'بدون باقة',
-    'Min'     => 'الحد الأدنى',
+    'Min'     => 'الخد الادني',
     'fee'     => 'رسوم الدورة',
     'limit'     => 'عدد المقاعد',
     'brith_day'     => 'تاريخ الميلاد',
@@ -86,35 +86,52 @@ return [
 
 
     /**/
-    'cms'     => 'إدارة المحتوى',
-    'departments'     => 'الأقسام',
-    'adddepartment'     => 'إضافة قسم',
+    'cms'     => 'ادارة المحتوى',
+    'departments'     => 'الاقسام',
+    'adddepartment'     => 'إضف قسم',
     'editdepartment'     => 'تعديل قسم',
-    'parents'     => 'القسم الأب',
-    'parent'     => 'القسم الأب',
-    'main_department'     => 'القسم الرئيسي',
-    'sponsors_departments'     => 'أقسام الداعمين والمستثمرين',
-    'blog_departments'     => 'أقسام المقالات',
-    'faqs_departments'     => 'أقسام سؤال وجواب',
+    'parents'     => 'القسم الاب',
+    'parent'     => 'القسم الاب',
+    'main_department'     => 'قسم أب',
+    'sponsors_departments'     => 'اقسام الداعمين والمستثمرين',
+    'blog_departments'     => 'اقسام المقالات',
+    'faqs_departments'     => 'اقسام سؤال وجواب',
 
     //
     'sponsors' => 'الداعمين والمستثمرين',
-    'addsponsor'     => 'إضافة داعم/مستثمر',
+    'addsponsor'     => 'إضف داعم/مستثمر',
     'editsponsors'     => 'تعديل داعم/مستثمر',
     //
-    'faqs' => 'الأسئلة الشائعة',
-    'addsponsor'     => 'إضافة سؤال شائع',
+    'faqs' => 'الاسئلة الشائعة',
+    'addsponsor'     => 'إضف سؤال شائع',
     'editsponsors'     => 'تعديل سؤال شائع',
 
 
     /**/
     'services'     => 'الخدمات',
-    'addservice'     => 'إضافة خدمة',
+    'addservice'     => 'إضف خدمة',
     'editservice'     => 'تعديل خدمة',
     'approved'     => 'حالة الموافقة',
     'owner'     => 'العضو',
     'cost'     => 'التكلفة',
     'skills'     => 'المهارات',
+
+    /**/
+    'mixtures'     => 'الخلطات',
+    'mixture'     => 'خلطة',
+    'addmixture'     => 'إضف خلطة',
+    'editmixture'     => 'تعديل خلطة',
+
+
+    'teams'     => 'الفرق',
+    'team'     => 'الفريق',
+    'addteam'     => 'إضف فريق',
+    'editteam'     => 'تعديل فريق',
+
+    /**/
+    'sections'     => 'الاقسام',
+    'addsection'     => 'إضف قسم',
+    'editsection'     => 'تعديل القسم',
 
     /**/
     'bookings'     => 'الخدمات',
@@ -123,7 +140,7 @@ return [
 
     /**/
     'projects'     => 'المشاريع',
-    'addproject'     => 'إضافة مشروع',
+    'addproject'     => 'إضف مشروع',
     'editproject'     => 'تعديل مشروع',
     'approved'     => 'حالة الموافقة',
     'owner'     => 'العضو',
@@ -133,22 +150,22 @@ return [
 
     /**/
     'articles'     => 'المقالات',
-    'addarticle'     => 'إضافة مقال',
+    'addarticle'     => 'إضف مقال',
     'editarticle'     => 'تعديل مقال',
 
     /**/
     'interviews'     => 'المقابلات',
-    'addinterview'     => 'إضافة مقابلة',
+    'addinterview'     => 'إضف مقابلة',
     'editinterview'     => 'تعديل المقابلة',
     'showinterview'     => 'مشاهدة المقابلة ',
     'value'     => 'القيمة ',
-    'interviews_questions'     => 'أسئلة المقابلات ',
+    'interviews_questions'     => 'اسئلة المقابلات ',
 
 
 
-    'types'     => 'الأنواع',
-    'addtype'     => 'إضافة نوع',
-    'edittype'     => 'تعديل النوع',
+    'types'     => 'الانواع',
+    'addtype'     => 'إضف نوع',
+    'edittype'     => 'تعديل نوع',
 
 
 
@@ -167,11 +184,11 @@ return [
     'role'     => 'التخصص',
     'mobile'     => 'الجوال',
     'department'     => 'القسم',
-    'bio'     => 'السيرة الذاتية',
-    'password'     => 'كلمة المرور',
+    'bio'     => 'السيرة الذذاتية',
+    'password'     => 'كلمر المرور',
     'confirm_password'     => 'تأكيد كلمة المرور',
     'male'     => 'ذكر',
-    'female'     => 'أنثى',
+    'female'     => 'انثى',
     'problem'     => 'وصف المشكلة',
     'date'     => 'التاريخ',
     'time'     => 'الوقت',
@@ -186,30 +203,30 @@ return [
 
 
 
-    'total'     => 'الإجمالي',
+    'total'     => 'الاجمالي',
 
-    'questions'     => 'الأسئلة',
-    'addquestion'     => 'إضافة سؤال  ',
+    'questions'     => 'الاسئلة',
+    'addquestion'     => 'إضف سؤال  ',
     'editquestion'     => 'تعديل سؤال',
-    'correct_solution'     => 'الإجابة الصحيحة',
+    'correct_solution'     => 'الاجابة الصحيحة',
     'previous_question'     => 'السؤال السابق',
 
 
     'statuses'     => 'الحالات',
-    'addpage'     => 'إضافة صفحة',
+    'addpage'     => 'أضف صفحة',
     'editpage'     => 'تعديل صفحة',
 
 
     'pages'     => 'الصفحات',
-    'addstatus'     => 'إضافة حالة',
+    'addstatus'     => 'أضف حالة',
     'editstatus'     => 'تعديل حالة',
 
-    'user'     => 'الأعضاء',
-    'adduser'     => 'إضافة عضو',
+    'user'     => 'الاعضاء',
+    'adduser'     => 'أضف عضو',
     'edituser'     => 'تعديل عضو',
 
     'faqs'     => 'سؤال وجواب ',
-    'addfaq'     => 'إضافة سؤال',
+    'addfaq'     => 'أضف  سؤال',
     'editfaq'     => 'تعديل سؤال',
 
 
@@ -218,74 +235,74 @@ return [
 
     'services_provider'     => 'مقدمي الخدمات',
 
-    'jobtypes'     => 'أنواع الوظائف',
-    'addjobtype'     => 'إضافة  نوع الوظيفة',
-    'editjobtype'     => 'تعديل نوع الوظيفة',
+    'jobtypes'     => 'انواع الوظائف',
+    'addjobtype'     => 'إضف  نوع وظيفة',
+    'editjobtype'     => 'تعديل  نوع وظيفة',
 
-    'prefers'     => 'أنواع أفضلية العمل',
-    'addprefer'     => 'إضافة  نوع أفضلية',
-    'editprefer'     => 'تعديل نوع أفضلية',
+    'prefers'     => 'انواع أفضلية العمل',
+    'addprefer'     => 'إضف  نوع افضلية',
+    'editprefer'     => 'تعديل  نوع افضلية',
 
 
     'levels'     => 'مستوى الاحترافية',
-    'addlevel'     => 'إضافة مستوى احترافية',
-    'editlevel'     => 'تعديل مستوى الاحترافية',
+    'addlevel'     => 'إضف مستوى احترافية',
+    'editlevel'     => 'تعديل مستوى احترافية',
 
 
     'costkinds'     => 'معايير التكلفة',
-    'addcostkind'     => 'إضافة معيار التكلفة',
+    'addcostkind'     => 'أضف معيار التكلفة',
     'editcostkind'     => 'تعديل معيار التكلفة',
 
     'averagekinds'     => 'معايير التكلفة',
-    'addaveragekind'     => 'إضافة معيار التكلفة',
-    'editaveragekind'     => 'تعديل معيار التكلفة',
+    'addaveragekind'     => 'أضف معيار تكلفة',
+    'editaveragekind'     => 'تعديل معيار تكلفة',
 
-    'applykinds'     => 'أنواع الطرح / التقديم',
-    'addapplykind'     => 'إضافة نوع الطرح',
-    'editapplykind'     => 'تعديل نوع الطرح',
+    'applykinds'     => 'انواع الطرح / التقديم',
+    'addapplykind'     => 'أضف نوع طرح',
+    'editapplykind'     => 'تعديل نوع طرح',
 
     'rewardkinds'     => 'معايير المكافأة',
-    'addrewardkind'     => 'إضافة معيار المكافأة',
-    'editrewardkind'     => 'تعديل معيار المكافأة',
+    'addrewardkind'     => 'أضف معيار مكافأة',
+    'editrewardkind'     => 'تعديل معيار مكافأة',
 
-    'readinesskinds'     => 'مواقيت / مواعيد البداية',
-    'addreadinesskind'     => 'إضافة موعد البداية',
-    'editreadinesskind'     => 'تعديل موعد البداية',
-
-
+    'readinesskinds'     => 'مواقيت / مواعيد البدأ',
+    'addreadinesskind'     => 'أضف موعد البدأ',
+    'editreadinesskind'     => 'تعديل موعد البدأ',
 
 
-    'entrepreneur'     => 'رواد الأعمال',
+
+
+    'entrepreneur'     => 'رواد الاعمال',
 
     'projects'     => 'المشاريع',
 
-    'stages'     => 'أنواع الوظائف',
-    'addstage'     => 'إضافة  نوع وظيفة',
-    'editstage'     => 'تعديل نوع وظيفة',
+    'stages'     => 'انواع الوظائف',
+    'addstage'     => 'إضف  نوع وظيفة',
+    'editstage'     => 'تعديل  نوع وظيفة',
 
 
 
     'customers'     => 'العملاء',
-    'users'     => 'الأعضاء المسجلين ',
+    'users'     => 'الاعضاء المسجلين ',
     'workteam'     => 'فريق العمل ',
-    'addsubscriber'     => 'إضافة  عضو ',
+    'addsubscriber'     => 'أضف  عضو ',
     'editsubscriber'     => 'تعديل  عضو',
 
  
     'cities'     => 'المدن',
     'city'     => 'المدينة',
-    'addcity'     => 'إضافة مدينة',
+    'addcity'     => 'أضف مدينة',
     'editcity'     => 'تعديل مدينة',
  
     'countries'     => 'الدول',
     'country'     => 'الدولة',
-    'addcountry'     => 'إضافة دولة',
+    'addcountry'     => 'أضف دولة',
     'editcountry'     => 'تعديل دولة',
  
     'roles'     => 'الصلاحيات',
     'role'     => 'صلاحية',
-    'addrole'     => 'إضافة صلاحية',
-    'createrole'     => 'إضافة صلاحية',
+    'addrole'     => 'أضف صلاحية',
+    'createrole'     => 'أضف صلاحية',
     'editrole'     => 'تعديل صلاحية',
 
 
@@ -294,38 +311,38 @@ return [
 
 
     'coupons'     => 'قسائم التخفيض',
-    'addcoupon'     => 'إضافة قسيمة',
+    'addcoupon'     => 'أضف قسيمة',
     'editcoupon'     => 'تعديل قسيمة',
     'code'     => 'الكود',
     'type'     => 'النوع',
-    'dates'     => 'التواريخ',
+    'dates'     => 'التوايخ',
     'uses'     => 'مرات الاستخدام',
-    'uses_total'     => 'إجمالي  الاستخدامات',
+    'uses_total'     => 'اجمالي  الاستخدامات',
     'uses_customer'     => 'العدد للعميل الواحد',
-    'fixed'     => 'القيمة الثابتة',
-    'percent'     => 'النسبة المئوية',
+    'fixed'     => 'قيمة ثابتة',
+    'percent'     => 'نسبة مئوية',
  
     'payments'     => 'طرق الدفع',
-    'addpayment'     => 'إضافة طريقة دفع',
+    'addpayment'     => 'أضف طريقة دفع',
     'editpayment'     => 'تعديل طريقة الدفع',
 
 
     'treasuries'     => 'الخزائن',
     'treasury'     => 'الخزينة',
-    'addtreasury'     => 'إضافة خزينة',
+    'addtreasury'     => 'أضف خزينة',
     'edittreasury'     => 'تعديل خزينة',
 
 
     'transactions'     => 'التحويلات',
-    'addtransaction'     => 'إضافة تحويل',
+    'addtransaction'     => 'أضف تحويل',
     'edittransaction'     => 'تعديل تحويل',
 
     'items'     => 'العروض',
-    'additem'     => 'إضافة عرض',
+    'additem'     => 'أضف عرض',
     'edititem'     => 'تعديل عرض',
 
     'powered_by'     => 'برمجة',
-    'video_type'     => 'آلية الفيديو ',
+    'video_type'     => 'ألية الفيديو ',
     'typeurl'     => ' رابط الفيديو ',
     'uploadvideo'     => ' الفيديو ',
     'choose'     => 'اختر ',
@@ -334,7 +351,7 @@ return [
     'phone'     => 'الهاتف ',
     'address'     => 'العنوان ',
     'url'     => 'رابط الموقع ',
-    'email'     => 'البريد الإلكتروني ',
+    'email'     => 'البريد الالكتروني ',
     'facebook'     => 'الفيس بوك ',
     'twitter'     => 'تويتر ',
     'googleplus'     => 'جوجل بلس ',
@@ -349,40 +366,40 @@ return [
 
 
     'events'     => 'الفعاليات',
-    'addevent'     => 'إضافة فعالية ',
+    'addevent'     => 'إضف فعالية ',
     'editevent'     => 'تعديل فعالية',
     'start_date'     => 'تاريخ البداية',
     'end_date'     => 'تاريخ الانتهاء',
-    'days'     => 'الأيام',
+    'days'     => 'الايام',
     'day'     => 'يوم',
 
-    'no_days'     => 'لم يتم إضافة أيام',
-    'no_courses'     => 'لم يتم  إضافة  دورات',
+    'no_days'     => 'لم يتم  اضافة  ايام',
+    'no_courses'     => 'لم يتم  اضافة  دورات',
     'course'     => 'الدورة',
 
     'orders' => 'الطلبات ',
     'order' => 'الطلب ',
     'payment' => 'طريقة الدفع ',
-    'mount' => 'الإجمالي ',
+    'mount' => 'الاجمالي ',
     'sort' => 'الترتيب ',
     'external' => 'خارجي ',
     'hours_count' => 'عدد الساعات ',
     'choose_course' => 'اختر الدورة ',
     'search' => 'بحث ',
-    'no_lessons' => 'لاتوجد دروس ',
-    'min' => 'الحد الأدنى من المبلغ',
+    'no_lessons' => 'لا توجد دروس ',
+    'min' => 'الحد الادني من المبلغ',
     'message' => 'رسالة من ',
 
     'silataddress'     => 'الرياض عرقة شارع مشعل بن عبد العزيز لاند مارك مول (سندس)',
 
     'invoice'     => 'فاتورة',
-    'to'     => 'إلى',
+    'to'     => 'إلي',
     'from'     => 'من',
     'description'     => 'التفاصيل',
     'diagnosis'     => 'فحص',
     'qty'     => 'العدد',
-    'total'     => 'الإجمالي',
-    'subtotal'     => 'الإجمالي الفرعي',
+    'total'     => 'الاجمالي',
+    'subtotal'     => 'الاجمالي الفرعي',
     'vat'     => 'الضريبة',
     'print'     => 'طباعة',
     'confirm'     => 'الكشوفات',
@@ -393,28 +410,28 @@ return [
     'all'     => 'الكل',
     'discount'     => 'قيمة التخفيض',
     'currentpaid'     => 'قيمة الفاتورة',
-    'nettotalafterdiscount'     => 'الإجمالي بعد الخصم',
+    'nettotalafterdiscount'     => 'الاجمالي بعد الخصم',
     'unpaid'     => 'المبلغ الغير مدفوع',
 
 
-    'appointment_error'     => 'لقد قمت بإرسال طلب موعد سابق من فضلك انتظر اتصال أحد المسؤولين',
-    'alreadyhavediscount'     => 'الفاتورة تحمل تخفيض فعلي',
+    'appointment_error'     => 'لقد قمت بارسال طلب موعد سابق من فضلك انتظر اتصال احد المسئولين',
+    'alreadyhavediscount'     => 'الفاتورة تحمل تخفيض فعليا',
     'haveinvoicealready'     => 'هذا الموعد يحتوي حاليا على فاتورة للجلسات',
     'appointmenthaveinvoicealready'     => 'هذا الموعد يحتوي حاليا على فاتورة',
     
 
     'tree'     => 'شجرة الحسابات',
-    'ecategories'     => 'أقسام المصروفات',
-    'icategories'     => 'أقسام المدخولات',
+    'ecategories'     => 'اقسام المصروفات',
+    'icategories'     => 'اقسام المدخولات',
     'incomes'     => 'المدخولات',
     'expenses'     => 'المصروفات',
-    'addcategory'     => 'إضافة قسم',
-    'addincome'     => 'إضافة مدخول',
-    'addexpense'     => 'إضافة مصروف',
-    'addexpensefromcustody'     => 'إضافة مصروف من العهد',
-    'addmultiexpense'     => 'إضافة مصروف مركب',
+    'addcategory'     => 'إضف قسم',
+    'addincome'     => 'إضف مدخول',
+    'addexpense'     => 'إضف مصروف',
+    'addexpensefromcustody'     => 'إضف مصروف من العهد',
+    'addmultiexpense'     => 'إضف مصروف مركب',
     'custodies'     => 'العهد',
-    'addcustody'     => 'إضافة عهدة',
+    'addcustody'     => 'اضف عهدة',
     'editcustody' => 'تعديل عهدة',
     'custody' => 'عهدة',
 
@@ -427,26 +444,26 @@ return [
     'editcategory' => 'تعديل قسم',
     'mount' => 'المبلغ',
     'amount' => 'المبلغ',
-    'accountant' => 'مسؤول الإدخال',
-    'thiscategoryhaveexpenses' => 'هذا القسم يحتوي على مدخلات أو مصروفات',
+    'accountant' => 'مسئول الادخال',
+    'thiscategoryhaveexpenses' => 'هذا القسم يحتوي على مدخلات او مصروفات',
     'count' => 'العدد',
     'summary' => 'ملخص الحسابات',
     'profit' => 'الصافي',
     'expected_profit_invoices' => 'الربح المتوقع للفواتير',
     'current_profit_invoices' => 'الربح الفعلي للفواتير',
     'current_profit_invoices_old' => 'الربح الفعلي للفواتير للنظام القديم',
-    'invoicehasmedicalsessions' => 'الفاتورة تحتوى على جلسات',
+    'invoicehasmedicalsessions' => 'الفاتورة تحتوى علي جلسات',
     'editexpense' => 'تعديل المصروف',
-    'addexpense' => 'إضافة المصروف',
+    'addexpense' => 'اضف المصروف',
     'editincome' => 'تعديل المدخول',
-    'addincome' => 'إضافة المدخول',
-    'addinvoice' => 'إضافة فاتورة',
+    'addincome' => 'اضف المدخول',
+    'addinvoice' => 'اضف فاتورة',
     'amoumt' => 'القيمة',
     'reference'=>'رقم المرجع',
-    'none'=>'لاشيء',
-    'createinvoice'=>'إضافة فاتورة موعد',
-    'createpackagetoappointments'=>'إضافة باقة جلسات لهذا الموعد',
-    'is_receipt'=>'هل هذا إيصال',
+    'none'=>'لا شيء',
+    'createinvoice'=>'أضف فاتورة موعد',
+    'createpackagetoappointments'=>'أضف باقة جلسات لهذا الموعد',
+    'is_receipt'=>'هل هذا ايصال',
     'is_attend'=>'هل تم الحضور',
 
 
@@ -457,9 +474,9 @@ return [
     'incomereports'=>'تقرير المدخلات',
     'expensereports'=>'تقرير المصروفات',
     'fromdate'=>'من تاريخ',
-    'todate'=>'إلى تاريخ',
+    'todate'=>'الى تاريخ',
     'internaltransfer'=>' تحويل داخلي',
-    'addinternaltransfer'=>'إضافة تحويل داخلي',
+    'addinternaltransfer'=>'اضف تحويل داخلي',
     'source'=>'المصدر',
     'destination'=>'المستقبل',
     'employee'=>'اسم الموظف',
@@ -468,7 +485,7 @@ return [
 
     'model'     => 'المودل',
     'action'     => 'الحركة',
-    'ip'     => 'الآيبي',
+    'ip'     => 'الايبي',
 
 
 

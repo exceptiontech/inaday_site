@@ -74,9 +74,7 @@ class RegisterController extends Controller
             'regex:/[0-9]/',      // must contain at least one digit
             'regex:/[@$!%*#?&]/', // must contain a special character
             'confirmed'],
-            'mobile' =>['required','digits:10'],[
-                'password.regex'  => 'كلمة المرور لا تقل عن ٨ أحرف ولا بد ان تحتوي @,#,$, وحروف كابتل وسمول وأرقام',
-            ]
+            'mobile' =>['required','digits:10'],
             // 'brith_day' => ['required', 'date_format:Y-m-d|before:today'],
             // 'average_cost' => ['regex:/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/'],
         ]);

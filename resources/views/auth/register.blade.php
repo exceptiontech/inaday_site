@@ -106,7 +106,7 @@
                           aria-required="true"
                           placeholder="{{ __('register_lang.password') }}"
                         />
-                        <span>{{trans('file.password_is_not_less_than_8_characters')}}</span>
+                        <span class="text-danger">{{trans('file.password_is_not_less_than_8_characters')}}</span>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('password') }}</strong>
