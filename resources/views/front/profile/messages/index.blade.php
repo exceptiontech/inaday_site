@@ -156,6 +156,8 @@
 
         $(document).delegate(".upload_form","submit",function(e){ 
             e.preventDefault();
+
+            $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
             $(this).val(''); 
             var receiver_id = $(this).data('id');
 
@@ -170,8 +172,8 @@
 
                 success: function(result)
                 {
-                    // alert(receiver_id);
-                    // $('.user-'+receiver_id).click();
+                    $('#inputArea .loaderWrapper').remove();
+                    $('.user-'+receiver_id).click();
 
                 },
                 error: function (jqXHR, status, err) {

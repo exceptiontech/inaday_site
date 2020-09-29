@@ -251,7 +251,7 @@
                                                     <span class="bg-light rounded p-1">{{ $offer->price }} ر.س</span>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <span class="bg-light rounded p-1">{{ $offer->duration }} يوم</span>
+                                                    <span class="bg-light rounded p-1">{{ $offer->duration }} {{__('file.hour')}}</span>
                                                 </li>
                                             </ul>
                                         </div>
