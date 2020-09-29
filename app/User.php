@@ -343,7 +343,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function last_messages()
     {
-        return $this->hasMany('App\Message','from')->latest()->first();
+        return $this->hasMany('App\Message','to')->latest()->first();
     }
 
 

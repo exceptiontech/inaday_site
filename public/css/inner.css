@@ -1151,7 +1151,7 @@ input[type="checkbox"] {
     margin: 0 10px; }
   .messages .media-left img {
     width: 64px;
-    border-radius: 64px; }
+    height: 64px; }
   .messages .media-body p {
     margin: 6px 0; }
   .messages .message-wrapper {
