@@ -28,7 +28,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" alt="" class="media-object">
+                                                    <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" alt="" class="media-object rounded-circle">
                                                 </div>
 
                                                 <div class="media-body">
