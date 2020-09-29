@@ -507,8 +507,24 @@ class UsersController extends Controller
         $url = Session::get('url');
         Session::forget('url');
 
+
+
         $return_user = Socialite::driver('google')->stateless()->user();
 
+        if (str_contains($url, 'user')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+            if(isset($user)) {
+                Auth::login($user, true);
+                return redirect('/');
+            }
+
+            Session::flash('status', __('admin.info'));
+            Session::flash('message', 'من فضلك اختر نوع العضوية الذي ترغب بها');
+            return redirect('/register');
+
+        }
 
 
         if (str_contains($url, 'services_provider')) {
@@ -525,7 +541,7 @@ class UsersController extends Controller
                     return redirect('/register/services_provider');
                 }
 
-                return redirect('/');
+                return redirect('/register');
 
             }else {
 

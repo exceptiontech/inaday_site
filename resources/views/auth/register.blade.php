@@ -38,6 +38,15 @@
         </div>
         <div class="py-5 text-left features">
             <div class="container">
+                    @if (Session::has('message'))
+                      <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                            {{Session::get('message')}}
+                      </div>
+                    @endif
+
+
+                
                 <div class="text-center google-login">
 {{--                    <form method="POST" action="{{route('google')}}">--}}
 {{--                        @csrf--}}
