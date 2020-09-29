@@ -81,7 +81,7 @@ class ProjectController extends Controller
     {
         
 
-        if ($request->mount > 24) {
+        if ($request->duration > 24) {
             Session::flash('status', __('admin.danger'));
             Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
             return redirect::back();
