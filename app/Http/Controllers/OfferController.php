@@ -64,6 +64,14 @@ class OfferController extends Controller
 
         ]);
 
+
+        if ($request->duration > 24) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
+            return redirect::back()->withErrors($validator)
+                        ->withInput();
+        }
+
         if ($validator->fails()) {
             return redirect::back()->withErrors($validator)->withInput();
         }

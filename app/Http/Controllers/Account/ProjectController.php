@@ -81,12 +81,6 @@ class ProjectController extends Controller
     {
         
 
-        if ($request->duration > 24) {
-            Session::flash('status', __('admin.danger'));
-            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
-            return redirect::back();
-        }
-
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
             $num = range(9, 0);
@@ -106,6 +100,15 @@ class ProjectController extends Controller
             'skills' =>'required|array',
             'skills.*' =>'required|integer'
         ]);
+
+
+
+        if ($request->duration > 24) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
+            return redirect::back()->withErrors($validator)
+                        ->withInput();
+        }
 
 
         if ($validator->fails()) {
