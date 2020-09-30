@@ -14,6 +14,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Redirect;
+use Session;
+use Validator;
 
 use Pusher\Pusher;
 
@@ -156,6 +159,9 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
 
+
+
+
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
@@ -167,6 +173,15 @@ class MessageController extends Controller
 
         $file = $request->file;
         if ($file) {
+
+            $validator = Validator::make($request->all(), [
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error'=>'حدث خطأ غير متوقع من فضلك تحقق من اتصالك او امتداد الملف غير صالح']);
+            }
+
             $destinationPath = 'uploads/messages';
             $extension =  $file->getClientOriginalExtension();
             $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;

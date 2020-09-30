@@ -65,7 +65,7 @@
             <input type="hidden" class="receiver_id_{{ $other_user->id}}" name="receiver_id" value="{{$other_user->id}}">
         </div>
         
-        <input autofocus type="text" class="message_{{ $other_user->id}}" name="message" class="submit">
+        <input autofocus type="text" id="messageBody{{ $other_user->id}}" class="message_{{ $other_user->id}}" name="message" class="submit" autocomplete="off">
     </div>
     <div class="form-group col-2 p-0">
         <button type="submit" id="upload_submit_{{ $other_user->id}}" class="upload_submit btn btn-block btn-secondary rounded text-white" data-id="{{ $other_user->id}}">إرسال</button>
