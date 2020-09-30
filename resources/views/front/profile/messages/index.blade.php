@@ -1,4 +1,3 @@
-
 @extends('layouts.inner')
 @section('content')
 <div id="innerpage" class="pt-4 pb-5">
@@ -32,7 +31,7 @@
                                                 </div>
 
                                                 <div class="media-body">
-                                                    <p class="name">{{ $user->name }}</p>
+                                                    <p class="name">{{$user->first_name. ' ' .$user->last_name}}</p>
                                                     <p class="email">{{ $user->last_messages()->message ?? 'لا يوجد اي رسائل' }}</p>
                                                 </div>
                                             </div>
