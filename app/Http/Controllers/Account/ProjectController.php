@@ -58,14 +58,14 @@ class ProjectController extends Controller
         }
 
         $stages = Stage::where('is_active', 1)->get();
-        $skills = Skill::all();
-        $averagekinds= Averagekind::all();
-        $sections= Section::all();
-        $applykinds=Applykind::all();
-        $levels=Level::all();
-        $rewardkinds=Rewardkind::all();
-        $costkinds=Costkind::all();
-        $readiness_kinds=Readinesskind::all();
+        $skills = Skill::where('is_active', 1)->get();
+        $averagekinds= Averagekind::where('is_active', 1)->get();
+        $sections= Section::where('is_active', 1)->get();
+        $applykinds=Applykind::where('is_active', 1)->get();
+        $levels=Level::where('is_active', 1)->get();
+        $rewardkinds=Rewardkind::where('is_active', 1)->get();
+        $costkinds=Costkind::where('is_active', 1)->get();
+        $readiness_kinds=Readinesskind::where('is_active', 1)->get();
 
         return view('front.profile.projects.create',compact('skills','averagekinds','sections','applykinds','levels','rewardkinds','costkinds','readiness_kinds','stages'));
 
