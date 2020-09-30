@@ -25,7 +25,7 @@
                 <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
                     <div class="message_content p-2">
                         @if($message->file)
-                            <a class="d-flex text-white" download="download" href="{{url($message->file)}}">
+                            <a class="d-flex {{ ($message->from == Auth::id()) ? 'text-white' : '' }} " download="download" href="{{url($message->file)}}">
 
                                 @if(pathinfo($message->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpeg')
                                     <img class="img-fluid" src="{{url($message->file)}}">
@@ -65,7 +65,7 @@
             <input type="hidden" class="receiver_id_{{ $other_user->id}}" name="receiver_id" value="{{$other_user->id}}">
         </div>
         
-        <input type="text" class="message_{{ $other_user->id}}" name="message" class="submit">
+        <input autofocus type="text" class="message_{{ $other_user->id}}" name="message" class="submit">
     </div>
     <div class="form-group col-2 p-0">
         <button type="submit" id="upload_submit_{{ $other_user->id}}" class="upload_submit btn btn-block btn-secondary rounded text-white" data-id="{{ $other_user->id}}">إرسال</button>
