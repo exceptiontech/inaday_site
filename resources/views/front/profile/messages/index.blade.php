@@ -77,6 +77,17 @@
 <script>
     var receiver_id = '';
     var my_id = "{{ Auth::id() }}";
+
+
+        @if(Request()->user_id) 
+            var receiver_id = {{ Request()->user_id }} ;
+
+            setTimeout(function(){
+                $('.user-'+receiver_id).trigger('click');
+            }, 100);
+
+        @endif
+
     $(document).ready(function () {
 
         $("#searchKeywords").on("keyup", function() {
@@ -124,14 +135,6 @@
         });
 
 
-        @if(Request()->user_id) 
-            var receiver_id = {{ Request()->user_id }} ;
-
-            setTimeout(function(){
-                $('.user-'+receiver_id).trigger('click');
-            }, 100);
-
-        @endif
 
         $('.user').click(function () {
             $('.user').removeClass('active');
@@ -171,11 +174,18 @@
 
                 success: function(result)
                 {
+                    console.log(result.error);
+
+                    if (result.error.length > 0) {
+                        $(".file-"+receiver_id).val('');
+                        alert(result.error);
+                    }
                     $('#inputArea .loaderWrapper').remove();
-                    $('.user-'+receiver_id).click();
+                    //$('.user-'+receiver_id).click();
 
                 },
                 error: function (jqXHR, status, err) {
+                    $('#inputArea .loaderWrapper').remove();
                 },
                 complete: function () {
                     scrollToBottomFunc();
@@ -206,6 +216,9 @@
         $('.message-wrapper').animate({
             scrollTop: $('.message-wrapper').get(0).scrollHeight
         }, 50);
+
+        $('#messageBody'+receiver_id).focus();
+
     }
 
 
