@@ -96,9 +96,10 @@
         </div>
 
 
+<!-- 
         <div class="col-12 contact_author align-bottom">
             <a href="{{url('/messages/'.$user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
-        </div>
+        </div> -->
 
     </div>
 </div>
