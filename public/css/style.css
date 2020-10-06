@@ -64,6 +64,9 @@ img::-moz-selection {
 body {
   -webkit-tap-highlight-color: #8C9CA6; }
 
+audio:focus {
+  outline: none; }
+
 .ltr {
   direction: ltr; }
 
@@ -137,6 +140,9 @@ a.link-dark {
   .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
     background: #6D6E70 !important;
     box-shadow: none !important; }
+
+.bg-primary {
+  background: #00C76D !important; }
 
 label {
   color: #505050;

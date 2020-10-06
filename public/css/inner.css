@@ -64,6 +64,9 @@ img::-moz-selection {
 body {
   -webkit-tap-highlight-color: #8C9CA6; }
 
+audio:focus {
+  outline: none; }
+
 .ltr {
   direction: ltr; }
 

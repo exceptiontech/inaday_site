@@ -22,25 +22,49 @@
                     <img src="{{ url($other_user->userdetail->first()->avater ?? 'assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-left mr-1 img-icon50" />
 
                 @endif
-                <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
-                    <div class="message_content p-2">
-                        @if($message->file)
-                            <a class="d-flex {{ ($message->from == Auth::id()) ? 'text-white' : '' }} " download="download" href="{{url($message->file)}}">
+                    @if($message->file)
+                            @if(pathinfo($message->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpeg')
+                                <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
+                                    <div class="message_content p-2">
+                                        <a class="d-flex {{ ($message->from == Auth::id()) ? 'text-white' : '' }} " download="download" href="{{url($message->file)}}">
+                                            <img class="img-fluid" src="{{url($message->file)}}">
+                                        </a>
+                                    </div>
+                                    
+                                    <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
+                                </div>
+                            @elseif(pathinfo($message->file, PATHINFO_EXTENSION)  == 'mp3')
 
-                                @if(pathinfo($message->file, PATHINFO_EXTENSION)  == 'png' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpg' || pathinfo($message->file, PATHINFO_EXTENSION) == 'jpeg')
-                                    <img class="img-fluid" src="{{url($message->file)}}">
-                                @else
-                                    <i class="fa fa-file-o fa-2x mr-2" aria-hidden="true"></i>
-                                    حمل هذا الملف
-                                @endif
-                            </a>
+                                <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
+                                    <div class="message_content bg-transparent">
+                                    <audio controls style="width: 100%;">
+                                        <source src="{{ url($message->file) }}" type="audio/mpeg">
+                                    </audio>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
+                                    <div class="message_content p-2">
+                                        <a class="d-flex {{ ($message->from == Auth::id()) ? 'text-white' : '' }} " download="download" href="{{url($message->file)}}">
+                                            <i class="fa fa-file-o fa-2x mr-2" aria-hidden="true"></i>
+                                            حمل هذا الملف
+                                        </a>
+                                    </div>
+                                    
+                                    <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
+                                </div>
+                            @endif
 
                         @else
-                            <p>{{ $message->message }}</p>
+                            <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
+                                <div class="message_content p-2">
+                                    <p>{{ $message->message }}</p>
+                                </div>
+
+                                <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
+                            </div>
                         @endif
-                    </div>
-                    <p class="date">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</p>
-                </div>
+
             </li>
         @endforeach
     </ul>
@@ -51,8 +75,8 @@
 <form class="upload_form upload_form_{{ $other_user->id}} form-inline col-12" enctype="multipart/form-data" data-id="{{ $other_user->id}}">
 
     <div class="form-group col-1 p-0">
-        <div class="voiceNote d-none">
-            <a href="#" ><i class="fa fa-microphone" aria-hidden="true"></i></a>
+        <div class="voiceNote">
+            <a class="button recordButton" id="recordFor5" href="#" ><i class="fa fa-microphone" aria-hidden="true"></i></a>
         </div>
     </div>
 
