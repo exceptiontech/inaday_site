@@ -69,14 +69,14 @@ class CreateAdminUserSeeder extends Seeder
             'slug' => 'saudi_arabia',
         ]);
 
-        $title  = array();
-        $title['ar'] = 'الامارات';
-        $title['en'] = 'Emirates';
+        // $title  = array();
+        // $title['ar'] = 'الامارات';
+        // $title['en'] = 'Emirates';
 
-        $country = Country::create([
-            'title' => $title,
-            'slug' => 'emirates',
-        ]);
+        // $country = Country::create([
+        //     'title' => $title,
+        //     'slug' => 'emirates',
+        // ]);
 
 
         $title  = array();

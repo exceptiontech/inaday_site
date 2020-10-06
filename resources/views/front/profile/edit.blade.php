@@ -136,11 +136,11 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('jobtype_id', trans('profile.jobtype'))!!}
-                                        {!! Form::select('jobtype_id',$jobtypes->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->jobtype_id ?? '' ,['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('jobtype_id',$jobtypes->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->jobtype_id ?? '' ,['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('prefer_id', trans('profile.prefer'))!!}
-                                        {!! Form::select('prefer_id',$prefers->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->prefer_id ?? '',['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('prefer_id',$prefers->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->prefer_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
 
                                     </div>
                                     <!-- <div class="col-12 col-sm-4">
@@ -154,13 +154,13 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('level_id', trans('profile.levels'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
 
                                     </div>
 
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('skills[]', trans('profile.skills'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->skill_id ?? '',['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->skill_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
                                     </div>
                                     <!-- <div class="col-12 col-sm-4">
                                         {!! Form::label('skills[]', trans('profile.anthor_skill'))!!}
@@ -197,34 +197,34 @@
 
     $(document).ready(function(){
 
-    $('#city_id').empty();
+    // $('#city_id').empty();
 
-      var data = {'country_id' : 1};
+    //   var data = {'country_id' : 1};
 
-      $.ajax({    
-        type  : 'get',
-        url   : '{!!URL::route('getCities')!!}',
-        data  : data ,      
-        success:function(data){
+    //   $.ajax({    
+    //     type  : 'get',
+    //     url   : '{!!URL::route('getCities')!!}',
+    //     data  : data ,      
+    //     success:function(data){
 
-        if (data.length > 0) {
-            html = "";
+    //     if (data.length > 0) {
+    //         html = "";
 
-            for (i = 0; i < data.length; i++) { 
-                html += '<option value="'+data[i].id+'">'+data[i].title.ar+'</option>'; 
-            } 
-            $('#city_id').removeAttr('disabled','disabled');
-            $('#city_id').html(html);
-        }else {
-            $('#city_id').attr('disabled','disabled');
-        }
+    //         for (i = 0; i < data.length; i++) { 
+    //             html += '<option value="'+data[i].id+'">'+data[i].title.ar+'</option>'; 
+    //         } 
+    //         $('#city_id').removeAttr('disabled','disabled');
+    //         $('#city_id').html(html);
+    //     }else {
+    //         $('#city_id').attr('disabled','disabled');
+    //     }
 
-        },
-        error:function(data){
-          console.log(data.err)
-        }
-      });
-    }); 
+    //     },
+    //     error:function(data){
+    //       console.log(data.err)
+    //     }
+    //   });
+    // }); 
 
 
     $("#country_id").change(function() {

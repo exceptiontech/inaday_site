@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-6">
                                         {!! Form::label('title', trans('forms.section'))!!} <em class="text-danger">*</em>
-                                        {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
+                                        {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
                                     </div>
                                 </div>
                                 <div class="row mb-3">
