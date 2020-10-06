@@ -223,6 +223,45 @@
 
 
 
+    $(document).on("click", "#recordFor5:not(.disabled)", function(e){
+        e.preventDefault();
+        Fr.voice.record($("#live").is(":checked"), function(){
+            $(".recordButton").addClass("disabled");
+
+            $("#live").addClass("disabled");
+            $(".one").removeClass("disabled");
+
+            //makeWaveform();
+
+
+        });
+
+        Fr.voice.stopRecordingAfter(10000, function(){
+            Fr.voice.export(function(blob){
+              var data = new FormData();
+              data.append('audio', blob);
+              data.append('receiver_id', receiver_id);
+              
+              $.ajax({
+                url: '{{ route('sendMessage') }}',
+                type: 'POST',
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                  // Sent to Server
+                }
+              });
+            }, "blob");
+
+            Fr.voice.stop();
+
+            //alert("Recording stopped after 10 seconds");
+        });
+    });
+
+
+
 </script>
 
 @endsection

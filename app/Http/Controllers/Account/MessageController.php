@@ -159,9 +159,6 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
 
-
-
-
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
@@ -172,6 +169,8 @@ class MessageController extends Controller
         $data->to = $to;
 
         $file = $request->file;
+        $audio = $request->audio;
+
         if ($file) {
 
             $validator = Validator::make($request->all(), [
@@ -191,9 +190,21 @@ class MessageController extends Controller
             $data->file = $file;
             $data->message = $file;
 
+        }elseif ($audio) {
+            $destinationPath = 'uploads/messages/audio';
+            $extension='mp3';
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $audio->move($destinationPath, $fileName);
+            $audio = $destinationPath.'/'.$fileName;
+            $data->file = $audio;
+            $data->message = $audio;
+
         }else {
             $data->message = $message;
         }
+
+        
+
 
         $data->is_read = 0; // message will be unread when sending message
         $data->save();
@@ -216,4 +227,13 @@ class MessageController extends Controller
         $pusher->trigger('my-channel', 'my-event', $data);
     }
 
+
+    function listenAudio($fileName)
+    {
+
+        $file = $request->file;
+        //$file = Storage::disk('local')->get($fileName);
+        return (new Response($file, 200))
+                  ->header('Content-Type', 'audio/mpeg');
+    }
 }
