@@ -281,7 +281,7 @@
                                       
 
                                       <div class="custom-control custom-control-right custom-switch">
-                                          <input name="profile_notifications" type="checkbox" class="custom-control-input" id="profile_notifications"  checked="checked">
+                                          <input name="profile_notifications" type="checkbox" class="custom-control-input" id="profile_notifications"  @if(Auth::user()->usersettings->profile_notifications == 1) checked="checked" @endif >
                                           <label class="custom-control-label" for="profile_notifications" >استلم رسائل البريد الإلكتروني بشأن تحديثات الملف الشخصي .</label>
                                       </div>
 
@@ -291,7 +291,7 @@
                                       <label class="mb-1 font-weight-bold">تنبيهات الفرق</label>
 
                                       <div class="custom-control custom-control-right custom-switch">
-                                          <input name="team_notifications" type="checkbox" class="custom-control-input" id="team_notifications"  checked="checked">
+                                          <input name="team_notifications" type="checkbox" class="custom-control-input" id="team_notifications"  @if(Auth::user()->usersettings->team_notifications == 1) checked="checked" @endif>
                                           <label class="custom-control-label" for="team_notifications">استلم رسائل البريد الإلكتروني بشأن دعوات الفرق.</label>
                                       </div>
 

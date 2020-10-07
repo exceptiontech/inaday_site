@@ -357,8 +357,15 @@ class PaymentController extends Controller
 
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                             {
+                                Auth::user()->notify(new BookingCreated($booking));
+                            } 
+
+                            if ($service->user->usersettings && $service->user->usersettings->booking_notifications)
+                            {
                                 $service->user->notify(new BookingCreated($booking));
                             } 
+
+
 
 
                             if ($payment && $booking) {
