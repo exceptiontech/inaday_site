@@ -283,6 +283,13 @@ class PaymentController extends Controller
 
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                             {
+                                Auth::user()->notify(new BookingCreated($booking));
+                            } 
+
+
+
+                            if ($offer->user->usersettings && $offer->user->usersettings->booking_notifications)
+                            {
                                 $offer->user->notify(new BookingCreated($booking));
                             } 
 
@@ -436,10 +443,17 @@ class PaymentController extends Controller
                         }
 
 
-                        if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                        if ($mixture->team->user->usersettings && $mixture->team->user->usersettings->booking_notifications)
                         {
                             $mixture->team->user->notify(new BookingCreated($booking));
                         } 
+
+
+                        if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                        {
+                            Auth::user()->notify(new BookingCreated($booking));
+                        } 
+
 
                         if ($payment && $booking) {
                             $log           = new Log;
