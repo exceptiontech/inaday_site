@@ -41,6 +41,7 @@
     <script src="{{url('vendor/jquery-easing/jquery.easing.js')}}"></script>
     <script type="text/javascript" src="{{url('vendor/slick/slick.min.js')}}"></script>
     <script src="{{url('js/jquery.validate.js')}}"></script>
+    <script src="{{url('js/jquery.session.js')}}"></script>
     <script src="{{url('js/recorder.js')}}"></script>
     <script src="{{url('js/Fr.voice.js')}}"></script>
     <script src="{{url('js/functions.js')}}"></script>
