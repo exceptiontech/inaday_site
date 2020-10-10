@@ -32,7 +32,7 @@
 
                                                 <div class="media-body">
                                                     <p class="name">{{$user->first_name. ' ' .$user->last_name}}</p>
-                                                    <p class="email">{{ $user->last_messages()->message ?? 'لا يوجد اي رسائل' }}</p>
+                                                    <p class="email">{{ $user->last_messages() ?? 'لا يوجد اي رسائل' }}</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -222,22 +222,11 @@
     }
 
 
+    function SendRecordFunc() {
 
-    $(document).on("click", "#recordFor5:not(.disabled)", function(e){
-        e.preventDefault();
-        Fr.voice.record($("#live").is(":checked"), function(){
-            $(".recordButton").addClass("disabled");
+        var timeoutId2 = setTimeout(function(){
 
-            $("#live").addClass("disabled");
-            $(".one").removeClass("disabled");
-
-            //makeWaveform();
-
-
-        });
-
-        Fr.voice.stopRecordingAfter(10000, function(){
-            Fr.voice.export(function(blob){
+        Fr.voice.export(function(blob){
               var data = new FormData();
               data.append('audio', blob);
               data.append('receiver_id', receiver_id);
@@ -249,18 +238,107 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                  // Sent to Server
+                    $('.sendRecord'+receiver_id).addClass('sent');
+                    $.session.set("sent", "true");
                 }
               });
-            }, "blob");
+        }, "blob");
+        Fr.voice.stop();
+        }, 500);
 
-            Fr.voice.stop();
+        $('#upload_submit_'+receiver_id).removeClass('disabled');
 
-            //alert("Recording stopped after 10 seconds");
+    }
+
+    $(document).on("click", "#recordFor", function(e){
+        e.preventDefault();
+
+        var id = $(this).data('id'); 
+        $(this).parent().fadeOut();
+
+        $('#upload_submit_'+id).attr("disabled",'true').addClass('disabled');
+
+        $.session.set("sent", "false");
+
+        Fr.voice.record($("#live").is(":checked"), function(){
+
+            $('.buttonWrapper'+id).removeClass('col-1').addClass('col-2');
+            $('.input-text-'+id).removeClass('col-9').addClass('col-8');
+
+            setTimeout(function(){
+                $('.sendRecord'+id).fadeIn();
+                $('.cancelButton'+id).fadeIn();
+            }, 500);
+
         });
+
+        // setTimeout(downloadTimer);
+
+        // var time = 60;
+
+        // var downloadTimer = setInterval(function(){
+        //     time--;
+        //     document.getElementById("timer").textContent = time;
+        //     if(time <= 0)
+        //         clearInterval(downloadTimer);
+        // },1000);
+
+
+        var timeoutId = setTimeout(function(){
+
+            if ($.session.get("sent") =='false') {
+                $.session.remove('sent');
+                $('#sendRecord').trigger('click');
+            }
+            
+        }, 60000);
+
     });
 
 
+    
+
+
+    // if sent record 
+        $(document).on("click", "#sendRecord", function(e){
+            e.preventDefault();
+
+            var id = $(this).data('id'); 
+
+            $('.cancelButton'+id).fadeOut();
+            $('.sendRecord'+id).fadeOut();
+
+            setTimeout(function(){
+                $('.recordFor'+id).fadeIn();
+                $('.buttonWrapper'+id).removeClass('col-2').addClass('col-1');
+                $('.input-text-'+id).removeClass('col-8').addClass('col-9');
+            }, 500);
+
+            
+            SendRecordFunc();
+
+        });
+
+
+
+
+    $(document).on("click", "#cancelRecord", function(e){
+        e.preventDefault();
+        var id = $(this).data('id'); 
+
+        $('.cancelButton'+id).fadeOut();
+        $('.sendRecord'+id).fadeOut();
+
+        setTimeout(function(){
+            $('.recordFor'+id).fadeIn();
+            $('.buttonWrapper'+id).removeClass('col-2').addClass('col-1');
+            $('.input-text-'+id).removeClass('col-8').addClass('col-9');
+        }, 500);
+
+        Fr.voice.stop();
+
+
+    });
 
 </script>
 

@@ -174,7 +174,7 @@ class MessageController extends Controller
         if ($file) {
 
             $validator = Validator::make($request->all(), [
-                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048',
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:25500',
             ]);
 
             if ($validator->fails()) {
@@ -200,6 +200,16 @@ class MessageController extends Controller
             $data->message = $audio;
 
         }else {
+
+            $validator = Validator::make($request->all(), [
+                'message' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error'=>'من فضلك ادخل الرسالة']);
+            }
+
+
             $data->message = $message;
         }
 
