@@ -82,6 +82,9 @@ a {
   text-decoration: none !important; }
   a:focus, a:hover {
     color: #005688; }
+  a.disabled {
+    color: gray;
+    pointer-events: none; }
 
 a.link-primary {
   color: #00C76D; }
