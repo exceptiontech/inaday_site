@@ -74,19 +74,21 @@
 <div id="inputArea" class="form-inline p-3">
 <form class="upload_form upload_form_{{ $other_user->id}} form-inline col-12" enctype="multipart/form-data" data-id="{{ $other_user->id}}">
 
+
     <div class="form-group buttonWrapper{{ $other_user->id}} col-1 p-0 d-flex">
         <div class="voiceNote recordFor{{ $other_user->id}}">
             <a class="button recordButton" id="recordFor" href="#" data-id="{{ $other_user->id}}"><i class="fa fa-microphone" aria-hidden="true"></i></a>
-
-
         </div>
 
         <div class="voiceNote sendRecord{{ $other_user->id}} border-success ml-2" style="display: none;">
             <a class="button recordButton text-success" id="sendRecord" href="#" data-id="{{ $other_user->id}}"><i class="fa fa-check" aria-hidden="true"></i></a>
         </div>
+        
+        <div id="timer" class="voiceNote Timer{{ $other_user->id}} border-info ml-2" style="display: none;">
+            <span class="text-info"></span>
+        </div>
 
         <div class="voiceNote cancelButton{{ $other_user->id}} border-danger ml-2" style="display: none;">
-            <div id="timer"></div>
             <a class="button cancelButton text-danger" id="cancelRecord" href="#"  data-id="{{ $other_user->id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
 

@@ -82,6 +82,9 @@ a {
   text-decoration: none !important; }
   a:focus, a:hover {
     color: #005688; }
+  a.disabled {
+    color: gray;
+    pointer-events: none; }
 
 a.link-primary {
   color: #00C76D; }
@@ -1267,6 +1270,9 @@ input[type="checkbox"] {
     position: absolute;
     left: 20px;
     color: #939393; }
+    .messages .attach_file.disabled {
+      color: gray;
+      pointer-events: none; }
     .messages .attach_file i {
       margin: 10px;
       cursor: pointer;

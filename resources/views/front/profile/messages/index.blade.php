@@ -211,6 +211,7 @@
     }
 
 
+
     // make a function to scroll down auto
     function scrollToBottomFunc() {
         $('.message-wrapper').animate({
@@ -219,6 +220,25 @@
 
         $('#messageBody'+receiver_id).focus();
 
+    }
+
+
+
+    function Timer() {
+        var time = 60;
+        var idVar = setInterval(change, 1000);
+
+
+        function change() {
+            if (time == 0 || $.session.get("sent") =='true') {
+                clearInterval(idVar)
+            }else {
+                console.log(time);
+                time--;
+                console.log(time);
+                $("#timer span").html(time)
+            }
+        }
     }
 
 
@@ -240,6 +260,7 @@
                 success: function(data) {
                     $('.sendRecord'+receiver_id).addClass('sent');
                     $.session.set("sent", "true");
+                    Timer()
                 }
               });
         }, "blob");
@@ -257,67 +278,61 @@
         $(this).parent().fadeOut();
 
         $('#upload_submit_'+id).attr("disabled",'true').addClass('disabled');
+        $('.message_'+id).attr("disabled",'true').addClass('disabled');
+        $('.attach_file a').attr("disabled",'true').addClass('disabled');
 
         $.session.set("sent", "false");
 
         Fr.voice.record($("#live").is(":checked"), function(){
 
-            $('.buttonWrapper'+id).removeClass('col-1').addClass('col-2');
-            $('.input-text-'+id).removeClass('col-9').addClass('col-8');
+            $('.buttonWrapper'+id).removeClass('col-1').addClass('col-3');
+            $('.input-text-'+id).removeClass('col-9').addClass('col-7');
 
             setTimeout(function(){
                 $('.sendRecord'+id).fadeIn();
                 $('.cancelButton'+id).fadeIn();
+                $("#timer").fadeIn();
             }, 500);
 
         });
 
-        // setTimeout(downloadTimer);
-
-        // var time = 60;
-
-        // var downloadTimer = setInterval(function(){
-        //     time--;
-        //     document.getElementById("timer").textContent = time;
-        //     if(time <= 0)
-        //         clearInterval(downloadTimer);
-        // },1000);
 
 
-        var timeoutId = setTimeout(function(){
 
-            if ($.session.get("sent") =='false') {
-                $.session.remove('sent');
-                $('#sendRecord').trigger('click');
-            }
-            
-        }, 60000);
+        Timer()
 
+        if ($.session.get("sent") =='false') {
+
+            var timeoutId = setTimeout(function(){
+                    $.session.remove('sent');
+                    $('#sendRecord').trigger('click');
+                
+            }, 60000);
+        
+        }
     });
 
 
-    
+    $(document).on("click", "#sendRecord", function(e){
+        e.preventDefault();
 
+        var id = $(this).data('id'); 
 
-    // if sent record 
-        $(document).on("click", "#sendRecord", function(e){
-            e.preventDefault();
+        $('.cancelButton'+id).fadeOut();
+        $('.sendRecord'+id).fadeOut();
+        $("#timer span").empty();
+        $("#timer").fadeOut();
 
-            var id = $(this).data('id'); 
+        setTimeout(function(){
+            $('.recordFor'+id).fadeIn();
+            $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
+            $('.input-text-'+id).removeClass('col-7').addClass('col-9');
+        }, 500);
 
-            $('.cancelButton'+id).fadeOut();
-            $('.sendRecord'+id).fadeOut();
+        
+        SendRecordFunc();
 
-            setTimeout(function(){
-                $('.recordFor'+id).fadeIn();
-                $('.buttonWrapper'+id).removeClass('col-2').addClass('col-1');
-                $('.input-text-'+id).removeClass('col-8').addClass('col-9');
-            }, 500);
-
-            
-            SendRecordFunc();
-
-        });
+    });
 
 
 
@@ -328,11 +343,18 @@
 
         $('.cancelButton'+id).fadeOut();
         $('.sendRecord'+id).fadeOut();
+        $("#timer span").empty();
+        $("#timer").fadeOut();
+
+        $.session.set("sent", "true");
+    
+
+        Timer();
 
         setTimeout(function(){
             $('.recordFor'+id).fadeIn();
-            $('.buttonWrapper'+id).removeClass('col-2').addClass('col-1');
-            $('.input-text-'+id).removeClass('col-8').addClass('col-9');
+            $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
+            $('.input-text-'+id).removeClass('col-7').addClass('col-9');
         }, 500);
 
         Fr.voice.stop();
