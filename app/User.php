@@ -347,7 +347,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
         if ($item) {
             if ($item['file']) {
-                return 'ملف صوتي او صورة';
+                if(pathinfo($item['file'], PATHINFO_EXTENSION)  == 'png' || pathinfo($item['file'], PATHINFO_EXTENSION) == 'jpg' || pathinfo($item['file'], PATHINFO_EXTENSION) == 'jpeg') {
+                    return 'صورة';
+
+                }elseif (pathinfo($item['file'], PATHINFO_EXTENSION)  == 'mp3') {
+                    return 'ملف صوتي';
+                }else {
+                    return 'ملف ';
+
+                }
             }else {
                 return $item['message'];
             }
