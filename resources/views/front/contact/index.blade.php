@@ -68,7 +68,7 @@
                         <div class="col-sm-4 form-group">
                             <label class="font-weight-bold mb-3">الهاتف <em class="text-danger">*</em> </label>
 
-                            {!! Form::text('mobile', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.mobile')],,'onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")') !!}
+                            {!! Form::text('mobile', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.mobile'),'onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                         </div>
                         <div class="col-sm-4 form-group">
                           <label class="font-weight-bold mb-3">تحميل مرفقات  </label>
