@@ -105,7 +105,7 @@ class InterviewController extends Controller
         $questions = Question::where('skill_id',$interview->skill_id)->get();
 
         if (!$questions->isEmpty()) {
-            $questions = $questions->random(10);
+            $questions = $questions->random(2);
         } else {
             return view('front.errors.interview');
         }

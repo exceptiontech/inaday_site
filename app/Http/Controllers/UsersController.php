@@ -343,21 +343,22 @@ class UsersController extends Controller
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
 
-        return redirect::to('/user/'.Auth::user()->id);
+        //return redirect::to('/user/'.Auth::user()->id);
 
-        // if (Auth::user()->PassedInterview()) {
-        //     return redirect::to('/');
-        // }
+        if (Auth::user()->PassedInterview()) {
+            return redirect::to('/user/'.Auth::user()->id);
+            //return redirect::to('/');
+        }
 
-        // // Create interview
-        // $interview = new Interview;
-        // $interview->user_id = Auth::user()->id;
-        // $interview->skill_id = Auth::user()->DefaultSkill()->id;
-        // $interview->total = 0;
-        // $interview->is_passed = 0;
-        // $interview->save();
+        // Create interview
+        $interview = new Interview;
+        $interview->user_id = Auth::user()->id;
+        $interview->skill_id = Auth::user()->DefaultSkill()->id;
+        $interview->total = 0;
+        $interview->is_passed = 0;
+        $interview->save();
 
-        // return redirect::to('/account/interviews/'.$interview->id);
+        return redirect::to('/account/interviews/'.$interview->id);
 
     }
 
