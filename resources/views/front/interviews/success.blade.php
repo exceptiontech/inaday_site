@@ -1,3 +1,33 @@
+@extends('layouts.inner')
+@section('title')
+{{trans('file.contact_us')}}
+
+@endsection
+@section('content')
+<div id="innerpage" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 title">
+                    <h2 class="text-white mb-5">{{__('forms.thank_u')}}</h2>
+                </div>
+
+
+                <div class="col-12 ">
+                    <div class="bg-light contact_us rounded pt-3 pb-3 p-2">
+                      <div class="p-4 project">
+                          {{trans('file.thank_you_for_being_ambitious_and_seeking_work')}}
+
+                      </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
+@endsection
+
+
+
 @extends('layouts.register_layout')
 @section('title')
 {{__('file.servives_provider_register')}}
