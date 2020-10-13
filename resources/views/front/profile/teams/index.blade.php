@@ -47,6 +47,7 @@
                                                 <div class="row mb-2">
                                                     <div class="col-9">
                                                         <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
+                                                        <p>{{$team->desc ?? 'فريق بدون وصف' }}</p>
                                                         <div class="dropdown">
                                                             <button class="btn bg-light dropdown-toggle" type="button" id="memberWrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             اعضاء الفريق
