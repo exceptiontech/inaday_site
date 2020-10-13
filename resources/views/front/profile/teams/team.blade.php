@@ -44,6 +44,7 @@
                                             <div class="row mb-2">
                                                 <div class="col-10">
                                                     <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
+                                                    <p>{{$team->desc ?? 'فريق بدون وصف' }}</p>
                                                 </div>
                                                 <div class="col-2 sociel text-right">
                                                     <a class="mr-2" href="{{url('account/teams/'.$team->id.'/edit')}}">
