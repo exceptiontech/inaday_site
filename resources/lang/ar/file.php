@@ -54,6 +54,7 @@ return [
     'booked' => 'تم الحجز',
     'contact' => 'اتصل بنا',
     'book_services' => 'حجز خدمة',
+    'themixtures'=>'الخلطات',
     'mixtures' => 'خلطاتي',
     'no_mixtures' => 'لا يوجد خلطات مطابقة',
     'in_a_day_features' => 'أهم ما يميزنا فى منصة .IN.A.DAY.',

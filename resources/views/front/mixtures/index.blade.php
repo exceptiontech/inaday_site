@@ -6,7 +6,7 @@
             <div class="row">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الخدمات</h2>
+                    <h2 class="text-white mb-5">{{trans('file.themixtures')}}</h2>
                 </div>
                 <!-- sidebar Begin -->
                 <div class="col-12 col-md-4">
