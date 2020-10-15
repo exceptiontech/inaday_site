@@ -67,20 +67,29 @@
                                 </div>
 
                                 <div class="row mb-4">
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('mobile', trans('profile.mobile'))!!}<em class="text-danger">*</em>
                                         {!! Form::text('mobile', Auth::user()->mobile, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('email', trans('profile.email'))!!}
                                         {!! Form::email('email', Auth::user()->email, ['required','class' => 'form-control','disabled'=>'disabled']) !!}
 
                                     </div>
-                                    <div class="col-12 col-sm-4">
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-12 col-sm-6">
                                         {!! Form::label('password', trans('profile.password'))!!}
                                         {{ Form::password('password', array('id' => 'password', "class" => "form-control")) }}
 
                                     </div>
+                                    <div class="col-12 col-sm-6">
+                                        {!! Form::label('password_confirmation', trans('forms.co_password'))!!}
+                                        {{ Form::password('password_confirmation', array('id' => 'password', "class" => "form-control")) }}
+
+                                    </div>
+
+
                                 </div>
 
 
