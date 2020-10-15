@@ -230,7 +230,7 @@
 
         function change() {
 
-            //console.log($.session.get("sent"));
+            console.log($.session.get("sent"));
 
             if (time == 0 || $.session.get("sent") =='true') {
                 clearInterval(idVar);
@@ -247,31 +247,34 @@
 
     function SendRecordFunc() {
 
-        $.session.set("sent", "true");
 
-        var timeoutId2 = setTimeout(function(){
+        if ($.session.get("sent") =='false') {
+            
+            var timeoutId2 = setTimeout(function(){
 
-        Fr.voice.export(function(blob){
-              var data = new FormData();
-              data.append('audio', blob);
-              data.append('receiver_id', receiver_id);
-              
-              $.ajax({
-                url: '{{ route('sendMessage') }}',
-                type: 'POST',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    $('.sendRecord'+receiver_id).addClass('sent');
-                    //Timer();
-                }
-              });
-        }, "blob");
-        Fr.voice.stop();
-        }, 500);
+            Fr.voice.export(function(blob){
+                  var data = new FormData();
+                  data.append('audio', blob);
+                  data.append('receiver_id', receiver_id);
+                  
+                  $.ajax({
+                    url: '{{ route('sendMessage') }}',
+                    type: 'POST',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('.sendRecord'+receiver_id).addClass('sent');
+                        $.session.set("sent", "true");
+                        $('.user-'+receiver_id).trigger('click');
+                    }
+                  });
+            }, "blob");
+            Fr.voice.stop();
+            }, 500);
 
-        $('#upload_submit_'+receiver_id).removeClass('disabled');
+            $('#upload_submit_'+receiver_id).removeClass('disabled');
+        }
 
     }
 
@@ -347,9 +350,9 @@
         $("#timer span").empty();
         $("#timer").fadeOut();
 
-        //Timer();
         $.session.set("sent", "true");
-    
+        Timer();
+
         setTimeout(function(){
             $('.recordFor'+id).fadeIn();
             $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
