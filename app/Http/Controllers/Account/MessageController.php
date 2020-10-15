@@ -32,11 +32,11 @@ class MessageController extends Controller
         $users = $users->newQuery();
 
         $users->orwhereHas('service_bookings', function ($query)  {
-                $query->where('provider_id','!=', Auth::id());
+                $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
             });
 
         $users->orwhereHas('bookings', function ($query)  {
-                $query->where('user_id','!=', Auth::id());
+                $query->where('user_id','!=', Auth::id())->where('provider_id', Auth::id());
             });
 
 
