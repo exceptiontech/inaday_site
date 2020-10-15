@@ -29,17 +29,12 @@
                         <div class="card-body">
                             <h4 class="card-title mb-3">{{trans('admin.editproject')}}</h4>
                             <div class="form-group">
-                                {!! Form::label('title', trans('admin.title')) !!}
-                                {!! Form::text('title', $project->title, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title']) !!}
+                                {{ $project->title }}
                             </div>
 
 
                             <div class="form-group">
-                                {!! Form::label('desc', trans('admin.desc')) !!}
-                                {!! Form::textarea('desc', $project->desc, 
-                                    array('required', 
-                                          'class'=>'textarea form-control', 
-                                          'placeholder'=>trans('admin.desc'))) !!}
+                                {!! $project->desc !!}
                             </div>
 
 
