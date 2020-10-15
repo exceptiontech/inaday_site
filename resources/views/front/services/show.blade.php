@@ -75,8 +75,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{$service->title}}</h2> 
-                                       <p>{{$service->desc}}</p>
+                                       <h2 class="mb-3">اسم الخدمة</h2> 
+                                       <p>{{$service->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                         <ul class="list-inline">
