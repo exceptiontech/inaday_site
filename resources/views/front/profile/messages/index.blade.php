@@ -357,7 +357,7 @@
         //SendRecordFunc();
 
         // if ($.session.get("sent") =='false') {
-        //     Fr.voice.stop();
+        Fr.voice.stop();
         //     $.session.set("sent", "true");
         //     Timer();
         // }
