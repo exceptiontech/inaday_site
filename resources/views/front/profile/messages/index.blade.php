@@ -347,11 +347,9 @@
         $("#timer span").empty();
         $("#timer").fadeOut();
 
+        //Timer();
         $.session.set("sent", "true");
     
-
-        Timer();
-
         setTimeout(function(){
             $('.recordFor'+id).fadeIn();
             $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
