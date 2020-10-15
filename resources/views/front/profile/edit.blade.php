@@ -169,7 +169,7 @@
 
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('skills[]', trans('profile.skills'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->skill_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->DefaultSkill()->id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
                                     </div>
                                     <!-- <div class="col-12 col-sm-4">
                                         {!! Form::label('skills[]', trans('profile.anthor_skill'))!!}
