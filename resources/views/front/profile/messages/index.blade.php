@@ -228,14 +228,25 @@
         var time = 60;
         var idVar = setInterval(change, 1000);
 
-
         function change() {
-            if (time == 0 || $.session.get("sent") =='true') {
-                clearInterval(idVar)
+
+            //console.log($.session.get("sent"));
+
+            if (time == 0 ) {
+                
+                clearInterval(idVar);
+                $.session.set("sent", "false");
+                SendRecordFunc();
+
+            }else if($.session.get("sent") =='true'){
+
+                clearInterval(idVar);
+                $.session.set("sent", "false");
+
             }else {
-                console.log(time);
+                //console.log(time);
                 time--;
-                console.log(time);
+                //console.log(time);
                 $("#timer span").html(time)
             }
         }
@@ -244,30 +255,34 @@
 
     function SendRecordFunc() {
 
-        var timeoutId2 = setTimeout(function(){
 
-        Fr.voice.export(function(blob){
-              var data = new FormData();
-              data.append('audio', blob);
-              data.append('receiver_id', receiver_id);
-              
-              $.ajax({
-                url: '{{ route('sendMessage') }}',
-                type: 'POST',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    $('.sendRecord'+receiver_id).addClass('sent');
-                    $.session.set("sent", "true");
-                    Timer()
-                }
-              });
-        }, "blob");
-        Fr.voice.stop();
-        }, 500);
+        if ($.session.get("sent") =='false') {
 
-        $('#upload_submit_'+receiver_id).removeClass('disabled');
+            var timeoutId2 = setTimeout(function(){
+
+            Fr.voice.export(function(blob){
+                  var data = new FormData();
+                  data.append('audio', blob);
+                  data.append('receiver_id', receiver_id);
+                  
+                  $.ajax({
+                    url: '{{ route('sendMessage') }}',
+                    type: 'POST',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('.sendRecord'+receiver_id).addClass('sent');
+                        $.session.set("sent", "true");
+                        $('.user-'+receiver_id).trigger('click');
+                    }
+                  });
+            }, "blob");
+            Fr.voice.stop();
+            }, 500);
+
+            $('#upload_submit_'+receiver_id).removeClass('disabled');
+        }
 
     }
 
@@ -295,9 +310,6 @@
             }, 500);
 
         });
-
-
-
 
         Timer()
 
@@ -347,8 +359,6 @@
         $("#timer").fadeOut();
 
         $.session.set("sent", "true");
-    
-
         Timer();
 
         setTimeout(function(){

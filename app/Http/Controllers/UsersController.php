@@ -231,34 +231,48 @@ class UsersController extends Controller
             $userdetail = new Userdetail;
         }
 
-        $user = Auth::user();
         if(!empty($request['password']))
         {
             $this->validate($request,[
                 'first_name'=> 'required|string|min:3|max:25',
                 'last_name'=> 'required|string|min:3|max:25',
                 'mobile'      =>'required|digits:10',
+                'avater' => 'mimes:jpg,jpeg,png',
+                'position'      =>'min:3|string',
+                'cv_file'      =>'mimes:pdf,docx,doc',
+                'skill'      =>'required',
+                'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
             ]);
+
             $user->password = Hash::make($request['password']);
+        }else {
+
+            $this->validate($request,[
+                'first_name'=> 'required|string|min:3|max:25',
+                'last_name'=> 'required|string|min:3|max:25',
+                'mobile'      =>'required|digits:10',
+                'avater' => 'mimes:jpg,jpeg,png',
+                'position'      =>'min:3|string',
+                'cv_file'      =>'mimes:pdf,docx,doc',
+                'skills'      =>'required',
+                'level_id'      =>'required',
+            ]);
         }
+
+
+        // if ($validator->fails()) {
+        //     return redirect::back()
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+
+
+        $user = Auth::user();
         $user->first_name=$request->first_name;
         $user->last_name=@$request->last_name;
         $user->mobile=@$request->mobile;
         $user->save();
 
-
-        $validator = Validator::make($request->all(), [
-            'avater' => 'mimes:jpg,jpeg,png',
-            'position'      =>'min:3|string',
-            'cv_file'      =>'mimes:pdf,docx,doc',
-        ]);
-
-
-        if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
 
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
@@ -343,9 +357,9 @@ class UsersController extends Controller
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.edit_success'));
 
-        //return redirect::to('/user/'.Auth::user()->id);
+        return redirect::to('/user/'.Auth::user()->id);
 
-        if (Auth::user()->PassedInterview()) {
+        if (Auth::user()->PassedInterview() && Auth::user()->DefaultSkill()) {
             return redirect::to('/user/'.Auth::user()->id);
             //return redirect::to('/');
         }
