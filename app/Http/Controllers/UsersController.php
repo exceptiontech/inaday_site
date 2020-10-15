@@ -234,38 +234,70 @@ class UsersController extends Controller
 
         $user = Auth::user();
 
+
         if(!empty($request['password']))
         {
-            $validator = Validator::make($request->all(), [
 
-                'first_name'=> 'required|string|min:3|max:25',
-                'last_name'=> 'required|string|min:3|max:25',
-                'mobile'      =>'required|digits:10',
-                'avater' => 'mimes:jpg,jpeg,png',
-                'position'      =>'min:3|string',
-                'cv_file'      =>'mimes:pdf,docx,doc',
-                'skills.*'      =>'required|integer',
-                'level_id'      =>'required|integer',
-                'country_id'      =>'required',
-                'city_id'      =>'required',
-                'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
-            ]);
+            if (Auth::user()->isEntrepreneur() {
+                $validator = Validator::make($request->all(), [
+
+                        'first_name'=> 'required|string|min:3|max:25',
+                        'last_name'=> 'required|string|min:3|max:25',
+                        'mobile'      =>'required|digits:10',
+                        'avater' => 'mimes:jpg,jpeg,png',
+                        'position'      =>'min:3|string',
+                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        'country_id'      =>'required',
+                        'city_id'      =>'required',
+                        'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
+                    ]);
+            }else {
+                $validator = Validator::make($request->all(), [
+
+                    'first_name'=> 'required|string|min:3|max:25',
+                    'last_name'=> 'required|string|min:3|max:25',
+                    'mobile'      =>'required|digits:10',
+                    'avater' => 'mimes:jpg,jpeg,png',
+                    'position'      =>'min:3|string',
+                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    'skills.*'      =>'required|integer',
+                    'level_id'      =>'required|integer',
+                    'country_id'      =>'required',
+                    'city_id'      =>'required',
+                    'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
+                ]);
+
+            }
 
             $user->password = Hash::make($request['password']);
         }else {
 
-            $validator = Validator::make($request->all(), [
-                'first_name'=> 'required|string|min:3|max:25',
-                'last_name'=> 'required|string|min:3|max:25',
-                'mobile'      =>'required|digits:10',
-                'avater' => 'mimes:jpg,jpeg,png',
-                'position'      =>'min:3|string',
-                'cv_file'      =>'mimes:pdf,docx,doc',
-                'skills.*'      =>'required|integer',
-                'level_id'      =>'required|integer',
-                'country_id'      =>'required',
-                'city_id'      =>'required',
-            ]);
+            if (Auth::user()->isEntrepreneur() {
+                $validator = Validator::make($request->all(), [
+                        'first_name'=> 'required|string|min:3|max:25',
+                        'last_name'=> 'required|string|min:3|max:25',
+                        'mobile'      =>'required|digits:10',
+                        'avater' => 'mimes:jpg,jpeg,png',
+                        'position'      =>'min:3|string',
+                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        'country_id'      =>'required',
+                        'city_id'      =>'required',
+                    ]);
+            }else {
+                $validator = Validator::make($request->all(), [
+                    'first_name'=> 'required|string|min:3|max:25',
+                    'last_name'=> 'required|string|min:3|max:25',
+                    'mobile'      =>'required|digits:10',
+                    'avater' => 'mimes:jpg,jpeg,png',
+                    'position'      =>'min:3|string',
+                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    'skills.*'      =>'required|integer',
+                    'level_id'      =>'required|integer',
+                    'country_id'      =>'required',
+                    'city_id'      =>'required',
+                ]);
+
+            }
         }
 
 
