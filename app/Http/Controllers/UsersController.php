@@ -238,7 +238,7 @@ class UsersController extends Controller
         if(!empty($request['password']))
         {
 
-            if (Auth::user()->isEntrepreneur() {
+            if (Auth::user()->isEntrepreneur()) {
                 $validator = Validator::make($request->all(), [
 
                         'first_name'=> 'required|string|min:3|max:25',
@@ -251,6 +251,7 @@ class UsersController extends Controller
                         'city_id'      =>'required',
                         'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
                     ]);
+
             }else {
                 $validator = Validator::make($request->all(), [
 
@@ -272,7 +273,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request['password']);
         }else {
 
-            if (Auth::user()->isEntrepreneur() {
+            if (Auth::user()->isEntrepreneur()) {
                 $validator = Validator::make($request->all(), [
                         'first_name'=> 'required|string|min:3|max:25',
                         'last_name'=> 'required|string|min:3|max:25',
