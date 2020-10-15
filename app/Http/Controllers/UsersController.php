@@ -608,7 +608,7 @@ class UsersController extends Controller
                 $user->assignRole([$role->id]);
 
                 $user->sendEmailVerificationNotification();
-                $user->notify(new RegisterServicesProvider($user));
+                //$user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
 
@@ -676,7 +676,7 @@ class UsersController extends Controller
             $user->assignRole([$role->id]);
 
             $user->sendEmailVerificationNotification();
-            $user->notify(new RegisterEntrepreneur($user));
+            //$user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
             return redirect('/');
