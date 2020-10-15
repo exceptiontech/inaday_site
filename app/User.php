@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Booking;
+use App\Message;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -343,7 +344,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function last_messages()
     {
-        $item = $this->hasMany('App\Message','to')->latest()->first();
+
+        $id = $this->id;
+
+        $item = Message::where('from', $id)->orWhere('to',$id)->latest()->first();
+        //$item = $this->hasMany('App\Message','to')->latest()->first();
 
         if ($item) {
             if ($item['file']) {
