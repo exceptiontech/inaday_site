@@ -239,6 +239,7 @@
                 SendRecordFunc();
 
             }else if($.session.get("sent") =='true'){
+                //console.log(time);
 
                 clearInterval(idVar);
                 $.session.set("sent", "false");
@@ -353,21 +354,29 @@
         e.preventDefault();
         var id = $(this).data('id'); 
 
-        $('.cancelButton'+id).fadeOut();
-        $('.sendRecord'+id).fadeOut();
-        $("#timer span").empty();
-        $("#timer").fadeOut();
+        //SendRecordFunc();
 
-        $.session.set("sent", "true");
-        Timer();
+        // if ($.session.get("sent") =='false') {
+        //     Fr.voice.stop();
+        //     $.session.set("sent", "true");
+        //     Timer();
+        // }
 
-        setTimeout(function(){
-            $('.recordFor'+id).fadeIn();
-            $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
-            $('.input-text-'+id).removeClass('col-7').addClass('col-9');
-        }, 500);
+        if ($.session.get("sent") =='false') {
+            $.session.set("sent", "true");
+            $('.cancelButton'+id).fadeOut();
+            $('.sendRecord'+id).fadeOut();
+            $("#timer span").empty();
+            $("#timer").fadeOut();
 
-        Fr.voice.stop();
+
+            setTimeout(function(){
+                $('.recordFor'+id).fadeIn();
+                $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
+                $('.input-text-'+id).removeClass('col-7').addClass('col-9');
+            }, 500);
+        }
+
 
 
     });
