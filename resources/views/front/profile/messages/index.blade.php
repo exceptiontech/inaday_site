@@ -228,14 +228,17 @@
         var time = 60;
         var idVar = setInterval(change, 1000);
 
-
         function change() {
+
+            //console.log($.session.get("sent"));
+
             if (time == 0 || $.session.get("sent") =='true') {
-                clearInterval(idVar)
+                clearInterval(idVar);
+                $.session.set("sent", "false");
             }else {
-                console.log(time);
+                //console.log(time);
                 time--;
-                console.log(time);
+                //console.log(time);
                 $("#timer span").html(time)
             }
         }
@@ -243,6 +246,8 @@
 
 
     function SendRecordFunc() {
+
+        $.session.set("sent", "true");
 
         var timeoutId2 = setTimeout(function(){
 
@@ -259,8 +264,7 @@
                 processData: false,
                 success: function(data) {
                     $('.sendRecord'+receiver_id).addClass('sent');
-                    $.session.set("sent", "true");
-                    Timer()
+                    //Timer();
                 }
               });
         }, "blob");
@@ -295,9 +299,6 @@
             }, 500);
 
         });
-
-
-
 
         Timer()
 
