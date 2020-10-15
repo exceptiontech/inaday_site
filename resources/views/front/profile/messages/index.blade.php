@@ -230,11 +230,19 @@
 
         function change() {
 
-            console.log($.session.get("sent"));
+            //console.log($.session.get("sent"));
 
-            if (time == 0 || $.session.get("sent") =='true') {
+            if (time == 0 ) {
+                
                 clearInterval(idVar);
                 $.session.set("sent", "false");
+                SendRecordFunc();
+
+            }else if($.session.get("sent") =='true'){
+
+                clearInterval(idVar);
+                $.session.set("sent", "false");
+
             }else {
                 //console.log(time);
                 time--;
@@ -249,7 +257,7 @@
 
 
         if ($.session.get("sent") =='false') {
-            
+
             var timeoutId2 = setTimeout(function(){
 
             Fr.voice.export(function(blob){
