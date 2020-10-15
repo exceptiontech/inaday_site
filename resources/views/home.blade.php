@@ -133,7 +133,7 @@
                 <p>{{trans('file.we_offer_you_complete_solutions_desc1')}}</p>
                 <p>{{trans('file.we_offer_you_complete_solutions_desc2')}}</p>
                 <p>{{trans('file.we_offer_you_complete_solutions_desc3')}}</p>
-                <a class="btn btn-primary mt-5" href="#">{{trans('file.more_mixes')}}</a>
+                <a class="btn btn-primary mt-5" href="{{url('/mixtures')}}">{{trans('file.more_mixes')}}</a>
             </div>
             <div class="col-12 col-md-6">
                 <img class="img-fluid" src="{{url('images/mix.png') }}" alt="">
