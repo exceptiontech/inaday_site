@@ -29,10 +29,10 @@
                         <ul class="list-unstyled">
                             @guest
                             <li>
-                                <a href="{{url('/register')}}">{{trans('file.servives_provider_register')}}</a>
+                                <a href="{{url('/register?type=services_provider')}}">{{trans('file.servives_provider_register')}}</a>
                             </li>
                             <li>
-                                <a href="{{url('/register')}}">{{trans('file.entrepreneur_register')}}</a>
+                                <a href="{{url('/register?type=entrepreneur')}}">{{trans('file.entrepreneur_register')}}</a>
                             </li>
                             @endguest
                             <li>
@@ -88,10 +88,10 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <p class="copyright font-weight-bolder mb-2">© 2020 {{trans('file.byـinـaـdayـteam')}}</p>
-                    <p class="mb-1"><span class="font-weight-bolder">مؤسسة حقل الورود للتجارة |</span> رقم السجل المدني : 1008367383</p>
+                    <!-- <p class="mb-1"><span class="font-weight-bolder">مؤسسة حقل الورود للتجارة |</span> رقم السجل المدني : 1008367383</p> -->
                 </div>
                 <div class="col-12 col-sm-6 text-right">
-                    <ul class="list-inline sociel mt-3">
+                    <ul class="list-inline sociel">
                         <li class="list-inline-item">
                             {{trans('file.folow_us')}}
                         </li>
