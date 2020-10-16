@@ -282,6 +282,7 @@
             Fr.voice.stop();
             }, 500);
 
+            $.session.set("sent", "true");
             $('#upload_submit_'+receiver_id).removeClass('disabled');
         }
 
@@ -312,7 +313,7 @@
 
         });
 
-        Timer()
+        Timer();
 
         if ($.session.get("sent") =='false') {
 
