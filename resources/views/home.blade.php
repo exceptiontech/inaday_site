@@ -7,7 +7,7 @@
             <h1 class="pb-5">{{trans('file.in_a_day_features')}}</h1>
         </div>
         <div  class="row mb-4">
-            <div class="col-12 col-md-4">
+            <!-- <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
                     <div class="col-3 ">
                         <div class="image p-3">
@@ -19,7 +19,7 @@
                         <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
                     <div class="col-3">
@@ -46,9 +46,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div  class="row mb-4">
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
                     <div class="col-3">
@@ -62,6 +59,11 @@
                     </div>
                 </div>
             </div>
+
+            
+        </div>
+
+        <div  class="row mb-4">
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
                     <div class="col-3">
