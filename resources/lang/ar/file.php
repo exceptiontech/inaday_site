@@ -127,7 +127,7 @@ return [
     'introduction' => ' تعريف بالمنصة',
 
     /* header */
-    'search_for' => 'ابحث عن: مصمم، مستشار، إداري...',
+    'search_for' => 'ابحث عن: مصمم ...',
     'you_already_registered_please_fill_following_steps'=>'أنت مسجل دخول بالفعل يرجى إتمام باقي بيانات مقدم الخدمة ليصبح ملفك كامل',
 
     /* project && offer */
