@@ -204,10 +204,15 @@ class MixtureController extends Controller
      */
     public function edit($id)
     {
+        $mixture = Mixture::find($id);
+
+
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             return view('front.errors.denied');
+        }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
+            return view('front.errors.denied');
         }
-        $mixture = Mixture::find($id);
+        
         $skills = Skill::where('is_active',1)->get();
         $sections= Section::all();
 
