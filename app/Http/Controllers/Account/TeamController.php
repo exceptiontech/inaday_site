@@ -362,6 +362,12 @@ class TeamController extends Controller
         $user = User::findorfail($id);
         $team = Team::findorfail($teamid);
 
+        if ($team->hasUser($id)) {
+            Session::flash('status', __('file.danger'));
+            Session::flash('message', __('file.user_already_added_to_team'));
+            return redirect::back();
+        }
+
         if ($team->hasUserGlobal($id)) {
             Session::flash('status', __('file.danger'));
             Session::flash('message', 'لا يمكنك اضافة مقدم الخدمة مرة اخرى بسبب رفض الانضمام مرة سابقة');
