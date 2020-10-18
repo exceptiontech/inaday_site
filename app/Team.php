@@ -24,6 +24,19 @@ class Team extends Model
         return $this->belongsToMany('App\User')->withPivot('is_approved');
     }
 
+
+    public function hasUserGlobal($id){
+
+
+        return  $this->pendingUsers()->where('team_user.user_id',$id)->first();  
+
+
+        if ($this->pendingUsers()->where('team_user.user_id',$id)->where('team_user.is_approved','!=',3)->where('team_user.is_approved','!=',2)->first()) {
+            return true;
+        }
+        return false;
+
+    }
     public function hasUser($id){
 
 
