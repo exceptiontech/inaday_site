@@ -306,6 +306,8 @@ class ServiceController extends Controller
         }
         
 
+        Auth::user()->notify(new \App\Notifications\Database\ServiceDeleted($service));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new ServiceDeleted($service));
