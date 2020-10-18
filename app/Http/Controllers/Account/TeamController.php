@@ -364,7 +364,7 @@ class TeamController extends Controller
 
         if ($team->hasUserGlobal($id)) {
             Session::flash('status', __('file.danger'));
-            Session::flash('message', __('file.user_already_added_to_team'));
+            Session::flash('message', 'لا يمكنك اضافة مقدم الخدمة مرة اخرى بسبب رفض الانضمام مرة سابقة');
             return redirect::back();
         }
 
