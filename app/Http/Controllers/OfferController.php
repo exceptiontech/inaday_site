@@ -90,10 +90,14 @@ class OfferController extends Controller
 
 
 
+        $offer->user->notify(new \App\Notifications\Database\OfferCreated($offer));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->offer_notifications)
         {
             $offer->user->notify(new OfferCreated($offer));
         }
+
+        $project->user->notify(new \App\Notifications\Database\OfferCreated($offer));
 
         if ($project->user->usersettings && $project->user->usersettings->offer_notifications) {
             $project->user->notify(new OfferCreated($offer));

@@ -281,12 +281,16 @@ class PaymentController extends Controller
                             }
 
 
+                            Auth::user()->notify(new \App\Notifications\Database\BookingCreated($booking));
+
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                             {
                                 Auth::user()->notify(new BookingCreated($booking));
                             } 
 
 
+
+                            $offer->user->notify(new \App\Notifications\Database\BookingCreated($booking));
 
                             if ($offer->user->usersettings && $offer->user->usersettings->booking_notifications)
                             {
@@ -362,10 +366,14 @@ class PaymentController extends Controller
                             }
 
 
+                            Auth::user()->notify(new \App\Notifications\Database\BookingCreated($booking));
+
                             if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                             {
                                 Auth::user()->notify(new BookingCreated($booking));
                             } 
+
+                            $service->user->notify(new \App\Notifications\Database\BookingCreated($booking));
 
                             if ($service->user->usersettings && $service->user->usersettings->booking_notifications)
                             {
@@ -443,11 +451,15 @@ class PaymentController extends Controller
                         }
 
 
+                        $mixture->team->user->notify(new \App\Notifications\Database\BookingCreated($booking));
+
                         if ($mixture->team->user->usersettings && $mixture->team->user->usersettings->booking_notifications)
                         {
                             $mixture->team->user->notify(new BookingCreated($booking));
                         } 
 
+
+                        Auth::user()->notify(new \App\Notifications\Database\BookingCreated($booking));
 
                         if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
                         {

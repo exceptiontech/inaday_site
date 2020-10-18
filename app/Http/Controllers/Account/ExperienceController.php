@@ -84,7 +84,8 @@ class ExperienceController extends Controller
             $log->save();
         }
 
-        //return Auth::user()->usersettings;
+
+        Auth::user()->notify(new \App\Notifications\Database\ExperienceCreated($experience));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -171,6 +172,8 @@ class ExperienceController extends Controller
 
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\ExperienceUpdated($experience));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new ExperienceUpdated($experience));
@@ -198,6 +201,8 @@ class ExperienceController extends Controller
             $experience->save();
         }
         
+
+        Auth::user()->notify(new \App\Notifications\Database\ExperienceDeleted($experience));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {

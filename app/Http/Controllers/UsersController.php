@@ -390,6 +390,8 @@ class UsersController extends Controller
         }
 
 
+        Auth::user()->notify(new \App\Notifications\Database\UpdatedUser(Auth::user()));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new UpdatedUser(Auth::user()));
@@ -628,7 +630,7 @@ class UsersController extends Controller
                 }
                 $user->password = Hash::make($return_user->nickname);
 
-                $user->notification_preference = 'mail,database';
+                $user->notification_preference = 'mail';
 
                 $user->save();
 
@@ -695,7 +697,7 @@ class UsersController extends Controller
                 }
                 $user->password = Hash::make($return_user->nickname);
 
-                $user->notification_preference = 'mail,database';
+                $user->notification_preference = 'mail';
 
                 $user->save();
 
@@ -821,7 +823,7 @@ class UsersController extends Controller
             }
             $user->password = Hash::make($return_user->nickname);
 
-            $user->notification_preference = 'mail,database';
+            $user->notification_preference = 'mail';
 
             $user->save();
 

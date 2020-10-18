@@ -222,6 +222,7 @@ class ProjectController extends Controller
 
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\ProjectCreated($project));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -385,6 +386,7 @@ class ProjectController extends Controller
 
         
 
+        Auth::user()->notify(new \App\Notifications\Database\ProjectUpdated($project));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -424,6 +426,7 @@ class ProjectController extends Controller
         }
 
 
+        Auth::user()->notify(new \App\Notifications\Database\ProjectDeleted($project));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {

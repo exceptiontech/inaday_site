@@ -178,6 +178,7 @@ class ServiceController extends Controller
 
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\ServiceCreated($service));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {

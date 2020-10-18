@@ -199,6 +199,8 @@ class ProjectController extends Controller
 
         }
 
+        $project->user->notify(new \App\Notifications\Database\ProjectApproved($project));
+
         if ($project->is_approved) {
             $project->user->notify(new ProjectApproved($project));
         }

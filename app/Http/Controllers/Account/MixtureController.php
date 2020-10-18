@@ -172,6 +172,7 @@ class MixtureController extends Controller
             }
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\MixtureCreated($mixture));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -320,6 +321,8 @@ class MixtureController extends Controller
             }
 
         }
+        
+        Auth::user()->notify(new \App\Notifications\Database\MixtureUpdated($mixture));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -356,6 +359,7 @@ class MixtureController extends Controller
             $mixture->save();
         }
         
+        Auth::user()->notify(new \App\Notifications\Database\MixtureDeleted($mixture));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {

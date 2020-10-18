@@ -98,6 +98,8 @@ class FavoriteController extends Controller
                     $log->save();
                 }
 
+                $service->user->notify(new \App\Notifications\Database\FavoriteDeleted($favorite));
+
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
                     $service->user->notify(new FavoriteDeleted($favorite));
@@ -119,6 +121,8 @@ class FavoriteController extends Controller
                     $log->ip       = $request->server()['REMOTE_ADDR'];
                     $log->save();
                 }
+
+                $service->user->notify(new \App\Notifications\Database\FavoriteCreated($favorite));
 
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
@@ -143,6 +147,8 @@ class FavoriteController extends Controller
                     $log->save();
                 }
 
+                $project->user->notify(new \App\Notifications\Database\FavoriteDeleted($favorite));
+
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
                     $project->user->notify(new FavoriteDeleted($favorite));
@@ -164,6 +170,8 @@ class FavoriteController extends Controller
                     $log->ip       = $request->server()['REMOTE_ADDR'];
                     $log->save();
                 }
+
+                $project->user->notify(new \App\Notifications\Database\FavoriteCreated($favorite));
 
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
@@ -187,6 +195,9 @@ class FavoriteController extends Controller
                     $log->save();
                 }
 
+                $mixture->team->user->notify(new \App\Notifications\Database\FavoriteDeleted($favorite));
+
+
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
                     $mixture->team->user->notify(new FavoriteDeleted($favorite));
@@ -208,6 +219,8 @@ class FavoriteController extends Controller
                     $log->ip       = $request->server()['REMOTE_ADDR'];
                     $log->save();
                 }
+
+                $mixture->team->user->notify(new \App\Notifications\Database\FavoriteCreated($favorite));
 
                 if (Auth::user()->usersettings && Auth::user()->usersettings->favorite_notifications)
                 {
