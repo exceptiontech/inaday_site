@@ -278,6 +278,8 @@ class ServiceController extends Controller
 
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\ServiceUpdated($service));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new ServiceUpdated($service));
@@ -305,6 +307,8 @@ class ServiceController extends Controller
             $service->save();
         }
         
+
+        Auth::user()->notify(new \App\Notifications\Database\ServiceDeleted($service));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
