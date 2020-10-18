@@ -51,7 +51,7 @@ class ProjectDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/approve.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.ProjectDeleted'),
             'desc'=>__('notification.ProjectDeletedDesc'),
         ];

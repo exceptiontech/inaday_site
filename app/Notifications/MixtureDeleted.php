@@ -29,7 +29,7 @@ class MixtureDeleted extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return explode(',', $notifiable->notification_preference);
     }
 
     /**
@@ -46,6 +46,14 @@ class MixtureDeleted extends Notification
                     ->line('Thank you for using our application!');
     }
 
+    public function toDatabase($notifiable)
+    {
+        return [
+            'image'=> url('/images/notifications/remove.svg'),
+            'title'=> __('notification.MixtureDeleted'),
+            'desc'=>__('notification.MixtureDeletedDesc'),
+        ];
+    }
     /**
      * Get the array representation of the notification.
      *

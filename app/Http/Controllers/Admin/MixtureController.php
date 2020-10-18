@@ -21,6 +21,9 @@ use App\User;
 use App\Skill;
 use App\Log;
 
+use App\Notifications\MixtureApproved;
+
+
 class MixtureController extends Controller
 {
     /**
@@ -167,6 +170,12 @@ class MixtureController extends Controller
                     $mixture->services()->attach([$service['id']=> ['cost'=> $service['cost'],'duration'=> $service['duration'] ] ]);
                 }
             }
+        }
+
+        $mixture->team->user->notify(new \App\Notifications\Database\MixtureApproved($mixture));
+
+        if ($mixture->is_approved) {
+            $mixture->team->user->notify(new MixtureApproved($mixture));
         }
 
         Session::flash('status', __('admin.success'));

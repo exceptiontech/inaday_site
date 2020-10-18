@@ -317,6 +317,12 @@ class ProjectController extends Controller
             }
         }
 
+        $project->user->notify(new \App\Notifications\Database\ProjectApproved($project));
+
+        if ($project->is_approved) {
+            $project->user->notify(new ProjectApproved($project));
+        }
+
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.update_success'));
         return redirect::to('admin/projects');

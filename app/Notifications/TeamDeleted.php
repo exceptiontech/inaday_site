@@ -51,7 +51,7 @@ class TeamDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/update.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.TeamDeleted'),
             'desc'=>__('notification.TeamDeletedDesc'),
         ];

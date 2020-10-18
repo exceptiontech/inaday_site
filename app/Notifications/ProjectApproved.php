@@ -50,8 +50,8 @@ class ProjectApproved extends Notification
     {
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ProjectCreated'),
-            'desc'=>__('notification.ProjectCreatedDesc'),
+            'title'=> __('notification.ProjectApproved'),
+            'desc'=>__('notification.ProjectApprovedDesc'),
         ];
     }
     /**

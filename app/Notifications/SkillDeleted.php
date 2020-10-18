@@ -51,7 +51,7 @@ class SkillDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/add.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.SkillDeleted'),
             'desc'=>__('notification.SkillDeletedDesc'),
         ];

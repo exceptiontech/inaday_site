@@ -156,7 +156,8 @@ label {
   border: solid 1px #E6E6E6;
   box-shadow: 0 3px 6px #00000029;
   line-height: 32px;
-  min-height: 50px; }
+  min-height: 50px;
+  overflow-x: hidden; }
 
 .nav-pills .nav-link.active {
   background-color: #00C76D; }
