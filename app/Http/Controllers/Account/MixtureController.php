@@ -348,7 +348,7 @@ class MixtureController extends Controller
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             return view('front.errors.denied');
-        }elseif(!Auth::user()->hasTeam($mixture->id)) {
+        }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
             return view('front.errors.denied');
         }
 
