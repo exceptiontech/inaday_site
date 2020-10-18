@@ -162,7 +162,7 @@
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
-                                        {!! Form::label('level_id', trans('profile.levels'))!!}<em class="text-danger">*</em>
+                                        {!! Form::label('level_id', trans('profile.levels'))!!}
                                         {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
 
                                     </div>

@@ -262,7 +262,7 @@ class UsersController extends Controller
                     'position'      =>'min:3|string',
                     'cv_file'      =>'mimes:pdf,docx,doc',
                     'skills.*'      =>'required|integer',
-                    'level_id'      =>'required|integer',
+                    //'level_id'      =>'required|integer',
                     'country_id'      =>'required',
                     'city_id'      =>'required',
                     'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
@@ -293,7 +293,7 @@ class UsersController extends Controller
                     'position'      =>'min:3|string',
                     'cv_file'      =>'mimes:pdf,docx,doc',
                     'skills.*'      =>'required|integer',
-                    'level_id'      =>'required|integer',
+                    //'level_id'      =>'required|integer',
                     'country_id'      =>'required',
                     'city_id'      =>'required',
                 ]);
