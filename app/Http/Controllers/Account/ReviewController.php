@@ -95,6 +95,7 @@ class ReviewController extends Controller
             $booking->save();
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\ReviewCreated($review));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->review_notifications)
         {

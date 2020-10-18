@@ -89,6 +89,7 @@ class PortfolioController extends Controller
             $log->save();
         }
 
+        Auth::user()->notify(new \App\Notifications\Database\PortfolioCreated($portfolio));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
@@ -151,7 +152,7 @@ class PortfolioController extends Controller
             $portfolio->save();
         }
         
-
+        Auth::user()->notify(new \App\Notifications\Database\PortfolioDeleted($portfolio));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {

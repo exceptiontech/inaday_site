@@ -127,7 +127,7 @@ class RegisterController extends Controller
 
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
-            $user->notification_preference = 'mail,database';
+            $user->notification_preference = 'mail';
             $user->save();
             
             if (count($user->userdetail) > 0) {
@@ -239,7 +239,7 @@ class RegisterController extends Controller
 
         }
 
-        $user->notification_preference = 'mail,database';
+        $user->notification_preference = 'mail';
 
         $user->save();
 

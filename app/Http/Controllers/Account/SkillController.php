@@ -79,6 +79,9 @@ class SkillController extends Controller
             $log->save();
         }
 
+
+        Auth::user()->notify(new \App\Notifications\Database\SkillUpdated($team));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
         {
             Auth::user()->notify(new SkillUpdated($skill));

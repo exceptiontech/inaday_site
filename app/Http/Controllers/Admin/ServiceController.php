@@ -112,9 +112,11 @@ class ServiceController extends Controller
             $log->save();
         }
 
-        if ($project->is_approved) {
-            $service->user->notify(new ProjectApproved($project));
-        }
+        // $service->user->notify(new \App\Notifications\Database\ServiceApproved($offer));
+
+        // if ($service->is_approved) {
+        //     $service->user->notify(new ServiceApproved($project));
+        // }
 
         $services = Service::all();
         Session::flash('status', __('admin.success'));

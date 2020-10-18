@@ -109,6 +109,8 @@ class TeamController extends Controller
         }
 
 
+        Auth::user()->notify(new \App\Notifications\Database\TeamCreated($team));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
             Auth::user()->notify(new TeamCreated($team));
@@ -195,6 +197,7 @@ class TeamController extends Controller
 
 
 
+        Auth::user()->notify(new \App\Notifications\Database\TeamUpdated($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
@@ -252,6 +255,8 @@ class TeamController extends Controller
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
         }
+
+        Auth::user()->notify(new \App\Notifications\Database\TeamDeleted($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
@@ -367,6 +372,9 @@ class TeamController extends Controller
         //$team->users()->detach();
         $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
+        $user->notify(new \App\Notifications\Database\TeamRequest($team));
+        $team->user->notify(new \App\Notifications\Database\TeamRequest($team));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
             $user->notify(new TeamRequest($team));
@@ -389,6 +397,8 @@ class TeamController extends Controller
 
         $team->users()->detach($id);
 
+        $team->user->notify(new \App\Notifications\Database\TeamRefusedRequest($team));
+
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
             $team->user->notify(new TeamRefusedRequest($team));
@@ -408,6 +418,8 @@ class TeamController extends Controller
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'2','note'=>__('file.invitation_refused')]);
 
+
+        $team->user->notify(new \App\Notifications\Database\TeamRefusedRequest($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
@@ -430,6 +442,7 @@ class TeamController extends Controller
 
         
 
+        $team->user->notify(new \App\Notifications\Database\TeamAcceptRequest($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
@@ -448,6 +461,8 @@ class TeamController extends Controller
 
         $team = Team::findorfail($id);
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'3','note'=>__('file.invitation_cancel')]);
+
+        $team->user->notify(new \App\Notifications\Database\TeamCancelRequest($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
