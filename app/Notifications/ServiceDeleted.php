@@ -49,7 +49,7 @@ class ServiceDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/add.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.ServiceDeleted'),
             'desc'=>__('notification.ServiceDeletedDesc'),
         ];

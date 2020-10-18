@@ -29,7 +29,7 @@ class MixtureUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return explode(',', $notifiable->notification_preference);
     }
 
     /**
@@ -44,6 +44,15 @@ class MixtureUpdated extends Notification
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'image'=> url('/images/notifications/update.svg'),
+            'title'=> __('notification.MixtureUpdated'),
+            'desc'=>__('notification.MixtureUpdatedDesc'),
+        ];
     }
 
     /**

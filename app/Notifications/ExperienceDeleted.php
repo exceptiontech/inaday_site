@@ -49,7 +49,7 @@ class ExperienceDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/update.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.ExperienceDeleted'),
             'desc'=>__('notification.ExperienceDeletedDesc'),
         ];

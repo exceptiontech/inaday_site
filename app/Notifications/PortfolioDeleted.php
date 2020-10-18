@@ -49,7 +49,7 @@ class PortfolioDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/add.svg'),
+            'image'=> url('/images/notifications/remove.svg'),
             'title'=> __('notification.PortfolioDeleted'),
             'desc'=>__('notification.PortfolioDeletedDesc'),
         ];

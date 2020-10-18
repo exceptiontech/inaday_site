@@ -59,6 +59,19 @@ return [
 	'OfferConfirm' => 'تم اختيار عرضك',
 	'FavoriteUpdatedDesc' => 'تهانينا تم اختيار عرضك',
 
+	'ServiceApproved' => 'تم تفعيل الخدمة',
+	'ServiceApprovedDesc' => 'تم تفعيل الخدمة',
+
+	'ProjectApproved' => 'تم تفعيل المشروع',
+	'ProjectApprovedDesc' => 'تم تفعيل المشروع',
+
+	'MixtrueApproved' => 'تم تفعيل الخلطة',
+	'MixtrueApprovedDesc' => 'تم تفعيل الخلطة',
+
+	'OfferCreated' => 'عرض جديد',
+	'OfferCreatedDesc' => 'تم استقبال عرض جديد',
+
+
 ] 
 
 ?>

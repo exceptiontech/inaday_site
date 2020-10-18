@@ -19,6 +19,9 @@ use App\User;
 use App\Skill;
 use App\Log;
 
+use App\Notifications\ServiceApproved;
+
+
 class ServiceController extends Controller
 {
     /**
@@ -222,6 +225,13 @@ class ServiceController extends Controller
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
+        }
+
+
+        $service->user->notify(new \App\Notifications\Database\ServiceApproved($service));
+
+        if ($service->is_approved) {
+            $service->user->notify(new ServiceApproved($service));
         }
 
         Session::flash('status', __('admin.success'));

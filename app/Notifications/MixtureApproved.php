@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class FavoriteDeleted extends Notification
+class MixtureApproved extends Notification
 {
     use Queueable;
 
@@ -42,18 +42,16 @@ class FavoriteDeleted extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
 
-
     public function toDatabase($notifiable)
     {
         return [
-            'image'=> url('/images/notifications/remove.svg'),
-            'title'=> __('notification.FavoriteDeleted'),
-            'desc'=>__('notification.FavoriteDeletedDesc'),
+            'image'=> url('/images/notifications/save.svg'),
+            'title'=> __('notification.MixtureApproved'),
+            'desc'=>__('notification.MixtureApprovedDesc'),
         ];
     }
 
