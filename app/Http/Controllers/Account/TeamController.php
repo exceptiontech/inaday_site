@@ -377,7 +377,7 @@ class TeamController extends Controller
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
-            $user->notify(new TeamRequest($team));
+            Auth::user()->notify(new TeamRequest($team));
             $team->user->notify(new TeamRequest($team));
         } 
 
@@ -399,7 +399,7 @@ class TeamController extends Controller
 
         $team->user->notify(new \App\Notifications\Database\TeamRefusedRequest($team));
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        if ($team->user->usersettings && $team->user->usersettings->team_notifications)
         {
             $team->user->notify(new TeamRefusedRequest($team));
         } 
@@ -421,7 +421,7 @@ class TeamController extends Controller
 
         $team->user->notify(new \App\Notifications\Database\TeamRefusedRequest($team));
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        if ($team->user->usersettings && $team->user->usersettings->team_notifications)
         {
             $team->user->notify(new TeamRefusedRequest($team));
         } 
@@ -464,7 +464,7 @@ class TeamController extends Controller
 
         $team->user->notify(new \App\Notifications\Database\TeamCancelRequest($team));
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
+        if ($team->user->usersettings && $team->user->usersettings->team_notifications)
         {
             $team->user->notify(new TeamCancelRequest($team));
         } 
