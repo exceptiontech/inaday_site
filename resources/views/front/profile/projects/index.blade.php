@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    <h2 class="text-white mb-5">إدارة المشاريع</h2>
                 </div>
 
                 <div class="col-12">

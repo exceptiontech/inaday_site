@@ -204,4 +204,8 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::resource('questions','Admin\QuestionController');
     Route::resource('teams','Admin\TeamController');
 
+    //custom functions
+    Route::get('admin/projects/{id}/approve', 'Admin\ProjectController@approve')->name('project.approve');
+    Route::post('admin/projects/refuse', 'Admin\ProjectController@refuse')->name('project.refuse');
+
 });

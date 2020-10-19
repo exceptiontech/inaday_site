@@ -37,4 +37,10 @@ class Service extends Model
         return $this->hasMany('App\File');
     }
 
+    public function ModelLogs()
+    {
+        return $this->hasMany('App\ModelLog','model_id')->where('model_type','service');
+    }
+
+
 }

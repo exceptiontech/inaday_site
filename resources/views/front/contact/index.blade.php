@@ -19,7 +19,7 @@
                       <div class="p-4 project">
                       <div class="block">
                       <h2 class="mb-3">صوتك مسموع</h2>
-                      <p>كيف نقدر نخدمك، من خلال هذة الصفحة يمكنك التواصل معنا وابلاغنا بالمقترحات او الاستفسارات او المشاكل التي تواجهك، وسوف نتواصل معك في اقرب وقت ممكن.</p>
+                      <p>بماذا نخدمك؟.. من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.</p>
 
                     {{ Form::open(['action' => 'ContactusController@store','files'=>true]) }}
 
@@ -55,7 +55,7 @@
 
                         <div class="col-sm-12 form-group">
                             <label class="font-weight-bold mb-3">محتوى الرسالة <em class="text-danger">*</em> </label>
-                          {!! Form::textarea('message', null, array('required','class'=>'textarea form-control','placeholder'=>'يمكنك كتابة محتوى الرسالة هنا','rows'=>3)) !!}
+                          {!! Form::textarea('message', null, array('required','class'=>'textarea form-control','placeholder'=>'اكتب رسالتك','rows'=>3)) !!}
 
                         </div>
                       </div>
@@ -77,7 +77,7 @@
                             <span class="form-control overflow-hidden"></span>
                             <span class="input-group-btn">
                               <input name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
-                              <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل صورة</span>
+                              <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل مرفق</span>
                             </span>
                           </div>
                         </div>

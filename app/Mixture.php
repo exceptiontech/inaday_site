@@ -36,4 +36,10 @@ class Mixture extends Model
         return $this->hasMany('App\Review');
     }
 
+    public function ModelLogs()
+    {
+        return $this->hasMany('App\ModelLog','model_id')->where('model_type','mixture');
+    }
+
+
 }

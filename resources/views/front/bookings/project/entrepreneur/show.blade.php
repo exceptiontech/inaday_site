@@ -53,7 +53,7 @@
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">ميزانية المتوقعة</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">الميزانية المتوقعة</div>
                                     <div class="col-6 p-0">{{ $booking->project->cost}} {{__('file.riyal')}}</div>
                                 </li>
 
@@ -115,8 +115,10 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{ $booking->project->title}}</h2> 
-                                       <p>{!! \Illuminate\Support\Str::words($booking->project->desc,350,'....')  !!}</p>
+                                       <h2 class="mb-3">اسم المشروع</h2> 
+                                       <p>
+                                        {{ $booking->project->title}}
+                                        </p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                     </div>
@@ -128,7 +130,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h2 class="mb-3">تفاصيل المشروع</h2> 
-                                        <p>{{ $booking->project->desc}}</p>
+                                        <p>{!! \Illuminate\Support\Str::words($booking->project->desc,350,'....')  !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +269,7 @@
                                     @endforeach
                                     @else
                                         <div class="col-12">
-                                            <p>لا يوجد اي رسائل لهذا الطلب</p>
+                                            <p>لا توجد رسائل لهذا الطلب</p>
                                         </div>
                                     @endif
 
@@ -317,7 +319,7 @@
                                                                 <span class="form-control overflow-hidden"></span>
                                                                 <span class="input-group-btn">
                                                                     <input name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
-                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل المرفق</span>
+                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل مرفق</span>
                                                                 </span>
                                                             </div>
                                                         </div>

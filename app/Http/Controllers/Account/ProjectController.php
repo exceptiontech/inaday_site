@@ -230,7 +230,7 @@ class ProjectController extends Controller
         }
 
         Session::flash('status', __('admin.success'));
-        Session::flash('message', 'نم انشاء المشروع سيتم الموافقة عليه قريبا من خلال مسئولي الموقع');
+        Session::flash('message', 'تم إنشاء المشروع وستتم مراجعته قريباً من إدارة الموقع');
         return redirect::to('/user/'.Auth::user()->id);
 
     }

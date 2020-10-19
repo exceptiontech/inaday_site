@@ -53,7 +53,7 @@
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">ميزانية المتوقعة</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">الميزانية المتوقعة</div>
                                     <div class="col-6 p-0">{{ $booking->project->cost}} {{__('file.riyal')}}</div>
                                 </li>
 
@@ -91,7 +91,7 @@
                             @if(Auth::user()->id == $booking->user->id)
                                 <a href="{{url('/account/messages/?user_id='.$booking->project->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع</a>
                             @else
-                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مقدم الخدمة</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع {{trans('file.service_providers')}}</a>
                             @endif
 
                             @guest
@@ -191,7 +191,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">مسار المشروع والتعليقات</h2> 
+                                        <h2 class="mb-3">مسار المشروع</h2> 
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -208,7 +208,7 @@
                                                 <div class="ml-2">
                                                     <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span> 
                                                     <div class="m-0 small">
-                                                        <span class="mr-2">مقدم خدمة</span>
+                                                        <span class="mr-2">{{trans('file.service_providers')}}</span>
                                                         <span>بتاريخ  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y ') ?? 'الان'}} </span>
                                                     
                                                     </div>
@@ -283,7 +283,7 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">اضف تعليق</h2> 
+                                                <h2 class="mb-3 dark">أضف تعليق</h2> 
                                             </div>
                                             <div class="col-sm-12">
                                                 {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
@@ -312,20 +312,20 @@
                                                                 <span class="form-control overflow-hidden"></span>
                                                                 <span class="input-group-btn">
                                                                     <input name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
-                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل المرفق</span>
+                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل مرفق</span>
                                                                 </span>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6">
-                                                            {!! Form::label('replaykind_id', 'نوع الاخطار')!!} 
+                                                            {!! Form::label('replaykind_id', 'نوع التعليق')!!} 
 
                                                             {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,[ 'class' => 'form-control']) !!} 
                                                         </div>
                                                     </div>
                                                     <div id="duration" class="row mb-3" style="display: none;">
                                                         <div class="col-6">
-                                                            {!! Form::label('duration', 'مدة المهلة ( بالساعه)')!!} 
+                                                            {!! Form::label('duration', 'مدة المهلة ( بالساعة )')!!} 
 
                                                             {!! Form::text('duration', null, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                                         </div>

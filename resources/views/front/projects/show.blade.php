@@ -213,7 +213,7 @@
                         <!-- alert -->
                         <div class="col-12">
                             <div class="alert alert-info text-center">
-                                <p>يتوجب عليك تسجيل الدخول أولاً لكي تتمكن من تقديم عرضك لهذا المشروع</p>
+                                <p>يجب تسجيل الدخول أولاً لتتمكن من تقديم عرضك لهذا المشروع</p>
                                 <a class="btn btn-primary" href="{{url('/register')}}">تسجيل</a>
                             </div>
                         </div>
@@ -349,7 +349,7 @@
                         <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h2 class="mb-3 dark">اضافة العروض</h2> 
+                                    <h2 class="mb-3 dark">إضافة العروض</h2> 
                                 </div>
                                 <div class="col-sm-12">
 
