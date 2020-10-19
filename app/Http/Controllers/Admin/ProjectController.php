@@ -29,8 +29,12 @@ use App\Stage;
 use App\Phase;
 use App\User;
 use App\Log;
+use App\ModelLog;
 
+
+use App\Notifications\ProjectUpdated;
 use App\Notifications\ProjectApproved;
+use App\Notifications\ProjectRefused;
 
 class ProjectController extends Controller
 {
@@ -317,10 +321,10 @@ class ProjectController extends Controller
             }
         }
 
-        $project->user->notify(new \App\Notifications\Database\ProjectApproved($project));
+        $project->user->notify(new \App\Notifications\Database\ProjectUpdated($project));
 
         if ($project->is_approved) {
-            $project->user->notify(new ProjectApproved($project));
+            $project->user->notify(new ProjectUpdated($project));
         }
 
         Session::flash('status', __('admin.success'));
@@ -361,4 +365,84 @@ class ProjectController extends Controller
 
         return  redirect::to('admin/projects');
     }
+
+
+    public function approve($id , Request $request)
+    {
+
+
+        $project= Project::find($id);        
+        //$project->is_active=$request->is_active;
+        $project->is_approved= 1;
+        $project->save();
+
+        if ($project->is_approved == 1) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'approve';
+            $model_log->model_type   = 'project';
+            $model_log->model_id     = $project->id;
+            $model_log->desc         = __('admin.approve_project');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $project->user->notify(new \App\Notifications\Database\ProjectApproved($project));
+
+        if ($project->is_approved) {
+            $project->user->notify(new ProjectApproved($project));
+        }
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.approve_success'));
+
+        return  redirect::to('admin/projects');
+
+    }
+
+    public function refuse(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'desc'      =>'required|min:3',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $project= Project::find($request->model_id);        
+        //$project->is_active=$request->is_active;
+        $project->is_approved= 0;
+        $project->save();
+
+        if ($project->is_approved == 0) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'refuse';
+            $model_log->model_type   = 'project';
+            $model_log->model_id     = $project->id;
+            $model_log->desc         = $request->desc;
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $project->user->notify(new \App\Notifications\Database\ProjectRefused($project));
+
+        if ($project->is_approved) {
+            $project->user->notify(new ProjectRefused($project));
+        }
+
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.refuse_success'));
+
+        return  redirect::to('admin/projects');
+
+    }
+
+
 }

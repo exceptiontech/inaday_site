@@ -10,9 +10,7 @@
             <div class="container">
                 <div class="info-login text-center">
                     <h2 class="pb-4">{{trans('file.register')}}</h2>
-                    <p class="pb-3">مرحبا بك يمكنك الآن اختيار الدور الذي ترغب به للإشتراك معنا لتكون من ضمن المساهمين في تحقيق
-                        النفع
-                        والإستفادة المتبادلة</p>
+                    <p class="pb-3">{{trans('file.register_desc')}}</p>
                 </div>
                 <div class="row justify-content-center">
                     <div class=" col-md-4 service_provider @if(Request()->type == 'services_provider') active  @endif ">
@@ -20,18 +18,18 @@
                         @if(Request()->type == 'services_provider') checked="checked"  @endif
                          @if(old('user_type') == 'services_provider') checked="checked"  @endif 
 
-                         > <span>مقدم خدمة</span>
+                         > <span>{{trans('file.service_providers')}}</span>
 {{--                        <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
-                        <p> باحث عن عمل و تريدالمساعدة في تنفيذ المشاريع</p>
+                        <p> {{trans('file.service_providers_register_desc')}}  </p>
                     </div>
                     <div class="col-md-4 project_owner @if(Request()->type == 'entrepreneur') active  @endif">
                         <input type="radio"
                          @if(Request()->type == 'entrepreneur') checked="checked"  @endif 
                          @if(old('user_type') == 'entrepreneur') checked="checked"  @endif 
 
-                         id="TypeUser2" name="user_type" value="entrepreneur"> <span>صاحب مشروع</span>
+                         id="TypeUser2" name="user_type" value="entrepreneur"> <span>{{trans('file.entrepreneurs')}}</span>
 {{--                        <a href="{{ url('register/entrepreneur') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
-                        <p>صاحب فكرة وعزيمة لديه حلم في بدء أعمال تجارية</p>
+                        <p> {{trans('file.entrepreneurs_register_desc')}} </p>
                     </div>
                 </div>
             </div>

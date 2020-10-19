@@ -32,13 +32,13 @@
                                             <a class="@if( \Request::route()->getName() =='front_bookings.index' ) active @endif" href="{{url('/account/bookings')}}">الحجوزات</a>
                                         </li>
                                         <li class="list-inline-item ">
-                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" href="{{url('/account/notifications')}}">الاشعارات</a>
+                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" href="{{url('/account/notifications')}}">الإشعارات</a>
                                         </li>
                                         <li class="list-inline-item">
                                             <a class="@if( \Request::route()->getName() =='front_credit.index' ) active @endif" href="{{url('/account/credit')}}">محفظتي</a>
                                         </li>
                                         <li class="list-inline-item ">
-                                            <a class="@if( \Request::route()->getName() =='front_settings.index' ) active @endif" href="{{url('/account/settings')}}">الاعدادات</a>
+                                            <a class="@if( \Request::route()->getName() =='front_settings.index' ) active @endif" href="{{url('/account/settings')}}">الإعدادات</a>
                                         </li>
                                     </ul>
                                 @endif

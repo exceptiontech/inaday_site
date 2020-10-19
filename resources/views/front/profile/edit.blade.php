@@ -134,7 +134,7 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         {!! Form::label('notes', trans('profile.notes'))!!}
-                                        {!! Form::textarea('notes', Auth::user()->userdetail->first()->notes ?? '', array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'notes','placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم قوة ظهور الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع')) !!}
+                                        {!! Form::textarea('notes', Auth::user()->userdetail->first()->notes ?? '', array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'notes','placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع')) !!}
 
                                     </div>
                                 </div>

@@ -55,6 +55,10 @@ class Project extends Model
         return $this->belongsTo('App\Offer')->where('is_confirmed',1);
     }
 
+    public function ModelLogs()
+    {
+        return $this->hasMany('App\ModelLog','model_id')->where('model_type','project');
+    }
 
 
 }

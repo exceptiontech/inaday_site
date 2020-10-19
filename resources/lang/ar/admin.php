@@ -40,6 +40,16 @@ return [
     'edit_success'     => 'تم التعديل بنجاح',
     'update_success'     => 'تم التعديل بنجاح',
     'delete_success'     => 'تم الحذف بنجاح',
+
+
+    'approve_success'     => 'تم الموافقة بنجاح',
+    'approve_project'     => 'تم قبول المشروع',
+    'approve_service'     => 'تم قبول الخدمة',
+    'approve_mixture'     => 'تم قبول الخلطة',
+    'refuse_reason'     => 'سبب الرفض',
+    'close'     => 'إغلاق',
+
+
     'no_items'     => 'لايوجد عناصر',
     'riyal'     => 'ر.س',
     'more'     => 'المزيد',
@@ -59,6 +69,10 @@ return [
     'add'     => 'اضف',
     'createnew'     => 'إضافة جديد',
     'save'     => 'حفظ',
+    'show'     => 'معاينة',
+    'approve'     => 'قبول',
+    'refuse'     => 'رفض',
+    'show'     => 'معاينة',
     'edit'     => 'تعديل',
     'create'     => 'إنشاء / إضافة',
     'update'     => 'تعديل / تحديث',
