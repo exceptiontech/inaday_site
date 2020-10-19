@@ -93,7 +93,7 @@ class ReplayController extends Controller
 
         Auth::user()->notify(new \App\Notifications\Database\ReplayCreated($replay));
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->replay_notifications)
+        if (Auth::user()->usersettings && Auth::user()->usersettings->message_notifications)
         {
             $replay->booking->user->notify(new ReplayCreated($replay));
         } 
