@@ -91,9 +91,9 @@ class ReplayController extends Controller
             $replay->save();
         }
 
-        $replay->booking->notify(new \App\Notifications\Database\ReplayCreated($replay));
+        $replay->booking->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
 
-        if ($replay->booking->usersettings && $replay->booking->usersettings->message_notifications)
+        if ($replay->booking->user->settings && $replay->booking->user->settings->message_notifications)
         {
             $replay->booking->user->notify(new ReplayCreated($replay));
         } 
