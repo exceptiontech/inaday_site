@@ -20,20 +20,20 @@
                         <div class="project-info mb-5">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">فريق الخلطة</div>
+                                    <div class="col-6 p-0 text-dark">{{trans('file.the_team')}}</div>
                                     <div class="col-6 p-0"> {{ $mixture->team->title }} </div>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">تصنيف القسم</div>
+                                    <div class="col-6 p-0 text-dark">{{trans('file.category_section')}}</div>
                                     <div class="col-6 p-0"><span class="">{{ $mixture->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">التكلفة</div>
+                                    <div class="col-6 p-0 text-dark">{{trans('file.cost')}}</div>
                                     <div class="col-6 p-0">{{$mixture->cost}} {{__('file.riyal')}}</div>
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{$mixture->duration}} ساعة </div>
+                                    <div class="col-6 p-0">{{$mixture->duration}} {{trans('file.hour')}} </div>
                                 </li>
 
                             </ul>
@@ -49,6 +49,18 @@
                         </div>
                         @endif
                     </div>
+
+                    @if(Auth::user())
+                        @if(count($mixture->ModelLogs) > 0 && Auth::user()->id == $mixture->team->user->id || Auth::user()->isAdmin())
+                        <div class="list-group p-0 mt-5">
+                            @foreach($mixture->ModelLogs as $log)
+                                @include('front.mixtures.parts.log')
+                            @endforeach
+                        </div>
+                        @endif
+                    @endif
+
+
                 </div>
                 <!-- sidebar End -->
 
@@ -62,7 +74,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">اسم الخلطة</h2> 
+                                       <h2 class="mb-3">{{__('file.mixture_title')}}</h2> 
                                        <p>{{$mixture->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
@@ -121,7 +133,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تفاصيل الخلطة</h2> 
+                                        <h2 class="mb-3">{{__('file.mixture_title')}}</h2> 
                                         <p>{{$mixture->desc}}</p>
                                     </div>
                                 </div>
@@ -132,7 +144,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3"> خدمات الخلطة</h2>
+                                        <h2 class="mb-3"> {{__('file.mixture_services')}}</h2>
                                     </div>
                                     <?php $key = 1 ; ?>
                                     @foreach($mixture->services as $service)
@@ -145,17 +157,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <span>{{$service->pivot->duration}} ساعة</span>
+                                                <span>{{$service->pivot->duration}} {{__('file.hour')}}</span>
                                             </div>
                                             <div class="col-2">
                                                 <span>
                                                     @if($service->pivot->cost != $service->cost )
-                                                    <del> {{$service->cost}} ريال</del>
+                                                    <del> {{$service->cost}} {{__('file.riyal')}}</del>
                                                     @endif
                                                 </span>
                                             </div>
                                             <div class="col-2">
-                                                <span>{{$service->pivot->cost}} ريال</span>
+                                                <span>{{$service->pivot->cost}} {{__('file.riyal')}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +189,7 @@
                                             <img src="{{ url($user->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail ">
                                             <span class="ml-2 team-info">
                                                 <p>{{$user->first_name. ' ' .$user->last_name}}</p>
-                                                <span class="small">{{ $user->userdetail->first()->position ?? 'غير محدد الوظيفة' }}</span>
+                                                <span class="small">{{ $user->userdetail->first()->position ?? __('file.undefined') }}</span>
                                             </span>
                                         </div>
                                     @endforeach
@@ -210,7 +222,7 @@
                                 </div>
                             @endif
 
-                                {{-- 
+                            {{-- 
                             <div class="block col-12 pt-3 pb-5 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">

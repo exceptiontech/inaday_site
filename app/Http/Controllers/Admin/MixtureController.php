@@ -20,8 +20,10 @@ use App\Section;
 use App\User;
 use App\Skill;
 use App\Log;
+use App\ModelLog;
 
 use App\Notifications\MixtureApproved;
+use App\Notifications\MixtureRefused;
 
 
 class MixtureController extends Controller
@@ -213,5 +215,82 @@ class MixtureController extends Controller
         Session::flash('message', __('admin.delete_success'));
 
         return  redirect::to('admin/mixtures');
+    }
+
+
+
+    public function approve($id , Request $request)
+    {
+
+
+        $mixture= Mixture::find($id);        
+        $mixture->is_approved= 1;
+        $mixture->save();
+
+        if ($mixture->is_approved == 1) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'approve';
+            $model_log->model_type   = 'mixture';
+            $model_log->model_id     = $mixture->id;
+            $model_log->desc         = __('admin.approve_mixture');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $mixture->team->user->notify(new \App\Notifications\Database\MixtureApproved($mixture));
+
+        if ($mixture->is_approved) {
+            $mixture->team->user->notify(new MixtureApproved($mixture));
+        }
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.approve_success'));
+
+        return  redirect::back();
+
+    }
+
+    public function refuse(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'desc'      =>'required|min:3',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $mixture= Mixture::find($request->model_id);        
+        $mixture->is_approved= 0;
+        $mixture->save();
+
+        if ($mixture->is_approved == 0) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'refuse';
+            $model_log->model_type   = 'mixture';
+            $model_log->model_id     = $mixture->id;
+            $model_log->desc         = $request->desc;
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $mixture->team->user->notify(new \App\Notifications\Database\MixtureRefused($mixture));
+
+        if ($mixture->is_approved) {
+            $mixture->team->user->notify(new MixtureRefused($mixture));
+        }
+
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.refuse_success'));
+
+        return  redirect::back();
+
     }
 }

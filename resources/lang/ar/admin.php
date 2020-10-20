@@ -40,6 +40,7 @@ return [
     'edit_success'     => 'تم التعديل بنجاح',
     'update_success'     => 'تم التعديل بنجاح',
     'delete_success'     => 'تم الحذف بنجاح',
+    'refuse_success'     => 'تم الرفض بنجاح',
 
 
     'approve_success'     => 'تم الموافقة بنجاح',
@@ -478,6 +479,9 @@ return [
     'destination'=>'المستقبل',
     'employee'=>'اسم الموظف',
 
+    'approve_service'=>'الموافقة على الخدمة',
+    'approve_project'=>'الموافقة على المشروع',
+    'approve_mixture'=>'الموافقة على الشراكة',
 
 
     'model'     => 'المودل',

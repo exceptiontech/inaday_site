@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -30,11 +30,11 @@
                     @endif
 
 
-                    @if(!$user->userdetailComplete)
+                    @if(!$user->userdetailComplete())
                     <div class="alert alert-info bg-dark ">
                         <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
                         
-                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                        {{ __('file.completeprofile') }}
                     </div>
                     @endif
 
@@ -49,21 +49,21 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h2 class="mb-3">التكلفة بالساعة</h2> 
+                                        <h2 class="mb-3">{{ __('file.cost_by_hour') }}</h2>  
                                         <ul class="list-inline m-0 flex-shrink-1">
                                             <li class="list-inline-item">
-                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->costkind->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->costkind->title[App::getLocale()] ?? __('file.undefined') }}</div>
                                             </li>
                                             <li class="list-inline-item">
-                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->prefer->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->prefer->title[App::getLocale()] ?? __('file.undefined') }}</div>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
-                                        <h2 class="mb-3">نوع الدوام</h2> 
+                                        <h2 class="mb-3">{{__('file.jobtypes')}}</h2> 
                                         <ul class="list-inline m-0 flex-shrink-1">
                                             <li class="list-inline-item">
-                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->jobtype->title[App::getLocale()] ?? 'غير محدد' }}</div>
+                                                <div class="bg-light rounded pt-1 pb-1 p-2 ">{{ $user->userdetail->first()->jobtype->title[App::getLocale()] ?? __('file.undefined') }}</div>
                                             </li>
                                         </ul>
                                     </div>
@@ -86,7 +86,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">{{ __('profile.notes') }}</h2> 
-                                       <p>لا يوجد اي تفاصيل عن هذا العضو</p>
+                                       <p>{{ __('file.no_notes') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">معرض الاعمال</h2> 
+                                       <h2 class="mb-3">{{ __('file.portfolios') }}</h2> 
                                        
                                         <div class="d-flex d-inline-flex mb-5">
 
@@ -128,7 +128,7 @@
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p>لم تقم باضافة اي اعمال في الوقت الحالي</p>
+                                            <p>{{ __('file.no_items') }}</p>
                                         @endif
 
 
@@ -143,7 +143,7 @@
 
 
                                     <div class="cv-history">
-                                        <h2 class="mb-3">الخبرات</h2>
+                                        <h2 class="mb-3">{{ __('file.experiences') }}</h2>
 
 
                                         @if (count($user->experiences))
@@ -152,7 +152,7 @@
                                             <div class="cv-item pl-3 pb-3">
                                                 <h2>{{$experience->position}}</h2>
                                                 <p class="date mb-1">
-                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse(strtotime($experience->start_date))->format('m-Y') }} </span>  الي <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? 'الان'}} </span>
+                                                    {{$experience->company}} من <span>{{ Carbon\Carbon::parse(strtotime($experience->start_date))->format('m-Y') }} </span>  {{ __('file.to') }} <span> {{ Carbon\Carbon::parse($experience->end_date)->format('m-Y ') ?? ''}} </span>
                                                 </p>
                                                 <p class="details">
                                                     {{$experience->desc ?? ''}}
@@ -161,7 +161,7 @@
 
                                             @endforeach
                                         @else
-                                            <p>لا يوجد اي خبرات مضافة لهذا العضو</p>
+                                            <p>{{ __('file.no_items') }}</p>
                                         @endif
 
                                     </div>

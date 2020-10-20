@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -30,11 +30,11 @@
                     @endif
 
 
-                    @if(!$user->userdetailComplete)
+                    @if(!$user->userdetailComplete())
                     <div class="alert alert-info bg-dark ">
                         <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
                         
-                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                        {{ __('file.completeprofile') }}
                     </div>
                     @endif
 

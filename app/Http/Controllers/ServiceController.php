@@ -25,8 +25,6 @@ class ServiceController extends Controller
 
         $services = $services->newQuery();
 
-
-
         $services->where('deleted_at', '=', null);
 
         $services->where('is_approved',1);
@@ -171,6 +169,16 @@ class ServiceController extends Controller
             return view('front.errors.notfound');
         }
 
+
+        if (!$service->is_approved ) {
+            if (Auth::user() && Auth::user()->isAdmin()) {
+                return view('front.services.show')->withService($service);
+            }else {
+                return view('front.errors.notfound');
+            }
+        }
+        
+
         return view('front.services.show')->withService($service);
     }
 
@@ -218,6 +226,16 @@ class ServiceController extends Controller
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
         $service= Service::find($id);
+
+        if (!$service->is_approved ) {
+            if (Auth::user()->isAdmin()) {
+                return view('front.services.show')->withService($service);
+            }else {
+                return view('front.errors.notfound');
+            }
+        }
+
+
         if ($request->hasFile('img')) {
             $file=$request->file('img');
             $file_name = date('Y_m_d_h_i_s_').($request->title).'.'.$file->getClientOriginalExtension();
@@ -256,9 +274,19 @@ class ServiceController extends Controller
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
-            $data= Service::find($id);
-            $data->deleted_at = now();
-            $data->save();
+            $service= Service::find($id);
+
+            if (!$service->is_approved ) {
+                if (Auth::user()->isAdmin()) {
+                    return view('front.services.show')->withService($service);
+                }else {
+                    return view('front.errors.notfound');
+                }
+            }
+
+            
+            $service->deleted_at = now();
+            $service->save();
             return redirect()->back()->with('flash_message','تم الحذف بنجاح');
         }
         else

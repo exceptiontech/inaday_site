@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -112,7 +112,7 @@
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                                {{$project->offers->count()}}  عرض
+                                                                {{$project->offers->count()}}  {{ __('file.offer') }}
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -124,7 +124,7 @@
                                             @endforeach
                                         </div>
                                         @else
-                                            <p>لا يوجد اي مشاريع </p>
+                                            <p>{{ __('file.no_items') }} </p>
                                         @endif
 
                                     </div>

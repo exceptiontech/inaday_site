@@ -117,6 +117,16 @@ class MixtureController extends Controller
             return view('front.errors.notfound');
         }
 
+
+        if (!$mixture->is_approved ) {
+            if (Auth::user() && Auth::user()->isAdmin()) {
+                return view('front.mixtures.show')->withMixture($mixture);
+            }else {
+                return view('front.errors.notfound');
+            }
+        }
+
+
         return view('front.mixtures.show')->withMixture($mixture);
     }
 

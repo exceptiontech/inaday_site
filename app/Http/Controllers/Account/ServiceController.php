@@ -18,6 +18,7 @@ use App\Rewardkind;
 use App\Stage;
 use App\Phase;
 use App\Log;
+use App\ModelLog;
 use Auth;
 use Redirect;
 use Session;
@@ -144,6 +145,17 @@ class ServiceController extends Controller
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
 
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'create';
+            $model_log->model_type   = 'service';
+            $model_log->model_id     = $service->id;
+            $model_log->desc         = __('file.create_service');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+
+
             $skills = $request->skills;
 
             if ($skills) {
@@ -215,6 +227,11 @@ class ServiceController extends Controller
             return view('front.errors.denied');
         }
         $service=Service::find($id);
+
+        if (!$service->is_approved ) {
+            return view('front.errors.notfound');
+        }
+
         $skills = Skill::where('is_active',1)->get();
         $sections= Section::all();
 
@@ -273,6 +290,17 @@ class ServiceController extends Controller
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
 
+
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'update';
+            $model_log->model_type   = 'service';
+            $model_log->model_id     = $service->id;
+            $model_log->desc         = __('file.update_service');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+
             //skills
             $service->skills()->sync($request->skills);
 
@@ -303,6 +331,11 @@ class ServiceController extends Controller
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
             $service= Service::find($id);
+
+            if (!$service->is_approved ) {
+                return view('front.errors.notfound');
+            }
+
             $service->deleted_at = now();
             $service->save();
         }

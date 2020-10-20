@@ -20,20 +20,20 @@
                         <div class="project-info mb-5">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">مقدم الخدمة</div>
+                                    <div class="col-6 p-0 text-dark">{{__('file.service_providers')}}</div>
                                     <div class="col-6 p-0"> {{ $service->user->first_name.' '.$service->user->last_name }} </div>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">تصنيف القسم</div>
+                                    <div class="col-6 p-0 text-dark">{{__('file.category_section')}}</div>
                                     <div class="col-6 p-0"><span class="">{{ $service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark">تكلفة الخدمة</div>
+                                    <div class="col-6 p-0 text-dark">{{__('file.cost')}}</div>
                                     <div class="col-6 p-0">{{$service->cost}} {{__('file.riyal')}}</div>
                                 </li>
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{$service->duration}} ساعة </div>
+                                    <div class="col-6 p-0">{{$service->duration}} {{__('file.hour')}} </div>
                                 </li>
 
                             </ul>
@@ -51,16 +51,26 @@
 
                         
                         <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/account/messages/?user_id='.$service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
+                            <a href="{{url('/account/messages/?user_id='.$service->user->id)}}" class="btn btn-primary btn-block mb-2">{{__('file.contact_me')}}</a>
                             
                             @guest
-                            <p class="small">يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة</p>
+                            <p class="small">{{__('file.must_looged')}}</p>
                             @endguest
                         </div>
-                        
-
-
                     </div>
+
+
+                    @if(Auth::user())
+                        @if(count($service->ModelLogs) > 0 && Auth::user()->id == $service->user->id || Auth::user()->isAdmin())
+                        <div class="list-group p-0 mt-5">
+                            @foreach($service->ModelLogs as $log)
+                                @include('front.services.parts.log')
+                            @endforeach
+                        </div>
+                        @endif
+                    @endif
+
+
                 </div>
                 <!-- sidebar End -->
 
@@ -75,7 +85,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">اسم الخدمة</h2> 
+                                       <h2 class="mb-3">{{__('file.service_title')}}</h2> 
                                        <p>{{$service->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
@@ -134,7 +144,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تفاصيل الخدمة</h2> 
+                                        <h2 class="mb-3">{{__('file.service_desc')}}</h2> 
                                         <p>{{$service->desc}}</p>
                                     </div>
                                 </div>
@@ -170,7 +180,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تقييمات العملاء</h2> 
+                                        <h2 class="mb-3">{{__('file.reviews')}}</h2> 
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -197,7 +207,7 @@
                                     </div>
                                     @endforeach
                                     @else
-                                        <p>لا يوجد اي تقييمات لهذة الخدمة</p>
+                                        <p>{{__('file.no_reviews')}}</p>
 
 
                                     @endif

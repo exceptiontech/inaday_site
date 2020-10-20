@@ -159,9 +159,18 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
 
-        if (!$project || Auth::user() && count(Auth::user()->roles) == 0) {
+        if (!$project || Auth::user() && count(Auth::user()->roles) == 0  ) {
             return view('front.errors.notfound');
         }
+
+        if (!$project->is_approved ) {
+            if (Auth::user() && Auth::user()->isAdmin()) {
+                return view('front.projects.show')->withProject($project);
+            }else {
+                return view('front.errors.notfound');
+            }
+        }
+        
 
         return view('front.projects.show')->withProject($project);
     }

@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('title', trans('forms.service_section'))!!} <em class="text-danger">*</em>
-                                        {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control','placeholder'=>trans('file.choose')]) !!} 
                                     </div>
                                 </div>
 

@@ -22,6 +22,7 @@ use Auth;
 use Redirect;
 use Session;
 use Validator;
+use App\ModelLog;
 
 use App\Notifications\ProjectCreated;
 use App\Notifications\ProjectUpdated;
@@ -135,6 +136,17 @@ class ProjectController extends Controller
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
+
+
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'create';
+            $model_log->model_type   = 'project';
+            $model_log->model_id     = $project->id;
+            $model_log->desc         = __('file.create_project');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
 
             // $phase = new Phase;
             // $phase->target_clients=convert($request->target_clients);
@@ -260,6 +272,11 @@ class ProjectController extends Controller
 
         $project =Project::find($id);
 
+
+        if (!$project->is_approved ) {
+            return view('front.errors.notfound');
+        }
+
         $stages = Stage::where('is_active', 1)->get();
         $skills = Skill::where('is_active', 1)->get();
         $averagekinds= Averagekind::all();
@@ -319,6 +336,17 @@ class ProjectController extends Controller
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
+
+
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'update';
+            $model_log->model_type   = 'project';
+            $model_log->model_id     = $project->id;
+            $model_log->desc         = __('file.update_project');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
 
 
             if (count($project->phases) > 0) {
@@ -408,9 +436,16 @@ class ProjectController extends Controller
     public function delete(Request $request ,$id)
     {
 
+
         if (Auth::user() && Auth::user()->isEntrepreneur() == 1)
         {
             $project= Project::find($id);
+
+            if (!$project->is_approved ) {
+                return view('front.errors.notfound');
+            }
+
+            
             $project->deleted_at = now();
             $project->save();
         }
