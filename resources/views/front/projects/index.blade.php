@@ -20,7 +20,7 @@
                     <div class="block mb-4">
                         <div class="block-title mb-3">
                             <div class="col-12">
-                                <h2>{{trans('file.category')}}</h2>
+                                <h2>{{trans('file.by_section')}} </h2>
                             </div>
                         </div>
                         <div class="block-content">
@@ -47,7 +47,7 @@
                     <div class="block mb-4">
                         <div class="block-title mb-3">
                             <div class="col-12">
-                                <h2>{{trans('file.skills')}}</h2>
+                                <h2>{{trans('file.by_skill')}} </h2>
                             </div>
                         </div>
                         <div class="col-12">
@@ -73,7 +73,7 @@
                         <div class="block mb-4">
                             <div class="block-title mb-3">
                                 <div class="col-12">
-                                    <h2>حسب اسم المشروع</h2>
+                                    <h2>{{trans('file.by_title')}}</h2>
                                 </div>
                             </div>
                             <div class="block-content">

@@ -18,8 +18,11 @@ use App\Section;
 use App\User;
 use App\Skill;
 use App\Log;
+use App\ModelLog;
+
 
 use App\Notifications\ServiceApproved;
+use App\Notifications\ServiceRefused;
 
 
 class ServiceController extends Controller
@@ -270,5 +273,83 @@ class ServiceController extends Controller
         Session::flash('message', __('admin.delete_success'));
 
         return  redirect::to('admin/services');
+    }
+
+
+
+    public function approve($id , Request $request)
+    {
+
+
+        $service= Service::find($id);        
+        $service->is_approved= 1;
+        $service->save();
+
+        if ($service->is_approved == 1) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'approve';
+            $model_log->model_type   = 'service';
+            $model_log->model_id     = $service->id;
+            $model_log->desc         = __('admin.approve_service');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $service->user->notify(new \App\Notifications\Database\ServiceApproved($service));
+
+        if ($service->is_approved) {
+            $service->user->notify(new ServiceApproved($service));
+        }
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.approve_success'));
+
+        return  redirect::back();
+
+    }
+
+    public function refuse(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'desc'      =>'required|min:3',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $service= Service::find($request->model_id);        
+        //$project->is_active=$request->is_active;
+        $service->is_approved= 0;
+        $service->save();
+
+        if ($service->is_approved == 0) {
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'refuse';
+            $model_log->model_type   = 'service';
+            $model_log->model_id     = $service->id;
+            $model_log->desc         = $request->desc;
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+        }
+
+        $service->user->notify(new \App\Notifications\Database\ServiceRefused($service));
+
+        if ($service->is_approved) {
+            $service->user->notify(new ServiceRefused($service));
+        }
+
+        Session::flash('status', __('admin.info'));
+        Session::flash('message', __('admin.refuse_success'));
+
+        return  redirect::back();
+
     }
 }

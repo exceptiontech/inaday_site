@@ -397,7 +397,7 @@ class ProjectController extends Controller
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.approve_success'));
 
-        return  redirect::to('admin/projects');
+        return  redirect::back();
 
     }
 
@@ -440,7 +440,7 @@ class ProjectController extends Controller
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.refuse_success'));
 
-        return  redirect::to('admin/projects');
+        return  redirect::back();
 
     }
 

@@ -208,4 +208,10 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::get('admin/projects/{id}/approve', 'Admin\ProjectController@approve')->name('project.approve');
     Route::post('admin/projects/refuse', 'Admin\ProjectController@refuse')->name('project.refuse');
 
+    Route::get('admin/services/{id}/approve', 'Admin\ServiceController@approve')->name('service.approve');
+    Route::post('admin/services/refuse', 'Admin\ServiceController@refuse')->name('service.refuse');
+
+    Route::get('admin/mixtures/{id}/approve', 'Admin\MixtureController@approve')->name('mixture.approve');
+    Route::post('admin/mixtures/refuse', 'Admin\MixtureController@refuse')->name('mixture.refuse');
+
 });

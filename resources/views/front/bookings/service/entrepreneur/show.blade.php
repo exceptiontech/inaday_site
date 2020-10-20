@@ -31,7 +31,7 @@
 
 
                                 <div class="ml-2">
-                                    <span class="small">صاحب الخدمة</span> 
+                                    <span class="small">{{trans('file.service_owner')}}</span> 
                                     <div class="mt-2 small">
                                         <h2>{{ $booking->service->user->first_name.' '.$booking->service->user->last_name }}</h2>                                    
                                     </div>
@@ -44,40 +44,40 @@
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.status')}}</div>
                                     <div class="col-6 p-0">
-                                    <span class="bg-light bg-info">{{$booking->status->title[App::getLocale()] ?? 'الحالة غير محددة'}}</span>  </div>
+                                    <span class="bg-light bg-info">{{$booking->status->title[App::getLocale()] ?? trans('file.without_status') }}</span>  </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">تصنيف القسم</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.category_section')}}</div>
                                     <div class="col-6 p-0"><span class="">{{ $booking->service->section->title[App::getLocale()] }}</span> </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">ميزانية المتوقعة</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.project_budget')}}</div>
                                     <div class="col-6 p-0">{{ $booking->service->cost}} {{__('file.riyal')}}</div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.duration')}}</div>
-                                    <div class="col-6 p-0">{{ $booking->service->duration}} ساعة </div>
+                                    <div class="col-6 p-0">{{ $booking->service->duration}} {{__('file.hour')}} </div>
                                 </li>
 
                             </ul>
 
 
                             <div class="col-12 mt-5 mb-4 small">
-                                <h2>تفاصيل الدفع</h2>                                    
+                                <h2>{{trans('file.payment_details')}}</h2>
                             </div>
 
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">المبلغ</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
                                     <div class="col-6 p-0">{{$booking->payment->amount .' '.$booking->payment->currency}}</div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">التاريخ</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.date')}}</div>
                                     <div class="col-6 p-0">{{ Carbon\Carbon::parse(strtotime($booking->created_at))->format('d-m-Y') }}</div>
                                 </li>
                             </ul>
@@ -85,13 +85,13 @@
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->user->id)
-                                <a href="{{url('/account/messages/?user_id='.$booking->service->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع مقدم الخدمة</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->service->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}}</a>
                             @else
-                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل مع صاحب المشروع </a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}} </a>
                             @endif
 
                             @guest
-                                <p class="small">يتوجب عليك تسجيل الدخول أولاً للإستفادة من خدمات المنصة</p>
+                                <p class="small">{{trans('file.must_looged')}}</p>
                             @endguest
                         </div>
                         
@@ -111,8 +111,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{ $booking->service->title}}</h2> 
-                                       <p>{!! \Illuminate\Support\Str::words($booking->service->desc,350,'....')  !!}</p>
+                                       <h2 class="mb-3">{{trans('file.service_title')}}</h2> 
+                                       <p>{{ $booking->service->title}} </p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                     </div>
@@ -123,8 +123,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تفاصيل الخدمة</h2> 
-                                        <p>{{ $booking->service->desc}}</p>
+                                        <h2 class="mb-3">{{trans('file.service_desc')}}</h2> 
+                                        <p>{!! \Illuminate\Support\Str::words($booking->service->desc,350,'....')  !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">مسار الخدمة والتعليقات</h2> 
+                                        <h2 class="mb-3">{{trans('file.service_path')}}</h2> 
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -173,7 +173,7 @@
                                                     <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span> 
                                                     <div class="m-0 small">
                                                         <span class="mr-2">مقدم خدمة</span>
-                                                        <span>بتاريخ  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y ') ?? 'الان'}} </span>
+                                                        <span>{{trans('file.date')}}  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y ') ?? ''}} </span>
                                                     
                                                     </div>
                                                 </div>
@@ -182,7 +182,7 @@
                                             <div class="col-sm-4 text-right">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
-                                                        <span class="bg-light rounded p-1 border-primary text-primary">{{ $replay->replaykind->title[App::getLocale()] ?? 'بدون' }} </span>
+                                                        <span class="bg-light rounded p-1 border-primary text-primary">{{ $replay->replaykind->title[App::getLocale()] ?? trans('file.undefined') }} </span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -215,13 +215,13 @@
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
                                                 <div class="alert alert-info mt-4">
-                                                        تم تمديد الطلب {{$replay->duration}} بالملاحظات التالية : 
-                                                        <br>
-                                                        {{$replay->replay}}
+                                                    {{trans('file.duration_accept')}} {{$replay->duration}} {{trans('file.duration_notes')}} 
+                                                    <br>
+                                                    {{$replay->replay}}
                                                 </div>
                                                 @else
                                                 <div class="alert alert-danger mt-4">
-                                                    تم رفض طلب التمديد
+                                                    {{trans('file.duration_refused')}} 
                                                 </div>
                                                 @endif
                                             @endforeach
@@ -232,20 +232,20 @@
                                     @endforeach
                                     @else
                                         <div class="col-12">
-                                            <p>لا يوجد اي رسائل لهذا الطلب</p>
+                                            <p>{{__('file.no_message')}}</p>
                                         </div>
                                     @endif
 
                                     @if($booking->status_id == 3)
                                     <div class="col-12">
                                         <div class="alert alert-success">
-                                            المشروع مكتمل
+                                            {{__('file.complete_order')}}
                                         </div>
                                     </div>
                                     @elseif($booking->status_id == 4)
                                     <div class="col-12">
                                         <div class="alert alert-danger">
-                                            المشروع غير مكتمل او ملغي
+                                            {{__('file.uncomplete_order')}}
                                         </div>
                                     </div>
                                     @else
@@ -253,7 +253,7 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">اضف تعليق</h2> 
+                                                <h2 class="mb-3 dark">{{__('file.add_replay')}}</h2> 
                                             </div>
                                             <div class="col-sm-12">
                                                 {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
@@ -270,7 +270,7 @@
                                                 @endif
                                                     <div class="row mb-4">
                                                         <div class="col-12">
-                                                            <label><b>التعليق</b></label>
+                                                            <label><b>{{__('file.replay')}}</b></label>
                                                             {!! Form::textarea('replay', null,  array('required', 'class'=>'textarea form-control', 'placeholder'=>trans('file.replay'), 'rows'=>'3')) !!}
                                                         </div>
                                                     </div>
@@ -282,14 +282,14 @@
                                                                 <span class="form-control overflow-hidden"></span>
                                                                 <span class="input-group-btn">
                                                                     <input name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
-                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">تحميل المرفق</span>
+                                                                    <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">{{__('file.download')}}</span>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12">
-                                                          {!! Form::submit(trans('file.addreplay'), array('class'=>'btn btn-primary')) !!}
+                                                          {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
                                                 {{ Form::close() }}                  
@@ -319,26 +319,26 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">الاجراء</h2> 
+                                                <h2 class="mb-3 dark">{{__('file.action')}}</h2> 
                                             </div>
                                             <div class="col-sm-12 mb-4">
-                                                <div class="col-12 mb-4">طلب إتمام تسليم المشروع </div>
+                                                <div class="col-12 mb-4">{{__('file.duration_request')}} </div>
 
                                                 <div class="col-12">
                                                 <div class="form-check form-check-inline ml-4">
                                                   <input class="form-check-input" type="radio" name="is_confirmed" id="approve" value="1">
-                                                  <label class="form-check-label" for="approve">تم الاستلام</label>
+                                                  <label class="form-check-label" for="approve">{{__('file.duration_confirm')}}</label>
                                                 </div>
                                                 <div class="form-check form-check-inline ml-4">
                                                   <input class="form-check-input" type="radio" name="is_confirmed" id="refuse" value="0">
-                                                  <label class="form-check-label" for="refuse">التقدم بشكوى للإدارة</label>
+                                                  <label class="form-check-label" for="refuse">{{__('file.duration_refused')}}</label>
                                                 </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-12 mb-4">
-                                                <label><b>تقييم الخدمة</b></label>
-                                                {!! Form::textarea('review', null,  array('required', 'class'=>'textarea form-control', 'rows'=>'2','placeholder'=>'هنا يمكنك كتابة ملاحظات في مرحلة تسلم المشروع')) !!}
+                                                <label><b>{{__('file.review')}}</b></label>
+                                                {!! Form::textarea('review', null,  array('required', 'class'=>'textarea form-control', 'rows'=>'2','placeholder'=> trans('file.duration_refused_notes') )) !!}
                                             </div>
 
 
@@ -347,7 +347,7 @@
 
                                     <div class=" mb-3">
                                         <div class="col-12">
-                                            {!! Form::submit('إرسال', array('class'=>'btn btn-primary')) !!}
+                                          {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
                                         </div>
                                     </div>
                                     {{ Form::close() }}                  

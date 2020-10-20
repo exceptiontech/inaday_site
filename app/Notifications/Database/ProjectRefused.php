@@ -52,8 +52,8 @@ class ProjectRefused extends Notification
     {
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.ServiceRefused'),
-            'desc'=>__('notification.ServiceRefusedDesc'),
+            'title'=> __('notification.ProjectRefused'),
+            'desc'=>__('notification.ProjectRefusedDesc'),
         ];
     }
 

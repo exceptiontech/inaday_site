@@ -27,7 +27,7 @@
                 <div class="col-12 col-md-3  pt-1 pb-1">
                     <img class="icon-search-bar" src="images/placeholder.svg" />
                     <select name="city" class="form-control required search-bar-field" id="service" required="required" aria-required="true">
-                        <option value="all">كل المدن</option>
+                        <option value="all">{{trans('file.all')}}</option>
                         @foreach($cities as $city)
                             <option value="{{$city->slug}}"> {{$city->title['ar']}}</option>
                         @endforeach
@@ -39,7 +39,7 @@
 
                     <select name="skill" class="form-control required search-bar-field" id="service"
                             required="required" aria-required="true">
-                        <option value="all">في كل الاقسام</option>
+                        <option value="all">{{trans('file.all')}}</option>
                         @foreach($skills as $skill)
                             <option value="{{$skill->id}}"> {{$skill->title['ar']}}</option>
                         @endforeach
@@ -47,7 +47,7 @@
 
                 </div>
                 <div class="col-12 col-md-2 p-0">
-                    <button class="btn btn-block btn-primary h-100" type="submit">أبحث الآن </button>
+                    <button class="btn btn-block btn-primary h-100" type="submit">{{trans('file.search')}} </button>
                 </div>
             </div>
         {{ Form::close() }}

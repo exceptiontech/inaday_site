@@ -42,7 +42,7 @@
                                         
                                         <span class="bg-success">{{@$project->status->title[App::getLocale()]}}</span> 
                                       @else 
-                                        {{trans('file.without_section')}}
+                                        {{trans('file.without_status')}}
                                       @endif
 
                                  </div>
@@ -65,7 +65,7 @@
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.execution_time')}}</div>
-                                <div class="col-6 p-0">{{$project->duration}}  ساعة  </div>
+                                <div class="col-6 p-0">{{$project->duration}}  {{trans('file.hour')}}  </div>
                             </li>
                             <li class="list-group-item d-flex">
                                 <div class="col-6 p-0 text-dark">{{trans('file.number_of_offers')}}</div>
@@ -75,12 +75,23 @@
                     </div>
 
                     <div class="col-12 contact_author align-bottom">
-                        <a href="{{url('/account/messages/?user_id='.$project->user->id)}}" class="btn btn-primary btn-block mb-2">تواصل معي</a>
+                        <a href="{{url('/account/messages/?user_id='.$project->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}}</a>
                         @guest
-                        <p class="small">{{trans('file.you_must_log_in_first_to_use_the_platforms_services')}}</p>
+                        <p class="small">{{trans('file.must_looged')}}</p>
                         @endguest
                     </div>
                 </div>
+
+                @if(Auth::user())
+                    @if(count($project->ModelLogs) > 0 && Auth::user()->id == $project->user->id || Auth::user()->isAdmin())
+                    <div class="list-group p-0 mt-5">
+                        @foreach($project->ModelLogs as $log)
+                            @include('front.projects.parts.log')
+                        @endforeach
+                    </div>
+                    @endif
+                @endif
+
             </div>
             <!-- sidebar End -->
 
@@ -202,7 +213,7 @@
                                         @endforeach
                                         </div>
                                     @else
-                                        <p>لا توجد اي ملفات تخص هذا المشروع</p>
+                                        <p>{{trans('file.no_files')}}</p>
                                     @endif
                                 </div>
                             </div>
@@ -213,8 +224,8 @@
                         <!-- alert -->
                         <div class="col-12">
                             <div class="alert alert-info text-center">
-                                <p>يجب تسجيل الدخول أولاً لتتمكن من تقديم عرضك لهذا المشروع</p>
-                                <a class="btn btn-primary" href="{{url('/register')}}">تسجيل</a>
+                                <p>{{trans('file.must_looged')}}</p>
+                                <a class="btn btn-primary" href="{{url('/register')}}">{{trans('file.register')}}</a>
                             </div>
                         </div>
 
@@ -228,7 +239,7 @@
                         @if(count($project->offers)>0)
                         <div class="block col-12 pt-3 pb-5 mb-1">
                             <div class="col-sm-12">
-                                <h2 class="mb-3">العروض</h2> 
+                                <h2 class="mb-3">{{trans('file.offers')}}</h2> 
                             </div>
                             <div class=" comments">
                             @if($project->num_team == 1)
@@ -241,14 +252,14 @@
                                                 <span>{{ $offer->user->first_name.' '.$offer->user->last_name }}</span> 
                                                 <div class="m-0 small">
                                                     <span class="mr-2">{{ $offer->user->userdetail->first()->position ?? '' }}</span>
-                                                    <span>بتاريخ {{ $offer->created_at }}</span>
+                                                    <span>{{trans('file.date')}} {{ $offer->created_at }}</span>
                                                 </div>
                                             </div> 
                                         </div>
                                         <div class="col-sm-4 text-right">
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
-                                                    <span class="bg-light rounded p-1">{{ $offer->price }} ر.س</span>
+                                                    <span class="bg-light rounded p-1">{{ $offer->price }} {{trans('file.riyal')}} </span>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <span class="bg-light rounded p-1">{{ $offer->duration }} {{__('file.hour')}}</span>

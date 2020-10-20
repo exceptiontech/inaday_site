@@ -59,12 +59,12 @@
                             </li>
                             <li class="list-inline-item">
                                 <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                {{$project->offers->count()}}  عرض
+                                {{$project->offers->count()}}  {{trans('file.offer')}}
                             </li>
                         </ul>
                     </div>
                     <div class="col-12 col-sm-5 text-right">
-                        <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} ريال</label>
+                        <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} {{trans('file.riyal')}}</label>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>
                 </div>

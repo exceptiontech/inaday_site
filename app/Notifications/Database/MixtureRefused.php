@@ -52,8 +52,8 @@ class MixtureRefused extends Notification
     {
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.ServiceRefused'),
-            'desc'=>__('notification.ServiceRefusedDesc'),
+            'title'=> __('notification.MixtureRefused'),
+            'desc'=>__('notification.MixtureRefusedDesc'),
         ];
     }
 

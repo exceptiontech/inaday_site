@@ -6,7 +6,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 dddd
@@ -28,11 +28,11 @@
                     @endif
 
 
-                    @if(!$user->userdetailComplete)
+                    @if(!$user->userdetailComplete())
                     <div class="alert alert-info bg-dark ">
                         <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
                         
-                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                        {{ __('file.completeprofile') }}
                     </div>
                     @endif
 
@@ -45,8 +45,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                      <h2 class="mb-3"> نبذة عني</h2>
-                                      <p> {{ $user->userdetail->first()->notes ?? 'فضلاً قم بتحديث الملف الشخصي' }}</p>
+                                      <h2 class="mb-3"> {{ __('profile.notes') }}</h2>
+                                      <p> {{ $user->userdetail->first()->notes ?? __('file.no_notes') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <div class="block projects col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">المشاريع</h2> 
+                                       <h2 class="mb-3">{{__('file.projects')}}</h2> 
                                 
                                       @if(count($user->projects))
                                         @foreach($user->projects as $project)
@@ -96,14 +96,14 @@
                                                         </li>
                                                         <li class="list-inline-item">
                                                             <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                            {{$project->offers->count()}}  عرض
+                                                            {{$project->offers->count()}}  {{__('file.offer')}}
                                                         </li>
                                                     </ul>
                                                 </div>
 
                                                 <div class="col-sm-5 text-right">
-                                                    <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} ريال</label>
-                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
+                                                    <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} {{__('file.riyal')}}</label>
+                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{__('file.project_details')}}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@
                                         @else
                                           <div class="book-details">
                                               <div class="col-sm-12">
-                                                لا يوجد مشاريع لهذا الرائد حتى الان
+                                                <p>{{ __('file.no_items') }}</p>
                                               </div>
                                           </div>
                                       @endif

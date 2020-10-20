@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -47,7 +47,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">معرض الاعمال</h2> 
+                                       <h2 class="mb-3">{{ __('file.portfolios') }}</h2> 
                                        
                                         <div class="d-flex d-inline-flex mb-5">
 
@@ -58,7 +58,7 @@
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p>لم تقم باضافة اي اعمال في الوقت الحالي</p>
+                                            <p>{{ __('file.no_items') }}</p>
                                         @endif
 
 

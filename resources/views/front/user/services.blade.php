@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -36,7 +36,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">خدماتي</h2> 
+                                       <h2 class="mb-3">{{ __('file.services') }}</h2> 
                                        
                                         <ul class="list-inline m-0 flex-shrink-1">
                                         @if (count($user->services))
@@ -58,14 +58,14 @@
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$service->section->title[App::getLocale()] ?? ' بدون تصنيف'}}
+                                                                    {{$service->section->title[App::getLocale()] ?? ''}}
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-6 text-right">
-                                                        <a class="btn btn-secondary rounded" href="#">{{$service->cost}} ريال</a>
-                                                        <a class="btn btn-primary rounded" href="{{url('/services/'.$service->id)}}">تفاصيل الخدمة</a>
+                                                        <a class="btn btn-secondary rounded" href="#">{{$service->cost}} {{ __('file.riyal') }}</a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/services/'.$service->id)}}">{{ __('file.service_details') }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,7 +73,7 @@
                                     </div>                                            @endforeach
 
                                         @else
-                                            لا يوجد اي خدمات لهذا العضو
+                                            <p>{{ __('file.no_items') }}</p>
                                         @endif
                                         </ul>
 
