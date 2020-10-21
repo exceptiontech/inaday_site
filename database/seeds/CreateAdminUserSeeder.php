@@ -114,17 +114,17 @@ class CreateAdminUserSeeder extends Seeder
 
 
         $title  = array();
-        $title['ar'] = 'تحت الانتظار';
-        $title['en'] = 'holding';
+        $title['ar'] = 'متاح';
+        $title['en'] = 'available';
 
         $status = Status::create([
             'title' => $title,
-            'slug' => 'holding',
+            'slug' => 'available',
             'desc' => $title,
         ]);
 
         $title  = array();
-        $title['ar'] = 'تحت التأكيد';
+        $title['ar'] = 'قيد التنفيذ';
         $title['en'] = 'pending';
 
         $status = Status::create([
@@ -141,6 +141,17 @@ class CreateAdminUserSeeder extends Seeder
         $status = Status::create([
             'title' =>  $title,
             'slug' => 'complete',
+            'desc' =>  $title,
+        ]);
+
+
+        $title  = array();
+        $title['ar'] = 'ملغي';
+        $title['en'] = 'canceled';
+
+        $status = Status::create([
+            'title' =>  $title,
+            'slug' => 'canceled',
             'desc' =>  $title,
         ]);
 
