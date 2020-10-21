@@ -494,9 +494,9 @@ return [
 
     'the_project' => 'المشاريع',
 
-    'project_title' => 'أسم المشاريع',
+    'project_title' => 'أسم المشروع',
 
-    'project_desc' => 'تفاصيل المشاريع',
+    'project_desc' => 'تفاصيل المشروع',
 
     'category' => 'التصنيف',
 
