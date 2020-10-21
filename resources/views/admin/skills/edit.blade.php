@@ -49,13 +49,6 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        {!! Form::label('desc-'.$lang, trans('admin.desc').' - '.$language) !!}
-                                        {!! Form::textarea('desc['.$lang.']', $skill->desc[$lang], 
-                                            array('required', 
-                                                  'class'=>'textarea form-control', 
-                                                  'placeholder'=>trans('admin.desc'))) !!}
-                                    </div>
                                 </div>
                                @endforeach
                             </div>
