@@ -10,7 +10,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -21,13 +21,13 @@
                         <div class="mt-n5 ">
                             <div class="row">
                                 <div class="col-4 pt-2">
-                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
+                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('file.edit') }}</a>
                                 </div>
                                 <div class="col-3 p-0">
                                     <img src="{{ url($userdetail->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon80 img-fluid">
                                 </div>
                                 <div class="col-5 pt-2">
-                                    <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
+                                    <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> {{ __('file.service_managment') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -36,36 +36,36 @@
 
                         <ul class="list-inline info">
                             <li class="list-inline-item">{{ $userdetail->position }}</li>
-                            <li class="list-inline-item">                                              {{ Auth::user()->userdetail->first()->country->title[App::getLocale()] ?? 'دولة غير محددة'}} / {{ Auth::user()->userdetail->first()->city->title[App::getLocale()] ?? 'مدينة غير محددة '}}</li>
+                            <li class="list-inline-item">                                              {{ Auth::user()->userdetail->first()->country->title[App::getLocale()] ?? __('file.undefined')}} / {{ Auth::user()->userdetail->first()->city->title[App::getLocale()] ?? __('file.undefined')}}</li>
                         </ul>
 
 
                         <div class="project-info mb-5 mt-5">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
+                                    <a href="{{url('/account/profile/edit')}}">{{ __('file.about_me') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/services')}}">خدماتي</a>
+                                    <a href="{{url('/account/services')}}">{{ __('file.my_services') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/skills')}}">مهاراتي</a>
+                                    <a href="{{url('/account/skills')}}">{{ __('file.my_skills') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/portfolios')}}">معرض الأعمال</a>
+                                    <a href="{{url('/account/portfolios')}}">{{ __('file.my_portfolios') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/experiences')}}">خبراتي</a>
+                                    <a href="{{url('/account/experiences')}}">{{ __('file.my_experiences') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/reviews')}}">تقييمات العملاء</a>
+                                    <a href="{{url('/account/reviews')}}">{{ __('file.my_reviews') }}</a>
                                 </li>
                             </ul>
                         </div>
 
 
                         <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/account/messages/')}}" class="btn btn-primary btn-block mb-2">الرسائل</a>
+                            <a href="{{url('/account/messages/')}}" class="btn btn-primary btn-block mb-2">{{__('file.contact_me')}}</a>
                         </div>
 
                     </div>
@@ -84,11 +84,11 @@
                     @endif
 
 
-                    @if(!Auth::user()->userdetailComplete)
+                    @if(!Auth::user()->userdetailComplete())
                     <div class="alert alert-info bg-dark ">
                         <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
                         
-                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                        {{ __('file.completeprofile') }}
                     </div>
                     @endif
 

@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">تعديل البيانات</h2>
+                    <h2 class="text-white mb-5">{{ __('file.edit_info') }} </h2>
                 </div>
 
                 <div class="col-12">
@@ -93,7 +93,7 @@
                                 </div>
 
 
-                                <h2 class="dark mt-5 mb-4">البيانات الوظيفية</h2>
+                                <h2 class="dark mt-5 mb-4">{{ __('file.job_info') }} </h2>
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-4">
@@ -102,12 +102,12 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('country_id', trans('profile.country'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('country_id',$countries->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->country_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('country_id',$countries->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->country_id ?? '',['required', 'class' => 'form-control','placeholder'=>trans('file.choose')]) !!} 
 
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         {!! Form::label('city_id', trans('profile.city'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('city_id',$cities->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->city_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('city_id',$cities->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->city_id ?? '',['required', 'class' => 'form-control','placeholder'=> trans('file.choose')]) !!} 
 
                                     </div>
                                 </div>
@@ -134,22 +134,22 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         {!! Form::label('notes', trans('profile.notes'))!!}
-                                        {!! Form::textarea('notes', Auth::user()->userdetail->first()->notes ?? '', array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'notes','placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع')) !!}
+                                        {!! Form::textarea('notes', Auth::user()->userdetail->first()->notes ?? '', array('class'=>'textarea form-control', 'rows'=>'3', 'id'=>'notes','placeholder'=>  trans('file.note_placeholder') )) !!}
 
                                     </div>
                                 </div>
 
                                 @if(Auth::user()->isServicesProvider())
-                                <h2 class="dark mt-5 mb-4">{{__('profile.job_information')}}</h2>
+                                <h2 class="dark mt-5 mb-4">{{__('file.job_info')}}</h2>
 
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('jobtype_id', trans('profile.jobtype'))!!}
-                                        {!! Form::select('jobtype_id',$jobtypes->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->jobtype_id ?? '' ,['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('jobtype_id',$jobtypes->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->jobtype_id ?? '' ,['required', 'class' => 'form-control','placeholder'=> trans('file.choose') ]) !!} 
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('prefer_id', trans('profile.prefer'))!!}
-                                        {!! Form::select('prefer_id',$prefers->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->prefer_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('prefer_id',$prefers->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->prefer_id ?? '',['required', 'class' => 'form-control','placeholder'=>trans('file.choose')]) !!} 
 
                                     </div>
                                     <!-- <div class="col-12 col-sm-4">
@@ -163,13 +163,13 @@
                                 <div class="row mb-4">
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('level_id', trans('profile.levels'))!!}
-                                        {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('level_id',$levels->pluck('title.'.App::getLocale(),'id'), Auth::user()->userdetail->first()->level_id ?? '',['required', 'class' => 'form-control','placeholder'=>trans('file.choose')]) !!} 
 
                                     </div>
 
                                     <div class="col-12 col-sm-6">
                                         {!! Form::label('skills[]', trans('profile.skills'))!!}<em class="text-danger">*</em>
-                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->DefaultSkill()->id ?? '',['required', 'class' => 'form-control','placeholder'=>'اختر']) !!} 
+                                        {!! Form::select('skills[]',$skills->pluck('title.'.App::getLocale(),'id'), Auth::user()->DefaultSkill()->id ?? '',['required', 'class' => 'form-control','placeholder'=>trans('file.choose')]) !!} 
                                     </div>
                                     <!-- <div class="col-12 col-sm-4">
                                         {!! Form::label('skills[]', trans('profile.anthor_skill'))!!}

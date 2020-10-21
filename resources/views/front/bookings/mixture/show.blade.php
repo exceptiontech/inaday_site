@@ -41,7 +41,7 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.category_section')}}</div>
-                                    <div class="col-6 p-0"><span class="">{{ $booking->mixture->section->title[App::getLocale()] }}</span> </div>
+                                    <div class="col-6 p-0"><span class="">{{ $booking->mixture->section->title[App::getLocale()] ??  trans('file.without_section') }}</span> </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">

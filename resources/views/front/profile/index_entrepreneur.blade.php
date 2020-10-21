@@ -6,7 +6,7 @@
         <div class="container">
 
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">الملف الشخصي</h2>
+                    <h2 class="text-white mb-5">{{ __('file.profile') }}</h2>
                 </div>
 
                 <div class="row profile">
@@ -17,13 +17,13 @@
                         <div class="mt-n5 ">
                             <div class="row">
                                 <div class="col-4 pt-2">
-                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
+                                    <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('file.edit') }}</a>
                                 </div>
                                 <div class="col-3 p-0">
                                     <img src="{{ url($userdetail->avater ?? '/assets/images/logo.png' ) }}" class="rounded-circle img-thumbnail img-icon80 img-fluid">
                                 </div>
                                 <div class="col-5 pt-2">
-                                    <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة المشاريع</a>
+                                    <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> {{ __('file.project_managment') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -31,34 +31,34 @@
                         <h2 class="mt-5">{{Auth::user()->first_name. ' ' .Auth::user()->last_name}}</h2>
 
                         <ul class="list-inline info">
-                            <li class="list-inline-item">رائد أعمال</li>
-                            <li class="list-inline-item">                                              {{ Auth::user()->userdetail->first()->country->title[App::getLocale()] ?? 'دولة غير محددة'}} / {{ Auth::user()->userdetail->first()->city->title[App::getLocale()] ?? 'مدينة غير محددة '}}</li>
+                            <li class="list-inline-item">{{__('file.entrepreneurs')}}</li>
+                            <li class="list-inline-item">                                              {{ Auth::user()->userdetail->first()->country->title[App::getLocale()] ?? __('file.undefined') }} / {{ Auth::user()->userdetail->first()->city->title[App::getLocale()] ?? __('file.undefined') }}</li>
                         </ul>
 
 
                         <div class="project-info mb-5 mt-5">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/profile/edit')}}">نبذة عني</a>
+                                    <a href="{{url('/account/profile/edit')}}">{{ __('file.about_me') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/projects')}}">مشاريعي</a>
+                                    <a href="{{url('/account/projects')}}">{{ __('file.my_projects') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/bookings')}}">الحجوزات</a>
+                                    <a href="{{url('/account/bookings')}}">{{ __('file.my_bookings') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/notifications')}}">الاشعارات</a>
+                                    <a href="{{url('/account/notifications')}}">{{ __('file.notifications') }}</a>
                                 </li>
                                 <li class="list-group-item d-flex">
-                                    <a href="{{url('/account/')}}">الاعدادات</a>
+                                    <a href="{{url('/account/settings')}}">{{ __('file.settings') }}</a>
                                 </li>
                             </ul>
                         </div>
 
 
                         <div class="col-12 contact_author align-bottom">
-                            <a href="{{url('/account/messages/')}}" class="btn btn-primary btn-block mb-2">الرسائل</a>
+                            <a href="{{url('/account/messages/')}}" class="btn btn-primary btn-block mb-2">{{__('file.contact_me')}}</a>
                         </div>
 
                     </div>
@@ -76,11 +76,11 @@
                       </div>
                     @endif
 
-                    @if(!Auth::user()->userdetailComplete)
+                    @if(!Auth::user()->userdetailComplete())
                     <div class="alert alert-info bg-dark ">
                         <span class="circle rounded-circle bg-dark text-center"><i class="fa fa-bell" aria-hidden="true"></i></span>
                         
-                        برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك
+                        {{ __('file.completeprofile') }}
                     </div>
                     @endif
 
@@ -92,8 +92,8 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                      <h2 class="mb-3"> نبذة عني</h2>
-                                      <p> {{ $userdetail->notes ?? 'من فضلك قم بتحديث الملف الشخصي' }}</p>
+                                      <h2 class="mb-3"> {{ __('file.about_me') }}</h2>
+                                      <p> {{ $userdetail->notes ??  __('file.undefined') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                             <div class="block projects col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                       <h2 class="mb-3">المشاريع</h2> 
+                                       <h2 class="mb-3">{{ __('file.my_projects') }}</h2> 
                                 
                                       @if(count(Auth::user()->projects))
                                         @foreach(Auth::user()->projects as $project)
@@ -145,7 +145,7 @@
                                                 </div>
 
                                                 <div class="col-sm-3">
-                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">تفاصيل المشروع</a>
+                                                    <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{ __('file.project_details') }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
 
 
                                         <div class="col-12 mt-4">
-                                            <a href="{{ url('account/projects/create') }}" class="btn btn-primary">اضافة مشروع جديد</a>
+                                            <a href="{{ url('account/projects/create') }}" class="btn btn-primary">{{ __('file.add_new_project') }}</a>
                                         </div>
                                     </div>
                                 </div>

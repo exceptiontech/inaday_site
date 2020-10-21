@@ -797,7 +797,24 @@ return [
     'my_experiences' => 'خبراتي',
     'my_portfolios' => 'معرض الأعمال',
     'my_skills' => 'مهاراتي',
-    'my_services' => 'خبراتي',
+    'my_services' => 'خدماتي',
+    'my_mixtures' => 'شراكاتي',
     'my_projects' => 'مشاريعي',
+    'my_team'=>'فريقي',
+    'my_teams'=>'الفرق المشارك بها',
+    'my_credit'=>'محفظتي',
+    'my_bookings'=>'طلباتي',
+    'settings'=>'الإعدادات',
+    'add_newـproject'=>'إضف مشروع جديد',
+    'add_newـservice'=>'إضف خدمة جديد',
+    'add_newـmixture'=>'إضف شراكة جديد',
+    'add_newـexperience'=>'إضف خبرة جديد',
+    'add_newـportfolio'=>'إضف معرض اعمال جديد',
+    'add_newـteam'=>'إضف فريق جديد',
+
+    'edit_info'=>'تعديل البيانات',
+    'job_info'=>'البيانات الوظيفية',
+    'note_placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع',
+
 
 ];
