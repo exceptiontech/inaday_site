@@ -91,12 +91,27 @@ class ReplayController extends Controller
             $replay->save();
         }
 
-        $replay->booking->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
 
-        if ($replay->booking->user->settings && $replay->booking->user->settings->message_notifications)
-        {
-            $replay->booking->user->notify(new ReplayCreated($replay));
-        } 
+        if ($replay->user->isEntrepreneur()) {
+
+            $replay->booking->getModel()->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
+
+            if ($replay->booking->getModel()->user->settings && $replay->booking->getModel()->user->settings->message_notifications)
+            {
+                $$replay->booking->getModel()->user->notify(new ReplayCreated($replay));
+            } 
+
+        }else {
+
+            $replay->booking->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
+
+            if ($replay->booking->user->settings && $replay->booking->user->settings->message_notifications)
+            {
+                $replay->booking->user->notify(new ReplayCreated($replay));
+            } 
+
+        }
+
 
         Session::flash('status', __('file.success'));
         Session::flash('message', __('file.create_success_replay'));
