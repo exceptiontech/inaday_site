@@ -144,23 +144,21 @@
 
 
                         </div>
-
                         <div class="col-12 col-sm-4">
-                            <div class="bg-light dark p-3">
-                                <div class="text-center mt-n5">
-                                    <img src="{{url('images/lamp.svg')}}">
+                            @include('front.profile.parts.entrepreneur')
+                            
+                            @if(Auth::user())
+                                @if(count($project->ModelLogs) > 0 && Auth::user()->id == $project->user->id || Auth::user()->isAdmin())
+                                <div class="list-group p-0 mt-5 mb-5">
+                                    @foreach($project->ModelLogs as $log)
+                                        @include('front.projects.parts.log')
+                                    @endforeach
                                 </div>
-                                <p class="mt-5">
-                                    - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                </p>
-                                  <!-- <p class="mt-5">
-                                      - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                  </p>
-                                  <p class="mt-5">
-                                      - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                  </p> -->
-                            </div>
-                        </div>
+                                @endif
+                            @endif
+
+                        </div> 
+
                     </div>
                 </div>
                     

@@ -29,7 +29,7 @@
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">
-                                <h2>حسب تصنيف الأقسام</h2>
+                                <h2>{{trans('file.by_section')}}</h2>
                             </div>
                             <div class="block-content">
 
@@ -58,7 +58,7 @@
                         <!-- block Begin -->
                         <div class="block mb-4">
                             <div class="block-title mb-3">
-                                <h2>حسب العضو</h2>
+                                <h2>{{trans('file.by_name')}}</h2>
                             </div>
                             <div class="block-content">
                                 <div class="col-12">

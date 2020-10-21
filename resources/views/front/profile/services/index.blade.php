@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -24,7 +24,7 @@
 
                                 <!-- services -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">الخدمات المعروضة لي</h3>
+                                    <h3 class="mb-3">{{ __('file.my_services') }} </h3>
                                 </div>
                                 
 
@@ -61,8 +61,8 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-6 text-right">
-                                                        <label class="btn btn-secondary rounded">{{$service->cost}} ريال</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/services/'.$service->id)}}">تفاصيل الخدمة</a>
+                                                        <label class="btn btn-secondary rounded">{{$service->cost}} {{ __('file.riyal') }}</label>
+                                                        <a class="btn btn-primary rounded" href="{{url('/services/'.$service->id)}}">{{ __('file.service_details') }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,29 +77,18 @@
 
 
                                 <div class="col-12 mt-4">
-                                    <a href="{{url('/account/services/create')}}" class="btn btn-primary">اضافة خدمة جديدة</a>
+                                    <a href="{{url('/account/services/create')}}" class="btn btn-primary">{{ __('file.add_newـservice') }}</a>
                                 </div>
 
 
 
                             </div>
+
 
                             <div class="col-12 col-sm-4">
-                                <div class="bg-light dark p-3">
-                                    <div class="text-center mt-n5">
-                                        <img src="{{url('/images/lamp.svg')}}">
-                                    </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                </div>
-                            </div>
+                                @include('front.profile.parts.service_provider')
+                                
+                            </div> 
 
 
                         </div>

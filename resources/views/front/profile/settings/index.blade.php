@@ -9,9 +9,9 @@
             <div class="row">
                 <div class="col-12 title">
                     @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
-                      <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                      <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
                     @else
-                      <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                      <h2 class="text-white mb-5">{{ __('file.project_managment') }}</h2>
                     @endif
                 </div>
 
@@ -58,7 +58,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
+                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني  للحجوزات.</label>
                                       </div>
 
                                     </div>                                        
@@ -69,7 +69,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="offer_notifications" type="checkbox" class="custom-control-input" id="offer_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="offer_notifications">استلم رسائل البريد الإلكتروني بشأن العروض.</label>
+                                          <label class="custom-control-label" for="offer_notifications">استلم رسائل البريد الإلكتروني للعروض.</label>
                                       </div>
 
                                     </div>
@@ -96,7 +96,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input  name="message_notifications" type="checkbox" class="custom-control-input" id="message_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="message_notifications">استلم رسائل البريد الإلكتروني بشأن المحادثات.</label>
+                                          <label class="custom-control-label" for="message_notifications">استلم رسائل البريد الإلكتروني للمحادثات.</label>
                                       </div>
 
                                     </div>
@@ -107,7 +107,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="support_notifications" type="checkbox" class="custom-control-input" id="support_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="support_notifications">استلم رسائل البريد الإلكتروني بشأن تذاكر الدعم الفني.</label>
+                                          <label class="custom-control-label" for="support_notifications">استلم رسائل البريد الإلكتروني لتذاكر الدعم الفني.</label>
                                       </div>
 
                                     </div>
@@ -124,7 +124,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="profile_notifications" type="checkbox" class="custom-control-input" id="profile_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="profile_notifications" >استلم رسائل البريد الإلكتروني بشأن تحديثات الملف الشخصي .</label>
+                                          <label class="custom-control-label" for="profile_notifications" >استلم رسائل البريد الإلكتروني لتحديث الملف الشخصي .</label>
                                       </div>
 
                                     </div>
@@ -134,7 +134,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="team_notifications" type="checkbox" class="custom-control-input" id="team_notifications"  checked="checked">
-                                          <label class="custom-control-label" for="team_notifications">استلم رسائل البريد الإلكتروني بشأن دعوات الفرق.</label>
+                                          <label class="custom-control-label" for="team_notifications">استلم رسائل البريد الإلكتروني دعوات الفرق.</label>
                                       </div>
 
                                     </div>
@@ -197,7 +197,7 @@
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="blog_notifications" type="checkbox" class="custom-control-input" id="blog_notifications" 
                                           @if(Auth::user()->usersettings->blog_notifications == 1) checked="checked" @endif >
-                                          <label class="custom-control-label" for="blog_notifications">استلم رسائل البريد الإلكتروني بشأن التحديثات والمنشورات الجديدة.</label>
+                                          <label class="custom-control-label" for="blog_notifications">استلم رسائل البريد الإلكتروني التحديثات والمنشورات الجديدة.</label>
                                       </div>
 
                                     </div>
@@ -210,7 +210,7 @@
                                           <input name="booking_notifications" type="checkbox" class="custom-control-input" id="booking_notifications"  
                                           @if(Auth::user()->usersettings->booking_notifications == 1) checked="checked" @endif >
 
-                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني بشأن الحجوزات.</label>
+                                          <label class="custom-control-label" for="booking_notifications">استلم رسائل البريد الإلكتروني للحجوزات.</label>
                                       </div>
 
                                     </div>                                        
@@ -222,7 +222,7 @@
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="offer_notifications" type="checkbox" class="custom-control-input" id="offer_notifications"
                                           @if(Auth::user()->usersettings->offer_notifications == 1) checked="checked" @endif >
-                                          <label class="custom-control-label" for="offer_notifications">استلم رسائل البريد الإلكتروني بشأن العروض.</label>
+                                          <label class="custom-control-label" for="offer_notifications">استلم رسائل البريد الإلكتروني للعروض.</label>
                                       </div>
 
                                     </div>
@@ -255,7 +255,7 @@
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input  name="message_notifications" type="checkbox" class="custom-control-input" id="message_notifications" @if(Auth::user()->usersettings->message_notifications == 1) checked="checked" @endif >
 
-                                          <label class="custom-control-label" for="message_notifications">استلم رسائل البريد الإلكتروني بشأن المحادثات.</label>
+                                          <label class="custom-control-label" for="message_notifications">استلم رسائل البريد الإلكتروني للمحادثات.</label>
                                       </div>
 
                                     </div>
@@ -266,7 +266,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="support_notifications" type="checkbox" class="custom-control-input" id="support_notifications"  @if(Auth::user()->usersettings->support_notifications == 1) checked="checked" @endif >
-                                          <label class="custom-control-label" for="support_notifications">استلم رسائل البريد الإلكتروني بشأن تذاكر الدعم الفني.</label>
+                                          <label class="custom-control-label" for="support_notifications">استلم رسائل البريد الإلكتروني لتذاكر الدعم الفني.</label>
                                       </div>
 
                                     </div>
@@ -282,7 +282,7 @@
 
                                       <div class="custom-control custom-control-right custom-switch">
                                           <input name="profile_notifications" type="checkbox" class="custom-control-input" id="profile_notifications"  @if(Auth::user()->usersettings->profile_notifications == 1) checked="checked" @endif >
-                                          <label class="custom-control-label" for="profile_notifications" >استلم رسائل البريد الإلكتروني بشأن تحديثات الملف الشخصي .</label>
+                                          <label class="custom-control-label" for="profile_notifications" >استلم رسائل البريد الإلكتروني لتحديث الملف الشخصي .</label>
                                       </div>
 
                                     </div>

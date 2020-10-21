@@ -273,6 +273,10 @@ class ProjectController extends Controller
         $project =Project::find($id);
 
 
+        if ($project->user_id != Auth::id() ) {
+            return view('front.errors.notfound');
+        }
+
         // if (!$project->is_approved ) {
         //     return view('front.errors.notfound');
         // }
@@ -442,6 +446,10 @@ class ProjectController extends Controller
             $project= Project::find($id);
 
             if (!$project->is_approved ) {
+                return view('front.errors.notfound');
+            }
+
+            if ($project->user_id != Auth::id() ) {
                 return view('front.errors.notfound');
             }
 

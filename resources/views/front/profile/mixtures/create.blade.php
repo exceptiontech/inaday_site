@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 title">
-                <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
             </div>
 
             <div class="col-12">
@@ -198,7 +198,7 @@
 
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
-                                        <button class="btn btn-primary">اضافة خلطة</button>
+                                        {!! Form::submit(trans('forms.addmixture'), array('class'=>'btn btn-primary')) !!}
                                     </div>
                                 </div>
 
@@ -207,15 +207,10 @@
                         </div>
 
                         <div class="col-12 col-sm-4">
-                            <div class="bg-light dark p-3">
-                                <div class="text-center mt-n5">
-                                    <img src="{{url('images/lamp.svg')}}">
-                                </div>
-                                <p class="mt-5">
-                                    - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                </p>
-                            </div>
-                        </div>
+                            @include('front.profile.parts.service_provider')
+                            
+                        </div> 
+
                     </div>
                 </div>
             </div>     

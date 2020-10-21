@@ -11,6 +11,7 @@ use App\File;
 use App\Section;
 use App\Team;
 use App\Log;
+use App\ModelLog;
 
 use Auth;
 use Redirect;
@@ -147,6 +148,18 @@ class MixtureController extends Controller
             $log->save();
 
 
+
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'create';
+            $model_log->model_type   = 'mixture';
+            $model_log->model_id     = $mixture->id;
+            $model_log->desc         = __('file.create_mixture');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
+
+
             //skills 
             $skills = $request->skills;
             if ($skills) {
@@ -205,7 +218,6 @@ class MixtureController extends Controller
     public function edit($id)
     {
         $mixture = Mixture::find($id);
-
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             return view('front.errors.denied');
@@ -300,6 +312,17 @@ class MixtureController extends Controller
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
+
+
+            $model_log               = new ModelLog;
+            $model_log->user_id      = Auth::user()->id;
+            $model_log->action       = 'update';
+            $model_log->model_type   = 'mixture';
+            $model_log->model_id     = $mixture->id;
+            $model_log->desc         = __('file.update_mixture');
+            $model_log->url          = $request->server()['REQUEST_URI'];
+            $model_log->ip           = $request->server()['REMOTE_ADDR'];
+            $model_log->save();
 
             //skills
             $mixture->skills()->sync($request->skills);

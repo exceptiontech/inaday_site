@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -24,7 +24,7 @@
                                 @if(count(Auth::user()->myteams))
                                 @foreach(Auth::user()->myteams as $team)
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">خلطات فريق  {{$team->title}}</h3>
+                                    <h3 class="mb-3"> {{ __('file.mixture_for') }}  {{$team->title}}</h3>
                                 </div>
 
                                 @if(count($team->mixtures))
@@ -54,14 +54,14 @@
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$mixture->section->title[App::getLocale()] ?? ' بدون تصنيف'}}
+                                                                    {{$mixture->section->title[App::getLocale()] ?? __('file.without_section') }}
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-5 text-right">
-                                                        <label class="btn btn-secondary rounded">{{$mixture->cost}} ريال</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">تفاصيل الخلطة</a>
+                                                        <label class="btn btn-secondary rounded">{{$mixture->cost}} {{__('file.riyal')}}</label>
+                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">{{__('file.add_new_mixture')}} </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -71,11 +71,11 @@
                                     @endforeach
                                     <a  href="{{url('/account/mixtures/create/'.$team->id)}}" class="btn btn-sm btn-primary mt-3">اضافة خلطة جديدة لفريق {{$team->title}}</a>
                                 @else
-                                    <p>لم تقم باضافة اي خلطة في الوقت الحالي في هذا الفريق
+                                    <p> {{__('file.this_team_dont_have_any_mixtures')}}
                                         
                                     </p>
                                     <p>
-                                        <a href="{{url('/account/mixtures/create/'.$team->id)}}" class="btn btn-sm btn-primary">اضافة خلطة جديدة لفريق {{$team->title}}</a>
+                                        <a href="{{url('/account/mixtures/create/'.$team->id)}}" class="btn btn-sm btn-primary">{{__('file.add_newـmixture')}}</a>
                                     </p>
                                 @endif
 
@@ -87,21 +87,9 @@
                             </div>
 
                             <div class="col-12 col-sm-4">
-                                <div class="bg-light dark p-3">
-                                    <div class="text-center mt-n5">
-                                        <img src="{{url('/images/lamp.svg')}}">
-                                    </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                </div>
-                            </div>
+                                @include('front.profile.parts.service_provider')
+                                
+                            </div> 
 
 
                         </div>
