@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    <h2 class="text-white mb-5">{{ __('file.project_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -24,7 +24,7 @@
 
                                 <!-- services -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">الطلبات</h3>
+                                    <h3 class="mb-3">{{ __('file.my_bookings') }}</h3>
                                 </div>
                                 
                                 <!-- projects -->
