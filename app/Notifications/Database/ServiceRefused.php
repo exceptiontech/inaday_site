@@ -11,14 +11,16 @@ class ServiceRefused extends Notification
 {
     use Queueable;
 
+    protected $service;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
@@ -50,10 +52,14 @@ class ServiceRefused extends Notification
 
     public function toDatabase($notifiable)
     {
+
+        $url = url('/account/services/'.$this->service->id.'/edit');
+
         return [
             'image'=> url('/images/notifications/refuse.svg'),
             'title'=> __('notification.ServiceRefused'),
             'desc'=>__('notification.ServiceRefusedDesc'),
+            'url'=> $url,
         ];
     }
 

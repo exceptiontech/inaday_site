@@ -1,7 +1,7 @@
 <div class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
-        @if(Auth::user()->id == $mixture->team->user->id)
+        @if(Auth::user()->id == $log->user->id)
             {{ $mixture->team->user->first_name.' '.$mixture->team->user->last_name }}
         @else
             {{trans('file.administrator')}}
@@ -28,6 +28,7 @@
 
     <div class="modal fade" id="item"  role="dialog" aria-labelledby="itemLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
+        <div class="col-12"> 
         {{ Form::open(['action' => 'Admin\MixtureController@refuse']) }}
         <div class="modal-content">
 
@@ -47,6 +48,7 @@
         </div>
 
         {{ Form::close() }}
+      </div>
       </div>
     </div>  
   @endif

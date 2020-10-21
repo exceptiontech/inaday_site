@@ -101,7 +101,9 @@
                         <div class="dropdown-menu notification-dropdown" aria-labelledby="dropdownMenuButton">
                           @if(count(Auth::user()->unreadNotifications))
                             @foreach(Auth::user()->unreadNotifications->take(10) as $notification) 
-                              <a class="dropdown-item" href="{{ url('account/notifications/') }}">
+                              <a class="dropdown-item" href="
+                              {{ url($notification->data['url'] ?? 'account/notifications/') }}
+                              ">
                                 <div class="d-flex">
                                     <div class="d-flex d-inline-block w-100">
                                         <div class="img mr-2">

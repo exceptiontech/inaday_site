@@ -11,15 +11,18 @@ class ProjectRefused extends Notification
 {
     use Queueable;
 
+    protected $project;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,10 +53,13 @@ class ProjectRefused extends Notification
 
     public function toDatabase($notifiable)
     {
+        $url = url('/account/projects/'.$this->project->id.'/edit');
+
         return [
             'image'=> url('/images/notifications/refuse.svg'),
             'title'=> __('notification.ProjectRefused'),
             'desc'=>__('notification.ProjectRefusedDesc'),
+            'url'=> $url,
         ];
     }
 
