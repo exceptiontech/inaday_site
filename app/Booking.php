@@ -75,6 +75,18 @@ class Booking extends Model
     }
 
 
+    public function getModelUser() {
+
+        if ($this->service) {
+            return $this->service->user;
+        }elseif ($this->project) {
+            return $this->project->user;
+        }elseif ($this->mixture) {
+            return $this->mixture->team->user;
+        }
+    }
+
+
     // public function status() {
 
     //     $now = Carbon::now();

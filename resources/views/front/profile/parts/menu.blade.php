@@ -1,7 +1,7 @@
                                 @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive())
 
                                     <ul class="list-inline ">
-                                        <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_services.index' ) active @endif" href="{{url('/account/services')}}">خدماتي</a></li>
+                                        <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_services.index' ) active @endif" href="{{url('/account/services')}}">{{ __('file.my_services') }} dd</a></li>
 
 
                                         <li class="list-inline-item "><a class="@if( \Request::route()->getName() =='front_mixtures.index' ) active @endif" href="{{url('/account/mixtures')}}">خلطاتي</a></li>

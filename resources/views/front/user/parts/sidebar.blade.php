@@ -6,7 +6,7 @@
                 <div class="col-4 pt-2">
                     @if(Auth::user())
                         @if($user->id == Auth::user()->id)
-                        <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> تعديل</a>
+                        <a class="btn btn-light small" href="{{url('/account/profile/edit')}}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('file.edit') }}</a>
                         @endif
                     @endif
                 </div>
@@ -17,9 +17,9 @@
                     @if(Auth::user())
                     @if($user->id == Auth::user()->id)
                         @if(Auth::user() && Auth::user()->isServicesProvider() && Auth::user()->isActive() )
-                            <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة الخدمات</a>
+                            <a class="btn btn-light small" href="{{url('/account/services')}}"><i class="fa fa-gear" aria-hidden="true"></i> {{ __('file.services_managment') }}</a>
                         @else
-                            <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> ادارة المشاريع</a>
+                            <a class="btn btn-light small" href="{{url('/account/projects')}}"><i class="fa fa-gear" aria-hidden="true"></i> {{ __('file.project_managment') }}</a>
                         @endif
 
                     @endif
@@ -33,16 +33,16 @@
         <ul class="list-inline info">
             <li class="list-inline-item">
                 @if(Auth::user() && Auth::user()->isServicesProvider())
-                    {{ $user->userdetail->first()->position ?? 'غير محدد الوظيفة' }}
+                    {{ $user->userdetail->first()->position ?? __('file.undefined') }}
                 @elseif(Auth::user() && Auth::user()->isEntrepreneur())
-                    رائد أعمال
+                    {{__('file.entrepreneurs')}}
                 @else
-                    غير محدد
+                    {{__('file.undefined')}}
                 @endif
 
             </li>
             <li class="list-inline-item">
-                {{ $user->userdetail->first()->country->title[App::getLocale()] ?? 'دولة غير محددة'}} / {{ $user->userdetail->first()->city->title[App::getLocale()] ?? 'مدينة غير محددة '}}</li>
+                {{ $user->userdetail->first()->country->title[App::getLocale()] ?? __('file.undefined') }} / {{ $user->userdetail->first()->city->title[App::getLocale()] ?? __('file.undefined')}}</li>
         </ul>
 
 
@@ -52,41 +52,41 @@
                 @if(count($user->roles) > 0)
                     @if($user->isServicesProvider())
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/about')}}">نبذة عني</a>
+                            <a href="{{url('/user/'.$user->id.'/about')}}">{{ __('file.about_me') }}</a>
                         </li>
 
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/services')}}">خدماتي</a>
+                            <a href="{{url('/user/'.$user->id.'/services')}}">{{ __('file.my_services') }}</a>
                         </li>
 
                         <!-- <li class="list-group-item d-flex">
                             <a href="{{url('/user/'.$user->id.'/mixtures')}}">خلطاتي</a>
                         </li> -->
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/skills')}}">مهاراتي</a>
+                            <a href="{{url('/user/'.$user->id.'/skills')}}">{{ __('file.my_skills') }}</a>
                         </li>
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/portfolios')}}">معرض الأعمال</a>
+                            <a href="{{url('/user/'.$user->id.'/portfolios')}}">{{ __('file.my_portfolios') }} </a>
                         </li>
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/experiences')}}">خبراتي</a>
+                            <a href="{{url('/user/'.$user->id.'/experiences')}}">{{ __('file.my_experiences') }} </a>
                         </li>
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/reviews')}} ">تقييمات العملاء</a>
+                            <a href="{{url('/user/'.$user->id.'/reviews')}} ">{{ __('file.my_reviews') }} </a>
                         </li>
 
                     @elseif($user->isEntrepreneur())
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/about')}}">نبذة عني</a>
+                            <a href="{{url('/user/'.$user->id.'/about')}}">{{ __('file.about_me') }} </a>
                         </li>
 
                         <li class="list-group-item d-flex">
-                            <a href="{{url('/user/'.$user->id.'/projects')}}">مشاريعي</a>
+                            <a href="{{url('/user/'.$user->id.'/projects')}}">{{ __('file.my_projects') }} </a>
                         </li>
 
                     @else
                         <li class="list-group-item d-flex">
-                            <a href="#" class="disabled">عضويتك غير محددة راجع الادارة</a>
+                            <a href="#" class="disabled"> {{ __('file.undefined') }}</a>
                         </li>
                     @endif
                 @endif
