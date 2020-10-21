@@ -178,6 +178,10 @@ return [
 	'ProjectRefusedDesc' => 'تم رفض تعديل المشروع',
 
 
+	'ReplayCreated' => 'رد جديد',
+
+	'ReplayCreatedDesc' => 'تم إضافة رد جديد',
+
 
 
 

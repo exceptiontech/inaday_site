@@ -787,6 +787,17 @@ return [
     'jobtypes' => 'نوع الدوام',
     'to' => 'إلى',
 
-
+    //
+    'edit' => 'تعديل',
+    'about_me' => 'نبذة عني',
+    'services_managment' => 'إدارة الخدمات',
+    'project_managment' => 'إدارة المشاريع',
+    'about_me' => 'نبذة عني',
+    'my_reviews' => 'تقييمات العملاء',
+    'my_experiences' => 'خبراتي',
+    'my_portfolios' => 'معرض الأعمال',
+    'my_skills' => 'مهاراتي',
+    'my_services' => 'خبراتي',
+    'my_projects' => 'مشاريعي',
 
 ];

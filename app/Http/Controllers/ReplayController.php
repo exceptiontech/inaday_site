@@ -94,11 +94,11 @@ class ReplayController extends Controller
 
         if ($replay->user->isEntrepreneur()) {
 
-            $replay->booking->getModel()->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
+            $replay->booking->getModelUser()->notify(new \App\Notifications\Database\ReplayCreated($replay));
 
-            if ($replay->booking->getModel()->user->settings && $replay->booking->getModel()->user->settings->message_notifications)
+            if ($replay->booking->getModelUser()->settings && $replay->booking->getModelUser()->settings->message_notifications)
             {
-                $$replay->booking->getModel()->user->notify(new ReplayCreated($replay));
+                $$replay->booking->getModelUser()->notify(new ReplayCreated($replay));
             } 
 
         }else {
