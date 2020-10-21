@@ -56,7 +56,7 @@ class SkillController extends Controller
             'title'             => 'required|array',
             'slug'              => 'required|unique:skills|max:255|min:3',
             'image'              => 'mimes:jpeg,png,jpg,pdf',
-            'desc'              => 'required|array',
+            //'desc'              => 'required|array',
             'is_active'              => 'required',
         ]);
 
@@ -79,7 +79,7 @@ class SkillController extends Controller
             $skill->image =  $destinationPath.'/'.$fileName;
         }
 
-        $skill->desc = $request->desc;
+        $skill->desc = $request->title;
         $skill->slug = $request->slug;
         $skill->is_active = $request->is_active;
         $skill->save();
@@ -146,7 +146,7 @@ class SkillController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title'             => 'required|unique:skills',
-            'desc'              => 'required',
+            //'desc'              => 'required',
             'is_active'              => 'required',
 
         ]);
@@ -170,7 +170,7 @@ class SkillController extends Controller
             $skill->image =  $destinationPath.'/'.$fileName;
         }
 
-        $skill->desc = $request->desc;
+        $skill->desc = $request->title;
         $skill->slug = $request->slug;
         $skill->is_active = $request->is_active;
         $skill->save();
