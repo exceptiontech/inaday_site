@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -32,7 +32,7 @@
 
                                 <!-- services -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">الفرق المشارك بها</h3>
+                                    <h3 class="mb-3">{{ __('file.my_teams') }}</h3>
                                 </div>
                                 
 
@@ -46,11 +46,11 @@
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-9">
-                                                        <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
-                                                        <p class="pb-0">{{$team->desc ?? 'فريق بدون وصف' }}</p>
+                                                        <h2 class="mb-3">{{$team->title ?? __('file.undefined') }}</h2>
+                                                        <p class="pb-0">{{$team->desc ?? __('file.undefined') }}</p>
                                                         <div class="dropdown">
                                                             <button class="btn bg-light dropdown-toggle" type="button" id="memberWrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            اعضاء الفريق
+                                                            {{ __('file.team_members') }}
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="memberWrapper">
                                                                 @if(count($team->users)>0)
@@ -60,7 +60,9 @@
                                                                     </a>
                                                                     @endforeach
                                                                 @else
-                                                                <a class="dropdown-item"  href="#">لم يتم اضافة اي اعضاء للفريق</a>
+                                                                <a class="dropdown-item"  href="#">
+                                                                    {{ __('file.no_team_members') }}
+                                                                </a>
 
                                                                 @endif
                                                             </div>
@@ -110,7 +112,7 @@
                                   @endforeach
 
                                 @else
-                                    <p>انت لا تمتلك فريق حتى الان كون فريقك الان </p>
+                                    <p>{{ __('file.dont_have_any_invitation') }} </p>
                                 @endif
 
 
@@ -118,24 +120,8 @@
                             </div>
 
 
+                            @include('front.profile.parts.service_provider')
 
-
-                            <div class="col-12 col-sm-4">
-                                <div class="bg-light dark p-3">
-                                    <div class="text-center mt-n5">
-                                        <img src="{{url('/images/lamp.svg')}}">
-                                    </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

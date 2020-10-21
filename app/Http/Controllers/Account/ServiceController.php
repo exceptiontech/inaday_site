@@ -228,9 +228,9 @@ class ServiceController extends Controller
         }
         $service=Service::find($id);
 
-        // if (!$service->is_approved ) {
-        //     return view('front.errors.notfound');
-        // }
+        if ($service->user_id != Auth::id() ) {
+            return view('front.errors.notfound');
+        }
 
         $skills = Skill::where('is_active',1)->get();
         $sections= Section::all();
@@ -333,6 +333,10 @@ class ServiceController extends Controller
             $service= Service::find($id);
 
             if (!$service->is_approved ) {
+                return view('front.errors.notfound');
+            }
+            
+            if ($service->user_id != Auth::id() ) {
                 return view('front.errors.notfound');
             }
 

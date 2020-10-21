@@ -598,9 +598,9 @@ return [
 
    'user_name'=>'اسم العضو',
 
-   'add_user_to_your_team'=>'إرسال دعوة إضافة لفريقك',
+   'add_user_to_your_team'=>'إرسال دعوة للشراكة',
 
-   'add_user_to_team'=>'تم إرسال دعوة إلى مقدّم الخدمة لفريقك',
+   'add_user_to_team'=>'تم إرسال الدعوة إلى مقدّم الخدمة',
 
    'invitation_sent'=>'تم إرسال الدعوة',
 
@@ -707,9 +707,6 @@ return [
 
 
     //team
-
-    'team_name'=>'وصف الفريق',
-
     'image'=>'الصورة',
 
 
@@ -717,9 +714,7 @@ return [
 
 
     //notifications
-
     'notifications' => 'الإشعارات',
-
     'no_notifications' => 'لا توجد إشعارات حالياً',
 
 
@@ -727,7 +722,6 @@ return [
 
 
     'sent_succesfully' => 'تم الإرسال',
-
     'sent_before' => 'مرسل من قبل',
 
 
@@ -776,6 +770,7 @@ return [
     'by_skill' =>'حسب المهارة',
     'by_section' =>'حسب تصنيف الأقسام',
     'by_title' =>'حسب الأسم',
+    'by_name' =>'حسب الأسم',
 
     //
     'profile' => 'الملف الشخصي',
@@ -801,20 +796,39 @@ return [
     'my_mixtures' => 'شراكاتي',
     'my_projects' => 'مشاريعي',
     'my_team'=>'فريقي',
-    'my_teams'=>'الفرق المشارك بها',
+    'my_teams'=>'شراكة الفرق',
     'my_credit'=>'محفظتي',
     'my_bookings'=>'طلباتي',
     'settings'=>'الإعدادات',
-    'add_newـproject'=>'إضف مشروع جديد',
-    'add_newـservice'=>'إضف خدمة جديد',
-    'add_newـmixture'=>'إضف شراكة جديد',
-    'add_newـexperience'=>'إضف خبرة جديد',
-    'add_newـportfolio'=>'إضف معرض اعمال جديد',
-    'add_newـteam'=>'إضف فريق جديد',
+    'add_newـproject'=>'إضافة مشروع ',
+    'add_newـservice'=>'إضافة خدمة ',
+    'add_newـmixture'=>'إضافة شراكة ',
+    'add_newـexperience'=>'إضافة خبرة ',
+    'add_newـportfolio'=>'إضافة معرض اعمال ',
+    'add_newـteam'=>'إضافة فريق جديد',
 
     'edit_info'=>'تعديل البيانات',
     'job_info'=>'البيانات الوظيفية',
     'note_placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع',
 
+    'edititem' => 'تحديث',
+    'mixture_for' => 'شراكات فريق',
+    'without_section' => 'بدون تصنيف',
+    'this_team_dont_have_any_mixtures' => 'لا توجد أي شراكة للفريق',
+    'team_members'=>'أعضاء الفريق',
+    'add_team_members'=>'إضافة أعضاء',
+    'no_team_members' =>'لا يوجد أعضاء',
+    'create_your_team'=>'كوّن فريقك الآن',
+    'dont_have_any_invitation'=> 'لا تملك دعوة للشراكة',
+    'team_members' => 'أعضاء الفريق',
+
+
+    'my_mixtures_bookings' =>'طلبات الشراكة',
+    'my_projects_bookings' =>'طلبات المشاريع',
+    'my_services_bookings' =>'طلبات الخدمات',
+    'you_dont_have_mixtures_bookings' =>'لا توجد شراكة محجوزة',
+    'you_dont_have_services_bookings' =>'لا توجد خدمة محجوزة',
+    'you_dont_have_project_bookings' =>'لا يوجد عرض معتمد',
+    'order_details'=>'تفاصيل الطلب',
 
 ];

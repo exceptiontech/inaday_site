@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة الخدمات</h2>
+                    <h2 class="text-white mb-5">{{ __('file.services_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -31,7 +31,7 @@
                                 </div>
                                 
 
-                                @if(Auth::user()->myteams)
+                                @if(count(Auth::user()->myteams)>0)
                                 
                                 @foreach(Auth::user()->myteams as $team)
                                 <div class="col-12 service pb-3 pt-2">
@@ -60,7 +60,7 @@
 
                                                     <div class="dropdown">
                                                         <button class="btn bg-light dropdown-toggle" type="button" id="memberWrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        اعضاء الفريق
+                                                        {{ __('file.team_members') }}
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="memberWrapper">
                                                             @if(count($team->users)>0)
@@ -81,14 +81,18 @@
                                                                 </a>
                                                                 @endforeach
                                                             @else
-                                                            <a class="dropdown-item"  href="#">لم يتم اضافة اي اعضاء للفريق</a>
+                                                            <a class="dropdown-item"  href="#">
+                                                                {{trans('file.no_team_members')}}
+                                                            </a>
 
                                                             @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 text-right">
-                                                    <a class="btn btn-primary rounded" href="{{url($team->id.'/list/services_provider')}}">اضافة أعضاء للفريق</a>
+                                                    <a class="btn btn-primary rounded" href="{{url($team->id.'/list/services_provider')}}">
+                                                        {{trans('file.add_team_members')}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +101,7 @@
                                 @endforeach
 
                                 @else
-                                    <p>انت لا تمتلك فريق حتى الان كون فريقك الان </p>
+                                    <p>{{trans('file.create_your_team')}} </p>
                                 @endif
 
 
@@ -138,7 +142,7 @@
 
                                         <div class="row mt-5 mb-3">
                                             <div class="col-12">
-                                                {!! Form::submit(trans('forms.add'), array('class'=>'btn btn-primary')) !!}
+                                                {!! Form::submit(trans('forms.addteam'), array('class'=>'btn btn-primary')) !!}
                                             </div>
                                         </div>
                                     {{ Form::close() }}
@@ -148,24 +152,8 @@
                             </div>
 
 
+                        @include('front.profile.parts.service_provider')
 
-
-                            <div class="col-12 col-sm-4">
-                                <div class="bg-light dark p-3">
-                                    <div class="text-center mt-n5">
-                                        <img src="{{url('/images/lamp.svg')}}">
-                                    </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

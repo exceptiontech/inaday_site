@@ -143,22 +143,10 @@
                         </div>
 
                         <div class="col-12 col-sm-4">
-                            <div class="bg-light dark p-3">
-                                <div class="text-center mt-n5">
-                                    <img src="{{url('images/lamp.svg')}}">
-                                </div>
-                                <p class="mt-5">
-                                    يجب إضافة نص متعلق برائد الاعمال
-                                </p>
-                                 <p class="mt-5">
-                                      - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                  </p>
-                                  <!--
-                                  <p class="mt-5">
-                                      - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                  </p> -->
-                            </div>
-                        </div>
+                            @include('front.profile.parts.entrepreneur')
+                            
+                        </div> 
+
                     </div>
                 </div>
                     

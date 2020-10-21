@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">ادارة المشاريع</h2>
+                    <h2 class="text-white mb-5">{{ __('file.project_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -24,7 +24,7 @@
 
                                 <!-- projects -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">طلبات المشاريع</h3>
+                                    <h3 class="mb-3">{{ __('file.my_projects_bookings') }}</h3>
                                 </div>
 
                                 @if(count(Auth::user()->bookings))
@@ -54,8 +54,8 @@
                                                             </ul>
                                                         </div>
                                                         <div class="col-5 text-right">
-                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->offer->price}} ريال</a>
-                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->offer->price}} {{ __('file.riyal') }}</a>
+                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -68,7 +68,7 @@
 
                                 <!-- service -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">طلبات الخدمات</h3>
+                                    <h3 class="mb-3">{{ __('file.my_services_bookings') }}</h3>
                                 </div>
 
                                 @if(count(Auth::user()->bookings))
@@ -98,8 +98,8 @@
                                                             </ul>
                                                         </div>
                                                         <div class="col-5 text-right">
-                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->service->price}} ريال</a>
-                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                            <a class="btn btn-secondary rounded" href="#">{{$booking->service->price}} {{ __('file.riyal') }}</a>
+                                                            <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -113,7 +113,7 @@
 
                                 <!-- service -->
                                 <div class="col-12 sub-title mt-5">
-                                    <h3 class="mb-3">طلبات الخلطات</h3>
+                                    <h3 class="mb-3">{{ __('file.my_mixtures_bookings') }}</h3>
                                 </div>
 
                                 @if(count(Auth::user()->bookings))
@@ -144,8 +144,8 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-5 text-right">
-                                                        <a class="btn btn-secondary rounded" href="#">{{$booking->mixture->cost}} ريال</a>
-                                                        <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">تفاصيل الطلب</a>
+                                                        <a class="btn btn-secondary rounded" href="#">{{$booking->mixture->cost}} {{ __('file.riyal') }}</a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,16 +158,11 @@
 
                             </div>
 
+
                             <div class="col-12 col-sm-4">
-                                <div class="bg-light dark p-3">
-                                    <div class="text-center mt-n5">
-                                        <img src="{{url('/images/lamp.svg')}}">
-                                    </div>
-                                    <p class="mt-5">
-                                        - أنت مقدم خدمه و تعرف تقدم خدمه و تقدر تحدد كل متطلبات المشروع من وقت و تكلفة. حدد كم مستعد تستثمر في كل مهمة.
-                                    </p>
-                                </div>
-                            </div>
+                                @include('front.profile.parts.entrepreneur')
+                                
+                            </div> 
 
 
                         </div>
