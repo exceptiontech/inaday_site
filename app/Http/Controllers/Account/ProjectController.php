@@ -273,9 +273,9 @@ class ProjectController extends Controller
         $project =Project::find($id);
 
 
-        if (!$project->is_approved ) {
-            return view('front.errors.notfound');
-        }
+        // if (!$project->is_approved ) {
+        //     return view('front.errors.notfound');
+        // }
 
         $stages = Stage::where('is_active', 1)->get();
         $skills = Skill::where('is_active', 1)->get();
