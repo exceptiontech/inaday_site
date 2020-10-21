@@ -385,6 +385,9 @@ div.custom-control-right .custom-control-label::before {
 .form-group .error {
   display: none !important; }
 
+.modal-backdrop {
+  z-index: 0; }
+
 /* Header navbar */
 header .main-header .navbar .navbar-brand {
   margin-left: 30px; }

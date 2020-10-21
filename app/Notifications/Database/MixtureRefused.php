@@ -11,15 +11,18 @@ class MixtureRefused extends Notification
 {
     use Queueable;
 
+    protected $mixture;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mixture)
     {
-        //
+        $this->mixture = $mixture;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,10 +53,14 @@ class MixtureRefused extends Notification
 
     public function toDatabase($notifiable)
     {
+
+        $url = url('/account/mixtures/'.$this->mixture->id.'/edit');
+
         return [
             'image'=> url('/images/notifications/refuse.svg'),
             'title'=> __('notification.MixtureRefused'),
             'desc'=>__('notification.MixtureRefusedDesc'),
+            'url'=> $url,
         ];
     }
 

@@ -137,6 +137,11 @@ return [
 	'MixtrueApprovedDesc' => 'تم تفعيل الشراكة',
 
 
+	'MixtureUpdated' => 'تم تحديث الشراكة',
+
+	'MixtureUpdatedDesc' => 'تم تحديث الشراكة بنجاح',
+
+
 
 	'OfferCreated' => 'عرض جديد',
 
