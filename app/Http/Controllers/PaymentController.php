@@ -250,6 +250,7 @@ class PaymentController extends Controller
                             $booking->user_id = Auth::id();
                             $booking->provider_id = $offer->user->id;
                             $booking->payment_id = $payment->id;
+                            $booking->status_id = 2;
                             $booking->save();
 
                             $offer->is_confirmed = 1;
@@ -337,6 +338,7 @@ class PaymentController extends Controller
                             $booking->user_id = Auth::id();
                             $booking->provider_id = $service->user->id;
                             $booking->payment_id = $payment->id;
+                            $booking->status_id = 2;
                             $booking->save();
 
 
@@ -422,6 +424,7 @@ class PaymentController extends Controller
                         $booking->user_id = Auth::user()->id;
                         $booking->provider_id = $mixture->team->user->id;
                         $booking->payment_id = $payment->id;
+                        $booking->status_id = 2;
                         $booking->save();
 
 
