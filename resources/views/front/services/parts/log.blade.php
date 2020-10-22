@@ -1,10 +1,10 @@
 <div class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
-        @if(Auth::user()->id == $log->user->id)
-            {{ $service->user->first_name.' '.$service->user->last_name }}
-        @else
+        @if(Auth::user()->isAdmin() && Auth::user()->id == $log->user->id )
             {{trans('file.administrator')}}
+        @else
+            {{ $service->user->first_name.' '.$service->user->last_name }}
         @endif        
       </h5>
       <small>{{ Carbon\Carbon::parse(strtotime($log->created_at))->format('d-m-Y') }}</small>
