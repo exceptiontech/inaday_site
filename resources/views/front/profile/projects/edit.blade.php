@@ -112,7 +112,7 @@
                                 </div>
 
 
-
+<!-- 
                                 <div class="row mb-4">
                                     <div class="col-12">
                                     {!! Form::label('skills', trans('forms.skills'))!!}
@@ -131,7 +131,7 @@
                                     @endif
                                     </div>
                                 </div>
-
+ -->
                                 <div class="row mt-5 mb-3">
                                     <div class="col-12">
                                         {!! Form::submit(trans('forms.edit'), array('class'=>'btn btn-primary')) !!}

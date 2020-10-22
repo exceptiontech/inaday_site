@@ -93,7 +93,7 @@
                                 </div>
 
 
-                                <div class="row mb-4">
+<!--                                 <div class="row mb-4">
                                     <div class="col-12">
                                     {!! Form::label('skills', trans('forms.skills'))!!}
                                     @if (count($skills))
@@ -121,7 +121,7 @@
                                       {!! Form::text('other_skill', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-
+ -->
 
 
 <!--                                 <div class="row mb-4">

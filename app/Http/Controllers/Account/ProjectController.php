@@ -98,8 +98,8 @@ class ProjectController extends Controller
             'cost'      =>'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
             'duration'      =>'required|numeric|min:1|max:24',
-            'skills' =>'required|array',
-            'skills.*' =>'required|integer'
+            //'skills' =>'required|array',
+            //'skills.*' =>'required|integer'
         ]);
 
 
@@ -199,37 +199,37 @@ class ProjectController extends Controller
                 }
             }
 
-            $skills = $request->skills;
+            // $skills = $request->skills;
 
-            if ($skills) {
-                foreach ($skills as $skill) {
-                    $project->skills()->attach($skill);
-                }
-            }
-
-
-
-            $other_skill = $request->other_skill;
-
-            if ($other_skill) {
-                $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+            // if ($skills) {
+            //     foreach ($skills as $skill) {
+            //         $project->skills()->attach($skill);
+            //     }
+            // }
 
 
-                if ($item) {
-                    $project->skills()->attach($item);
-                }else {
 
-                    $title = array();
-                    $title['ar'] = $skill;
-                    $new_skill = new Skill;
-                    $new_skill->title = $title;
-                    $new_skill->slug = $skill;
-                    $new_skill->is_active = 0;
-                    $new_skill->save();
+            // $other_skill = $request->other_skill;
 
-                    $project->skills()->attach($new_skill);
-                }
-            }
+            // if ($other_skill) {
+            //     $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
+
+
+            //     if ($item) {
+            //         $project->skills()->attach($item);
+            //     }else {
+
+            //         $title = array();
+            //         $title['ar'] = $skill;
+            //         $new_skill = new Skill;
+            //         $new_skill->title = $title;
+            //         $new_skill->slug = $skill;
+            //         $new_skill->is_active = 0;
+            //         $new_skill->save();
+
+            //         $project->skills()->attach($new_skill);
+            //     }
+            // }
 
 
         }
@@ -412,7 +412,7 @@ class ProjectController extends Controller
             }
 
             //skills
-            $project->skills()->sync($request->skills);
+            //$project->skills()->sync($request->skills);
 
         }
 
