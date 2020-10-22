@@ -159,7 +159,11 @@
                             </div>
 
 
-                        @include('front.profile.parts.service_provider')
+                            <div class="col-12 col-sm-4">
+
+                              @include('front.profile.parts.service_provider')
+
+                            </div>
 
                         </div>
                     </div>
