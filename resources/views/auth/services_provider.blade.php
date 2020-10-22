@@ -18,16 +18,21 @@
                     <p>انت كمقدم خدمة، تعتبر حجر الأساس في المنصة، وأنت سبب نجاحها، عشان كذا، دائماً نبحث عن حلول في إنك تكون مرتاح و مبسوط. كل يوم نفكر، كيف تكون منصة .انادي. هي خيارك الأفضل وخيار كل مبدع و صاحب موهبة، و ابتكرنا حزمة من المميزات اللي ممكن تلفت انتباهك </p>
 
                     @guest
-                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=services_provider')}}">سجل الان</a>
+                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=services_provider')}}">
+                        {{trans('file.register_now')}}
+                    </a>
 
                     @else
                         @if(Auth::user() && Auth::user()->isServicesProvider())
 
-                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">سجل</a>
+                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">
+                                {{trans('file.register_now')}}
+                            </a>
                             
                         @endif
+
                     @endguest
                 </div>
 
@@ -54,7 +59,7 @@
 
                     <p>العمل عن بعد هو أسلوب الحياة الجديد، في منصة .انادي. بتكون تشتغل بالوقت اللي يناسبك، وبالقيمة اللي تناسبك، وفي المكان اللي يناسبك. بيكون عملك فيه إجازة، و إجازتك فيها عمل! ممتع؟ إذا تعتقد انك موهوب، وتحب الشغل، جرب احسب دخلك.</p>
 
-                    <a class="btn btn-primary mt-5" href="{{url('/account/services')}}">اضف خدمة</a>
+                    <a class="btn btn-primary mt-5" href="{{url('/account/services')}}">{{ __('file.add_newـservice') }}</a>
                 </div>
             </div>
         </div>
@@ -75,9 +80,11 @@
 
                         @if(Auth::user() && Auth::user()->isServicesProvider())
 
-                            <a class="btn btn-primary mt-5" href="{{url('/account/mixtures/create')}}">اضف خلطة</a>
+                            <a class="btn btn-primary mt-5" href="{{url('/account/mixtures/create')}}">{{ __('file.add_newـmixture') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/mixtures')}}">تعرف على الخلطات</a>
+                            <a class="btn btn-primary mt-5 " href="{{url('/mixtures')}}">
+                                {{ __('file.knowـmixtures') }}
+                            </a>
                             
                         @endif
 

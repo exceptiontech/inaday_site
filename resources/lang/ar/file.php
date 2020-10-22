@@ -831,5 +831,8 @@ return [
     'you_dont_have_services_bookings' =>'لا توجد خدمة محجوزة',
     'you_dont_have_project_bookings' =>'لا يوجد عرض معتمد',
     'order_details'=>'تفاصيل الطلب',
+    'register_now' =>'سجّل الآن',
+    'knowـmixtures' => 'تعرف على الشراكات',
+    'knowـprojects' => 'تعرف على المشاريع',
 
 ];
