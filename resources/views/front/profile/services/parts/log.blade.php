@@ -1,7 +1,7 @@
 <div class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
-        @if(Auth::user()->isAdmin() && Auth::user()->id == $log->user->id )
+        @if($log->user->isAdmin() )
             {{trans('file.administrator')}}
         @else
             {{ $service->user->first_name.' '.$service->user->last_name }}
@@ -13,7 +13,8 @@
 
   <p class="mb-2">{{$log->desc}}</p>
 
-  @if(Auth::user()->isAdmin()  && $log->action == 'create' || $log->action == 'update' )
+  @if(Auth::user()->isAdmin())
+  @if( $log->action == 'create' || $log->action == 'update' )
 
     @if($service->ModelLogs->last()->id == $log->id)
 
@@ -50,6 +51,7 @@
     </div>  
 
     @endif
+  @endif
   @endif
 
 
