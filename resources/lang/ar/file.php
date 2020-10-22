@@ -137,7 +137,7 @@ return [
 
     'start_now' => 'ابدأ الآن',
 
-    'start_your_project' => 'نفذ مشروعك الآن',
+    'start_your_project' => 'نفّذ مشروعك الآن',
 
     'job_seekers' => 'باحث عن عمل',
 
@@ -768,9 +768,9 @@ return [
     'message_type'=>'اكتب رسالتك',
     'send_message'=>'إرسال الرسالة',
     'by_skill' =>'حسب المهارة',
-    'by_section' =>'حسب تصنيف الأقسام',
-    'by_title' =>'حسب الأسم',
-    'by_name' =>'حسب الأسم',
+    'by_section' =>'حسب التصنيف',
+    'by_title' =>'حسب الاسم',
+    'by_name' =>'حسب الاسم',
 
     //
     'profile' => 'الملف الشخصي',
@@ -832,7 +832,7 @@ return [
     'you_dont_have_project_bookings' =>'لا يوجد عرض معتمد',
     'order_details'=>'تفاصيل الطلب',
     'register_now' =>'سجّل الآن',
-    'knowـmixtures' => 'تعرف على الشراكات',
-    'knowـprojects' => 'تعرف على المشاريع',
+    'knowـmixtures' => 'تعرّف على الشراكات',
+    'knowـprojects' => 'تعرّف على المشاريع',
 
 ];
