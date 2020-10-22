@@ -779,6 +779,7 @@ return [
     'portfolios' => 'معرض الاعمال',
     'experiences' => 'الخبرات',
     'cost_by_hour' => 'التكلفة بالساعة',
+    'cost' => 'التكلفة',
     'jobtypes' => 'نوع الدوام',
     'to' => 'إلى',
 
