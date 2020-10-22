@@ -16,7 +16,7 @@
                                         {{ __('file.my_credit') }}</a></li>
 
                                         <li class="list-inline-item">
-                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" c href="{{url('/account/')}}">
+                                            <a class="@if( \Request::route()->getName() =='front_notifications.index' ) active @endif" c href="{{url('/account/notifications')}}">
                                             {{ __('file.notifications') }}
                                             </a>
                                         </li>
