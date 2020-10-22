@@ -18,14 +18,14 @@
                     <p>كثير من رواد الأعمال يأخرون بدء مشاريعهم من أجل مهام ليس لها علاقة حقيقة بنجاح المشروع، فالانتظار أشهر من أجل اختيار اسم او شعار او بناء موقع الكتروني، او انتظار تمويل هي أهم أسباب تعطل كثير من المشاريع وإصابة اصحابها بالإحباط قبل البدء. </p>
 
                     @guest
-                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=entrepreneur')}}">سجل الان</a>
+                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=entrepreneur')}}">{{trans('file.register_now')}}</a>
 
                     @else
                         @if(Auth::user() && Auth::user()->isEntrepreneur())
 
-                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">لوحة التحكم</a>
+                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">سجل</a>
+                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">{{trans('file.register_now')}}</a>
                             
                         @endif
                     @endguest
@@ -57,9 +57,9 @@
 
                     @if(Auth::user() && Auth::user()->isEntrepreneur())
 
-                        <a class="btn btn-primary mt-5" href="{{url('account/projects/create')}}">نفّذ مشروعك الآن</a>
+                        <a class="btn btn-primary mt-5" href="{{url('account/projects/create')}}">{{ __('file.add_newـproject') }}</a>
                     @else
-                        <a class="btn btn-primary mt-5 " href="{{url('/projects')}}">تعرف على المشاريع</a>
+                        <a class="btn btn-primary mt-5 " href="{{url('/projects')}}">{{ __('file.knowـprojects') }}</a>
                         
                     @endif
 
