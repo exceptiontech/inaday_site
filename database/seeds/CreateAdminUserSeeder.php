@@ -113,15 +113,15 @@ class CreateAdminUserSeeder extends Seeder
 
 
 
-        // $title  = array();
-        // $title['ar'] = 'متاح';
-        // $title['en'] = 'available';
+        $title  = array();
+        $title['ar'] = 'متاح';
+        $title['en'] = 'available';
 
-        // $status = Status::create([
-        //     'title' => $title,
-        //     'slug' => 'available',
-        //     'desc' => $title,
-        // ]);
+        $status = Status::create([
+            'title' => $title,
+            'slug' => 'available',
+            'desc' => $title,
+        ]);
 
         $title  = array();
         $title['ar'] = 'قيد التنفيذ';
