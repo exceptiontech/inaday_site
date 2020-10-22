@@ -80,7 +80,7 @@ class Booking extends Model
         if ($this->service) {
             return $this->service->user;
         }elseif ($this->project) {
-            return $this->project->user;
+            return $this->offer->user;
         }elseif ($this->mixture) {
             return $this->mixture->team->user;
         }
