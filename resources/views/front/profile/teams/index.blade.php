@@ -53,6 +53,14 @@
                                                             {{ __('file.team_members') }}
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="memberWrapper">
+
+                                                                <a class="dropdown-item" href="#">
+                                                                  <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                                    {{$team->user->first_name. ' ' .$team->user->last_name}}
+                                                                </a>
+
+
                                                                 @if(count($team->users)>0)
                                                                     @foreach($team->users as $user)
                                                                     <a class="dropdown-item" href="#">
