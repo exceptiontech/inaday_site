@@ -180,7 +180,7 @@
                                                     @endif
                                                     <li class="list-inline-item">
                                                         <span class="bg-light">
-                                                            {{ $service->section->title[App::getLocale()] ?? {{trans('file.without_section')}}  }}
+                                                            {{ $service->section->title[App::getLocale()] ?? trans('file.without_section')  }}
                                                         </span>
                                                     </li>
                                                 </ul>
