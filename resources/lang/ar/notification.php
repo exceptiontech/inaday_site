@@ -176,6 +176,10 @@ return [
 
 	'ReplayCreatedDesc' => 'تمّت إضافة ردّ جديد',
 
+	'ReviewCreated' => 'تقييم جديد',
+
+	'ReviewCreatedDes' => 'تقييم إضافة ردّ جديد',
+
 
 
 
