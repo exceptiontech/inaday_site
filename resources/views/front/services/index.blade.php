@@ -180,7 +180,8 @@
                                                     @endif
                                                     <li class="list-inline-item">
                                                         <span class="bg-light">
-                            {{ \Illuminate\Support\Str::words($service->section->title[App::getLocale()],3,'....')  }}</span>
+                                                            {{ $service->section->title[App::getLocale()] ?? {{trans('file.without_section')}}  }}
+                                                        </span>
                                                     </li>
                                                 </ul>
 
