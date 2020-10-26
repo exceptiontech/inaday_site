@@ -91,7 +91,9 @@
 
 
                                 <div class="col-12 mt-4">
-                                    <a href="{{url('/account/projects/create')}}" class="btn btn-primary">اضافة مشروع جديد</a>
+                                    <a href="{{url('/account/projects/create')}}" class="btn btn-primary">
+                                        {{trans('file.add_newـproject')}}
+                                    </a>
                                 </div>
                             </div>
 

@@ -346,7 +346,7 @@ return [
 
     'riyal'=>'ريال',
 
-    'privacy_policy'=>'سياسة الخصوصية',
+    'privacy_policy'=>'سياسة الاستخدام والخصوصية',
 
     'usage_policy'=>'سياسة الاستخدام',
 

@@ -10,10 +10,10 @@
                             <li>
                                 <a href="{{url('pages/1')}}">{{trans('file.privacy_policy')}}</a>
                             </li>
-                            <li>
+<!--                             <li>
                                 <a href="{{url('pages/2')}}">{{trans('file.usage_policy')}}</a>
                             </li>
-                            <!-- <li>
+ -->                            <!-- <li>
                                 <a href="{{url('pages/3')}}">{{trans('file.refund_and_cancellation_policy')}}</a>
                             </li> -->
                             <li>

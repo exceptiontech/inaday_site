@@ -97,7 +97,7 @@ class ServiceController extends Controller
             'desc'      =>'required|min:3|max:500',
             'cost'      =>'integer|required',
             'duration'  =>'required|numeric|min:1|max:24',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
+            'img' => 'required|mimes:jpeg,png,jpg,gif,svg|max:8048',
         ]);
 
 
