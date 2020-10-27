@@ -186,7 +186,7 @@ return [
 	'welcome' => 'مرحبا بكم',
 	'whoops' => 'Whoops!',
 	'click_here' => 'إضغط هنا',
-
+	'regards'=>'مع أطيب التحيات',
 
 
 
