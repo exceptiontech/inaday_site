@@ -73,7 +73,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+{{ trans('notification.regards') }},<br>
 {{ config('app.name') }}
 @endif
 

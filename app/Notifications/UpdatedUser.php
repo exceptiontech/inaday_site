@@ -43,8 +43,8 @@ class UpdatedUser extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.UpdatedUserEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TUpdatedUserDescEmail'));
+                    ->line(__('notification.UpdatedUserDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 
