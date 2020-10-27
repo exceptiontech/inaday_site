@@ -488,6 +488,8 @@ return [
 
     'please_see_if_you_are_not' => 'الرجاء الاطلاع في حالة عدم الاطلاع',
 
+    'confirmed_projects' => 'المشاريع المعتمدة',
+    
     'projects' => 'المشاريع',
 
     'project' => 'مشاريع',
@@ -543,6 +545,7 @@ return [
     'number_of_offers'=>'عدد العروض' ,
 
     'offers'=>'العروض' ,
+    'offer'=>'عرض' ,
 
     'contact_the_project_owner'=>'تواصل مع صاحب المشروع' ,
 

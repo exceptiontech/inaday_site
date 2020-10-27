@@ -42,9 +42,9 @@ class TeamRequest extends Notification
     {
 
         return (new MailMessage)
-                    ->line('دعوة للانضمام  لفريق ')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line(__('notification.TeamRequestEmail'))
+                    ->action(__('notification.click_here'), url('/'))
+                    ->line(__('notification.TeamRequestDescEmail'));
     }
 
 
