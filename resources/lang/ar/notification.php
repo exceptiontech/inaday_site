@@ -182,6 +182,187 @@ return [
 
 
 
+	// mail 
+	'welcome' => 'مرحبا بكم',
+	'whoops' => 'Whoops!',
+	'click_here' => 'إضغط هنا',
+
+
+
+
+	'ProjectUpdatedEmail' => 'تمّ تحديث المشروع',
+
+	'ProjectUpdatedDescEmail' => 'تمّ تحديث المشروع بنجاح',
+
+	'ProjectCreatedEmail' => 'تمّ إنشاء المشروع',
+
+	'ProjectCreatedDescEmail' => 'تمّ إنشاء المشروع بنجاح',
+
+	'ProjectDeletedEmail' => 'تمّ حذف المشروع',
+
+	'ProjectDeletedDescEmail' => 'تمّ حذف المشروع بنجاح',
+
+	'ServiceCreatedEmail' => 'تمّ إنشاء الخدمة',
+
+	'ServiceCreatedDescEmail' => 'تمّ إنشاء الخدمة بنجاح',
+
+	'ServiceUpdatedEmail' => 'تمّ تحديث الخدمة',
+
+	'ServiceUpdatedDescEmail' => 'تمّ تحديث الخدمة بنجاح',
+
+	'ServiceDeletedEmail' => 'تمّ حذف الخدمة',
+
+	'ServiceDeletedDescEmail' => 'تمّ حذف الخدمة بنجاح',
+
+	'UpdatedUserEmail' => 'تحديث الملف الشخصي',
+
+	'UpdatedUserDescEmail' => 'تمّ تحديث الملف الشخصي بنجاح',
+
+	'RegisterEntrepreneurEmail' => 'رائد أعمال',
+
+	'RegisterEntrepreneurDescEmail' => 'حلّق بمشروعك عالياً ',
+
+	'RegisterServicesProviderEmail' => 'مقدّم خدمة',
+
+	'RegisterServicesProviderDescEmail' => 'ابدأ خدماتك الإبداعية',
+
+
+	'ExperienceCreatedEmail' => 'تمّ إنشاء خبرة',
+
+	'ExperienceCreatedDescEmail' => 'تمّ إنشاء خبرة بنجاح',
+
+	'ExperienceUpdatedEmail' => 'تمّ تحديث خبرة',
+
+	'ExperienceUpdatedDescEmail' => 'تمّ تحديث خبرة بنجاح',
+
+	'ExperienceDeletedEmail' => 'تمّ حذف خبرة',
+
+	'ExperienceDeletedDescEmail' => 'تمّ حذف خبرة بنجاح',
+
+
+	'SkillDeletedEmail' => 'تمّ إلغاء مهارة',
+
+	'SkillDeletedDescEmail' => 'تمّ إلغاء مهارة بنجاح',
+
+
+	'TeamCreatedEmail' => 'تمّ إنشاء فريقك',
+
+	'TeamCreatedDescEmail' => 'تمّ إنشاء فريقك بنجاح',
+
+	'TeamUpdatedEmail' => 'تمّ تحديث فريقك',
+
+	'TeamUpdatedDescEmail' => 'تمّ تحديث فريقك بنجاح',
+
+	'TeamDeletedEmail' => 'تمّ حذف فريقك',
+
+	'TeamDeletedDescEmail' => 'تمّ حذف فريقك بنجاح',
+
+	'TeamRequestEmail' => 'دعوة انضمام لفريق',
+
+	'TeamRequestDescEmail' => 'لديك دعوة للانضمام',
+
+	'TeamRefusedRequestEmail' => 'تمّ رفض الدعوة',
+
+	'TeamRefusedRequestDescEmail' => 'تمّ رفض دعوة الانضمام للفريق',
+
+	'TeamCancelRequestEmail' => 'تمّ إلغاء الانضمام',
+
+	'TeamCancelRequestDescEmail' => 'تمّ إلغاء الانضمام من فريقك',
+
+	'TeamAcceptRequestEmail' => 'تمّ قبول الدعوة',
+
+	'TeamAcceptRequestDescEmail' => 'تمّ قبول دعوة الانضمام',
+
+	'FavoriteCreatedEmail' => 'تفضيل جديد',
+
+	'FavoriteCreatedDescEmail' => 'تمّ تفضيل خدمتك أو مشروعك',
+
+	'FavoriteUpdatedEmail' => 'تمّ تحديث فريقك',
+
+	'FavoriteUpdatedDescEmail' => 'تمّ تحديث فريقك بنجاح',
+
+	'FavoriteDeletedEmail' => 'تمّ حذف تفضيل',
+
+	'FavoriteDeletedDescEmail' => 'تمّ عدم تفضيل خدمتك أو مشروعك',
+
+
+	'OfferCreatedEmail' => 'عرض جديد',
+
+	'OfferCreatedDescEmail' => 'تمّ استقبال عرض جديد',
+
+	'OfferConfirmEmail' => 'تمّ اختيار عرضك',
+
+	'FavoriteUpdatedDescEmail' => 'تهانينا.. تمّ اختيار عرضك',
+
+
+	'ServiceApprovedEmail' => 'تمّ تفعيل الخدمة',
+
+	'ServiceApprovedDescEmail' => 'تمّ تفعيل الخدمة',
+
+
+	'ProjectApprovedEmail' => 'تمّ تفعيل المشروع',
+
+	'ProjectApprovedDescEmail' => 'تمّ تفعيل المشروع',
+
+
+	'MixtrueApprovedEmail' => 'تمّ تفعيل الشراكة',
+
+	'MixtrueApprovedDescEmail' => 'تمّ تفعيل الشراكة',
+
+
+	'MixtureUpdatedEmail' => 'تمّ تحديث الشراكة',
+
+	'MixtureUpdatedDescEmail' => 'تمّ تحديث الشراكة بنجاح',
+
+
+	'OfferCreatedEmail' => 'عرض جديد',
+
+	'OfferCreatedDescEmail' => 'تمّ استقبال عرض جديد',
+
+
+	'BookingCreatedEmail' => 'طلب جديد',
+
+	'BookingCreatedDescEmail' => 'تمّ حجز طلب جديد',
+
+
+	'MixtureApprovedEmail' => 'الموافقة على الشراكة',
+
+	'MixtureApprovedDescEmail' => 'تمّت الموافقة على الشراكة',
+
+
+	'ServiceApprovedEmail' => 'الموافقة على الخدمة',
+
+	'ServiceApprovedDescEmail' => 'تمّت الموافقة على الخدمة',
+
+
+	'ProjectApprovedEmail' => 'الموافقة على المشروع',
+
+	'ProjectApprovedDescEmail' => 'تمّت الموافقة على المشروع',
+
+
+	'MixtureRefusedEmail' => 'رفض تعديل الشراكة',
+
+	'MixtureRefusedDescEmail' => 'تمّ رفض تعديل الشراكة',
+
+
+	'ServiceRefusedEmail' => 'رفض تعديل الخدمة',
+
+	'ServiceRefusedDescEmail' => 'تمّ رفض تعديل الخدمة',
+
+
+	'ProjectRefusedEmail' => 'رفض تعديل المشروع',
+
+	'ProjectRefusedDescEmail' => 'تمّ رفض تعديل المشروع',
+
+
+	'ReplayCreatedEmail' => 'ردّ جديد',
+
+	'ReplayCreatedDescEmail' => 'تمّت إضافة ردّ جديد',
+
+	'ReviewCreatedEmail' => 'تقييم جديد',
+
+	'ReviewCreatedDesEmail' => 'تقييم إضافة ردّ جديد',
+
 
 ] 
 

@@ -11,6 +11,20 @@ class ServiceCreated extends Notification
 {
     use Queueable;
 
+
+    protected $service;
+
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    public function __construct($service)
+    {
+        $this->service = $service;
+    }
+
+
     /**
      * Create a new notification instance.
      *
@@ -40,9 +54,11 @@ class ServiceCreated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/account/services/'.$this->service->id.'/edit');
+
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', $url)
                     ->line('Thank you for using our application!');
     }
 

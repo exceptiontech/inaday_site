@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 title">
-                    <h2 class="text-white mb-5">إدارة المشاريع</h2>
+                    <h2 class="text-white mb-5">{{ __('file.project_managment') }}</h2>
                 </div>
 
                 <div class="col-12">
@@ -22,14 +22,14 @@
                             </div>
 
                             <div class="col-12 title mb-3">
-                                <h2>المشاريع المعتمدة <span class="badge badge-warning badge-pill">{{count(Auth::user()->BookedProjects())}}</span></h2>
+                                <h2>{{ __('file.confirmed_projects') }}  <span class="badge badge-warning badge-pill">{{count(Auth::user()->BookedProjects())}}</span></h2>
                             </div>
 
                             
 
                             <div class="col-12 col-sm-8 projects">
                                 <div class="sub-title mb-2">
-                                    <h3>المشاريع</h3>
+                                    <h3>{{ __('file.projects') }}</h3>
                                 </div>
                                 
 
@@ -60,7 +60,7 @@
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$project->section->title[App::getLocale()] ?? ' بدون تصنيف'}}
+                                                                    {{$project->section->title[App::getLocale()] ??  __('file.without_section') }}
                                                                 </div>
                                                             </li>
                                                             <li class="list-inline-item">
@@ -69,13 +69,13 @@
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
-                                                                {{$project->offers->count()}}  عرض
+                                                                {{$project->offers->count()}}  {{ __('file.offer') }}
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-5 text-right">
-                                                        <label class="btn btn-secondary rounded text-white">{{$project->cost}} ريال</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">تفاصيل المشروع</a>
+                                                        <label class="btn btn-secondary rounded text-white">{{$project->cost}} {{ __('file.riyal') }}</label>
+                                                        <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">{{ __('file.project_details') }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
 
                                     @endforeach
                                 @else
-                                    <p>لم تقم باضافة اي مشاريع في الوقت الحالي</p>
+                                    <p>{{ __('file.you_dont_have_any_projects_right_now') }} </p>
                                 @endif
                                 
 

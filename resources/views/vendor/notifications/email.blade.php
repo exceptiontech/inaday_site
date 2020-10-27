@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# @lang('Whoops!')
+# @lang('') {{ trans('notification.whoops') }}
 @else
-# @lang('Hello!')
+# {{ trans('notification.welcome') }}
 @endif
 @endif
 
@@ -44,16 +44,15 @@
 @isset($actionText)
 @slot('subcopy')
 
-
+    
     @if(config('app.locale') == 'ar')
         @lang(
             "إذا كنت تواجه مشكلة في النقر فوق الزر، انسخ والصق عنوان URL \n".
-            'أدناه في متصفح الويب لديك:',
+            'أدناه في متصفح الويب لديك <br />',
             [
                 'actionText' => $actionText,
             ]
         ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
-
 
     @else
         @lang(

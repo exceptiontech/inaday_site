@@ -11,15 +11,18 @@ class ProjectCreated extends Notification
 {
     use Queueable;
 
+    protected $project;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -40,11 +43,12 @@ class ProjectCreated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/account/projects/'.$this->project->id.'/edit');
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line(__('notification.ProjectCreatedEmail'))
+                    ->line(__('notification.ProjectCreatedDescEmail'));
+                    ->action(__('notification.click_here'), $url)
     }
 
 
