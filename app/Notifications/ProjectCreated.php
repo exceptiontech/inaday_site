@@ -47,8 +47,8 @@ class ProjectCreated extends Notification
 
         return (new MailMessage)
                     ->line(__('notification.ProjectCreatedEmail'))
-                    ->line(__('notification.ProjectCreatedDescEmail'));
-                    ->action(__('notification.click_here'), $url)
+                    ->line(__('notification.ProjectCreatedDescEmail'))
+                    ->action(__('notification.click_here'), $url);
     }
 
 
