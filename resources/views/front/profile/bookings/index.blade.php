@@ -26,7 +26,7 @@
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">{{ __('file.my_bookings') }}</h3>
                                 </div>
-                                
+
                                 <!-- projects -->
                                 <div class="col-12 sub-title mt-5">
                                     <h3 class="mb-3">{{ __('file.my_projects_bookings') }}</h3>
@@ -52,7 +52,7 @@
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$booking->offer->user->first_name .' '. $booking->offer->user->last_name ?? ' بدون تصنيف'}}
+                                                                    {{$booking->user->first_name .' '. $booking->user->last_name ?? ' بدون تصنيف'}}
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -97,7 +97,7 @@
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
-                                                                    {{$booking->service->user->first_name .' '. $booking->service->user->last_name ?? ' بدون تصنيف'}}
+                                                                    {{$booking->user->first_name .' '. $booking->user->last_name ?? ' بدون تصنيف'}}
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -161,7 +161,7 @@
                                             {{ __('file.you_dont_have_mixtures_bookings') }}
 
                                     </div>
-                                    
+
                                 @endif
 
 
@@ -169,13 +169,13 @@
 
                             <div class="col-12 col-sm-4">
                                 @include('front.profile.parts.service_provider')
-                                
-                            </div> 
+
+                            </div>
 
 
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>

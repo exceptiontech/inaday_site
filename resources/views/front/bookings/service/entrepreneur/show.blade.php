@@ -27,15 +27,15 @@
                                     @endif
                                 @else
                                   <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->service->title}}" title="{{$booking->service->title}}" />
-                                @endif  
+                                @endif
 
 
                                 <div class="ml-2">
-                                    <span class="small">{{trans('file.service_owner')}}</span> 
+                                    <span class="small">{{trans('file.service_owner')}}</span>
                                     <div class="mt-2 small">
-                                        <h2>{{ $booking->service->user->first_name.' '.$booking->service->user->last_name }}</h2>                                    
+                                        <h2>{{ $booking->service->user->first_name.' '.$booking->service->user->last_name }}</h2>
                                     </div>
-                                </div>                   
+                                </div>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
                                 <p class="small">{{trans('file.must_looged')}}</p>
                             @endguest
                         </div>
-                        
+
 
 
                     </div>
@@ -111,7 +111,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{trans('file.service_title')}}</h2> 
+                                       <h2 class="mb-3">{{trans('file.service_title')}}</h2>
                                        <p>{{ $booking->service->title}} </p>
                                     </div>
                                     <div class="col-sm-2 text-right">
@@ -123,7 +123,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">{{trans('file.service_desc')}}</h2> 
+                                        <h2 class="mb-3">{{trans('file.service_desc')}}</h2>
                                         <p>{!! \Illuminate\Support\Str::words($booking->service->desc,350,'....')  !!}</p>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2> 
+                                        <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2>
                                         <div class="clearfix">
                                         @if(count($booking->service->skills))
                                             <ul class="list-inline">
@@ -155,7 +155,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">{{trans('file.service_path')}}</h2> 
+                                        <h2 class="mb-3">{{trans('file.service_path')}}</h2>
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -170,14 +170,14 @@
                                                 <img src="{{url($replay->user->userdetail->first()->avater ?? '/assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid pull-right">
 
                                                 <div class="ml-2">
-                                                    <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span> 
+                                                    <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span>
                                                     <div class="m-0 small">
-                                                        <span class="mr-2">مقدم خدمة</span>
+                                                        <span class="mr-2">{{trans('file.owne_entrepreneurs')}}</span>
                                                         <span>{{trans('file.date')}}  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y ') ?? ''}} </span>
-                                                    
+
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-sm-4 text-right">
                                                 <ul class="list-inline">
@@ -215,13 +215,13 @@
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
                                                 <div class="alert alert-info mt-4">
-                                                    {{trans('file.duration_accept')}} {{$replay->duration}} {{trans('file.duration_notes')}} 
+                                                    {{trans('file.duration_accept')}} {{$replay->duration}} {{trans('file.duration_notes')}}
                                                     <br>
                                                     {{$replay->replay}}
                                                 </div>
                                                 @else
                                                 <div class="alert alert-danger mt-4">
-                                                    {{trans('file.duration_refused')}} 
+                                                    {{trans('file.duration_refused')}}
                                                 </div>
                                                 @endif
                                             @endforeach
@@ -253,11 +253,11 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">{{__('file.add_replay')}}</h2> 
+                                                <h2 class="mb-3 dark">{{__('file.add_replay')}}</h2>
                                             </div>
                                             <div class="col-sm-12">
                                                 {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
-                                                
+
                                                 {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
                                                 @if(count($errors) > 0)
@@ -277,7 +277,7 @@
 
                                                     <div class="row mb-4">
                                                         <div class="col-6">
-                                                            {!! Form::label('files', trans('forms.files'))!!} 
+                                                            {!! Form::label('files', trans('forms.files'))!!}
                                                             <div class="input-group">
                                                                 <span class="form-control overflow-hidden"></span>
                                                                 <span class="input-group-btn">
@@ -292,7 +292,7 @@
                                                           {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
-                                                {{ Form::close() }}                  
+                                                {{ Form::close() }}
                                             </div>
                                         </div>
                                     </div>
@@ -301,12 +301,12 @@
 
                                     @if($booking->requestConfirm() && $booking->status_id != 3 && $booking->status_id != 4)
                                     {{ Form::open(['action' => 'Account\ReviewController@store']) }}
-                                    
+
                                     {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
                                     {!! Form::hidden('service_id', $booking->service->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
-                                    
+
                                     @if(count($errors) > 0)
                                         @foreach ($errors->all() as $error)
                                             <div class="alert alert-danger alert-dismissable" >
@@ -319,7 +319,7 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">{{__('file.action')}}</h2> 
+                                                <h2 class="mb-3 dark">{{__('file.action')}}</h2>
                                             </div>
                                             <div class="col-sm-12 mb-4">
                                                 <div class="col-12 mb-4">{{__('file.duration_request')}} </div>
@@ -350,7 +350,7 @@
                                           {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
                                         </div>
                                     </div>
-                                    {{ Form::close() }}                  
+                                    {{ Form::close() }}
                                     @endif
 
 
@@ -358,8 +358,8 @@
 
                                 </div>
                             </div>
-                            
-                        </div> 
+
+                        </div>
 
                     </div>
                 </div>
@@ -399,10 +399,10 @@
 
         var data = {'id' : $(this).data("id")};
 
-        $.ajax({    
+        $.ajax({
             type  : 'get',
             url   : '{!!URL::route('updateFavorite')!!}',
-            data  : data ,      
+            data  : data ,
             success:function(data){
 
                 console.log(data.result);
@@ -417,7 +417,7 @@
             console.log(data.err)
         }
       });
-    });   
+    });
 
 
 </script>
