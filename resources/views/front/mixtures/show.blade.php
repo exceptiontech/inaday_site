@@ -14,7 +14,7 @@
                     <div class="bg-light rounded pt-3 pb-3 p-2">
                         <div class="img mb-3 text-center" >
                           <img class="img-fluid" src="{{ url($mixture->image ?? '/assets/images/logo.png' )}}" alt="" title="" />
-                         
+
                         </div>
 
                         <div class="project-info mb-5">
@@ -40,7 +40,7 @@
                         </div>
                         @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
-                          
+
                               <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
                                   {{ csrf_field() }}
@@ -74,13 +74,13 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{__('file.mixture_title')}}</h2> 
+                                       <h2 class="mb-3">{{__('file.mixture_title')}}</h2>
                                        <p>{{$mixture->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                              
+
                                               <div id="socialHolder">
                                                 <div id="socialShare" class=" share-group">
                                                   <a data-toggle="dropdown" class="btn">
@@ -96,7 +96,7 @@
                                                       <a target="_blank"  href="http://www.facebook.com/sharer.php?u={{url('/mixtures/'.$mixture->title)}}" class="btn btn-facebook" >
                                                       <i class="fa fa-facebook"></i>
                                                     </a>
-                                                    </li>         
+                                                    </li>
                                                       <li>
                                                       <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url('/mixtures/'.$mixture->title)}}" class="btn btn-linkedin" data-placement="left">
                                                       <i class="fa fa-linkedin"></i>
@@ -133,7 +133,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">{{__('file.mixture_title')}}</h2> 
+                                        <h2 class="mb-3">{{__('file.mixture_desc')}}</h2>
                                         <p>{{$mixture->desc}}</p>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                             <div class="col-6">
                                                 <div class=" mb-1">
                                                     <span class="numberCircle">{{ $key }} </span>
-                                                    <label>{{$service->title}}</label> 
+                                                    <label>{{$service->title}}</label>
                                                 </div>
                                             </div>
                                             <div class="col-2">
@@ -200,7 +200,7 @@
                                 <div class="block col-12 pt-3 pb-5 mb-1">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h2 class="mb-3">باقات اضافة للخدمة</h2> 
+                                            <h2 class="mb-3">باقات اضافة للخدمة</h2>
                                         </div>
 
                                         <div class="col-8">
@@ -222,11 +222,11 @@
                                 </div>
                             @endif
 
-                            {{-- 
+                            {{--
                             <div class="block col-12 pt-3 pb-5 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">تقييمات العملاء</h2> 
+                                        <h2 class="mb-3">تقييمات العملاء</h2>
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -234,7 +234,7 @@
                                 @if(count($mixture->reviews) > 0)
 
                                     @foreach($mixture->reviews as $review)
-                                    
+
                                     <div class="col-12 comment">
                                         <div class="d-flex align-items-center mb-2">
                                             <img src="{{url($review->user->userdetail->first()->avater ?? '/assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid ">
@@ -243,7 +243,7 @@
                                                 <div class="mt-2 small">
                                                     <h2>{{ $review->user->first_name.' '.$review->user->last_name }}</h2>
                                                 </div>
-                                                <span class="small"> 10/11/2019</span> 
+                                                <span class="small"> 10/11/2019</span>
                                             </div>
                                         </div>
 
@@ -262,8 +262,8 @@
                                 </div>
                             </div>
                             --}}
-                            
-                        </div> 
+
+                        </div>
 
                     </div>
                 </div>
@@ -283,10 +283,10 @@
 
         var data = {'id' : $(this).data("id"),'type' : $(this).data("type")};
 
-        $.ajax({    
+        $.ajax({
             type  : 'get',
             url   : '{!!URL::route('updateFavorite')!!}',
-            data  : data ,      
+            data  : data ,
             success:function(data){
 
                 console.log(data.result);
@@ -301,7 +301,7 @@
             console.log(data.err)
         }
       });
-    });   
+    });
 
 
 </script>
