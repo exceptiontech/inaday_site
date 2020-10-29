@@ -62,7 +62,7 @@
  -->
                     </ul>
                 </div>
-                <!-- <div class="widget mt-5 mb-4">
+                <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
                     <form method="GET" action="#" id="subscribe-form">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </form>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
