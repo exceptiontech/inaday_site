@@ -55,10 +55,9 @@ class BookingController extends Controller
 
         $replaykinds = Replaykind::all();
 
-        if (!$booking) {
+        if (!$booking || !$booking->UserhaveAccess(Auth::user()->id)) {
             return view('front.errors.denied');
         }
-
         if ($booking->service_id ) {
 
             if (Auth::user()->isServicesProvider()) {
@@ -93,7 +92,7 @@ class BookingController extends Controller
             }else {
                 return view('front.errors.denied');
             }
-            
+
             return view('front.bookings.project.show')->withBooking($booking)->withReplaykinds($replaykinds);
 
         } elseif ($booking->mixture_id ) {
@@ -110,10 +109,10 @@ class BookingController extends Controller
             }else {
                 return view('front.errors.denied');
             }
-            
+
             return view('front.bookings.mixture.show')->withBooking($booking)->withReplaykinds($replaykinds);
 
-        } 
+        }
 
             return view('front.errors.denied');
 

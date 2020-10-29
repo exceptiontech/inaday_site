@@ -61,8 +61,8 @@
                         <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
  -->
                     </ul>
-                </div> 
-                <div class="widget mt-5 mb-4">
+                </div>
+                <!-- <div class="widget mt-5 mb-4">
                     <h2>{{trans('file.newsleter_register')}}</h2>
                     <p >{{trans('file.register_your_email_to_subscribe_to_the_mailing_list_to_receive_all_new')}}</p>
                     <form method="GET" action="#" id="subscribe-form">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -285,10 +285,10 @@
 
         var data = {'email' : $('#subscribe-form input').val()};
 
-        $.ajax({    
+        $.ajax({
             type  : 'post',
             url   : '{!!URL::route('subscribe')!!}',
-            data  : data ,      
+            data  : data ,
             success:function(data){
 
 
@@ -302,7 +302,7 @@
             console.log(data.err)
         }
       });
-    }); 
+    });
 
     </script>
 
@@ -334,10 +334,10 @@
 
         var data = {'email' : $('#subscribe-form input').val()};
 
-        $.ajax({    
+        $.ajax({
             type  : 'post',
             url   : '{!!URL::route('subscribe')!!}',
-            data  : data ,      
+            data  : data ,
             success:function(data){
 
 
@@ -351,7 +351,7 @@
             console.log(data.err)
         }
       });
-    }); 
+    });
 
 
         /// login by jquery ajax

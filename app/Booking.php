@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    
+
 
     public function service()
     {
@@ -85,6 +85,16 @@ class Booking extends Model
             return $this->mixture->team->user;
         }
     }
+
+    public function UserhaveAccess($id) {
+
+        if($this->getModelUser()->id == $id || $this->user->id == $id ) {
+            return $this->getModelUser()->id;
+        }
+
+        return false;
+    }
+
 
 
     // public function status() {
