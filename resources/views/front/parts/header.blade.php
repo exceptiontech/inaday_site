@@ -65,7 +65,18 @@
             </ul>
             <ul class="navbar-nav ml-auto login_menu">
               <li class="nav-item">
-                  <a class="nav-link noborder" href="{{url('pages/4')}}">{{trans('file.how_inaday_work')}}  </a>
+                <a class="nav-link noborder" data-toggle="modal" data-target="#inadayModal">{{trans('file.how_inaday_work')}}  </a>
+                <!-- Inaday -->
+                <div class="modal fade" id="inadayModal" tabindex="-1" role="dialog" aria-labelledby="inadayModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <img class="img-fluid" src="{{url('images/Inaday.jpg') }}" alt="inaday">
+                        </div>
+                    </div>
+                </div>
+                </div>
+
               </li>
               @guest
                 <li class="nav-item not-active">
@@ -92,7 +103,7 @@
                     <li class="nav-item not-active notification-item">
                       <div class="dropdown">
                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-bell" aria-hidden="true"></i> 
+                          <i class="fa fa-bell" aria-hidden="true"></i>
                           @if(count(Auth::user()->unreadNotifications))
                             <span class="count">{{count(Auth::user()->unreadNotifications) ?? '0'}}</span>
                           @endif
@@ -100,7 +111,7 @@
 
                         <div class="dropdown-menu notification-dropdown" aria-labelledby="dropdownMenuButton">
                           @if(count(Auth::user()->unreadNotifications))
-                            @foreach(Auth::user()->unreadNotifications->take(10) as $notification) 
+                            @foreach(Auth::user()->unreadNotifications->take(10) as $notification)
                               <a class="dropdown-item" href="
                               {{ url($notification->data['url'] ?? 'account/notifications/') }}
                               ">
@@ -122,7 +133,7 @@
                           @endif
                           <div class="d-flex text-center">
                             <a class="dropdown-item col-6 bg text-center" href="{{ url('account/notifications/') }}">
-                              <i class="fa fa-bars ml-2" aria-hidden="true"></i>  {{trans('file.notifications')}} 
+                              <i class="fa fa-bars ml-2" aria-hidden="true"></i>  {{trans('file.notifications')}}
                             </a>
                             <a class="dropdown-item col-6 bg text-center" href="{{ url('account/settings') }}">   <i class="fa fa-cog" aria-hidden="true"></i> {{trans('file.notifications_settings')}}
                             </a>
