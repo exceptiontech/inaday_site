@@ -9,7 +9,7 @@
         <div class="box box-warning">
             <div class="box-body">
 
-                {{ Form::open(['action' => 'Admin\ArticleController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
+                {{ Form::open(['action' => 'Admin\FaqController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
 
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -23,7 +23,7 @@
 
                     <div class="card text-left">
                         <div class="card-body">
-                            <h4 class="card-title mb-3">{{trans('admin.addarticle')}}</h4>
+                            <h4 class="card-title mb-3">{{trans('admin.addfaq')}}</h4>
                             <ul class="nav nav-pills" id="myPillTab" role="tablist">
 
                                 @foreach (Config::get('languages') as $lang => $language)
@@ -40,64 +40,55 @@
 
                                 <div class="tab-pane  @if ($lang == App::getLocale()) fade active show @endif " id="{{$lang}}" role="tabpanel" aria-labelledby="{{$lang}}-icon-pill">
                                     <div class="form-group">
-                                        {!! Form::label('title-'.$lang, trans('admin.title').' - '.$language ) !!}
-                                        {!! Form::text('title['.$lang.']', null, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title_'.$lang]) !!}
+                                        {!! Form::label('question-'.$lang, trans('admin.question').' - '.$language ) !!}
+                                        {!! Form::text('question['.$lang.']', null, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title_'.$lang]) !!}
                                     </div>
 
 
                                     <div class="form-group">
-                                        {!! Form::label('desc-'.$lang, trans('admin.desc').' - '.$language) !!}
-                                        {!! Form::textarea('desc['.$lang.']', null,
+                                        {!! Form::label('answer-'.$lang, trans('admin.answer').' - '.$language) !!}
+                                        {!! Form::textarea('answer['.$lang.']', null,
                                             array('required',
                                                   'class'=>'textarea form-control',
-                                                  'placeholder'=>trans('admin.desc'))) !!}
+                                                  'placeholder'=>trans('admin.answer'))) !!}
                                     </div>
                                 </div>
                                @endforeach
                             </div>
+
+
+                                <div class="form-group">
+                                    {!! Form::label('slug', trans('admin.slug')) !!}
+                                    {!! Form::text('slug', null, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                </div>
+
+
+                                <div class="form-group">
+                                    {!! Form::label('department_id', trans('admin.department')) !!}
+                                    {!!Form::select('department_id', $departments->pluck('title.'.App::getLocale(),'id'), null , ['required', 'class' => 'form-control']) !!}
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('order', trans('admin.slug')) !!}
+                                    {!! Form::text('order', 0, ['required', 'class' => 'form-control']) !!}
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('is_active', trans('admin.status')) !!}
+                                    {!!Form::select('is_active', ['1' => trans('admin.yes'), '0' => trans('admin.no')], '1', ['required', 'class' => 'form-control']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::submit(trans('admin.add'), array('class'=>'btn btn-warning')) !!}
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
 
                     </div>
-
-
-                    <div class="form-group">
-                        {!! Form::label('slug', trans('admin.slug')) !!}
-                        {!! Form::text('slug', null, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('image', trans('admin.image')) !!}
-                        {!! Form::file('image', array( 'class' => 'form-control')) !!}
-                    </div>
-
-
-                    <div class="form-group">
-                        {!! Form::label('department_id', trans('admin.department')) !!}
-                        {!!Form::select('department_id', $departments->pluck('title.'.App::getLocale(),'id'), null , ['required', 'class' => 'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('order', trans('admin.slug')) !!}
-                        {!! Form::text('order', 0, ['required', 'class' => 'form-control']) !!}
-                    </div>
-
-
-
-                    <div class="form-group">
-                        {!! Form::label('is_active', trans('admin.status')) !!}
-                        {!!Form::select('is_active', ['1' => trans('admin.yes'), '0' => trans('admin.no')], '1', ['required', 'class' => 'form-control']) !!}
-                    </div>
-
 
 
                 </div>
-                <div class="box-footer">
-                    <div class="form-group">
-                        {!! Form::submit(trans('admin.add'), array('class'=>'btn btn-warning')) !!}
-                    </div>
-                </div>
-                {{ Form::close() }}
+
             </div>
         </div>
 </section>

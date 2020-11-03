@@ -77,7 +77,7 @@ Route::group(['middleware'=>'verified'], function() {
     // Profile
     Route::get('account', 'UsersController@account');
     Route::get('account/profile', 'UsersController@profile')->name('account.profile');
-    Route::get('/getCities', ['uses' => 'UsersController@getCities','as' => 'getCities']);  
+    Route::get('/getCities', ['uses' => 'UsersController@getCities','as' => 'getCities']);
     Route::get('account/profile/edit', 'UsersController@edit')->name('account.edit');
     Route::post('account/profile/update', 'UsersController@update');
     Route::get('account/profile/removeCV', 'UsersController@removeCV');
@@ -100,7 +100,7 @@ Route::group(['middleware'=>'verified'], function() {
     Route::resource('account/services', 'Account\ServiceController', ['names' => 'front_services']);
     Route::get('account/services/delete/{id}', 'Account\ServiceController@delete')->name('services.delete');
     // fav
-    Route::get('/account/favorite', ['uses' => 'FavoriteController@update','as' => 'updateFavorite']);  
+    Route::get('/account/favorite', ['uses' => 'FavoriteController@update','as' => 'updateFavorite']);
 
 
     // mixture
@@ -168,7 +168,7 @@ Route::group(['middleware'=>'verified'], function() {
     Route::resource('files', 'FileController', ['names' => 'front_teams'])->only(['destory']);
     Route::get('files/delete/{id}', 'FileController@delete')->name('file.delete');
 
-    
+
 
 });
 
@@ -177,6 +177,7 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
 	Route::get('/', 'AdminController@index');
     Route::resource('articles','Admin\ArticleController');
     Route::resource('faqs','Admin\FaqController');
+    Route::resource('departments','Admin\DepartmentController');
     Route::resource('pages','Admin\PageController');
     Route::resource('levels','Admin\LevelController');
     Route::resource('prefers','Admin\PreferController');

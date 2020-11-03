@@ -17,7 +17,9 @@ class Article extends Model
     public $casts = ['title' => 'array','desc' => 'array'];
 
 
-
+    public function department() {
+        return $this->belongsTo('App\Department');
+    }
 
     public function getTitle()
     {

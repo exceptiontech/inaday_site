@@ -478,7 +478,7 @@ class CreateAdminUserSeeder extends Seeder
             'slug' => '2',
         ]);
 
-        
+
         $title  = array();
         $title['ar'] = 'جميع ماسبق';
         $title['en'] = 'all the above';
@@ -620,7 +620,7 @@ class CreateAdminUserSeeder extends Seeder
         $title['en'] = 'التصميم الجرافيكي ( هوية المشروع )';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'graphic_design', 
+            'slug' => 'graphic_design',
         ]);
 
         $title  = array();
@@ -628,7 +628,7 @@ class CreateAdminUserSeeder extends Seeder
         $title['en'] = 'تصميم موقع إلكتروني UI/UX';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'ui_ux', 
+            'slug' => 'ui_ux',
         ]);
 
         $title  = array();
@@ -636,7 +636,7 @@ class CreateAdminUserSeeder extends Seeder
         $title['en'] = 'إنشاء موقع إلكتروني Web Development';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'web', 
+            'slug' => 'web',
         ]);
 
         $title  = array();
@@ -644,7 +644,7 @@ class CreateAdminUserSeeder extends Seeder
         $title['en'] = 'إنهاء الإجراءات الحكومية للبدء بالمشروع';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'graphic_design', 
+            'slug' => 'graphic_design',
         ]);
 
         $title  = array();
@@ -652,9 +652,9 @@ class CreateAdminUserSeeder extends Seeder
         $title['en'] = 'الهوية البصرية';
         $section = Section::create([
             'title' => $title,
-            'slug' => 'graphic_design', 
+            'slug' => 'graphic_design',
         ]);
-        
+
 
         $title  = array();
         $title['ar'] = 'ماعندي حتى فكرة، بس لازم أبدء';

@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 
-@section('before-css')
-
-
-@endsection
-
+@section('content')
 <div class="col-md-12">
     <!-- Horizontal Form -->
     <div class="box box-warning">
@@ -24,7 +20,7 @@
 
                 @if (Session::has('message'))
                   <div class="alert alert-dismissible alert-{{Session::get('status')}}">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         {{Session::get('message')}}
                   </div>
                 @endif
@@ -56,8 +52,8 @@
                                 @endif
 
                             </td>
-                            <td>{{$department->title }}</td>
-                            <td>{{$department->desc }}</td>
+                            <td>{{$department->title[App::getLocale()] }}</td>
+                            <td>{{$department->desc[App::getLocale()] }}</td>
 
                             <td>
                                 @if($department->parent)
@@ -72,7 +68,7 @@
                                     <div class="badge bg-green">
                                       {{trans('admin.is_active')}}
                                     </div>
-                                  @else 
+                                  @else
                                     <div class="badge bg-red">
                                       {{trans('admin.not_active')}}
                                     </div>
@@ -82,7 +78,7 @@
 
                             <td class="actions" width="120">
                                 @can('department-edit')
-                                    <a class="text-success mr-2" href="{{ action('DepartmentController@edit',$department->id) }}" data-toggle="tooltip" title="{{trans('admin.edit')}}">
+                                    <a class="text-success mr-2" href="{{ action('Admin\DepartmentController@edit',$department->id) }}" data-toggle="tooltip" title="{{trans('admin.edit')}}">
                                       <i class="nav-icon i-Pen-2 font-weight-bold" aria-hidden="true"></i>
                                     </a>
                                 @endcan
@@ -111,11 +107,6 @@
 @endsection
 
 
-@section('page-js')
-    <script src="{{asset('assets/dashboard/js/scripts/vendor/datatables.min.js')}}"></script>
-    <script src="{{asset('assets/dashboard/js/scripts/datatables.script.js')}}"></script>s
-@endsection
-
-@section('bottom-js')
+@section('jquery')
 
 @endsection

@@ -15,25 +15,25 @@ return [
 
 
     /*Alerts*/
-    'success'     => 'success',    
-    'danger'     => 'danger',    
-    'warning'     => 'warning',    
-    'info'     => 'info',    
-    'id'     => 'ID',    
+    'success'     => 'success',
+    'danger'     => 'danger',
+    'warning'     => 'warning',
+    'info'     => 'info',
+    'id'     => 'ID',
 
 
     /* General */
     'fullname'     => 'الاسم الكامل',
-    'name'     => 'العنوان',  
-    'name_en'     => 'العنوان - بالإنجليزي',  
-    'fullname'     => 'الاسم الكامل ',    
-    'password'     => 'كلمة المرور  ',    
-    'confirm_password'     => 'تأكيد كلمة المرور   ',    
-    'bio'     => 'السيرة الذاتية ',    
-    'avatar'     => 'الصورة الشخصية ',    
-    'mobile'     => 'الجوال ',    
-    'yes'     => 'نعم',    
-    'no'     => 'لا',    
+    'name'     => 'العنوان',
+    'name_en'     => 'العنوان - بالإنجليزي',
+    'fullname'     => 'الاسم الكامل ',
+    'password'     => 'كلمة المرور  ',
+    'confirm_password'     => 'تأكيد كلمة المرور   ',
+    'bio'     => 'السيرة الذاتية ',
+    'avatar'     => 'الصورة الشخصية ',
+    'mobile'     => 'الجوال ',
+    'yes'     => 'نعم',
+    'no'     => 'لا',
     'previous' => '&laquo; السابق',
     'next'     => 'القادم &raquo;',
     'create_success'     => 'تمت الإضافة بنجاح',
@@ -208,6 +208,7 @@ return [
     'editquestion'     => 'تعديل سؤال',
     'correct_solution'     => 'الإجابة الصحيحة',
     'previous_question'     => 'السؤال السابق',
+    'answer'     => 'الإجابة',
 
 
     'statuses'     => 'الحالات',
@@ -286,17 +287,17 @@ return [
     'addsubscriber'     => 'إضافة  عضو ',
     'editsubscriber'     => 'تعديل  عضو',
 
- 
+
     'cities'     => 'المدن',
     'city'     => 'المدينة',
     'addcity'     => 'إضافة مدينة',
     'editcity'     => 'تعديل مدينة',
- 
+
     'countries'     => 'الدول',
     'country'     => 'الدولة',
     'addcountry'     => 'إضافة دولة',
     'editcountry'     => 'تعديل دولة',
- 
+
     'roles'     => 'الصلاحيات',
     'role'     => 'صلاحية',
     'addrole'     => 'إضافة صلاحية',
@@ -319,7 +320,7 @@ return [
     'uses_customer'     => 'العدد للعميل الواحد',
     'fixed'     => 'القيمة الثابتة',
     'percent'     => 'النسبة المئوية',
- 
+
     'payments'     => 'طرق الدفع',
     'addpayment'     => 'إضافة طريقة دفع',
     'editpayment'     => 'تعديل طريقة الدفع',
@@ -416,7 +417,7 @@ return [
     'alreadyhavediscount'     => 'الفاتورة تحمل تخفيض فعلي',
     'haveinvoicealready'     => 'هذا الموعد يحتوي حاليا على فاتورة للجلسات',
     'appointmenthaveinvoicealready'     => 'هذا الموعد يحتوي حاليا على فاتورة',
-    
+
 
     'tree'     => 'شجرة الحسابات',
     'ecategories'     => 'أقسام المصروفات',

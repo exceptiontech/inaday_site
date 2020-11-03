@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use App\Department;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        
+
         $departments = Department::all();
         return view('admin.departments.index')->withDepartments($departments);
 
@@ -80,7 +81,7 @@ class DepartmentController extends Controller
 
 
         $data = $request->all();
-        
+
         $department = Department::create($data);
 
         $image = $request->image;
@@ -88,7 +89,7 @@ class DepartmentController extends Controller
         if (isset($image)) {
             $destinationPath = 'uploads/departments';
             $extension =  $image->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'.'.$extension; 
+            $fileName = rand(11111,99999).'.'.$extension;
             $upload_success = $image->move($destinationPath, $fileName);
             $department->image =  $destinationPath.'/'.$fileName;
         }
@@ -148,7 +149,7 @@ class DepartmentController extends Controller
         $department->title = $request->title;
         $department->desc = $request->desc;
         $department->parent_id = $request->parent_id;
-        $department->is_active = $request->is_active;        
+        $department->is_active = $request->is_active;
         $department->save();
 
         $image = $request->image;
@@ -156,7 +157,7 @@ class DepartmentController extends Controller
         if (isset($image)) {
             $destinationPath = 'uploads/departments';
             $extension =  $image->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'.'.$extension; 
+            $fileName = rand(11111,99999).'.'.$extension;
             $upload_success = $image->move($destinationPath, $fileName);
             $department->image =  $destinationPath.'/'.$fileName;
         }
