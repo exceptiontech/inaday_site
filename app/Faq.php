@@ -11,13 +11,12 @@ class Faq extends Model
     use HasRoles;
 
     protected $table = 'faqs';
+    public $translatable = ['question','answer'];
+    public $casts = ['question' => 'array','answer' => 'array'];
+    protected $fillable = ['question','answer','slug','user_id','is_active','order'];
 
-    public $casts = ['answer' => 'array','question' => 'array'];
-
-
-    protected $fillable = ['title','answer','slug','user_id','is_active','order'];
-
-
-
+    public function department() {
+        return $this->belongsTo('App\Department');
+    }
 
 }
