@@ -39,10 +39,10 @@
 										        {{ $faq->question[App::getLocale()]}}
 										      </a>
 										    </div>
-										    <div id="collapse{{ $faq->id}}" class="collapse 
+										    <div id="collapse{{ $faq->id}}" class="collapse
 										    @if ($loop->first) show @endif" data-parent="#accordion">
 										      <div class="card-body">
-										      	{{ $faq->answer[App::getLocale()]}}
+                                                {!! $faq->answer[App::getLocale()] !!}
 										      </div>
 										    </div>
 										  </div>
@@ -65,10 +65,10 @@
 													        {{ $faq->question[App::getLocale()]}}
 													      </a>
 													    </div>
-													    <div id="collapse{{ $faq->id}}" class="collapse 
+													    <div id="collapse{{ $faq->id}}" class="collapse
 													    @if ($loop->first) show @endif" data-parent="#accordion">
 													      <div class="card-body">
-													      	{{ $faq->answer[App::getLocale()]}}
+													      	{!! $faq->answer[App::getLocale()] !!}
 													      </div>
 													    </div>
 													  </div>
