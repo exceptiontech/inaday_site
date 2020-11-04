@@ -45,30 +45,43 @@
                     @endif
 
 
-                    <div class="form-group {{  $errors->has('title') ? 'has-error' : ''}}">
+                    <ul class="nav nav-pills" id="myPillTab" role="tablist">
 
-                        {!! Form::hidden('locale', App::getLocale(), ['required','class' => 'form-control','autocomplete'=>'off','id'=>'locale']) !!}
+                    @foreach (Config::get('languages') as $lang => $language)
 
-                        {!! Form::label('title', trans('admin.name'))!!}
-                        {!! Form::text('title', $department->title, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title']) !!}
+
+                        <li class="nav-item"><a class="nav-link @if ($lang  == App::getLocale()) active show @endif " id="{{$lang}}-icon-pill" data-toggle="pill" href="#{{$lang}}" role="tab" aria-controls="homePIll" aria-selected="true">{{$language}}</a></li>
+
+                    @endforeach
+
+
+                    </ul>
+                    <div class="tab-content" id="myPillTabContent">
+                    @foreach (Config::get('languages') as $lang => $language)
+
+                    <div class="tab-pane  @if ($lang == App::getLocale()) fade active show @endif " id="{{$lang}}" role="tabpanel" aria-labelledby="{{$lang}}-icon-pill">
+                        <div class="form-group">
+                            {!! Form::label('title-'.$lang, trans('admin.title').' - '.$language ) !!}
+                            {!! Form::text('title['.$lang.']', $department->title[$lang], ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title_'.$lang]) !!}
+                        </div>
+
+
+                        <div class="form-group">
+                            {!! Form::label('desc-'.$lang, trans('admin.desc').' - '.$language) !!}
+                            {!! Form::textarea('desc['.$lang.']', $department->desc[$lang],
+                                array('required',
+                                    'class'=>'textarea form-control',
+                                    'placeholder'=>trans('admin.desc'))) !!}
+                        </div>
                     </div>
-
-
-                    <div class="form-group {{  $errors->has('desc') ? 'has-error' : ''}}">
-                        {!! Form::label('desc', trans('admin.desc')) !!}
-                        {!! Form::textarea('desc', $department->desc, 
-                            array('required', 
-                                  'class'=>'textarea form-control', 
-                                  'id'=>'editor', 
-                                  'placeholder'=>trans('admin.desc'))) !!}
+                    @endforeach
                     </div>
-
 
                     @if(count($departments) > 0)
                     <div class="form-group">
                         {!! Form::label('parent_id', trans('admin.parents'))  !!}
 
-                        {!! Form::select('parent_id',$departments->pluck('title','id'), $department->parent_id ,[ 'class' => 'form-control','placeholder'=>'قسم اب']) !!} 
+                        {!! Form::select('parent_id',$departments->pluck('title.'.App::getLocale(),'id'), $department->parent_id ,[ 'class' => 'form-control','placeholder'=>'قسم اب']) !!}
                     </div>
                     @endif
 
@@ -93,13 +106,13 @@
                         {!!Form::select('is_active', ['1' => trans('admin.yes'), '0' => trans('admin.no')], $department->is_active, ['required', 'class' => 'form-control']) !!}
                     </div>
 
-                        {!! Form::submit(trans('admin.save'), 
+                        {!! Form::submit(trans('admin.save'),
                           array('class'=>'btn btn-primary')) !!}
 
-                
+
                 {{ Form::close() }}
             </div>
-            
+
         </div>
     </div>
 </div>

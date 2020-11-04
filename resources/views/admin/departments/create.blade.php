@@ -41,30 +41,43 @@
                     </div>
                 @endif
 
-                        
-                {{ Form::open(['action' => 'DepartmentController@store', 'files'=>true,'novalidate'=>'novalidate','class'=>'mt-4']) }}
 
-                    <div class="form-group {{  $errors->has('title') ? 'has-error' : ''}}">
+                {{ Form::open(['action' => 'Admin\DepartmentController@store', 'files'=>true,'novalidate'=>'novalidate','class'=>'mt-4']) }}
 
-                        {!! Form::hidden('locale', App::getLocale(), ['required','class' => 'form-control','autocomplete'=>'off','id'=>'locale']) !!}
+                    <ul class="nav nav-pills" id="myPillTab" role="tablist">
+                        @foreach (Config::get('languages') as $lang => $language)
 
-                        {!! Form::label('title', trans('admin.name'))!!}
-                        {!! Form::text('title', null, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title']) !!}
-                    </div>
-                    
-                    <div class="form-group {{  $errors->has('desc') ? 'has-error' : ''}}">
-                        {!! Form::label('desc', trans('admin.desc')) !!}
-                        {!! Form::textarea('desc', null, 
-                            array('class'=>'textarea form-control', 
-                                  'id'=>'desc', 
-                                  'placeholder'=>trans('admin.desc'))) !!}
+                            <li class="nav-item"><a class="nav-link @if ($lang  == App::getLocale()) active show @endif " id="{{$lang}}-icon-pill" data-toggle="pill" href="#{{$lang}}" role="tab" aria-controls="homePIll" aria-selected="true">{{$language}}</a></li>
+
+                        @endforeach
+                    </ul>
+
+                    <div class="tab-content" id="myPillTabContent">
+                    @foreach (Config::get('languages') as $lang => $language)
+
+                        <div class="tab-pane  @if ($lang == App::getLocale()) fade active show @endif " id="{{$lang}}" role="tabpanel" aria-labelledby="{{$lang}}-icon-pill">
+                            <div class="form-group">
+                                {!! Form::label('question-'.$lang, trans('admin.question').' - '.$language ) !!}
+                                {!! Form::text('question['.$lang.']', null, ['required','class' => 'form-control','autocomplete'=>'off','id'=>'title_'.$lang]) !!}
+                            </div>
+
+
+                            <div class="form-group">
+                                {!! Form::label('answer-'.$lang, trans('admin.answer').' - '.$language) !!}
+                                {!! Form::textarea('answer['.$lang.']', null,
+                                    array('required',
+                                        'class'=>'textarea form-control',
+                                        'placeholder'=>trans('admin.answer'))) !!}
+                            </div>
+                        </div>
+                    @endforeach
                     </div>
 
                     @if(count($departments) > 0)
                     <div class="form-group">
                         {!! Form::label('parent_id', trans('admin.parents'))  !!}
 
-                        {!! Form::select('parent_id',$departments->pluck('title','id'), null ,['required', 'class' => 'form-control','placeholder'=>'قسم اب']) !!} 
+                        {!! Form::select('parent_id',$departments->pluck('title.'.App::getLocale(),'id'), null ,['required', 'class' => 'form-control','placeholder'=>'قسم اب']) !!}
                     </div>
                     @endif
 
@@ -88,7 +101,7 @@
 
                 {{ Form::close() }}
             </div>
-            
+
         </div>
     </div>
 </div>

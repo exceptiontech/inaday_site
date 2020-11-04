@@ -40,10 +40,16 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $type = $request->type;
 
-        $departments = Department::all();
+        if($type) {
+            $departments = Department::where('type',$type)->get();
+        }else {
+            $departments = Department::all();
+        }
+
         return view('admin.departments.index')->withDepartments($departments);
 
     }
@@ -53,9 +59,16 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $departments = Department::latest()->get();
+        $type = $request->type;
+
+        if($type) {
+            $departments = Department::where('type',$type)->get();
+        }else {
+            $departments = Department::all();
+        }
+
         return view('admin.departments.create')->withDepartments($departments);
     }
 
@@ -129,10 +142,17 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        $departments = Department::all();
+        $type = $request->type;
+
+        if($type) {
+            $departments = Department::where('type',$type)->get();
+        }else {
+            $departments = Department::all();
+        }
         $department = Department::find($id);
+
         return view('admin.departments.edit')->withDepartment($department)->withDepartments($departments);
     }
 
@@ -179,7 +199,7 @@ class DepartmentController extends Controller
         Session::flash('status', __('admin.success'));
         Session::flash('message', __('admin.create_success'));
 
-        return redirect::to('admin/departments');
+        return redirect::to('admin/departments?type='.$department->type);
     }
 
     /**

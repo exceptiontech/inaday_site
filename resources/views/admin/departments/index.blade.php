@@ -9,7 +9,7 @@
               {{trans('admin.departments')}}
               @can('department-create')
               <span class="float-right">
-                <a class="btn btn-primary" href="{{ url('/admin/departments/create') }}">{{trans('admin.adddepartment')}}</a>
+                <a class="btn btn-primary" href="{{ url('/admin/departments/create?type=sponsors') }}">{{trans('admin.adddepartment')}}</a>
               </span>
               @endcan
             </h3>
