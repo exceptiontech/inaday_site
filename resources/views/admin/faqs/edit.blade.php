@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 {!! Form::label('slug', trans('admin.slug')) !!}
-                                {!! Form::text('slug', $faq->slug, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                {!! Form::text('slug', $faq->slug, ['required', 'class' => 'form-control']) !!}
                             </div>
 
 

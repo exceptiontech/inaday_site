@@ -59,7 +59,7 @@
 
                                 <div class="form-group">
                                     {!! Form::label('slug', trans('admin.slug')) !!}
-                                    {!! Form::text('slug', null, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    {!! Form::text('slug', null, ['required', 'class' => 'form-control']) !!}
                                 </div>
 
 
