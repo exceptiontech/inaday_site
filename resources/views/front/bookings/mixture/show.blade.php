@@ -19,15 +19,15 @@
                                   <img src="{{ url($booking->mixture->team->image) }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->mixture->title}}" title="{{$booking->mixture->title}}" />
                                 @else
                                   <img src="{{ url('assets/images/logo.png') }}" class="rounded-circle img-thumbnail img-fluid pull-right img-icon80" alt="{{$booking->mixture->title}}" title="{{$booking->mixture->title}}" />
-                                @endif  
+                                @endif
 
 
                                 <div class="ml-2">
-                                    <span class="small">{{__('file.the_team')}}</span> 
+                                    <span class="small">{{__('file.the_team')}}</span>
                                     <div class="mt-2 small">
-                                        <h2>{{ $booking->mixture->team->title }}</h2>                                    
+                                        <h2>{{ $booking->mixture->team->title }}</h2>
                                     </div>
-                                </div>                   
+                                </div>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
 
 
                             <div class="col-12 mt-5 mb-4 small">
-                                <h2>{{trans('file.payment_details')}}</h2>                                    
+                                <h2>{{trans('file.payment_details')}}</h2>
                             </div>
 
                             <ul class="list-group list-group-flush">
@@ -86,7 +86,7 @@
                                 <p class="small">{{trans('file.must_looged')}}</p>
                             @endguest
                         </div>
-                        
+
 
 
                     </div>
@@ -103,7 +103,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                       <h2 class="mb-3">{{trans('file.mixture_title')}}</h2> 
+                                       <h2 class="mb-3">{{trans('file.mixture_title')}}</h2>
                                        <p>{{ $booking->mixture->title}}</p>
                                     </div>
                                     <div class="col-sm-2 text-right">
@@ -115,7 +115,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">{{trans('file.mixture_desc')}}</h2> 
+                                        <h2 class="mb-3">{{trans('file.mixture_desc')}}</h2>
                                         <p>{{ $booking->mixture->desc}}</p>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2> 
+                                        <h2 class="mb-4">{{trans('file.targeted_skills')}}</h2>
                                         <div class="clearfix">
                                         @if(count($booking->mixture->skills))
                                             <ul class="list-inline">
@@ -147,7 +147,7 @@
                             <div class="block col-12 pt-3 pb-5 mb-1 border-0">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h2 class="mb-3">{{trans('file.mixture_path')}}</h2> 
+                                        <h2 class="mb-3">{{trans('file.mixture_path')}}</h2>
                                     </div>
                                 </div>
                                 <div class="row comments">
@@ -162,14 +162,15 @@
                                                 <img src="{{url($replay->user->userdetail->first()->avater ?? '/assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid pull-right">
 
                                                 <div class="ml-2">
-                                                    <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span> 
+                                                    <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span>
                                                     <div class="m-0 small">
-                                                        <span class="mr-2">{{trans('file.service_providers')}}</span>
+
+                                                        <span class="mr-2">{{$replay->user->position ?? ''}}</span>
                                                         <span>{{trans('file.date')}}  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y') ?? ''}} </span>
-                                                    
+
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-sm-4 text-right">
                                                 <ul class="list-inline">
@@ -200,13 +201,13 @@
                                             @foreach($replay->replays as $replay)
                                                 @if($replay->parent->is_confirmed == 1)
                                                 <div class="alert alert-info mt-4">
-                                                    {{trans('file.duration_accept')}} {{$replay->duration}} {{trans('file.duration_notes')}} 
+                                                    {{trans('file.duration_accept')}} {{$replay->duration}} {{trans('file.duration_notes')}}
                                                     <br>
                                                     {{$replay->replay}}
                                                 </div>
                                                 @else
                                                 <div class="alert alert-danger mt-4">
-                                                    {{trans('file.duration_refused')}} 
+                                                    {{trans('file.duration_refused')}}
                                                 </div>
                                                 @endif
                                             @endforeach
@@ -238,11 +239,11 @@
                                     <div class="block col-12 pt-3 pb-2 mb-3 border-0">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h2 class="mb-3 dark">{{__('file.add_replay')}}</h2> 
+                                                <h2 class="mb-3 dark">{{__('file.add_replay')}}</h2>
                                             </div>
                                             <div class="col-sm-12">
                                                 {{ Form::open(['action' => 'ReplayController@store','files'=>true]) }}
-                                                
+
                                                 {!! Form::hidden('booking_id', $booking->id, ['required', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
 
                                                 @if(count($errors) > 0)
@@ -262,7 +263,7 @@
 
                                                     <div class="row mb-4">
                                                         <div class="col-6">
-                                                            {!! Form::label('files', trans('forms.files'))!!} 
+                                                            {!! Form::label('files', trans('forms.files'))!!}
                                                             <div class="input-group">
                                                                 <span class="form-control overflow-hidden"></span>
                                                                 <span class="input-group-btn">
@@ -272,14 +273,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
-                                                            {!! Form::label('replaykind_id', trans('file.replay_kind'))!!} 
+                                                            {!! Form::label('replaykind_id', trans('file.replay_kind'))!!}
 
-                                                            {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,[ 'class' => 'form-control']) !!} 
+                                                            {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,[ 'class' => 'form-control']) !!}
                                                         </div>
                                                     </div>
                                                     <div id="duration" class="row mb-3" style="display: none;">
                                                         <div class="col-6">
-                                                            {!! Form::label('duration', trans('file.duration_hour'))!!} 
+                                                            {!! Form::label('duration', trans('file.duration_hour'))!!}
 
                                                             {!! Form::text('duration', null, ['class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
                                                         </div>
@@ -289,7 +290,7 @@
                                                             {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
-                                                {{ Form::close() }}                  
+                                                {{ Form::close() }}
                                             </div>
                                         </div>
                                     </div>
@@ -299,8 +300,8 @@
 
                                 </div>
                             </div>
-                            
-                        </div> 
+
+                        </div>
 
                     </div>
                 </div>
@@ -340,10 +341,10 @@
 
         var data = {'id' : $(this).data("id")};
 
-        $.ajax({    
+        $.ajax({
             type  : 'get',
             url   : '{!!URL::route('updateFavorite')!!}',
-            data  : data ,      
+            data  : data ,
             success:function(data){
 
                 console.log(data.result);
@@ -358,7 +359,7 @@
             console.log(data.err)
         }
       });
-    });   
+    });
 
 
 </script>
