@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 Route::get('/', 'FrontController@index')->name('home');
+Route::get('/sendSMS', 'FrontController@sendSMS')->name('sendSMS');
 
 Route::get('/{type}/google', 'UsersController@google')->name('google');
 Route::get('/auth/google/redirect', 'UsersController@googleRedirect');

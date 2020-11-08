@@ -33,6 +33,42 @@ class FrontController extends Controller
     }
 
 
+    public function sendSMS()
+    {
+
+
+        $url = "https://www.msegat.com/gw/sendsms.php";
+        $params = json_encode([
+            "userName" => "inaday.sa",
+            "userSender" => "Inaday",
+            "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+            "msg" => "Hi , Your current balance is points",
+            "numbers" => "966540437879"
+        ]);
+        $headers = array('Content-Type:application/json');
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $curl_response = curl_exec($ch);
+
+        if ($curl_response === false) {
+            $info = curl_getinfo($ch);
+            curl_close($ch);
+            die('error occured during curl exec. Additioanl info: ' . var_export($info));
+        }
+        var_dump($curl_response);
+        curl_close($ch);
+
+
+        //return $info["http_code"] . ' ' .$response;
+    }
+
+
+
     public function SearchIndex(Request $request , User $users)
     {
         $users = $users->newQuery();
