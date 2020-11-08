@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            
+
         </div>
 
         <div  class="row mb-4">
@@ -102,7 +102,7 @@
         <div class="row">
             <div class="col-12 col-md-6 inverse pt-5 pb-5">
                 <div class="col-8 offset-2">
-                    <img class="mb-2" src="{{url('images/service_provider.svg') }}" alt="profile-image">
+                    <img class="mb-2 bg-white rounded-circle" src="{{url('images/service_provider.png') }}" alt="profile-image">
                     <p class="job-title mb-2">{{trans('file.job_seekers')}}</p>
                     <h2 class="profile-name mb-3">{{trans('file.service_providers')}}</h2>
                     <p class="profile-descrition mb-5 text-left">{{trans('file.service_provider_desc')}}</p>
@@ -111,7 +111,7 @@
             </div>
             <div class="col-12 col-md-6 pt-5 pb-5">
                 <div class="col-8 offset-2">
-                    <img class="mb-2" src="{{url('images/entrepreneur.svg') }}" alt="profile-image">
+                    <img class="mb-2 bg-white rounded-circle" src="{{url('images/entrepreneur.png') }}" alt="profile-image">
                     <p class="job-title mb-2">{{trans('file.new_entrepreneurs')}}</p>
                     <h2 class="profile-name mb-3">{{trans('file.owne_entrepreneurs')}}</h2>
                     <p class="profile-descrition mb-5 text-left">{{trans('file.entrepreneur_desc')}}</p>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 col-md-4 mb-5 mt-3">
                 <div class="story text-center">
                     <img class="mt-n5" src="images/bd205a13adc1eee8654572d1082dd3da.png" alt="" class="rounded-circle" >
@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 col-md-4 mb-5 mt-3">
                 <div class="story text-center">
                     <img class="mt-n5" src="images/unnamed.png" alt="" class="rounded-circle" >
