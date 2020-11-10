@@ -3,7 +3,7 @@
 @section('content')
 <section class="content">
     <div class="row">
-        
+
         <div class="col-12">
 
         <div class="box box-warning">
@@ -27,13 +27,13 @@
                             <ul class="nav nav-pills" id="myPillTab" role="tablist">
 
                                 @foreach (Config::get('languages') as $lang => $language)
-                                    
+
 
                                     <li class="nav-item"><a class="nav-link @if ($lang  == App::getLocale()) active show @endif " id="{{$lang}}-icon-pill" data-toggle="pill" href="#{{$lang}}" role="tab" aria-controls="homePIll" aria-selected="true">{{$language}}</a></li>
 
                                 @endforeach
 
-                                
+
                             </ul>
                             <div class="tab-content" id="myPillTabContent">
                                 @foreach (Config::get('languages') as $lang => $language)
@@ -47,9 +47,9 @@
 
                                     <div class="form-group">
                                         {!! Form::label('desc-'.$lang, trans('admin.desc').' - '.$language) !!}
-                                        {!! Form::textarea('desc['.$lang.']', null, 
-                                            array('required', 
-                                                  'class'=>'textarea form-control', 
+                                        {!! Form::textarea('desc['.$lang.']', null,
+                                            array('required',
+                                                  'class'=>'textarea form-control',
                                                   'placeholder'=>trans('admin.desc'))) !!}
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                     </div>
 
 
-    
+
                 </div>
                 <div class="box-footer">
                     <div class="form-group">
@@ -101,14 +101,23 @@
 
 @section('jquery')
 
+<script src="https://cdn.tiny.cloud/1/7ljf40rkarnmz3gt099m57uymzz50ok63roj9y6dpxqqzamc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
 <script type="text/javascript">
-    
+
+    tinymce.init({
+      selector: '.textarea',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable  tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+    });
+
     $("#title_en").keyup(function(){
         var Text = $(this).val();
         Text = Text.toLowerCase();
         var regExp = /\s+/g;
         Text = Text.replace(regExp,'-');
-        $("#slug").val(Text);        
+        $("#slug").val(Text);
     });
 
     $("#title_en").dblclick(function(){
@@ -116,7 +125,7 @@
         Text = Text.toLowerCase();
         var regExp = /\s+/g;
         Text = Text.replace(regExp,'-');
-        $("#slug").val(Text);        
+        $("#slug").val(Text);
     });
 
 
