@@ -17,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
 
+Route::get('projects', 'API\ProjectController@index');
+Route::get('projects/{id}', 'API\ProjectController@show');
+
+Route::get('services', 'API\ServiceController@index');
+Route::get('services/{id}', 'API\ServiceController@show');
+
+Route::get('mixtures', 'API\MixtureController@index');
+Route::get('mixtures/{id}', 'API\MixtureController@show');
+
 
 
 Route::middleware('auth:api')->group(function () {
