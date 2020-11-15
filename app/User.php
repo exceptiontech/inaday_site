@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Passport\HasApiTokens;
 use App\Booking;
 use App\Message;
 
@@ -13,6 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use HasRoles;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -205,13 +207,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->whereHas('teams', function ($query) use ($id) {
                 $query->where('team_id' , $id);
             })->first();
-        
+
     }
 
     public function hasOwnTeam($id)
     {
         return $this->hasMany('App\Team')->where('id', $id)->first();
-        
+
     }
 
     public function teams()
@@ -228,19 +230,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->whereHas('teams', function ($query) use ($teamID) {
                 $query->where('team_id' , $teamID);
             })->first();
-        
+
     }
 
     public function portfolios()
     {
         return $this->hasMany('App\Portfolio')->where('deleted_at', '=', null);
     }
-    
+
     public function experiences()
     {
         return $this->hasMany('App\Experience')->where('deleted_at', '=', null);
     }
-    
+
     public function reviews()
     {
         return $this->hasMany('App\Review');
