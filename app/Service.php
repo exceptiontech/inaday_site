@@ -10,22 +10,26 @@ class Service extends Model
     {
         return $this->belongsTo('App\User');
     }
-    
+
     public function section()
     {
         return $this->belongsTo('App\Section');
     }
-    
+
     public function bookings()
     {
         return $this->hasMany('App\Booking');
     }
-    
+
     public function skills()
     {
         return $this->belongsToMany('App\Skill')->where('is_active',1);
     }
 
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
     public function reviews()
     {
         return $this->hasMany('App\Review');
