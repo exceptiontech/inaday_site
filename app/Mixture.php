@@ -10,15 +10,20 @@ class Mixture extends Model
     {
         return $this->belongsTo('App\Team');
     }
-    
+
     public function section()
     {
         return $this->belongsTo('App\Section');
     }
-    
+
     public function skills()
     {
         return $this->belongsToMany('App\Skill')->where('is_active',1);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
     }
 
     public function users()
