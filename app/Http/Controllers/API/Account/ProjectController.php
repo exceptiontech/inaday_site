@@ -38,44 +38,16 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $user = auth()->user();
+        if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
 
-        $projects = Project::where('user_id',$user->id)->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->paginate(10);
 
         return response()->json(['data' => $projects], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
 
-        if (count(Auth::user()->roles) == 0 || !Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة مشروع');
-            return redirect::to('/account/profile/edit');
-        }
-
-        $stages = Stage::where('is_active', 1)->get();
-        $skills = Skill::where('is_active', 1)->get();
-        $averagekinds= Averagekind::where('is_active', 1)->get();
-        $sections= Section::where('is_active', 1)->get();
-        $applykinds=Applykind::where('is_active', 1)->get();
-        $levels=Level::where('is_active', 1)->get();
-        $rewardkinds=Rewardkind::where('is_active', 1)->get();
-        $costkinds=Costkind::where('is_active', 1)->get();
-        $readiness_kinds=Readinesskind::where('is_active', 1)->get();
-
-        return view('front.profile.projects.create',compact('skills','averagekinds','sections','applykinds','levels','rewardkinds','costkinds','readiness_kinds','stages'));
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -86,6 +58,11 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         
+
+        if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+
 
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
@@ -246,58 +223,13 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectCreated($project));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', 'تم إنشاء المشروع وستتم مراجعته قريباً من إدارة الموقع');
-        return redirect::to('/user/'.Auth::user()->id);
+
+        return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if (count(Auth::user()->roles) == 0 || !Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        $project =Project::find($id);
 
 
-        if ($project->user_id != Auth::id() ) {
-            return view('front.errors.notfound');
-        }
-
-        // if (!$project->is_approved ) {
-        //     return view('front.errors.notfound');
-        // }
-
-        $stages = Stage::where('is_active', 1)->get();
-        $skills = Skill::where('is_active', 1)->get();
-        $averagekinds= Averagekind::all();
-        $sections= Section::all();
-        $applykinds=Applykind::all();
-        $levels=Level::all();
-        $rewardkinds=Rewardkind::all();
-        $costkinds=Costkind::all();
-        $readiness_kinds=Readinesskind::all();
-
-        return view('front.profile.projects.edit',compact('project','skills','averagekinds','sections','applykinds','levels','rewardkinds','costkinds','readiness_kinds','stages'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -310,12 +242,14 @@ class ProjectController extends Controller
     {
 
         if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
         elseif(is_null(Project::where('user_id',Auth::id())->first()) == 1)
         {
-            return view('front.errors.denied');
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
+
+
         $this->validate($request,[
             'title'      =>'required|max:500',
             'desc'      =>'required',
@@ -430,10 +364,7 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectUpdated($project));
         }
 
-        Session::flash('status', __('admin.info'));
-        Session::flash('message', __('admin.edit_success'));
-
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
     /**
@@ -451,16 +382,18 @@ class ProjectController extends Controller
             $project= Project::find($id);
 
             if (!$project->is_approved ) {
-                return view('front.errors.notfound');
+                return response()->json(['error' => 'Not approved'], 404,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             }
 
             if ($project->user_id != Auth::id() ) {
-                return view('front.errors.notfound');
+                return response()->json(['error' => 'Permission Denied'], 404,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             }
-
             
             $project->deleted_at = now();
             $project->save();
+
+        }else {
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
         if ($project) {
@@ -481,9 +414,7 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectDeleted($project));
         }
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 
     }

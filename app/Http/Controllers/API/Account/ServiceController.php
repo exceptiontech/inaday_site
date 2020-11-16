@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\API\Account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,44 +37,20 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
+        $services = Service::where('user_id',Auth::user()->id)->paginate(10);
 
-        $skills = Skill::where('is_active',1)->get();
-        $sections= Section::all();
-        $applykinds= Applykind::all();
 
-        return view('front.profile.services.index',compact('skills','sections'));
+        return response()->json(['data' => $services], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         //return view('front.profile.services.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
 
-        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        //return Auth::user()->userdetailComplete->first() ;
-
-        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خدمات');
-            return redirect::to('/account/profile/edit');
-        }
-
-        $skills = Skill::where('is_active',1)->get();
-        $sections= Section::all();
-
-        return view('front.profile.services.create',compact('skills','sections'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -101,12 +77,6 @@ class ServiceController extends Controller
         ]);
 
 
-        // if ($request->duration > 24) {
-        //     Session::flash('status', __('admin.danger'));
-        //     Session::flash('message', 'الحد الاقصي للساعات ٢٤ ساعة');
-        //     return redirect::back()->withErrors($validator)
-        //                 ->withInput();
-        // }
 
 
         if ($validator->fails()) {
@@ -197,46 +167,13 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceCreated($service));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => $service], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-        $service=Service::find($id);
 
-        if ($service->user_id != Auth::id() ) {
-            return view('front.errors.notfound');
-        }
-
-        $skills = Skill::where('is_active',1)->get();
-        $sections= Section::all();
-
-        return view('front.profile.services.edit',compact('service','skills','sections'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -247,13 +184,17 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
         elseif(is_null(Service::where('user_id',Auth::id())->first()) == 1)
         {
-            return view('front.errors.denied');
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
+
+
         $this->validate($request,[
             'title'     =>'required|max:500',
             'desc'      =>'required|max:500',
@@ -261,6 +202,9 @@ class ServiceController extends Controller
             'duration'  =>'required|max:8',
             //'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
+
+
+
         $service= Service::find($id);
 
         $file = $request->img;
@@ -313,9 +257,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceUpdated($service));
         }
 
-        Session::flash('status', __('admin.info'));
-        Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => $service], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 

@@ -38,13 +38,13 @@ return [
 
     'register' => 'تسجيل عضوية',
 
-    'register_desc' => 'مرحباً بك.. يمكنك الآن اختيار الدور الذي ترغبه لتكون معنا مساهماً في تحقيق النفع المتبادل',
+    'register_desc' => 'مرحباً بك.. يمكنك الآن اختيار الدور الذي ترغبه لتكون معنا مساهمًا في تحقيق النفع المتبادل',
 
     'home' => 'الرئيسية',
 
     'chat' => 'المحادثات',
 
-    'how_inaday_work' => 'كيف يعمل .IN.A.DAY. ؟',
+    'how_inaday_work' => 'كيف يعمل IN.A.DAY ؟',
 
     'notifications_settings' => 'إعدادات الإشعارات',
 
@@ -133,7 +133,7 @@ return [
 
     'no_mixtures' => 'لا توجد شراكات مطابقة',
 
-    'in_a_day_features' => 'مميزات منصة .IN.A.DAY.',
+    'in_a_day_features' => 'مميزات منصة IN.A.DAY',
 
     'start_now' => 'ابدأ الآن',
 
@@ -272,7 +272,7 @@ return [
 
     'slider_title' => 'في كل يوم <br/> إنجاز.. <br/> قصة نجاح تروى',
 
-    'slider_desc' => '<b class="ml-4">   منصة .IN.A.DAY. </b> <br />
+    'slider_desc' => '<b class="ml-4">   منصة IN.A.DAY </b> <br />
 
         ـ بيت الموهوبين والمبتكرين.<br />
 

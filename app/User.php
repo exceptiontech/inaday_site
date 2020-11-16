@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
 use App\Booking;
 use App\Message;
+use App\Mixture;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -276,6 +277,19 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+
+
+    public function MyMixtures()
+    {
+        $id = $this->id;
+
+        return Mixture::whereHas('team', function ($query) use ($id) {
+                    $query->where('user_id' , $id);
+                })->get();
+
+    }
+
+
 
     public function MixturehasFavorite($id)
     {
