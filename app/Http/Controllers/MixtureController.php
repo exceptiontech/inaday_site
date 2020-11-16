@@ -69,32 +69,9 @@ class MixtureController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
 
-    }
 
-    public function success()
-    {
-        // $Mixture = Mixture::find($id);
-        // dd($Mixture);
-        return view('front.Mixtures.success');
-    }
 
     /**
      * Display the specified resource.
@@ -112,7 +89,7 @@ class MixtureController extends Controller
         }else{
             $mixture = Mixture::where('title',$id)->first();
         }
-        
+
         if (!$mixture  || !$mixture->team  ||  Auth::user() &&  count(Auth::user()->roles) == 0) {
             return view('front.errors.notfound');
         }

@@ -26,14 +26,40 @@ Route::get('services/{id}', 'API\ServiceController@show');
 Route::get('mixtures', 'API\MixtureController@index');
 Route::get('mixtures/{id}', 'API\MixtureController@show');
 
+Route::get('countries', 'API\CountryController@index');
+Route::get('countries/{id}', 'API\CountryController@show');
+
+Route::get('cities', 'API\CityController@index');
+Route::get('cities/{id}', 'API\CityController@show');
+
+Route::get('skills', 'API\SkillController@index');
+Route::get('skills/{id}', 'API\SkillController@show');
+
+Route::get('sections', 'API\SectionController@index');
+Route::get('sections/{id}', 'API\SectionController@show');
+
+Route::get('pages', 'API\PageController@index');
+Route::get('pages/{id}', 'API\PageController@show');
 
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
-	//Route::resource('departments','API\DepartmentController');
-	Route::resource('wishlist','API\WishlistController');
-	Route::get('cart','API\CartController@index');
-	Route::get('cart/create','API\CartController@store');
+
+
+    // Projects
+    Route::resource('account/projects', 'API\Account\ProjectController', ['names' => 'front_projects']);
+    Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete')->name('projects.delete');
+
+    // Services
+    Route::resource('account/services', 'API\Account\ServiceController', ['names' => 'front_services']);
+    Route::get('account/services/delete/{id}', 'API\Account\ServiceController@delete')->name('services.delete');
+
+    // mixture
+    Route::resource('account/mixtures', 'API\Account\MixtureController', ['names' => 'front_mixtures']);
+    Route::get('account/mixtures/create/{id}', 'API\Account\MixtureController@create')->name('mixtures.create');
+    Route::get('account/mixtures/delete/{id}', 'API\Account\MixtureController@delete')->name('mixtures.delete');
+
+
 
 });
 
