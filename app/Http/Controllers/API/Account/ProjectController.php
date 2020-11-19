@@ -86,9 +86,7 @@ class ProjectController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
         $project= new Project();
@@ -418,14 +416,5 @@ class ProjectController extends Controller
 
 
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

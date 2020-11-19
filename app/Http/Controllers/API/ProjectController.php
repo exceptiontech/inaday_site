@@ -7,18 +7,7 @@ use Illuminate\Http\Request;
 use App\Notifications\ProjectCreated;
 
 use App\Project;
-use App\Skill;
-use App\File;
-use App\ProjectSkill;
-use App\Averagekind;
-use App\Section;
-use App\Applykind;
-use App\Level;
-use App\Costkind;
-use App\Readinesskind;
-use App\Rewardkind;
-use App\Stage;
-use App\Phase;
+use App\offer;
 
 use Auth;
 
@@ -78,13 +67,34 @@ class ProjectController extends Controller
     public function show($id)
     {
         if(is_numeric($id)) {
-            $project = Project::where('id',$id)->with('status','skills','section')->get();
+            $project = Project::where('id',$id)->with('status','skills','section','offers')->get();
         }else {
-            $project = Project::where('title',$id)->with('status','skills','section')->get();;
+            $project = Project::where('title',$id)->with('status','skills','section','offers')->get();;
 
         }
         return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function offers($id)
+    {
+
+        $offers = Offer::where('project_id',$id)->get();
+
+        return response()->json(['data' => $offers], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            
+
+    }
+
+
+    
 
 
 

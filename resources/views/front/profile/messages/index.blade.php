@@ -32,7 +32,7 @@
 
                                                 <div class="media-body">
                                                     <p class="name">{{$user->first_name. ' ' .$user->last_name}}</p>
-                                                    <p class="email">{{ $user->last_messages() ?? 'لا يوجد اي رسائل' }}</p>
+                                                    <p class="email">{{ $user->last_messages() ?? 'لا يوجد أي محادثات' }}</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -62,7 +62,7 @@
                     </div>
 
                 </div>
-                    
+
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
     var my_id = "{{ Auth::id() }}";
 
 
-        @if(Request()->user_id) 
+        @if(Request()->user_id)
             var receiver_id = {{ Request()->user_id }} ;
 
             setTimeout(function(){
@@ -144,7 +144,7 @@
             receiver_id = $(this).attr('id');
             $.ajax({
                 type: "get",
-                url: "/account/messages/" + receiver_id, 
+                url: "/account/messages/" + receiver_id,
                 data: "",
                 cache: false,
                 success: function (data) {
@@ -156,16 +156,16 @@
 
 
 
-        $(document).delegate(".upload_form","submit",function(e){ 
+        $(document).delegate(".upload_form","submit",function(e){
             e.preventDefault();
 
             $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
-            $(this).val(''); 
-            var receiver_id = $(this).data('id'); 
+            $(this).val('');
+            var receiver_id = $(this).data('id');
 
             $.ajax({
                 url: '{{ route('sendMessage') }}',
-                type: 'POST',              
+                type: 'POST',
                 data:new FormData(this),
                 dataType:'JSON',
                 contentType: false,
@@ -233,7 +233,7 @@
             //console.log($.session.get("sent"));
 
             if (time == 0 ) {
-                
+
                 clearInterval(idVar);
                 $.session.set("sent", "false");
                 SendRecordFunc();
@@ -265,7 +265,7 @@
                   var data = new FormData();
                   data.append('audio', blob);
                   data.append('receiver_id', receiver_id);
-                  
+
                   $.ajax({
                     url: '{{ route('sendMessage') }}',
                     type: 'POST',
@@ -291,7 +291,7 @@
     $(document).on("click", "#recordFor", function(e){
         e.preventDefault();
 
-        var id = $(this).data('id'); 
+        var id = $(this).data('id');
         $(this).parent().fadeOut();
 
         $('#upload_submit_'+id).attr("disabled",'true').addClass('disabled');
@@ -320,9 +320,9 @@
             var timeoutId = setTimeout(function(){
                     $.session.remove('sent');
                     $('#sendRecord').trigger('click');
-                
+
             }, 60000);
-        
+
         }
     });
 
@@ -330,7 +330,7 @@
     $(document).on("click", "#sendRecord", function(e){
         e.preventDefault();
 
-        var id = $(this).data('id'); 
+        var id = $(this).data('id');
 
         $('.cancelButton'+id).fadeOut();
         $('.sendRecord'+id).fadeOut();
@@ -343,7 +343,7 @@
             $('.input-text-'+id).removeClass('col-7').addClass('col-9');
         }, 500);
 
-        
+
         SendRecordFunc();
 
     });
@@ -353,7 +353,7 @@
 
     $(document).on("click", "#cancelRecord", function(e){
         e.preventDefault();
-        var id = $(this).data('id'); 
+        var id = $(this).data('id');
 
         //SendRecordFunc();
 

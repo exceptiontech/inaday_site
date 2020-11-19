@@ -80,9 +80,7 @@ class ServiceController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
         $service= new Service();
@@ -294,20 +292,8 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceDeleted($service));
         }
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

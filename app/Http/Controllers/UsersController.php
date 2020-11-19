@@ -614,7 +614,7 @@ class UsersController extends Controller
                 if (isset($return_user->email)) {
                     $user->email = $return_user->email;
                 }else {
-                    $user->emails = $return_user->user['email'];
+                    $user->email = $return_user->user['email'];
                 }
 
                 if (isset($return_user->user['given_name'])) {
