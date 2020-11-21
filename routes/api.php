@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
 Route::post('forgot', 'API\PassportController@forgot');
-Route::get('/{type}/google', 'API\PassportController@google')->name('google');
-Route::get('/auth/google/redirect', 'API\PassportController@googleRedirect');
+Route::post('/{type}/google', 'API\PassportController@google')->name('google');
+Route::post('/auth/google/redirect', 'API\PassportController@googleRedirect');
 
 
 Route::get('projects', 'API\ProjectController@index');
