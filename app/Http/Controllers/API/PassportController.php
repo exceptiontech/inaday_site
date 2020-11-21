@@ -58,7 +58,7 @@ class PassportController extends Controller
 
         $data['token'] = $user->createToken('MySecret')->accessToken;
         $data['user'] = $user;
-        $data['status'] = true;
+        $data['status'] = 200;
 
         return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
@@ -83,7 +83,8 @@ class PassportController extends Controller
             $data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
-            $data['status'] = true;
+            $data['status'] = 200;
+
 
             return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         } else {
