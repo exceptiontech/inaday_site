@@ -320,192 +320,28 @@ class PassportController extends Controller
     public function google(){
 
         Session::put('url', URL::Current());
+
         return Socialite::with('google')->stateless()->redirect();
     }
 
     public function googleRedirect( Request $request) {
 
-        $url = Session::get('url');
-        Session::forget('url');
+        $validator = Validator::make($request->all(), [
+            'email'=> 'required|email',
+        ]);
 
-        $return_user = Socialite::driver('google')->stateless()->user();
 
-        if ( is_null($url) ) {
+        if ($validator->fails()) {
 
-            $user = User::where('email',$return_user->email)->first();
+            $arr = array("status" => 400, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
 
-            if(isset($user)) {
-                Auth::login($user, true);
-                $token = auth()->user()->createToken('MySecret')->accessToken;
-
-                $data = $request->all();
-                $data['token'] = $token;
-                $data['user'] = auth()->user();
-                $data['status'] = true;
-
-                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            }
-
-            return \Response::json(array("error"=>["status" => 400, "message" => 'غير مسجل ولا يملك اي صلاحيات', "data" => array() ,"appearForUser" => true]));
-
+            return \Response::json(['error'=> $arr]);
         }
 
 
-        if (str_contains($url, 'services_provider')) {
-
-            $user = User::where('email',$return_user->email)->first();
-
-            if(isset($user)) {
-                $role = Role::where('name','services_provider')->first();
-                $user->assignRole([$role->id]);
-
-                Auth::login($user, true);
-
-
-                $token = auth()->user()->createToken('MySecret')->accessToken;
-
-                $data = $request->all();
-                $data['token'] = $token;
-                $data['user'] = auth()->user();
-                $data['status'] = true;
-
-                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-
-            }else {
-
-                $user = New User;
-                if ($return_user->name) {
-                    $user->name = $return_user->name;
-                }else {
-                    $user->name = $return_user->user['name'];
-                }
-
-                if (isset($return_user->email)) {
-                    $user->email = $return_user->email;
-                }else {
-                    $user->email = $return_user->user['email'];
-                }
-
-                if (isset($return_user->user['given_name'])) {
-                    $user->first_name = $return_user->user['given_name'];
-                }
-
-                if (isset($return_user->user['family_name'])) {
-                    $user->last_name = $return_user->user['family_name'];
-                }
-
-                if (isset($return_user->mobile)) {
-                    $user->mobile = $return_user->mobile;
-                }
-                $user->password = Hash::make($return_user->nickname);
-
-                $user->notification_preference = 'mail';
-
-                $user->save();
-
-                $usersettings = new Usersettings;
-                $usersettings->blog_notifications= 1;
-                $usersettings->offer_notifications=1;
-                $usersettings->booking_notifications=1;
-                $usersettings->review_notifications=1;
-                $usersettings->team_notifications=1;
-                $usersettings->profile_notifications=1;
-                $usersettings->favorite_notifications=1;
-                $usersettings->replay_notifications=1;
-                $usersettings->message_notifications=1;
-                $usersettings->support_notifications=1;
-                $usersettings->user_id = $user->id;
-                $usersettings->save();
-
-                $role = Role::where('name','services_provider')->first();
-                $user->assignRole([$role->id]);
-
-                $user->sendEmailVerificationNotification();
-                //$user->notify(new RegisterServicesProvider($user));
-
-                Auth::login($user, true);
-
-                $token = auth()->user()->createToken('MySecret')->accessToken;
-
-                $data = $request->all();
-                $data['token'] = $token;
-                $data['user'] = auth()->user();
-                $data['status'] = true;
-
-                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-            }
-
-
-        }elseif (str_contains($url, 'entrepreneur')) {
-
-            $user = User::where('email',$return_user->email)->first();
-
-            if(isset($user)) {
-
-                Auth::login($user, true);
-                $token = auth()->user()->createToken('MySecret')->accessToken;
-
-                $data = $request->all();
-                $data['token'] = $token;
-                $data['user'] = auth()->user();
-                $data['status'] = true;
-
-                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-            }else {
-                $user = New User;
-                if ($return_user->name) {
-                    $user->name = $return_user->name;
-                }else {
-                    $user->name = $return_user->user['name'];
-                }
-
-                if (isset($return_user->email)) {
-                    $user->email = $return_user->email;
-                }else {
-                    $user->emails = $return_user->user['email'];
-                }
-
-                if (isset($return_user->user['given_name'])) {
-                    $user->first_name = $return_user->user['given_name'];
-                }
-
-                if (isset($return_user->user['family_name'])) {
-                    $user->last_name = $return_user->user['family_name'];
-                }
-
-                if (isset($return_user->mobile)) {
-                    $user->mobile = $return_user->mobile;
-                }
-                $user->password = Hash::make($return_user->nickname);
-
-                $user->notification_preference = 'mail';
-
-                $user->save();
-
-                $usersettings = new Usersettings;
-                $usersettings->blog_notifications= 1;
-                $usersettings->offer_notifications=1;
-                $usersettings->booking_notifications=1;
-                $usersettings->review_notifications=1;
-                $usersettings->team_notifications=1;
-                $usersettings->profile_notifications=1;
-                $usersettings->favorite_notifications=1;
-                $usersettings->replay_notifications=1;
-                $usersettings->message_notifications=1;
-                $usersettings->support_notifications=1;
-                $usersettings->user_id = $user->id;
-                $usersettings->save();
-            }
-
-            $role = Role::where('name','entrepreneur')->first();
-            $user->assignRole([$role->id]);
-
-            $user->sendEmailVerificationNotification();
-            //$user->notify(new RegisterEntrepreneur($user));
-
+        $user = User::where('email',$request->email)->first();
+        
+        if(isset($user)) {
             Auth::login($user, true);
             $token = auth()->user()->createToken('MySecret')->accessToken;
 
@@ -514,134 +350,73 @@ class PassportController extends Controller
             $data['user'] = auth()->user();
             $data['status'] = true;
 
-            return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 200,"data" => $data);
 
+            return \Response::json(['data'=> $arr]);
 
-        }elseif (str_contains($url, 'student')) {
-
-            $user = User::where('email',$return_user->email)->first();
-
-            if(isset($user)) {
-
-                Auth::login($user, true);
-                return redirect('/');
-
-            }else {
-                $user = New User;
-                if ($return_user->name) {
-                    $user->name = $return_user->name;
-                }else {
-                    $user->name = $return_user->user['name'];
-                }
-
-                if (isset($return_user->email)) {
-                    $user->email = $return_user->email;
-                }else {
-                    $user->emails = $return_user->user['email'];
-                }
-
-                if (isset($return_user->user['given_name'])) {
-                    $user->first_name = $return_user->user['given_name'];
-                }
-
-                if (isset($return_user->user['family_name'])) {
-                    $user->last_name = $return_user->user['family_name'];
-                }
-
-                if (isset($return_user->mobile)) {
-                    $user->mobile = $return_user->mobile;
-                }
-                $user->password = Hash::make($return_user->nickname);
-
-                $user->save();
-
-            }
-
-            $role = Role::where('name','student')->first();
-            $user->assignRole([$role->id]);
-            $user->sendEmailVerificationNotification();
-
-            Auth::login($user, true);
-            return redirect('/');
-
-        }elseif (str_contains($url, 'login')) {
-
-            $user = User::where('email',$return_user->email)->first();
-
-
-            if(isset($user)) {
-
-                Auth::login($user, true);
-                return redirect('/');
-
-            }
-
-            return redirect('/registration');
+            //return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
 
-        $user = User::where('email',$return_user->email)->first();
+
+        $validator = Validator::make($request->all(), [
+            'user_type'=> 'required',
+        ]);
 
 
-    
-        if(isset($user)) {
-            Auth::login($user, true);
-            return redirect('/');
+        if ($validator->fails()) {
 
-        }else {
-            $user = New User;
-            if ($return_user->name) {
-                $user->name = $return_user->name;
-            }else {
-                $user->name = $return_user->user['name'];
-            }
-            if (isset($return_user->email)) {
-                $user->email = $return_user->email;
-            }else {
-                $user->emails = $return_user->user['email'];
-            }
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
 
-            if (isset($return_user->user['given_name'])) {
-                $user->first_name = $return_user->user['given_name'];
-            }
-
-            if (isset($return_user->user['family_name'])) {
-                $user->last_name = $return_user->user['family_name'];
-            }
-
-            if (isset($return_user->mobile)) {
-                $user->mobile = $return_user->mobile;
-            }
-            $user->password = Hash::make($return_user->nickname);
-
-            $user->notification_preference = 'mail';
-
-            $user->save();
-
-            $usersettings = new Usersettings;
-            $usersettings->blog_notifications= 1;
-            $usersettings->offer_notifications=1;
-            $usersettings->booking_notifications=1;
-            $usersettings->review_notifications=1;
-            $usersettings->team_notifications=1;
-            $usersettings->profile_notifications=1;
-            $usersettings->favorite_notifications=1;
-            $usersettings->replay_notifications=1;
-            $usersettings->message_notifications=1;
-            $usersettings->support_notifications=1;
-            $usersettings->user_id = $user->id;
-            $usersettings->save();
-
-            $role = Role::where('name','services_provider')->first();
-            $user->assignRole([$role->id]);
-            
-            $user->sendEmailVerificationNotification();
-
+            return \Response::json(['error'=> $arr]);
         }
+
+
+        $user = New User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        if (isset($request->mobile)) {
+            $user->mobile = $request->mobile;
+        }
+        $user->password = Hash::make($request->nickname);
+        $user->notification_preference = 'mail';
+        $user->save();
+
+        $usersettings = new Usersettings;
+        $usersettings->blog_notifications= 1;
+        $usersettings->offer_notifications=1;
+        $usersettings->booking_notifications=1;
+        $usersettings->review_notifications=1;
+        $usersettings->team_notifications=1;
+        $usersettings->profile_notifications=1;
+        $usersettings->favorite_notifications=1;
+        $usersettings->replay_notifications=1;
+        $usersettings->message_notifications=1;
+        $usersettings->support_notifications=1;
+        $usersettings->user_id = $user->id;
+        $usersettings->save();
+
+        $role = Role::where('name',$request->user_type)->first();
+        $user->assignRole([$role->id]);
+
+        $user->sendEmailVerificationNotification();
+        //$user->notify(new RegisterServicesProvider($user));
 
         Auth::login($user, true);
 
-        return redirect('/');
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        $data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
 
     }
 
