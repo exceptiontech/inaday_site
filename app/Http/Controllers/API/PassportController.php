@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\Notifications\RegisterServicesProvider;
 use App\Notifications\RegisterEntrepreneur;
 use App\Notifications\UpdatedUser;
+use Spatie\Permission\Models\Role;
 
 use App\Usersettings;
 use App\Userdetail;
@@ -324,7 +325,7 @@ class PassportController extends Controller
         return Socialite::with('google')->stateless()->redirect();
     }
 
-    public function googleRedirect( Request $request) {
+    public function googleRedirect(Request $request) {
 
         $validator = Validator::make($request->all(), [
             'email'=> 'required|email',
@@ -357,19 +358,17 @@ class PassportController extends Controller
             //return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
+        $validator = Validator::make($request->all(), [
+            'user_type'=> 'required',
+        ]);
 
 
-        // $validator = Validator::make($request->all(), [
-        //     'user_type'=> 'required',
-        // ]);
+        if ($validator->fails()) {
 
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
 
-        // if ($validator->fails()) {
-
-        //     $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
-
-        //     return \Response::json(['error'=> $arr]);
-        // }
+            return \Response::json(['error'=> $arr]);
+        }
 
 
         $user = New User;
