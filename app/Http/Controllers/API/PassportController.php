@@ -9,8 +9,20 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Notifications\RegisterServicesProvider;
+use App\Notifications\RegisterEntrepreneur;
+use App\Notifications\UpdatedUser;
 
+use App\Usersettings;
+use App\Userdetail;
+use App\City;
+use Socialite;
+use URL;
+use Auth;
+use Redirect;
+use Session;
 
 class PassportController extends Controller
 {
@@ -44,6 +56,8 @@ class PassportController extends Controller
         $user = User::create($data);
 
         $data['token'] = $user->createToken('MySecret')->accessToken;
+        $data['user'] = $user;
+        $data['status'] = true;
 
         return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
@@ -85,4 +99,551 @@ class PassportController extends Controller
     {
         return response()->json(['user' => auth()->user()], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+
+
+    public function forgot(Request $request)
+    {
+        $input = $request->all();
+        $rules = array(
+            'email' => "required|email",
+        );
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            $arr = array("error"=>["status" => 400, "message" => $validator->errors()->first(), "data" => array()]);
+        } else {
+            try {
+                $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+                    $message->subject($this->getEmailSubject());
+                });
+                switch ($response) {
+                    case Password::RESET_LINK_SENT:
+                        return \Response::json(array("status" => 200, "message" => trans($response), "data" => array()));
+                    case Password::INVALID_USER:
+                        return \Response::json(array("error"=>["status" => 400, "message" => trans($response), "data" => array()]));
+
+
+                }
+            } catch (\Swift_TransportException $ex) {
+                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+            } catch (Exception $ex) {
+                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+            }
+        }
+        return \Response::json($arr);
+    }
+
+    public function profile(Request $request)
+    {
+
+        if (!Auth::user() ) {
+            return redirect::to('/');
+        }
+
+        if (count(Auth::user()->userdetail) > 0) {
+            $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
+        }else {
+            $userdetail = new Userdetail;
+        }
+
+        $user = Auth::user();
+
+
+        if(!empty($request['password']))
+        {
+
+            if (Auth::user()->isEntrepreneur()) {
+                $validator = Validator::make($request->all(), [
+
+                        'first_name'=> 'required|string|min:3|max:25',
+                        'last_name'=> 'required|string|min:3|max:25',
+                        'mobile'      =>'required|digits:10',
+                        'avater' => 'mimes:jpg,jpeg,png',
+                        'position'      =>'min:3|string',
+                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        'country_id'      =>'required',
+                        'city_id'      =>'required',
+                        'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
+                    ]);
+
+            }else {
+                $validator = Validator::make($request->all(), [
+
+                    'first_name'=> 'required|string|min:3|max:25',
+                    'last_name'=> 'required|string|min:3|max:25',
+                    'mobile'      =>'required|digits:10',
+                    'avater' => 'mimes:jpg,jpeg,png',
+                    'position'      =>'min:3|string',
+                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    'skills.*'      =>'required|integer',
+                    //'level_id'      =>'required|integer',
+                    'country_id'      =>'required',
+                    'city_id'      =>'required',
+                    'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
+                ]);
+
+            }
+
+            $user->password = Hash::make($request['password']);
+        }else {
+
+            if (Auth::user()->isEntrepreneur()) {
+                $validator = Validator::make($request->all(), [
+                        'first_name'=> 'required|string|min:3|max:25',
+                        'last_name'=> 'required|string|min:3|max:25',
+                        'mobile'      =>'required|digits:10',
+                        'avater' => 'mimes:jpg,jpeg,png',
+                        'position'      =>'min:3|string',
+                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        'country_id'      =>'required',
+                        'city_id'      =>'required',
+                    ]);
+            }else {
+                $validator = Validator::make($request->all(), [
+                    'first_name'=> 'required|string|min:3|max:25',
+                    'last_name'=> 'required|string|min:3|max:25',
+                    'mobile'      =>'required|digits:10',
+                    'avater' => 'mimes:jpg,jpeg,png',
+                    'position'      =>'min:3|string',
+                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    'skills.*'      =>'required|integer',
+                    //'level_id'      =>'required|integer',
+                    'country_id'      =>'required',
+                    'city_id'      =>'required',
+                ]);
+
+            }
+        }
+
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+
+
+        $user->first_name=$request->first_name;
+        $user->last_name=@$request->last_name;
+        $user->mobile=@$request->mobile;
+        $user->save();
+
+
+        $userdetail->user_id = Auth::user()->id;
+        $userdetail->jobtype_id = $request->jobtype_id;
+        $userdetail->level_id = $request->level_id;
+        $userdetail->prefer_id = $request->prefer_id;
+        $userdetail->costkind_id = $request->costkind_id;
+        $userdetail->applykind_id = $request->applykind_id;
+        $userdetail->averagekind_id = $request->averagekind_id;
+        $userdetail->average_cost = $request->average_cost;
+        $userdetail->rewardkind_id = $request->rewardkind_id;
+        $userdetail->readinesskind_id = $request->readinesskind_id;
+        $userdetail->readiness_date = $request->readiness_date;
+        $userdetail->time_start = $request->time_start;
+        $userdetail->brith_day = $request->brith_day;
+        $userdetail->country_id = $request->country_id;
+        $userdetail->city_id = $request->city_id;
+        $userdetail->position = $request->position;
+        $userdetail->notes = $request->notes;
+        $userdetail->save();
+
+        $avater =  $request->avater;
+        if (isset($avater)) {
+            $destinationPath = 'uploads/users';
+            $extension =  $avater->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $avater->move($destinationPath, $fileName);
+            $userdetail->avater =  $destinationPath.'/'.$fileName;
+        }
+
+        $cv_file =  $request->cv_file;
+        
+        if ($cv_file) {
+            $destinationPath = 'uploads/users';
+            $extension =  $cv_file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $cv_file->move($destinationPath, $fileName);
+            $userdetail->cv_file =  $destinationPath.'/'.$fileName;
+        }
+
+        $userdetail->save();
+
+
+        $skills = $request->skills;
+
+
+        if ($skills) {
+            foreach ($skills as $skill) {
+
+                if (is_numeric($skill) && $skill > 0) {
+                    Auth::user()->skills()->detach();
+                    Auth::user()->skills()->attach([$skill=> ['is_default'=>'1']]);
+                }else {
+
+                    if (isset($skill)) {
+
+                        $item = Skill::where('title', 'like', '%' . $skill . '%')->first();
+
+                        if ($item) {
+                            Auth::user()->skills()->detach();
+                            Auth::user()->skills()->attach($item);
+                        }else {
+                            $title = array();
+                            $title['ar'] = $skill;
+                            $new_skill = new Skill;
+                            $new_skill->title = $title;
+                            $new_skill->slug = $skill;
+                            $new_skill->is_active = 0;
+                            $new_skill->save();
+                            Auth::user()->skills()->attach($new_skill);
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        Auth::user()->notify(new \App\Notifications\Database\UpdatedUser(Auth::user()));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new UpdatedUser(Auth::user()));
+        } 
+
+        $arr = array("status" => 200, "message" => "Password updated successfully.", "data" => array());
+
+        return \Response::json($arr);
+    }
+
+
+
+
+    public function google(){
+
+        Session::put('url', URL::Current());
+        return Socialite::with('google')->stateless()->redirect();
+    }
+
+    public function googleRedirect( Request $request) {
+
+        $url = Session::get('url');
+        Session::forget('url');
+
+        $return_user = Socialite::driver('google')->stateless()->user();
+
+        if (str_contains($url, 'user')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+            if(isset($user)) {
+                Auth::login($user, true);
+                $token = auth()->user()->createToken('MySecret')->accessToken;
+
+                $data = $request->all();
+                $data['token'] = $token;
+                $data['user'] = auth()->user();
+                $data['status'] = true;
+
+                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            }
+
+            return \Response::json(array("error"=>["status" => 400, "message" => 'غير مسجل ولا يملك اي صلاحيات', "data" => array() ,"appearForUser" => true]));
+
+        }
+
+
+        if (str_contains($url, 'services_provider')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+            if(isset($user)) {
+                $role = Role::where('name','services_provider')->first();
+                $user->assignRole([$role->id]);
+
+                Auth::login($user, true);
+
+
+                $token = auth()->user()->createToken('MySecret')->accessToken;
+
+                $data = $request->all();
+                $data['token'] = $token;
+                $data['user'] = auth()->user();
+                $data['status'] = true;
+
+                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+
+            }else {
+
+                $user = New User;
+                if ($return_user->name) {
+                    $user->name = $return_user->name;
+                }else {
+                    $user->name = $return_user->user['name'];
+                }
+
+                if (isset($return_user->email)) {
+                    $user->email = $return_user->email;
+                }else {
+                    $user->email = $return_user->user['email'];
+                }
+
+                if (isset($return_user->user['given_name'])) {
+                    $user->first_name = $return_user->user['given_name'];
+                }
+
+                if (isset($return_user->user['family_name'])) {
+                    $user->last_name = $return_user->user['family_name'];
+                }
+
+                if (isset($return_user->mobile)) {
+                    $user->mobile = $return_user->mobile;
+                }
+                $user->password = Hash::make($return_user->nickname);
+
+                $user->notification_preference = 'mail';
+
+                $user->save();
+
+                $usersettings = new Usersettings;
+                $usersettings->blog_notifications= 1;
+                $usersettings->offer_notifications=1;
+                $usersettings->booking_notifications=1;
+                $usersettings->review_notifications=1;
+                $usersettings->team_notifications=1;
+                $usersettings->profile_notifications=1;
+                $usersettings->favorite_notifications=1;
+                $usersettings->replay_notifications=1;
+                $usersettings->message_notifications=1;
+                $usersettings->support_notifications=1;
+                $usersettings->user_id = $user->id;
+                $usersettings->save();
+
+                $role = Role::where('name','services_provider')->first();
+                $user->assignRole([$role->id]);
+
+                $user->sendEmailVerificationNotification();
+                //$user->notify(new RegisterServicesProvider($user));
+
+                Auth::login($user, true);
+
+                $token = auth()->user()->createToken('MySecret')->accessToken;
+
+                $data = $request->all();
+                $data['token'] = $token;
+                $data['user'] = auth()->user();
+                $data['status'] = true;
+
+                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            }
+
+
+        }elseif (str_contains($url, 'entrepreneur')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+            if(isset($user)) {
+
+                Auth::login($user, true);
+                $token = auth()->user()->createToken('MySecret')->accessToken;
+
+                $data = $request->all();
+                $data['token'] = $token;
+                $data['user'] = auth()->user();
+                $data['status'] = true;
+
+                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            }else {
+                $user = New User;
+                if ($return_user->name) {
+                    $user->name = $return_user->name;
+                }else {
+                    $user->name = $return_user->user['name'];
+                }
+
+                if (isset($return_user->email)) {
+                    $user->email = $return_user->email;
+                }else {
+                    $user->emails = $return_user->user['email'];
+                }
+
+                if (isset($return_user->user['given_name'])) {
+                    $user->first_name = $return_user->user['given_name'];
+                }
+
+                if (isset($return_user->user['family_name'])) {
+                    $user->last_name = $return_user->user['family_name'];
+                }
+
+                if (isset($return_user->mobile)) {
+                    $user->mobile = $return_user->mobile;
+                }
+                $user->password = Hash::make($return_user->nickname);
+
+                $user->notification_preference = 'mail';
+
+                $user->save();
+
+                $usersettings = new Usersettings;
+                $usersettings->blog_notifications= 1;
+                $usersettings->offer_notifications=1;
+                $usersettings->booking_notifications=1;
+                $usersettings->review_notifications=1;
+                $usersettings->team_notifications=1;
+                $usersettings->profile_notifications=1;
+                $usersettings->favorite_notifications=1;
+                $usersettings->replay_notifications=1;
+                $usersettings->message_notifications=1;
+                $usersettings->support_notifications=1;
+                $usersettings->user_id = $user->id;
+                $usersettings->save();
+            }
+
+            $role = Role::where('name','entrepreneur')->first();
+            $user->assignRole([$role->id]);
+
+            $user->sendEmailVerificationNotification();
+            //$user->notify(new RegisterEntrepreneur($user));
+
+            Auth::login($user, true);
+            $token = auth()->user()->createToken('MySecret')->accessToken;
+
+            $data = $request->all();
+            $data['token'] = $token;
+            $data['user'] = auth()->user();
+            $data['status'] = true;
+
+            return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+
+        }elseif (str_contains($url, 'student')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+            if(isset($user)) {
+
+                Auth::login($user, true);
+                return redirect('/');
+
+            }else {
+                $user = New User;
+                if ($return_user->name) {
+                    $user->name = $return_user->name;
+                }else {
+                    $user->name = $return_user->user['name'];
+                }
+
+                if (isset($return_user->email)) {
+                    $user->email = $return_user->email;
+                }else {
+                    $user->emails = $return_user->user['email'];
+                }
+
+                if (isset($return_user->user['given_name'])) {
+                    $user->first_name = $return_user->user['given_name'];
+                }
+
+                if (isset($return_user->user['family_name'])) {
+                    $user->last_name = $return_user->user['family_name'];
+                }
+
+                if (isset($return_user->mobile)) {
+                    $user->mobile = $return_user->mobile;
+                }
+                $user->password = Hash::make($return_user->nickname);
+
+                $user->save();
+
+            }
+
+            $role = Role::where('name','student')->first();
+            $user->assignRole([$role->id]);
+            $user->sendEmailVerificationNotification();
+
+            Auth::login($user, true);
+            return redirect('/');
+
+        }elseif (str_contains($url, 'login')) {
+
+            $user = User::where('email',$return_user->email)->first();
+
+
+            if(isset($user)) {
+
+                Auth::login($user, true);
+                return redirect('/');
+
+            }
+
+            return redirect('/registration');
+        }
+
+
+        $user = User::where('email',$return_user->email)->first();
+
+
+    
+        if(isset($user)) {
+            Auth::login($user, true);
+            return redirect('/');
+
+        }else {
+            $user = New User;
+            if ($return_user->name) {
+                $user->name = $return_user->name;
+            }else {
+                $user->name = $return_user->user['name'];
+            }
+            if (isset($return_user->email)) {
+                $user->email = $return_user->email;
+            }else {
+                $user->emails = $return_user->user['email'];
+            }
+
+            if (isset($return_user->user['given_name'])) {
+                $user->first_name = $return_user->user['given_name'];
+            }
+
+            if (isset($return_user->user['family_name'])) {
+                $user->last_name = $return_user->user['family_name'];
+            }
+
+            if (isset($return_user->mobile)) {
+                $user->mobile = $return_user->mobile;
+            }
+            $user->password = Hash::make($return_user->nickname);
+
+            $user->notification_preference = 'mail';
+
+            $user->save();
+
+            $usersettings = new Usersettings;
+            $usersettings->blog_notifications= 1;
+            $usersettings->offer_notifications=1;
+            $usersettings->booking_notifications=1;
+            $usersettings->review_notifications=1;
+            $usersettings->team_notifications=1;
+            $usersettings->profile_notifications=1;
+            $usersettings->favorite_notifications=1;
+            $usersettings->replay_notifications=1;
+            $usersettings->message_notifications=1;
+            $usersettings->support_notifications=1;
+            $usersettings->user_id = $user->id;
+            $usersettings->save();
+
+            $role = Role::where('name','services_provider')->first();
+            $user->assignRole([$role->id]);
+            
+            $user->sendEmailVerificationNotification();
+
+        }
+
+        Auth::login($user, true);
+
+        return redirect('/');
+
+    }
+
+
 }

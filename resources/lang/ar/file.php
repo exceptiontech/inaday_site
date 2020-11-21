@@ -88,7 +88,7 @@ return [
 
     'comprehensive_certification_desc' => 'شهادة خبرة للإنجازات الفورية',
 
-    'experience_certificate_for_immediate_accomplishments' => 'شهادة خبرة لإنجازات 
+    'experience_certificate_for_immediate_accomplishments' => 'شهادة خبرة لإنجازات
 
 فورية',
 
@@ -489,7 +489,7 @@ return [
     'please_see_if_you_are_not' => 'الرجاء الاطلاع في حالة عدم الاطلاع',
 
     'confirmed_projects' => 'المشاريع المعتمدة',
-    
+
     'projects' => 'المشاريع',
 
     'project' => 'مشاريع',
@@ -763,7 +763,7 @@ return [
     'project_path' => 'مسار المشروع',
 
 
-    //contact 
+    //contact
     'voice_heared'=>'صوتك مسموع',
     'voice_heared_desc'=>'بماذا نخدمك؟.. من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.',
     'message_department'=>'تصنيف الرسالة',
@@ -778,8 +778,8 @@ return [
     //
     'profile' => 'الملف الشخصي',
     'completeprofile' => 'برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك',
-    'no_notes' => 'لا يوجد اي تفاصيل عن هذا العضو',
-    'portfolios' => 'معرض الاعمال',
+    'no_notes' => 'لا توجد أي تفاصيل عن هذا العضو',
+    'portfolios' => 'معرض الأعمال',
     'experiences' => 'الخبرات',
     'cost_by_hour' => 'التكلفة بالساعة',
     'cost' => 'التكلفة',

@@ -41,38 +41,9 @@ class MixtureController extends Controller
 
         return response()->json(['data' => $mixtures], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-        return view('front.profile.mixtures.index',compact('skills','sections'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($id)
-    {
 
-        $team = Team::find($id);
-
-        if (!$team || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        if (!Auth::user()->hasOwnTeam($team->id)) {
-            return view('front.errors.denied');
-        }
-
-        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خلطة');
-            return redirect::to('/account/profile/edit');
-        }
-
-        $skills = Skill::where('is_active',1)->get();
-        $sections= Section::all();
-
-        return view('front.profile.mixtures.create',compact('skills','sections','team'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -103,9 +74,8 @@ class MixtureController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
         }
 
         $mixture= new Mixture();
@@ -194,44 +164,10 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureCreated($mixture));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => $mixture], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Mixture  $mixture
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Mixture  $mixture
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $mixture = Mixture::find($id);
-
-        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
-            return view('front.errors.denied');
-        }
-        
-        $skills = Skill::where('is_active',1)->get();
-        $sections= Section::all();
-
-        return view('front.profile.mixtures.edit',compact('mixture','skills','sections'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -272,9 +208,7 @@ class MixtureController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
         $mixture = Mixture::find($id);
@@ -359,9 +293,7 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureUpdated($mixture));
         }
 
-        Session::flash('status', __('admin.info'));
-        Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => $mixture], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
 
@@ -396,19 +328,9 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureDeleted($mixture));
         }
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Mixture  $mixture
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Mixture $mixture)
-    {
-        //
-    }
+
+
 }

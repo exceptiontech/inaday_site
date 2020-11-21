@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\API\Account;
 
 use App\Http\Controllers\Controller;
 
@@ -26,17 +26,18 @@ class PortfolioController extends Controller
     public function index()
     {
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة معرض اعمال');
-            return redirect::to('/account/profile/edit');
+            return response()->json(['error' => 'update your profile at first'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
-        return view('front.profile.portfolios.index');
+        $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
+
+        return response()->json(['data' => $portfolios], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
     }
 
     /**

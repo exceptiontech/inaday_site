@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
+Route::post('forgot', 'API\PassportController@forgot');
+Route::get('/{type}/google', 'API\PassportController@google')->name('google');
+Route::get('/auth/google/redirect', 'API\PassportController@googleRedirect');
+
 
 Route::get('projects', 'API\ProjectController@index');
 Route::get('projects/{id}', 'API\ProjectController@show');
+Route::get('projects/{id}/offers', 'API\ProjectController@offers');
 
 Route::get('services', 'API\ServiceController@index');
 Route::get('services/{id}', 'API\ServiceController@show');
@@ -44,11 +49,15 @@ Route::get('pages/{id}', 'API\PageController@show');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
+    Route::post('profile', 'API\PassportController@profile');
 
 
     // Projects
     Route::resource('account/projects', 'API\Account\ProjectController', ['names' => 'front_projects']);
     Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete')->name('projects.delete');
+
+    // Offers
+    Route::resource('offers', 'API\OfferController')->except(['show']);
 
     // Services
     Route::resource('account/services', 'API\Account\ServiceController', ['names' => 'front_services']);
@@ -58,6 +67,10 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/mixtures', 'API\Account\MixtureController', ['names' => 'front_mixtures']);
     Route::get('account/mixtures/create/{id}', 'API\Account\MixtureController@create')->name('mixtures.create');
     Route::get('account/mixtures/delete/{id}', 'API\Account\MixtureController@delete')->name('mixtures.delete');
+
+    // Portfolio
+    Route::resource('account/portfolios', 'API\Account\PortfolioController', ['names' => 'front_services']);
+    Route::get('account/portfolios/delete/{id}', 'API\Account\PortfolioController@delete')->name('portfolios.delete');
 
 
 
