@@ -51,12 +51,15 @@ class PassportController extends Controller
 
         }
 
-        $data = $request->all();
-        $data['password'] = Hash::make($data['password']);
+        $requests = $request->all();
+        $requests['password'] = Hash::make($requests['password']);
 
-        $user = User::create($data);
+        $user = User::create($requests);
+        Auth::login($user, true);
 
-        $data = $request->all();
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        //$data = $request->all();
         $data['token'] = $token;
         $data['user'] = auth()->user();
         $data['status'] = true;
@@ -85,7 +88,7 @@ class PassportController extends Controller
         if (auth()->attempt($credentials)) {
             $token = auth()->user()->createToken('MySecret')->accessToken;
 
-            $data = $request->all();
+            //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
             $data['status'] = true;
@@ -354,7 +357,7 @@ class PassportController extends Controller
             Auth::login($user, true);
             $token = auth()->user()->createToken('MySecret')->accessToken;
 
-            $data = $request->all();
+            //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
             $data['status'] = true;
