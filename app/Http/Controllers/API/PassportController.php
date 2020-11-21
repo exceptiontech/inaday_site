@@ -109,7 +109,7 @@ class PassportController extends Controller
         );
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
-            $arr = array("status" => 400, "message" => $validator->errors()->first(), "data" => array());
+            $arr = array("error"=>["status" => 400, "message" => $validator->errors()->first(), "data" => array()]);
         } else {
             try {
                 $response = Password::sendResetLink($request->only('email'), function (Message $message) {
@@ -119,7 +119,9 @@ class PassportController extends Controller
                     case Password::RESET_LINK_SENT:
                         return \Response::json(array("status" => 200, "message" => trans($response), "data" => array()));
                     case Password::INVALID_USER:
-                        return \Response::json(array("status" => 400, "message" => trans($response), "data" => array()));
+                        return \Response::json(array("error"=>["status" => 400, "message" => trans($response), "data" => array()]));
+
+
                 }
             } catch (\Swift_TransportException $ex) {
                 $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
@@ -334,12 +336,17 @@ class PassportController extends Controller
 
             if(isset($user)) {
                 Auth::login($user, true);
-                return redirect('/');
+                $token = auth()->user()->createToken('MySecret')->accessToken;
+
+                $data = $request->all();
+                $data['token'] = $token;
+                $data['user'] = auth()->user();
+                $data['status'] = true;
+
+                return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             }
 
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'من فضلك اختر نوع العضوية الذي ترغب بها');
-            return redirect('/register');
+            return \Response::json(array("error"=>["status" => 400, "message" => 'غير مسجل ولا يملك اي صلاحيات', "data" => array() ,"appearForUser" => true]));
 
         }
 
