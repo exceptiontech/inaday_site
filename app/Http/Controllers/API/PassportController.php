@@ -330,7 +330,7 @@ class PassportController extends Controller
 
         $return_user = Socialite::driver('google')->stateless()->user();
 
-        if (str_contains($url, 'user')) {
+        if (str_contains($url, 'user') || is_null($url) ) {
 
             $user = User::where('email',$return_user->email)->first();
 
