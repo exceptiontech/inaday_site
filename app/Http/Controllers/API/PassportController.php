@@ -359,17 +359,17 @@ class PassportController extends Controller
 
 
 
-        $validator = Validator::make($request->all(), [
-            'user_type'=> 'required',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'user_type'=> 'required',
+        // ]);
 
 
-        if ($validator->fails()) {
+        // if ($validator->fails()) {
 
-            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
+        //     $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => false);
 
-            return \Response::json(['error'=> $arr]);
-        }
+        //     return \Response::json(['error'=> $arr]);
+        // }
 
 
         $user = New User;
