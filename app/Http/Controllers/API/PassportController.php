@@ -56,11 +56,16 @@ class PassportController extends Controller
 
         $user = User::create($data);
 
-        $data['token'] = $user->createToken('MySecret')->accessToken;
-        $data['user'] = $user;
-        $data['status'] = 200;
+        $data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['status'] = true;
 
-        return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+        //return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
@@ -83,10 +88,12 @@ class PassportController extends Controller
             $data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
-            $data['status'] = 200;
+            $data['status'] = true;
 
+            $arr = array("status" => 200,"data" => $data);
 
-            return response()->json(['data' => $data], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            return \Response::json(['data'=> $arr]);
+
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
