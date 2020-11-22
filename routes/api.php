@@ -72,6 +72,10 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/portfolios', 'API\Account\PortfolioController', ['names' => 'front_services']);
     Route::get('account/portfolios/delete/{id}', 'API\Account\PortfolioController@delete')->name('portfolios.delete');
 
+    // Messages
+    Route::resource('account/messages', 'API\Account\MessageController');
+    Route::get('account/messages/{id}', 'API\Account\MessageController@getMessage');
+    Route::post('account/message', 'API\Account\MessageController@sendMessage');
 
 
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\API\Account;
 
 use App\Http\Controllers\Controller;
 
@@ -55,29 +55,11 @@ class MessageController extends Controller
         $users->where('id', '!=', 1);
 
 
-        return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
+        return response()->json(['data' => $users->latest()->get()], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        //return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -101,7 +83,12 @@ class MessageController extends Controller
             $query->where('from', $my_id)->where('to', $id);
         })->get();
 
-        return view('front.profile.messages.show', ['messages' => $messages,'other_user' => $other_user]);
+        $data['messages'] = $messages;
+        $data['other_user'] = $other_user;
+
+
+        return response()->json(['data' => $data], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
     }
 
     /**
@@ -159,6 +146,7 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
 
+
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
@@ -206,7 +194,10 @@ class MessageController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['error'=>'من فضلك ادخل الرسالة']);
+
+                $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
             }
 
 
@@ -235,6 +226,13 @@ class MessageController extends Controller
         $data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
 
         $pusher->trigger('my-channel', 'my-event', $data);
+
+        
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+
     }
 
 
