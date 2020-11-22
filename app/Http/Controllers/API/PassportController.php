@@ -47,7 +47,11 @@ class PassportController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+            //return response()->json(['error'=>$validator->errors()], 401);
 
         }
 
