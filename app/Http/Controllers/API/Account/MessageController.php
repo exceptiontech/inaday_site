@@ -227,7 +227,6 @@ class MessageController extends Controller
 
         $pusher->trigger('my-channel', 'my-event', $data);
 
-        
         $arr = array("status" => 200,"data" => $data);
 
         return \Response::json(['data'=> $arr]);

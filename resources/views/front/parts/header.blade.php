@@ -72,7 +72,7 @@
                     <div class="modal-content">
                         <div class="modal-body p-0 ">
                             <center>
-                                <img class="img-fluid" src="{{url('images/Inaday.jpg') }}" alt="inaday">
+                                <img class="img-fluid" src="{{url('images/Inaday_.jpg') }}" alt="inaday">
                             </center>
 
                         </div>
