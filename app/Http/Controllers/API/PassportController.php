@@ -127,7 +127,9 @@ class PassportController extends Controller
         );
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
-            $arr = array("error"=>["status" => 400, "message" => $validator->errors()->first(), "data" => array()]);
+
+            $arr = array("status" => 400, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
         } else {
             try {
                 $response = Password::sendResetLink($request->only('email'), function (Message $message) {
@@ -137,14 +139,16 @@ class PassportController extends Controller
                     case Password::RESET_LINK_SENT:
                         return \Response::json(array("status" => 200, "message" => trans($response), "data" => array()));
                     case Password::INVALID_USER:
-                        return \Response::json(array("error"=>["status" => 400, "message" => trans($response), "data" => array()]));
+
+                        return \Response::json(array("status" => 400, "errorMsg" => trans($response), "data" => array(),"appearForUser" => false));
 
 
                 }
             } catch (\Swift_TransportException $ex) {
-                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+                $arr = array("status" => 400, "errorMsg" => $ex->getMessage(), "data" => array(),"appearForUser" => true);
+
             } catch (Exception $ex) {
-                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+                $arr = array("status" => 400, "errorMsg" => $ex->getMessage(), "data" => array(),"appearForUser" => true);
             }
         }
         return \Response::json($arr);
@@ -234,7 +238,8 @@ class PassportController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 400, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+            return response()->json($arr, 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
 
