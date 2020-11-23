@@ -102,7 +102,9 @@ class PassportController extends Controller
             return \Response::json(['data'=> $arr]);
 
         } else {
-            return response()->json(['error' => 'UnAuthorised'], 401,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'المعلومات خاطئة', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
     }
 
