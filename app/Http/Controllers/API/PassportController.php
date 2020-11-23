@@ -44,6 +44,7 @@ class PassportController extends Controller
          'email' => 'required|string|email|max:255|unique:users',
          'name' => 'required',
          'password'=> 'required'
+         'user_type'=> 'required'
         ]);
 
         if ($validator->fails()) {
@@ -59,6 +60,10 @@ class PassportController extends Controller
         $requests['password'] = Hash::make($requests['password']);
 
         $user = User::create($requests);
+
+        $role = Role::where('name',$request->user_type)->first();
+        $user->assignRole([$role->id]);
+
         Auth::login($user, true);
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
