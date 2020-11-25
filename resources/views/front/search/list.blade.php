@@ -98,7 +98,7 @@
                                             @else
                                               {{__('file.no_skills')}}
                                             @endif
-                                            <a class="btn btn-block btn-primary mt-4" href="{{url('/messages/'.$user->id)}}">مراسلة العضو  </a>
+                                            <a class="btn btn-block btn-primary mt-4" href="{{url('/account/messages/?user_id=/'.$user->id)}}">مراسلة العضو  </a>
 
                                       </div>
                                   </div>
