@@ -73,10 +73,10 @@
                                         {!! Form::label('applykind_id', trans('forms.applying_type'))!!}
                                         {!! Form::select('applykind_id',$applykinds->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-12">
+                                    <!-- <div class="col-12 col-sm-12">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!} <em class="text-danger">*</em>
                                         {!! Form::text('num_team', 1, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
-                                    </div>
+                                    </div> -->
 
                                 </div>
 

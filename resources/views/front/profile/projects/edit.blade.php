@@ -92,10 +92,10 @@
                                         {!! Form::label('applykind_id', trans('forms.applying_type'))!!}
                                         {!! Form::select('applykind_id',$applykinds->pluck('title.'.App::getLocale(),'id'), $project->applykind_id,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-12">
+                                    <!-- <div class="col-12 col-sm-12">
                                         {!! Form::label('num_team', trans('forms.num_team'))!!}
                                         {!! Form::text('num_team', $project->num_team, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
