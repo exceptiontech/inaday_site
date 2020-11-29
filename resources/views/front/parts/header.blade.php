@@ -157,6 +157,9 @@
                         <a class="dropdown-item" href="{{ url('/user/'.Auth::user()->id ) }}">
                           {{trans('file.profile')}}
                         </a>
+                        <a class="dropdown-item" href="{{ url('/account/bookings' ) }}">
+                          {{trans('file.my_bookings')}}
+                        </a>
                         <a class="dropdown-item" href="{{ url('/account/messages' ) }}">
                           {{trans('file.chat')}}
                         </a>

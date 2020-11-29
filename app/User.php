@@ -64,7 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin()
     {
-        if ($this->roles->first()->name == "Admin" ) {
+
+        if ($this->roles && $this->roles->first()->name == "Admin" ) {
             return true;
         }
         return false;
@@ -72,7 +73,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isEntrepreneur()
     {
-        if ($this->roles->first()->name == "entrepreneur" ) {
+        if ($this->roles && $this->roles->first()->name == "entrepreneur" ) {
             return true;
         }
         return false;
@@ -80,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isServicesProvider()
     {
-        if ($this->roles->first()->name == "services_provider" ) {
+        if ($this->roles && $this->roles->first()->name == "services_provider" ) {
             return true;
         }
         return false;
