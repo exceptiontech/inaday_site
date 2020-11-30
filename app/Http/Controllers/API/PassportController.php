@@ -164,7 +164,9 @@ class PassportController extends Controller
 
 
         if (!Auth::user() ) {
-            return redirect::to('/');
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         if (count(Auth::user()->userdetail) > 0) {
