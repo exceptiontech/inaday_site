@@ -162,6 +162,7 @@ class PassportController extends Controller
     public function profile(Request $request)
     {
 
+
         if (!Auth::user() ) {
             return redirect::to('/');
         }
@@ -184,9 +185,9 @@ class PassportController extends Controller
                         'first_name'=> 'required|string|min:3|max:25',
                         'last_name'=> 'required|string|min:3|max:25',
                         'mobile'      =>'required|digits:10',
-                        'avater' => 'mimes:jpg,jpeg,png',
+                        //'avater' => 'mimes:jpg,jpeg,png',
                         'position'      =>'min:3|string',
-                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        //'cv_file'      =>'mimes:pdf,docx,doc',
                         'country_id'      =>'required',
                         'city_id'      =>'required',
                         'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
@@ -198,11 +199,11 @@ class PassportController extends Controller
                     'first_name'=> 'required|string|min:3|max:25',
                     'last_name'=> 'required|string|min:3|max:25',
                     'mobile'      =>'required|digits:10',
-                    'avater' => 'mimes:jpg,jpeg,png',
+                    //'avater' => 'mimes:jpg,jpeg,png',
                     'position'      =>'min:3|string',
-                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    //'cv_file'      =>'mimes:pdf,docx,doc',
                     'skills.*'      =>'required|integer',
-                    //'level_id'      =>'required|integer',
+                    'level_id'      =>'required|integer',
                     'country_id'      =>'required',
                     'city_id'      =>'required',
                     'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
@@ -218,9 +219,9 @@ class PassportController extends Controller
                         'first_name'=> 'required|string|min:3|max:25',
                         'last_name'=> 'required|string|min:3|max:25',
                         'mobile'      =>'required|digits:10',
-                        'avater' => 'mimes:jpg,jpeg,png',
+                        //'avater' => 'mimes:jpg,jpeg,png',
                         'position'      =>'min:3|string',
-                        'cv_file'      =>'mimes:pdf,docx,doc',
+                        //'cv_file'      =>'mimes:pdf,docx,doc',
                         'country_id'      =>'required',
                         'city_id'      =>'required',
                     ]);
@@ -229,11 +230,11 @@ class PassportController extends Controller
                     'first_name'=> 'required|string|min:3|max:25',
                     'last_name'=> 'required|string|min:3|max:25',
                     'mobile'      =>'required|digits:10',
-                    'avater' => 'mimes:jpg,jpeg,png',
+                    //'avater' => 'mimes:jpg,jpeg,png',
                     'position'      =>'min:3|string',
-                    'cv_file'      =>'mimes:pdf,docx,doc',
+                    //'cv_file'      =>'mimes:pdf,docx,doc',
                     'skills.*'      =>'required|integer',
-                    //'level_id'      =>'required|integer',
+                    'level_id'      =>'required|integer',
                     'country_id'      =>'required',
                     'city_id'      =>'required',
                 ]);
@@ -337,7 +338,7 @@ class PassportController extends Controller
             Auth::user()->notify(new UpdatedUser(Auth::user()));
         } 
 
-        $arr = array("status" => 200, "message" => "Password updated successfully.", "data" => array());
+        $arr = array("status" => 200, "message" => "Profile updated successfully.", "data" => array());
 
         return \Response::json($arr);
     }
