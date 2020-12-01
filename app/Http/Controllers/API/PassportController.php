@@ -71,6 +71,9 @@ class PassportController extends Controller
         //$data = $request->all();
         $data['token'] = $token;
         $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
@@ -100,6 +103,10 @@ class PassportController extends Controller
             //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
+            $data['user']['userdetail'] = auth()->user()->userdetail;
+            $data['user']['roles'] = auth()->user()->roles;
+            $data['user']['usersettings'] = auth()->user()->usersettings;
+
             $data['status'] = true;
 
             $arr = array("status" => 200,"data" => $data);
@@ -340,9 +347,22 @@ class PassportController extends Controller
             Auth::user()->notify(new UpdatedUser(Auth::user()));
         } 
 
-        $arr = array("status" => 200, "message" => "Profile updated successfully.", "data" => array());
 
-        return \Response::json($arr);
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        //$data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+
+        // $arr = array("status" => 200, "message" => "Profile updated successfully.", "data" => array());
+
+        // return \Response::json($arr);
     }
 
 
@@ -440,6 +460,9 @@ class PassportController extends Controller
         $data = $request->all();
         $data['token'] = $token;
         $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
