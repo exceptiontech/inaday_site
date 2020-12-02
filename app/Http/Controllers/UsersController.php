@@ -271,6 +271,7 @@ class UsersController extends Controller
             }
 
             $user->password = Hash::make($request['password']);
+
         }else {
 
             if (Auth::user()->isEntrepreneur()) {
@@ -314,6 +315,41 @@ class UsersController extends Controller
         $user->mobile=@$request->mobile;
         $user->save();
 
+
+        if(!empty($request['password'])) {
+            if ($user->mobile) {
+
+                $str = $user->mobile;
+                $number = '966'.substr($str, 1);
+
+
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday.sa",
+                    "userSender" => "Inaday",
+                    "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                    "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $curl_response = curl_exec($ch);
+
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
+
+                curl_close($ch);
+            }
+        }
 
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
@@ -481,6 +517,11 @@ class UsersController extends Controller
                 'password'=> 'required|string|min:8|max:25'
             ]);
             $data->password = Hash::make($request['password']);
+
+
+
+
+
         }
         $data->first_name=$request->first_name;
         $data->last_name=@$request->last_name;
@@ -635,6 +676,39 @@ class UsersController extends Controller
                 $user->save();
 
 
+                if ($user->mobile) {
+
+                    $str = $user->mobile;
+                    $number = '966'.substr($str, 1);
+
+
+                    $url = "https://www.msegat.com/gw/sendsms.php";
+                    $params = json_encode([
+                        "userName" => "inaday.sa",
+                        "userSender" => "Inaday",
+                        "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                        "msg" => "تم انشاء الحساب",
+                        "numbers" => $number
+                    ]);
+                    $headers = array('Content-Type:application/json');
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                    $curl_response = curl_exec($ch);
+
+                    if ($curl_response === false) {
+                        $info = curl_getinfo($ch);
+                        curl_close($ch);
+                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                    }
+
+                    curl_close($ch);
+                }
+
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
                 $usersettings->offer_notifications=1;
@@ -719,6 +793,42 @@ class UsersController extends Controller
 
                 $user->save();
 
+
+
+                if ($user->mobile) {
+
+                    $str = $user->mobile;
+                    $number = '966'.substr($str, 1);
+
+
+                    $url = "https://www.msegat.com/gw/sendsms.php";
+                    $params = json_encode([
+                        "userName" => "inaday.sa",
+                        "userSender" => "Inaday",
+                        "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                        "msg" => "تم انشاء الحساب",
+                        "numbers" => $number
+                    ]);
+                    $headers = array('Content-Type:application/json');
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                    $curl_response = curl_exec($ch);
+
+                    if ($curl_response === false) {
+                        $info = curl_getinfo($ch);
+                        curl_close($ch);
+                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                    }
+
+                    curl_close($ch);
+                }
+
+
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
                 $usersettings->offer_notifications=1;
@@ -799,6 +909,40 @@ class UsersController extends Controller
 
                 $user->save();
 
+
+                if ($user->mobile) {
+
+                    $str = $user->mobile;
+                    $number = '966'.substr($str, 1);
+
+
+                    $url = "https://www.msegat.com/gw/sendsms.php";
+                    $params = json_encode([
+                        "userName" => "inaday.sa",
+                        "userSender" => "Inaday",
+                        "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                        "msg" => "تم انشاء الحساب",
+                        "numbers" => $number
+                    ]);
+                    $headers = array('Content-Type:application/json');
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                    $curl_response = curl_exec($ch);
+
+                    if ($curl_response === false) {
+                        $info = curl_getinfo($ch);
+                        curl_close($ch);
+                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                    }
+
+                    curl_close($ch);
+                }
+
             }
 
             $role = Role::where('name','student')->first();
@@ -876,6 +1020,41 @@ class UsersController extends Controller
             $user->notification_preference = 'mail';
 
             $user->save();
+
+
+
+                if ($user->mobile) {
+
+                    $str = $user->mobile;
+                    $number = '966'.substr($str, 1);
+
+
+                    $url = "https://www.msegat.com/gw/sendsms.php";
+                    $params = json_encode([
+                        "userName" => "inaday.sa",
+                        "userSender" => "Inaday",
+                        "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                        "msg" => "تم انشاء الحساب",
+                        "numbers" => $number
+                    ]);
+                    $headers = array('Content-Type:application/json');
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                    $curl_response = curl_exec($ch);
+
+                    if ($curl_response === false) {
+                        $info = curl_getinfo($ch);
+                        curl_close($ch);
+                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                    }
+
+                    curl_close($ch);
+                }
 
             $usersettings = new Usersettings;
             $usersettings->blog_notifications= 1;
