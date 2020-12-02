@@ -29,6 +29,7 @@ $(document).ready(function(){
         $("ul.pagination").addClass('justify-content-center');
     }
 
+    $('[data-toggle="tooltip"]').tooltip()
 
 
 });

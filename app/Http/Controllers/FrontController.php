@@ -36,6 +36,8 @@ class FrontController extends Controller
     public function sendSMS()
     {
 
+        $str = '0540437879';
+        $number = '966'.substr($str, 1);
 
         $url = "https://www.msegat.com/gw/sendsms.php";
         $params = json_encode([
@@ -43,8 +45,9 @@ class FrontController extends Controller
             "userSender" => "Inaday",
             "apiKey" => "4294ff3610fcc2260203cf84660dec90",
             "msg" => "Hi , Your current balance is points",
-            "numbers" => "966540437879"
+            "numbers" => $number,
         ]);
+
         $headers = array('Content-Type:application/json');
 
         $ch = curl_init($url);

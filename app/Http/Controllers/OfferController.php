@@ -59,7 +59,7 @@ class OfferController extends Controller
         $validator = Validator::make($request->all(), [
             'project_id'        => 'required|integer',
             'duration'          => 'required|numeric|min:1|max:24',
-            'price'             => 'required|integer',
+            'price'             => 'required|integer|min:1',
             'offer'             => 'required',
 
         ]);
