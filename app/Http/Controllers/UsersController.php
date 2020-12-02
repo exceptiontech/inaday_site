@@ -634,6 +634,7 @@ class UsersController extends Controller
 
                 $user->save();
 
+
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
                 $usersettings->offer_notifications=1;
@@ -655,6 +656,23 @@ class UsersController extends Controller
                 //$user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
+
+
+                if (count($user->userdetail) > 0) {
+                    $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+                }else {
+                    $userdetail = new Userdetail;
+                }
+
+                if (Auth::user()) {
+                    $userdetail->user_id = Auth::user()->id;
+                }else {
+                    $userdetail->user_id = $user->id;
+                }
+
+                $userdetail->avater =  'images/default_img.png';
+                $userdetail->save();
+
 
                 return redirect('/account/profile');
 
@@ -723,6 +741,23 @@ class UsersController extends Controller
             //$user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
+
+            if (count($user->userdetail) > 0) {
+                $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            }else {
+                $userdetail = new Userdetail;
+            }
+
+            if (Auth::user()) {
+                $userdetail->user_id = Auth::user()->id;
+            }else {
+                $userdetail->user_id = $user->id;
+            }
+
+            $userdetail->avater =  'images/default_img.png';
+            $userdetail->save();
+
+
             return redirect('/');
 
 
@@ -771,6 +806,23 @@ class UsersController extends Controller
             $user->sendEmailVerificationNotification();
 
             Auth::login($user, true);
+
+            if (count($user->userdetail) > 0) {
+                $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            }else {
+                $userdetail = new Userdetail;
+            }
+
+            if (Auth::user()) {
+                $userdetail->user_id = Auth::user()->id;
+            }else {
+                $userdetail->user_id = $user->id;
+            }
+
+            $userdetail->avater =  'images/default_img.png';
+            $userdetail->save();
+
+
             return redirect('/');
 
         }elseif (str_contains($url, 'login')) {
@@ -790,8 +842,6 @@ class UsersController extends Controller
 
 
         $user = User::where('email',$return_user->email)->first();
-
-
     
         if(isset($user)) {
             Auth::login($user, true);
@@ -849,6 +899,22 @@ class UsersController extends Controller
         }
 
         Auth::login($user, true);
+
+        if (count($user->userdetail) > 0) {
+            $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+        }else {
+            $userdetail = new Userdetail;
+        }
+
+        if (Auth::user()) {
+            $userdetail->user_id = Auth::user()->id;
+        }else {
+            $userdetail->user_id = $user->id;
+        }
+
+        $userdetail->avater =  'images/default_img.png';
+        $userdetail->save();
+        
 
         return redirect('/');
 

@@ -66,6 +66,12 @@ class PassportController extends Controller
 
         Auth::login($user, true);
 
+
+        $userdetail = new Userdetail;
+        $userdetail->user_id = $user->id;
+        $userdetail->avater =  'images/default_img.png';
+        $userdetail->save();
+
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
         //$data = $request->all();
@@ -74,6 +80,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
@@ -100,12 +107,31 @@ class PassportController extends Controller
         if (auth()->attempt($credentials)) {
             $token = auth()->user()->createToken('MySecret')->accessToken;
 
+
+            if (!count(auth()->user()->userdetail)) {
+                $userdetail = new Userdetail;
+                $userdetail->user_id = auth()->user()->id;
+                $userdetail->avater =  'images/default_img.png';
+                $userdetail->save();
+
+            }
+
+            return auth()->user()->userdetail;
+
             //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
             $data['user']['userdetail'] = auth()->user()->userdetail;
             $data['user']['roles'] = auth()->user()->roles;
             $data['user']['usersettings'] = auth()->user()->usersettings;
+
+            if (!auth()->user()->userdetail) {
+                $userdetail = new Userdetail;
+                $userdetail->user_id = $user->id;
+                $userdetail->avater =  'images/default_img.png';
+                $userdetail->save();
+            }
+
 
             $data['status'] = true;
 
