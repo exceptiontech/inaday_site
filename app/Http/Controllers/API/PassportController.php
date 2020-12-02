@@ -116,8 +116,6 @@ class PassportController extends Controller
 
             }
 
-            return auth()->user()->userdetail;
-
             //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
