@@ -142,6 +142,7 @@ class RegisterController extends Controller
                 $userdetail->user_id = $user->id;
             }
 
+            $userdetail->avater =  'images/default_img.png';
 
 
 //            $userdetail->jobtype_id = $request->jobtype_id;
@@ -232,10 +233,40 @@ class RegisterController extends Controller
             $role = Role::where('name','entrepreneur')->first();
             $user->assignRole([$role->id]);
 
+            if (count($user->userdetail) > 0) {
+                $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            }else {
+                $userdetail = new Userdetail;
+            }
+
+            if (Auth::user()) {
+                $userdetail->user_id = Auth::user()->id;
+            }else {
+                $userdetail->user_id = $user->id;
+            }
+
+            $userdetail->avater =  'images/default_img.png';
+            $userdetail->save();
+
         }elseif (str_contains($url, 'student')) {
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
+            
+            if (count($user->userdetail) > 0) {
+                $userdetail = Userdetail::find(Auth::user()->userdetail->id);
+            }else {
+                $userdetail = new Userdetail;
+            }
+
+            if (Auth::user()) {
+                $userdetail->user_id = Auth::user()->id;
+            }else {
+                $userdetail->user_id = $user->id;
+            }
+
+            $userdetail->avater =  'images/default_img.png';
+            $userdetail->save();
 
         }
 

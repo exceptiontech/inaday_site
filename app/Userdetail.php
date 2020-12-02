@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Userdetail extends Model
 {
 
+    protected $fillable = [
+        'avater'
+    ];
+
+
     public function jobtype()
     {
         return $this->belongsTo('App\Jobtype');
