@@ -489,6 +489,9 @@ return [
     'please_see_if_you_are_not' => 'الرجاء الاطلاع في حالة عدم الاطلاع',
 
     'confirmed_projects' => 'المشاريع المعتمدة',
+    'under_confirm' => 'بأنتظار الإعتماد',
+
+
 
     'projects' => 'المشاريع',
 
