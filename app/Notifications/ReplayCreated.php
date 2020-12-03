@@ -11,15 +11,19 @@ class ReplayCreated extends Notification
 {
     use Queueable;
 
+
+    protected $replay;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($replay)
     {
-        //
+        $this->replay = $replay;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -40,9 +44,11 @@ class ReplayCreated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/bookings/'.$this->replay->booking->id);
+
         return (new MailMessage)
                     ->line(__('notification.ReplayCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
+                    ->action(__('notification.click_here'), $url )
                     ->line(__('notification.ReplayCreatedDescEmail'));
     }
 

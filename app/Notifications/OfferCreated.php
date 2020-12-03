@@ -11,15 +11,18 @@ class OfferCreated extends Notification
 {
     use Queueable;
 
+    protected $offer;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($offer)
     {
-        //
+        $this->offer = $offer;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -40,10 +43,12 @@ class OfferCreated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/projects/'.$this->offer->project->id);
+
         return (new MailMessage)
                     ->line(__('notification.OfferCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.OfferCreatedDescEmail'));
+                    ->line(__('notification.OfferCreatedDescEmail'))
+                    ->action(__('notification.click_here'),  $url );
     }
 
 

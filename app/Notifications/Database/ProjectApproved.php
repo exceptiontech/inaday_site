@@ -11,14 +11,16 @@ class ProjectApproved extends Notification
 {
     use Queueable;
 
+    protected $project;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
 
     /**
@@ -48,10 +50,13 @@ class ProjectApproved extends Notification
 
     public function toDatabase($notifiable)
     {
+        $url = url('/projects/'.$this->project->id);
+
         return [
             'image'=> url('/images/notifications/add.svg'),
             'title'=> __('notification.ProjectCreated'),
             'desc'=>__('notification.ProjectCreatedDesc'),
+            'url'=> $url,
         ];
     }
     /**
