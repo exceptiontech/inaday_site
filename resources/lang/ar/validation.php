@@ -77,7 +77,7 @@ return [
 
     'exists'               => ':attribute المختارة غير صحيحة.',
 
-    'file'                 => ':attribute يتوجب ان يكون ملفاً.',
+    'file'                 => ':attribute يتوجب أن يكون ملفًا.',
 
     'filled'               => ':attribute مطلوب/ة.',
 
@@ -87,9 +87,9 @@ return [
 
     'in_array'             => ':attribute غير متاح في :other.',
 
-    'integer'              => ':attribute يجب أن يكون رقمياً.',
+    'integer'              => ':attribute يجب أن يكون رقميًا.',
 
-    'ip'                   => ':attribute يجب أن يكون صحيحاً.',
+    'ip'                   => ':attribute يجب أن يكون صحيحًا.',
 
     'json'                 => ':attribute يجب أن يكون بصيغة JSON.',
 
@@ -123,9 +123,9 @@ return [
 
     'not_in'               => ':attribute غير صحيح.',
 
-    'numeric'              => ':attribute يجب أن يكون رقمياً.',
+    'numeric'              => ':attribute يجب أن يكون رقميًا.',
 
-    'present'              => ':attribute يجب أن يكون حديثاً.',
+    'present'              => ':attribute يجب أن يكون حديثًا.',
 
     'regex'                => 'صيغة :attribute غير صحيحة.',
 
@@ -151,19 +151,19 @@ return [
 
         'file'    => ':attribute يجب أن يكون :size كيلو بايت.',
 
-        'string'  => ':attribute يجب أن يكون :size أحرق.',
+        'string'  => ':attribute يجب أن يكون :size أحرف.',
 
         'array'   => ':attribute يجب ألاّ تقل عن  :size عناصر.',
 
     ],
 
-    'string'               => ':attribute يجب أن يكون اسماً.',
+    'string'               => ':attribute يجب أن يكون اسمًا.',
 
-    'timezone'             => ':attribute يجب أن يكون توقيتاً صحيحاً.',
+    'timezone'             => ':attribute يجب أن يكون توقيتاً صحيحًا.',
 
-    'unique'               => ':attribute مختارة مسبقاً.',
+    'unique'               => ':attribute مختارة مسبقًا.',
 
-    'uploaded'             => 'تعذر تحميل :attribute',
+    'uploaded'             => 'تعذّر تحميل :attribute',
 
     'url'                  => ':attribute غير صحيح.',
 

@@ -78,21 +78,12 @@ return [
 
     'the_possibility_of_forming_a_team_and_shop_to_enter' => 'تكوين فرق عمل ومصدر مشاريع',
 
-    'the_possibility_of_forming_a_team_and_shop_to_enter_desc' => 'تكوين فريق ومصدر للمشاريع وفرص أكبر
-
-تدريب عملي وتأهيلك للتوظيف وتطبيق قدراتك',
+    'the_possibility_of_forming_a_team_and_shop_to_enter_desc' => 'تأسيس فريق ومصدر للمشاريع وفرص أكبر لتطوير المهارات
+ وتأهيلك للتوظيف وتطوير قدراتك',
 
     'on_bigger_projects_and_opportunities' => 'على مشاريع وفرص أكبر',
 
-    'comprehensive_certification' => 'الشهادة الشاملة',
-
-    'comprehensive_certification_desc' => 'شهادة خبرة للإنجازات الفورية',
-
-    'experience_certificate_for_immediate_accomplishments' => 'شهادة خبرة لإنجازات
-
-فورية',
-
-    'for_service_providers' => 'لمقدمي الخدمات',
+    'for_service_providers' => 'باقات المزايا لمقدمي الخدمات',
 
     'the_speed' => 'السرعة في تنفيذ المشاريع',
 
@@ -123,7 +114,7 @@ return [
     'themixtures'=>'الشراكات',
 
     'mixture' => 'شراكة',
-    'mixture_title' => 'إسم الشراكة',
+    'mixture_title' => 'اسم الشراكة',
     'mixture_desc' => 'تفاصيل الشراكة',
     'mixture_services' => 'خدمات الشراكة',
     'mixture_path' => 'مسار الشراكة',
@@ -149,7 +140,7 @@ return [
 
     'owne_entrepreneurs' => 'رائد الأعمال',
 
-    'entrepreneur_desc' => 'كل مبادر أو صاحب فكرة جديدة لديه القدرة على تحويلها إلى مشروع ذى قيمة اقتصادية ونفع متعدد عليه وعلى المجتمع، وملهم لجيل الرؤية.',
+    'entrepreneur_desc' => 'كل مبادر أو صاحب فكرة جديدة لديه القدرة على تحويلها إلى مشروع ذا قيمة اقتصادية ونفع متعدد عليه وعلى المجتمع، وملهم لجيل الرؤية.',
 
     'ready_mixes' => 'شراكات جاهزة',
 
@@ -159,7 +150,7 @@ return [
 
     'we_offer_you_complete_solutions_desc2' => 'تعمل في الوقت الذي يناسبك، بالقيمة التي تناسبك، في المكان الذي يناسبك',
 
-    'we_offer_you_complete_solutions_desc3' => 'في عملك إجازة، وفي إجازتك عمل.. <br /> ممتع؟ إذا كنت تعتقد أنّك موهوب وتحب العمل جرّب واحسب دخلك.',
+    'we_offer_you_complete_solutions_desc3' => 'في عملك إجازة، وفي إجازتك عمل.. <br /> إذا كنت تعتقد أنّك موهوب وتحب العمل جرّب واحسب دخلك.',
 
     'more_mixes' => 'تعرّف على الشراكات',
 
@@ -181,9 +172,9 @@ return [
 
     'logout'     => 'خروج',
 
-    'register_with_google'     => 'التسجيل عن طريق جوجل',
+    'register_with_google'     => 'التسجيل عن طريق Google',
 
-    'login_with_google'     => 'الدخول عن طريق جوجل',
+    'login_with_google'     => 'الدخول عن طريق Google',
 
 
 
@@ -276,9 +267,9 @@ return [
 
         ـ بيت الموهوبين والمبتكرين.<br />
 
-        ـ مصنع وظائف عن بُعد، وتأسيس أعمال تجارية متفوقة.<br />
+        ـ مصنع وظائف عن بُعد، وتأسيس أعمال تجارية ناجحة<br />
 
-        ـ تأهيل مباشر، وتدريب عملي متطور. ',
+        ـ تقديم الخدمات وانجاز الأعمال بسهولة و أمان ',
 
     'free_start' => 'ابدأ مجاناً',
 
@@ -298,7 +289,7 @@ return [
 
     'be_the_first_services_provider_add_offer' => 'كن أول من يقوم بإضافة عرض ',
 
-    'no_offer_at_this_time'=>'لا توجد عروض حالياَ',
+    'no_offer_at_this_time'=>'لا توجد عروض حاليًا',
 
     'date'=>'التاريخ',
 
@@ -308,7 +299,7 @@ return [
 
     'price'=>'السعر بالريال السعودي',
 
-    'add_your_offer_price_to_this_project'=>'ضع السعر الذي تراه مناسباً للمشروع',
+    'add_your_offer_price_to_this_project'=>'ضع السعر الذي تراه مناسبًا للمشروع',
 
     'duration'=>'المدة بالساعات',
 
@@ -360,15 +351,15 @@ return [
 
     'other_articles' => 'مقالات أخرى',
 
-    'thank_you_for_being_ambitious_and_seeking_work' => 'شكراً لأنك طموح وتسعى للعمل',
+    'thank_you_for_being_ambitious_and_seeking_work' => 'شكرًا لأنك طموح وتسعى للعمل',
 
     'you_will_achieve_your_dreams_and_the_dreams_of_many_people_around_you..' => ' ستحقق أحلامك وأحلام الكثير حولك..',
 
-    'we_will_contact_you_soon..' => 'ًسنتواصل معك قريبا',
+    'we_will_contact_you_soon..' => 'ًسنتواصل معك قريبًا',
 
     'return_to_home_page' => 'العودة للرئيسية',
 
-    'you_are_a_service_provider_know_service_delivery_and_can_determine_all_project_requirements_from_time_to_cost' => 'أنت مقدّم خدمة وقادر تحدد كل متطلبات المشروع من وقت وتكلفة.',
+    'you_are_a_service_provider_know_service_delivery_and_can_determine_all_project_requirements_from_time_to_cost' => 'أنت مقدّم خدمة بإمكانك تحديد كل متطلبات المشروع من وقت وتكلفة.',
 
     'determine_how_much_you_are_willing_to_invest_in_each_mission' => 'حدد مدى استثمارك في كل مهمة.',
 
@@ -384,7 +375,7 @@ return [
 
     'your_booking_id' => 'رقم الحجز الخاص بك هو',
 
-    'please_wait_service_provider' => 'فضلاً انتظر ردّ مقدّم الخدمة',
+    'please_wait_service_provider' => 'فضًلا انتظر ردّ مقدّم الخدمة',
 
 
 
@@ -408,17 +399,17 @@ return [
 
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
 
-    'please_enter_the_password?' => 'فضلاً ادخل كلمة السر',
+    'please_enter_the_password?' => 'فضًلا أدخل كلمة السر',
 
-    'please_enter_your_e_mail?' => 'فضلاً ادخل الإيميل الخاص بك',
+    'please_enter_your_e_mail?' => 'فضًلا أدخل الإيميل الخاص بك',
 
-    'processing_is_in_progress' => 'جارية المعالجة ...',
+    'processing_is_in_progress' => 'جاري المعالجة ...',
 
     'signing_in' => 'جاري تسجيل الدخول',
 
     'sign_in_successful' => 'تم تسجيل الدخول بنجاح',
 
-    'sorry_the_email_or_password_are_incorrect' => 'عفواً الإيميل أو الباسورد غير صحيح.',
+    'sorry_the_email_or_password_are_incorrect' => 'عفوًا الإيميل أو الباسورد غير صحيح.',
 
     'important_links' => 'روابط مهمّة',
 
@@ -466,13 +457,13 @@ return [
 
     'you_are_an_entrepreneur_meaning_you_are_an_investor_and_you_know_how_much_each_stage_estimates_how_much_time_and_cost_you_need_determine_how_much_you_are_willing_to_invest_in_each_task' => 'أنت رائد أعمال، أي مستثمر، و تعرف حاجة كل مرحلة من الوقت والتكلفة. حدد مدى استثمارك في كل مهمّة، لديك خيار إضافي عند نجاح المشروع حسب معيار الأداء الذي تحدده...',
 
-    'how_much_do_you_invest_basic' => 'كم تستثمر؟ / أساسى',
+    'how_much_do_you_invest_basic' => 'كم تستثمر؟ / أساسي',
 
     'price_in_riyal' => 'السعر بالريال',
 
     'select_the_amount' => 'حدد المبلغ',
 
-    'select_the_accounting_method' => 'حدد طريقه المحاسبة',
+    'select_the_accounting_method' => 'حدد طريقة المحاسبة',
 
     'reward' => 'المكافأة',
 
@@ -489,9 +480,6 @@ return [
     'please_see_if_you_are_not' => 'الرجاء الاطلاع في حالة عدم الاطلاع',
 
     'confirmed_projects' => 'المشاريع المعتمدة',
-    'under_confirm' => 'بأنتظار الإعتماد',
-
-
 
     'projects' => 'المشاريع',
 
@@ -511,17 +499,17 @@ return [
 
     'apply_now' => 'تقدم الآن',
 
-    'thanks_for_being_ambitious_and_an_entrepreneur' => 'شكراً لأنك طموح ورائد أعمال',
+    'thanks_for_being_ambitious_and_an_entrepreneur' => 'شكرًا لأنك طموح ورائد أعمال',
 
     'you_will_achieve_your_dreams_and_the_dreams_of_many_people_around_you' => 'راح تحقق أحلامك وأحلام ناس كثير حولك..',
 
-    'we_will_contact_you_soon' => 'سنتواصل معك قريباً',
+    'we_will_contact_you_soon' => 'سنتواصل معك قريبًا',
 
     'approve'=>'اعتمد' ,
 
     'this_project_for_teams'=>'هذا المشروع مخصص للفرق' ,
 
-    'not_available_right_now'=>'لم يعد هذا المشروع متاحاً' ,
+    'not_available_right_now'=>'تم حجز المشروع' ,
 
     'project_details'=>'تفاصيل المشروع' ,
 
@@ -562,7 +550,7 @@ return [
 
     'nothavepermissions'=>'لا تملك الصلاحيات',
 
-    'please_contact_us'=>'فضلاً اتصل بالإدارة',
+    'please_contact_us'=>'فضًلا اتصل بالإدارة',
 
 
 
@@ -596,7 +584,7 @@ return [
 
    'team_desc'=>'وصف الفريق',
 
-   'team_logo'=>'شعار الفريق',
+   'team_logo'=>'شعارالفريق',
 
    'add_members_to_your_time'=>'إضافة أعضاء لفريقك',
 
@@ -616,7 +604,7 @@ return [
 
    'invitation_cancel'=>'تم إلغاء الدعوة',
 
-   'user_already_added_to_team'=>'مقدّم الخدمة مضاف فعلاً للفريق',
+   'user_already_added_to_team'=>'مقدّم الخدمة مضاف فعًلا للفريق',
 
    'no_services_providers_right_now'=>'لا يوجد مقدّم خدمة تنطبق عليه الخيارات المطلوبة',
 
@@ -636,17 +624,17 @@ return [
    'duration_accept' => 'تم تمديد الطلب',
    'duration_notes' => 'بالملاحظات التالية :',
    'duration_refused' => 'تم رفض طلب التمديد',
-   'no_message' => 'لا يوجد اي رسائل',
+   'no_message' => 'لا يوجد أي رسائل',
    'complete_order'=>'الطلب مكتمل',
-   'uncomplete_order'=>'الطلب غير مكتمل او ملغي',
-   'add_replay'=>'اضف تعليق',
+   'uncomplete_order'=>'الطلب غير مكتمل أو ملغي',
+   'add_replay'=>'أضف تعليق',
    'replay'=>'التعليق',
    'action'=>'الإجراء',
    'duration_request'=>'طلب إتمام تسليم الطلب',
    'duration_confirm'=>'تم الاستلام',
    'duration_refused'=>'التقدم بشكوى للإدارة',
-   'duration_refused_notes'=>'هنا يمكنك كتابة ملاحظات في مرحلة تسلم الطلب',
-   'duration_hour' => 'مدة المهلة ( بالساعه)',
+   'duration_refused_notes'=>'هنا يمكنك كتابة ملاحظات في مرحلة تسليم الطلب',
+   'duration_hour' => 'مدة المهلة ( بالساعة)',
    'replay_kind'=>'نوع التعليق',
 
 
@@ -702,9 +690,9 @@ return [
 
    'verify' =>'تفعيل العضوية',
 
-   'before_verify'=>'فضلاً تأكد من وجود رابط التفعيل في بريدك الإلكتروني سواء في الصندوق الوارد او الرسائل الغير مرغوب بها',
+   'before_verify'=>'فضًلا تأكد من وجود رابط التفعيل في بريدك الإلكتروني سواء في الصندوق الوارد أو الرسائل غير مرغوب بها',
 
-   'verifyـno_email'=>'حال عدم استلام بريد ',
+   'verifyـno_email'=>'في حال عدم استلام بريد ',
 
    'verifyـnew_email'=>'اطلب بريد جديد من هنا ',
 
@@ -721,7 +709,7 @@ return [
 
     //notifications
     'notifications' => 'الإشعارات',
-    'no_notifications' => 'لا توجد إشعارات حالياً',
+    'no_notifications' => 'لا توجد إشعارات حاليًا',
 
 
 
@@ -742,7 +730,7 @@ return [
     'update_project' => 'تحديث المشروع',
     'update_mixture' => 'تحديث الشراكة',
     'must_looged' => 'يجب تسجيل الدخول أولاً لتتمكن من تقديم عرضك لهذا المشروع',
-    'no_files'=>'لا توجد اي ملفات',
+    'no_files'=>'لا توجد أي ملفات',
     'contact_me' =>'تواصل معي',
     'undefined' => 'غير محدد',
 
@@ -768,7 +756,7 @@ return [
 
     //contact
     'voice_heared'=>'صوتك مسموع',
-    'voice_heared_desc'=>'بماذا نخدمك؟.. من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.',
+    'voice_heared_desc'=>'من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.',
     'message_department'=>'تصنيف الرسالة',
     'message_content'=>'محتوى الرسالة',
     'message_type'=>'اكتب رسالتك',
@@ -780,7 +768,7 @@ return [
 
     //
     'profile' => 'الملف الشخصي',
-    'completeprofile' => 'برجاء اكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك',
+    'completeprofile' => 'الرجاء إكمال وتحديث الملف الشخصي لما له تأثير فعلي على طريقة عملك',
     'no_notes' => 'لا توجد أي تفاصيل عن هذا العضو',
     'portfolios' => 'معرض الأعمال',
     'experiences' => 'الخبرات',

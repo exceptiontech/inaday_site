@@ -20,7 +20,7 @@ return [
 
     'co_password'   =>"تأكيد كلمة المرور",
 
-    'remember'        =>   "تذكرنى",
+    'remember'        =>   "تذكرني",
 
     'forget_pass'        =>   "هل نسيت كلمة المرور؟",
 
@@ -42,7 +42,7 @@ return [
 
     'section'       =>   " مجال المشروع",
 
-    'skills'    =>   "الخبرات المرغوبة",
+    'skills'    =>   "في مجال :",
 
     'other_skills'    =>   "الخبرات الأخرى",
 
@@ -96,7 +96,7 @@ return [
 
     'finance'     => "الجهات التمويلية والاستثمارية ",
 
-    'thank_u'     =>   "شكراً ",
+    'thank_u'     =>   "شكرًا ",
 
 // ----------------------- add service--------------------------
 
@@ -176,7 +176,7 @@ return [
 
     'mixture_desc'       =>   " التفاصيل",
 
-    'mixture_image'            =>   "تحميل صوره",
+    'mixture_image'            =>   "تحميل صورة",
 
     'upload_txt'            =>   " تصفح",
 
@@ -186,9 +186,9 @@ return [
 
     'mixture_duration'            =>   " مدّة التنفيذ (بالساعة)",
 
-    'your_skills'            =>   " أهم مهارات تجيدها",
+    'your_skills'            =>   " أهم المهارات التي تجيدها",
 
-    'othr_skills'            =>   " مهارات أخري",
+    'othr_skills'            =>   " مهارات أخرى",
 
     'addmixture'            =>   "أضف الشراكة",
     'addteam'            =>   "أضف فريق",

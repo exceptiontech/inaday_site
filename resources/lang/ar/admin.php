@@ -46,7 +46,7 @@ return [
     'approve_success'     => 'تم الموافقة بنجاح',
     'approve_project'     => 'تم قبول المشروع',
     'approve_service'     => 'تم قبول الخدمة',
-    'approve_mixture'     => 'تم قبول الخلطة',
+    'approve_mixture'     => 'تم قبول الشراكة',
     'refuse_reason'     => 'سبب الرفض',
     'close'     => 'إغلاق',
 
@@ -67,7 +67,7 @@ return [
     'not_active'     => 'غير مفعل',
     'actions'     => 'التحكم',
     'image'     => 'صورة',
-    'add'     => 'اضف',
+    'add'     => 'أضف',
     'createnew'     => 'إضافة جديد',
     'save'     => 'حفظ',
     'show'     => 'معاينة',
@@ -176,7 +176,7 @@ return [
     'admins'     => 'المدارء',
     'managers'     => 'المشرفين',
     'employees'     => 'الموظفين',
-    'content_editors'     => 'مدخلي المحتوى',
+    'content_editors'     => 'محرر المحتوى',
 
 
     'role'     => 'التخصص',
