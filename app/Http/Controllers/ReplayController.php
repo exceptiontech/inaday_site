@@ -84,7 +84,6 @@ class ReplayController extends Controller
 
         $replay->save();
 
-
         if ($request->replay_id) {
             $replay = Replay::find($request->replay_id);
             $replay->is_confirmed=$request->is_confirmed;

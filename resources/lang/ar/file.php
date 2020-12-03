@@ -481,6 +481,8 @@ return [
 
     'confirmed_projects' => 'المشاريع المعتمدة',
 
+    'under_confirm' => 'بانتظار الاعتماد',
+
     'projects' => 'المشاريع',
 
     'project' => 'مشاريع',

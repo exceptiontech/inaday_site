@@ -11,15 +11,18 @@ class ReplayCreated extends Notification
 {
     use Queueable;
 
+    protected $replay;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($replay)
     {
-        //
+        $this->replay = $replay;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,10 +53,13 @@ class ReplayCreated extends Notification
 
     public function toDatabase($notifiable)
     {
+        $url = url('/bookings/'.$this->replay->booking->id);
+
         return [
             'image'=> url('/images/notifications/approve.svg'),
             'title'=> __('notification.ReplayCreated'),
             'desc'=>__('notification.ReplayCreatedDesc'),
+            'url' => $url,
         ];
     }
 

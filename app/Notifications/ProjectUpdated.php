@@ -11,15 +11,18 @@ class ProjectUpdated extends Notification
 {
     use Queueable;
 
+    protected $project;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,10 +53,13 @@ class ProjectUpdated extends Notification
 
     public function toDatabase($notifiable)
     {
+        $url = url('/projects/'.$this->project->id);
+
         return [
             'image'=> url('/images/notifications/update.svg'),
             'title'=> __('notification.ProjectUpdated'),
             'desc'=>__('notification.ProjectUpdatedDesc'),
+            'url'=> $url,
         ];
     }
 
