@@ -37,7 +37,7 @@ return [
 
 	'RegisterEntrepreneur' => 'رائد أعمال',
 
-	'RegisterEntrepreneurDesc' => 'حلّق بمشروعك عالياً ',
+	'RegisterEntrepreneurDesc' => 'حلّق بمشروعك عاليًا ',
 
 	'RegisterServicesProvider' => 'مقدّم خدمة',
 
@@ -185,7 +185,7 @@ return [
 	// mail 
 	'welcome' => 'مرحبا بكم',
 	'whoops' => 'Whoops!',
-	'click_here' => 'إضغط هنا',
+	'click_here' => 'اضغط هنا',
 	'regards'=>'مع أطيب التحيات',
 
 
@@ -220,7 +220,7 @@ return [
 
 	'RegisterEntrepreneurEmail' => 'رائد أعمال',
 
-	'RegisterEntrepreneurDescEmail' => 'حلّق بمشروعك عالياً ',
+	'RegisterEntrepreneurDescEmail' => 'حلّق بمشروعك عاليًا ',
 
 	'RegisterServicesProviderEmail' => 'مقدّم خدمة',
 
