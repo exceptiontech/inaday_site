@@ -76,9 +76,9 @@ class PassportController extends Controller
 
             $url = "https://www.msegat.com/gw/sendsms.php";
             $params = json_encode([
-                "userName" => "inaday.sa",
+                "userName" => "inaday",
                 "userSender" => "Inaday",
-                "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                 "msg" => "تم انشاء الحساب",
                 "numbers" => $number
             ]);
@@ -411,7 +411,7 @@ class PassportController extends Controller
                 $params = json_encode([
                     "userName" => "inaday",
                     "userSender" => "Inaday",
-                    "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                     "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
                     "numbers" => $number
                 ]);
