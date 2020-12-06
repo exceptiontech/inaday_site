@@ -59,6 +59,12 @@
               <!-- <li class="nav-item">
                 <a class="nav-link @if(\Request::route()->getName() == 'faqs.index') active @endif" href="{{ url('/faqs') }}">{{trans('file.faqs')}}</a>
               </li> -->
+              @if(Auth::user())
+              <li class="nav-item">
+                  <a class="nav-link @if(\Request::route()->getName() == 'bookings.index' || \Request::route()->getName() == 'index') active @endif" href="{{ url('/account/bookings' ) }}" >{{trans('file.my_bookings')}}</a>
+              </li>
+              @endif
+
               <li class="nav-item">
                 <a class="nav-link @if(\Request::route()->getName() == 'contact_us') active @endif" href="{{ url('/contact_us') }}">{{trans('file.contact_us')}}</a>
               </li>

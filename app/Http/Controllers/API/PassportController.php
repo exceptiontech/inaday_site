@@ -316,12 +316,6 @@ class PassportController extends Controller
             return response()->json($arr, 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
-
-        $user->first_name=$request->first_name;
-        $user->last_name=@$request->last_name;
-        $user->mobile=@$request->mobile;
-        $user->save();
-
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
         $userdetail->level_id = $request->level_id;
@@ -340,6 +334,13 @@ class PassportController extends Controller
         $userdetail->position = $request->position;
         $userdetail->notes = $request->notes;
         $userdetail->save();
+
+
+        $user->first_name=$request->first_name;
+        $user->last_name=@$request->last_name;
+        $user->mobile=@$request->mobile;
+        $user->save();
+
 
         $avater =  $request->avater;
         if (isset($avater)) {
@@ -407,8 +408,6 @@ class PassportController extends Controller
 
 
 
-
-
         if(!empty($request['password'])) {
             if ($user->mobile) {
 
@@ -418,7 +417,7 @@ class PassportController extends Controller
 
                 $url = "https://www.msegat.com/gw/sendsms.php";
                 $params = json_encode([
-                    "userName" => "inaday.sa",
+                    "userName" => "inaday",
                     "userSender" => "Inaday",
                     "apiKey" => "4294ff3610fcc2260203cf84660dec90",
                     "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
@@ -455,8 +454,6 @@ class PassportController extends Controller
         $arr = array("status" => 200,"data" => $data);
 
         return \Response::json(['data'=> $arr]);
-
-
 
         // $arr = array("status" => 200, "message" => "Profile updated successfully.", "data" => array());
 
