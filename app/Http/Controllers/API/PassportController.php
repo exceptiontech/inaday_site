@@ -322,43 +322,6 @@ class PassportController extends Controller
         $user->mobile=@$request->mobile;
         $user->save();
 
-
-        if(!empty($request['password'])) {
-            if ($user->mobile) {
-
-                $str = $user->mobile;
-                $number = '966'.substr($str, 1);
-
-
-                $url = "https://www.msegat.com/gw/sendsms.php";
-                $params = json_encode([
-                    "userName" => "inaday.sa",
-                    "userSender" => "Inaday",
-                    "apiKey" => "4294ff3610fcc2260203cf84660dec90",
-                    "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
-                    "numbers" => $number
-                ]);
-                $headers = array('Content-Type:application/json');
-
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-                $curl_response = curl_exec($ch);
-
-                if ($curl_response === false) {
-                    $info = curl_getinfo($ch);
-                    curl_close($ch);
-                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                }
-
-                curl_close($ch);
-            }
-        }
-        
-
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
         $userdetail->level_id = $request->level_id;
@@ -443,6 +406,45 @@ class PassportController extends Controller
         } 
 
 
+
+
+
+        if(!empty($request['password'])) {
+            if ($user->mobile) {
+
+                $str = $user->mobile;
+                $number = '966'.substr($str, 1);
+
+
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday.sa",
+                    "userSender" => "Inaday",
+                    "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                    "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $curl_response = curl_exec($ch);
+
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
+
+                curl_close($ch);
+            }
+        }
+        
+
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
         //$data = $request->all();
@@ -453,6 +455,7 @@ class PassportController extends Controller
         $arr = array("status" => 200,"data" => $data);
 
         return \Response::json(['data'=> $arr]);
+
 
 
         // $arr = array("status" => 200, "message" => "Profile updated successfully.", "data" => array());
