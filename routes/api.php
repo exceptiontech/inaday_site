@@ -54,7 +54,7 @@ Route::middleware('auth:api')->group(function () {
 
     // Projects
     Route::resource('account/projects', 'API\Account\ProjectController', ['names' => 'front_projects']);
-    Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete')->name('projects.delete');
+    Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete');
 
     // Offers
     Route::resource('offers', 'API\OfferController')->except(['show']);

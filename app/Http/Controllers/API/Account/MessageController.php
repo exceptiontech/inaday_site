@@ -1,22 +1,24 @@
 <?php
 
 namespace App\Http\Controllers\API\Account;
-
 use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+use Validator;
+use Socialite;
+use URL;
+use Auth;
 use Redirect;
 use Session;
-use Validator;
 
 use Pusher\Pusher;
 
@@ -29,6 +31,7 @@ class MessageController extends Controller
      */
     public function index(User $users)
     {
+
         $users = $users->newQuery();
 
         $users->orwhereHas('service_bookings', function ($query)  {
@@ -54,8 +57,13 @@ class MessageController extends Controller
         $users->where('id', '!=', Auth::id());
         $users->where('id', '!=', 1);
 
+        $data['status'] = true;
 
-        return response()->json(['data' => $users->latest()->get()], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $arr = array("status" => 200,"data" => $users->latest()->get());
+
+        return \Response::json(['data'=> $arr]);
+
+        //return response()->json(['data' => ], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         //return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
     }
@@ -69,6 +77,13 @@ class MessageController extends Controller
      */
     public function show($id)
     {
+        if (!Auth::user() ) {
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $my_id = Auth::id();
 
         $other_user = User::find($id);
@@ -128,6 +143,14 @@ class MessageController extends Controller
 
     public function getMessage($user_id)
     {
+
+        if (!Auth::user() ) {
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $my_id = Auth::id();
 
         // Make read all unread message
@@ -145,6 +168,11 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request)
     {
+        if (!Auth::user() ) {
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
 
         $from = Auth::id();
