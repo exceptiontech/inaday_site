@@ -235,14 +235,47 @@ class PassportController extends Controller
             return \Response::json(['error'=> $arr]);
         }
 
-        if (count(Auth::user()->userdetail) > 0) {
-            $userdetail = Userdetail::find(Auth::user()->userdetail->first()->id);
-        }else {
-            $userdetail = new Userdetail;
-        }
-
         $user = Auth::user();
 
+        $userdetail = Userdetail::where('user_id',Auth::user()->id)->first();
+        $userdetail->user_id = Auth::user()->id;
+        $userdetail->jobtype_id = $request->jobtype_id;
+        $userdetail->level_id = $request->level_id;
+        $userdetail->prefer_id = $request->prefer_id;
+        $userdetail->costkind_id = $request->costkind_id;
+        $userdetail->applykind_id = $request->applykind_id;
+        $userdetail->averagekind_id = $request->averagekind_id;
+        $userdetail->average_cost = $request->average_cost;
+        $userdetail->rewardkind_id = $request->rewardkind_id;
+        $userdetail->readinesskind_id = $request->readinesskind_id;
+        $userdetail->readiness_date = $request->readiness_date;
+        $userdetail->time_start = $request->time_start;
+        $userdetail->brith_day = $request->brith_day;
+        $userdetail->country_id = $request->country_id;
+        $userdetail->city_id = $request->city_id;
+        $userdetail->position = $request->position;
+        $userdetail->notes = $request->notes;
+
+        $avater =  $request->avater;
+        if (isset($avater)) {
+            $destinationPath = 'uploads/users';
+            $extension =  $avater->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $avater->move($destinationPath, $fileName);
+            $userdetail->avater =  $destinationPath.'/'.$fileName;
+        }
+
+        $cv_file =  $request->cv_file;
+        
+        if ($cv_file) {
+            $destinationPath = 'uploads/users';
+            $extension =  $cv_file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $cv_file->move($destinationPath, $fileName);
+            $userdetail->cv_file =  $destinationPath.'/'.$fileName;
+        }
+
+        $userdetail->save();
 
         if(!empty($request['password']))
         {
@@ -316,52 +349,11 @@ class PassportController extends Controller
             return response()->json($arr, 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
-        $userdetail->user_id = Auth::user()->id;
-        $userdetail->jobtype_id = $request->jobtype_id;
-        $userdetail->level_id = $request->level_id;
-        $userdetail->prefer_id = $request->prefer_id;
-        $userdetail->costkind_id = $request->costkind_id;
-        $userdetail->applykind_id = $request->applykind_id;
-        $userdetail->averagekind_id = $request->averagekind_id;
-        $userdetail->average_cost = $request->average_cost;
-        $userdetail->rewardkind_id = $request->rewardkind_id;
-        $userdetail->readinesskind_id = $request->readinesskind_id;
-        $userdetail->readiness_date = $request->readiness_date;
-        $userdetail->time_start = $request->time_start;
-        $userdetail->brith_day = $request->brith_day;
-        $userdetail->country_id = $request->country_id;
-        $userdetail->city_id = $request->city_id;
-        $userdetail->position = $request->position;
-        $userdetail->notes = $request->notes;
-        $userdetail->save();
-
-
         $user->first_name=$request->first_name;
         $user->last_name=@$request->last_name;
         $user->mobile=@$request->mobile;
         $user->save();
 
-
-        $avater =  $request->avater;
-        if (isset($avater)) {
-            $destinationPath = 'uploads/users';
-            $extension =  $avater->getClientOriginalExtension();
-            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
-            $upload_success = $avater->move($destinationPath, $fileName);
-            $userdetail->avater =  $destinationPath.'/'.$fileName;
-        }
-
-        $cv_file =  $request->cv_file;
-        
-        if ($cv_file) {
-            $destinationPath = 'uploads/users';
-            $extension =  $cv_file->getClientOriginalExtension();
-            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
-            $upload_success = $cv_file->move($destinationPath, $fileName);
-            $userdetail->cv_file =  $destinationPath.'/'.$fileName;
-        }
-
-        $userdetail->save();
 
 
         $skills = $request->skills;
@@ -448,7 +440,10 @@ class PassportController extends Controller
 
         //$data = $request->all();
         $data['token'] = $token;
-        $data['user'] = auth()->user();
+        $data['user'] = $user;
+        $data['user']['userdetail'] = $userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
