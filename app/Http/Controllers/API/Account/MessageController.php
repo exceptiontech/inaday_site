@@ -34,6 +34,7 @@ class MessageController extends Controller
 
         $users = $users->newQuery();
 
+
         $users->orwhereHas('service_bookings', function ($query)  {
                 $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
             });
@@ -59,7 +60,7 @@ class MessageController extends Controller
 
         $data['status'] = true;
 
-        $arr = array("status" => 200,"data" => $users->latest()->get());
+        $arr = array("status" => 200,"data" => $users->with('userdetails','messages')->latest()->get());
 
         return \Response::json(['data'=> $arr]);
 
