@@ -101,6 +101,7 @@ class MessageController extends Controller
 
         $data['messages'] = $messages;
         $data['other_user'] = $other_user;
+        $data['other_user']['userdetail'] = $other_user->userdetail;
 
 
         return response()->json(['data' => $data], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
