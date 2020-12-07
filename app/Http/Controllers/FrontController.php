@@ -41,9 +41,9 @@ class FrontController extends Controller
 
         $url = "https://www.msegat.com/gw/sendsms.php";
         $params = json_encode([
-            "userName" => "inaday.sa",
-            "userSender" => "Inaday",
-            "apiKey" => "4294ff3610fcc2260203cf84660dec90",
+                "userName" => "inaday",
+                "userSender" => "Inaday",
+                "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
             "msg" => "Hi , Your current balance is points",
             "numbers" => $number,
         ]);

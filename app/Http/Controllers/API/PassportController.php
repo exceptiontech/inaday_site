@@ -440,8 +440,8 @@ class PassportController extends Controller
 
         //$data = $request->all();
         $data['token'] = $token;
-        $data['user'] = $user;
-        $data['user']['userdetail'] = $userdetail;
+        $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
         $data['status'] = true;
