@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Booking;
+use Mail;
 
 class BookingConfirm extends Command
 {
@@ -12,7 +13,7 @@ class BookingConfirm extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'booking:confirm';
 
     /**
      * The console command description.
@@ -40,7 +41,7 @@ class BookingConfirm extends Command
     {
 
         $osama = 'osama';
-        
+
         Mail::send('mail.test', ['osama'=>$osama], function($message) use ($osama)
             {
                 $message->to('o.shimy@ad.net.sa', 'info@inaday.sa')->subject('test');
