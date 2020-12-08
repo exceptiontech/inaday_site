@@ -40,7 +40,7 @@ class BookingConfirm extends Command
     public function handle()
     {
 
-        $osama = 'osama';
+        $osama = Carbon::now()->subDay(2);
 
         Mail::send('mail.test', ['osama'=>$osama], function($message) use ($osama)
             {
@@ -48,7 +48,7 @@ class BookingConfirm extends Command
             }); 
 
 
-        $bookings = Booking::where('status_id',2)->where('created_at', '<', Carbon::now()->subDay())->get();
+        $bookings = Booking::where('status_id',2)->where('created_at', '<', Carbon::now()->subDay(2))->get();
 
         foreach ($bookings as $item) {
 
