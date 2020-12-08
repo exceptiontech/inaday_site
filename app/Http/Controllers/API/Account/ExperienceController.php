@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\API\Account;
 
 use App\Http\Controllers\Controller;
 
@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Log;
 use Auth;
-use Redirect;
-use Session;
+use Validator;
 
 use App\Notifications\ExperienceCreated;
 use App\Notifications\ExperienceUpdated;
@@ -27,27 +26,28 @@ class ExperienceController extends Controller
     public function index()
     {
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة خبرات');
-            return redirect::to('/account/profile/edit');
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
         }
 
-        return view('front.profile.experiences.index');
+        $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $experiences;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -57,13 +57,19 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'position' => 'required',
             'company' => 'required',
             'desc' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
         ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         $experience = new Experience();
         $experience->user_id=Auth::id();
@@ -92,39 +98,13 @@ class ExperienceController extends Controller
             Auth::user()->notify(new ExperienceCreated($experience));
         }
 
+        $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
 
+        $data['status'] = true;
+        $data['data'] = $experiences;
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::to('/user/'.Auth::user()->id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Experience  $experience
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Experience $experience)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Experience  $experience
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        $experience=Experience::find($id);
-
-        return view('front.profile.experiences.edit',compact('experience'));
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
     /**
@@ -137,18 +117,33 @@ class ExperienceController extends Controller
     public function update(Request $request, $id)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
         }
         elseif(is_null(Experience::where('user_id',Auth::id())->first()) == 1)
         {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
-        $this->validate($request,[
+
+
+
+        $validator = Validator::make($request->all(), [
             'position'     =>'required|min:3|max:500',
             'company'      =>'required|min:3|max:500',
             'desc'      =>'required|min:3|max:500',
             'start_date'      =>'required|max:10',
         ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
 
         $experience= Experience::find($id);
@@ -168,8 +163,6 @@ class ExperienceController extends Controller
             $log->url      = $request->server()['REQUEST_URI'];
             $log->ip       = $request->server()['REMOTE_ADDR'];
             $log->save();
-
-
         }
 
         Auth::user()->notify(new \App\Notifications\Database\ExperienceUpdated($experience));
@@ -180,9 +173,15 @@ class ExperienceController extends Controller
         }
 
 
-        Session::flash('status', __('admin.info'));
-        Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+
+        $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $experiences;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**
@@ -191,14 +190,39 @@ class ExperienceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+        elseif(is_null(Experience::where('user_id',Auth::id())->first()) == 1)
+        {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
             $experience= Experience::find($id);
             $experience->deleted_at = now();
             $experience->save();
+
+            if ($experience) {
+                $log           = new Log;
+                $log->user_id  = Auth::user()->id;
+                $log->action   = 'delete';
+                $log->model    = 'experience';
+                $log->url      = $request->server()['REQUEST_URI'];
+                $log->ip       = $request->server()['REMOTE_ADDR'];
+                $log->save();
+            }
         }
         
 
@@ -210,10 +234,18 @@ class ExperienceController extends Controller
         }
 
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+
+        $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $experiences;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
+
+
     /**
      * Remove the specified resource from storage.
      *

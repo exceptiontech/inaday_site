@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Log;
 use Auth;
-use Redirect;
-use Session;
+use Validator;
 
 use App\Notifications\PortfolioCreated;
 use App\Notifications\PortfolioUpdated;
@@ -26,29 +25,27 @@ class PortfolioController extends Controller
     public function index()
     {
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
         }
 
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            return response()->json(['error' => 'update your profile at first'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
         }
+
 
         $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
-        return response()->json(['data' => $portfolios], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $data['status'] = true;
+        $data['data'] = $portfolios;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,9 +56,16 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
         ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
 
         $portfolio = new Portfolio();
 
@@ -97,32 +101,15 @@ class PortfolioController extends Controller
             Auth::user()->notify(new PortfolioCreated($portfolio));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.edit_success'));
-        return redirect::to('/user/'.Auth::user()->id);
 
-    }
+        $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Portfolio $portfolio)
-    {
-        //
-    }
+        $data['status'] = true;
+        $data['data'] = $portfolios;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Portfolio $portfolio)
-    {
-        //
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**
@@ -132,9 +119,82 @@ class PortfolioController extends Controller
      * @param  \App\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Portfolio $portfolio)
+    public function update(Request $request, $id)
     {
-        //
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+        elseif(is_null(Portfolio::where('user_id',Auth::id())->first()) == 1)
+        {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+        ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $portfolio= Portfolio::find($id);
+
+        $file = $request->image;
+        if ($file) {
+            $destinationPath = 'uploads/portfolios';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $portfolio->image = $destinationPath.'/'.$fileName;
+        }
+
+        $portfolio->user_id=Auth::id();
+        $portfolio->title=$request->title;
+        $portfolio->desc=$request->desc;
+        $portfolio->url=$request->url;
+        $portfolio->save();
+
+
+        if ($portfolio) {
+            $log           = new Log;
+            $log->user_id  = Auth::user()->id;
+            $log->action   = 'update';
+            $log->model    = 'portfolio';
+            $log->url      = $request->server()['REQUEST_URI'];
+            $log->ip       = $request->server()['REMOTE_ADDR'];
+            $log->save();
+        }
+
+
+        Auth::user()->notify(new \App\Notifications\Database\PortfolioCreated($portfolio));
+
+        if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+        {
+            Auth::user()->notify(new PortfolioCreated($portfolio));
+        }
+
+
+        $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $portfolios;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**
@@ -143,14 +203,37 @@ class PortfolioController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+        elseif(is_null(Portfolio::where('user_id',Auth::id())->first()) == 1)
+        {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
             $portfolio= Portfolio::find($id);
             $portfolio->deleted_at = now();
             $portfolio->save();
+
+            if ($portfolio) {
+                $log           = new Log;
+                $log->user_id  = Auth::user()->id;
+                $log->action   = 'delete';
+                $log->model    = 'portfolio';
+                $log->url      = $request->server()['REQUEST_URI'];
+                $log->ip       = $request->server()['REMOTE_ADDR'];
+                $log->save();
+            }
         }
         
         Auth::user()->notify(new \App\Notifications\Database\PortfolioDeleted($portfolio));
@@ -160,9 +243,13 @@ class PortfolioController extends Controller
             Auth::user()->notify(new PortfolioDeleted($portfolio));
         }
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $portfolios;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 

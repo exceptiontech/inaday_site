@@ -33,7 +33,12 @@ class MixtureController extends Controller
     public function index()
     {
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
         }
 
         $mixtures = Auth::user()->MyMixtures();
