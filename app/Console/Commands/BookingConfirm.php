@@ -41,12 +41,12 @@ class BookingConfirm extends Command
     public function handle()
     {
 
-        $osama = Carbon::now()->subDay(2);
+        //$data = Carbon::now()->subDay(2);
 
-        Mail::send('mail.test', ['osama'=>$osama], function($message) use ($osama)
-            {
-                $message->to('a.alhadi@ad.net.sa', 'info@inaday.sa')->subject('test');
-            }); 
+        // Mail::send('mail.test', ['osama'=>$osama], function($message) use ($osama)
+        //     {
+        //         $message->to('a.alhadi@ad.net.sa', 'info@inaday.sa')->subject('test');
+        //     }); 
 
 
         $bookings = Booking::where('status_id',2)->where('created_at', '<', Carbon::now()->subDay(2))->get();
