@@ -44,7 +44,7 @@ class BookingConfirm extends Command
 
         Mail::send('mail.test', ['osama'=>$osama], function($message) use ($osama)
             {
-                $message->to('o.shimy@ad.net.sa', 'info@inaday.sa')->subject('test');
+                $message->to('a.alhadi@ad.net.sa', 'info@inaday.sa')->subject('test');
             }); 
 
 
