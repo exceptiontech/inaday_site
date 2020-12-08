@@ -38,11 +38,13 @@
                                 <div class="col-6 p-0 text-dark">{{trans('file.project_status')}}</div>
                                 <div class="col-6 p-0">
                                     
-                                      @if($project->section)
-                                        
-                                        <span class="bg-success">{{@$project->status->title[App::getLocale()]}}</span> 
+                                      @if($project->booking)
+                                        <span class="bg-success">{{trans('file.status_completed')}}
+                                        </span>
                                       @else 
-                                        {{trans('file.without_status')}}
+                                        <span class="bg-success">
+                                            {{@$project->status->title[App::getLocale()] ?? trans('file.without_status') }}
+                                        </span> 
                                       @endif
 
                                  </div>

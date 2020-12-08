@@ -519,6 +519,10 @@ return [
 
     'project_status'=>'حالة المشروع' ,
 
+    'without_status'=>'بدون حالة' ,
+
+    'status_completed'=>'مكتمل' ,
+
     'category_section'=>'تصنيف القسم' ,
 
     'targeted_skills'=>'المهارات المستهدفة' ,
