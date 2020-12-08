@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Booking;
 use Mail;
+use Carbon\Carbon;
 
 class BookingConfirm extends Command
 {
