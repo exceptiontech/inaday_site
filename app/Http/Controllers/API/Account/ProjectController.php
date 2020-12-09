@@ -39,12 +39,28 @@ class ProjectController extends Controller
     {
 
         if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
-        $projects = Project::where('user_id',Auth::user()->id)->paginate(10);
 
-        return response()->json(['data' => $projects], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $projects;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
 
@@ -60,7 +76,9 @@ class ProjectController extends Controller
         
 
         if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
 
@@ -86,7 +104,9 @@ class ProjectController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         $project= new Project();
@@ -222,7 +242,15 @@ class ProjectController extends Controller
         }
 
 
-        return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $projects;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -240,18 +268,29 @@ class ProjectController extends Controller
     {
 
         if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
         elseif(is_null(Project::where('user_id',Auth::id())->first()) == 1)
         {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
 
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'title'      =>'required|max:500',
             'desc'      =>'required',
         ]);
+
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
 
         $project= Project::find($id);
@@ -362,7 +401,15 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectUpdated($project));
         }
 
-        return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $projects;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
     /**
@@ -380,18 +427,24 @@ class ProjectController extends Controller
             $project= Project::find($id);
 
             if (!$project->is_approved ) {
-                return response()->json(['error' => 'Not approved'], 404,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
             }
 
             if ($project->user_id != Auth::id() ) {
-                return response()->json(['error' => 'Permission Denied'], 404,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
             }
             
             $project->deleted_at = now();
             $project->save();
 
         }else {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         if ($project) {
@@ -412,7 +465,14 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectDeleted($project));
         }
 
-        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $projects;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
 
     }

@@ -26,10 +26,6 @@ class Service extends Model
         return $this->belongsToMany('App\Skill')->where('is_active',1);
     }
 
-    public function status()
-    {
-        return $this->belongsTo('App\Status');
-    }
     public function reviews()
     {
         return $this->hasMany('App\Review');

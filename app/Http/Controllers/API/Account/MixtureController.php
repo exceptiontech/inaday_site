@@ -41,11 +41,17 @@ class MixtureController extends Controller
 
         }
 
-        $mixtures = Auth::user()->MyMixtures();
+        $id = Auth::user()->id;
+        $mixtures = Mixture::whereHas('team', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->with('skills','section','users','services','ModelLogs')->paginate(10);
 
 
-        return response()->json(['data' => $mixtures], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $data['status'] = true;
+        $data['data'] = $mixtures;
 
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
 
@@ -79,8 +85,9 @@ class MixtureController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
 
+            return \Response::json(['error'=> $arr]);
         }
 
         $mixture= new Mixture();
@@ -101,6 +108,7 @@ class MixtureController extends Controller
         $mixture->team_id=$request->team_id;
 
         $cost = 0;
+
         foreach ($request->services as $service) {
             $cost += $service['cost'];
         }
@@ -169,7 +177,18 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureCreated($mixture));
         }
 
-        return response()->json(['data' => $mixture], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $id = Auth::user()->id;
+        $mixtures = Mixture::whereHas('team', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->with('skills','section','users','services','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $mixtures;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -196,9 +215,13 @@ class MixtureController extends Controller
         $mixture = Mixture::find($id);
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         $validator = Validator::make($request->all(), [
@@ -213,7 +236,9 @@ class MixtureController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         $mixture = Mixture::find($id);
@@ -298,7 +323,18 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureUpdated($mixture));
         }
 
-        return response()->json(['data' => $mixture], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $id = Auth::user()->id;
+        $mixtures = Mixture::whereHas('team', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->with('skills','section','users','services','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $mixtures;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
 
@@ -313,10 +349,20 @@ class MixtureController extends Controller
 
         $mixture = Mixture::find($id);
 
+        if (!$mixture) {
+            $arr = array("status" => 401, "errorMsg" => 'notfound', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
 
@@ -333,7 +379,18 @@ class MixtureController extends Controller
             Auth::user()->notify(new MixtureDeleted($mixture));
         }
 
-        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $id = Auth::user()->id;
+        $mixtures = Mixture::whereHas('team', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->with('skills','section','users','services','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $mixtures;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 

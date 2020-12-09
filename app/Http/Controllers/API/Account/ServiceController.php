@@ -40,14 +40,28 @@ class ServiceController extends Controller
 
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->paginate(10);
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
 
 
-        return response()->json(['data' => $services], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        //return view('front.profile.services.index');
+        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $services;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
 
@@ -60,6 +74,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+        elseif(is_null(Service::where('user_id',Auth::id())->first()) == 1)
+        {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
 
         function convert($string) {
             $arabic = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١','٠'];
@@ -80,7 +106,10 @@ class ServiceController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         $service= new Service();
@@ -165,7 +194,16 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceCreated($service));
         }
 
-        return response()->json(['data' => $service], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $services;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
 
 
     }
@@ -185,15 +223,19 @@ class ServiceController extends Controller
 
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
         elseif(is_null(Service::where('user_id',Auth::id())->first()) == 1)
         {
-            return response()->json(['error' => 'UnAuthorised'], 401,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
 
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'title'     =>'required|max:500',
             'desc'      =>'required|max:500',
             'cost'      =>'required|max:10',
@@ -202,6 +244,12 @@ class ServiceController extends Controller
         ]);
 
 
+        if ($validator->fails()) {
+
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         $service= Service::find($id);
 
@@ -255,7 +303,15 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceUpdated($service));
         }
 
-        return response()->json(['data' => $service], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $services;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -273,11 +329,15 @@ class ServiceController extends Controller
             $service= Service::find($id);
 
             if (!$service->is_approved ) {
-                return view('front.errors.notfound');
+                $arr = array("status" => 401, "errorMsg" => 'Unapproved yet ', "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
             }
             
             if ($service->user_id != Auth::id() ) {
-                return view('front.errors.notfound');
+                $arr = array("status" => 401, "errorMsg" => 'UnAuthorised ', "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
             }
 
             $service->deleted_at = now();
@@ -292,7 +352,15 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceDeleted($service));
         }
 
-        return response()->json(['data' => 'delete'], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $services;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 

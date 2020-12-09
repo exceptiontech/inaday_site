@@ -72,6 +72,19 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/portfolios', 'API\Account\PortfolioController', ['names' => 'front_services']);
     Route::get('account/portfolios/delete/{id}', 'API\Account\PortfolioController@delete')->name('portfolios.delete');
 
+
+    // Portfolio
+    Route::resource('account/teams', 'API\Account\TeamController', ['names' => 'front_team']);
+    Route::get('account/teams/delete/{id}', 'API\Account\TeamController@delete')->name('teams.delete');
+    Route::get('{team_id}/list/services_provider', 'API\Account\TeamController@listServicesProvider');
+    Route::get('account/team', 'API\Account\TeamController@team')->name('front_team');
+    Route::post('account/teams/add', 'API\Account\TeamController@addUserToTeam');
+    Route::post('account/teams/accept', 'API\Account\TeamController@acceptRequest');
+    Route::post('account/teams/refused', 'API\Account\TeamController@refusedRequest');
+    Route::post('account/teams/cancel', 'API\Account\TeamController@cancelRequest');
+    Route::post('account/teams/delete', 'API\Account\TeamController@DeleteUser');
+
+
     // Experiences
     Route::resource('account/experiences', 'API\Account\ExperienceController', ['names' => 'front_experiences']);
     Route::get('account/experiences/delete/{id}', 'API\Account\ExperienceController@delete');

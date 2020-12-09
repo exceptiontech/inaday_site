@@ -40,7 +40,28 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('front.profile.teams.index');
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $teams = Auth::user()->teams;
+
+        $data['status'] = true;
+        $data['data'] = $teams;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -282,17 +303,51 @@ class TeamController extends Controller
     }
 
     public function team() {
-        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
-        return view('front.profile.teams.team');
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $myteams = Auth::user()->myteams;
+
+        $data['status'] = true;
+        $data['data'] = $myteams;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
 
     public function listServicesProvider(Request $request , $team_id ,User $users)
     {
 
+
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
 
         $users = $users->newQuery();
 
@@ -347,13 +402,40 @@ class TeamController extends Controller
             $team = Team::find($team_id);
 
             $skills = Skill::where('is_active',1)->get();
-            return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeamid($team_id)->withTeam($team);
+
+
+            $users = $users->latest()->paginate(15);
+
+            $data['status'] = true;
+            $data['data']['users'] = $users;
+            $data['data']['skills'] = $skills;
+            $data['data']['targetskills'] = $targetskills;
+            $data['data']['team_id'] = $team_id;
+            $data['data']['team'] = $team;
+
+
+            $arr = array("status" => 200,"data" => $data);
+            return \Response::json(['data'=> $arr]);
+
+            //return view('front.profile.teams.list')->withUsers($users->latest()->paginate(15))->withSkills($skills)->withTargetskills($targetskills)->withTeamid($team_id)->withTeam($team);
         }
     }
 
     public function addUserToTeam(Request $request)
     {
 
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
 
 
         $id = $request->id;
@@ -363,15 +445,15 @@ class TeamController extends Controller
         $team = Team::findorfail($teamid);
 
         if ($team->hasUser($id)) {
-            Session::flash('status', __('file.danger'));
-            Session::flash('message', __('file.user_already_added_to_team'));
-            return redirect::back();
+            $arr = array("status" => 401, "errorMsg" => 'user already in your team', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         if ($team->hasUserGlobal($id)) {
-            Session::flash('status', __('file.danger'));
-            Session::flash('message', 'لا يمكنك اضافة مقدم الخدمة مرة اخرى بسبب رفض الانضمام مرة سابقة');
-            return redirect::back();
+            $arr = array("status" => 401, "errorMsg" => 'you can not add this user because he was refured your invitation before', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         //$team = Auth::user()->team;
@@ -387,14 +469,29 @@ class TeamController extends Controller
             $team->user->notify(new TeamRequest($team));
         } 
 
-        Session::flash('status', __('file.success'));
-        Session::flash('message', __('file.add_user_to_team'));
-        return redirect::back();
+        //$data['status'] = true;
+        $arr = array("status" => true, "success" => 'already sent', "data" => array(),"appearForUser" => true);
+
+        return \Response::json(['data'=> $arr]);
     }
 
 
     public function DeleteUser(Request $request)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $id = $request->id;
         $teamid = $request->team_id;
 
@@ -411,14 +508,27 @@ class TeamController extends Controller
         } 
 
     
-        Session::flash('status', __('file.info'));
-        Session::flash('message', __('file.invitation_refused'));
-        return redirect::back();
+        $arr = array("status" => true, "success" => 'deleted successfully', "data" => array(),"appearForUser" => true);
+
+        return \Response::json(['data'=> $arr]);
 
     }
 
     public function refusedRequest(Request $request)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
         $id = $request->id;
 
         $team = Team::findorfail($id);
@@ -433,14 +543,27 @@ class TeamController extends Controller
         } 
 
     
-        Session::flash('status', __('file.info'));
-        Session::flash('message', __('file.invitation_refused'));
-        return redirect::back();
+        $arr = array("status" => true, "success" => 'refused successfully', "data" => array(),"appearForUser" => true);
+
+        return \Response::json(['data'=> $arr]);
 
     }
 
     public function acceptRequest(Request $request)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
         $id = $request->id;
 
         $team = Team::findorfail($id);
@@ -455,14 +578,27 @@ class TeamController extends Controller
             $team->user->notify(new TeamAcceptRequest($team));
         } 
 
-        Session::flash('status', __('file.info'));
-        Session::flash('message', __('file.invitation_accept'));
-        return redirect::back();
+        $arr = array("status" => true, "success" => 'accpeted successfully', "data" => array(),"appearForUser" => true);
+
+        return \Response::json(['data'=> $arr]);
 
     }
 
     public function cancelRequest(Request $request)
     {
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
         $id = $request->id;
 
         $team = Team::findorfail($id);
@@ -475,9 +611,9 @@ class TeamController extends Controller
             $team->user->notify(new TeamCancelRequest($team));
         } 
 
-        Session::flash('status', __('file.info'));
-        Session::flash('message', __('file.invitation_cancel'));
-        return redirect::back();
+        $arr = array("status" => true, "success" => 'canceled successfully', "data" => array(),"appearForUser" => true);
+
+        return \Response::json(['data'=> $arr]);
 
     }
 
