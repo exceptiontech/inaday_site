@@ -61,7 +61,8 @@ class ReplayController extends Controller
         $replay->user_id=Auth::id();
         $replay->booking_id=$request->booking_id;
         $replay->replay=$request->replay;
-        $replay->replaykind_id=$request->replaykind_id;
+        //$replay->replaykind_id=$request->replaykind_id;
+        $replay->replaykind_id= 3 ;
         $replay->duration=$request->duration;
 
         if (!$replay->is_confirmed) {

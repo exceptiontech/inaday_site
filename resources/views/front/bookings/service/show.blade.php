@@ -279,11 +279,6 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-6">
-                                                            {!! Form::label('replaykind_id', trans('file.replay_kind'))!!}
-
-                                                            {!! Form::select('replaykind_id',$replaykinds->pluck('title.'.App::getLocale(),'id'), null,[ 'class' => 'form-control']) !!}
-                                                        </div>
                                                     </div>
                                                     <div id="duration" class="row mb-3" style="display: none;">
                                                         <div class="col-6">
@@ -294,7 +289,7 @@
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12">
-                                                            {!! Form::submit(trans('file.send'), array('class'=>'btn btn-primary')) !!}
+                                                            {!! Form::submit(trans('file.deliver'), array('class'=>'btn btn-primary')) !!}
                                                         </div>
                                                     </div>
                                                 {{ Form::close() }}

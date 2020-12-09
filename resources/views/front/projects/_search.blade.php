@@ -6,7 +6,21 @@
             <div class="project col-12 pt-3 pb-2 mb-3">
                 <div class="row">
                     <div class="col-sm-11">
-                        <h2 class="mb-4"><a href="{{ url('/projects/'.$project->id) }}">{{ $project->title }}</a></h2>
+                        <h2 class="mb-4">
+
+
+                            @if($project->booking)
+                                <label class="btn btn-danger rounded text-white">
+                                    {{trans('file.status_unavaliable')}}
+                                </label>
+                            @else 
+                                <label class="btn btn-success rounded text-white">
+                                    {{@$project->status->title[App::getLocale()] ?? trans('file.without_status') }}
+                                </label> 
+                            @endif
+
+                            <a href="{{ url('/projects/'.$project->id) }}">{{ $project->title }}</a>
+                        </h2>
                     </div>
                     <div class="col-sm-1">
 
@@ -63,7 +77,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12 col-sm-5 text-right">
+                    <div class="col-12 col-sm-5 text-center">
                         <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} {{trans('file.riyal')}}</label>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>

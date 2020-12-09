@@ -58,6 +58,8 @@ return [
 
     'send' => 'إرسال',
 
+    'deliver' => 'تسليم وتعميد',
+
     'file' => 'ملف',
 
     'file' => 'ملف',
@@ -525,6 +527,8 @@ return [
     'without_status'=>'بدون حالة' ,
 
     'status_completed'=>'مكتمل' ,
+
+    'status_unavaliable'=>'غير متاح' ,
 
     'category_section'=>'تصنيف القسم' ,
 
