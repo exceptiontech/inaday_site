@@ -109,9 +109,9 @@
 
                   @else
 
-                    <li class="nav-item not-active notification-item">
+                    <li class="nav-item not-active notification-item mr-2">
                       <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn  dropdown-toggle pl-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="fa fa-bell" aria-hidden="true"></i>
                           @if(count(Auth::user()->unreadNotifications))
                             <span class="count">{{count(Auth::user()->unreadNotifications) ?? '0'}}</span>
@@ -153,7 +153,7 @@
                     </li>
 
 
-                    <li class="nav-item not-active">
+                    <li class="nav-item not-active mr-1">
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle rounded pt-1 pb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle img-thumbnail img-icon30 img-fluid" src="{{ url(Auth::user()->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}">
