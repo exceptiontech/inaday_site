@@ -382,8 +382,8 @@ div.custom-control-right .custom-control-label::before {
   background-color: #00EB80;
   transform: translateX(0.75rem); }
 
-.form-group .error {
-  display: none !important; }
+/*.form-group .error {
+  display: none !important; }*/
 
 .modal-backdrop {
   z-index: 0; }
