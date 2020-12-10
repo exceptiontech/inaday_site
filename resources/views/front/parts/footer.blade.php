@@ -96,13 +96,13 @@
                             {{trans('file.folow_us')}}
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/in/in-a-day-04849b201/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://twitter.com/inadaybiz" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/inaday_sa" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://www.instagram.com/inaday.biz/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://instagram.com/inaday_sa" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </div>
