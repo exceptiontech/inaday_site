@@ -382,15 +382,14 @@ div.custom-control-right .custom-control-label::before {
   background-color: #00EB80;
   transform: translateX(0.75rem); }
 
-/*.form-group .error {
-  display: none !important; }*/
+
 
 .modal-backdrop {
   z-index: 0; }
 
 /* Header navbar */
 header .main-header .navbar .navbar-brand {
-  margin-left: 0; }
+  margin-left: 30px;margin-right: 0 }
 
 header .main-header .navbar ul.navbar-nav li + .nav-item {
   margin-right: 5px; }
