@@ -21,6 +21,15 @@ class CreditController extends Controller
     public function index(Request $request  ,Transaction $transactions)
     {
 
+
+        if (count(Auth::user()->roles) == 0  ||  !Auth::user()->isActive() ) {
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $transactions = $transactions->newQuery();
 
         $transactions->where('user_id',Auth::id());
@@ -63,11 +72,13 @@ class CreditController extends Controller
         }
 
 
-        if (Auth::user()->isServicesProvider()) {
-            return view('front.profile.credit.services_provider.index')->withTransactions($transactions->latest()->get());
-        }elseif(Auth::user()->isEntrepreneur()) {
-            return view('front.profile.credit.entrepreneur.index')->withTransactions($transactions->latest()->get());
-        }
+
+        $data['status'] = true;
+        $data['data'] = $transactions->latest()->get();
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
         
     }
 

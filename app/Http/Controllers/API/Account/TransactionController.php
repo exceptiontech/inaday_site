@@ -56,14 +56,15 @@ class TransactionController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         // for services provider
         $transaction = new Transaction;
         $transaction->mount = $request->mount;
+        $transaction->desc = $request->desc;
         $transaction->type = 'minus'; // plus or minus
         $transaction->title = 'سحب ارباح';
         $transaction->user_id = Auth::id();
@@ -71,9 +72,12 @@ class TransactionController extends Controller
         $transaction->save();
 
 
-        Session::flash('status', __('file.success'));
-        Session::flash('message', 'تم ارسال طلب سحب ارباح');
-        return redirect::back();
+        $data['status'] = true;
+        $data['data'] = Auth::user()->transactions;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**

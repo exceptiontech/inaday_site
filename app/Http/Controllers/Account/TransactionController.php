@@ -63,6 +63,7 @@ class TransactionController extends Controller
 
         // for services provider
         $transaction = new Transaction;
+        $transaction->desc = $request->desc;
         $transaction->mount = $request->mount;
         $transaction->type = 'minus'; // plus or minus
         $transaction->title = 'سحب ارباح';

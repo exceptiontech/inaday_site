@@ -46,6 +46,9 @@ Route::get('sections/{id}', 'API\SectionController@show');
 Route::get('pages', 'API\PageController@index');
 Route::get('pages/{id}', 'API\PageController@show');
 
+Route::get('/contact_us', 'API\ContactusController@index');
+Route::post('/contact_us', 'API\ContactusController@store');
+
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
@@ -93,6 +96,10 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/messages', 'API\Account\MessageController');
     Route::get('account/messages/{id}', 'API\Account\MessageController@getMessage');
     Route::post('account/message', 'API\Account\MessageController@sendMessage');
+
+    // Credit
+    Route::resource('account/credit', 'API\Account\CreditController', ['names' => 'front_credit']);
+    Route::resource('account/transactions', 'API\Account\TransactionController', ['names' => 'front_transactions']);
 
 
 });
