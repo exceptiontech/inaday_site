@@ -7,7 +7,18 @@
 
 
 })();
+
+
+
 $(document).ready(function(){
+
+    function goToByScroll(id) {
+        id = id.replace("link", "");
+        $('html,body').animate({
+            scrollTop: $("#" + id).offset().top
+        }, 'slow');
+    }
+
     $(".service_provider input").click(function(){
         $("#service_provider").prop("checked", true);
         $("#service_provider2").prop("checked", false);
@@ -34,6 +45,9 @@ $(document).ready(function(){
 
     if ($("#ExperienceBox .alert-danger").length > 0) {
         $("a#openExperienceBox").click();
+        $('html,body').animate({
+            scrollTop: $('#ExperienceBox').offset().top
+        }, 'slow');
     }
 
 
