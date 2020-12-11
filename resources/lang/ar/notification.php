@@ -305,6 +305,24 @@ return [
 	'ProjectApprovedDescEmail' => 'تمّ تفعيل المشروع',
 
 
+
+	'MixtureCreated' => 'تمّ إنشاء الشراكة',
+
+	'MixtureCreatedDesc' => 'تمّ إنشاء الشراكة بنجاح',
+
+	'MixtureCreatedEmail' => 'تمّ إنشاء الشراكة',
+
+	'MixtureCreatedDescEmail' => 'تمّ إنشاء الشراكة بنجاح',
+
+	'MixtrueDeleted' => 'تمّ حذف الشراكة',
+
+	'MixtrueDeletedDesc' => 'تمّ حذف الشراكة بنجاح',
+
+	'MixtrueDeletedEmail' => 'تمّ حذف الشراكة',
+
+	'MixtrueDeletedDescEmail' => 'تمّ حذف الشراكة بنجاح',
+
+
 	'MixtrueApprovedEmail' => 'تمّ تفعيل الشراكة',
 
 	'MixtrueApprovedDescEmail' => 'تمّ تفعيل الشراكة',

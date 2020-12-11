@@ -32,4 +32,9 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip()
 
 
+    if ($("#ExperienceBox .alert-danger").length > 0) {
+        $("a#openExperienceBox").click();
+    }
+
+
 });
