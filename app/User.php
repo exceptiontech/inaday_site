@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+//use App\Notifications\VerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
 use App\Booking;
@@ -16,6 +17,18 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use HasRoles;
     use HasApiTokens;
+
+
+    // /**
+    //  * Send the email verification notification.
+    //  *
+    //  * @return void
+    //  */
+    // public function sendEmailVerificationNotification()
+    // {
+    //     $this->notify(new VerifyEmail); // my notification
+    // }
+
 
     /**
      * The attributes that are mass assignable.

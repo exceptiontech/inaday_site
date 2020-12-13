@@ -62,24 +62,25 @@
                             </div>
                             
                         @endif
+                        @if (count($user->skills))
                             <div class="block col-12 pt-3 pb-2 mb-1">
                                 <div class="row">
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">{{ __('profile.skills') }}</h2> 
                                        
                                         <ul class="list-inline m-0 flex-shrink-1">
-                                        @if (count($user->skills))
                                             @foreach ($user->skills as $skill)
                                             <li class="list-inline-item">
                                                 <div class="bg-light rounded pt-1 pb-1 p-2 ">- {{ $skill->title[App::getLocale()] }}</div>
                                             </li>
                                             @endforeach
-                                        @endif
                                         </ul>
 
                                     </div>
                                 </div>
                             </div>
+                        @endif
+
                         </div> 
                     </div>
                 </div>

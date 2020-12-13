@@ -59,8 +59,11 @@ class ReviewController extends Controller
             'review'     =>'required|min:3|max:500',
         ]);
 
+        $booking = Booking::find($request->booking_id);
+
+
         $review= new Review();
-        $review->user_id=Auth::id();
+        $review->user_id=$booking->provider_id;
         $review->title=$request->title;
         $review->review=$request->review;
         $review->service_id=$request->service_id;

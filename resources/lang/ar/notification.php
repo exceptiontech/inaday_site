@@ -381,7 +381,13 @@ return [
 
 	'ReviewCreatedDesEmail' => 'تقييم إضافة ردّ جديد',
 
+	'Verify_Email_Address' => 'تفعيل البريد الإلكتروني',
 
+	'Please_click_the_button_below_to_verify_your_email_address' => 'من فضلك إضغط على الزر بالأسفل لتفعيل البريد الإلكتروني',
+
+	'If_you_did_not_create__an_account_no_further_action_is_required' => 'ان لم تقم بإنشاء حساب ، لا تقم بعمل اي جديد',
+
+	
 ] 
 
 
