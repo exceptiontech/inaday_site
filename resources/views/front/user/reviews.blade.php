@@ -59,17 +59,18 @@
                                        <h2 class="mb-3">{{ __('file.my_reviews') }}</h2>
 
                                         <div class="row">
-                                        @if (count($user->reviews))
-                                            @foreach ($user->skills as $review)
-                                                <div class="col-12 mb-1">
-                                                    {{$review->review}}
-                                                </div>
-                                            @endforeach
-                                        @else
-                                        <div class="col-12 mb-1">
-                                        <p>{{ __('file.no_reviews') }}</p>
-                                        </div>
-                                        @endif
+                                            @if(count(Auth::user()->reviews))
+                                                @foreach(Auth::user()->reviews as $review)
+                                                    <div class="col-12 project pb-3 pt-2">
+                                                        <h2>{{$review->title ?? 'تقييم'}}</h2>
+                                                        <p>{{$review->review}}</p>
+
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <p>لا يوجد اي اراء متعلقة بك </p>
+                                            @endif
                                         </div>
 
                                     </div>
