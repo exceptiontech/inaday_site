@@ -130,7 +130,7 @@
                                           <img src="{{url($notification->data['image'] ?? 'images/research.png')}}" >
                                         </div>
                                         <div class="w-100">
-                                          <h6 class="mb-1">{{ $notification->data['title'] ?? __('notification.undefined') }} <span class="pull-left ml-5">{{ $notification->created_at }}</span></h6>
+                                          <h6 class="mb-1">{{ $notification->data['title'] ?? __('notification.undefined') }} <span class="pull-left ml-5">{{ Carbon\Carbon::parse(strtotime( $notification->created_at))->format('Y-m-d H:i') }} </span></h6>
                                           <p class="mb-1 p-0">{{ $notification->data['desc'] ?? __('notification.undefined') }}</p>
                                         </div>
                                     </div>
