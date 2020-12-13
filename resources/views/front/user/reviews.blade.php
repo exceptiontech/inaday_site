@@ -58,15 +58,26 @@
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">{{ __('file.my_reviews') }}</h2>
 
-                                        <div class="row">
+                                        <div class="row comments">
                                             @if(count(Auth::user()->reviews))
                                                 @foreach(Auth::user()->reviews as $review)
-                                                    <div class="col-12 project pb-3 pt-2">
-                                                        <h2>{{$review->title ?? 'تقييم'}}</h2>
-                                                        <p>{{$review->review}}</p>
-                                                        <p class="mt-2">{{$review->user->first_name . ' ' .$review->user->last_name}}</p>
+                                                    <div class="col-12 comment">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <img src="{{url($review->user->userdetail->first()->avater ?? '/assets/images/logo.png')}}" class="rounded-circle img-thumbnail img-fluid ">
 
+                                                            <div class="ml-2">
+                                                                <div class="mt-2 small">
+                                                                    <h2>{{ $review->user->first_name.' '.$review->user->last_name }}</h2>
+                                                                </div>
+                                                                <span class="small"> {{ $review->created_at }} </span> 
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="comment-body">
+                                                            <p>{{$review->review}}</p>
+                                                        </div>
                                                     </div>
+
                                                 @endforeach
                                             @else
                                                 <p>لا يوجد اي اراء متعلقة بك </p>
