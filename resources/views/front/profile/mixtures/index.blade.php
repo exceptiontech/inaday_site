@@ -81,7 +81,7 @@
 
                                 @endforeach
                                 @else
-                                    <p>لا توجد اي خلطات في هذا الفريق قم باضافة خلطة</p>
+                                    <p> {{__('file.this_team_dont_have_any_mixtures')}}
                                 @endif
 
                             </div>
