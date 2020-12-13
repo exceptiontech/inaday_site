@@ -38,7 +38,12 @@
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-10">
-                                                        <h2 class="mb-3">{{$mixture->title}}</h2>
+                                                        <h2 class="mb-3">{{$mixture->title}}
+                                                            @if($mixture->is_approved)
+                                                            <span class="badge badge-warning badge-pill">{{ __('file.under_confirm') }}</span>
+                                                            @endif
+
+                                                        </h2>
                                                     </div>
                                                     <div class="col-2 sociel text-right">
                                                         <a class="mr-2" href="{{url('account/mixtures/'.$mixture->id.'/edit/')}}">
@@ -61,7 +66,7 @@
                                                     </div>
                                                     <div class="col-5 text-right">
                                                         <label class="btn btn-secondary rounded">{{$mixture->cost}} {{__('file.riyal')}}</label>
-                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">{{__('file.add_new_mixture')}} </a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">{{__('file.mixture_details')}} </a>
                                                     </div>
                                                 </div>
                                             </div>

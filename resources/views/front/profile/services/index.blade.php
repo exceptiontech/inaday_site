@@ -39,7 +39,11 @@
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-10">
-                                                        <h2 class="mb-3">{{$service->title}}</h2>
+                                                        <h2 class="mb-3">{{$service->title}}
+                                                            @if($service->is_approved)
+                                                            <span class="badge badge-warning badge-pill">{{ __('file.under_confirm') }}</span>
+                                                            @endif
+                                                        </h2>
                                                     </div>
                                                     <div class="col-2 sociel text-right">
                                                         <a class="mr-2" href="{{url('account/services/'.$service->id.'/edit/')}}">
