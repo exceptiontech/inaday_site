@@ -64,8 +64,8 @@
                                                     <div class="col-12 project pb-3 pt-2">
                                                         <h2>{{$review->title ?? 'تقييم'}}</h2>
                                                         <p>{{$review->review}}</p>
+                                                        <p>{{$review->user->first_name . ' ' .A$review->user->last_name}}</p>
 
-                                                        </div>
                                                     </div>
                                                 @endforeach
                                             @else
