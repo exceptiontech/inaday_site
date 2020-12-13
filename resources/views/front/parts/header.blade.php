@@ -74,7 +74,7 @@
                 <a class="nav-link noborder" data-toggle="modal" data-target="#inadayModal">{{trans('file.how_inaday_work')}}  </a>
                 <!-- Inaday -->
                 <div class="modal fade" id="inadayModal" tabindex="-1" role="dialog" aria-labelledby="inadayModalLabel" aria-hidden="true">
-                <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-body p-0 ">
                             <center>
