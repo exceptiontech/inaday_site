@@ -58,7 +58,7 @@ class Team extends Model
 
     public function mixtures()
     {
-        return $this->hasMany('App\Mixture')->where('is_approved',1)->where('deleted_at', '=', null);
+        return $this->hasMany('App\Mixture')->where('deleted_at', '=', null);
     }
 
 
