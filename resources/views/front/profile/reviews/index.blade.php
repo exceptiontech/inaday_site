@@ -31,7 +31,8 @@
                                 @if(count(Auth::user()->reviews))
                                     @foreach(Auth::user()->reviews as $review)
                                         <div class="col-12 project pb-3 pt-2">
-                                            <h2>{{$review->title}}</h2>
+                                            <h2>{{$review->title ?? 'تقييم'}}</h2>
+                                            <p>{{$review->review}}</p>
 
                                             </div>
                                         </div>
