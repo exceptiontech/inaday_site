@@ -1,5 +1,13 @@
 {
  	"Hello!": "مرحبا !",
+ 	"Updated User": "تحديث الملف الشخصي",
+ 	"Offer Created": "عرض جديد",
+ 	"Reset Password Notification": "اعادة ضبط كلمة المرور",
+ 	"You are receiving this email because we received a password reset request for your account.": "لقد أستلمت هذا البريد لضبط كلمة المرور",
+ 	"Reset Password": "إعادة ضبط كلمة المرور",
+ 	"This password reset link will expire in 60 minutes.": "هذا الرابط متاح وصالح لمدة 60 دقيقة.",
+ 	"If you did not request a password reset, no further action is required.": "في حالة عدم طلبك لضبط كلمة المرور قم بتجاهل الرسالة",
+ 	"We have e-mailed your password reset link!": "قمنا بارسال بريد لاعادة ضبط كلمة المرور!",
  	"Mixture Created": "إنشاء شراكة",
  	"Mixture Deleted": "حذف شراكة",
     "Verify Email Address": "تفعيل البريد الإلكتروني",
