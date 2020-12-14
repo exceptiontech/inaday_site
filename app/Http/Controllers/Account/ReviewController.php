@@ -92,6 +92,40 @@ class ReviewController extends Controller
             $transaction->is_confirmed = 1;
             $transaction->save();
 
+
+
+            if (Auth::user()->mobile) {
+
+                $str = Auth::user()->mobile;
+                $number = '966'.substr($str, 1);
+
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday",
+                    "userSender" => "Inaday",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                    "msg" => "تم تسليم الخدمة الخاصة بالمشروع  رقم :".$booking->id,
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $curl_response = curl_exec($ch);
+
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
+
+                curl_close($ch);
+            }
+
         }else {
             $booking = Booking::find($request->booking_id);
             $booking->status_id = 4;

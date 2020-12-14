@@ -328,7 +328,7 @@ class UsersController extends Controller
                     "userName" => "inaday",
                     "userSender" => "Inaday",
                     "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                    "msg" => "ننوه بتغيير كلمة المرور الخاصة بكم",
+                    "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
                     "numbers" => $number
                 ]);
                 $headers = array('Content-Type:application/json');
@@ -687,7 +687,7 @@ class UsersController extends Controller
                         "userName" => "inaday",
                         "userSender" => "Inaday",
                         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم انشاء الحساب",
+                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                         "numbers" => $number
                     ]);
                     $headers = array('Content-Type:application/json');
@@ -806,7 +806,7 @@ class UsersController extends Controller
                         "userName" => "inaday",
                         "userSender" => "Inaday",
                         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم انشاء الحساب",
+                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                         "numbers" => $number
                     ]);
                     $headers = array('Content-Type:application/json');
@@ -921,7 +921,7 @@ class UsersController extends Controller
                         "userName" => "inaday",
                         "userSender" => "Inaday",
                         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم انشاء الحساب",
+                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                         "numbers" => $number
                     ]);
                     $headers = array('Content-Type:application/json');
@@ -1034,7 +1034,7 @@ class UsersController extends Controller
                         "userName" => "inaday",
                         "userSender" => "Inaday",
                         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم انشاء الحساب",
+                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                         "numbers" => $number
                     ]);
                     $headers = array('Content-Type:application/json');
