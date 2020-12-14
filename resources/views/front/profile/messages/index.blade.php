@@ -31,7 +31,20 @@
                                                 </div>
 
                                                 <div class="media-body">
-                                                    <p class="name">{{$user->first_name. ' ' .$user->last_name}}</p>
+                                                    <p class="name">{{$user->first_name. ' ' .$user->last_name}}
+                                                        @if($user->isServicesProvider())
+                                                            <span class="badge badge-warning badge-pill"> 
+                                                                {{__('file.service_providers')}}
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-info badge-pill"> 
+                                                                {{__('file.entrepreneurs')}}
+                                                            </span>
+
+                                                        @endif
+                                                        
+
+                                                    </p>
                                                     <p class="email">{{ $user->last_messages() ?? 'لا يوجد أي محادثات' }}</p>
                                                 </div>
                                             </div>

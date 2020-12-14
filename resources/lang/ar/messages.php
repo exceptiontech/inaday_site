@@ -1,0 +1,14 @@
+<?php
+
+	return [
+
+	 	"Hello!": "مرحبا !",
+	 	"Mixture Created": "إنشاء شراكة",
+	 	"Mixture Deleted": "حذف شراكة",
+	    "Verify Email Address": "تفعيل البريد الإلكتروني",
+	    "Please click the button below to verify your email address.": "من فضلك إضغط على الزر بالأسفل لتفعيل البريد الإلكتروني",
+	    "If you did not create an account, no further action is required.": "ان لم تقم بإنشاء حساب ، لا تقم بعمل اي جديد",
+	    
+	];
+
+?>
