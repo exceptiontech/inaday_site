@@ -132,11 +132,11 @@ class ReviewController extends Controller
             $booking->save();
         }
 
-        Auth::user()->notify(new \App\Notifications\Database\ReviewCreated($review));
+        $review->user->notify(new \App\Notifications\Database\ReviewCreated($review));
 
-        if (Auth::user()->usersettings && Auth::user()->usersettings->review_notifications)
+        if ($review->user->usersettings && $review->user->usersettings->review_notifications)
         {
-            Auth::user()->notify(new ReviewCreated($review));
+            $review->user->notify(new ReviewCreated($review));
         } 
 
         if ($request->is_confirmed == 0) {
