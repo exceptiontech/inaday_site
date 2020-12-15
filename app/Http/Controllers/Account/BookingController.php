@@ -21,6 +21,8 @@ class BookingController extends Controller
     public function index()
     {
         
+
+
         if (Auth::user()->isServicesProvider()) {
             return view('front.profile.bookings.index');
         }else {

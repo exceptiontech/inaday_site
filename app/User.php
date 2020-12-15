@@ -166,13 +166,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 
-    public function ServiceOrders()
+   public function ServiceOrders()
     {
         $id = $this->id;
 
         return Booking::whereHas('service', function ($query) use ($id) {
                 $query->where('user_id' , $id);
-            })->get();
+            })->latest()->get();
     }
 
     public function MixtureOrders()
@@ -193,6 +193,28 @@ class User extends Authenticatable implements MustVerifyEmail
         return Booking::whereHas('offer', function ($query) use ($id) {
                     $query->where('user_id' , $id);
             })->get();
+    }
+
+
+    public function EntrepreneurServiceOrders()
+    {
+        $id = $this->id;
+
+        return Booking::whereHas('service')->where('user_id' , $id)->latest()->get();
+    }
+
+    public function EntrepreneurMixtureOrders()
+    {
+        $id = $this->id;
+
+        return Booking::whereHas('mixture')->where('user_id' , $id)->latest()->get();
+    }
+
+    public function EntrepreneurProjectOrders()
+    {
+        $id = $this->id;
+
+        return Booking::whereHas('offer')->where('user_id' , $id)->latest()->get();;
     }
 
 

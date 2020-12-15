@@ -282,12 +282,12 @@ class PaymentController extends Controller
                             }
 
 
-                            Auth::user()->notify(new \App\Notifications\Database\BookingCreated($booking));
+                            // Auth::user()->notify(new \App\Notifications\Database\BookingCreated($booking));
 
-                            if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
-                            {
-                                Auth::user()->notify(new BookingCreated($booking));
-                            } 
+                            // if (Auth::user()->usersettings && Auth::user()->usersettings->booking_notifications)
+                            // {
+                            //     Auth::user()->notify(new BookingCreated($booking));
+                            // } 
 
 
 

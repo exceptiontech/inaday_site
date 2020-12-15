@@ -27,11 +27,10 @@
                                     <h3 class="mb-3">{{ __('file.my_projects_bookings') }}</h3>
                                 </div>
 
-                                @if(count(Auth::user()->bookings))
+                                @if(count(Auth::user()->EntrepreneurProjectOrders()) > 0)
 
-                                    @foreach(Auth::user()->bookings as $booking)
+                                    @foreach(Auth::user()->EntrepreneurProjectOrders() as $booking)
 
-                                        @if($booking->project)
                                         <div class="col-12 service pb-3 pt-2">
                                             <div class="row">
                                                 <div class="col-sm-2">
@@ -61,9 +60,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endif
                                     @endforeach
 
+                                @else
+                                    <p>{{ __('file.you_dont_have_project_bookings') }}</p>
                                 @endif
 
                                 <!-- service -->
@@ -71,11 +71,10 @@
                                     <h3 class="mb-3">{{ __('file.my_services_bookings') }}</h3>
                                 </div>
 
-                                @if(count(Auth::user()->bookings))
+                                @if(count(Auth::user()->EntrepreneurServiceOrders()) > 0)
 
-                                    @foreach(Auth::user()->bookings as $booking)
+                                    @foreach(Auth::user()->EntrepreneurServiceOrders() as $booking)
 
-                                        @if($booking->service)
                                         <div class="col-12 service pb-3 pt-2">
                                             <div class="row">
                                                 <div class="col-sm-2">
@@ -105,8 +104,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endif
                                     @endforeach
+
+                                @else
+                                    <p>{{ __('file.you_dont_have_services_bookings') }}</p>
 
                                 @endif
 
@@ -116,11 +117,9 @@
                                     <h3 class="mb-3">{{ __('file.my_mixtures_bookings') }}</h3>
                                 </div>
 
-                                @if(count(Auth::user()->bookings))
+                                @if(count(Auth::user()->EntrepreneurMixtureOrders()) > 0)
 
-                                @foreach(Auth::user()->bookings as $booking)
-
-                                    @if($booking->mixture)
+                                    @foreach(Auth::user()->EntrepreneurMixtureOrders() as $booking)
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
@@ -151,8 +150,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endif
                                     @endforeach
+
+                                @else
+                                    <p>{{ __('file.you_dont_have_mixtures_bookings') }}</p>
+
                                 @endif
 
 
