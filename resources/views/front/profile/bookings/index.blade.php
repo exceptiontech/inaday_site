@@ -68,7 +68,7 @@
                                     @endforeach
                                 @else
                                     <div class="col-12">
-                                        <p>{{ __('file.you_dont_have_projects_bookings') }}</p>
+                                        <p>{{ __('file.you_dont_have_project_bookings') }}</p>
                                     </div>
                                 @endif
 

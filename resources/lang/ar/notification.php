@@ -387,6 +387,18 @@ return [
 
 	'If_you_did_not_create__an_account_no_further_action_is_required' => 'ان لم تقم بإنشاء حساب ، لا تقم بعمل اي جديد',
 
+	'PortfolioUpdated' => 'تمّ تحديث معرض الأعمال',
+
+	'PortfolioUpdatedDesc' => 'تمّ تحديث معرض الأعمال بنجاح',
+
+	'PortfolioCreated' => 'تمّ إنشاء معرض الأعمال',
+
+	'PortfolioCreatedDesc' => 'تمّ إنشاء معرض الأعمال بنجاح',
+
+	'PortfolioDeleted' => 'تمّ حذف معرض الأعمال',
+
+	'PortfolioDeletedDesc' => 'تمّ حذف معرض الأعمال بنجاح',
+
 	
 ] 
 
