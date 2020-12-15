@@ -342,9 +342,7 @@ class ServiceController extends Controller
 
         $service->user->notify(new \App\Notifications\Database\ServiceRefused($service));
 
-        if ($service->is_approved) {
-            $service->user->notify(new ServiceRefused($service));
-        }
+        $service->user->notify(new ServiceRefused($service));
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.refuse_success'));
