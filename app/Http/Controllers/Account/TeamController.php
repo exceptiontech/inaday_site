@@ -385,6 +385,7 @@ class TeamController extends Controller
         {
             Auth::user()->notify(new TeamRequest($team));
             $team->user->notify(new TeamRequest($team));
+            $user->notify(new TeamRequest($team));
         } 
 
         Session::flash('status', __('file.success'));
