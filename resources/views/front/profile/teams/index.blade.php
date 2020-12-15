@@ -64,7 +64,7 @@
                                                                 @if(count($team->users)>0)
                                                                     @foreach($team->users as $user)
                                                                     <a class="dropdown-item" href="#">
-                                                                        {{Auth::user()->first_name. ' ' .Auth::user()->last_name}}
+                                                                        {{$user->first_name. ' ' .$user->last_name}}
                                                                     </a>
                                                                     @endforeach
                                                                 @else
