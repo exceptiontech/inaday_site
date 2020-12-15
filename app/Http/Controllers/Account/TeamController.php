@@ -379,12 +379,12 @@ class TeamController extends Controller
         $team->users()->attach([$id=> ['is_approved'=>'0','note'=>__('file.invitation_sent')]]);
 
         $user->notify(new \App\Notifications\Database\TeamRequest($team));
-        $team->user->notify(new \App\Notifications\Database\TeamRequest($team));
+        //$team->user->notify(new \App\Notifications\Database\TeamRequest($team));
 
         if (Auth::user()->usersettings && Auth::user()->usersettings->team_notifications)
         {
-            Auth::user()->notify(new TeamRequest($team));
-            $team->user->notify(new TeamRequest($team));
+            //Auth::user()->notify(new TeamRequest($team));
+            //$team->user->notify(new TeamRequest($team));
             $user->notify(new TeamRequest($team));
         } 
 
