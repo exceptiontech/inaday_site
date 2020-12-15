@@ -283,9 +283,7 @@ class MixtureController extends Controller
 
         $mixture->team->user->notify(new \App\Notifications\Database\MixtureRefused($mixture));
 
-        if ($mixture->is_approved) {
-            $mixture->team->user->notify(new MixtureRefused($mixture));
-        }
+        $mixture->team->user->notify(new MixtureRefused($mixture));
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.refuse_success'));

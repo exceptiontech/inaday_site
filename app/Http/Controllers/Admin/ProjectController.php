@@ -433,9 +433,7 @@ class ProjectController extends Controller
 
         $project->user->notify(new \App\Notifications\Database\ProjectRefused($project));
 
-        if ($project->is_approved) {
-            $project->user->notify(new ProjectRefused($project));
-        }
+        $project->user->notify(new ProjectRefused($project));
 
         Session::flash('status', __('admin.info'));
         Session::flash('message', __('admin.refuse_success'));

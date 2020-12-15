@@ -324,7 +324,6 @@ class ServiceController extends Controller
         }
 
         $service= Service::find($request->model_id);        
-        //$project->is_active=$request->is_active;
         $service->is_approved= 0;
         $service->save();
 
