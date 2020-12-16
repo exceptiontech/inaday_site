@@ -194,29 +194,29 @@ return [
 
 	'ProjectUpdatedDescEmail' => 'تمّ تحديث المشروع بنجاح',
 
-	'ProjectCreatedEmail' => 'تمّ إنشاء المشروع',
+	'ProjectCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'ProjectCreatedDescEmail' => 'تمّ إنشاء المشروع بنجاح',
+	'ProjectCreatedDescEmail' => 'تم إنشاء المشروع بنجاح ، نأمل زيارة الموقع للإطلاع س',
 
 	'ProjectDeletedEmail' => 'تمّ حذف المشروع',
 
 	'ProjectDeletedDescEmail' => 'تمّ حذف المشروع بنجاح',
 
-	'ServiceCreatedEmail' => 'تمّ إنشاء الخدمة',
+	'ServiceCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'ServiceCreatedDescEmail' => 'تمّ إنشاء الخدمة بنجاح',
+	'ServiceCreatedDescEmail' => 'تم إنشاء خدمة بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
-	'ServiceUpdatedEmail' => 'تمّ تحديث الخدمة',
+	'ServiceUpdatedEmail' => 'عزيزي المستخدم ،',
 
-	'ServiceUpdatedDescEmail' => 'تمّ تحديث الخدمة بنجاح',
+	'ServiceUpdatedDescEmail' => 'تم تحديث الخدمة بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 	'ServiceDeletedEmail' => 'تمّ حذف الخدمة',
 
 	'ServiceDeletedDescEmail' => 'تمّ حذف الخدمة بنجاح',
 
-	'UpdatedUserEmail' => 'تحديث الملف الشخصي',
+	'UpdatedUserEmail' => 'عزيزي المستخدم ،',
 
-	'UpdatedUserDescEmail' => 'تمّ تحديث الملف الشخصي بنجاح',
+	'UpdatedUserDescEmail' => 'تم تحديث الملف الشخصي الخاص بك بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 	'RegisterEntrepreneurEmail' => 'رائد أعمال',
 
@@ -227,15 +227,15 @@ return [
 	'RegisterServicesProviderDescEmail' => 'ابدأ خدماتك الإبداعية',
 
 
-	'ExperienceCreatedEmail' => 'تمّ إنشاء خبرة',
+	'ExperienceCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'ExperienceCreatedDescEmail' => 'تمّ إنشاء خبرة بنجاح',
+	'ExperienceCreatedDescEmail' => 'تم إنشاء خبرة خاصة بك بنجاح ،',
 
-	'ExperienceUpdatedEmail' => 'تمّ تحديث خبرة',
+	'ExperienceUpdatedEmail' => 'عزيزي المستخدم ،',
 
 	'ExperienceUpdatedDescEmail' => 'تمّ تحديث خبرة بنجاح',
 
-	'ExperienceDeletedEmail' => 'تمّ حذف خبرة',
+	'ExperienceDeletedEmail' => 'عزيزي المستخدم ،',
 
 	'ExperienceDeletedDescEmail' => 'تمّ حذف خبرة بنجاح',
 
@@ -245,33 +245,33 @@ return [
 	'SkillDeletedDescEmail' => 'تمّ إلغاء مهارة بنجاح',
 
 
-	'TeamCreatedEmail' => 'تمّ إنشاء فريقك',
+	'TeamCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'TeamCreatedDescEmail' => 'تمّ إنشاء فريقك بنجاح',
+	'TeamCreatedDescEmail' => 'تم إنشاء الفريق بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 	'TeamUpdatedEmail' => 'تمّ تحديث فريقك',
 
 	'TeamUpdatedDescEmail' => 'تمّ تحديث فريقك بنجاح',
 
-	'TeamDeletedEmail' => 'تمّ حذف فريقك',
+	'TeamDeletedEmail' => 'عزيزي المستخدم ،',
 
-	'TeamDeletedDescEmail' => 'تمّ حذف فريقك بنجاح',
+	'TeamDeletedDescEmail' => 'تم حذف الفريق الخاص بك بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
-	'TeamRequestEmail' => 'دعوة انضمام لفريق',
+	'TeamRequestEmail' => 'عزيزي المستخدم ،',
 
-	'TeamRequestDescEmail' => 'لديك دعوة للانضمام',
+	'TeamRequestDescEmail' => 'لديك دعوة للأنضمام لفريق ، نأمل زيارة الموقع للإطلاع.',
 
-	'TeamRefusedRequestEmail' => 'تمّ رفض الدعوة',
+	'TeamRefusedRequestEmail' => 'عزيزي المستخدم ،',
 
-	'TeamRefusedRequestDescEmail' => 'تمّ رفض دعوة الانضمام للفريق',
+	'TeamRefusedRequestDescEmail' => 'تم رفض طلب الدعوه ، نأمل زيارة الموقع للإطلاع.',
 
-	'TeamCancelRequestEmail' => 'تمّ إلغاء الانضمام',
+	'TeamCancelRequestEmail' => 'عزيزي المستخدم ،',
 
-	'TeamCancelRequestDescEmail' => 'تمّ إلغاء الانضمام من فريقك',
+	'TeamCancelRequestDescEmail' => 'تم إلغاء الانضمام لفريق بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
-	'TeamAcceptRequestEmail' => 'تمّ قبول الدعوة',
+	'TeamAcceptRequestEmail' => 'عزيزي المستخدم ،',
 
-	'TeamAcceptRequestDescEmail' => 'تمّ قبول دعوة الانضمام',
+	'TeamAcceptRequestDescEmail' => 'تم قبول الدعوة بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 	'FavoriteCreatedEmail' => 'تفضيل جديد',
 
@@ -286,9 +286,9 @@ return [
 	'FavoriteDeletedDescEmail' => 'تمّ عدم تفضيل خدمتك أو مشروعك',
 
 
-	'OfferCreatedEmail' => 'عرض جديد',
+	'OfferCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'OfferCreatedDescEmail' => 'تمّ استقبال عرض جديد',
+	'OfferCreatedDescEmail' => 'تم استقبال عرض جديد لمشروعك ، نأمل زيارة الموقع للإطلاع.',
 
 	'OfferConfirmEmail' => 'تمّ اختيار عرضك',
 
@@ -300,9 +300,9 @@ return [
 	'ServiceApprovedDescEmail' => 'تمّ تفعيل الخدمة',
 
 
-	'ProjectApprovedEmail' => 'تمّ تفعيل المشروع',
+	'ProjectApprovedEmail' => 'عزيزي المستخدم ،',
 
-	'ProjectApprovedDescEmail' => 'تمّ تفعيل المشروع',
+	'ProjectApprovedDescEmail' => 'تم الموافقة على المشروع بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 
 
@@ -310,9 +310,9 @@ return [
 
 	'MixtureCreatedDesc' => 'تمّ إنشاء الشراكة بنجاح',
 
-	'MixtureCreatedEmail' => 'تمّ إنشاء الشراكة',
+	'MixtureCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'MixtureCreatedDescEmail' => 'تمّ إنشاء الشراكة بنجاح',
+	'MixtureCreatedDescEmail' => 'تم إنشاء شراكة بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 	'MixtrueDeleted' => 'تمّ حذف الشراكة',
 
@@ -338,9 +338,9 @@ return [
 	'OfferCreatedDescEmail' => 'تمّ استقبال عرض جديد',
 
 
-	'BookingCreatedEmail' => 'طلب جديد',
+	'BookingCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'BookingCreatedDescEmail' => 'تمّ حجز طلب جديد',
+	'BookingCreatedDescEmail' => 'تم استقبال طلب جديد ، نأمل زيارة الموقع للإطلاع.',
 
 
 	'MixtureApprovedEmail' => 'الموافقة على الشراكة',
@@ -348,38 +348,38 @@ return [
 	'MixtureApprovedDescEmail' => 'تمّت الموافقة على الشراكة',
 
 
-	'ServiceApprovedEmail' => 'الموافقة على الخدمة',
+	'ServiceApprovedEmail' => 'عزيزي المستخدم ،',
 
-	'ServiceApprovedDescEmail' => 'تمّت الموافقة على الخدمة',
+	'ServiceApprovedDescEmail' => 'تمت الموافقة على الخدمة بنجاح ، نأمل زيارة الموقع للإطلاع.',
 
 
-	'ProjectApprovedEmail' => 'الموافقة على المشروع',
+	'ProjectApprovedEmail' => 'عزيزي المستخدم ،',
 
 	'ProjectApprovedDescEmail' => 'تمّت الموافقة على المشروع',
 
 
-	'MixtureRefusedEmail' => 'رفض تعديل الشراكة',
+	'MixtureRefusedEmail' => 'عزيزي المستخدم ،',
 
-	'MixtureRefusedDescEmail' => 'تمّ رفض تعديل الشراكة',
-
-
-	'ServiceRefusedEmail' => 'رفض تعديل الخدمة',
-
-	'ServiceRefusedDescEmail' => 'تمّ رفض تعديل الخدمة',
+	'MixtureRefusedDescEmail' => 'تم رفض طلب تعديل الشراكة ، نأمل زيارة الموقع للإطلاع.',
 
 
-	'ProjectRefusedEmail' => 'رفض تعديل المشروع',
+	'ServiceRefusedEmail' => 'عزيزي المستخدم ،',
 
-	'ProjectRefusedDescEmail' => 'تمّ رفض تعديل المشروع',
+	'ServiceRefusedDescEmail' => 'تم رفض طلب تعديل الخدمة ، نأمل زيارة الموقع للإطلاع.',
+
+
+	'ProjectRefusedEmail' => 'عزيزي المستخدم ،',
+
+	'ProjectRefusedDescEmail' => 'تم رفض طلب تعديل المشروع الخاص بك ، نأمل زيارة الموقع للإطلاع.',
 
 
 	'ReplayCreatedEmail' => 'ردّ جديد',
 
 	'ReplayCreatedDescEmail' => 'تمّت إضافة ردّ جديد',
 
-	'ReviewCreatedEmail' => 'تقييم جديد',
+	'ReviewCreatedEmail' => 'عزيزي المستخدم ،',
 
-	'ReviewCreatedDesEmail' => 'تقييم إضافة ردّ جديد',
+	'ReviewCreatedDescEmail' => 'تم تقييمك من قِبل أحد الأعضاء ، نأمل زيارة الموقع للإطلاع.',
 
 	'Verify_Email_Address' => 'تفعيل البريد الإلكتروني',
 
@@ -398,6 +398,10 @@ return [
 	'PortfolioDeleted' => 'تمّ حذف معرض الأعمال',
 
 	'PortfolioDeletedDesc' => 'تمّ حذف معرض الأعمال بنجاح',
+
+	'PortfolioCreatedEmail' => 'عزيزي المستخدم ،',
+
+	'PortfolioCreatedDescEmail' => 'تم إضافة صورة بمعرض الاعمال بنجاح ،،',
 
 	
 ] 

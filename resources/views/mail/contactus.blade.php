@@ -9,4 +9,4 @@
 <p>الملف : <a href="{{url($contactus->file)}}">تحميل</a> </p>
 @endif
 
-<p>ارسالة : {{$contactus->message}}</p>
+<p>الرسالة : {{$contactus->message}}</p>

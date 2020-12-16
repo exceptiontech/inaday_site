@@ -42,8 +42,8 @@ class PortfolioCreated extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.PortfolioCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.PortfolioCreatedDescEmail'));
+                    ->line(__('notification.PortfolioCreatedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
     public function toDatabase($notifiable)

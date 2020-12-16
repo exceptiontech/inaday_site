@@ -42,8 +42,8 @@ class ProjectApproved extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.ProjectApprovedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.ProjectApprovedDescEmail'));
+                    ->line(__('notification.ProjectApprovedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
     public function toDatabase($notifiable)

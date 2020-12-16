@@ -42,8 +42,8 @@ class TeamAcceptRequest extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.TeamAcceptRequestEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TeamAcceptRequestDescEmail'));
+                    ->line(__('notification.TeamAcceptRequestDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

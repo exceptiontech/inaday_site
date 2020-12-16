@@ -1,6 +1,8 @@
 {
  	"Hello!": "مرحبا !",
  	"Updated User": "تحديث الملف الشخصي",
+ 	"Portfolio Created":"إضافة صورة بمعرض الاعمال",
+ 	"Project Created":"إضافة مشروع جديد",
  	"Offer Created": "عرض جديد",
  	"Reset Password Notification": "اعادة ضبط كلمة المرور",
  	"You are receiving this email because we received a password reset request for your account.": "لقد أستلمت هذا البريد لضبط كلمة المرور",
@@ -11,6 +13,6 @@
  	"Mixture Created": "إنشاء شراكة",
  	"Mixture Deleted": "حذف شراكة",
     "Verify Email Address": "تفعيل البريد الإلكتروني",
-    "Please click the button below to verify your email address.": "من فضلك إضغط على الزر بالأسفل لتفعيل البريد الإلكتروني",
-    "If you did not create an account, no further action is required.": "ان لم تقم بإنشاء حساب ، لا تقم بعمل اي جديد"
+    "Please click the button below to verify your email address.": "نأمل الضغط على الزر ادناه لتفعيل البريد الإلكتروني الخاص بك،",
+    "If you did not create an account, no further action is required.": "من فضلك تجاهل البريد في حال لم يتم انشاء حساب خاص بك."
 }

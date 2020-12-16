@@ -43,8 +43,8 @@ class TeamRequest extends Notification
 
         return (new MailMessage)
                     ->line(__('notification.TeamRequestEmail'))
-                    ->line(__('notification.TeamRequestDescEmail'))
-                    ->action(__('notification.click_here'), url('/'));
+                    ->action(__('notification.click_here'), url('/'))
+                    ->line(__('notification.TeamRequestDescEmail'));
     }
 
 

@@ -42,8 +42,8 @@ class ServiceRefused extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.ServiceRefusedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.ServiceRefusedDescEmail'));
+                    ->line(__('notification.ServiceRefusedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

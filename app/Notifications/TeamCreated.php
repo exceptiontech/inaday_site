@@ -42,8 +42,8 @@ class TeamCreated extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.TeamCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TeamCreatedDescEmail'));
+                    ->line(__('notification.TeamCreatedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

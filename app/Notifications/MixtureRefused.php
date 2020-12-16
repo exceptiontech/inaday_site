@@ -42,8 +42,8 @@ class MixtureRefused extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.MixtureRefusedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.MixtureRefusedDescEmail'));
+                    ->line(__('notification.MixtureRefusedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

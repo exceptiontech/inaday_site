@@ -42,8 +42,8 @@ class ReviewCreated extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.ReviewCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.ReviewCreatedDescEmail'));
+                    ->line(__('notification.ReviewCreatedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

@@ -42,8 +42,8 @@ class TeamDeleted extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.TeamDeletedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TeamDeletedDescEmail'));
+                    ->line(__('notification.TeamDeletedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

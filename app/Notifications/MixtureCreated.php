@@ -11,14 +11,16 @@ class MixtureCreated extends Notification
 {
     use Queueable;
 
+    protected $service;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->mixture = $mixture;
     }
 
     /**
@@ -40,10 +42,12 @@ class MixtureCreated extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/account/mixtures/'.$this->mixture->id.'/edit');
+
         return (new MailMessage)
                     ->line(__('notification.MixtureCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.MixtureCreatedDescEmail'));
+                    ->line(__('notification.MixtureCreatedDescEmail'))
+                    ->action(__('notification.click_here'), $url);
     }
 
     public function toDatabase($notifiable)

@@ -42,8 +42,8 @@ class BookingCreated extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.BookingCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.BookingCreatedDescEmail'));
+                    ->line(__('notification.BookingCreatedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 

@@ -42,8 +42,8 @@ class ExperienceCreated extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.ExperienceCreatedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.ExperienceCreatedDescEmail'));
+                    ->line(__('notification.ExperienceCreatedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
     public function toDatabase($notifiable)

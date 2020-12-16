@@ -42,8 +42,8 @@ class TeamCancelRequest extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.TeamCancelRequestEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TeamCancelRequestDescEmail'));
+                    ->line(__('notification.TeamCancelRequestDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
     public function toDatabase($notifiable)

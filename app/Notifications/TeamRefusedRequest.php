@@ -42,8 +42,8 @@ class TeamRefusedRequest extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.TeamRefusedRequestEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.TeamRefusedRequestDescEmail'));
+                    ->line(__('notification.TeamRefusedRequestDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
     public function toDatabase($notifiable)

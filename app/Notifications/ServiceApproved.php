@@ -42,8 +42,8 @@ class ServiceApproved extends Notification
     {
         return (new MailMessage)
                     ->line(__('notification.ServiceApprovedEmail'))
-                    ->action(__('notification.click_here'), url('/'))
-                    ->line(__('notification.ServiceApprovedDescEmail'));
+                    ->line(__('notification.ServiceApprovedDescEmail'))
+                    ->action(__('notification.click_here'), url('/'));
     }
 
 
