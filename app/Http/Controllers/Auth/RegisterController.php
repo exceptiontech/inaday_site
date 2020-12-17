@@ -130,7 +130,7 @@ class RegisterController extends Controller
             $url = "https://www.msegat.com/gw/sendsms.php";
             $params = json_encode([
                 "userName" => "inaday.sa",
-                "userSender" => "Inaday",
+                "userSender" => "INADAY",
                 "apiKey" => "4294ff3610fcc2260203cf84660dec90",
                 "msg" => "تم انشاء الحساب",
                 "numbers" => $number

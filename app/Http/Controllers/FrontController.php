@@ -42,10 +42,10 @@ class FrontController extends Controller
         $url = "https://www.msegat.com/gw/sendsms.php";
         $params = json_encode([
                 "userName" => "inaday",
-                "userSender" => "Inaday",
+                "userSender" => "INADAY",
                 "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
             "msg" => "Hi , Your current balance is points",
-            "numbers" => $number,
+            "numbers" => "966540437879",
         ]);
 
         $headers = array('Content-Type:application/json');
@@ -63,7 +63,6 @@ class FrontController extends Controller
             curl_close($ch);
             die('error occured during curl exec. Additioanl info: ' . var_export($info));
         }
-        var_dump($curl_response);
         curl_close($ch);
 
 
