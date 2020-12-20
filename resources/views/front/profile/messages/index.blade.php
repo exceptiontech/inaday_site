@@ -172,14 +172,23 @@
         $(document).delegate(".upload_form","submit",function(e){
             e.preventDefault();
 
-            $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
-            $(this).val('');
+
             var receiver_id = $(this).data('id');
+
+            var data;
+            data = new FormData();
+            data.append( 'message', $('#messageBody'+receiver_id).val() );
+            data.append( 'receiver_id', $('.receiver_id_'+receiver_id).val() );
+
+            $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
+
+
+            $('#messageBody'+receiver_id).val('');
 
             $.ajax({
                 url: '{{ route('sendMessage') }}',
                 type: 'POST',
-                data:new FormData(this),
+                data:data,
                 dataType:'JSON',
                 contentType: false,
                 cache: false,
@@ -189,18 +198,20 @@
                 {
                     console.log(result.error);
 
-                    if (result.error.length > 0) {
+                    if (result.error && result.error.length > 0) {
                         $(".file-"+receiver_id).val('');
                         alert(result.error);
                     }
+
                     $('#inputArea .loaderWrapper').remove();
-                    //$('.user-'+receiver_id).click();
+                    $('.user-'+receiver_id).click();
 
                 },
                 error: function (jqXHR, status, err) {
                     $('#inputArea .loaderWrapper').remove();
                 },
                 complete: function () {
+                    $('.user-'+receiver_id).click();
                     scrollToBottomFunc();
                 }
             });
@@ -227,6 +238,7 @@
 
     // make a function to scroll down auto
     function scrollToBottomFunc() {
+
         $('.message-wrapper').animate({
             scrollTop: $('.message-wrapper').get(0).scrollHeight
         }, 50);
