@@ -21,6 +21,7 @@ use Socialite;
 use URL;
 use Redirect;
 use Session;
+use Validator;
 
 use App\Notifications\TeamCreated;
 use App\Notifications\TeamUpdated;
@@ -54,7 +55,11 @@ class TeamController extends Controller
         }
 
 
-        $teams = Auth::user()->teams;
+        $id = Auth::user()->id;
+        $teams = Team::whereHas('users', function ($query) use ($id) {
+                $query->where('user_id' , $id);
+            })->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
+
 
         $data['status'] = true;
         $data['data'] = $teams;
@@ -65,25 +70,7 @@ class TeamController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        if ( count(Auth::user()->roles) == 0 || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
 
-        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            Session::flash('status', __('admin.info'));
-            Session::flash('message', 'لا بد من تحديث الملف الشخصى لتتمكن من اضافة فريق');
-            return redirect::to('/account/profile/edit');
-        }
-
-        return view('front.profile.teams.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -94,11 +81,32 @@ class TeamController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,[
+
+        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $validator = Validator::make($request->all(), [
             'title'     =>'required|min:3|max:100|string',
             'desc'      =>'required|min:3|max:500',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         $team= new Team();
         $team->user_id=Auth::id();
@@ -137,37 +145,18 @@ class TeamController extends Controller
             Auth::user()->notify(new TeamCreated($team));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        $id = Auth::user()->id;
+        $myteams = Team::where('user_id' , $id)->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $myteams;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Team $team)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
-        }
-
-        $team = Team::find($id);
-        return view('front.profile.teams.edit',compact('team'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -179,14 +168,27 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
 
-
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
         elseif(is_null(Team::where('user_id',Auth::id())->first()) == 1)
         {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+
+
 
         $team= Team::find($id);
         $team->user_id=Auth::id();
@@ -225,9 +227,15 @@ class TeamController extends Controller
             Auth::user()->notify(new TeamUpdated($team));
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.update_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        $id = Auth::user()->id;
+        $myteams = Team::where('user_id' , $id)->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $myteams;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -284,9 +292,15 @@ class TeamController extends Controller
             Auth::user()->notify(new TeamDeleted($team));
         } 
 
-        Session::flash('status', __('admin.danger'));
-        Session::flash('message', __('admin.delete_success'));
-        return redirect::to('/user/'.Auth::user()->id);
+        $id = Auth::user()->id;
+        $myteams = Team::where('user_id' , $id)->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
+
+        $data['status'] = true;
+        $data['data'] = $myteams;
+
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
 
     }
 
@@ -319,7 +333,8 @@ class TeamController extends Controller
         }
 
 
-        $myteams = Auth::user()->myteams;
+        $id = Auth::user()->id;
+        $myteams = Team::where('user_id' , $id)->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
 
         $data['status'] = true;
         $data['data'] = $myteams;

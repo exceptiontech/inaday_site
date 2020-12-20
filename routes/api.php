@@ -40,6 +40,9 @@ Route::get('cities/{id}', 'API\CityController@show');
 Route::get('skills', 'API\SkillController@index');
 Route::get('skills/{id}', 'API\SkillController@show');
 
+Route::get('levels', 'API\LevelController@index');
+Route::get('levels/{id}', 'API\LevelController@show');
+
 Route::get('sections', 'API\SectionController@index');
 Route::get('sections/{id}', 'API\SectionController@show');
 
