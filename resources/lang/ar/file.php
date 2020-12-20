@@ -87,8 +87,8 @@ return [
 
     'for_service_providers' => 'باقات المزايا لمقدمي الخدمات',
 
-    'comprehensive_certification' => 'الشهادة الشاملة',
-    'comprehensive_certification_desc' => 'شهادة خبرة للإنجازات فورية',
+    'comprehensive_certification' => 'الشركاء',
+    'comprehensive_certification_desc' => 'بإمكانك تقديم مجموعة من الخدمات المختلفة المتميزة  وتطوير علاقاتك ومهاراتك عن طريق الشركاء',
 
     'the_speed' => 'السرعة في تنفيذ المشاريع',
 
