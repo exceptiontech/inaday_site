@@ -225,10 +225,79 @@ class PassportController extends Controller
         return \Response::json($arr);
     }
 
-    public function profile(Request $request)
+
+    public function usersettings(Request $request)
     {
 
 
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $validator = Validator::make($request->all(), [
+            'blog_notifications'  =>'required',
+            'offer_notifications'  =>'required',
+            'booking_notifications'  =>'required',
+            'review_notifications'  =>'required',
+            'team_notifications'  =>'required',
+            'profile_notifications'  =>'required',
+            'favorite_notifications'  =>'required',
+            'replay_notifications'  =>'required',
+            'message_notifications'  =>'required',
+            'support_notifications'  =>'required',
+        ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (!Auth::user() ) {
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+        $user = Auth::user();
+        $usersettings = Usersettings::where('user_id',Auth::user()->id)->first();        
+        $usersettings->user_id = Auth::user()->id;
+        $usersettings->blog_notifications= $request->blog_notifications;
+        $usersettings->offer_notifications=$request->offer_notifications;
+        $usersettings->booking_notifications=$request->booking_notifications;
+        $usersettings->review_notifications=$request->review_notifications;
+        $usersettings->team_notifications=$request->team_notifications;
+        $usersettings->profile_notifications=$request->profile_notifications;
+        $usersettings->favorite_notifications=$request->favorite_notifications;
+        $usersettings->replay_notifications=$request->replay_notifications;
+        $usersettings->message_notifications=$request->message_notifications;
+        $usersettings->support_notifications=$request->support_notifications;
+        $usersettings->save();
+
+
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        //$data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+    }
+
+
+    public function profile(Request $request)
+    {
+        
         if (!Auth::user() ) {
             $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
 

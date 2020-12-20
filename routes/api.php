@@ -53,9 +53,11 @@ Route::get('/contact_us', 'API\ContactusController@index');
 Route::post('/contact_us', 'API\ContactusController@store');
 
 
+
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
     Route::post('profile', 'API\PassportController@profile');
+    Route::post('usersettings', 'API\PassportController@usersettings');
 
 
     // Projects
