@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 Route::get('/', 'FrontController@index')->name('home');
 Route::get('/sendSMS', 'FrontController@sendSMS')->name('sendSMS');
+Route::get('/mobile/verify', 'FrontController@mobileVerify')->name('mobileVerify');
+Route::post('/mobile/verify/store', 'FrontController@mobileVerifyStore');
 
 Route::get('/{type}/google', 'UsersController@google')->name('google');
 Route::get('/auth/google/redirect', 'UsersController@googleRedirect');

@@ -14,6 +14,11 @@ use App\Service;
 use App\Page;
 use App\Article;
 
+use Redirect;
+use Session;
+use Validator;
+
+
 class FrontController extends Controller
 {
 
@@ -26,10 +31,50 @@ class FrontController extends Controller
 
     public function index()
     {
+
         $beneficiaries = Beneficiary::all();
         $cities = City::where('country_id', 1)->where('is_active', 1)->get(['id','title']);
         $skills = Skill::where('is_active', 1)->get(['id','title']);
         return view('home')->withBeneficiaries($beneficiaries)->withCities($cities)->withSkills($skills);
+    }
+
+    public function mobileVerify()
+    {
+        return view('mobile.verify');
+    }
+
+    public function mobileVerifyStore(Request $request)
+    {
+
+        if ( !Auth::user() ) {
+            return redirect('/');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'code'     =>'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $user= Auth::user();
+
+        if ($request->code == $user->active_code) {
+            $user->is_active = 1;
+            $user->save();
+
+            Session::flash('status', __('admin.success'));
+            Session::flash('message', 'تم التفعيل');
+            return redirect::to('/user/'.Auth::user()->id);
+
+
+        }
+
+
     }
 
 

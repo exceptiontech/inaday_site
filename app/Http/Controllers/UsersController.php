@@ -672,9 +672,10 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';
+                $user->is_active = 0;
+                $user->active_code = rand(10000,99999);
 
                 $user->save();
-
 
                 if ($user->mobile) {
 
@@ -708,6 +709,8 @@ class UsersController extends Controller
 
                     curl_close($ch);
                 }
+
+                $user->SendSMS();
 
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
@@ -790,6 +793,8 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';
+                $user->is_active = 0;
+                $user->active_code = rand(10000,99999);
 
                 $user->save();
 
@@ -828,6 +833,7 @@ class UsersController extends Controller
                     curl_close($ch);
                 }
 
+                $user->SendSMS();
 
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
@@ -906,6 +912,8 @@ class UsersController extends Controller
                     $user->mobile = $return_user->mobile;
                 }
                 $user->password = Hash::make($return_user->nickname);
+                $user->is_active = 0;
+                $user->active_code = rand(10000,99999);
 
                 $user->save();
 
@@ -944,6 +952,8 @@ class UsersController extends Controller
                 }
 
             }
+
+            $user->SendSMS();
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
@@ -1018,43 +1028,45 @@ class UsersController extends Controller
             $user->password = Hash::make($return_user->nickname);
 
             $user->notification_preference = 'mail';
+            $user->is_active = 0;
+            $user->active_code = rand(10000,99999);
 
             $user->save();
 
+            if ($user->mobile) {
+
+                $str = $user->mobile;
+                $number = '966'.substr($str, 1);
 
 
-                if ($user->mobile) {
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday",
+                    "userSender" => "INADAY",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                    "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
 
-                    $str = $user->mobile;
-                    $number = '966'.substr($str, 1);
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
+                $curl_response = curl_exec($ch);
 
-                    $url = "https://www.msegat.com/gw/sendsms.php";
-                    $params = json_encode([
-                        "userName" => "inaday",
-                        "userSender" => "INADAY",
-                        "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
-                        "numbers" => $number
-                    ]);
-                    $headers = array('Content-Type:application/json');
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-                    $curl_response = curl_exec($ch);
-
-                    if ($curl_response === false) {
-                        $info = curl_getinfo($ch);
-                        curl_close($ch);
-                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                    }
-
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
                     curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
                 }
+
+                curl_close($ch);
+            }
+            
+            $user->SendSMS();
 
             $usersettings = new Usersettings;
             $usersettings->blog_notifications= 1;

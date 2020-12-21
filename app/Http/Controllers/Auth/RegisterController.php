@@ -95,6 +95,8 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
+            'is_active' => 0,
+            'active_code' => rand(10000,99999),
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -153,6 +155,10 @@ class RegisterController extends Controller
 
             curl_close($ch);
         }
+
+        $user->is_active = 0;
+        $user->save();
+
 
         $url = URL::previous();
 
@@ -259,7 +265,6 @@ class RegisterController extends Controller
 //                return redirect::to('/');
 //            }
 
-            return redirect::to('email/verify');
 
         }elseif ($request->user_type == "entrepreneur") {
 
@@ -307,6 +312,7 @@ class RegisterController extends Controller
 
         $user->save();
 
+
         $usersettings = new Usersettings;
         $usersettings->blog_notifications= 1;
         $usersettings->offer_notifications=1;
@@ -322,9 +328,11 @@ class RegisterController extends Controller
         $usersettings->save();
 
 
+        $user->SendSMS();
+
         $this->guard()->login($user);
 
-        return redirect::to('/');
+        return redirect::to('email/verify');
 
 
 

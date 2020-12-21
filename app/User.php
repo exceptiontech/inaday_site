@@ -432,4 +432,48 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function SendSMS()
+    {
+        
+        if (!$this->isActive()) {
+
+            if ($this->mobile) {
+
+                $user = User::findorfail($this->id);
+                $user->active_code = rand(10000,99999);
+                $user->save();
+
+                $str = $user->mobile;
+                $number = '966'.substr($str, 1);
+
+
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday",
+                    "userSender" => "INADAY",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                    "msg" => "رمز التفعيل : ".$user->active_code,
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $curl_response = curl_exec($ch);
+
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
+
+                curl_close($ch);
+            }
+        }
+    }
+
 }

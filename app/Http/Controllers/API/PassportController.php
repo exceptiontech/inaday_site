@@ -632,4 +632,51 @@ class PassportController extends Controller
     }
 
 
+    public function mobileVerifyStore(Request $request)
+    {
+
+        if (!Auth::user()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $validator = Validator::make($request->all(), [
+            'code'     =>'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $user= Auth::user();
+
+        if ($request->code == $user->active_code) {
+            
+            $user->is_active = 1;
+            $user->save();
+
+            $token = auth()->user()->createToken('MySecret')->accessToken;
+
+            $data = $request->all();
+            $data['token'] = $token;
+            $data['user'] = auth()->user();
+            $data['user']['userdetail'] = auth()->user()->userdetail;
+            $data['user']['roles'] = auth()->user()->roles;
+            $data['user']['usersettings'] = auth()->user()->usersettings;
+            $data['status'] = true;
+
+            $arr = array("status" => 200,"data" => $data);
+
+            return \Response::json(['data'=> $arr]);
+
+        }
+
+
+    }
+
 }
