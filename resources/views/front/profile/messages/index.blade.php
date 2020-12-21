@@ -175,20 +175,12 @@
 
             var receiver_id = $(this).data('id');
 
-            var data;
-            data = new FormData();
-            data.append( 'message', $('#messageBody'+receiver_id).val() );
-            data.append( 'receiver_id', $('.receiver_id_'+receiver_id).val() );
-
             $('#inputArea').append('<div class="loaderWrapper"><div class="loader">Loading...</div></div>');
-
-
-            $('#messageBody'+receiver_id).val('');
 
             $.ajax({
                 url: '{{ route('sendMessage') }}',
                 type: 'POST',
-                data:data,
+                data:new FormData(this),
                 dataType:'JSON',
                 contentType: false,
                 cache: false,
@@ -211,6 +203,7 @@
                     $('#inputArea .loaderWrapper').remove();
                 },
                 complete: function () {
+                    $('#messageBody'+receiver_id).val('');
                     $('.user-'+receiver_id).click();
                     scrollToBottomFunc();
                 }

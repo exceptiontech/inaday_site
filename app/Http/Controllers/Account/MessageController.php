@@ -158,7 +158,6 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request)
     {
-
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
