@@ -21,8 +21,8 @@
                                     @foreach($users as $user)
                                         <li class="user user-{{ $user->id }}" id="{{ $user->id }}">
                                             {{--will show unread count notification--}}
-                                            @if($user->unread)
-                                                <span class="pending">{{ $user->unread }}</span>
+                                            @if($user->unread())
+                                                <!-- <span class="pending">{{ $user->unread() }}</span> -->
                                             @endif
 
                                             <div class="media">

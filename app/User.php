@@ -401,7 +401,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function messages()
     {
-        return $this->hasMany('App\Message','from');
+        return $this->hasMany('App\Message','from')->orderBy('created_at');
+    }
+
+    public function unread()
+    {
+        return $this->messages->where('is_read',0)->count();
     }
 
     public function last_messages()

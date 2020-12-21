@@ -55,6 +55,8 @@ class MessageController extends Controller
         $users->where('id', '!=', 1);
 
 
+
+
         return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
     }
 
@@ -142,7 +144,6 @@ class MessageController extends Controller
     public function getMessage($user_id)
     {
         $my_id = Auth::id();
-
         // Make read all unread message
         Message::where(['from' => $user_id, 'to' => $my_id])->update(['is_read' => 1]);
 
@@ -173,7 +174,7 @@ class MessageController extends Controller
         if ($file) {
 
             $validator = Validator::make($request->all(), [
-                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:25500',
+                'file' => 'mimes:jpeg,png,jpg,gif,svg,pdf,ppt,doc|max:25500',
             ]);
 
             if ($validator->fails()) {
