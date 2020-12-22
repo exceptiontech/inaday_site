@@ -26,10 +26,10 @@
 
     <!-- column -->
     <div class="col-md-12">
-        <h4>{{$title}}</h4>
-        <p></p>
         <div class="card mb-5">
             <div class="card-body">
+            <h4>{{$title}}</h4>
+            <p></p>
 
 
             @if (Session::has('message'))
@@ -47,6 +47,7 @@
                             <th scope="col">{{trans('admin.email')}}</th>
                             <th scope="col">{{trans('admin.mobile')}}</th>
                             <th scope="col">{{trans('admin.role')}}</th>
+                            <th scope="col">{{trans('admin.created_at')}}</th>
                             <th scope="col">{{trans('admin.actions')}}</th>
                         </tr>
                     </thead>
@@ -59,7 +60,7 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->mobile}}</td>
                         <td>{{$user->roles->first()->name}}</td>
-
+                        <td>{{$user->created_at}}</td>
 
                         <td class="actions" width="120">
                             <a class="btn btn-info" href="{{ action('Admin\UserController@edit',$user->id) }}" data-toggle="tooltip" title="{{trans('admin.edit')}}">

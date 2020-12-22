@@ -2,32 +2,44 @@
 
 @section('content')
 
-<div class="col-md-12">
-    <!-- Horizontal Form -->
-    <div class="box box-warning">
-        <div class="box-header with-border mb-3">
-            <h3 class="box-title">
-              {{trans('admin.mixtures')}}
-              @can('mixture-create')
-                <span class="float-right">
-                  <a class="btn btn-primary" href="{{ url('/admin/mixtures/create') }}">{{trans('admin.addmixture')}}</a>
-                </span>
-              @endcan
-            </h3>
-        </div>
 
-        <div class="box-body">
+
+<div class="breadcrumb">
+    <h1>{{trans('admin.mixtures')}}</h1>
+    <ul>
+        <li><a href="{{ url('/admin') }}">{{trans('admin.home')}}</a></li>
+        <li>{{trans('admin.mixtures')}}</li>
+    </ul>
+    @can('mixture-create')
+      <span class="mr-auto">
+        <a class="btn btn-primary" href="{{ url('/admin/mixtures/create') }}">{{trans('admin.addmixture')}}</a>
+      </span>
+    @endcan
+
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+
+<div class="row">
+
+    <!-- column -->
+    <div class="col-md-12">
+        <div class="card mb-5">
+            <div class="card-body">
+            <h4>{{trans('admin.mixtures')}}</h4>
+            <p></p>
+
 
             @if (Session::has('message'))
-              <div class="alert alert-dismissible alert-{{Session::get('status')}}">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
-                    {{Session::get('message')}}
-              </div>
+            <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                {{Session::get('message')}}
+            </div>
             @endif
 
-
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table id="scroll_horizontal_table" class="display table table-striped table-bordered" width="100%">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -35,6 +47,7 @@
                             <th scope="col">{{trans('admin.desc')}}</th>
                             <th scope="col">{{trans('admin.team')}}</th>
                             <th scope="col">{{trans('admin.approved')}}</th>
+                            <th scope="col">{{trans('admin.date')}}</th>
                             <th scope="col">{{trans('admin.actions')}}</th>
                         </tr>
                     </thead>
@@ -51,13 +64,14 @@
                                 <td>
                                     {{$mixture->team->title ?? '' }}
                                 </td>
-                                <th> 
+                                <td> 
                                     @if($mixture->is_approved == 1)
                                         <a href="#" class="badge badge-success">{{trans('admin.yes')}}</a>
                                     @else
                                         <a href="#" class="badge badge-danger">{{trans('admin.no')}}</a>
                                     @endif
-                                </th>
+                                </td>
+                                <td>{{$mixture->created_at }}</td>
 
                                 <td class="actions" width="200">
                                 <a class="btn btn-secondary" href="{{ action('MixtureController@show',$mixture->id) }}" data-toggle="tooltip" title="{{trans('admin.edit')}}">
@@ -128,6 +142,11 @@
 
 @endsection
 
+
+@section('page-js')
+    <script src="{{asset('assets/dashboard/js/scripts/vendor/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/dashboard/js/scripts/datatables.script.js')}}"></script>s
+@endsection
 
 @section('jquery')
 

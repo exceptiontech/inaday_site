@@ -189,6 +189,7 @@ return [
     'female'     => 'أنثى',
     'problem'     => 'وصف المشكلة',
     'date'     => 'التاريخ',
+    'created_at'     => 'تاريخ التسجيل',
     'time'     => 'الوقت',
     'avatar'     => 'الصورة',
     'all'     => 'الكل',
@@ -273,6 +274,8 @@ return [
 
     'entrepreneur'     => 'رواد الأعمال',
 
+    'sections'     => 'الاقسام',
+    'mixtures'     => 'الشركات',
     'projects'     => 'المشاريع',
 
     'stages'     => 'أنواع الوظائف',
