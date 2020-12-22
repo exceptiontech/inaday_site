@@ -23,6 +23,10 @@ Route::post('/sendSMS', 'API\PassportController@sendSMS');
 Route::post('/mobile/verify/store', 'API\PassportController@mobileVerifyStore');
 
 
+Route::get('faqs', 'API\FaqController@index');
+Route::get('faqs/{id}', 'API\FaqController@show');
+
+
 Route::get('projects', 'API\ProjectController@index');
 Route::get('projects/{id}', 'API\ProjectController@show');
 Route::get('projects/{id}/offers', 'API\ProjectController@offers');
