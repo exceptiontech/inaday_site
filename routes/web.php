@@ -18,6 +18,7 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 
 Route::get('/', 'FrontController@index')->name('home');
 Route::get('/sendSMS', 'FrontController@sendSMS')->name('sendSMS');
+Route::get('/mobile/resend', 'FrontController@reSendSMS');
 Route::get('/mobile/verify', 'FrontController@mobileVerify')->name('mobileVerify');
 Route::post('/mobile/verify/store', 'FrontController@mobileVerifyStore');
 

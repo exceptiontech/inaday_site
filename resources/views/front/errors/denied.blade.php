@@ -14,7 +14,7 @@
                         <div class="row">
                         	<div class="col-12">
 							    <h2 class="title"> {{trans('file.nothavepermissions')}}</h2>
-							    <p class="text">  {{trans('file.please_contact_us')}} </p>
+							    <p class="text">  في حال عدم تفعيل الحساب يرجي تفعيل الحساب عن طريق الرابط التالي  <a href="{{url('/mobile/verify')}}">بالضغط هنا </a> </p>
                         	</div>
 
                         </div>

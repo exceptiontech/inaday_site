@@ -58,8 +58,10 @@ class PassportController extends Controller
 
         $requests = $request->all();
         $requests['password'] = Hash::make($requests['password']);
+        $requests['is_active'] = 0;
 
         $user = User::create($requests);
+        $user->SendSMS();
 
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
@@ -111,7 +113,7 @@ class PassportController extends Controller
 
         //$data = $request->all();
         $data['token'] = $token;
-        $data['user'] = auth()->user();
+        $data['user'] = Auth::user();
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
@@ -718,7 +720,7 @@ class PassportController extends Controller
     public function logout(Request $request)
     {
         if (Auth::user()) {
-            
+
             Auth::user()->token()->revoke();
 
             $arr = array("status" => 200, "Message" => 'Logout successfully', "data" => array(),"appearForUser" => true);
@@ -731,6 +733,8 @@ class PassportController extends Controller
         return \Response::json(['error'=> $arr]);
 
     }
+
+
 
 
 }

@@ -32,6 +32,8 @@ use Auth;
 use Redirect;
 use Session;
 use Validator;
+use Carbon\Carbon;
+
 
 class UsersController extends Controller
 {
@@ -674,7 +676,7 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
-
+                $user->email_verified_at = Carbon::now();
                 $user->save();
 
                 if ($user->mobile) {
@@ -729,7 +731,7 @@ class UsersController extends Controller
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
 
-                $user->sendEmailVerificationNotification();
+                //$user->sendEmailVerificationNotification();
                 //$user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
@@ -751,6 +753,7 @@ class UsersController extends Controller
                 $userdetail->save();
 
 
+                return redirect::to('mobile/verify');
                 return redirect('/account/profile');
 
             }
@@ -795,6 +798,7 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
+                $user->email_verified_at = Carbon::now();
 
                 $user->save();
 
@@ -853,7 +857,7 @@ class UsersController extends Controller
             $role = Role::where('name','entrepreneur')->first();
             $user->assignRole([$role->id]);
 
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
             //$user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
@@ -873,7 +877,7 @@ class UsersController extends Controller
             $userdetail->avater =  'images/default_img.png';
             $userdetail->save();
 
-
+            return redirect::to('mobile/verify');
             return redirect('/');
 
 
@@ -914,6 +918,7 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
+                $user->email_verified_at = Carbon::now();
 
                 $user->save();
 
@@ -957,7 +962,7 @@ class UsersController extends Controller
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
             Auth::login($user, true);
 
@@ -977,6 +982,7 @@ class UsersController extends Controller
             $userdetail->save();
 
 
+            return redirect::to('mobile/verify');
             return redirect('/');
 
         }elseif (str_contains($url, 'login')) {
@@ -1030,6 +1036,7 @@ class UsersController extends Controller
             $user->notification_preference = 'mail';
             $user->is_active = 0;
             $user->active_code = rand(10000,99999);
+            $user->email_verified_at = Carbon::now();
 
             $user->save();
 
@@ -1085,7 +1092,7 @@ class UsersController extends Controller
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
             
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
         }
 
@@ -1107,6 +1114,7 @@ class UsersController extends Controller
         $userdetail->save();
         
 
+        return redirect::to('mobile/verify');
         return redirect('/');
 
     }
@@ -1135,7 +1143,7 @@ class UsersController extends Controller
             }
             $user->password = Hash::make($return_user->nickname);
             $user->save();
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
         }
 
@@ -1168,7 +1176,7 @@ class UsersController extends Controller
             $user->password = Hash::make($return_user->nickname);
             $user->save();
 
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
         }
 

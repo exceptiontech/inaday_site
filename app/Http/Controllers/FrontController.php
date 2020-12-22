@@ -38,8 +38,26 @@ class FrontController extends Controller
         return view('home')->withBeneficiaries($beneficiaries)->withCities($cities)->withSkills($skills);
     }
 
+
+    public function reSendSMS()
+    {
+        if ( !Auth::user() ) {
+            return redirect('/');
+        }
+
+        Auth::user()->SendSMS();
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', 'تم ارسال كود جديد');
+        return redirect::back();
+    }
+
+
     public function mobileVerify()
     {
+        if ( Auth::user()->isActive() ) {
+            return redirect('/');
+        }
         return view('mobile.verify');
     }
 
@@ -80,6 +98,8 @@ class FrontController extends Controller
 
     public function sendSMS()
     {
+
+        return Auth::user()->SendSMS();
 
         $str = '0540437879';
         $number = '966'.substr($str, 1);

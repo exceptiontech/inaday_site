@@ -18,6 +18,7 @@ use Redirect;
 use Illuminate\Auth\Events\Registered;
 use URL;
 use Auth;
+use Carbon\Carbon;
 
 use App\Usersettings;
 
@@ -97,6 +98,7 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'is_active' => 0,
             'active_code' => rand(10000,99999),
+            'email_verified_at' => Carbon::now(),
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -155,7 +157,8 @@ class RegisterController extends Controller
 
             curl_close($ch);
         }
-
+        
+        $user->email_verified_at = Carbon::now();
         $user->is_active = 0;
         $user->save();
 
@@ -309,6 +312,7 @@ class RegisterController extends Controller
         }
 
         $user->notification_preference = 'mail';
+        $user->email_verified_at = Carbon::now();
 
         $user->save();
 
@@ -332,7 +336,7 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return redirect::to('email/verify');
+        return redirect::to('mobile/verify');
 
 
 
