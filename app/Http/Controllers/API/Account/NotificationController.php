@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\API\Account;
-
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Notifications;
+use Carbon\Carbon;
 
 use Session;
 use Auth;
@@ -22,10 +23,52 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        Auth::user()->unreadNotifications->markAsRead();
-        return view('front.profile.notifications.index');
+        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+        //Auth::user()->unreadNotifications->markAsRead();
+        $notifications = Auth::user()->notifications;
+
+        $data['status'] = true;
+        $data['data'] = $notifications;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
+
+    public function unread()
+    {
+        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
+            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $notifications = Auth::user()->notifications->where('read_at', '=', null);
+
+        $data['status'] = true;
+        $data['data'] = $notifications;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,9 +98,12 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        $notification = Notifications::findorfail($id);
 
-        return $notification;
+        $notification = Auth::user()->notifications->where('id' , $id)->first();
+        $notification->read_at = Carbon::now();
+        $notification->save();
+
+        return response()->json(['data' => $notification], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     /**

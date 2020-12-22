@@ -70,6 +70,11 @@ Route::middleware('auth:api')->group(function () {
     // Offers
     Route::resource('offers', 'API\OfferController')->except(['show']);
 
+
+    // notifications
+    Route::resource('account/notifications', 'API\Account\NotificationController');
+    Route::get('account/unread/notifications/', 'API\Account\NotificationController@unread');
+
     // Services
     Route::resource('account/services', 'API\Account\ServiceController', ['names' => 'front_services']);
     Route::get('account/services/delete/{id}', 'API\Account\ServiceController@delete')->name('services.delete');
