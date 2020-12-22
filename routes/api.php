@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'API\PassportController@login');
+Route::post('logout', 'API\PassportController@logout');
 Route::post('register', 'API\PassportController@register');
 Route::post('forgot', 'API\PassportController@forgot');
 Route::post('/{type}/google', 'API\PassportController@google')->name('google');

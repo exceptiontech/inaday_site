@@ -717,11 +717,16 @@ class PassportController extends Controller
 
     public function logout(Request $request)
 
-        if (Auth::check()) {
-           Auth::user()->AauthAcessToken()->delete();
+        if (Auth::user()) {
+            Auth::user()->AauthAcessToken()->delete();
+
+            $arr = array("status" => 200, "Message" => 'Logout successfully', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+
+
         }
 
-        $arr = array("status" => 200, "Message" => 'Logout successfully', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => 402, "errorMsg" => 'user not login', "data" => array(),"appearForUser" => true);
         return \Response::json(['error'=> $arr]);
 
     }
