@@ -632,6 +632,39 @@ class PassportController extends Controller
     }
 
 
+    public function sendSMS()
+    {
+
+        if (!Auth::user()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if (!Auth::user()->mobile) {
+            $arr = array("status" => 402, "errorMsg" => 'not valid mobile number found', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+        Auth::user()->SendSMS();
+
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        $data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+        //return $info["http_code"] . ' ' .$response;
+    }
+
     public function mobileVerifyStore(Request $request)
     {
 

@@ -19,6 +19,7 @@ Route::post('register', 'API\PassportController@register');
 Route::post('forgot', 'API\PassportController@forgot');
 Route::post('/{type}/google', 'API\PassportController@google')->name('google');
 Route::post('/auth/google/redirect', 'API\PassportController@googleRedirect');
+Route::post('/sendSMS', 'API\PassportController@sendSMS');
 Route::post('/mobile/verify/store', 'API\PassportController@mobileVerifyStore');
 
 
