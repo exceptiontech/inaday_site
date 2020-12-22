@@ -214,7 +214,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $id = $this->id;
 
-        return Booking::whereHas('offer')->where('user_id' , $id)->latest()->get();;
+        return Booking::whereHas('offer')->where('user_id' , $id)->latest()->get();
     }
 
 
@@ -404,9 +404,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Message','from')->orderBy('created_at');
     }
 
+
+
     public function unread()
     {
-        return $this->messages->where('is_read',0)->count();
+        return $this->hasMany('App\Message','from')->where('is_read',0)->orderBy('created_at');
     }
 
     public function last_messages()

@@ -11,7 +11,7 @@ class Message extends Model
 
     public function unread()
     {
-        return $this->where('is_read',1);
+        return $this->where('is_read',0);
     }
 
     

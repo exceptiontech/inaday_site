@@ -54,10 +54,7 @@ class MessageController extends Controller
         $users->where('id', '!=', Auth::id());
         $users->where('id', '!=', 1);
 
-
-
-
-        return view('front.profile.messages.index', ['users' => $users->latest()->get()]);
+        return view('front.profile.messages.index', ['users' => $users->latest()->get() ]);
     }
 
     /**
