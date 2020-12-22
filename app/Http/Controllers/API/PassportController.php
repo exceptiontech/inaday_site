@@ -709,7 +709,22 @@ class PassportController extends Controller
 
         }
 
+        $arr = array("status" => 402, "errorMsg" => 'code id invalid', "data" => array(),"appearForUser" => true);
+        return \Response::json(['error'=> $arr]);
+
 
     }
+
+    public function logout(Request $request)
+
+        if (Auth::check()) {
+           Auth::user()->AauthAcessToken()->delete();
+        }
+
+        $arr = array("status" => 200, "Message" => 'Logout successfully', "data" => array(),"appearForUser" => true);
+        return \Response::json(['error'=> $arr]);
+
+    }
+
 
 }
