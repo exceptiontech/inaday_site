@@ -171,7 +171,7 @@ class MessageController extends Controller
         if ($file) {
 
             $validator = Validator::make($request->all(), [
-                'file' => 'mimes:jpeg,png,jpg,gif,svg,pdf,ppt,doc',
+                'file' => 'mimes:jpeg,png,jpg,gif,svg,pdf,ppt,doc|max:25500',
             ]);
 
             if ($validator->fails()) {
