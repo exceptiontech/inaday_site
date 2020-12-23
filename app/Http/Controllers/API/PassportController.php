@@ -634,10 +634,10 @@ class PassportController extends Controller
     }
 
 
-    public function sendSMS()
+    public function sendSMS(Request $request)
     {
 
-        if (!Auth::user()) {
+        if (count(Auth::user()->roles) == 0 ) {
 
             $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
@@ -670,7 +670,7 @@ class PassportController extends Controller
     public function mobileVerifyStore(Request $request)
     {
 
-        if (!Auth::user()) {
+        if (!Auth::user() ) {
 
             $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
@@ -683,9 +683,9 @@ class PassportController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect::back()
-                        ->withErrors($validator)
-                        ->withInput();
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
         $user= Auth::user();
