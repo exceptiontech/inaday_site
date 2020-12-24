@@ -408,7 +408,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function unread()
     {
-        return $this->hasMany('App\Message','from')->where('is_read',0)->orderBy('created_at');
+        $id = $this->id;
+
+        return $this->hasMany('App\Message','from')->where('to',$id)->where('is_read',0)->orderBy('created_at');
     }
 
     public function last_messages()

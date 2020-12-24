@@ -20,6 +20,7 @@
                                     @if(count($users) > 0)
                                     @foreach($users as $user)
                                         <li class="user user-{{ $user->id }}" id="{{ $user->id }}">
+                                            
                                             {{--will show unread count notification--}}
                                             @if(count($user->unread) > 0)
                                                 <span class="pending">{{ count($user->unread) }}</span>
