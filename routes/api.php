@@ -66,6 +66,13 @@ Route::middleware('auth:api')->group(function () {
     Route::post('usersettings', 'API\PassportController@usersettings');
     Route::post('logout', 'API\PassportController@logout');
 
+    // Bookings
+    Route::get('account/booking/projects', 'API\Account\BookingController@projects');
+    Route::get('account/booking/services', 'API\Account\BookingController@services');
+    Route::get('account/booking/mixtures', 'API\Account\BookingController@mixtures');
+    Route::get('account/bookings/{id}', 'API\Account\BookingController@show');
+    Route::resource('account/replays', 'API\Account\ReplayController')->except(['index','show']);
+    Route::resource('account/reviews', 'API\Account\ReviewController')->except(['index','show']);
 
     // Projects
     Route::resource('account/projects', 'API\Account\ProjectController', ['names' => 'front_projects']);

@@ -1,0 +1,175 @@
+<?php
+
+namespace App\Http\Controllers\API\Account;
+
+use App\Http\Controllers\Controller;
+
+use App\Replay;
+use App\Booking;
+use Illuminate\Http\Request;
+use Validator;
+use Auth;
+use App\Log;
+
+use App\Notifications\ReplayCreated;
+
+class ReplayController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {        
+
+
+        $validator = Validator::make($request->all(), [
+            'booking_id'        => 'required|integer',
+            'replaykind_id'     => 'required|integer',
+            'replay'            => 'required',
+            //'file'            => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx|max:8048',
+        ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $replay= new Replay();
+        $replay->user_id=Auth::id();
+        $replay->booking_id=$request->booking_id;
+        $replay->replay=$request->replay;
+
+        if (Auth::user()->isEntrepreneur()) {
+            $replay->replaykind_id=$request->replaykind_id;
+        }else {
+            $replay->replaykind_id= 3 ;
+        }
+
+        
+        $replay->duration=$request->duration;
+
+        if (!$replay->is_confirmed) {
+            $replay->is_confirmed=0;
+        }else {
+            $replay->is_confirmed=$request->is_confirmed;
+        }
+        
+        $replay->replay_id=$request->replay_id;
+
+        $file = $request->file;
+
+        if ($file) {
+            $destinationPath = 'uploads/replay';
+            $extension =  $file->getClientOriginalExtension();
+            $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
+            $upload_success = $file->move($destinationPath, $fileName);
+            $replay->file = $destinationPath.'/'.$fileName;
+        }
+
+        $replay->save();
+
+        if ($request->replay_id) {
+            $replay = Replay::find($request->replay_id);
+            $replay->is_confirmed=$request->is_confirmed;
+            $replay->save();
+        }
+
+        if ($replay->user->isEntrepreneur()) {
+
+            $replay->booking->getModelUser()->notify(new \App\Notifications\Database\ReplayCreated($replay));
+
+            if ($replay->booking->getModelUser()->settings && $replay->booking->getModelUser()->settings->message_notifications)
+            {
+                $$replay->booking->getModelUser()->notify(new ReplayCreated($replay));
+            } 
+
+        }else {
+
+            $replay->booking->user->notify(new \App\Notifications\Database\ReplayCreated($replay));
+
+            if ($replay->booking->user->settings && $replay->booking->user->settings->message_notifications)
+            {
+                $replay->booking->user->notify(new ReplayCreated($replay));
+            } 
+
+        }
+
+
+        $data['status'] = true;
+        $data['data'] = $replay;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Replay  $replay
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Replay $replay)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Replay  $replay
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Replay $replay)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Replay  $replay
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Replay $replay)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Replay  $replay
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Replay $replay)
+    {
+        //
+    }
+}

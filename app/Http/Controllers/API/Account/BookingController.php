@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Booking;
 use App\Log;
 use Auth;
 use Redirect;
@@ -18,15 +19,74 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function projects()
     {
-        
-        if (Auth::user()->isServicesProvider()) {
-            return view('front.profile.bookings.index');
-        }else {
-            return view('front.profile.bookings.index_entrepreneur');
+        if (count(Auth::user()->roles) == 0 ) {
+
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
 
         }
+
+        $id = Auth::user()->id;
+        $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','status','replays')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $bookings;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
+    }
+
+
+    public function services()
+    {
+        if (count(Auth::user()->roles) == 0 ) {
+
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+
+        $id = Auth::user()->id;
+        $bookings = Booking::whereHas('service')->with('project','service','mixture','offer','payment','user','status','replays')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $bookings;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
+    }
+
+
+    public function mixtures()
+    {
+        if (count(Auth::user()->roles) == 0 ) {
+
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+
+        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','status','replays')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $bookings;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**
@@ -58,7 +118,37 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $booking = Booking::find($id);
+
+        if (count(Auth::user()->roles) == 0 || !$booking) {
+
+
+            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+        }
+
+
+
+        if (!$booking || !$booking->UserhaveAccess(Auth::user()->id)) {
+            $arr = array("status" => 400, "errorMsg" => 'NO PERMISSIONS', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+
+        $booking = Booking::find($id)->with('project','service','mixture','offer','payment','user','status','replays')->paginate(10);
+
+
+        $data['status'] = true;
+        $data['data'] = $booking;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
     }
 
     /**

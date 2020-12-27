@@ -14,6 +14,7 @@ use App\Log;
 use Auth;
 use Redirect;
 use Session;
+use Validator;
 
 use App\Notifications\ReviewCreated;
 use App\Notifications\ReviewUpdated;
@@ -54,10 +55,18 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,[
-            //'title'     =>'required|max:500',
+        $validator = Validator::make($request->all(), [
+            // 'title'     =>'required|max:500',
             'review'     =>'required|min:3|max:500',
+            'booking_id'     =>'required',
+            'user_id'     =>'required',
         ]);
+
+        if ($validator->fails()) {
+            $arr = array("status" => 401, "errorMsg" => $validator->errors()->first(), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         $review= new Review();
         $review->user_id=Auth::id();
@@ -108,9 +117,14 @@ class ReviewController extends Controller
         }
 
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect::back();
+
+        $data['status'] = true;
+        $data['data'] = $review;
+
+        $arr = array("status" => 200,"data" => $data);
+        return \Response::json(['data'=> $arr]);
+
+
     }
 
     /**
