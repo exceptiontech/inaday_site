@@ -19,8 +19,6 @@ Route::post('register', 'API\PassportController@register');
 Route::post('forgot', 'API\PassportController@forgot');
 Route::post('/{type}/google', 'API\PassportController@google')->name('google');
 Route::post('/auth/google/redirect', 'API\PassportController@googleRedirect');
-Route::post('/sendSMS', 'API\PassportController@sendSMS');
-Route::post('/mobile/verify/store', 'API\PassportController@mobileVerifyStore');
 
 
 Route::get('faqs', 'API\FaqController@index');
@@ -65,6 +63,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('profile', 'API\PassportController@profile');
     Route::post('usersettings', 'API\PassportController@usersettings');
     Route::post('logout', 'API\PassportController@logout');
+    Route::post('/sendSMS', 'API\PassportController@sendSMS');
+    Route::post('/mobile/verify/store', 'API\PassportController@mobileVerifyStore');
 
     // Bookings
     Route::get('account/booking/projects', 'API\Account\BookingController@projects');
