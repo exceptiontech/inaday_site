@@ -634,7 +634,7 @@ class PassportController extends Controller
     }
 
 
-    public function sendSMS()
+    public function sendSMS(Request $request)
     {
 
         if (!Auth::user()) {
