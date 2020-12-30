@@ -89,7 +89,7 @@
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->user->id)
-                                <a href="{{url('/account/messages/?user_id='.$booking->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}}</a>
+                                <a href="{{url('/account/messages/?user_id='.$booking->offer->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}}</a>
                             @else
                                 <a href="{{url('/account/messages/?user_id='.$booking->project->user->id)}}" class="btn btn-primary btn-block mb-2">{{trans('file.contact_me')}}</a>
                             @endif
