@@ -42,7 +42,7 @@ class ServiceCreated extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/account/services/'.$this->project->id.'/edit');
+        $url = url('/account/services/'.$this->service->id.'/edit');
 
         return (new MailMessage)
                     ->line(__('notification.ServiceCreatedEmail'))
