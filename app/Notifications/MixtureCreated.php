@@ -18,7 +18,7 @@ class MixtureCreated extends Notification
      *
      * @return void
      */
-    public function __construct($project)
+    public function __construct($mixture)
     {
         $this->mixture = $mixture;
     }
