@@ -33,6 +33,13 @@
                                 </div>
                                 
 
+                                @if (Session::has('message'))
+                                  <div class="alert alert-dismissible alert-{{Session::get('status')}}">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>    
+                                        {{Session::get('message')}}
+                                  </div>
+                                @endif
+
                                 @if(count(Auth::user()->projects))
                                     @foreach(Auth::user()->projects as $project)
                                     <div class="col-12 service pb-3 pt-2">

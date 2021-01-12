@@ -441,9 +441,16 @@ class ProjectController extends Controller
     {
 
 
+
         if (Auth::user() && Auth::user()->isEntrepreneur() == 1)
         {
             $project= Project::find($id);
+
+            if ($project->booking) {
+                Session::flash('status', __('admin.danger'));
+                Session::flash('message', __('file.project_have_booking'));
+                return redirect::back();
+            }
 
             if (!$project->is_approved ) {
                 return view('front.errors.notfound');

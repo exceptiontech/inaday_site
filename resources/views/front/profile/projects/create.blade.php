@@ -63,6 +63,7 @@
                                 <div class="row mb-3">
                                     <div class="col-12"> 
                                         {!! Form::label('files', trans('forms.files'))!!} <em class="text-danger">*</em>
+                                        <div class="mb-3">{{trans('forms.files_desc')}}</div>
                                         {!! Form::file('files', array( 'class' => 'form-control','required')) !!}
                                     </div>
                                 </div>
