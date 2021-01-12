@@ -10,8 +10,8 @@
             <li class="breadcrumb-item active">{{trans('admin.users')}}</li>
         </ol>
     </div>
-    <div class="col-md-7 align-self-center">
-        <a href="{{ url('/admin/departments/add') }}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> {{trans('admin.adduser')}}</a>
+    <div class="col-md-7 align-self-center text-right ">
+        <a href="{{ url('/admin/users') }}" class="btn waves-effect waves-light btn btn-info hidden-sm-down"> {{trans('admin.users')}}</a>
     </div>
 </div>
 <div class="row">
@@ -36,73 +36,46 @@
                         
 
 
-                        {{ Form::open(['action' => 'UserController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
+                        {{ Form::open(['action' => 'Admin\UserController@store', 'files'=>true,'novalidate'=>'novalidate']) }}
                                 <div class="form-group">
-                                    <strong>Username:</strong>
-                                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                    <strong>{{trans('admin.username')}}</strong>
+                                    {!! Form::text('name', null, array('placeholder' => trans('admin.username'),'class' => 'form-control')) !!}
                                 </div>
                                 <div class="form-group">
-                                    <strong>Full Name:</strong>
-                                    {!! Form::text('fullname', null, array('placeholder' => 'Full Name','class' => 'form-control')) !!}
+                                    <strong>{{ trans('admin.first_name') }}</strong>
+                                    {!! Form::text('first_name', null, array('placeholder' => trans('admin.first_name'),'class' => 'form-control')) !!}
                                 </div>
                                 <div class="form-group">
-                                    <strong>Email:</strong>
-                                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                    <strong>{{ trans('admin.last_name') }}</strong>
+                                    {!! Form::text('first_name', null, array('placeholder' => trans('admin.last_name'),'class' => 'form-control')) !!}
                                 </div>
-
-
                                 <div class="form-group">
-                                    <strong>Mobile:</strong>
-                                    {!! Form::text('mobile', null, array('placeholder' => 'mobile','class' => 'form-control')) !!}
+                                    <strong>{{trans('admin.email')}}</strong>
+                                    {!! Form::text('email', null, array('placeholder' => trans('admin.email'),'class' => 'form-control')) !!}
                                 </div>
 
 
                                 <div class="form-group">
-                                    <strong>ID number:</strong>
-                                    {!! Form::text('id_number', null, array('placeholder' => 'id_number','class' => 'form-control')) !!}
+                                    <strong>{{trans('admin.mobile')}}</strong>
+                                    {!! Form::text('mobile', null, array('placeholder' => trans('admin.mobile'),'class' => 'form-control')) !!}
                                 </div>
 
-                                <div class="form-group">
-                                    <strong>Birthday:</strong>
-                                    {!! Form::text('brith_day', null, array('placeholder' => 'brith_day','class' => 'form-control')) !!}
-                                </div>
 
-                                <div class="form-group {{  $errors->has('bio') ? 'has-error' : ''}}">
-                                    {!! Form::label('bio', trans('admin.bio')) !!}
-                                    {!! Form::textarea('bio', null, 
-                                        array('required', 
-                                              'class'=>'textarea form-control', 
-                                              'id'=>'editor', 
-                                              'placeholder'=>trans('admin.bio'))) !!}
-                                </div>
-
-                                <div class="form-group">
-                                    <strong>Password:</strong>
-                                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-                                </div>
-                                <div class="form-group">
-                                    <strong>Confirm Password:</strong>
-                                    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                                </div>
 
 
                                 <div class="form-group">
-                                    {!! Form::label('sex', trans('admin.status')) !!}
-                                    {!!Form::select('sex', ['m' => trans('admin.male'), 'f' => trans('admin.female')], 'm', ['required', 'class' => 'form-control']) !!}
+                                    <strong>{{trans('admin.password')}}</strong>
+                                    {!! Form::password('password', array('placeholder' => trans('admin.password'),'class' => 'form-control')) !!}
+                                </div>
+                                <div class="form-group">
+                                    <strong>{{trans('admin.confirm_password')}}</strong>
+                                    {!! Form::password('confirm-password', array('placeholder' => trans('admin.confirm_password'),'class' => 'form-control')) !!}
                                 </div>
 
 
                                 <div class="form-group">
                                     {!! Form::label('is_active', trans('admin.status')) !!}
                                     {!!Form::select('is_active', ['1' => trans('admin.yes'), '0' => trans('admin.no')], '1', ['required', 'class' => 'form-control']) !!}
-                                </div>
-
-
-
-
-                                <div class="form-group">
-                                    {!! Form::label('avatar', trans('admin.avatar')) !!}
-                                    {!! Form::file('avatar', array( 'class' => 'form-control')) !!}
                                 </div>
 
 

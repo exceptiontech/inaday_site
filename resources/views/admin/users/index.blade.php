@@ -17,6 +17,13 @@
         <li><a href="{{ url('/admin') }}">{{trans('admin.home')}}</a></li>
         <li>{{$title}}</li>
     </ul>
+
+    @can('user-create')
+      <span class="mr-auto">
+        <a class="btn btn-primary" href="{{ url('/admin/users/create') }}">{{trans('admin.adduser')}}</a>
+      </span>
+    @endcan
+
 </div>
 
 <div class="separator-breadcrumb border-top"></div>

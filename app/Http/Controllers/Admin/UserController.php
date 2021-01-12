@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 use App\Http\Requests;
 use Auth;
 use DB;
@@ -77,7 +80,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('name','name')->all();
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -88,7 +92,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'mobile' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            //'roles' => 'required'
+        ]);
+
+
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+
+
+
+        if ($user) {
+            $log           = new Log;
+            $log->user_id  = Auth::user()->id;
+            $log->action   = 'create';
+            $log->model    = 'user-'.$user->id;
+            $log->url      = $request->server()['REQUEST_URI'];
+            $log->ip       = $request->server()['REMOTE_ADDR'];
+            $log->save();
+        }
+
+
+        Session::flash('status', __('admin.success'));
+        Session::flash('message', __('admin.create_success'));
+
+        return  redirect::to('admin/users?type='.$user->roles->first()->name);
     }
 
     /**

@@ -23,10 +23,14 @@ return [
 
 
     /* General */
-    'fullname'     => 'الاسم الكامل',
+    'website'     => 'محتوى الموقع',
+    'fullname'     => 'الاسم الكامل',    
+    'username'     => 'اسم المستخدم',
     'name'     => 'العنوان',
     'name_en'     => 'العنوان - بالإنجليزي',
     'fullname'     => 'الاسم الكامل ',
+    'first_name'     => 'الاسم الاول ',
+    'last_name'     => 'الاسم الاخير ',
     'password'     => 'كلمة المرور  ',
     'confirm_password'     => 'تأكيد كلمة المرور   ',
     'bio'     => 'السيرة الذاتية ',
@@ -41,6 +45,7 @@ return [
     'update_success'     => 'تم التعديل بنجاح',
     'delete_success'     => 'تم الحذف بنجاح',
     'refuse_success'     => 'تم الرفض بنجاح',
+    'import_success'     => 'تم سحب الاعضاء بنجاح',
 
 
     'approve_success'     => 'تم الموافقة بنجاح',
