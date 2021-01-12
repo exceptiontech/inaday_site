@@ -117,6 +117,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
 
         $data['status'] = true;
 
@@ -289,6 +290,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
@@ -515,6 +517,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);

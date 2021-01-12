@@ -79,12 +79,7 @@ class ServiceController extends Controller
 
             return \Response::json(['error'=> $arr]);
         }
-        elseif(is_null(Service::where('user_id',Auth::id())->first()) == 1)
-        {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
-
-            return \Response::json(['error'=> $arr]);
-        }
+    
 
 
         function convert($string) {
