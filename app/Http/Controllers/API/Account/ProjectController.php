@@ -426,6 +426,14 @@ class ProjectController extends Controller
         {
             $project= Project::find($id);
 
+
+            if ($project->booking) {
+                $arr = array("status" => 401, "errorMsg" => 'project have booking', "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+
             if (!$project->is_approved ) {
                 $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
 
