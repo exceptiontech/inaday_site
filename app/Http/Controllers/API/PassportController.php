@@ -160,6 +160,7 @@ class PassportController extends Controller
             $data['user']['userdetail'] = auth()->user()->userdetail;
             $data['user']['roles'] = auth()->user()->roles;
             $data['user']['usersettings'] = auth()->user()->usersettings;
+            $data['user']['skills'] = auth()->user()->skills;
 
             if (!auth()->user()->userdetail) {
                 $userdetail = new Userdetail;
@@ -563,6 +564,10 @@ class PassportController extends Controller
             //$data = $request->all();
             $data['token'] = $token;
             $data['user'] = auth()->user();
+            $data['user']['userdetail'] = auth()->user()->userdetail;
+            $data['user']['roles'] = auth()->user()->roles;
+            $data['user']['usersettings'] = auth()->user()->usersettings;
+            $data['user']['skills'] = auth()->user()->skills;
             $data['status'] = true;
 
             $arr = array("status" => 200,"data" => $data);
@@ -627,6 +632,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
@@ -661,6 +667,7 @@ class PassportController extends Controller
         $data['user']['userdetail'] = auth()->user()->userdetail;
         $data['user']['roles'] = auth()->user()->roles;
         $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
         $data['status'] = true;
 
         $arr = array("status" => 200,"data" => $data);
@@ -706,6 +713,7 @@ class PassportController extends Controller
             $data['user']['userdetail'] = auth()->user()->userdetail;
             $data['user']['roles'] = auth()->user()->roles;
             $data['user']['usersettings'] = auth()->user()->usersettings;
+            $data['user']['skills'] = auth()->user()->skills;
             $data['status'] = true;
 
             $arr = array("status" => 200,"data" => $data);
