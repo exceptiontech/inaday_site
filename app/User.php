@@ -270,6 +270,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Team')->where('deleted_at', '=', null)->where('team_user.is_approved','!=',2)->where('team_user.is_approved','!=',3)->withPivot('is_approved');
     }
 
+    public function allteams()
+    {
+        // 2 mean is refused invitation
+        // 3 mean cancel invitation
+        return $this->belongsToMany('App\Team')->where('deleted_at', '=', null)->withPivot('is_approved');
+    }
+
     public function hasTeamInvitation($teamID,$userID)
     {
         $user = User::findorfail($userID);

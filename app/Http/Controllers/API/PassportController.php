@@ -701,7 +701,7 @@ class PassportController extends Controller
         $user= Auth::user();
 
         if ($request->code == $user->active_code || $request->code == '12121212' ) {
-            
+            $user->email_verified_at = Carbon::now();
             $user->is_active = 1;
             $user->save();
 

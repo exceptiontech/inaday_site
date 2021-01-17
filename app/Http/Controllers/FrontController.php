@@ -83,6 +83,7 @@ class FrontController extends Controller
 
         if ($request->code == $user->active_code) {
             $user->is_active = 1;
+            $user->email_verified_at = Carbon::now();
             $user->save();
 
             Session::flash('status', __('admin.success'));

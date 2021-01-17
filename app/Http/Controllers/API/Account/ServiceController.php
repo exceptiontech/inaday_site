@@ -53,7 +53,7 @@ class ServiceController extends Controller
         }
 
 
-        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -189,7 +189,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceCreated($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -298,7 +298,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceUpdated($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -347,7 +347,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceDeleted($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;

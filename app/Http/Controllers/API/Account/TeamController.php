@@ -419,7 +419,7 @@ class TeamController extends Controller
             $skills = Skill::where('is_active',1)->get();
 
 
-            $users = $users->latest()->paginate(15);
+            $users = $users->with('skills','userdetails','allteams')->latest()->paginate(15);
 
             $data['status'] = true;
             $data['data']['users'] = $users;
