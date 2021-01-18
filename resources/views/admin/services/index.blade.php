@@ -61,7 +61,11 @@
                                 <td>{{@$service->title }}</td>
                                 <td>{!! \Illuminate\Support\Str::words($service->desc,350,'....')  !!}</td>
                                 <td>
-                                    {{$service->user->first_name.' '  .$service->user->last_name }}
+                                    @if($service->user)
+                                        {{$service->user->first_name.' '  .$service->user->last_name }}
+                                    @else
+                                        {{trans('admin.user_is_removed_or_not_found')}
+                                    @endif
                                 </td>
                                 <th> 
                                     @if($service->is_approved == 1)
