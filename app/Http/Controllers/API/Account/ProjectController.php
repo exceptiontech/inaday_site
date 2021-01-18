@@ -52,7 +52,7 @@ class ProjectController extends Controller
         }
 
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
 
 
         $data['status'] = true;
@@ -242,7 +242,7 @@ class ProjectController extends Controller
         }
 
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
 
 
         $data['status'] = true;
@@ -401,7 +401,7 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectUpdated($project));
         }
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
 
 
         $data['status'] = true;
@@ -473,7 +473,7 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectDeleted($project));
         }
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','reviews','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
 
         $data['status'] = true;
         $data['data'] = $projects;
@@ -481,7 +481,6 @@ class ProjectController extends Controller
 
         $arr = array("status" => 200,"data" => $data);
         return \Response::json(['data'=> $arr]);
-
 
     }
 
