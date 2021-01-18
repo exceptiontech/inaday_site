@@ -438,6 +438,7 @@ class TeamController extends Controller
 
     public function addUserToTeam(Request $request)
     {
+        
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
             $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
@@ -456,8 +457,13 @@ class TeamController extends Controller
         $id = $request->id;
         $teamid = $request->team_id;
 
-        $user = User::findorfail($id);
-        $team = Team::findorfail($teamid);
+        $user = User::find($id);
+        $team = Team::find($teamid);
+
+        if (!$user ||  !$team ) {
+            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
 
         if ($team->hasUser($id)) {
             $arr = array("status" => 401, "errorMsg" => 'user already in your team', "data" => array(),"appearForUser" => true);
@@ -510,8 +516,13 @@ class TeamController extends Controller
         $id = $request->id;
         $teamid = $request->team_id;
 
-        $user = User::findorfail($id);
-        $team = Team::findorfail($teamid);
+        $user = User::find($id);
+        $team = Team::find($teamid);
+
+        if (!$user ||  !$team ) {
+            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
 
         $team->users()->detach($id);
 
@@ -546,7 +557,14 @@ class TeamController extends Controller
 
         $id = $request->id;
 
-        $team = Team::findorfail($id);
+        $team = Team::find($teamid);
+
+        if ( !$team ) {
+            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'2','note'=>__('file.invitation_refused')]);
 
 
@@ -581,7 +599,14 @@ class TeamController extends Controller
 
         $id = $request->id;
 
-        $team = Team::findorfail($id);
+        $team = Team::find($teamid);
+
+        if ( !$team ) {
+            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'1','note'=>__('file.invitation_accept')]);
 
         
@@ -616,7 +641,13 @@ class TeamController extends Controller
 
         $id = $request->id;
 
-        $team = Team::findorfail($id);
+        $team = Team::find($teamid);
+
+        if ( !$team ) {
+            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
         $team->users()->updateExistingPivot(Auth::user(), ['is_approved'=>'3','note'=>__('file.invitation_cancel')]);
 
         $team->user->notify(new \App\Notifications\Database\TeamCancelRequest($team));

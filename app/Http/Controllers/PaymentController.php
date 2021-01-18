@@ -80,8 +80,8 @@ class PaymentController extends Controller
                 Session::put('id',$offer->id);
 
                 if ($request->input('amount') == $offer->price) {
-                    //$total = percentPlus($request->input('amount') , 10);
-                    $total = $request->input('amount');
+                    $total = percentPlus($request->input('amount') , 10);
+                    //$total = $request->input('amount');
                     $mount = round($total/3.75,2);
                 }
 
@@ -119,8 +119,8 @@ class PaymentController extends Controller
                 Session::put('id',$service->id);
 
                 if ($request->input('amount') == $service->cost) {
-                    //$total = percentPlus($request->input('amount') , 10);
-                    $total = $request->input('amount');
+                    $total = percentPlus($request->input('amount') , 10);
+                    //$total = $request->input('amount');
                     $mount = round($total/3.75,2);
                 }
 
@@ -157,8 +157,8 @@ class PaymentController extends Controller
                 Session::put('id',$mixture->id);
 
                 if ($request->input('amount') == $mixture->cost) {
-                    //$total = percentPlus($request->input('amount') , 10);
-                    $total = $request->input('amount');
+                    $total = percentPlus($request->input('amount') , 10);
+                    //$total = $request->input('amount');
                     $mount = round($total/3.75,2);
                 }
 
