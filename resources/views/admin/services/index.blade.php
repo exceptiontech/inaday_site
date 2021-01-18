@@ -64,7 +64,7 @@
                                     @if($service->user)
                                         {{$service->user->first_name.' '  .$service->user->last_name }}
                                     @else
-                                        {{trans('admin.user_is_removed_or_not_found')}
+                                        {{trans('admin.user_is_removed_or_not_found')}}
                                     @endif
                                 </td>
                                 <th> 
