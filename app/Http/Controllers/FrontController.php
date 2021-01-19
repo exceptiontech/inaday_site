@@ -17,6 +17,7 @@ use App\Article;
 use Redirect;
 use Session;
 use Validator;
+use Carbon\Carbon;
 
 
 class FrontController extends Controller
