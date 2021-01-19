@@ -1363,9 +1363,6 @@ input[type="checkbox"] {
 .features input[type="checkbox"] {
   box-shadow: 1px 2px 2px #00000029; }
 
-.features input[type="radio"] {
-  box-shadow: 1px 2px 2px rgb(0, 230, 137);
-  border-radius: 50% }
 
 .features a , .features u {
   color: rgb(0, 230, 137) }
