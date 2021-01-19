@@ -131,7 +131,9 @@ a.link-dark {
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background: #6D6E70 !important;
     box-shadow: none !important; }
-
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color:  silver !important;
+}
 .btn-secondary {
   background: #005689;
   border: none;
@@ -490,12 +492,10 @@ label.error {
   background: #DD4B39;
   border: none;
   border-radius: 1px;
-  padding-right: 30px;
-  padding-left: 30px;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
   color: #fff;
-  margin-bottom: 50px; }
+ }
+
   .google-login a:hover {
     color: #fff; }
 
@@ -1309,29 +1309,39 @@ input[type="checkbox"] {
       right: 51%; }
   .login .info-login p {
     font-weight: bold; }
-  .login .service_provider,
-  .login .project_owner {
+  .login-type .service_provider,
+  .login-type .project_owner {
     border-radius: 5px;
-    border: 1px solid #fff;
+    border: 1px solid #e2e2e2;
     padding: 10px 20px;
     margin-right: 10px;
     transition: all 0.5s ease-in-out;
     padding-right: 10px;
     padding-left: 0px; }
-    .login .service_provider:hover, .login .service_provider.active,
-    .login .project_owner:hover,
-    .login .project_owner.active {
+    .login-type .service_provider:hover, .login-type .service_provider.active,
+    .login-type .project_owner:hover,
+    .login-type .project_owner.active {
       background: #fff;
       color: #000; }
+
+.features   button {
+  border-radius: 0;
+}
+
+.features .or span {
+  background-color : #f1f1f1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+}
 
 .features .google-login a {
   background: #DD4B39;
   border: none;
   border-radius: 0;
-  padding-right: 30px;
-  padding-left: 30px;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
   color: #fff; }
 
 .features .google-login .or {
@@ -1352,6 +1362,14 @@ input[type="checkbox"] {
 
 .features input[type="checkbox"] {
   box-shadow: 1px 2px 2px #00000029; }
+
+.features input[type="radio"] {
+  box-shadow: 1px 2px 2px rgb(0, 230, 137);
+  border-radius: 50% }
+
+.features a , .features u {
+  color: rgb(0, 230, 137) }
+
 
 .numberCircle {
   border-radius: 50%;

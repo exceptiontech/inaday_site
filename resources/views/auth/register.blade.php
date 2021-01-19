@@ -12,28 +12,8 @@
                     <h2 class="pb-4">{{trans('file.register')}}</h2>
                     <p class="pb-3">{{trans('file.register_desc')}}</p>
                 </div>
-                <div class="row justify-content-center">
-                    <div class=" col-md-4 service_provider @if(Request()->type == 'services_provider') active  @endif ">
-                        <input type="radio" id="TypeUser" name="user_type" value="services_provider"  
-                        @if(Request()->type == 'services_provider') checked="checked"  @endif
-                         @if(old('user_type') == 'services_provider') checked="checked"  @endif 
-
-                         > <span>{{trans('file.service_providers')}}</span>
-{{--                        <a href="{{ url('register/services_provider') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
-                        <p> {{trans('file.service_providers_register_desc')}}  </p>
-                    </div>
-                    <div class="col-md-4 project_owner @if(Request()->type == 'entrepreneur') active  @endif">
-                        <input type="radio"
-                         @if(Request()->type == 'entrepreneur') checked="checked"  @endif 
-                         @if(old('user_type') == 'entrepreneur') checked="checked"  @endif 
-
-                         id="TypeUser2" name="user_type" value="entrepreneur"> <span>{{trans('file.entrepreneurs')}}</span>
-{{--                        <a href="{{ url('register/entrepreneur') }}" class="bottom" > {{trans('file.free_start')}} </a>--}}
-                        <p> {{trans('file.entrepreneurs_register_desc')}} </p>
-                    </div>
-                </div>
             </div>
-        </div>
+    </div>
         <div class="py-5 text-left features">
             <div class="container">
                     @if (Session::has('message'))
@@ -44,24 +24,27 @@
                     @endif
 
 
-                
-                <div class="text-center google-login">
-{{--                    <form method="POST" action="{{route('google')}}">--}}
-{{--                        @csrf--}}
-{{--                        <input type="hidden" name="type" id="Type" value="services_provider">--}}
-{{--                        <button class="btn" type="submit" style="background-color: #DD4B39;border-radius: 0;padding-right: 30px;padding-left: 30px;padding-top: 5px;padding-bottom: 10px;color: #fff;margin-bottom: 50px;">--}}
-{{--                            <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}--}}
-{{--                        </button>--}}
-{{--                    </form>--}}
+                <div class="row mb-4 login-type">
+                    <div class=" col-md-4 service_provider @if(Request()->type == 'services_provider') active  @endif ">
+                        <input type="radio" id="TypeUser" name="user_type" value="services_provider"  
+                        @if(Request()->type == 'services_provider') checked="checked"  @endif
+                         @if(old('user_type') == 'services_provider') checked="checked"  @endif 
 
-                    @if(Request()->type == 'entrepreneur') 
-                        <a class="btn" href="{{url('/entrepreneur/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
-                    @elseif(Request()->type == 'services_provider') 
-                        <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
-                    @else
-                        <a class="btn disabled" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
-                    @endif
+                         > <span>{{trans('file.service_providers')}}</span>
+                        <p> {{trans('file.service_providers_register_desc')}}  </p>
+                    </div>
+                    <div class="col-md-4  project_owner @if(Request()->type == 'entrepreneur') active  @endif">
+                        <input type="radio"
+                         @if(Request()->type == 'entrepreneur') checked="checked"  @endif 
+                         @if(old('user_type') == 'entrepreneur') checked="checked"  @endif 
+
+                         id="TypeUser2" name="user_type" value="entrepreneur"> <span>{{trans('file.entrepreneurs')}}</span>
+                        <p> {{trans('file.entrepreneurs_register_desc')}} </p>
+                    </div>
                 </div>
+
+
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -71,7 +54,7 @@
                         </ul>
                     </div>
                 @endif
-                <div class="row form-inputs">
+                <div class="row form-inputs  register-form">
                     <div class="col-md-4 {{ $errors->has('name') ? ' has-error' : '' }}">
                         <label>{{ __('register_lang.f_name_t') }} <em>*</em></label>
                         <input name="first_name" class="form-control required {{ $errors->has('name') ? ' is-invalid' : '' }}"  id="firstname"  value="{{ old('first_name') }}" type="text" placeholder="{{ __('register_lang.f_name_t') }}" autofocus required="">
@@ -139,10 +122,27 @@
                 <div class="pb-3">
                     <input type="checkbox" id="accepted2" name="accepted12">
                     <label>قرأت وقبلت سياسة عدم الإفصاح وكافة بنود العقد الخاص بها <u> الشروط والأحكام</u>
-                        <u>وسياسة
+                        و <u>سياسة
                             الخصوصية</u></label>
                 </div>
-                <button class="btn btn-primary" type="submit" id="id_complete" disabled="disabled" style="background-color:silver !important">تسجيل </button>
+                <div class="d-flex">
+                    <button class="btn btn-primary d-inline" type="submit" id="id_complete" disabled="disabled" style="background-color:silver !important">تسجيل </button>
+
+                    <div class="text-center or d-inline ml-4 mt-0">
+                        <span><b> أو </b></span>
+                    </div>
+                    <div class="text-center google-login d-inline ml-4">
+                        @if(Request()->type == 'entrepreneur') 
+                            <a class="btn" href="{{url('/entrepreneur/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                        @elseif(Request()->type == 'services_provider') 
+                            <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                        @else
+                            <a class="btn disabled" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                        @endif
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </form>

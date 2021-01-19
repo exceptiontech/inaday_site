@@ -455,7 +455,7 @@ class TeamController extends Controller
 
 
         $id = $request->id;
-        $teamid = $request->team_id;
+        $teamid = $request->teamid;
 
         $user = User::find($id);
         $team = Team::find($teamid);
