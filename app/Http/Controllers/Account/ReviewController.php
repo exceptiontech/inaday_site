@@ -126,13 +126,11 @@ class ReviewController extends Controller
                 curl_close($ch);
             }
 
+        }elseif($request->is_confirmed == 0) {
+            $booking = Booking::find($request->booking_id);
+            $booking->status_id = 4;
+            $booking->save();
         }
-
-        // else {
-        //     $booking = Booking::find($request->booking_id);
-        //     $booking->status_id = 4;
-        //     $booking->save();
-        // }
 
         $review->user->notify(new \App\Notifications\Database\ReviewCreated($review));
 
