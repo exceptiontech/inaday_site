@@ -671,6 +671,7 @@ class UsersController extends Controller
                 if (isset($return_user->mobile)) {
                     $user->mobile = $return_user->mobile;
                 }
+                
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';

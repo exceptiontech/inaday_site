@@ -90,10 +90,11 @@ class FrontController extends Controller
             Session::flash('status', __('admin.success'));
             Session::flash('message', 'تم التفعيل');
             return redirect::to('/user/'.Auth::user()->id);
-
-
         }
 
+        Session::flash('status', __('admin.danger'));
+        Session::flash('message', 'حدث خطأ ما');
+        return redirect::back();
 
     }
 
