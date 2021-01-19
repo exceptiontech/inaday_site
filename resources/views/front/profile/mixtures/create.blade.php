@@ -111,6 +111,7 @@
                                         @if(count($team->users) > 0 )
                                             @foreach($team->users as $user)
                                                 @foreach($user->services as $service)
+                                                @if($service->is_approved)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
                                                     <div class="col-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
@@ -132,11 +133,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                                 @endforeach
                                             @endforeach
 
                                             @if(count($team->user->services) > 0)
                                                 @foreach($team->user->services as $service)
+                                                @if($service->is_approved)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
                                                     <div class="col-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
@@ -158,6 +161,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                                 @endforeach
 
                                             @endif
