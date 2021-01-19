@@ -27,8 +27,53 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+    // public function index(User $users)
+    // {
+    //     $users = $users->newQuery();
+
+    //     $users->orwhereHas('service_bookings', function ($query)  {
+    //             $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
+    //         });
+
+    //     $users->orwhereHas('bookings', function ($query)  {
+    //             $query->where('user_id','!=', Auth::id())->where('provider_id', Auth::id());
+    //         });
+
+
+    //     if (Auth::user()->isServicesProvider()) {
+    //         $users->orwhereHas('roles',function($q) {
+    //                     $q->where('name', 'services_provider');
+    //                 })->get();
+
+    //     }elseif (Auth::user()->isEntrepreneur()) {
+    //         $users->orwhereHas('roles',function($q) {
+    //                     $q->where('name', 'entrepreneur');
+    //                 })->get();
+    //     }
+
+    //     $users->where('id', '!=', Auth::id());
+    //     $users->where('id', '!=', 1);
+
+    //     return view('front.profile.messages.index', ['users' => $users->latest()->get() ]);
+    // }
+
+
+
     public function index(User $users)
     {
+        $messages = Message::whereIn('id', function($query) {
+                $query->selectRaw('max(`id`)')
+                ->from('messages')
+                ->where('from', '!=', Auth::user()->id)
+                ->groupBy('from');
+            })->select('to','from', 'message', 'created_at','is_read','file')
+            ->orderBy('is_read', 'desc')
+            ->get();
+
+
         $users = $users->newQuery();
 
         $users->orwhereHas('service_bookings', function ($query)  {
@@ -54,8 +99,11 @@ class MessageController extends Controller
         $users->where('id', '!=', Auth::id());
         $users->where('id', '!=', 1);
 
-        return view('front.profile.messages.index', ['users' => $users->latest()->get() ]);
+
+
+        return view('front.profile.messages.index', ['messages' => $messages , 'users' => $users->latest()->get() ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

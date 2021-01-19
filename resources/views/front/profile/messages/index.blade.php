@@ -17,6 +17,58 @@
                             </div>
                             <div class="user-wrapper">
                                 <ul class="users">
+                                    @if(count($messages) > 0)
+                                    @foreach($messages as $message)
+                                        <li class="user user-{{ $message->sender->id }}" id="{{ $message->sender->id }}">
+                                            {{$message->unread($message->sender->id,$message->receiver->id)}}
+                                            {{--will show unread count notification--}}
+                                            @if($message->unread($message->sender->id) > 0)
+                                                <span class="pending">{{ $message->unread($message->sender->id) }}</span>
+                                            @endif
+
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="{{ url($message->sender->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}" alt="" class="media-object rounded-circle">
+                                                </div>
+
+                                                <div class="media-body">
+                                                    <p class="name">{{$message->sender->first_name. ' ' .$message->sender->last_name}}
+                                                        @if($message->sender->isServicesProvider())
+                                                            <span class="badge badge-warning badge-pill"> 
+                                                                {{__('file.service_providers')}}
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-info badge-pill"> 
+                                                                {{__('file.entrepreneurs')}}
+                                                            </span>
+
+                                                        @endif
+                                                        
+
+                                                    </p>
+                                                    <p class="email">{{ $message->last_messages($message->sender->id,$message->receiver->id) ?? 'لا يوجد أي محادثات' }}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                    @else
+                                        <li class="user">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="{{ url('/assets/images/logo.png' ) }}" alt="" class="media-object">
+                                                </div>
+
+                                                <div class="media-body">
+                                                    <p class="name">لا يوجد اعضاء للمحادثة</p>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    @endif
+                                </ul>
+
+                                    <div class="p-2">جميع الاعضاء</div>
+                                <ul class="users">
                                     @if(count($users) > 0)
                                     @foreach($users as $user)
                                         <li class="user user-{{ $user->id }}" id="{{ $user->id }}">

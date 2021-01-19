@@ -1131,6 +1131,7 @@ input[type="checkbox"] {
     .messages .voiceNote a {
       color: #A3A3A3; }
   .messages .user-wrapper {
+    background: #f3f3f3;
     height: 560px; }
   .messages .user {
     cursor: pointer;
