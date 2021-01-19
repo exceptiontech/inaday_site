@@ -107,7 +107,7 @@
 
                                         @if(count($mixture->team->users) > 0 )
                                             @foreach($mixture->team->users as $user)
-                                                @foreach($user->confirmServices as $service)
+                                                @foreach($user->services as $service)
                                                 <div class="d-flex border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-primary border-0 @endif">
                                                     <div class="col-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
@@ -132,8 +132,8 @@
                                                 @endforeach
                                             @endforeach
 
-                                            @if(count($mixture->team->user->confirmServices > 0)
-                                                @foreach($mixture->team->user->confirmServices as $service)
+                                            @if(count($mixture->team->user->services) > 0)
+                                                @foreach($mixture->team->user->services as $service)
                                                 <div class="d-flex border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-primary border-0 @endif">
                                                     <div class="col-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
