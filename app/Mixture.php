@@ -33,7 +33,7 @@ class Mixture extends Model
 
     public function services()
     {
-        return $this->belongsToMany('App\Service')->withPivot('duration', 'cost');
+        return $this->belongsToMany('App\Service')->where('deleted_at', '=', null)->withPivot('duration', 'cost');
     }
 
     public function reviews()
