@@ -110,8 +110,6 @@
 
                                         @if(count($team->users) > 0 )
                                             @foreach($team->users as $user)
-                                                {{$user->confirmServices()}}
-
                                                 @foreach($user->services as $service)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
                                                     <div class="col-2 align-middle">
@@ -138,7 +136,6 @@
                                             @endforeach
 
                                             @if(count($team->user->services) > 0)
-                                                {{$team->user->confirmServices()}}
                                                 @foreach($team->user->services as $service)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
                                                     <div class="col-2 align-middle">
