@@ -92,6 +92,12 @@ class ServiceController extends Controller
             return $englishNumbersOnly;
         }
 
+        if (Service::where('user_id',Auth::id())->where('title',$request->title)->first()) {
+            Session::flash('status', __('admin.danger'));
+            Session::flash('message', 'الاسم مختار مسبقا');
+            return redirect::back();
+        }
+
         $validator = Validator::make($request->all(), [
             'title'     =>'required|min:3|max:100|string|unique:services',
             'desc'      =>'required|min:3|max:500',
