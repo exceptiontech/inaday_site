@@ -20,10 +20,9 @@
                                     @if(count($messages) > 0)
                                     @foreach($messages as $message)
                                         <li class="user user-{{ $message->sender->id }}" id="{{ $message->sender->id }}">
-                                            {{$message->unread($message->sender->id,$message->receiver->id)}}
                                             {{--will show unread count notification--}}
-                                            @if($message->unread($message->sender->id) > 0)
-                                                <span class="pending">{{ $message->unread($message->sender->id) }}</span>
+                                            @if($message->unread($message->sender->id,$message->receiver->id) > 0)
+                                                <span class="pending">{{ $message->unread($message->sender->id,$message->receiver->id) }}</span>
                                             @endif
 
                                             <div class="media">

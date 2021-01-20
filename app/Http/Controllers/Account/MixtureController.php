@@ -89,7 +89,7 @@ class MixtureController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title'     =>'required|min:3|max:100|string',
+            'title'     =>'required|min:3|max:100|string|unique:mixtures',
             'desc'      =>'required|min:3|max:500',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8048',
             'team_id' => 'required|integer',

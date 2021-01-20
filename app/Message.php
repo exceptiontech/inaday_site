@@ -9,9 +9,9 @@ class Message extends Model
     protected $fillable = ['from', 'to', 'message', 'is_read'];
 
 
-    public function unread($id)
+    public function unread($id,$receiver)
     {
-        return $this->where('from', $id)->where('is_read',0)->latest()->count();
+        return $this->where('from', $id)->Where('to',$receiver)->where('is_read',0)->count();
     }
 
     public function sender()
