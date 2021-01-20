@@ -111,7 +111,7 @@
                                     <div class="col-sm-10">
                                         <div class="row">
                                             <div class="col-sm-10 mb-3">
-                                                <h2><a href="{{url('/mixtures/'.$mixture->title)}}">{{$mixture->title}}</a></h2>
+                                                <h2><a href="{{url('/mixtures/'.$mixture->id)}}">{{$mixture->title}}</a></h2>
                                             </div>
                                             <div class="col-sm-2">
                                             <ul class="list-inline">
@@ -193,7 +193,7 @@
                                                         <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $mixture->cost}} {{trans('file.sr')}}</label>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->title)}}">{{__('file.mixture_details')}}</a>
+                                                        <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">{{__('file.mixture_details')}}</a>
                                                     </li>
                                                 </ul>
                                             </div>
