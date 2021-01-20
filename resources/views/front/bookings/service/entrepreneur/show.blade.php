@@ -173,7 +173,7 @@
                                                     <span>{{ $replay->user->first_name.' '.$replay->user->last_name }}</span>
                                                     <div class="m-0 small">
                                                         <span class="mr-2">{{$replay->user->position ?? ''}}</span>
-                                                        <span>{{trans('file.date')}}  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('m-Y ') ?? ''}} </span>
+                                                        <span>{{trans('file.date')}}  {{ Carbon\Carbon::parse(strtotime($replay->created_at))->format('d-m-Y ') ?? ''}} </span>
 
                                                     </div>
                                                 </div>
