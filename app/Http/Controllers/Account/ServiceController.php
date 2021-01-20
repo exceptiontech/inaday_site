@@ -99,7 +99,7 @@ class ServiceController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title'     =>'required|min:3|max:100|string|unique:services',
+            'title'     =>'required|min:3|max:100|string',
             'desc'      =>'required|min:3|max:500',
             'cost'      =>'integer|required',
             'duration'  =>'required|numeric|min:1|max:24',
