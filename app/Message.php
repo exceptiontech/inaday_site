@@ -29,7 +29,7 @@ class Message extends Model
     public function last_messages($id,$receiver)
     {
 
-        $item = $this->where('from', $id)->Where('to',$receiver)->get()->last();
+        $item = $this->where('from', $id)->where('to',$receiver)->get()->last();
         //$item = $this->hasMany('App\Message','to')->latest()->first();
 
         if ($item) {

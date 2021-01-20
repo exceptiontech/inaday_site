@@ -68,6 +68,7 @@ class MessageController extends Controller
                 $query->selectRaw('max(`id`)')
                 ->from('messages')
                 ->where('from', '!=', Auth::user()->id)
+                ->where('to', Auth::user()->id)
                 ->groupBy('from');
             })->select('to','from', 'message', 'created_at','is_read','file')
             ->orderBy('is_read', 'desc')
