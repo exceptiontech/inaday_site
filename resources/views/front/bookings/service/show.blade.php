@@ -77,6 +77,11 @@
                                 </li>
 
                                 <li class="list-group-item d-flex">
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
+                                    <div class="col-6 p-0">{{$booking->payment->amount*3.75}} {{trans('file.riyal')}}</div>
+                                </li>
+
+                                <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.date')}}</div>
                                     <div class="col-6 p-0">{{ Carbon\Carbon::parse(strtotime($booking->created_at))->format('d-m-Y') }}</div>
                                 </li>

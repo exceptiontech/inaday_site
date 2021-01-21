@@ -67,6 +67,10 @@
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
                                     <div class="col-6 p-0">{{$booking->payment->amount .' '.$booking->payment->currency}}</div>
                                 </li>
+                                <li class="list-group-item d-flex">
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
+                                    <div class="col-6 p-0">{{$booking->payment->amount*3.75}} {{trans('file.riyal')}}</div>
+                                </li>
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.date')}}</div>
