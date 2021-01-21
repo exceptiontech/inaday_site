@@ -56,8 +56,9 @@ class TeamController extends Controller
 
 
         $id = Auth::user()->id;
-        $teams = Team::whereHas('users', function ($query) use ($id) {
-                $query->where('user_id' , $id);
+
+        $teams = Team::whereHas('allusers', function ($query) use ($id) {
+                $query->where('team_user.user_id' , $id);
             })->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
 
 

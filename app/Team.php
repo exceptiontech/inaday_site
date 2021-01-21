@@ -12,6 +12,13 @@ class Team extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function allusers()
+    {
+
+        return $this->belongsToMany('App\User')->withPivot('is_approved');
+    }
+
+
     public function users()
     {
 
