@@ -55,6 +55,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
 
+        return $request;
+
         $validator = Validator::make($request->all(), [
             'title'             => 'required',
             'role_id'             => 'required|integer',

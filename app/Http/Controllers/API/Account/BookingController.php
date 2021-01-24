@@ -31,7 +31,7 @@ class BookingController extends Controller
         }
 
         $id = Auth::user()->id;
-        $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','files')->paginate(10);
+        $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','project.files')->paginate(10);
 
 
         $data['status'] = true;
@@ -78,7 +78,7 @@ class BookingController extends Controller
 
         }
 
-        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','team','services')->paginate(10);
+        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','services')->paginate(10);
 
 
         $data['status'] = true;

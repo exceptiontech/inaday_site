@@ -63,6 +63,16 @@
                             {!!Form::select('is_active', ['1' => trans('admin.yes'), '0' => trans('admin.no')], '1', ['required', 'class' => 'form-control']) !!}
                         </div>
 
+                        <div id="questions">
+
+                            <div class="questions">
+
+                            </div>
+
+                            <div class="form-group">
+                                <a id="add_question" class="btn btn-secondary" href="#">اضف سؤال</a>
+                            </div>
+                        </div>
 
                         <div class="box-footer">
                             <div class="form-group">
@@ -100,6 +110,21 @@
         var regExp = /\s+/g;
         Text = Text.replace(regExp,'-');
         $("#slug").val(Text);        
+    });
+
+    $('#add_question').click(function(event){
+
+        event.preventDefault();
+
+        var html =  '';
+            html += '{!! Form::label('question_title', trans('admin.question_title')) !!}';
+            html += '{!! Form::text('questions[][question_title]', null, ['required', 'class' => 'form-control',]) !!}';
+            html += '{!! Form::text('[questions]question_desc', null, ['required', 'class' => 'form-control',]) !!}';
+
+        $('#questions .questions').append(html);
+
+        console.log('Done');
+
     });
 
 
