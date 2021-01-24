@@ -126,6 +126,11 @@ return [
     'addsponsor'     => 'إضافة سؤال شائع',
     'editsponsors'     => 'تعديل سؤال شائع',
 
+    //
+    'surveys' => 'الاستبيانات',
+    'addsurvey'     => 'إضافة استبيان',
+    'editsurvey'     => 'تعديل استبيان',
+
 
     /**/
     'services'     => 'الخدمات',

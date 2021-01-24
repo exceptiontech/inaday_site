@@ -209,6 +209,7 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::resource('interviews','Admin\InterviewController');
     Route::resource('questions','Admin\QuestionController');
     Route::resource('teams','Admin\TeamController');
+    Route::resource('surveys','Admin\SurveyController');
 
     //custom functions
     Route::get('admin/projects/{id}/approve', 'Admin\ProjectController@approve')->name('project.approve');

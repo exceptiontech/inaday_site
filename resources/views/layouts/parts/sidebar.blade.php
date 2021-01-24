@@ -90,6 +90,13 @@
                     <span class="item-name">{{trans('admin.faqs')}}</span>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="{{ Route::currentRouteName()=='surveys.index' ? 'open' : '' }}"
+                    href="{{ url('/admin/surveys') }}">
+                    <i class="nav-icon i-Clock-3"></i>
+                    <span class="item-name">{{trans('admin.surveys')}}</span>
+                </a>
+            </li>
 
         </ul>
         <ul class="childNav" data-parent="users">
