@@ -57,7 +57,7 @@ class MixtureController extends Controller
 
         }
 
-        return response()->json(['data' => $mixtures->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return response()->json(['data' => $mixtures->with('team','skills','section','users','users.userdetails','team','team.users.userdetails','team.users','services')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
@@ -71,9 +71,9 @@ class MixtureController extends Controller
     public function show($id)
     {
         if(is_numeric($id)) {
-            $mixture = Mixture::where('id',$id)->with('status','skills','section')->get();
+            $mixture = Mixture::where('id',$id)->with('status','skills','section','team','skills','section','users','users.userdetails','team','team.users.userdetails','team.users','services')->get();
         }else {
-            $mixture = Mixture::where('title',$id)->with('status','skills','section')->get();;
+            $mixture = Mixture::where('title',$id)->with('status','skills','section','team','skills','section','user','user.userdetails','users','users.userdetails','team','team.users.userdetails','team.users','services')->get();;
 
         }
         return response()->json(['data' => $mixture], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

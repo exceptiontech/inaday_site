@@ -53,7 +53,9 @@ class ProjectController extends Controller
             $projects->where('title', 'like', '%' . $title . '%');
 
         }
-        return response()->json(['data' => $projects->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+
+        return response()->json(['data' => $projects->with('skills','section','offers','user','user.userdetails','offers.user','offers.user.userdetails','ConfirmOffer')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
@@ -67,9 +69,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         if(is_numeric($id)) {
-            $project = Project::where('id',$id)->with('status','skills','section','offers')->get();
+            $project = Project::where('id',$id)->with('status','skills','section','offers','ConfirmOffer','user','user.userdetails','offers.user','offers.user.userdetails')->get();
         }else {
-            $project = Project::where('title',$id)->with('status','skills','section','offers')->get();;
+            $project = Project::where('title',$id)->with('status','skills','section','offers','ConfirmOffer','user','user.userdetails','offers.user','offers.user.userdetails')->get();;
 
         }
         return response()->json(['data' => $project], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
