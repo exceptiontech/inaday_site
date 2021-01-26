@@ -78,7 +78,7 @@ class BookingController extends Controller
 
         }
 
-        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.services')->paginate(10);
+        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.team.users.userdetails','mixture.team.users','mixture.services')->paginate(10);
 
 
         $data['status'] = true;
