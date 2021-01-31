@@ -27,7 +27,7 @@
 
                             
 
-                            <div class="col-12 col-sm-8 projects">
+                            <div class="col-12 col-sm-8 projects border-0">
                                 <div class="sub-title mb-2">
                                     <h3>{{ __('file.projects') }}</h3>
                                 </div>
