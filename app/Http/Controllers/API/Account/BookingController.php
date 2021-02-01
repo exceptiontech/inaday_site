@@ -77,6 +77,7 @@ class BookingController extends Controller
             return \Response::json(['error'=> $arr]);
 
         }
+        $id = Auth::user()->id;
 
         $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.team.users.userdetails','mixture.team.users','mixture.services')->where('user_id',$id)->paginate(10);
 
