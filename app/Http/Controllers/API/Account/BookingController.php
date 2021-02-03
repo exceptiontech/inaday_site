@@ -31,7 +31,12 @@ class BookingController extends Controller
         }
 
         $id = Auth::user()->id;
-        $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','project.files')->where('user_id',$id)->paginate(10);
+
+        if (Auth::user()->isEntrepreneur()) {
+            $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','project.files')->where('user_id',$id)->paginate(10);
+        }else{
+            $bookings = Booking::whereHas('project')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','project.files')->where('provider_id',$id)->paginate(10);
+        }
 
 
         $data['status'] = true;
@@ -55,8 +60,12 @@ class BookingController extends Controller
         }
 
         $id = Auth::user()->id;
-        $bookings = Booking::whereHas('service')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user')->where('user_id',$id)->paginate(10);
 
+        if (Auth::user()->isEntrepreneur()) {
+            $bookings = Booking::whereHas('service')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user')->where('user_id',$id)->paginate(10);
+        }else{
+            $bookings = Booking::whereHas('service')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user')->where('provider_id',$id)->paginate(10);
+        }
 
         $data['status'] = true;
         $data['data'] = $bookings;
@@ -79,8 +88,11 @@ class BookingController extends Controller
         }
         $id = Auth::user()->id;
 
-        $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.team.users.userdetails','mixture.team.users','mixture.services')->where('user_id',$id)->paginate(10);
-
+        if (Auth::user()->isEntrepreneur()) {
+            $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.team.users.userdetails','mixture.team.users','mixture.services')->where('user_id',$id)->paginate(10);
+        }else {
+            $bookings = Booking::whereHas('mixture')->with('project','service','mixture','offer','payment','user','user.userdetails','user.skills','status','replays','replays.user','mixture.team','mixture.team.users.userdetails','mixture.team.users','mixture.services')->where('provider_id',$id)->paginate(10);
+        }
 
         $data['status'] = true;
         $data['data'] = $bookings;
