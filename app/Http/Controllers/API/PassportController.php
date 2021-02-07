@@ -269,18 +269,36 @@ class PassportController extends Controller
         }
 
         $user = Auth::user();
-        $usersettings = Usersettings::where('user_id',Auth::user()->id)->first();        
-        $usersettings->user_id = Auth::user()->id;
-        $usersettings->blog_notifications= $request->blog_notifications;
-        $usersettings->offer_notifications=$request->offer_notifications;
-        $usersettings->booking_notifications=$request->booking_notifications;
-        $usersettings->review_notifications=$request->review_notifications;
-        $usersettings->team_notifications=$request->team_notifications;
-        $usersettings->profile_notifications=$request->profile_notifications;
-        $usersettings->favorite_notifications=$request->favorite_notifications;
-        $usersettings->replay_notifications=$request->replay_notifications;
-        $usersettings->message_notifications=$request->message_notifications;
-        $usersettings->support_notifications=$request->support_notifications;
+        $usersettings = Usersettings::where('user_id',Auth::user()->id)->first(); 
+        if ($usersettings) {
+        
+            $usersettings->user_id = Auth::user()->id;
+            $usersettings->blog_notifications= $request->blog_notifications;
+            $usersettings->offer_notifications=$request->offer_notifications;
+            $usersettings->booking_notifications=$request->booking_notifications;
+            $usersettings->review_notifications=$request->review_notifications;
+            $usersettings->team_notifications=$request->team_notifications;
+            $usersettings->profile_notifications=$request->profile_notifications;
+            $usersettings->favorite_notifications=$request->favorite_notifications;
+            $usersettings->replay_notifications=$request->replay_notifications;
+            $usersettings->message_notifications=$request->message_notifications;
+            $usersettings->support_notifications=$request->support_notifications;
+
+        }else {
+            $usersettings = new Usersettings; 
+            $usersettings->user_id = Auth::user()->id;
+            $usersettings->blog_notifications= $request->blog_notifications;
+            $usersettings->offer_notifications=$request->offer_notifications;
+            $usersettings->booking_notifications=$request->booking_notifications;
+            $usersettings->review_notifications=$request->review_notifications;
+            $usersettings->team_notifications=$request->team_notifications;
+            $usersettings->profile_notifications=$request->profile_notifications;
+            $usersettings->favorite_notifications=$request->favorite_notifications;
+            $usersettings->replay_notifications=$request->replay_notifications;
+            $usersettings->message_notifications=$request->message_notifications;
+            $usersettings->support_notifications=$request->support_notifications;
+
+        }       
         $usersettings->save();
 
 

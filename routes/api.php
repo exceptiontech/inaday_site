@@ -125,6 +125,9 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/credit', 'API\Account\CreditController', ['names' => 'front_credit']);
     Route::resource('account/transactions', 'API\Account\TransactionController', ['names' => 'front_transactions']);
 
+    // payment
+    Route::post('account/payment', 'API\Account\PaymentController@payment_success');
+
 
 });
 
