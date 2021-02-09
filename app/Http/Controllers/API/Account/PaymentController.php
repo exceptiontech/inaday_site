@@ -64,18 +64,18 @@ class PaymentController extends Controller
 
 
         // Once the transaction has been approved, we need to complete it.
-        if ($request->payment_id && $request->payer_id)
-        {
-            $transaction = $this->gateway->completePurchase(array(
-                'payer_id'             => $request->payer_id,
-                'transactionReference' => $request->payment_id,
-            ));
+        if ($request->payment_id && $request->payer_id){
 
-            $response = $transaction->send();
-         
+            //     $transaction = $this->gateway->completePurchase(array(
+            //         'payer_id'             => $request->payer_id,
+            //         'transactionReference' => $request->payment_id,
+            //     ));
 
-            if ($response->isSuccessful())
-            {
+            //     $response = $transaction->send();
+             
+
+                // if ($response->isSuccessful())
+                // {
 
                 if ($request->service_id) {
                     $id = $request->service_id;
@@ -367,9 +367,9 @@ class PaymentController extends Controller
                     return \Response::json(['data'=> $arr]);
 
 
-                } else {
-                    return $response->getMessage();
-                }
+                // } else {
+                //     return $response->getMessage();
+                // }
 
             } else {
                 $arr = array("status" => 102, "errorMsg" => 'Transaction not completed', "data" => array(),"appearForUser" => true);
