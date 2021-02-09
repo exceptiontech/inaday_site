@@ -23,7 +23,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
+        if (count(Auth::user()->roles) == 0  || !Auth::user()->isActive() ) {
             $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
