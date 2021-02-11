@@ -1,4 +1,4 @@
-    <div class="bg-light dark p-3">
+    <div class="bg-light dark p-3 mt-5 mt-sm-0">
         <div class="text-center mt-n5">
             <img src="{{url('/images/lamp.svg')}}">
         </div>

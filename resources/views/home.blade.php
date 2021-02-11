@@ -22,12 +22,12 @@
             </div> -->
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3">
                         <div class="image p-3">
                             <img src="images/support.png" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <h2>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter')}}</h2>
                         <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
                     </div>
@@ -35,12 +35,12 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3">
                         <div class="image p-3">
                             <img src="images/Page-1.png" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <h2>{{trans('file.comprehensive_certification')}}</h2>
                         <p>{{trans('file.comprehensive_certification_desc')}}</p>
                     </div>
@@ -53,7 +53,7 @@
                             <img src="images/offer.png" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <h2>{{trans('file.feature_packages')}}</h2>
                         <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
                     </div>
@@ -66,12 +66,12 @@
         <div  class="row mb-4">
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3">
                         <div class="image p-3">
                             <img src="images/XMLID_806_.png" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <h2>{{trans('file.the_speed')}}</h2>
                         <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
                     </div>
@@ -79,12 +79,12 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="row d-flex align-items-start">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3">
                         <div class="image p-3">
                             <img src="images/research.png" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <h2>{{trans('file.ease')}}</h2>
                         <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
                     </div>

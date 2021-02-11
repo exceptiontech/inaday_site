@@ -55,7 +55,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-7">
+                                                    <div class="col-12 col-sm-6">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -64,7 +64,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-5 text-right">
+                                                    <div class="col-12 col-sm-6 text-right">
                                                         <label class="btn btn-secondary rounded">{{$mixture->cost}} {{__('file.riyal')}}</label>
                                                         <a class="btn btn-primary rounded" href="{{url('/mixtures/'.$mixture->id)}}">{{__('file.mixture_details')}} </a>
                                                     </div>

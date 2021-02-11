@@ -10,8 +10,8 @@
                 <div class="col-12">
 
                     <div class="bg-light mt-5 messages  wrapper rounded">
-                    <div class="d-flex">
-                        <div class="col-md-4 p-0">
+                    <div class="d-flex flex-wrap">
+                        <div class="col-12 col-sm-4 p-0 users_list_wrapper">
                             <div class="p-3 border-left">
                                 <input class="form-control" id="searchKeywords" type="text" name="search" placeholder="بحث">
                             </div>
@@ -120,7 +120,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-8" id="messages">
+                        <div class="col-12 col-sm-8" id="messages">
 
                         </div>
                     </div>

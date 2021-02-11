@@ -1,4 +1,4 @@
-<div class="col-12 col-md-4 sidaber">
+<div class="col-12 col-md-4 sidaber mb-3">
     <div class="bg-light rounded pt-3 pb-3 p-2 text-center">
 
         <div class="mt-n5 ">

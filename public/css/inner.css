@@ -1561,5 +1561,35 @@ input[type="checkbox"] {
     padding-right: 0;
   }
 
+  .login-type .service_provider, .login-type .project_owner {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .btn-xs-block {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .features label {
+    display: unset;
+  }
+
+  #messages  {
+    padding: 0;
+  }
+
+  .messages .received, .messages .sent {
+    width: calc(100% - 55px)
+  }
+
+  .buttonWrapper2 {
+    margin-top: 10px;
+  }
+
+  .btn-primary {
+    padding: 10px 6px 13px;
+  }
+
 }
 

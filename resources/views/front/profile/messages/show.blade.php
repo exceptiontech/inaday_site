@@ -71,11 +71,11 @@
 </div>
 
 
-<div id="inputArea" class="form-inline p-3">
+<div id="inputArea" class="form-inline p-0 p-sm-3">
 <form class="upload_form upload_form_{{ $other_user->id}} form-inline col-12" enctype="multipart/form-data" data-id="{{ $other_user->id}}">
 
 
-    <div class="form-group buttonWrapper{{ $other_user->id}} col-1 p-0 d-flex">
+    <div class="form-group buttonWrapper{{ $other_user->id}} col-12 col-sm-1 p-0 d-flex">
         <div class="voiceNote recordFor{{ $other_user->id}}">
             <a class="button recordButton" id="recordFor" href="#" data-id="{{ $other_user->id}}"><i class="fa fa-microphone" aria-hidden="true"></i></a>
         </div>
@@ -95,7 +95,7 @@
 
     </div>
 
-    <div class="input-text input-text-{{ $other_user->id}} col-9">
+    <div class="input-text input-text-{{ $other_user->id}} col-12 col-sm-9 ">
 
         <div class="attach_file">
             <a onclick="addAttach({{ $other_user->id}});"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
@@ -106,7 +106,8 @@
         
         <input type="text" id="messageBody{{ $other_user->id}}" class="message_{{ $other_user->id}}" name="message" autocomplete="off">
     </div>
-    <div class="form-group col-2 p-0">
+
+    <div class="form-group col-12 col-sm-2 p-2 p-sm-0">
         <button type="submit" id="upload_submit_{{ $other_user->id}}" class="upload_submit btn btn-block btn-secondary rounded text-white" data-id="{{ $other_user->id}}">إرسال</button>
     </div>
 </form>

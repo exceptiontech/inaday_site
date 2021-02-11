@@ -10,7 +10,7 @@
     <div  class="widget widget-provider pt-5 pb-5 text-white">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 pb-5 pb-sm-0 mb-5 mb-sm-0">
                     <div class="title">
                         <h2 class="mb-4 pb-4">{{trans('file.service_providers')}}</h2>
                     </div>
@@ -18,16 +18,16 @@
                     <p>انت كمقدم خدمة، تعتبر حجر الأساس في المنصة، وأنت سبب نجاحها، عشان كذا، دائماً نبحث عن حلول في إنك تكون مرتاح و مبسوط. كل يوم نفكر، كيف تكون منصة .IN.A.DAY. هي خيارك الأفضل وخيار كل مبدع و صاحب موهبة، و لذلك ابتكرنا حزمة من المميزات اللي ممكن تلفت انتباهك </p>
 
                     @guest
-                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=services_provider')}}">
+                        <a class="btn btn-primary mt-3 mb-3 " href="{{url('/register?type=services_provider')}}">
                         {{trans('file.register_now')}}
                     </a>
 
                     @else
                         @if(Auth::user() && Auth::user()->isServicesProvider())
 
-                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
+                            <a class="btn btn-primary mt-3 mb-3 " href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">
+                            <a class="btn btn-primary mt-3 mb-3" href="{{url('/errors/denied')}}">
                                 {{trans('file.register_now')}}
                             </a>
                             
@@ -80,9 +80,9 @@
 
                         @if(Auth::user() && Auth::user()->isServicesProvider())
 
-                            <a class="btn btn-primary mt-5" href="{{url('/account/mixtures/create')}}">{{ __('file.add_newـmixture') }}</a>
+                            <a class="btn btn-primary mt-3 mb-3" href="{{url('/account/mixtures/create')}}">{{ __('file.add_newـmixture') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/mixtures')}}">
+                            <a class="btn btn-primary mt-3 mb-3 " href="{{url('/mixtures')}}">
                                 {{ __('file.knowـmixtures') }}
                             </a>
                             

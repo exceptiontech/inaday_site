@@ -10,7 +10,7 @@
      <div  class="widget widget-entrepreneur pt-5 pb-5 text-white">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 pb-5 pb-sm-0 mb-5 mb-sm-0">
                     <div class="title">
                         <h2 class="mb-4 pb-4">{{trans('file.entrepreneurs')}}</h2>
                     </div>
@@ -18,14 +18,14 @@
                     <p>كثير من رواد الأعمال يأخرون بدء مشاريعهم من أجل مهام ليس لها علاقة حقيقة بنجاح المشروع، فالانتظار أشهر من أجل اختيار اسم أو شعار أو بناء موقع الكتروني، أو انتظار تمويل هي أهم أسباب تعطل كثير من المشاريع وإصابة أصحابها بالإحباط قبل البدء. </p>
 
                     @guest
-                        <a class="btn btn-primary mt-5 " href="{{url('/register?type=entrepreneur')}}">{{trans('file.register_now')}}</a>
+                        <a class="btn btn-primary mt-3 mb-3 " href="{{url('/register?type=entrepreneur')}}">{{trans('file.register_now')}}</a>
 
                     @else
                         @if(Auth::user() && Auth::user()->isEntrepreneur())
 
-                            <a class="btn btn-primary mt-5 " href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
+                            <a class="btn btn-primary  mt-3 mb-3" href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
                         @else
-                            <a class="btn btn-primary mt-5 " href="{{url('/errors/denied')}}">{{trans('file.register_now')}}</a>
+                            <a class="btn btn-primary  mt-3 mb-3" href="{{url('/errors/denied')}}">{{trans('file.register_now')}}</a>
                             
                         @endif
                     @endguest
@@ -57,9 +57,9 @@
 
                     @if(Auth::user() && Auth::user()->isEntrepreneur())
 
-                        <a class="btn btn-primary mt-5" href="{{url('account/projects/create')}}">{{ __('file.add_newـproject') }}</a>
+                        <a class="btn btn-primary  mt-3 mb-3 " href="{{url('account/projects/create')}}">{{ __('file.add_newـproject') }}</a>
                     @else
-                        <a class="btn btn-primary mt-5 " href="{{url('/projects')}}">{{ __('file.knowـprojects') }}</a>
+                        <a class="btn btn-primary  mt-3 mb-3  " href="{{url('/projects')}}">{{ __('file.knowـprojects') }}</a>
                         
                     @endif
 

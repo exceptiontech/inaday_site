@@ -24,7 +24,7 @@
                     @endif
 
 
-                <div class="row mb-4 login-type">
+                <div class="d-flex flex-wrap  mb-4 login-type">
                     <div class=" col-md-4 service_provider @if(Request()->type == 'services_provider') active  @endif ">
                         <input type="radio" id="TypeUser" name="user_type" value="services_provider"  
                         @if(Request()->type == 'services_provider') checked="checked"  @endif
@@ -125,19 +125,19 @@
                         و <u>سياسة
                             الخصوصية</u></label>
                 </div>
-                <div class="d-flex">
-                    <button class="btn btn-primary d-inline" type="submit" id="id_complete" disabled="disabled" style="background-color:silver !important">تسجيل </button>
+                <div class="d-flex flex-wrap">
+                    <button class="btn btn-primary d-inline btn-xs-block" type="submit" id="id_complete" disabled="disabled">تسجيل </button>
 
-                    <div class="text-center or d-inline ml-4 mt-0">
+                    <div class="text-center or d-inline ml-0 ml-sm-4  mt-3 mt-sm-0 mb-3 mb-sm-0">
                         <span><b> أو </b></span>
                     </div>
-                    <div class="text-center google-login d-inline ml-4">
+                    <div class="text-center google-login btn-xs-block d-inline ml-0 ml-sm-4">
                         @if(Request()->type == 'entrepreneur') 
-                            <a class="btn" href="{{url('/entrepreneur/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                            <a class="btn btn-xs-block" href="{{url('/entrepreneur/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
                         @elseif(Request()->type == 'services_provider') 
-                            <a class="btn" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                            <a class="btn btn-xs-block" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
                         @else
-                            <a class="btn disabled" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
+                            <a class="btn btn-xs-block disabled" href="{{url('/services_provider/google')}}" id="Type"> <i class="fa fa-google fa-lg"></i> {{__('file.register_with_google')}}</a>
                         @endif
                     </div>
                 </div>

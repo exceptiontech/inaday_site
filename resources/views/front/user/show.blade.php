@@ -119,7 +119,7 @@
                                     <div class="col-sm-12">
                                        <h2 class="mb-3">{{ __('file.portfolios') }}</h2> 
                                        
-                                        <div class="d-flex d-inline-flex mb-5">
+                                        <div class="d-flex flex-wrap mb-5">
 
                                         @if(count($user->portfolios))
                                             @foreach($user->portfolios as $portfolio)

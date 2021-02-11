@@ -45,19 +45,19 @@
                                     <div class="col-12 service pb-3 pt-2">
 
                                         <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="col-12 col-sm-2 mb-3 mb-sm-0">
                                                 <img class="img-fluid" src="{{ url($service->img ?? '/assets/images/logo.png' ) }}">
                                             </div>
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
-                                                    <div class="col-10">
+                                                    <div class="col-6 col-sm-10">
                                                         <h2 class="mb-3">{{$project->title}}
                                                             @if(!$project->is_approved)
                                                             <span class="badge badge-warning badge-pill">{{ __('file.under_confirm') }}</span>
                                                             @endif
                                                         </h2>
                                                     </div>
-                                                    <div class="col-2 sociel text-right">
+                                                    <div class="col-6 col-sm-2 sociel text-right">
                                                         
                                                             
                                                         <a class="mr-2" href="{{url('account/projects/'.$project->id.'/edit/')}}">
@@ -69,8 +69,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-7">
-                                                        <ul class="list-inline m-0 flex-shrink-1">
+                                                    <div class="col-12 col-sm-7">
+                                                        <ul class="list-inline m-0 mb-3 mb-sm-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
                                                                     {{$project->section->title[App::getLocale()] ??  __('file.without_section') }}
@@ -86,7 +86,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-5 text-right">
+                                                    <div class="col-12 col-sm-5 text-right">
                                                         <label class="btn btn-secondary rounded text-white">{{$project->cost}} {{ __('file.riyal') }}</label>
                                                         <a class="btn btn-primary rounded" href="{{url('/projects/'.$project->id)}}">{{ __('file.project_details') }}</a>
                                                     </div>
