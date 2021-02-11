@@ -310,7 +310,7 @@
                                                     </div>
 
                                                     <div class="row mb-4">
-                                                        <div class="col-6">
+                                                        <div class="col-12 col-sm-6">
                                                             {!! Form::label('files', trans('forms.files'))!!}
                                                             <div class="input-group">
                                                                 <span class="form-control overflow-hidden"></span>

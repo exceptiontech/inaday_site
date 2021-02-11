@@ -33,10 +33,10 @@
 
 						<div class="col-12 offset-0 col-sm-6 offset-sm-3">
 	                      	<div class="row">
-		                        <div class="col-sm-9 form-group">
+		                        <div class="col-8 col-sm-9 form-group">
 		                            {!! Form::text('code', null, ['required', 'class' => 'form-control required','placeholder'=>trans('file.code'),'onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
 		                        </div>
-								<div class="col-sm-3 form-group">
+								<div class="col-4 col-sm-3 form-group">
 								  {!! Form::submit(trans('file.send_message'), array('class'=>'btn btn-primary')) !!}
 
 								</div>

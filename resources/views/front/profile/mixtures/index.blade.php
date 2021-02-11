@@ -32,12 +32,12 @@
                                     <div class="col-12 service pb-3 pt-2">
 
                                         <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="col-12 col-sm-2 mb-2 mb-sm-0">
                                                 <img class="img-fluid" src="{{ url($mixture->image ?? '/assets/images/logo.png' ) }}">
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-12 col-sm-10">
                                                 <div class="row mb-2">
-                                                    <div class="col-10">
+                                                    <div class="col-9 col-sm-10">
                                                         <h2 class="mb-3">{{$mixture->title}}
                                                             @if(!$mixture->is_approved)
                                                             <span class="badge badge-warning badge-pill">{{ __('file.under_confirm') }}</span>
@@ -45,7 +45,7 @@
 
                                                         </h2>
                                                     </div>
-                                                    <div class="col-2 sociel text-right">
+                                                    <div class="col-3 p-0 col-sm-2 sociel text-right">
                                                         <a class="mr-2" href="{{url('account/mixtures/'.$mixture->id.'/edit/')}}">
                                                             <img src="{{url('images/edit.svg')}}">
                                                         </a>

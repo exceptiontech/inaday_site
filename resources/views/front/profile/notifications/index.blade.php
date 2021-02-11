@@ -30,12 +30,12 @@
                         <!-- notifaction -->
                         <div class="col-12 mb-2 pb-2 notifaction-item">
                             <div class="row d-flex align-items-center">
-                                <div class="col-sm-1 text-center">
+                                <div class="col-3 col-sm-1 text-center">
                                     <img src="{{url($notification->data['image'] ?? 'images/research.png')}}" class="img-fluid">
                                 </div>
-                                <div class="col-sm-11">
-                                    <h2 class="mb-1">{{ $notification->data['title'] ?? __('notification.undefined') }} <span class="pull-left">{{ $notification->created_at }}</span></h2>
-                                    <p class="mb-1 p-0">{{ $notification->data['desc'] ?? __('notification.undefined') }}</p>
+                                <div class="col-9 col-sm-11">
+                                    <h2 class="mb-1">{{ $notification->data['title'] ?? __('notification.undefined') }} <span class="pull-left d-none d-sm-block">{{ $notification->created_at }}</span></h2>
+                                    <p class="mb-1 p-0 ">{{ $notification->data['desc'] ?? __('notification.undefined') }}</p>
                                 </div>
                             </div>
                         </div>

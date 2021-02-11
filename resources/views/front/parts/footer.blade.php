@@ -68,10 +68,10 @@
                     <form method="GET" action="#" id="subscribe-form">
                         <div class="col-12 col-md-9">
                             <div class="row">
-                            <div class="col-8 col-md-8  p-0">
+                            <div class="col-7 col-md-8  p-0">
                                 <input required="required" class="form-control h-100" id="search" placeholder="{{trans('file.email')}}" name="email" type="text">
                             </div>
-                            <div class="col-4 col-md-4 p-0 mr-n1">
+                            <div class="col-5 col-md-4 p-0 mr-n1">
                                 <button id="subscribe" class="btn btn-block btn-primary h-100" type="submit">{{trans('file.subscribe_now')}}</button>
                             </div>
                             <div class="col-12 result mt-2"></div>
@@ -145,10 +145,10 @@
                                 </span>
                             @enderror -->
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 p-0">
                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="col-6">تذكرني</label>
-                        <u class="col-6 mr-2" >
+                        <label class="">تذكرني</label>
+                        <u class="float-left" >
                             @if (Route::has('password.request'))
                                 <a class="forgot" href="{{ route('password.request') }}">
                                     {{trans('file.forgot_your_password?')}}

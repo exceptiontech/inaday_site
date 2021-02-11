@@ -5,7 +5,7 @@
             @if($project->user)
             <div class="project col-12 pt-3 pb-2 mb-3">
                 <div class="row">
-                    <div class="col-sm-11">
+                    <div class="col-10 col-sm-11">
                         <h2 class="mb-4">
 
 
@@ -22,7 +22,7 @@
                             <a href="{{ url('/projects/'.$project->id) }}">{{ $project->title }}</a>
                         </h2>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-2 col-sm-1">
 
                         @if(Auth::user())
 
@@ -77,7 +77,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-12 col-sm-5 text-center">
+                    <div class="col-12 col-sm-5 p-0 text-center">
                         <label class="btn btn-secondary rounded text-white" href="#">{{ $project->cost }} {{trans('file.riyal')}}</label>
                         <a class="btn btn-primary rounded" href="{{ url('/projects/'.$project->id) }}">{{trans('file.project_details')}}</a>
                     </div>

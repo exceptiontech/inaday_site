@@ -108,15 +108,15 @@
                             @foreach ($services as $service)
                             <div class="service col-12 pt-3 pb-2 mb-3">
                                 <div class="row">
-                                    <div class="col-sm-2">
+                                    <div class="col-12 col-sm-2">
                                         <img class="img-fluid" src="{{ url($service->img ?? 'assets/images/logo.png') }}" alt="{{ $service->title }}" title="{{ $service->title }}">
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-12 col-sm-10 mt-4 m-sm-0">
                                         <div class="row">
-                                            <div class="col-sm-10 mb-3">
+                                            <div class="col-9 col-sm-10 mb-3">
                                                 <h2><a href="{{url('/services/'.$service->id)}}">{{$service->title}}</a></h2>
                                             </div>
-                                            <div class="col-sm-2">
+                                            <div class="col-3 p-0 col-sm-2">
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
                                               
@@ -186,7 +186,7 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="col-sm-5 ">
+                                            <div class="col-sm-5 p-0 text-center ">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
                                                         <label class="btn btn-secondary rounded text-white font-weight-light" href="#">{{ $service->cost}} {{trans('file.sr')}}</label>

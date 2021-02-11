@@ -258,7 +258,7 @@
                                                 </div>
                                             </div> 
                                         </div>
-                                        <div class="col-sm-4 text-right">
+                                        <div class="col-sm-4 mt-3 mt-lg-0 text-right">
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <span class="bg-light rounded p-1">{{ $offer->price }} {{trans('file.riyal')}} </span>

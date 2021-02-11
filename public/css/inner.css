@@ -124,7 +124,7 @@ a.link-dark {
   border: 1px;
   padding-bottom: 10px;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 20px 14px;
   font-family: 'HelveticaNeueLTR', 'HelveticaNeueLT-Regular', Arial, sans-serif; }
   .btn-primary.rounded {
     border-radius: 20px !important; }
@@ -338,6 +338,8 @@ img.img-icon120 {
 #socialShare > a {
   padding: 0;
   display: block !important; }
+
+
 
 @media (max-width: 320px) {
   #socialHolder {
@@ -1498,6 +1500,66 @@ input[type="checkbox"] {
   #footer .copyrights {
     background: #EFEFEF; }
 
-.rtl .mr-auto, [dir=rtl] .mr-auto, .rtl .ml-auto, [dir=rtl] .ml-auto {
+/*.rtl .mr-auto, [dir=rtl] .mr-auto, .rtl .ml-auto, [dir=rtl] .ml-auto {
   margin-right: 0 !important;
   padding-right: 0 !important; }
+*/
+
+@media (max-width: 480px) {
+  .projects .project ul li {
+    font-size: 12px;
+  }
+  #subscribe  {
+    font-size: 13px;
+  }
+  .profile .profile-head-menu ul {
+    padding: 0;
+    font-size: 13px;
+  }
+  .profile .profile-head-menu ul li {
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+  .profile .profile-head-menu ul li a {
+
+  }
+  .profile .profile-head-menu ul li a.active {
+    padding-bottom: 0;
+
+  }
+
+  .services .service ul li {
+    font-size: 12px;
+  }
+
+  .services .service h2 {
+    word-break: break-word;
+  }
+  .text-sm-center {
+    text-align: center !important;
+  }
+
+  .inner #innerpage .bg-light {
+    display: inline-block;
+    padding: 0px 12px 4px;
+  }
+  #socialHolder {
+    padding-left: 0px;
+    padding-right: 0px; }
+
+
+  .btn-modal {
+    margin-right: 0
+  }
+
+  .google-login a {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .navbar-nav {
+    padding-right: 0;
+  }
+
+}
+
