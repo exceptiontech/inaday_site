@@ -56,7 +56,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-8">
+                                                <div class="col-6 col-sm-8">
 
                                                     <div class="dropdown">
                                                         <button class="btn bg-light dropdown-toggle" type="button" id="memberWrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +96,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4 text-right">
+                                                <div class="col-6 col-sm-4 text-right">
                                                     <a class="btn btn-primary rounded" href="{{url($team->id.'/list/services_provider')}}">
                                                         {{trans('file.add_team_members')}}
                                                     </a>
