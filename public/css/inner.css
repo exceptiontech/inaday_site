@@ -504,7 +504,9 @@ label.error {
 .paragrapgh-login {
   font-size: 11px;
   color: #5c5b5b; }
-
+.modal {
+  text-align: center;
+}
 .modal h2 {
   color: #005689;
   font-size: 25px;
@@ -540,7 +542,7 @@ input[type="checkbox"] {
   width: 232px;
   color: #fff;
   text-align: center;
-  margin-right: 120px; }
+  }
   .btn-modal:hover {
     background: #6D6E70;
     color: #fff; }
@@ -1548,9 +1550,6 @@ input[type="checkbox"] {
     padding-right: 0px; }
 
 
-  .btn-modal {
-    margin-right: 0
-  }
 
   .google-login a {
     padding-right: 22px;
@@ -1590,6 +1589,22 @@ input[type="checkbox"] {
   .btn-primary {
     padding: 10px 6px 13px;
   }
+
+
+  .login .info-login h2:before, .login .info-login h2::after ,
+  #mix .title h1:before, #mix .title h1::after ,
+  #stories .title h1:before, #stories .title h1::after ,
+  #features .title h1:before, #features .title h1::after {
+    right: 45%;
+  }
+  
+  .login .info-login h2::after ,
+  #mix .title h1::after ,
+  #stories .title h1::after,
+  #features .title h1::after {
+    right: 55%;
+  }
+
 
 }
 

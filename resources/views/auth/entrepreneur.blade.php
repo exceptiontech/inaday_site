@@ -23,12 +23,14 @@
                     @else
                         @if(Auth::user() && Auth::user()->isEntrepreneur())
 
-                            <a class="btn btn-primary  mt-3 mb-3" href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
+                            <a class="btn btn-primary  mt-3 mb-5" href="{{url('/account/profile')}}">{{ __('file.profile') }}</a>
                         @else
-                            <a class="btn btn-primary  mt-3 mb-3" href="{{url('/errors/denied')}}">{{trans('file.register_now')}}</a>
+                            <a class="btn btn-primary  mt-3 mb-5" href="{{url('/errors/denied')}}">{{trans('file.register_now')}}</a>
                             
                         @endif
                     @endguest
+
+                    <div class="mb-5 mb-sm-0 pb-5 pb-sm-0"></div>
 
                 </div>
 

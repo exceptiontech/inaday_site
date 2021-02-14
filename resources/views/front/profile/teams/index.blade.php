@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <div class="row mb-2">
-                                                    <div class="col-9">
+                                                    <div class="col-8 col-sm-9">
                                                         <h2 class="mb-3">{{$team->title ?? __('file.undefined') }}</h2>
                                                         <p class="pb-0">{{$team->desc ?? __('file.undefined') }}</p>
                                                         <div class="dropdown">
@@ -76,7 +76,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-4 col-sm-3">
                                                     @if(Auth::user()->id != $team->user_id)
                                                       @if($team->pivot->is_approved != 1)
 
