@@ -38,17 +38,17 @@
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="col-12 col-sm-2">
                                                 <img class="img-fluid" src="{{ url($booking->project->image ?? '/assets/images/logo.png' ) }}">
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-12 col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-10">
                                                         <h2 class="mb-3">{{$booking->project->title}}</h2>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-7">
+                                                    <div class="col-12 col-sm-7">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -57,7 +57,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-5 text-right">
+                                                    <div class="col-12 col-sm-5 text-right">
                                                         <a class="btn btn-secondary rounded" href="#">{{$booking->offer->price}} {{ __('file.riyal') }}</a>
                                                         <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                     </div>
@@ -83,17 +83,17 @@
                                     @foreach(Auth::user()->ServiceOrders() as $booking)
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="col-12 col-sm-2">
                                                 <img class="img-fluid" src="{{ url($booking->service->img ?? '/assets/images/logo.png' ) }}">
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-12 col-sm-10">
                                                 <div class="row mb-2">
-                                                    <div class="col-10">
+                                                    <div class="col-12 col-sm-10">
                                                         <h2 class="mb-3">{{$booking->service->title}}</h2>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-7">
+                                                    <div class="col-12 col-sm-7">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -102,7 +102,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-5 text-right">
+                                                    <div class="col-12 col-sm-5 text-right">
                                                         <a class="btn btn-secondary rounded" href="#">{{$booking->service->cost}} {{ __('file.riyal') }}</a>
                                                         <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                     </div>
@@ -126,17 +126,17 @@
 
                                     <div class="col-12 service pb-3 pt-2">
                                         <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="col-12 col-sm-2">
                                                 <img class="img-fluid" src="{{ url($booking->mixture->image ?? '/assets/images/logo.png' ) }}">
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-12 col-sm-10">
                                                 <div class="row mb-2">
                                                     <div class="col-10">
                                                         <h2 class="mb-3">{{$booking->mixture->title}}</h2>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-7">
+                                                    <div class="col-12 col-sm-7">
                                                         <ul class="list-inline m-0 flex-shrink-1">
                                                             <li class="list-inline-item">
                                                                 <div class="bg-light pt-1 pb-1 p-2 ">
@@ -145,7 +145,7 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-5 text-right">
+                                                    <div class="col-12 col-sm-5 text-right text-sm-center">
                                                         <a class="btn btn-secondary rounded" href="#">{{$booking->mixture->cost}} {{ __('file.riyal') }}</a>
                                                         <a class="btn btn-primary rounded" href="{{url('/bookings/'.$booking->id)}}">{{ __('file.order_details') }}</a>
                                                     </div>
