@@ -45,7 +45,7 @@
                                     @endif
 
                                         <div class="row mb-4">
-                                            <div class="col-12 col-sm-6 mb-1">
+                                            <div class="col-12 col-sm-6 mb-3">
                                                 {!! Form::label('title', trans('file.team_name')) !!}
                                                 {!! Form::text('title', $team->title, ['required', 'class' => 'form-control required','autofocus']) !!}
                                             </div>
