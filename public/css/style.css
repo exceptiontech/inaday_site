@@ -109,7 +109,7 @@ a.link-dark {
   max-width: 300px; }
   .dropdown-menu .dropdown-item {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 21.54px;
     text-align: right;
     color: #005689;
@@ -468,12 +468,12 @@ header .main-header .navbar ul.navbar-nav li {
 header .main-header .navbar ul.login_menu li {
   margin: 0; }
   header .main-header .navbar ul.login_menu li a.nav-link {
-    font-size: 12px;
+    font-size: 10px;
     color: #505050;
     font-weight: bold;
     border-radius: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     border: solid 1px #E5E5E5; }
     header .main-header .navbar ul.login_menu li a.nav-link.active, header .main-header .navbar ul.login_menu li a.nav-link:hover {
       background: #005689;
