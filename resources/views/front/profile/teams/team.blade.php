@@ -42,11 +42,11 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="row mb-2">
-                                                <div class="col-10">
+                                                <div class="col-12 col-sm-10">
                                                     <h2 class="mb-3">{{$team->title ?? 'فريق بدون اسم' }}</h2>
                                                     <p class="pb-0">{{$team->desc ?? 'فريق بدون وصف' }}</p>
                                                 </div>
-                                                <div class="col-2 sociel text-right">
+                                                <div class="col-12 col-sm-2 sociel text-right">
                                                     <a class="mr-2" href="{{url('account/teams/'.$team->id.'/edit')}}">
                                                         <img src="{{url('/images/edit.svg')}}">
                                                     </a>

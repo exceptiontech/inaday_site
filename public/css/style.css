@@ -157,7 +157,14 @@ label {
   box-shadow: 0 3px 6px #00000029;
   line-height: 32px;
   min-height: 50px;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+
+ }
 
 .nav-pills .nav-link.active {
   background-color: #00C76D; }
@@ -765,6 +772,11 @@ input[type="checkbox"] {
   margin-right: 0 !important;
   padding-right: 0 !important; }
 */
+
+
+.font-sm {
+  font-size: 9px;
+}
 
 
 

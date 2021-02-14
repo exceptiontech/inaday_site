@@ -93,7 +93,7 @@
                     data-target="#exampleModal" >{{trans('file.login')}}</a>
                 </li>
                 <li class="nav-item not-active">
-                    <a class="nav-link" href="{{ url('/register') }}">{{trans('file.register')}}</a>
+                    <a class="nav-link font-sm" href="{{ url('/register') }}">{{trans('file.register')}}</a>
                 </li>
                 @else
                   @if(Auth::user()->isAdmin())
