@@ -109,7 +109,7 @@
 
                   @else
 
-                    <li class="nav-item not-active notification-item mr-2">
+                    <li class="nav-item not-active notification-item mr-2 pl-3 pl-sm-0 ">
                       <div class="dropdown">
                         <button class="btn  dropdown-toggle pl-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="fa fa-bell" aria-hidden="true"></i>
@@ -153,7 +153,7 @@
                     </li>
 
 
-                    <li class="nav-item not-active mr-1">
+                    <li class="nav-item not-active mr-1 pl-3 pl-sm-0 ">
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle rounded pt-1 pb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle img-thumbnail img-icon30 img-fluid" src="{{ url(Auth::user()->userdetail->first()->avater ?? '/assets/images/logo.png' ) }}">
