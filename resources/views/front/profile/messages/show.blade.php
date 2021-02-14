@@ -75,7 +75,7 @@
 <form class="upload_form upload_form_{{ $other_user->id}} form-inline col-12" enctype="multipart/form-data" data-id="{{ $other_user->id}}">
 
 
-    <div class="form-group buttonWrapper{{ $other_user->id}} col-12 col-sm-1 p-0 d-flex">
+    <div class="form-group buttonWrapper{{ $other_user->id}} col-12 col-sm-1 p-0 d-flex pt-4 pt-sm-0 pl-3 pl-sm-0">
         <div class="voiceNote recordFor{{ $other_user->id}}">
             <a class="button recordButton" id="recordFor" href="#" data-id="{{ $other_user->id}}"><i class="fa fa-microphone" aria-hidden="true"></i></a>
         </div>
