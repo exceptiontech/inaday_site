@@ -80,7 +80,7 @@
 			}
 
 			var $that = this;
-			navigator.getUserMedia({audio: true}, function(stream){
+			navigator.mediaDevices.getUserMedia({audio: true}, function(stream){
 
 			/**
 			 * Live Output

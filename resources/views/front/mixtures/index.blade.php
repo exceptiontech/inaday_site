@@ -238,6 +238,7 @@
         $.ajax({    
             type  : 'get',
             url   : '{!!URL::route('updateFavorite')!!}',
+            dataType: 'json',
             data  : data ,      
             success:function(data){
 

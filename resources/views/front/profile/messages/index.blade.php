@@ -339,6 +339,7 @@
                   $.ajax({
                     url: '{{ route('sendMessage') }}',
                     type: 'POST',
+                    dataType: 'json',
                     data: data,
                     contentType: false,
                     processData: false,
