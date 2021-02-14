@@ -835,12 +835,16 @@ input[type="checkbox"] {
   #features .title h1:before, #features .title h1::after {
     right: 45%;
   }
-  
+
   .login .info-login h2::after ,
   #mix .title h1::after ,
   #stories .title h1::after,
   #features .title h1::after {
     right: 55%;
+  }
+
+  header .main-header .navbar ul.navbar-nav li.notification-item .notification-dropdown {
+    margin-bottom: 10px;
   }
 
 

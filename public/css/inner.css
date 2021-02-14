@@ -1604,6 +1604,10 @@ input[type="checkbox"] {
   #features .title h1::after {
     right: 55%;
   }
+  
+  header .main-header .navbar ul.navbar-nav li.notification-item .notification-dropdown {
+    margin-bottom: 10px;
+  }
 
 
 }
