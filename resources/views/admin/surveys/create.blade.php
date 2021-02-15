@@ -116,14 +116,28 @@
 
         event.preventDefault();
 
-        var html =  '';
-            html += '{!! Form::label('question_title', trans('admin.question_title')) !!}';
-            html += '{!! Form::text('questions[][question_title]', null, ['required', 'class' => 'form-control',]) !!}';
-            html += '{!! Form::text('[questions]question_desc', null, ['required', 'class' => 'form-control',]) !!}';
+        var count = $('#questions .questions .item').length + 1;
+        /* Rule */
+        var row = '<div class="item '+count+' form-group mb-2" ><a class="btn btn-danger btn-sm text-left text-white" id="remove'+count+'"><i class="fas fa-times" aria-hidden="true"></i></a>';
 
-        $('#questions .questions').append(html);
 
-        console.log('Done');
+            row += '{!! Form::label('question_title', trans('admin.question_title')) !!}';
+            row += '<div class="form-group"><input class="form-control" name="questions['+count+'][question_title]" type="text"  value=""></div>';
+
+            row += '{!! Form::label('question_desc', trans('admin.question_desc')) !!}';
+
+            row += '<div class="form-group"><input class="form-control" name="questions['+count+'][question_desc]" type="text"  value=""></div>';
+
+
+
+            row += '<div class="form-group rule-row'+count+'"></div></div>';
+
+            $('#questions .questions').append(row);
+        
+
+        $('#remove'+count).click(function(){
+            $(this).parent().remove();
+        });
 
     });
 
