@@ -64,9 +64,16 @@
                                         {!! Form::text('duration', null, ['required','class' => 'form-control','onkeyup'=>'this.value=this.value.replace(/[^\d]/,"")']) !!}
 
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6 form-group">
                                         {!! Form::label('img', trans('forms.service_image'))!!} <em class="text-danger">*</em>
-                                        {!! Form::file('img', array( 'class' => 'form-control')) !!}
+
+                                      <div class="input-group">
+                                        <span class="form-control overflow-hidden"></span>
+                                        <span class="input-group-btn">
+                                          <input name="img" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                                          <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">{{trans('file.download')}}</span>
+                                        </span>
+                                      </div>
                                     </div>
                                 </div>
 

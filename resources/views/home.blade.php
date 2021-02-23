@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-12 col-sm-9">
                         <h2>{{trans('file.the_speed')}}</h2>
-                        <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
+                        <p>{{trans('file.the_speed_desc')}}</p>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-12 col-sm-9">
                         <h2>{{trans('file.ease')}}</h2>
-                        <p>{{trans('file.the_possibility_of_forming_a_team_and_shop_to_enter_desc')}}</p>
+                        <p>{{trans('file.ease_desc')}}</p>
                     </div>
                 </div>
             </div>

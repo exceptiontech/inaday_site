@@ -91,10 +91,13 @@ return [
     'comprehensive_certification_desc' => 'بإمكانك تقديم مجموعة من الخدمات المختلفة المتميزة  وتطوير علاقاتك ومهاراتك عن طريق الشركاء',
 
     'the_speed' => 'السرعة في تنفيذ المشاريع',
+    'the_speed_desc' => 'نسعى لتنفيذ كل مشروع في أقل وقت وأكثر اتقان',
+
 
     'in_implementing_projects' => 'في تنفيذ المشاريع',
 
     'ease' => 'سهولة إدارة ومتابعة المشاريع',
+    'ease_desc' => 'مكان واحد يجمع كل أعمالك',
 
     'project_management_and_follow_up' => 'إدارة ومتابعة المشاريع',
 
@@ -215,6 +218,7 @@ return [
     'servives_provider_training' => ' تدريب مقدّمى الخدمات',
 
     'feature_packages' => ' باقات المزايا لمقدّمي الخدمات',
+    'feature_packages_desc' => ' باقات متنوعة، نقدمها لك، تطوّر مهارتك وفرصة لزيادة دخلك',
 
     'calculator' => 'الحاسبة',
 
