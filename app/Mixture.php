@@ -18,7 +18,7 @@ class Mixture extends Model
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill')->where('is_active',1);
+        return $this->belongsToMany('App\Skill');
     }
 
     public function status()
