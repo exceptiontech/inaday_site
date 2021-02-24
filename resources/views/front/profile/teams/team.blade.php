@@ -131,9 +131,16 @@
                                                 {!! Form::label('title', trans('file.team_name')) !!} <em class="text-danger">*</em>
                                                 {!! Form::text('title', old('title'), ['required', 'class' => 'form-control required','autofocus']) !!}
                                             </div>
-                                            <div class="col-12 col-sm-6">
+                                            <div class="col-12 col-sm-6 form-group">
                                                 {!! Form::label('team_image', trans('file.team_logo'))!!} <em class="text-danger">*</em>
-                                                {!! Form::file('image', array( 'class' => 'form-control')) !!}
+                                                  <div class="input-group">
+                                                    <span class="form-control overflow-hidden"></span>
+                                                    <span class="input-group-btn">
+                                                      <input name="image" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                                                      <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">{{trans('file.download')}}</span>
+                                                    </span>
+                                                  </div>
+
                                             </div>
                                         </div>
 

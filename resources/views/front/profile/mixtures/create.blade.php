@@ -46,9 +46,15 @@
                                         {!! Form::label('title', trans('forms.mixture_section'))!!} <em class="text-danger">*</em>
                                         {!! Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), null,['required', 'class' => 'form-control']) !!} 
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6 form-group">
                                         {!! Form::label('img', trans('forms.mixture_image'))!!} <em class="text-danger">*</em>
-                                        {!! Form::file('image', array( 'class' => 'form-control')) !!}
+                                      <div class="input-group">
+                                        <span class="form-control overflow-hidden"></span>
+                                        <span class="input-group-btn">
+                                          <input name="image" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                                          <span class="btn btn-light h-100 shadow" onclick="$(this).parent().find('input[type=file]').click();">{{trans('file.download')}}</span>
+                                        </span>
+                                      </div>
                                     </div>
                                 </div>
 
@@ -186,7 +192,7 @@
                                                   name="skills[]"
                                                   value="{{$skill->id}}"
                                                 /><span class="label-text">
-                                                    {{ @$skill->title[App::getLocale()] }}<em>*</em></span
+                                                    {{ @$skill->title[App::getLocale()] }}</span
                                                 >
                                               </label>
                                             </div>

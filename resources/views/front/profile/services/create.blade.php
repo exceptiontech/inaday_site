@@ -95,7 +95,7 @@
                                                 <label class="che-box">
                                                 <input @if(is_array(old('skills')) && in_array($skill->id,old('skills'))) checked @endif
                                                   name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
-                                                  {{$skill->title[App::getLocale()]}} <em>*</em></span>
+                                                  {{$skill->title[App::getLocale()]}} </span>
                                                 </label>
                                             </div>
                                         </div>

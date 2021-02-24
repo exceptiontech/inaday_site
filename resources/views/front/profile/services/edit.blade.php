@@ -95,7 +95,7 @@
                                             <div class="chicksign">
                                                 <label class="che-box">
                                                 <input @if($service->skills->contains($skill->id)) checked="checked" @endif  name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
-                                                  {{$skill->title[App::getLocale()]}} <em>*</em></span>
+                                                  {{$skill->title[App::getLocale()]}}</span>
                                                 </label>
                                             </div>
                                         </div>
