@@ -145,7 +145,7 @@
                                 </span>
                             @enderror -->
                     </div>
-                    <div class="col-12 p-0">
+                    <div class="col-12 p-0 text-left">
                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                         <label class="">تذكرني</label>
                         <u class="float-left" >

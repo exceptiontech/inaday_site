@@ -425,40 +425,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Message','from')->where('to',$id)->where('is_read',0)->orderBy('created_at');
     }
 
-    // public function last_messages()
-    // {
-
-    //     $id = $this->id;
-
-    //     //$item = Message::where('from', $id)->latest()->first();
-    //     //$item = $this->hasMany('App\Message','to')->latest()->first();
-    //     $item = $this->where('from', $id)->where('to',$receiver)->get()->last();
-
-    //     if ($item) {
-    //         if ($item['file']) {
-    //             if(pathinfo($item['file'], PATHINFO_EXTENSION)  == 'png' || pathinfo($item['file'], PATHINFO_EXTENSION) == 'jpg' || pathinfo($item['file'], PATHINFO_EXTENSION) == 'jpeg') {
-    //                 return 'صورة';
-
-    //             }elseif (pathinfo($item['file'], PATHINFO_EXTENSION)  == 'mp3') {
-    //                 return 'ملف صوتي';
-    //             }else {
-    //                 return 'ملف ';
-
-    //             }
-    //         }else {
-    //             return $item['message'];
-    //         }
-    //     }
-
-    //     //return $this->hasMany('App\Message','to')->latest()->first();
-    // }
-
-
-
-    public function last_messages($id,$receiver)
+    public function last_messages()
     {
 
-        $item = $this->where('from', $id)->where('to',$receiver)->get()->last();
+        $id = $this->id;
+
+        $item = Message::where('from', $id)->orWhere('to',$id)->latest()->first();
         //$item = $this->hasMany('App\Message','to')->latest()->first();
 
         if ($item) {
@@ -479,7 +451,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
         //return $this->hasMany('App\Message','to')->latest()->first();
     }
-
 
 
     public function SendSMS()
