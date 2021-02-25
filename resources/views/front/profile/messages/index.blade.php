@@ -97,7 +97,7 @@
                                                         
 
                                                     </p>
-                                                    <p class="email">{{ $user->last_messages() ?? 'لا يوجد أي محادثات' }}</p>
+                                                    <p class="email">{{ $user->last_messages(auth::id()) ?? 'لا يوجد أي محادثات' }}</p>
                                                 </div>
                                             </div>
                                         </li>

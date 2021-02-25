@@ -425,12 +425,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Message','from')->where('to',$id)->where('is_read',0)->orderBy('created_at');
     }
 
-    public function last_messages()
+    public function last_messages($auth)
     {
 
         $id = $this->id;
 
-        $item = Message::where('from', $id)->orWhere('to',$id)->latest()->first();
+        $item = Message::where('to', $auth)->Where('to',$id)->latest()->first();
         //$item = $this->hasMany('App\Message','to')->latest()->first();
 
         if ($item) {
