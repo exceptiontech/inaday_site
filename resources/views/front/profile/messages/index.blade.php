@@ -46,12 +46,9 @@
 
                                                     </p>
                                                     <p class="email">
-                                                        @if($message->from != Auth::id())
+                                                        @if($message->to == Auth::id())
                                                             {{ $message->last_messages($message->sender->id,$message->receiver->id) ?? 'لا يوجد أي محادثات' }}
                                                         @endif
-
-
-
                                                     </p>
                                                 </div>
                                             </div>
