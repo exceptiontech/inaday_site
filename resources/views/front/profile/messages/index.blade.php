@@ -45,7 +45,7 @@
                                                         
 
                                                     </p>
-                                                    <p class="email">{{ $message->last_messages($message->sender->id,$message->receiver->id) ?? 'لا يوجد أي محادثات' }}</p>
+                                                    <p class="email">{{ Auth::user()->last_messages($message->sender->id,$message->receiver->id) ?? 'لا يوجد أي محادثات' }}</p>
                                                 </div>
                                             </div>
                                         </li>
