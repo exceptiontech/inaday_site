@@ -516,7 +516,27 @@ label.error {
 .modal h2 {
   color: #005689;
   font-size: 25px;
-  position: relative; }
+  position: relative;
+    right: 0;
+    left: 0;
+    width: 100%;
+     }
+
+.modal h2:before, .modal h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 47%;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-clip: padding-box;
+  background: #00e689; }
+
+.modal h2::after {
+  right: 53%; }
 
 u {
   color: #005689;

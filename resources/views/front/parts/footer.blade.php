@@ -118,7 +118,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>{{trans('file.signin')}}</h2>
+                <h2 class="pb-4">{{trans('file.signin')}}</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -127,7 +127,7 @@
                 <div class="error" > </div>
                 <form  method="post" name="login-form" class="login-form"  id="login">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group text-left">
                         <label> {{trans('file.email')}} *</label>
                         <input type="email"  name="email" id="email" id="login-form-username"  class="form-control d-block  @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus aria-label="Username" aria-describedby="basic-addon1">
 <!--                             @error('email')
@@ -136,7 +136,7 @@
                                 </span>
                             @enderror
  -->                    </div>
-                    <div class="form-group">
+                    <div class="form-group text-left">
                         <label for="login-form-password">{{trans('file.password')}}</label>
                             <input type="password" name="password" id="password" id="login-form-password" class="form-control d-block @error('password') is-invalid @enderror" required autocomplete="current-password"  >
 <!--                             @error('password')

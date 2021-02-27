@@ -121,9 +121,9 @@
                 </div>
                 <div class="pb-3">
                     <input type="checkbox" id="accepted2" name="accepted12">
-                    <label>قرأت وقبلت سياسة عدم الإفصاح وكافة بنود العقد الخاص بها <u> الشروط والأحكام</u>
-                        و <u>سياسة
-                            الخصوصية</u></label>
+                    <label>قرأت وقبلت سياسة عدم الإفصاح وكافة بنود العقد الخاص بها <a href="{{url('pages/1')}}"> الشروط والأحكام</a>
+                        و <a href="{{url('pages/1')}}">سياسة
+                            الخصوصية</a></label>
                 </div>
                 <div class="d-flex flex-wrap">
                     <button class="btn btn-primary d-inline btn-xs-block" type="submit" id="id_complete" disabled="disabled">تسجيل </button>
