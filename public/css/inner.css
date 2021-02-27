@@ -1378,7 +1378,8 @@ input[type="checkbox"] {
   border: none;
   border-radius: 0;
   padding: 10px 20px;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 0 }
 
 .features .google-login .or {
   text-align: center;
