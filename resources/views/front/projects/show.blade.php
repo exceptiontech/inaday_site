@@ -39,7 +39,7 @@
                                 <div class="col-6 p-0">
                                     
                                       @if($project->booking)
-                                        <span class="bg-success">{{trans('file.status_unavaliable')}}
+                                        <span class="bg-danger">{{trans('file.status_unavaliable')}}
                                         </span>
                                       @else 
                                         <span class="bg-success">

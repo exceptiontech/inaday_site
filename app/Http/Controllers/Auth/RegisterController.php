@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8',
                         'regex:/[a-z]/',      // must contain at least one lowercase letter
             'regex:/[A-Z]/',      // must contain at least one uppercase letter
-            'regex:/[0-9]/',      // must contain at least one digit
+            'regex:/[0-10]/',      // must contain at least one digit
             'regex:/[@$!%*#?&]/', // must contain a special character
             'confirmed'],
             'mobile' =>['required','digits:9'],

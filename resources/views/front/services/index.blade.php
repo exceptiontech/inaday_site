@@ -56,7 +56,7 @@
                             <div class="block-content">
 
                                 <div class="col-12">
-                                  {!!Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), Request::get('section_id'), ['class' => 'form-control']) !!}
+                                  {!!Form::select('section_id',$sections->pluck('title.'.App::getLocale(),'id'), Request::get('section_id'), ['class' => 'form-control','placeholder'=>trans('file.choose')]) !!}
 
                                 </div>
 

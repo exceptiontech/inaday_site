@@ -88,9 +88,9 @@
 
         {{ $projects->appends(request()->input())->links() }}
 
-        @else
-          <div class="alert alert-danger">
-              <i class="fa fa-exclamation-triangle"></i> {{trans('file.there_are_no_projects')}}
-          </div>
+    @else
+      <div class="alert alert-danger">
+          <i class="fa fa-exclamation-triangle"></i> {{trans('file.there_are_no_projects')}}
+      </div>
     @endif
 </div>
