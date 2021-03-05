@@ -67,7 +67,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'user_type' => ['required', 'string'],
             'first_name' => ['required', 'string', 'min:3','alpha'],
-            'last_name' => ['required', 'string', 'min:3','alpha'],
+            'last_name' => ['required', 'string', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8',
                         'regex:/[a-z]/',      // must contain at least one lowercase letter

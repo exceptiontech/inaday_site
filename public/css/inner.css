@@ -853,6 +853,14 @@ input[type="checkbox"] {
   border-radius: 20px;
   font-size: 13px; }
 
+.project-info .bg-danger {
+  padding: 0 20px 3px;
+  background-color: #e91e635c !important;
+  border: solid 1px #e91e63;
+  color: #505050;
+  border-radius: 20px;
+  font-size: 13px; }
+
 .project-info .bg-light {
   padding: 0 20px 3px;
   border-radius: 20px;
