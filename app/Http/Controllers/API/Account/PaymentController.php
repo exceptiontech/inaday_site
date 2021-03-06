@@ -131,8 +131,8 @@ class PaymentController extends Controller
 
                             // for services provider
                             $transaction = new Transaction;
-                            //$transaction->mount = percentMinus($offer->price,10);
-                            $transaction->mount = $offer->price;
+                            $transaction->mount = percentMinus($offer->price,7);
+                            //$transaction->mount = $offer->price;
                             $transaction->type = 'plus'; // plus or minus
                             $transaction->title = 'ربح';
                             $transaction->user_id = $offer->user->id;
@@ -142,8 +142,8 @@ class PaymentController extends Controller
 
                             // for entrupeneur 
                             $transaction = new Transaction;
-                            //$transaction->mount = percentPlus($offer->price,10);
-                            $transaction->mount = $offer->price;
+                            $transaction->mount = percentPlus($offer->price,7);
+                            //$transaction->mount = $offer->price;
                             $transaction->type = 'sell'; // sell or refund
                             $transaction->title = 'شراء';
                             $transaction->user_id = Auth::user()->id;
@@ -216,8 +216,8 @@ class PaymentController extends Controller
 
                             // for services provider
                             $transaction = new Transaction;
-                            //$transaction->mount = percentMinus($service->cost,10);
-                            $transaction->mount = $service->cost;
+                            $transaction->mount = percentMinus($service->cost,7);
+                            //$transaction->mount = $service->cost;
                             $transaction->type = 'plus'; // plus or minus
                             $transaction->title = 'ربح';
                             $transaction->user_id = $service->user->id;
@@ -227,8 +227,8 @@ class PaymentController extends Controller
 
                             // for entrupeneur 
                             $transaction = new Transaction;
-                            //$transaction->mount = percentPlus($service->cost,10);
-                            $transaction->mount = $service->cost;
+                            $transaction->mount = percentPlus($service->cost,7);
+                            //$transaction->mount = $service->cost;
                             $transaction->type = 'sell'; // sell or refund
                             $transaction->title = 'شراء';
                             $transaction->user_id = Auth::user()->id;
@@ -309,8 +309,8 @@ class PaymentController extends Controller
 
                             // for services provider
                             $transaction = new Transaction;
-                            //$transaction->mount = percentMinus($mixture->cost,10);
-                            $transaction->mount = $mixture->cost;
+                            $transaction->mount = percentMinus($mixture->cost,7);
+                            //$transaction->mount = $mixture->cost;
                             $transaction->type = 'plus'; // plus or minus
                             $transaction->title = 'ربح';
                             $transaction->user_id = $mixture->team->user->id;
@@ -320,7 +320,7 @@ class PaymentController extends Controller
 
                             // for entrupeneur 
                             $transaction = new Transaction;
-                            //$transaction->mount = percentPlus($mixture->cost,10);
+                            $transaction->mount = percentPlus($mixture->cost,7);
                             $transaction->mount = $mixture->cost;
                             $transaction->type = 'sell'; // sell or refund
                             $transaction->title = 'شراء';

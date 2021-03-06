@@ -332,7 +332,7 @@ class RegisterController extends Controller
         $usersettings->save();
 
 
-        $user->SendSMS();
+        //$user->SendSMS();
 
         $this->guard()->login($user);
 
