@@ -245,7 +245,7 @@ class UsersController extends Controller
 
                         'first_name'=> 'required|string|min:3|max:25',
                         'last_name'=> 'required|string|min:3|max:25',
-                        'mobile'      =>'required|digits:10',
+                        'mobile'      =>'required|digits:9',
                         'avater' => 'mimes:jpg,jpeg,png',
                         'position'      =>'min:3|string',
                         'cv_file'      =>'mimes:pdf,docx,doc',
@@ -259,7 +259,7 @@ class UsersController extends Controller
 
                     'first_name'=> 'required|string|min:3|max:25',
                     'last_name'=> 'required|string|min:3|max:25',
-                    'mobile'      =>'required|digits:10',
+                    'mobile'      =>'required|digits:9',
                     'avater' => 'mimes:jpg,jpeg,png',
                     'position'      =>'min:3|string',
                     'cv_file'      =>'mimes:pdf,docx,doc',
@@ -319,38 +319,38 @@ class UsersController extends Controller
 
 
         if(!empty($request['password'])) {
-            // if ($user->mobile) {
+            if ($user->mobile) {
 
-            //     $str = $user->mobile;
-            //     $number = '966'.substr($str, 1);
+                $str = $user->mobile;
+                $number = '966'.substr($str, 1);
 
 
-            //     $url = "https://www.msegat.com/gw/sendsms.php";
-            //     $params = json_encode([
-            //         "userName" => "inaday",
-            //         "userSender" => "INADAY",
-            //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-            //         "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
-            //         "numbers" => $number
-            //     ]);
-            //     $headers = array('Content-Type:application/json');
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday",
+                    "userSender" => "INADAY",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                    "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
 
-            //     $ch = curl_init($url);
-            //     curl_setopt($ch, CURLOPT_POST, 1);
-            //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-            //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            //     $curl_response = curl_exec($ch);
+                $curl_response = curl_exec($ch);
 
-            //     if ($curl_response === false) {
-            //         $info = curl_getinfo($ch);
-            //         curl_close($ch);
-            //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
-            //     }
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
 
-            //     curl_close($ch);
-            // }
+                curl_close($ch);
+            }
         }
 
         $userdetail->user_id = Auth::user()->id;
