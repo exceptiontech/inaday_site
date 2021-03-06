@@ -319,38 +319,38 @@ class UsersController extends Controller
 
 
         if(!empty($request['password'])) {
-            if ($user->mobile) {
+            // if ($user->mobile) {
 
-                $str = $user->mobile;
-                $number = '966'.substr($str, 1);
+            //     $str = $user->mobile;
+            //     $number = '966'.substr($str, 1);
 
 
-                $url = "https://www.msegat.com/gw/sendsms.php";
-                $params = json_encode([
-                    "userName" => "inaday",
-                    "userSender" => "INADAY",
-                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                    "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
-                    "numbers" => $number
-                ]);
-                $headers = array('Content-Type:application/json');
+            //     $url = "https://www.msegat.com/gw/sendsms.php";
+            //     $params = json_encode([
+            //         "userName" => "inaday",
+            //         "userSender" => "INADAY",
+            //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+            //         "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
+            //         "numbers" => $number
+            //     ]);
+            //     $headers = array('Content-Type:application/json');
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            //     $ch = curl_init($url);
+            //     curl_setopt($ch, CURLOPT_POST, 1);
+            //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+            //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                $curl_response = curl_exec($ch);
+            //     $curl_response = curl_exec($ch);
 
-                if ($curl_response === false) {
-                    $info = curl_getinfo($ch);
-                    curl_close($ch);
-                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                }
+            //     if ($curl_response === false) {
+            //         $info = curl_getinfo($ch);
+            //         curl_close($ch);
+            //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
+            //     }
 
-                curl_close($ch);
-            }
+            //     curl_close($ch);
+            // }
         }
 
         $userdetail->user_id = Auth::user()->id;
@@ -677,43 +677,43 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
-                $user->email_verified_at = Carbon::now();
+                //$user->email_verified_at = Carbon::now();
                 $user->save();
 
-                if ($user->mobile) {
+                // if ($user->mobile) {
 
-                    $str = $user->mobile;
-                    $number = '966'.substr($str, 1);
+                //     $str = $user->mobile;
+                //     $number = '966'.substr($str, 1);
 
 
-                    $url = "https://www.msegat.com/gw/sendsms.php";
-                    $params = json_encode([
-                        "userName" => "inaday",
-                        "userSender" => "INADAY",
-                        "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
-                        "numbers" => $number
-                    ]);
-                    $headers = array('Content-Type:application/json');
+                //     $url = "https://www.msegat.com/gw/sendsms.php";
+                //     $params = json_encode([
+                //         "userName" => "inaday",
+                //         "userSender" => "INADAY",
+                //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
+                //         "numbers" => $number
+                //     ]);
+                //     $headers = array('Content-Type:application/json');
 
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                //     $ch = curl_init($url);
+                //     curl_setopt($ch, CURLOPT_POST, 1);
+                //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                    $curl_response = curl_exec($ch);
+                //     $curl_response = curl_exec($ch);
 
-                    if ($curl_response === false) {
-                        $info = curl_getinfo($ch);
-                        curl_close($ch);
-                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                    }
+                //     if ($curl_response === false) {
+                //         $info = curl_getinfo($ch);
+                //         curl_close($ch);
+                //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                //     }
 
-                    curl_close($ch);
-                }
+                //     curl_close($ch);
+                // }
 
-                $user->SendSMS();
+                // $user->SendSMS();
 
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
@@ -732,7 +732,7 @@ class UsersController extends Controller
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
 
-                //$user->sendEmailVerificationNotification();
+                $user->sendEmailVerificationNotification();
                 //$user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
@@ -754,7 +754,7 @@ class UsersController extends Controller
                 $userdetail->save();
 
 
-                return redirect::to('mobile/verify');
+                //return redirect::to('mobile/verify');
                 return redirect('/account/profile');
 
             }
@@ -799,44 +799,44 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
-                $user->email_verified_at = Carbon::now();
+                //$user->email_verified_at = Carbon::now();
 
                 $user->save();
 
 
 
-                if ($user->mobile) {
+                // if ($user->mobile) {
 
-                    $str = $user->mobile;
-                    $number = '966'.substr($str, 1);
+                //     $str = $user->mobile;
+                //     $number = '966'.substr($str, 1);
 
 
-                    $url = "https://www.msegat.com/gw/sendsms.php";
-                    $params = json_encode([
-                        "userName" => "inaday",
-                        "userSender" => "INADAY",
-                        "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
-                        "numbers" => $number
-                    ]);
-                    $headers = array('Content-Type:application/json');
+                //     $url = "https://www.msegat.com/gw/sendsms.php";
+                //     $params = json_encode([
+                //         "userName" => "inaday",
+                //         "userSender" => "INADAY",
+                //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
+                //         "numbers" => $number
+                //     ]);
+                //     $headers = array('Content-Type:application/json');
 
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                //     $ch = curl_init($url);
+                //     curl_setopt($ch, CURLOPT_POST, 1);
+                //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                    $curl_response = curl_exec($ch);
+                //     $curl_response = curl_exec($ch);
 
-                    if ($curl_response === false) {
-                        $info = curl_getinfo($ch);
-                        curl_close($ch);
-                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                    }
+                //     if ($curl_response === false) {
+                //         $info = curl_getinfo($ch);
+                //         curl_close($ch);
+                //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                //     }
 
-                    curl_close($ch);
-                }
+                //     curl_close($ch);
+                // }
 
                 $user->SendSMS();
 
@@ -858,7 +858,7 @@ class UsersController extends Controller
             $role = Role::where('name','entrepreneur')->first();
             $user->assignRole([$role->id]);
 
-            //$user->sendEmailVerificationNotification();
+            $user->sendEmailVerificationNotification();
             //$user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
@@ -878,7 +878,7 @@ class UsersController extends Controller
             $userdetail->avater =  'images/default_img.png';
             $userdetail->save();
 
-            return redirect::to('mobile/verify');
+            //return redirect::to('mobile/verify');
             return redirect('/');
 
 
@@ -919,43 +919,43 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
-                $user->email_verified_at = Carbon::now();
+                //$user->email_verified_at = Carbon::now();
 
                 $user->save();
 
 
-                if ($user->mobile) {
+                // if ($user->mobile) {
 
-                    $str = $user->mobile;
-                    $number = '966'.substr($str, 1);
+                //     $str = $user->mobile;
+                //     $number = '966'.substr($str, 1);
 
 
-                    $url = "https://www.msegat.com/gw/sendsms.php";
-                    $params = json_encode([
-                        "userName" => "inaday",
-                        "userSender" => "INADAY",
-                        "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                        "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
-                        "numbers" => $number
-                    ]);
-                    $headers = array('Content-Type:application/json');
+                //     $url = "https://www.msegat.com/gw/sendsms.php";
+                //     $params = json_encode([
+                //         "userName" => "inaday",
+                //         "userSender" => "INADAY",
+                //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
+                //         "numbers" => $number
+                //     ]);
+                //     $headers = array('Content-Type:application/json');
 
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                //     $ch = curl_init($url);
+                //     curl_setopt($ch, CURLOPT_POST, 1);
+                //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                    $curl_response = curl_exec($ch);
+                //     $curl_response = curl_exec($ch);
 
-                    if ($curl_response === false) {
-                        $info = curl_getinfo($ch);
-                        curl_close($ch);
-                        die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                    }
+                //     if ($curl_response === false) {
+                //         $info = curl_getinfo($ch);
+                //         curl_close($ch);
+                //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                //     }
 
-                    curl_close($ch);
-                }
+                //     curl_close($ch);
+                // }
 
             }
 
@@ -963,7 +963,7 @@ class UsersController extends Controller
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
-            //$user->sendEmailVerificationNotification();
+            $user->sendEmailVerificationNotification();
 
             Auth::login($user, true);
 
@@ -983,7 +983,7 @@ class UsersController extends Controller
             $userdetail->save();
 
 
-            return redirect::to('mobile/verify');
+            //return redirect::to('mobile/verify');
             return redirect('/');
 
         }elseif (str_contains($url, 'login')) {
@@ -1037,44 +1037,44 @@ class UsersController extends Controller
             $user->notification_preference = 'mail';
             $user->is_active = 0;
             $user->active_code = rand(10000,99999);
-            $user->email_verified_at = Carbon::now();
+            //$user->email_verified_at = Carbon::now();
 
             $user->save();
 
-            if ($user->mobile) {
+            // if ($user->mobile) {
 
-                $str = $user->mobile;
-                $number = '966'.substr($str, 1);
+            //     $str = $user->mobile;
+            //     $number = '966'.substr($str, 1);
 
 
-                $url = "https://www.msegat.com/gw/sendsms.php";
-                $params = json_encode([
-                    "userName" => "inaday",
-                    "userSender" => "INADAY",
-                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
-                    "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
-                    "numbers" => $number
-                ]);
-                $headers = array('Content-Type:application/json');
+            //     $url = "https://www.msegat.com/gw/sendsms.php";
+            //     $params = json_encode([
+            //         "userName" => "inaday",
+            //         "userSender" => "INADAY",
+            //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+            //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
+            //         "numbers" => $number
+            //     ]);
+            //     $headers = array('Content-Type:application/json');
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            //     $ch = curl_init($url);
+            //     curl_setopt($ch, CURLOPT_POST, 1);
+            //     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+            //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                $curl_response = curl_exec($ch);
+            //     $curl_response = curl_exec($ch);
 
-                if ($curl_response === false) {
-                    $info = curl_getinfo($ch);
-                    curl_close($ch);
-                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
-                }
+            //     if ($curl_response === false) {
+            //         $info = curl_getinfo($ch);
+            //         curl_close($ch);
+            //         die('error occured during curl exec. Additioanl info: ' . var_export($info));
+            //     }
 
-                curl_close($ch);
-            }
+            //     curl_close($ch);
+            // }
             
-            $user->SendSMS();
+            // $user->SendSMS();
 
             $usersettings = new Usersettings;
             $usersettings->blog_notifications= 1;
@@ -1093,7 +1093,7 @@ class UsersController extends Controller
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
             
-            //$user->sendEmailVerificationNotification();
+            $user->sendEmailVerificationNotification();
 
         }
 
@@ -1115,7 +1115,7 @@ class UsersController extends Controller
         $userdetail->save();
         
 
-        return redirect::to('mobile/verify');
+        //return redirect::to('mobile/verify');
         return redirect('/');
 
     }
