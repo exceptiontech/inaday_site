@@ -651,7 +651,7 @@ class UsersController extends Controller
                 if ($return_user->name) {
                     $user->name = $return_user->name;
                 }else {
-                    $user->name = $return_user->user['name'];
+                    $user->name = $return_user->user['email'];
                 }
 
                 if (isset($return_user->email)) {
@@ -879,7 +879,7 @@ class UsersController extends Controller
             $userdetail->save();
 
             //return redirect::to('mobile/verify');
-            return redirect('/');
+            return redirect('/email/verify');
 
 
         }elseif (str_contains($url, 'student')) {
@@ -984,7 +984,7 @@ class UsersController extends Controller
 
 
             //return redirect::to('mobile/verify');
-            return redirect('/');
+            return redirect('/email/verify');
 
         }elseif (str_contains($url, 'login')) {
 
@@ -1116,7 +1116,7 @@ class UsersController extends Controller
         
 
         //return redirect::to('mobile/verify');
-        return redirect('/');
+            return redirect('/email/verify');
 
     }
 
