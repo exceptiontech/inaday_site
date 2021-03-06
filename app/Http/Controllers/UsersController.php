@@ -774,7 +774,7 @@ class UsersController extends Controller
                 if ($return_user->name) {
                     $user->name = $return_user->name;
                 }else {
-                    $user->name = $return_user->user['name'];
+                    $user->name = $return_user->user['email'];
                 }
 
                 if (isset($return_user->email)) {
@@ -896,7 +896,7 @@ class UsersController extends Controller
                 if ($return_user->name) {
                     $user->name = $return_user->name;
                 }else {
-                    $user->name = $return_user->user['name'];
+                    $user->name = $return_user->user['email'];
                 }
 
                 if (isset($return_user->email)) {
