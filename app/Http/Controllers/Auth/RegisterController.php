@@ -159,7 +159,7 @@ class RegisterController extends Controller
         // }
         
         //$user->email_verified_at = Carbon::now();
-        $user->is_active = 0;
+        $user->is_active = 1;
         $user->save();
 
 
