@@ -675,7 +675,7 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';
-                $user->is_active = 0;
+                $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
                 //$user->email_verified_at = Carbon::now();
                 $user->save();
@@ -797,7 +797,7 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';
-                $user->is_active = 0;
+                $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
                 //$user->email_verified_at = Carbon::now();
 
@@ -838,7 +838,7 @@ class UsersController extends Controller
                 //     curl_close($ch);
                 // }
 
-                $user->SendSMS();
+                //$user->SendSMS();
 
                 $usersettings = new Usersettings;
                 $usersettings->blog_notifications= 1;
@@ -959,7 +959,7 @@ class UsersController extends Controller
 
             }
 
-            $user->SendSMS();
+            //$user->SendSMS();
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
@@ -1035,7 +1035,7 @@ class UsersController extends Controller
             $user->password = Hash::make($return_user->nickname);
 
             $user->notification_preference = 'mail';
-            $user->is_active = 0;
+            $user->is_active = 1;
             $user->active_code = rand(10000,99999);
             //$user->email_verified_at = Carbon::now();
 
