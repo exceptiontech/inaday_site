@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>{{ __('register_lang.mobile') }} <em>*</em></label>
-                    <input class="form-control required" type="tel" name="mobile"  id="phonenumber" required="" onkeyup="this.value=this.value.replace(/[^\d]/,'')" placeholder="05xxxxxxxx">
+                    <input class="form-control required" type="tel" name="mobile"  id="phonenumber" required="" onkeyup="this.value=this.value.replace(/[^\d]/,'')" placeholder="5xxxxxxxx">
                 </div>
                 <div class="col-md-4">
                     <label>{{ __('register_lang.email') }} <em>*</em></label>
