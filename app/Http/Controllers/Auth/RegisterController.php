@@ -96,7 +96,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
-            'is_active' => 0,
+            'is_active' => 1,
             'active_code' => rand(10000,99999),
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make($data['password']),
