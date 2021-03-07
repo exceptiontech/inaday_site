@@ -58,7 +58,7 @@
                                               <div class="bg-light pt-3 box rounded text-center">
                                                   <h2 class="mb-3">الرصيد الكلي</h2>
                                                   <p class="price mb-1"><span class="mr-1">
-                                                    {{Auth::user()->totalProfit() - ((Auth::user()->totalProfit()*10)/100) }}
+                                                    {{round(Auth::user()->totalProfit() ) }}
                                                     </span>ريال سعودي</p>
                                                   <p class="p-3">هو كامل الرصيد الموجود في حسابك الآن يتضمن الأرباح والرصيد المعلق</p>
                                               </div>
@@ -68,7 +68,7 @@
                                               <div class=" bg-light pt-3 box rounded text-center">
                                                   <h2 class="mb-3">الرصيد المعلّق</h2>
                                                   <p class="price mb-1"><span class="red mr-1">
-                                                    {{Auth::user()->pendingProfit() - ((Auth::user()->pendingProfit()*10)/100) }}
+                                                    {{round(Auth::user()->pendingProfit()) }}
                                                     </span>ريال سعودي</p>
                                                   <p class="p-3">هو الرصيد المعلق الذي لا يمكن سحبه إلا بعد تأكيد صاحب المشروع بالإستلام</p>
                                               </div>
@@ -77,7 +77,7 @@
                                               <div class="bg-light pt-3 box rounded text-center">
                                                   <h2 class="mb-3">آرباح ممكن سحبها</h2>
                                                   <p class="price mb-1"><span  class="green mr-1">
-                                                    {{Auth::user()->confirmedProfit() - ((Auth::user()->confirmedProfit()*10)/100) }}
+                                                    {{round(Auth::user()->confirmedProfit())}}
                                                   </span>ريال سعودي</p>
                                                   <p class="p-3">هو المبلغ الذي حققتهه من عملك ويمكن سحبه الي حسابك</p>
                                               </div>
@@ -146,7 +146,7 @@
                                                         @endif
                                                       </td>
                                                       <td>@if($transaction->type == 'minus') - @endif
-                                                        {{$transaction->mount - (($transaction->mount*7)/100) }} ريال</td>
+                                                        {{round($transaction->mount) }} ريال</td>
                                                       <td dir="ltr">{{$transaction->created_at}}</td>
                                                     </tr>
                                                   @endforeach

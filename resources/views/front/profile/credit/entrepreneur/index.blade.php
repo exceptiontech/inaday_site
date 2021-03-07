@@ -92,7 +92,8 @@
                                                   سحب ارباح
                                                 @endif
                                               </td>
-                                              <td>{{$transaction->mount}} ريال</td>
+                                              <td>
+                                                {{round($transaction->booking->payment->amount*3.7504381353)}}  ريال</td>
                                               <td dir="ltr">{{$transaction->created_at}}</td>
                                             </tr>
                                           @endforeach

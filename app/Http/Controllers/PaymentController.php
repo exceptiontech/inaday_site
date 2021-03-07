@@ -56,7 +56,7 @@ class PaymentController extends Controller
         }
 
         function percentMinus($number,$percent) {
-            $total = $number - (($percent / 100) * $number)    ;
+            $total = $number - (($percent / 100) * $number) ;
             return $total;
         }
 
@@ -81,7 +81,7 @@ class PaymentController extends Controller
 
                 if ($request->input('amount') == $offer->price) {
                     $total = percentPlus($request->input('amount') , 7);
-                    $total = $request->input('amount');
+                    //$total = $request->input('amount');
                     $mount = round($total/3.75,2);
                 }
 
@@ -191,14 +191,15 @@ class PaymentController extends Controller
 
 
         function percentPlus($number,$percent) {
-            $total = ($number / $percent ) + $number;
+            $total = (($percent / 100) * $number) + $number  ;
             return $total;
         }
 
         function percentMinus($number,$percent) {
-            $total = $number - ($number / $percent ) ;
+            $total = $number - (($percent / 100) * $number) ;
             return $total;
         }
+
 
 
         // Once the transaction has been approved, we need to complete it.
