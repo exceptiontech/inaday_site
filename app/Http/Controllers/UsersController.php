@@ -322,7 +322,8 @@ class UsersController extends Controller
             if ($user->mobile) {
 
                 $str = $user->mobile;
-                $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                $number = '966'.$str;
 
 
                 $url = "https://www.msegat.com/gw/sendsms.php";
@@ -683,7 +684,8 @@ class UsersController extends Controller
                 // if ($user->mobile) {
 
                 //     $str = $user->mobile;
-                //     $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                //$number = '966'.$str;
 
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
@@ -808,7 +810,8 @@ class UsersController extends Controller
                 // if ($user->mobile) {
 
                 //     $str = $user->mobile;
-                //     $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                //$number = '966'.$str;
 
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
@@ -927,7 +930,8 @@ class UsersController extends Controller
                 // if ($user->mobile) {
 
                 //     $str = $user->mobile;
-                //     $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                //$number = '966'.$str;
 
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
@@ -1044,7 +1048,8 @@ class UsersController extends Controller
             // if ($user->mobile) {
 
             //     $str = $user->mobile;
-            //     $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                //$number = '966'.$str;
 
 
             //     $url = "https://www.msegat.com/gw/sendsms.php";

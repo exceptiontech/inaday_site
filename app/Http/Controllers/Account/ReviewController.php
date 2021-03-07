@@ -97,7 +97,8 @@ class ReviewController extends Controller
             if (Auth::user()->mobile) {
 
                 $str = Auth::user()->mobile;
-                $number = '966'.substr($str, 1);
+                //$number = '966'.substr($str, 1);
+                $number = '966'.$str;
 
                 $url = "https://www.msegat.com/gw/sendsms.php";
                 $params = json_encode([
