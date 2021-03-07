@@ -51,12 +51,12 @@ class PaymentController extends Controller
         }
         
         function percentPlus($number,$percent) {
-            $total = ($number / $percent ) + $number;
+            $total = (($percent / 100) * $number) + $number  ;
             return $total;
         }
 
         function percentMinus($number,$percent) {
-            $total = $number - ($number / $percent ) ;
+            $total = $number - (($percent / 100) * $number)    ;
             return $total;
         }
 
