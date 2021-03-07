@@ -756,6 +756,8 @@ class UsersController extends Controller
                 $userdetail->save();
 
 
+                return redirect('/email/verify');
+
                 //return redirect::to('mobile/verify');
                 return redirect('/account/profile');
 
@@ -881,6 +883,7 @@ class UsersController extends Controller
             $userdetail->avater =  'images/default_img.png';
             $userdetail->save();
 
+            return redirect('/email/verify');
             //return redirect::to('mobile/verify');
             return redirect('/email/verify');
 
