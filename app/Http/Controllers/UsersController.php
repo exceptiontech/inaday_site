@@ -280,7 +280,7 @@ class UsersController extends Controller
                 $validator = Validator::make($request->all(), [
                         'first_name'=> 'required|string|min:3|max:25',
                         'last_name'=> 'required|string|min:3|max:25',
-                        'mobile'      =>'required|digits:10',
+                        'mobile'      =>'required|digits:9',
                         'avater' => 'mimes:jpg,jpeg,png',
                         'position'      =>'min:3|string',
                         'cv_file'      =>'mimes:pdf,docx,doc',
@@ -291,7 +291,7 @@ class UsersController extends Controller
                 $validator = Validator::make($request->all(), [
                     'first_name'=> 'required|string|min:3|max:25',
                     'last_name'=> 'required|string|min:3|max:25',
-                    'mobile'      =>'required|digits:10',
+                    'mobile'      =>'required|digits:9',
                     'avater' => 'mimes:jpg,jpeg,png',
                     'position'      =>'min:3|string',
                     'cv_file'      =>'mimes:pdf,docx,doc',
