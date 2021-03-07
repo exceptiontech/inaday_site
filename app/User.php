@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $id = $this->id;
 
-        if ($this->where('id',$id)->where('is_active', '1')->where('email_verified_at', '=', null)->first() ) {
+        if ($this->where('id',$id)->where('is_active', '1')->where('email_verified_at', '!=', null)->first() ) {
             return true;
         }
         return false;
