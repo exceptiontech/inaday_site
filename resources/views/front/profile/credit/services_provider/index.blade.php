@@ -146,7 +146,7 @@
                                                         @endif
                                                       </td>
                                                       <td>@if($transaction->type == 'minus') - @endif
-                                                        {{$transaction->mount - (($transaction->mount*10)/100) }} ريال</td>
+                                                        {{$transaction->mount - (($transaction->mount*7)/100) }} ريال</td>
                                                       <td dir="ltr">{{$transaction->created_at}}</td>
                                                     </tr>
                                                   @endforeach
