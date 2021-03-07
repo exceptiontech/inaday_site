@@ -98,7 +98,7 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'is_active' => 1,
             'active_code' => rand(10000,99999),
-            'email_verified_at' => Carbon::now(),
+            //'email_verified_at' => Carbon::now(),
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -313,7 +313,7 @@ class RegisterController extends Controller
         }
 
         $user->notification_preference = 'mail';
-        $user->email_verified_at = Carbon::now();
+        //$user->email_verified_at = Carbon::now();
 
         $user->save();
 
@@ -337,7 +337,7 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        //return redirect::to('mobile/verify');
+        return redirect::to('email/verify');
 
 
 
