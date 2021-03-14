@@ -635,6 +635,8 @@ return [
    //booking
 
    'mount' => 'المبلغ',
+   'inaday_fees' => 'رسوم الموقع',
+   'total_price' => 'إجمالي السعر',
 
    'user' => 'صاحب الطلب',
 

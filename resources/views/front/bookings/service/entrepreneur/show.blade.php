@@ -66,28 +66,48 @@
 
 
                             <div class="col-12 mt-5 mb-4 small">
-                                <h2>{{trans('file.payment_details')}}</h2>
+                                <h2 class="black">{{trans('file.payment_details')}} 
+                                    <span class="pull-left">
+                                        <a class="btn btn-light shadow-sm rounded">
+                                            <img class="mr-1" src="{{ url('assets/images/currency.png') }}">ريال سعودي
+                                        </a>
+                                    </span>
+                                </h2>
                             </div>
 
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
-                                    <div class="col-6 p-0">{{$booking->payment->amount .' '.$booking->payment->currency}}</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">
+                                        <h6>{{trans('file.mount')}}</h6>
+                                    </div>
+                                    <div class="col-6 p-0">{{$booking->getTotalByRiyal() - $booking->getFeesByRiyal()}} {{trans('file.riyal')}}</div>
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.mount')}}</div>
-                                    <div class="col-6 p-0">{{round($booking->payment->amount*3.7504381353)}} {{trans('file.riyal')}}</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">
+                                        <h6>{{trans('file.inaday_fees')}}</h6>
+                                    </div>
+                                    <div class="col-6 p-0">{{$booking->getFeesByRiyal()}} {{trans('file.riyal')}}</div>
+                                </li>
+
+                                <li class="list-group-item d-flex">
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">
+                                        <h6>{{trans('file.total_price')}}</h6>
+                                    </div>
+                                    <div class="col-6 p-0">{{$booking->getTotalByRiyal()}} {{trans('file.riyal')}}</div>
                                 </li>
 
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.date')}}</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">
+                                        <h6>{{trans('file.date')}}</h6>
+                                    </div>
                                     <div class="col-6 p-0">{{ Carbon\Carbon::parse(strtotime($booking->created_at))->format('d-m-Y') }}</div>
                                 </li>
                             </ul>
                         </div>
+                        
                         <div class="col-12 contact_author align-bottom">
 
                             @if(Auth::user()->id == $booking->user->id)

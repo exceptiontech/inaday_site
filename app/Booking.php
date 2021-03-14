@@ -96,6 +96,23 @@ class Booking extends Model
     }
 
 
+    public function getFees() {
+        return round((($this->payment->amount)*7)/100);
+    }
+
+    public function getFeesByRiyal() {
+        return round((($this->payment->amount*3.7504381353)*7)/100);
+    }
+
+    public function getTotal() {
+        return round($this->payment->amount);
+    }
+
+    public function getTotalByRiyal() {
+        return round($this->payment->amount*3.7504381353);
+    }
+
+
 
     // public function status() {
 
