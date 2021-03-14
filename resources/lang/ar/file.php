@@ -548,6 +548,8 @@ return [
     'project_attach'=>'مرفقات المشروع' ,
 
     'project_budget'=>'ميزانية المشروع' ,
+    'mixture_budget'=>'سعر الشراكة' ,
+    'service_budget'=>'سعر الخدمة' ,
 
     'execution_time'=>'وقت التنفيذ' ,
 

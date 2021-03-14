@@ -53,7 +53,7 @@
                                 </li>
 
                                 <li class="list-group-item d-flex">
-                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.project_budget')}}</div>
+                                    <div class="col-6 p-0 text-dark font-weight-bolder">{{trans('file.service_budget')}}</div>
                                     <div class="col-6 p-0">{{ $booking->service->cost}} {{__('file.riyal')}}</div>
                                 </li>
 

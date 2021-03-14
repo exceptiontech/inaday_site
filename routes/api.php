@@ -63,6 +63,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('profile', 'API\PassportController@profile');
     Route::post('usersettings', 'API\PassportController@usersettings');
     Route::post('logout', 'API\PassportController@logout');
+    Route::post('/sendEmail', 'API\PassportController@sendEmail');
     Route::post('/sendSMS', 'API\PassportController@sendSMS');
     Route::post('/mobile/verify/store', 'API\PassportController@mobileVerifyStore');
 

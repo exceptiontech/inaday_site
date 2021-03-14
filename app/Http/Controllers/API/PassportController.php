@@ -663,6 +663,44 @@ class PassportController extends Controller
     }
 
 
+    public function sendEmail(Request $request)
+    {
+
+        if (!Auth::user()) {
+
+            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if (!Auth::user()->email) {
+            $arr = array("status" => 402, "errorMsg" => 'not valid email found', "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
+        Auth::user()->sendEmailVerificationNotification();
+
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        $data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+        //return $info["http_code"] . ' ' .$response;
+    }
+
+
+
+
+
     public function sendSMS(Request $request)
     {
 
