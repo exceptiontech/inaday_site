@@ -46,6 +46,7 @@
               </div>
             @endif
 
+            @can('reports-list')
 
 
             {{ Form::open(['action' => 'AdminController@userReport','method' => 'get']) }}
@@ -144,6 +145,9 @@
 
             </div>
 
+            @else
+                ليس لديك الصلاحيات
+            @endcan
 
             </div>
         </div>

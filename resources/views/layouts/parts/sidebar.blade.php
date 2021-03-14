@@ -39,6 +39,7 @@
                 </a>
                 <div class="triangle"></div>
             </li>
+            @can('reports-list')
             <li class="nav-item {{ request()->is('reports/*') ? 'active' : '' }}" data-item="reports">
                 <a class="nav-item-hold" href="#">
                     <i class="nav-icon i-Bar-Chart"></i>
@@ -46,6 +47,7 @@
                 </a>
                 <div class="triangle"></div>
             </li>
+            @endcan
         </ul>
     </div>
 
