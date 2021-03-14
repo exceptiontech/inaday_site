@@ -221,4 +221,7 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::get('admin/mixtures/{id}/approve', 'Admin\MixtureController@approve')->name('mixture.approve');
     Route::post('admin/mixtures/refuse', 'Admin\MixtureController@refuse')->name('mixture.refuse');
 
+    Route::get('reports/users', 'AdminController@userReport')->name('reports.users');
+
+
 });

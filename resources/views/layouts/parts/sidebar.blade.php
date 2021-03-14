@@ -39,6 +39,13 @@
                 </a>
                 <div class="triangle"></div>
             </li>
+            <li class="nav-item {{ request()->is('reports/*') ? 'active' : '' }}" data-item="reports">
+                <a class="nav-item-hold" href="#">
+                    <i class="nav-icon i-Bar-Chart"></i>
+                    <span class="nav-text">{{trans('admin.reports')}}</span>
+                </a>
+                <div class="triangle"></div>
+            </li>
         </ul>
     </div>
 
@@ -304,6 +311,16 @@
             </li>
         </ul>
 
+
+        <ul class="childNav" data-parent="reports">
+            <li class="nav-item ">
+                <a class="{{ Route::currentRouteName()=='reports.users' ? 'open' : '' }}"
+                    href="{{ url('/admin/reports/users') }}">
+                    <i class="nav-icon i-Clock-3"></i>
+                    <span class="item-name">{{trans('admin.reports')}}</span>
+                </a>
+            </li>
+        </ul>
 
     </div>
     <div class="sidebar-overlay"></div>

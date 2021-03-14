@@ -16,6 +16,8 @@ use Hash;
 use App\User;
 
 use App\Log;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 
 class AdminController extends Controller
@@ -46,43 +48,55 @@ class AdminController extends Controller
     }
 
 
-    public function AppointmentsReport(Request $request , Appointment $appointments) {
+    public function userReport(Request $request , User $users) {
 
-        $appointments = $appointments->newQuery();
+        $users = $users->newQuery();
 
-        if ($request->fullname) {
 
-            $fid = $request->fullname;
+        if ($request->role_id) {
 
-            $appointments->whereHas('patient', function ($query) use ($fid) {
-                $query->where('fullname', 'like', '%' . $fid . '%');
+            $role_id = $request->role_id;
+
+            $users->whereHas('roles',function($q) use ($role_id){
+                $q->where('name', $role_id);
             });
         }
 
-        if ($request->fromdate && $request->todate ) {
 
-            $fromdate = $request->fromdate;
-            $todate = $request->todate;
+        if ($request->mobile) {
 
-            $appointments->whereBetween('date', [$fromdate, $todate] );
+            $mobile = $request->mobile;
 
-        }elseif ($request->todate) {
-            $date = $request->todate;
-            $appointments->where('date', 'like', '%' . $date . '%');
-
-        }elseif ($request->fromdate) {
-            $date = $request->fromdate;
-            $appointments->where('date', 'like', '%' . $date . '%');
+            $users->where('mobile', $mobile);
         }
 
 
-        if ($appointments) {
+        if ($request->start_date) {
 
-            $total = $appointments->sum('price');
+            //return Carbon($start_date)->toDateTimeString();
 
-            $appointments->where('status_id', 2);
-            return view('admin.reports.appointments')->withAppointments($appointments->latest()->paginate(15))->withTotal($total);
+            $start_date = $request->start_date;
+
+            $users->whereDate('created_at', '>=', $start_date);
+
         }
+
+        if ($request->end_date) {
+
+            $end_date = $request->end_date;
+
+            $users->whereDate('created_at', '<=', $end_date);
+        }
+
+        if ($users) {
+
+            $roles = Role::pluck('name','name')->all();
+
+            return view('admin.reports.users')->withUsers($users->latest()->paginate(20))->withRoles($roles);
+        }
+
+
+
     }
 
     public function MedicalsessionsReport(Request $request , Medicalsession $medicalsessions) {
