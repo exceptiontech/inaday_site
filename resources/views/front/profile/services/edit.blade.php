@@ -93,7 +93,7 @@
                                         @foreach($skills as $skill)
                                         <div class="check-item">
                                             <div class="chicksign">
-                                                <label class="che-box">
+                                                <label class="che-box w-100">
                                                 <input @if($service->skills->contains($skill->id)) checked="checked" @endif  name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
                                                   {{$skill->title[App::getLocale()]}}</span>
                                                 </label>

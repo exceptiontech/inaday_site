@@ -92,7 +92,7 @@
                                         @foreach($skills as $skill)
                                           <div class="col-sm-6 check-item">
                                             <div class="chicksign">
-                                                <label class="che-box">
+                                                <label class="che-box w-100">
                                                 <input @if(is_array(old('skills')) && in_array($skill->id,old('skills'))) checked @endif
                                                   name="skills[]" type="checkbox" value="{{$skill->id}}"> <span class="label-text">
                                                   {{$skill->title[App::getLocale()]}} </span>

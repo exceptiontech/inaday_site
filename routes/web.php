@@ -177,6 +177,7 @@ Route::group(['middleware'=>'verified'], function() {
 
 });
 
+
 Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admin'], function() {
 
 	Route::get('/', 'AdminController@index');
@@ -222,6 +223,13 @@ Route::group(['middleware' => ['role:Admin'],'prefix' => 'admin','name' => 'admi
     Route::post('admin/mixtures/refuse', 'Admin\MixtureController@refuse')->name('mixture.refuse');
 
     Route::get('reports/users', 'AdminController@userReport')->name('reports.users');
+
+});
+
+
+Route::group(['middleware' => ['role:Management'],'prefix' => 'Management','name' => 'Management'], function() {
+    Route::get('/', 'ManagementController@index');
+    Route::get('reports/users', 'ManagementController@userReport')->name('reports.users');
 
 
 });

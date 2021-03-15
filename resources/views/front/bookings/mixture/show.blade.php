@@ -36,7 +36,8 @@
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">{{__('file.status')}}</div>
                                     <div class="col-6 p-0">
-                                    <span class="bg-light bg-info">{{$booking->status->title[App::getLocale()] ?? trans('file.without_status') }}</span>  </div>
+                                    <span class="bg @if($booking->status_id == 3) bg-success @elseif($booking->status_id == 4) bg-danger @else bg-info @endif ">
+                                        {{$booking->status->title[App::getLocale()] ?? trans('file.without_status') }}</span>  </div>
                                 </li>
 
                                 <li class="list-group-item d-flex">

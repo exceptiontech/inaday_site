@@ -119,7 +119,7 @@
                                                 @foreach($user->services as $service)
                                                 @if($service->is_approved)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
-                                                    <div class="col-2 align-middle">
+                                                    <div class="col-12 col-sm-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
@@ -147,7 +147,7 @@
                                                 @foreach($team->user->services as $service)
                                                 @if($service->is_approved)
                                                 <div class="d-flex border-bottom pb-3  mb-3">
-                                                    <div class="col-2 align-middle">
+                                                    <div class="col-12 col-sm-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
