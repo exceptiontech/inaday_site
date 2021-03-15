@@ -49,7 +49,7 @@
             @can('reports-list')
 
 
-            {{ Form::open(['action' => 'AdminController@userReport','method' => 'get']) }}
+            {{ Form::open(['action' => 'ManagementController@userReport','method' => 'get']) }}
                 <div id="searchform" class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
