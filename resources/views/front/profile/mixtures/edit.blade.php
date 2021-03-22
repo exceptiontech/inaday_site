@@ -116,11 +116,11 @@
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
                                                     </div>
-                                                    <div class="col-4 col-sm-4">
+                                                    <div class="col-4 col-sm-2">
                                                         {!! Form::label('service_cost', trans('forms.service_cost'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][cost]" value="{{$service->cost}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
-                                                    <div class="col-4 col-sm-2">
+                                                    <div class="col-4 col-sm-4">
                                                         {!! Form::label('service_duration', trans('forms.service_duration'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][duration]" value="{{$service->duration}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
@@ -144,11 +144,11 @@
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
                                                     </div>
-                                                    <div class="col-4 col-sm-4">
+                                                    <div class="col-4 col-sm-2">
                                                         {!! Form::label('service_cost', trans('forms.service_cost'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][cost]" value="{{$service->cost}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
-                                                    <div class="col-4 col-sm-2">
+                                                    <div class="col-4 col-sm-4">
                                                         {!! Form::label('service_duration', trans('forms.service_duration'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][duration]" value="{{$service->duration}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
