@@ -1665,11 +1665,16 @@ input[type="checkbox"] {
     margin-top: 10px;
   }
 
-  .btn-primary {
+  .btn-primary{
+    border:solid 1px #00C76D
+  }
+  
+  .btn-primary , .btn-danger {
     padding: 10px 6px 13px;
   }
 
 
+  .inner #innerpage .title h1:before, .inner #innerpage .title h1:after ,
   .login .info-login h2:before, .login .info-login h2::after ,
   #mix .title h1:before, #mix .title h1::after ,
   #stories .title h1:before, #stories .title h1::after ,
@@ -1677,6 +1682,7 @@ input[type="checkbox"] {
     right: 45%;
   }
   
+  .inner #innerpage .title h1:after ,
   .login .info-login h2::after ,
   #mix .title h1::after ,
   #stories .title h1::after,

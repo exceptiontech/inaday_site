@@ -17,10 +17,10 @@
                     @endif
 
                         <div class="title">
-                            <h1 class="mb-4 pb-5">مرحبا بك/  {{ Auth::user()->first_name.' '.Auth::user()->last_name }}</h1>
+                            <h1 class="mb-2 pb-5">مرحبا بك/  {{ Auth::user()->first_name.' '.Auth::user()->last_name }}</h1>
                         </div>
 
-                        <p>{{ __('file.before_verify') }} {{ __('file.verifyـno_email') }}</p>
+                        <p class="mb-1">{{ __('file.before_verify') }} {{ __('file.verifyـno_email') }}</p>
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button class="btn btn-primary mt-1" type="submit">{{ __('file.verifyـnew_email') }}</button>

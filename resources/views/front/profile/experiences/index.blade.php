@@ -98,11 +98,11 @@
                                                 </div>
                                                 <div class="col-12 col-sm-2">
                                                     {!! Form::label('start_date', trans('forms.start_date'))!!}
-                                                    {!! Form::text('start_date', null, ['required','id' => 'start_date','class' => 'form-control','placeholder'=>'تاريخ البداية']) !!}
+                                                    {!! Form::text('start_date', null, ['required','id' => 'start_date','class' => 'form-control','autocomplete'=>'off','placeholder'=>'تاريخ البداية']) !!}
                                                 </div>
                                                 <div class="col-12 col-sm-2">
                                                     {!! Form::label('end_date', trans('forms.end_date'))!!}
-                                                    {!! Form::text('end_date', null, ['id' => 'end_date','class' => 'form-control','placeholder'=>'تاريخ النهاية']) !!}
+                                                    {!! Form::text('end_date', null, ['id' => 'end_date','class' => 'form-control','autocomplete'=>'off','placeholder'=>'تاريخ النهاية']) !!}
                                                 </div>
 
                                                 <div class="col-12 mt-5">
