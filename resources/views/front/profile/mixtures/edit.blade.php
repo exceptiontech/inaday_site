@@ -111,12 +111,12 @@
 
                                                 @if($service->is_approved)
                                                 <div class="row border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-primary border-0 @endif">
-                                                    <div class="col-12 col-sm-4 align-middle">
+                                                    <div class="col-12 col-sm-2 align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
                                                     </div>
-                                                    <div class="col-4 col-sm-2">
+                                                    <div class="col-4 col-sm-4">
                                                         {!! Form::label('service_cost', trans('forms.service_cost'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][cost]" value="{{$service->cost}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
@@ -139,12 +139,12 @@
                                                 @foreach($mixture->team->user->services as $service)
                                                 @if($service->is_approved)
                                                 <div class="row border-bottom pb-3  mb-3 @if(in_array($service->id, $mixture->services->pluck('id')->toArray() )) bg-primary border-0 @endif">
-                                                    <div class="col-12 col-sm-4  align-middle">
+                                                    <div class="col-12 col-sm-2  align-middle">
                                                         {!! Form::label('service_name', trans('forms.service_name'))!!}
                                                         <p class="mt-2">{{$service->title}}</p>
                                                         <input class="form-control" readonly="readonly" type="hidden" name="services[{{$service->id}}][id]" value="{{$service->id}}">
                                                     </div>
-                                                    <div class="col-4 col-sm-2">
+                                                    <div class="col-4 col-sm-4">
                                                         {!! Form::label('service_cost', trans('forms.service_cost'))!!}
                                                         <input class="form-control"  type="text" name="services[{{$service->id}}][cost]" value="{{$service->cost}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                                     </div>
