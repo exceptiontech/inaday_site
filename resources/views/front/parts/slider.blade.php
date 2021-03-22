@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             <div class="hero-content text-white col-12 col-md-6">
-                <h2 class="pb-5 mb-5">{!!trans('file.slider_title')!!}</h2>
-                <p  class="mb-5">{!!trans('file.slider_desc')!!}</p>
+                <h2 class="pb-4 mb-2">{!!trans('file.slider_title')!!}</h2>
+                <p  class="mb-2">{!!trans('file.slider_desc')!!}</p>
                 @guest
                     <a class="btn btn-primary" href="{{ url('register') }}">{{trans('file.free_start')}}</a>
                 @endguest
