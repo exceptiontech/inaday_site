@@ -59,7 +59,7 @@ Route::post('/contact_us', 'API\ContactusController@store');
 
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'PassportController@details');
+    Route::get('user', 'API\PassportController@details');
     Route::post('profile', 'API\PassportController@profile');
     Route::post('usersettings', 'API\PassportController@usersettings');
     Route::post('logout', 'API\PassportController@logout');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "126689113ad46b5661ca23244b924064",
+    "content-hash": "3ad019c11c4b3c73314cc6c4c5466149",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -59,6 +59,52 @@
             "time": "2019-12-24T22:41:47+00:00"
         },
         {
+            "name": "baselrabia/paytabs-with-laravel",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/baselrabia/paytabs-with-laravel.git",
+                "reference": "d4123e3e1320531afab7c24173e94743a1482772"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/baselrabia/paytabs-with-laravel/zipball/d4123e3e1320531afab7c24173e94743a1482772",
+                "reference": "d4123e3e1320531afab7c24173e94743a1482772",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Basel\\Paytabs\\PaytabsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Paytabs": "Basel\\Paytabs\\Facades\\PaytabsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Basel\\Paytabs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "baselrabia",
+                    "email": "baselrabia@gmail.com"
+                }
+            ],
+            "description": "integrate paytabs with laravel",
+            "time": "2021-01-27T22:59:23+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.1",
             "source": {
@@ -109,12 +155,12 @@
             "version": "v1.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-stream-filter.git",
+                "url": "https://github.com/clue/stream-filter.git",
                 "reference": "aeb7d8ea49c7963d3b581378955dbf5bc49aa320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
+                "url": "https://api.github.com/repos/clue/stream-filter/zipball/aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
                 "reference": "aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
                 "shasum": ""
             },

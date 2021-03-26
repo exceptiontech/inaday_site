@@ -192,7 +192,30 @@ class PassportController extends Controller
      */
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if (!Auth::user() ) {
+            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $token = auth()->user()->createToken('MySecret')->accessToken;
+
+        $data = $request->all();
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+        $data['user']['userdetail'] = auth()->user()->userdetail;
+        $data['user']['roles'] = auth()->user()->roles;
+        $data['user']['usersettings'] = auth()->user()->usersettings;
+        $data['user']['skills'] = auth()->user()->skills;
+        $data['status'] = true;
+
+        $arr = array("status" => 200,"data" => $data);
+
+        return \Response::json(['data'=> $arr]);
+
+
+        //return response()->json(['user' => auth()->user()], 200,[],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
 
