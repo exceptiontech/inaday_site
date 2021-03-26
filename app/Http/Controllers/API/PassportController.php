@@ -201,7 +201,6 @@ class PassportController extends Controller
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
-        $data = $request->all();
         $data['token'] = $token;
         $data['user'] = auth()->user();
         $data['user']['userdetail'] = auth()->user()->userdetail;
