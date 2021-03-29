@@ -24,6 +24,8 @@ Route::post('/auth/google/redirect', 'API\PassportController@googleRedirect');
 Route::get('faqs', 'API\FaqController@index');
 Route::get('faqs/{id}', 'API\FaqController@show');
 
+Route::get('settings', 'API\SettingController@index');
+Route::get('settings/{id}', 'API\SettingController@show');
 
 Route::get('projects', 'API\ProjectController@index');
 Route::get('projects/{id}', 'API\ProjectController@show');
