@@ -35,25 +35,25 @@ class MessageController extends Controller
         $users = $users->newQuery();
 
 
-        $users->orwhereHas('service_bookings', function ($query)  {
-                $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
-            });
+        // $users->orwhereHas('service_bookings', function ($query)  {
+        //         $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
+        //     });
 
-        $users->orwhereHas('bookings', function ($query)  {
-                $query->where('user_id','!=', Auth::id())->where('provider_id', Auth::id());
-            });
+        // $users->orwhereHas('bookings', function ($query)  {
+        //         $query->where('user_id','!=', Auth::id())->where('provider_id', Auth::id());
+        //     });
 
 
-        if (Auth::user()->isServicesProvider()) {
-            $users->orwhereHas('roles',function($q) {
-                        $q->where('name', 'services_provider');
-                    })->get();
+        // if (Auth::user()->isServicesProvider()) {
+        //     $users->orwhereHas('roles',function($q) {
+        //                 $q->where('name', 'services_provider');
+        //             })->get();
 
-        }elseif (Auth::user()->isEntrepreneur()) {
-            $users->orwhereHas('roles',function($q) {
-                        $q->where('name', 'entrepreneur');
-                    })->get();
-        }
+        // }elseif (Auth::user()->isEntrepreneur()) {
+        //     $users->orwhereHas('roles',function($q) {
+        //                 $q->where('name', 'entrepreneur');
+        //             })->get();
+        // }
 
         $users->where('id', '!=', Auth::id());
         $users->where('id', '!=', 1);

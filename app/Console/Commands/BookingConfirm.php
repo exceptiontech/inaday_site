@@ -49,7 +49,7 @@ class BookingConfirm extends Command
         //     }); 
 
 
-        $bookings = Booking::where('status_id',2)->where('created_at', '<', Carbon::now()->addDays(2))->get();
+        $bookings = Booking::where('status_id',2)->where('created_at', '<', Carbon::now()->addDays(1))->get();
 
         foreach ($bookings as $item) {
 
