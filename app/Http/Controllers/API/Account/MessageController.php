@@ -35,6 +35,11 @@ class MessageController extends Controller
         $users = $users->newQuery();
 
 
+        $users->orwhereHas('roles',function($q) {
+            $q->where('name', 'services_provider')->oRwhere('name', 'entrepreneur');
+        })->get();
+
+
         // $users->orwhereHas('service_bookings', function ($query)  {
         //         $query->where('provider_id','!=', Auth::id())->where('user_id', Auth::id());
         //     });
