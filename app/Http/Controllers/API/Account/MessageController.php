@@ -84,7 +84,7 @@ class MessageController extends Controller
     public function show($id)
     {
         if (!Auth::user() ) {
-            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -152,7 +152,7 @@ class MessageController extends Controller
     {
 
         if (!Auth::user() ) {
-            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -176,7 +176,7 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
         if (!Auth::user() ) {
-            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }

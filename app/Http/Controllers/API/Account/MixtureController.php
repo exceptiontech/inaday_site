@@ -35,7 +35,7 @@ class MixtureController extends Controller
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
 
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
@@ -215,11 +215,11 @@ class MixtureController extends Controller
         $mixture = Mixture::find($id);
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -350,17 +350,17 @@ class MixtureController extends Controller
         $mixture = Mixture::find($id);
 
         if (!$mixture) {
-            $arr = array("status" => 401, "errorMsg" => 'notfound', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" =>  __('api.notfound'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }elseif(!Auth::user()->hasTeam($mixture->team->id)) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }

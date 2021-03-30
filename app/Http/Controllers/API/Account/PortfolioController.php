@@ -25,13 +25,13 @@ class PortfolioController extends Controller
     public function index()
     {
         if (count(Auth::user()->roles) == 0  || !Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" =>  __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -124,14 +124,14 @@ class PortfolioController extends Controller
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
         }
         elseif(is_null(Portfolio::where('user_id',Auth::id())->first()) == 1)
         {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -207,14 +207,14 @@ class PortfolioController extends Controller
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
         }
         elseif(is_null(Portfolio::where('user_id',Auth::id())->first()) == 1)
         {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }

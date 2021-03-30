@@ -56,10 +56,6 @@ class SettingController extends Controller
             $setting->save();
         }
 
-        Session::flash('status', __('admin.success'));
-        Session::flash('message', __('admin.create_success'));
-        return redirect('admin/settings');
-
     }
 
     /**

@@ -42,7 +42,7 @@ class TeamController extends Controller
     public function index()
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -50,7 +50,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -84,7 +84,7 @@ class TeamController extends Controller
 
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -92,7 +92,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -170,20 +170,20 @@ class TeamController extends Controller
     {
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
         elseif(is_null(Team::where('user_id',Auth::id())->first()) == 1)
         {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -321,7 +321,7 @@ class TeamController extends Controller
 
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -329,7 +329,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile') , "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -353,7 +353,7 @@ class TeamController extends Controller
 
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -361,7 +361,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -442,7 +442,7 @@ class TeamController extends Controller
         
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -450,7 +450,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -462,18 +462,18 @@ class TeamController extends Controller
         $team = Team::find($teamid);
 
         if (!$user ||  !$team ) {
-            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
         if ($team->hasUser($id)) {
-            $arr = array("status" => 401, "errorMsg" => 'user already in your team', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.already_in_team'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
 
         if ($team->hasUserGlobal($id)) {
-            $arr = array("status" => 401, "errorMsg" => 'you can not add this user because he was refured your invitation before', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.refusedـbefore') , "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -492,7 +492,7 @@ class TeamController extends Controller
         } 
 
         //$data['status'] = true;
-        $arr = array("status" => true, "success" => 'already sent', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => true, "success" => __('api.alreadyـsent'), "data" => array(),"appearForUser" => true);
 
         return \Response::json(['data'=> $arr]);
     }
@@ -501,7 +501,7 @@ class TeamController extends Controller
     public function DeleteUser(Request $request)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -509,7 +509,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -521,7 +521,7 @@ class TeamController extends Controller
         $team = Team::find($teamid);
 
         if (!$user ||  !$team ) {
-            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -535,7 +535,7 @@ class TeamController extends Controller
         } 
 
     
-        $arr = array("status" => true, "success" => 'deleted successfully', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => true, "success" => __('api.deletedـsuccessfully') , "data" => array(),"appearForUser" => true);
 
         return \Response::json(['data'=> $arr]);
 
@@ -544,7 +544,7 @@ class TeamController extends Controller
     public function refusedRequest(Request $request)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -552,7 +552,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -562,7 +562,7 @@ class TeamController extends Controller
         $team = Team::find($teamid);
 
         if ( !$team ) {
-            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -578,7 +578,7 @@ class TeamController extends Controller
         } 
 
     
-        $arr = array("status" => true, "success" => 'refused successfully', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => true, "success" => __('api.refusedـsuccessfully') , "data" => array(),"appearForUser" => true);
 
         return \Response::json(['data'=> $arr]);
 
@@ -587,7 +587,7 @@ class TeamController extends Controller
     public function acceptRequest(Request $request)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -595,7 +595,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -605,7 +605,7 @@ class TeamController extends Controller
         $team = Team::find($teamid);
 
         if ( !$team ) {
-            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -621,7 +621,7 @@ class TeamController extends Controller
             $team->user->notify(new TeamAcceptRequest($team));
         } 
 
-        $arr = array("status" => true, "success" => 'accpeted successfully', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => true, "success" => __('api.accpetedـsuccessfully'), "data" => array(),"appearForUser" => true);
 
         return \Response::json(['data'=> $arr]);
 
@@ -630,7 +630,7 @@ class TeamController extends Controller
     public function cancelRequest(Request $request)
     {
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -638,7 +638,7 @@ class TeamController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -648,7 +648,7 @@ class TeamController extends Controller
         $team = Team::find($teamid);
 
         if ( !$team ) {
-            $arr = array("status" => 402, "errorMsg" => 'one of the parameters is wrong', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -661,7 +661,7 @@ class TeamController extends Controller
             $team->user->notify(new TeamCancelRequest($team));
         } 
 
-        $arr = array("status" => true, "success" => 'canceled successfully', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => true, "success" => __('api.cancel_successfully') , "data" => array(),"appearForUser" => true);
 
         return \Response::json(['data'=> $arr]);
 

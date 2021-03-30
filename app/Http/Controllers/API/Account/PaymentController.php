@@ -87,7 +87,7 @@ class PaymentController extends Controller
                     $id = $request->offer_id;
                     $type = 'offer';
                 }else {
-                    $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+                    $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
                     return \Response::json(['error'=> $arr]);
                 }
@@ -99,7 +99,7 @@ class PaymentController extends Controller
                     $offer = Offer::find($id);
 
                     if (!$offer) {
-                        $arr = array("status" => 103, "errorMsg" => 'offer id not exist', "data" => array(),"appearForUser" => true);
+                        $arr = array("status" => 103, "errorMsg" => __('api.offer_not_exit'), "data" => array(),"appearForUser" => true);
 
                         return \Response::json(['error'=> $arr]);
                     }
@@ -188,7 +188,7 @@ class PaymentController extends Controller
                     $service = Service::find($id);
 
                     if (!$service) {
-                        $arr = array("status" => 103, "errorMsg" => 'service id not exist', "data" => array(),"appearForUser" => true);
+                        $arr = array("status" => 103, "errorMsg" => __('api.service_not_exit'), "data" => array(),"appearForUser" => true);
 
                         return \Response::json(['error'=> $arr]);
                     }
@@ -281,7 +281,7 @@ class PaymentController extends Controller
 
 
                     if (!$mixture) {
-                        $arr = array("status" => 103, "errorMsg" => 'mixture id not exist', "data" => array(),"appearForUser" => true);
+                        $arr = array("status" => 103, "errorMsg" => __('api.mixture_not_exit') , "data" => array(),"appearForUser" => true);
 
                         return \Response::json(['error'=> $arr]);
                     }
@@ -372,12 +372,12 @@ class PaymentController extends Controller
                 // }
 
             } else {
-                $arr = array("status" => 102, "errorMsg" => 'Transaction not completed', "data" => array(),"appearForUser" => true);
+                $arr = array("status" => 102, "errorMsg" => __('api.transaction_not_complete') , "data" => array(),"appearForUser" => true);
 
                 return \Response::json(['error'=> $arr]);
             }
         }else {
-            $arr = array("status" => 101, "errorMsg" => 'missing keys', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 101, "errorMsg" => __('api.missingـkeys') , "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }

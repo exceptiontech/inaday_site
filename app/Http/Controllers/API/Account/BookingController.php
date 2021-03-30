@@ -19,12 +19,12 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function projects()
+    public function projects٣٣()
     {
         if (count(Auth::user()->roles) == 0 ) {
 
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
@@ -53,7 +53,7 @@ class BookingController extends Controller
         if (count(Auth::user()->roles) == 0 ) {
 
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
@@ -81,7 +81,7 @@ class BookingController extends Controller
         if (count(Auth::user()->roles) == 0 ) {
 
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
@@ -137,7 +137,7 @@ class BookingController extends Controller
         if (count(Auth::user()->roles) == 0 || !$booking) {
 
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
 
@@ -146,7 +146,7 @@ class BookingController extends Controller
 
 
         if (!$booking || !$booking->UserhaveAccess(Auth::user()->id)) {
-            $arr = array("status" => 400, "errorMsg" => 'NO PERMISSIONS', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 400, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }

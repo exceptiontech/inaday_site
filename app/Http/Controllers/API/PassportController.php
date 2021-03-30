@@ -179,7 +179,7 @@ class PassportController extends Controller
             return \Response::json(['data'=> $arr]);
 
         } else {
-            $arr = array("status" => 401, "errorMsg" => 'المعلومات خاطئة', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.incorrect_information') , "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -260,7 +260,7 @@ class PassportController extends Controller
 
         if (Auth::user()->userdetailComplete && !Auth::user()->userdetailComplete->first()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must complete your profile', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.un_updated_profile'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -286,7 +286,7 @@ class PassportController extends Controller
 
 
         if (!Auth::user() ) {
-            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -346,7 +346,7 @@ class PassportController extends Controller
     {
         
         if (!Auth::user() ) {
-            $arr = array("status" => 401, "errorMsg" => 'unauthorized', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
@@ -690,12 +690,12 @@ class PassportController extends Controller
 
         if (!Auth::user()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.login_at_first'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
         if (!Auth::user()->email) {
-            $arr = array("status" => 402, "errorMsg" => 'not valid email found', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.notـvalidـemailـfound') , "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -728,12 +728,12 @@ class PassportController extends Controller
 
         if (!Auth::user()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.login_at_first'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
         if (!Auth::user()->mobile) {
-            $arr = array("status" => 402, "errorMsg" => 'not valid mobile number found', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.not_valid') , "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -762,7 +762,7 @@ class PassportController extends Controller
 
         if (!Auth::user()) {
 
-            $arr = array("status" => 402, "errorMsg" => 'you must login at first', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 402, "errorMsg" => __('api.login_at_first'), "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
         }
 
@@ -802,7 +802,7 @@ class PassportController extends Controller
 
         }
 
-        $arr = array("status" => 402, "errorMsg" => 'code id invalid', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => 402, "errorMsg" => __('api.code_invalid'), "data" => array(),"appearForUser" => true);
         return \Response::json(['error'=> $arr]);
 
 
@@ -814,13 +814,13 @@ class PassportController extends Controller
 
             Auth::user()->token()->revoke();
 
-            $arr = array("status" => 200, "Message" => 'Logout successfully', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 200, "Message" => __('api.logoutـsuccessfully') , "data" => array(),"appearForUser" => true);
             return \Response::json(['error'=> $arr]);
 
 
         }
 
-        $arr = array("status" => 402, "errorMsg" => 'user not login', "data" => array(),"appearForUser" => true);
+        $arr = array("status" => 402, "errorMsg" => __('api.not_logged'), "data" => array(),"appearForUser" => true);
         return \Response::json(['error'=> $arr]);
 
     }

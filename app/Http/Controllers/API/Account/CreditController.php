@@ -24,7 +24,7 @@ class CreditController extends Controller
 
         if (count(Auth::user()->roles) == 0  ||  !Auth::user()->isActive() ) {
 
-            $arr = array("status" => 401, "errorMsg" => 'UnAuthorised', "data" => array(),"appearForUser" => true);
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
             return \Response::json(['error'=> $arr]);
         }
