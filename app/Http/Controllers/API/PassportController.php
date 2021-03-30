@@ -642,6 +642,7 @@ class PassportController extends Controller
         }
         $user->password = Hash::make($request->nickname);
         $user->notification_preference = 'mail';
+        $user->email_verified_at = Carbon::now(); 
         $user->save();
 
         $usersettings = new Usersettings;
@@ -661,7 +662,7 @@ class PassportController extends Controller
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
 
-        $user->sendEmailVerificationNotification();
+        //$user->sendEmailVerificationNotification();
         //$user->notify(new RegisterServicesProvider($user));
 
         Auth::login($user, true);
