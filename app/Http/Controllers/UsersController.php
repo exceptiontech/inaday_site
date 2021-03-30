@@ -620,7 +620,7 @@ class UsersController extends Controller
 
             if(isset($user)) {
                 
-                $user->email_verified_at = Carbon::now();
+                $user->email_verified_at = Carbon::now(); 
                 $user->save();
                 
                 Auth::login($user, true);
