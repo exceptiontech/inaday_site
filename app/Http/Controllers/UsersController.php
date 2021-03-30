@@ -160,7 +160,7 @@ class UsersController extends Controller
 
             //return Auth::user()->isServicesProviderNotCompleted();
 
-            if (!Auth::user()->isServicesProviderNotCompleted()) {
+            if (Auth::user()->userdetailComplete->first()) {
                 return redirect('/account/profile/edit');
             }
 
