@@ -618,6 +618,7 @@ class UsersController extends Controller
 
             $user = User::where('email',$return_user->email)->first();
 
+
             if(isset($user)) {
 
                 if (!$user->email_verified_at) {
@@ -1013,7 +1014,6 @@ class UsersController extends Controller
 
             $user = User::where('email',$return_user->email)->first();
 
-
             if(isset($user)) {
 
                 if (!$user->email_verified_at) {
@@ -1031,8 +1031,17 @@ class UsersController extends Controller
 
 
         $user = User::where('email',$return_user->email)->first();
-    
+
         if(isset($user)) {
+
+            return  dd($user);
+
+            if (!$user->email_verified_at) {
+                $user->email_verified_at = Carbon::now(); 
+                $user->save();
+            }
+
+
             Auth::login($user, true);
             return redirect('/');
 
@@ -1145,7 +1154,7 @@ class UsersController extends Controller
         $userdetail->save();
         
 
-        //return redirect::to('mobile/verify');
+        return redirect::to('/');
             return redirect('/email/verify');
 
     }
