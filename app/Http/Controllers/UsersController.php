@@ -176,9 +176,6 @@ class UsersController extends Controller
             $countries = Country::all();
 
 
-            return $skills;
-
-
             return view('front.profile.index',compact('userdetail','countries','jobtypes','skills','levels','prefers','costkinds','applykinds','averagekinds','rewardkinds','readinesskinds'));
         }elseif (Auth::user()->isEntrepreneur() == 1)
         {
