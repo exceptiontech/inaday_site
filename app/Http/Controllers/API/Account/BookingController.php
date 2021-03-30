@@ -19,7 +19,7 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function projects٣٣()
+    public function projects()
     {
         if (count(Auth::user()->roles) == 0 ) {
 
