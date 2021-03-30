@@ -62,7 +62,7 @@ class PassportController extends Controller
         $requests['is_active'] = 0;
 
         $user = User::create($requests);
-        $user->SendSMS();
+        //$user->SendSMS();
 
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
