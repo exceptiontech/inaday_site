@@ -645,6 +645,11 @@ class UsersController extends Controller
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
 
+                if (!$user->email_verified_at) {
+                    $user->email_verified_at = Carbon::now(); 
+                    $user->save();
+                }
+
                 Auth::login($user, true);
 
                 if (!Auth::user()->userdetail) {
@@ -685,7 +690,7 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
-                //$user->email_verified_at = Carbon::now();
+                $user->email_verified_at = Carbon::now();
                 $user->save();
 
                 // if ($user->mobile) {
@@ -741,7 +746,7 @@ class UsersController extends Controller
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
 
-                $user->sendEmailVerificationNotification();
+                //$user->sendEmailVerificationNotification();
                 //$user->notify(new RegisterServicesProvider($user));
 
                 Auth::login($user, true);
@@ -763,7 +768,7 @@ class UsersController extends Controller
                 $userdetail->save();
 
 
-                return redirect('/email/verify');
+                return redirect('/');
 
                 //return redirect::to('mobile/verify');
                 return redirect('/account/profile');
@@ -776,6 +781,10 @@ class UsersController extends Controller
             $user = User::where('email',$return_user->email)->first();
 
             if(isset($user)) {
+                if (!$user->email_verified_at) {
+                    $user->email_verified_at = Carbon::now(); 
+                    $user->save();
+                }
 
                 Auth::login($user, true);
                 return redirect('/');
@@ -810,7 +819,7 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
-                //$user->email_verified_at = Carbon::now();
+                $user->email_verified_at = Carbon::now();
 
                 $user->save();
 
@@ -870,7 +879,7 @@ class UsersController extends Controller
             $role = Role::where('name','entrepreneur')->first();
             $user->assignRole([$role->id]);
 
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
             //$user->notify(new RegisterEntrepreneur($user));
 
             Auth::login($user, true);
@@ -890,7 +899,7 @@ class UsersController extends Controller
             $userdetail->avater =  'images/default_img.png';
             $userdetail->save();
 
-            return redirect('/email/verify');
+            return redirect('/');
             //return redirect::to('mobile/verify');
             return redirect('/email/verify');
 
@@ -1007,6 +1016,11 @@ class UsersController extends Controller
 
             if(isset($user)) {
 
+                if (!$user->email_verified_at) {
+                    $user->email_verified_at = Carbon::now(); 
+                    $user->save();
+                }
+
                 Auth::login($user, true);
                 return redirect('/');
 
@@ -1051,7 +1065,7 @@ class UsersController extends Controller
             $user->notification_preference = 'mail';
             $user->is_active = 1;
             $user->active_code = rand(10000,99999);
-            //$user->email_verified_at = Carbon::now();
+            $user->email_verified_at = Carbon::now();
 
             $user->save();
 
@@ -1108,9 +1122,10 @@ class UsersController extends Controller
             $role = Role::where('name','services_provider')->first();
             $user->assignRole([$role->id]);
             
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
         }
+
 
         Auth::login($user, true);
 
