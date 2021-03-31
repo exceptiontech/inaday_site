@@ -620,7 +620,7 @@ class UsersController extends Controller
                 $user->markEmailAsVerified();
 
                 Auth::login($user, true);
-                return redirect('/ddd');
+                return redirect('/');
             }
 
             Session::flash('status', __('admin.info'));
