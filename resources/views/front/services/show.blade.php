@@ -40,7 +40,34 @@
                         </div>
                         @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
-                            
+                                
+                            <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#service-{{$service->id}}">
+                              {{__('file.book_service')}}
+                            </button> -->
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="service-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="service-{{$service->id}}Label" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header  bg-secondary">
+                                    <h5 class="modal-title text-white" id="exampleModalLabel">
+                                        {{__('file.book_service')}} : {{$service->title}}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    ...
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                               <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $service->cost}}" />
                                   {{ csrf_field() }}

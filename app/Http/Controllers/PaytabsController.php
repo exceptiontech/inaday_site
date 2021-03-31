@@ -54,8 +54,6 @@ class PaytabsController extends Controller
         ));
 
 
-         dd($result);
-
         if ($result->response_code == 4012) {
             return redirect($result->payment_url);
         }

@@ -354,6 +354,9 @@ class PassportController extends Controller
         $user = Auth::user();
 
         $userdetail = Userdetail::where('user_id',Auth::user()->id)->first();
+        if (!$userdetail) {
+            $userdetail = new Userdetail;
+        }
         $userdetail->user_id = Auth::user()->id;
         $userdetail->jobtype_id = $request->jobtype_id;
         $userdetail->level_id = $request->level_id;

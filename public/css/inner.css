@@ -148,6 +148,10 @@ a.link-dark {
 
 .bg-primary {
   background: #00C76D !important; }
+
+.bg-secondary {
+    background-color: #005689 !important;
+}
 .btn-danger {
   padding:10px 20px 14px;
 }

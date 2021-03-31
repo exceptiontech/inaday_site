@@ -617,15 +617,10 @@ class UsersController extends Controller
 
 
             if(isset($user)) {
+                $user->markEmailAsVerified();
 
-                if (!$user->email_verified_at) {
-                    $user->email_verified_at = Carbon::now(); 
-                    $user->save();
-                }
-                
-                
                 Auth::login($user, true);
-                return redirect('/');
+                return redirect('/ddd');
             }
 
             Session::flash('status', __('admin.info'));
@@ -643,10 +638,6 @@ class UsersController extends Controller
                 $role = Role::where('name','services_provider')->first();
                 $user->assignRole([$role->id]);
 
-                if (!$user->email_verified_at) {
-                    $user->email_verified_at = Carbon::now(); 
-                    $user->save();
-                }
 
                 Auth::login($user, true);
 
@@ -688,8 +679,9 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
-                $user->email_verified_at = Carbon::now();
                 $user->save();
+
+                $user->markEmailAsVerified();
 
                 // if ($user->mobile) {
 
@@ -779,11 +771,6 @@ class UsersController extends Controller
             $user = User::where('email',$return_user->email)->first();
 
             if(isset($user)) {
-                if (!$user->email_verified_at) {
-                    $user->email_verified_at = Carbon::now(); 
-                    $user->save();
-                }
-
                 Auth::login($user, true);
                 return redirect('/');
 
@@ -817,10 +804,10 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
-                $user->email_verified_at = Carbon::now();
 
                 $user->save();
 
+                $user->markEmailAsVerified();
 
 
                 // if ($user->mobile) {
@@ -943,6 +930,8 @@ class UsersController extends Controller
 
                 $user->save();
 
+                $user->markEmailAsVerified();
+
 
                 // if ($user->mobile) {
 
@@ -984,7 +973,7 @@ class UsersController extends Controller
 
             $role = Role::where('name','student')->first();
             $user->assignRole([$role->id]);
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
 
             Auth::login($user, true);
 
@@ -1013,10 +1002,7 @@ class UsersController extends Controller
 
             if(isset($user)) {
 
-                if (!$user->email_verified_at) {
-                    $user->email_verified_at = Carbon::now(); 
-                    $user->save();
-                }
+                $user->markEmailAsVerified();
 
                 Auth::login($user, true);
                 return redirect('/');
@@ -1032,12 +1018,6 @@ class UsersController extends Controller
         if(isset($user)) {
 
             return  dd($user);
-
-            if (!$user->email_verified_at) {
-                $user->email_verified_at = Carbon::now(); 
-                $user->save();
-            }
-
 
             Auth::login($user, true);
             return redirect('/');
@@ -1071,9 +1051,10 @@ class UsersController extends Controller
             $user->notification_preference = 'mail';
             $user->is_active = 1;
             $user->active_code = rand(10000,99999);
-            $user->email_verified_at = Carbon::now();
 
             $user->save();
+
+            $user->markEmailAsVerified();
 
             // if ($user->mobile) {
 
