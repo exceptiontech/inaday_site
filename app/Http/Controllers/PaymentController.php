@@ -559,8 +559,8 @@ class PaymentController extends Controller
                     //Customer's Personal Information
                     'cc_first_name' => Auth::user()->first_name,          
                     'cc_last_name' => Auth::user()->last_name,
-                    'cc_phone_number' => Auth::user()->last_name,
-                    'phone_number' => Auth::user()->last_name,
+                    'cc_phone_number' => Auth::user()->mobile,
+                    'phone_number' => Auth::user()->mobile,
                     'email' => Auth::user()->email,
 
                     'billing_address' => Auth::user()->userdetail->first()->country->title['en'] ?? 'Saudi Arabia' ,
@@ -627,8 +627,8 @@ class PaymentController extends Controller
                     //Customer's Personal Information
                     'cc_first_name' => Auth::user()->first_name,          
                     'cc_last_name' => Auth::user()->last_name,
-                    'cc_phone_number' => Auth::user()->last_name,
-                    'phone_number' => Auth::user()->last_name,
+                    'cc_phone_number' => Auth::user()->mobile,
+                    'phone_number' => Auth::user()->mobile,
                     'email' => Auth::user()->email,
 
                     'billing_address' => Auth::user()->userdetail->first()->country->title['en'] ?? 'Saudi Arabia' ,
@@ -669,11 +669,12 @@ class PaymentController extends Controller
 
         }elseif (str_contains($url, 'mixtures')) {
 
-            $mixture = Mixture::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();;
+            $mixture = Mixture::where('title', 'like', '%' . $title . '%')->where('id',$model_id)->first();
             
             if ($model_id != $mixture->id) {
                 return 'access denied';
             }
+
 
             if($mixture)
             {
@@ -689,15 +690,13 @@ class PaymentController extends Controller
                     return 'something is wrong';
                 }
 
-
-
                 $result = Paytabs::getInstance()->create_pay_page(array(
 
                     //Customer's Personal Information
                     'cc_first_name' => Auth::user()->first_name,          
                     'cc_last_name' => Auth::user()->last_name,
-                    'cc_phone_number' => Auth::user()->last_name,
-                    'phone_number' => Auth::user()->last_name,
+                    'cc_phone_number' => Auth::user()->mobile,
+                    'phone_number' => Auth::user()->mobile,
                     'email' => Auth::user()->email,
 
                     'billing_address' => Auth::user()->userdetail->first()->country->title['en'] ?? 'Saudi Arabia' ,
@@ -723,6 +722,14 @@ class PaymentController extends Controller
                     "reference_no" => $mixture->id,      
                 ));
 
+                if ($result->response_code == 4012) {
+                    return redirect($result->payment_url);
+                }
+                if ($result->response_code == 4094) {
+                    return $result->details;
+                }
+
+                return $result->result;
 
 
             }            
