@@ -111,7 +111,7 @@
                                             <h5 class="mb-4">اختر طريقة الدفع: </h5>
 
                                               <form action="{{ url('pay_payment/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
-                                                  <input type="hidden" name="amount" value="{{ $service->cost}}" />
+                                                  <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
                                                   {{ csrf_field() }}
                                                   <button class="btn btn-white btn-block mb-2">
                                                     الدفع بواسطة
@@ -138,11 +138,6 @@
                             </div>
 
 
-                              <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
-                                  <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
-                                  {{ csrf_field() }}
-                                  <button class="btn btn-primary btn-block mb-2">{{__('file.book_mixture')}}</button>
-                              </form>
                         </div>
                         @endif
                     </div>
