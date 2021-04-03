@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6 ">
                                                     <div class="item">
-                                                        <span>مقدم الشراكة :</span> {{ mixture->team->title }}
+                                                        <span>مقدم الشراكة :</span> {{ $mixture->team->title }}
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6 ">
