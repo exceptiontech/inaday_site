@@ -21,4 +21,8 @@ class Offer extends Model
         return $this->belongsTo('App\Team');
     }
 
+    public function getFees() {
+        return round((($this->price)*7)/100);
+    }
+
 }

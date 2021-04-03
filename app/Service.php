@@ -42,5 +42,10 @@ class Service extends Model
         return $this->hasMany('App\ModelLog','model_id')->where('model_type','service');
     }
 
+    public function getFees() {
+        return round((($this->cost)*7)/100);
+    }
+
+
 
 }

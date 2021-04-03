@@ -41,13 +41,13 @@
                         @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
                                 
-                            <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#service-{{$service->id}}">
+                            <button type="button" class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target="#service-{{$service->id}}">
                               {{__('file.book_service')}}
-                            </button> -->
+                            </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="service-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="service-{{$service->id}}Label" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal fade custom-modal" id="service-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="service-{{$service->id}}Label" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header  bg-secondary">
                                     <h5 class="modal-title text-white" id="exampleModalLabel">
@@ -57,22 +57,85 @@
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
-                                  <div class="modal-body">
-                                    ...
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  <div class="modal-body p-0">
+
+                                    <div class="d-flex">
+                                        <div class="col-12 col-sm-6 text-left p-3">
+                                            <h5>تفاصيل الخدمة </h5>
+                                            <div class="row info-menu">
+                                                <div class="col-12 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span>تصنيف الخدمة :</span> {{$service->section->title[App::getLocale()] ?? ''}}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>عدد الساعات :</span> {{$service->duration}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>مقدم الخدمة :</span> {{ $service->user->first_name.' '.$service->user->last_name }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>اسم الخدمة :</span> {{$service->title}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h5 class="mt-4">اجمالي سعر الخدمة: </h5>
+                                            <div class="row  info-menu">
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="item">
+                                                        <span>السعر :</span> {{$service->cost}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="item">
+                                                        <span>الرسوم والضرائب :</span> {{$service->getFees()}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span>اجمالي السعر :</span> {{$service->cost + $service->getFees()}}</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-sm-6 p-3 payments-section text-left" >
+
+                                            <h5 class="mb-4">اختر طريقة الدفع: </h5>
+
+                                              <form action="{{ url('pay_payment/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
+                                                  <input type="hidden" name="amount" value="{{ $service->cost}}" />
+                                                  {{ csrf_field() }}
+                                                  <button class="btn btn-white btn-block mb-2">
+                                                    الدفع بواسطة
+                                                      <img src="{{ url('/assets/images/visa.svg' )}}">
+                                                  </button>
+                                              </form>
+
+                                              <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
+                                                  <input type="hidden" name="amount" value="{{ $service->cost}}" />
+                                                  {{ csrf_field() }}
+                                                  <button class="btn btn-white btn-block mb-2">الدفع بواسطة
+                                                      <img src="{{ url('/assets/images/paypal.svg' )}}"></button>
+                                              </form>
+
+
+                                        </div>
+                                    </div>
+
+
+
                                   </div>
                                 </div>
                               </div>
                             </div>
 
-                              <form action="{{ url('paypal/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
-                                  <input type="hidden" name="amount" value="{{ $service->cost}}" />
-                                  {{ csrf_field() }}
-                                  <button class="btn btn-primary btn-block mb-2">{{__('file.book_service')}}</button>
-                              </form>
                         </div>
                         @endif
 

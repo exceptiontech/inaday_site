@@ -272,11 +272,104 @@
                                     <p>{{ $offer->offer }}</p>
 
                                     @if(Auth::user() && $project->user_id == Auth::user()->id)
-                                    <form action="{{ url('paypal/'.$project->title.'/'.$project->id.'/'.$offer->id.'/charge') }}" method="post">
-                                        <input type="hidden" name="amount" value="{{ $offer->price}}" />
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-secondary btn-block">{{__('file.approve')}}</button>
-                                    </form>
+
+                                    <button type="button" class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target="#service-{{$offer->id}}">
+                                      {{__('file.approve')}}
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade custom-modal" id="service-{{$offer->id}}" tabindex="-1" role="dialog" aria-labelledby="service-{{$offer->id}}Label" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header  bg-secondary">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">
+                                                {{__('file.book_offer')}} : {{$project->title}}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body p-0">
+
+                                            <div class="d-flex">
+                                                <div class="col-12 col-sm-6 text-left p-3">
+                                                    <h5>تفاصيل المشروع </h5>
+                                                    <div class="row info-menu">
+                                                        <div class="col-12 col-sm-12 ">
+                                                            <div class="item">
+                                                                <span>تصنيف المشروع :</span> {{$project->section->title[App::getLocale()] ?? ''}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-sm-6 ">
+                                                            <div class="item">
+                                                                <span>عدد الساعات :</span> {{$project->duration}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6 ">
+                                                            <div class="item">
+                                                                <span>مقدم المشروع :</span> {{ $project->user->first_name.' '.$project->user->last_name }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6 ">
+                                                            <div class="item">
+                                                                <span>اسم المشروع :</span> {{$project->title}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="mt-4">اجمالي العرض: </h5>
+                                                    <div class="row  info-menu">
+                                                        <div class="col-12 col-sm-12">
+                                                            <div class="item">
+                                                                <span>السعر :</span> {{$offer->price}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12">
+                                                            <div class="item">
+                                                                <span>الرسوم والضرائب :</span> {{$offer->getFees()}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 ">
+                                                            <div class="item">
+                                                                <span>اجمالي السعر :</span> {{$offer->price + $offer->getFees()}}</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12 col-sm-6 p-3 payments-section text-left" >
+
+                                                    <h5 class="mb-4">اختر طريقة الدفع: </h5>
+
+                                                    <form action="{{ url('pay_payment/'.$project->title.'/'.$project->id.'/'.$offer->id.'/charge') }}" method="post">
+                                                          <input type="hidden" name="amount" value="{{ $offer->price}}" />
+                                                          {{ csrf_field() }}
+                                                          <button class="btn btn-white btn-block mb-2">
+                                                            الدفع بواسطة
+                                                              <img src="{{ url('/assets/images/visa.svg' )}}">
+                                                          </button>
+                                                      </form>
+
+
+                                                    <form action="{{ url('paypal/'.$project->title.'/'.$project->id.'/'.$offer->id.'/charge') }}" method="post">
+                                                        <input type="hidden" name="amount" value="{{ $offer->price}}" />
+                                                        {{ csrf_field() }}
+                                                          <button class="btn btn-white btn-block mb-2">الدفع بواسطة
+                                                              <img src="{{ url('/assets/images/paypal.svg' )}}">
+                                                          </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+
 
                                     @endif
 

@@ -162,9 +162,15 @@ Route::group(['middleware'=>'verified'], function() {
 
 
     Route::get('payment', 'PaymentController@index');
+
+    //paypal
     Route::post('paypal/{title}/{model_id}/{offer_id}/charge', 'PaymentController@charge');
     Route::get('paymentsuccess', 'PaymentController@payment_success');
     Route::get('paymenterror', 'PaymentController@payment_error');
+
+    //paytabs
+    Route::post('/pay_payment/{title}/{model_id}/{offer_id}/charge', 'PaymentController@Paytabs')->name('Paytabs.index');
+    Route::post('/pay_response', 'PaytabsController@PaytabsResponse')->name('Paytabs.result');
 
 
     Route::resource('bookings', 'BookingController', ['names' => 'front_bookings'])->only(['show']);

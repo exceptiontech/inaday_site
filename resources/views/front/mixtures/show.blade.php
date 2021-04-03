@@ -41,6 +41,103 @@
                         @if(Auth::user() && Auth::user()->isEntrepreneur() && Auth::user()->isActive() )
                         <div class="col-12 contact_author align-bottom">
 
+
+                            <button type="button" class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target="#mixture-{{$mixture->id}}">
+                              {{__('file.book_mixture')}}
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade custom-modal" id="mixture-{{$mixture->id}}" tabindex="-1" role="dialog" aria-labelledby="service-{{$mixture->id}}Label" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header  bg-secondary">
+                                    <h5 class="modal-title text-white" id="exampleModalLabel">
+                                        {{__('file.book_mixture')}} : {{$mixture->title}}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body p-0">
+
+                                    <div class="d-flex">
+                                        <div class="col-12 col-sm-6 text-left p-3">
+                                            <h5>تفاصيل الشراكة </h5>
+                                            <div class="row info-menu">
+                                                <div class="col-12 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span>تصنيف الشراكة :</span> {{$mixture->section->title[App::getLocale()] ?? ''}}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>عدد الساعات :</span> {{$mixture->duration}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>مقدم الشراكة :</span> {{ $mixture->user->first_name.' '.$mixture->user->last_name }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 ">
+                                                    <div class="item">
+                                                        <span>اسم الشراكة :</span> {{$mixture->title}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h5 class="mt-4">اجمالي سعر الشراكة: </h5>
+                                            <div class="row  info-menu">
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="item">
+                                                        <span>السعر :</span> {{$mixture->cost}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="item">
+                                                        <span>الرسوم والضرائب :</span> {{$mixture->getFees()}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span>اجمالي السعر :</span> {{$mixture->cost + $mixture->getFees()}}</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-sm-6 p-3 payments-section text-left" >
+
+                                            <h5 class="mb-4">اختر طريقة الدفع: </h5>
+
+                                              <form action="{{ url('pay_payment/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
+                                                  <input type="hidden" name="amount" value="{{ $service->cost}}" />
+                                                  {{ csrf_field() }}
+                                                  <button class="btn btn-white btn-block mb-2">
+                                                    الدفع بواسطة
+                                                      <img src="{{ url('/assets/images/visa.svg' )}}">
+                                                  </button>
+                                              </form>
+
+                                              <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
+                                                  <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
+                                                  {{ csrf_field() }}
+                                                  <button class="btn btn-white btn-block mb-2">الدفع بواسطة
+                                                      <img src="{{ url('/assets/images/paypal.svg' )}}"></button>
+                                              </form>
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
                               <form action="{{ url('paypal/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
                                   <input type="hidden" name="amount" value="{{ $mixture->cost}}" />
                                   {{ csrf_field() }}
