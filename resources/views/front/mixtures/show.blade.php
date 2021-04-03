@@ -110,7 +110,7 @@
 
                                             <h5 class="mb-4">اختر طريقة الدفع: </h5>
 
-                                              <form action="{{ url('pay_payment/'.$service->title.'/'.$service->id.'/0/charge') }}" method="post">
+                                              <form action="{{ url('pay_payment/'.$mixture->title.'/'.$mixture->id.'/0/charge') }}" method="post">
                                                   <input type="hidden" name="amount" value="{{ $service->cost}}" />
                                                   {{ csrf_field() }}
                                                   <button class="btn btn-white btn-block mb-2">
