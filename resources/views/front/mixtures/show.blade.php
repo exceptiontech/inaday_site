@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6 ">
                                                     <div class="item">
-                                                        <span>مقدم الشراكة :</span> {{ $mixture->user->first_name.' '.$mixture->user->last_name }}
+                                                        <span>مقدم الشراكة :</span> {{ mixture->team->title }}
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6 ">
@@ -87,7 +87,7 @@
                                                 </div>
                                             </div>
 
-                                            <h5 class="mt-4">اجمالي سعر الشراكة: </h5>
+                                            <h5 class="mt-4">اجمالي سعر الشراكة : </h5>
                                             <div class="row  info-menu">
                                                 <div class="col-12 col-sm-12">
                                                     <div class="item">
