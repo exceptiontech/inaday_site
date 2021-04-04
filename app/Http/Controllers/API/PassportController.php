@@ -62,7 +62,7 @@ class PassportController extends Controller
 
         $requests = $request->all();
         $requests['password'] = Hash::make($requests['password']);
-        $requests['is_active'] = 0;
+        $requests['is_active'] = 1;
 
         $user = User::create($requests);
         //$user->SendSMS();
@@ -71,7 +71,7 @@ class PassportController extends Controller
         $user->assignRole([$role->id]);
 
 
-        //Auth::login($user, true);
+        Auth::login($user, true);
 
 
         $userdetail = new Userdetail;
@@ -79,21 +79,18 @@ class PassportController extends Controller
         $userdetail->avater =  'images/default_img.png';
         $userdetail->save();
 
-        $user->sendEmailVerificationNotification();
-
 
         if ($user->mobile) {
 
             $str = $user->mobile;
-                //$number = '966'.substr($str, 1);
-                $number = '966'.$str;
+            $number = '966'.$str;
 
 
             $url = "https://www.msegat.com/gw/sendsms.php";
             $params = json_encode([
-                "userName" => "inaday",
+                "userName" => "inaday.sa",
                 "userSender" => "INADAY",
-                "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                "apiKey" => "4294ff3610fcc2260203cf84660dec90",
                 "msg" => "تم انشاء الحساب",
                 "numbers" => $number
             ]);
@@ -115,6 +112,9 @@ class PassportController extends Controller
 
             curl_close($ch);
         }
+        
+        $user->sendEmailVerificationNotification();
+
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
