@@ -70,10 +70,16 @@ class PassportController extends Controller
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
 
+
+        //Auth::login($user, true);
+
+
+        $userdetail = new Userdetail;
+        $userdetail->user_id = $user->id;
+        $userdetail->avater =  'images/default_img.png';
+        $userdetail->save();
+
         $user->sendEmailVerificationNotification();
-
-        Auth::login($user, true);
-
 
 
         if ($user->mobile) {
@@ -109,12 +115,6 @@ class PassportController extends Controller
 
             curl_close($ch);
         }
-
-
-        $userdetail = new Userdetail;
-        $userdetail->user_id = $user->id;
-        $userdetail->avater =  'images/default_img.png';
-        $userdetail->save();
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
