@@ -677,6 +677,7 @@ class UsersController extends Controller
                 $user->password = Hash::make($return_user->nickname);
 
                 $user->notification_preference = 'mail';
+                $user->user_type = 'services_provider';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
                 $user->save();
@@ -804,6 +805,7 @@ class UsersController extends Controller
                 $user->notification_preference = 'mail';
                 $user->is_active = 1;
                 $user->active_code = rand(10000,99999);
+                $user->user_type = 'entrepreneur';
 
                 $user->save();
 
@@ -927,6 +929,7 @@ class UsersController extends Controller
                 $user->is_active = 0;
                 $user->active_code = rand(10000,99999);
                 //$user->email_verified_at = Carbon::now();
+                $user->user_type = 'student';
 
                 $user->save();
 

@@ -98,6 +98,7 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'is_active' => 1,
             'active_code' => rand(10000,99999),
+            'user_type' => $data['user_type'],
             //'email_verified_at' => Carbon::now(),
             'password' => Hash::make($data['password']),
         ]);
