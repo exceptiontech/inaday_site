@@ -651,6 +651,7 @@ class PassportController extends Controller
         $user->password = Hash::make($request->nickname);
         $user->notification_preference = 'mail';
         $user->email_verified_at = Carbon::now(); 
+        $user->is_active = 1;
         $user->save();
 
         $usersettings = new Usersettings;
