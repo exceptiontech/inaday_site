@@ -70,6 +70,8 @@ class PassportController extends Controller
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
 
+        $user->sendEmailVerificationNotification();
+
         Auth::login($user, true);
 
 
