@@ -373,8 +373,8 @@
 
         Fr.voice.record($("#live").is(":checked"), function(){
 
-            $('.buttonWrapper'+id).removeClass('col-1').addClass('col-3');
-            $('.input-text-'+id).removeClass('col-9').addClass('col-7');
+            $('.buttonWrapper'+id).removeClass('col-sm-1 ').addClass('col-sm-3');
+            $('.input-text-'+id).removeClass('col-sm-9').addClass('col-sm-7');
 
             setTimeout(function(){
                 $('.sendRecord'+id).fadeIn();
@@ -444,8 +444,8 @@
 
             setTimeout(function(){
                 $('.recordFor'+id).fadeIn();
-                $('.buttonWrapper'+id).removeClass('col-3').addClass('col-1');
-                $('.input-text-'+id).removeClass('col-7').addClass('col-9');
+                $('.buttonWrapper'+id).removeClass('col-sm-3').addClass('col-sm-1');
+                $('.input-text-'+id).removeClass('col-sm-7').addClass('col-sm-9');
             }, 500);
         }
 
