@@ -53,7 +53,7 @@ class ServiceController extends Controller
         }
 
 
-        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -126,6 +126,7 @@ class ServiceController extends Controller
         $service->section_id=(int)$request->section_id;
         $service->duration=convert($request->duration);
         $service->is_active=0;
+        $service->is_approved=0;
         $service->save();
 
         if ($service) {
@@ -189,7 +190,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceCreated($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -298,7 +299,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceUpdated($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
@@ -347,7 +348,7 @@ class ServiceController extends Controller
             Auth::user()->notify(new ServiceDeleted($service));
         }
 
-        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
