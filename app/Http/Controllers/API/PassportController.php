@@ -66,7 +66,20 @@ class PassportController extends Controller
         $requests['password'] = Hash::make($requests['password']);
         $requests['is_active'] = 1;
 
-        $user = User::create($requests);
+
+        $user = New User;
+        $user->name = $request->first_name.' '.$request->last_name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->mobile = $request->mobile;
+        $user->is_active = 1;
+        $user->active_code = rand(10000,99999);
+        $user->user_type = $request->user_type;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        //$user = User::create($requests);
         //$user->SendSMS();
 
         $role = Role::where('name',$request->user_type)->first();
