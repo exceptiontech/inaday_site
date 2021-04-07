@@ -62,9 +62,9 @@ class PassportController extends Controller
 
         }
 
-        $requests = $request->all();
-        $requests['password'] = Hash::make($requests['password']);
-        $requests['is_active'] = 1;
+        // $requests = $request->all();
+        // $requests['password'] = Hash::make($requests['password']);
+        // $requests['is_active'] = 1;
 
 
         $user = New User;
@@ -761,7 +761,8 @@ class PassportController extends Controller
             return \Response::json(['error'=> $arr]);
         }
 
-        Auth::user()->sendEmailVerificationNotification();
+        //Auth::user()->sendEmailVerificationNotification();
+        $user->notify(new EmailVerification($user));
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
