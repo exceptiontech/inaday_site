@@ -428,7 +428,7 @@ class PassportController extends Controller
                     'position'      =>'min:3|string',
                     //'cv_file'      =>'mimes:pdf,docx,doc',
                     'skills.*'      =>'required|integer',
-                    'level_id'      =>'required|integer',
+                    //'level_id'      =>'required|integer',
                     'country_id'      =>'required',
                     'city_id'      =>'required',
                     'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed'
@@ -479,6 +479,42 @@ class PassportController extends Controller
         $user->save();
 
 
+
+        if(!empty($request['password'])) {
+            if ($user->mobile) {
+
+                $str = $user->mobile;
+                //$number = '966'.substr($str, 1);
+                $number = '966'.$str;
+
+
+                $url = "https://www.msegat.com/gw/sendsms.php";
+                $params = json_encode([
+                    "userName" => "inaday",
+                    "userSender" => "INADAY",
+                    "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
+                    "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
+                    "numbers" => $number
+                ]);
+                $headers = array('Content-Type:application/json');
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $curl_response = curl_exec($ch);
+
+                if ($curl_response === false) {
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
+                    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+                }
+
+                curl_close($ch);
+            }
+        }
 
         $skills = $request->skills;
 
