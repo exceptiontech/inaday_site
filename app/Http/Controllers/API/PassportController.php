@@ -762,7 +762,7 @@ class PassportController extends Controller
         }
 
         //Auth::user()->sendEmailVerificationNotification();
-        $user->notify(new EmailVerification($user));
+        auth()->user()->notify(new EmailVerification($user));
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
