@@ -403,6 +403,13 @@ return [
 
 	'PortfolioCreatedDescEmail' => 'تم إضافة صورة بمعرض الاعمال بنجاح ،،',
 
+
+	'EmailVerificationEmail' => 'مرحبا بكم',
+
+	'EmailVerificationDescEmail' => 'نأمل الضغط على الزر ادناه لتفعيل البريد الإلكتروني الخاص بك،',
+
+
+
 	
 ] 
 
