@@ -128,8 +128,8 @@ class PassportController extends Controller
             curl_close($ch);
         }
         
-        //$user->sendEmailVerificationNotification();
-        auth()->user()->notify(new EmailVerification(auth()->user()));
+        $user->sendEmailVerificationNotification();
+        //$user->notify(new EmailVerification($user));
 
         $token = auth()->user()->createToken('MySecret')->accessToken;
 
