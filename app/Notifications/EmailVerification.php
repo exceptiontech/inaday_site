@@ -42,7 +42,7 @@ class EmailVerification extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'com.AD.IN-A-DAYTest.EmailVerification';
+        $url = 'inaday://email';
 
         return (new MailMessage)
                     ->line(__('notification.EmailVerificationEmail'))
