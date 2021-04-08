@@ -581,7 +581,7 @@ class PaymentController extends Controller
                     'unit_price' => $mount,
                     "other_charges" => "00.00",
                     'amount' => $mount,                                 
-                    'currency' => "SAR",
+                    //'currency' => "SAR",
                     'discount' => "00.00",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
                     "reference_no" => $offer->id,      
@@ -651,7 +651,7 @@ class PaymentController extends Controller
                     "other_charges" => "00.00",
                     'amount' => $mount,                                 
                     'discount' => "00.00",
-                    'currency' => "SAR",
+                    //'currency' => "SAR",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
                     "reference_no" => $service->id,      
                 ));
@@ -720,7 +720,7 @@ class PaymentController extends Controller
                     "other_charges" => "00.00",
                     'amount' => $mount,                                 
                     'discount' => "00.00",
-                    'currency' => "SAR",
+                    //'currency' => "SAR",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
                     "reference_no" => $mixture->id,      
                 ));
