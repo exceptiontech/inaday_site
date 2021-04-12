@@ -62,25 +62,26 @@ class PassportController extends Controller
 
         }
 
-        $requests = $request->all();
-        $requests['password'] = Hash::make($requests['password']);
-        $requests['is_active'] = 1;
+        // $requests = $request->all();
+        // $requests['password'] = Hash::make($requests['password']);
+        // $requests['email_verified_at'] = Carbon::now();;
+        // $requests['is_active'] = 0;
 
+        $user = New User;
+        $user->name = $request->first_name.' '.$request->last_name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->mobile = $request->mobile;
+        $user->user_type = $request->user_type;
+        $user->password = Hash::make($request->password);
+        $user->email_verified_at = Carbon::now(); 
+        $user->active_code = rand(10000,99999);
+        $user->is_active = 0;
+        $user->save();
 
-        // $user = New User;
-        // $user->name = $request->first_name.' '.$request->last_name;
-        // $user->first_name = $request->first_name;
-        // $user->last_name = $request->last_name;
-        // $user->email = $request->email;
-        // $user->mobile = $request->mobile;
-        // $user->is_active = 1;
-        // $user->active_code = rand(10000,99999);
-        // $user->user_type = $request->user_type;
-        // $user->password = Hash::make($request->password);
-        // $user->save();
-
-        $user = User::create($requests);
-        //$user->SendSMS();
+        //$user = User::create($requests);
+        $user->SendSMS();
 
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
@@ -93,6 +94,21 @@ class PassportController extends Controller
         $userdetail->user_id = $user->id;
         $userdetail->avater =  'images/default_img.png';
         $userdetail->save();
+
+
+        $usersettings = new Usersettings;
+        $usersettings->blog_notifications= 1;
+        $usersettings->offer_notifications=1;
+        $usersettings->booking_notifications=1;
+        $usersettings->review_notifications=1;
+        $usersettings->team_notifications=1;
+        $usersettings->profile_notifications=1;
+        $usersettings->favorite_notifications=1;
+        $usersettings->replay_notifications=1;
+        $usersettings->message_notifications=1;
+        $usersettings->support_notifications=1;
+        $usersettings->user_id = $user->id;
+        $usersettings->save();
 
 
         if ($user->mobile) {
@@ -702,8 +718,17 @@ class PassportController extends Controller
         $user->password = Hash::make($request->nickname);
         $user->notification_preference = 'mail';
         $user->email_verified_at = Carbon::now(); 
-        $user->is_active = 1;
+        $user->active_code = rand(10000,99999);
+        $user->is_active = 0;
         $user->save();
+
+
+
+        $userdetail = new Userdetail;
+        $userdetail->user_id = $user->id;
+        $userdetail->avater =  'images/default_img.png';
+        $userdetail->save();
+
 
         $usersettings = new Usersettings;
         $usersettings->blog_notifications= 1;
@@ -721,6 +746,8 @@ class PassportController extends Controller
 
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
+
+        $user->SendSMS();
 
         //$user->sendEmailVerificationNotification();
         //$user->notify(new RegisterServicesProvider($user));
