@@ -461,8 +461,8 @@ class User extends Authenticatable implements MustVerifyEmail
             if ($this->mobile) {
 
                 $user = User::findorfail($this->id);
-                $user->active_code = rand(10000,99999);
-                $user->save();
+                // $user->active_code = rand(10000,99999);
+                // $user->save();
 
                 $str = $user->mobile;
                 //$number = '966'.substr($str, 1);
