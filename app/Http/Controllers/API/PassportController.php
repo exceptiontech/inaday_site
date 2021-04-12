@@ -696,6 +696,11 @@ class PassportController extends Controller
 
         $validator = Validator::make($request->all(), [
             'user_type'=> 'required',
+            'mobile'      =>'required|digits:9',
+             'email' => 'required|string|email|max:255|unique:users',
+             'name' => 'required',
+             'password'=> 'required',
+             'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/'
         ]);
 
 
@@ -712,9 +717,7 @@ class PassportController extends Controller
         $user->email = $request->email;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        if (isset($request->mobile)) {
-            $user->mobile = $request->mobile;
-        }
+        $user->mobile = $request->mobile;
         $user->password = Hash::make($request->nickname);
         $user->notification_preference = 'mail';
         $user->email_verified_at = Carbon::now(); 
