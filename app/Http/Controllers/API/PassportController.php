@@ -81,7 +81,6 @@ class PassportController extends Controller
         $user->save();
 
         //$user = User::create($requests);
-        $user->SendSMS();
 
         $role = Role::where('name',$request->user_type)->first();
         $user->assignRole([$role->id]);
@@ -109,6 +108,8 @@ class PassportController extends Controller
         $usersettings->support_notifications=1;
         $usersettings->user_id = $user->id;
         $usersettings->save();
+
+        $user->SendSMS();
 
 
         if ($user->mobile) {
