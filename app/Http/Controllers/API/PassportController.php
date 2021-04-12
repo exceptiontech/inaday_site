@@ -699,8 +699,6 @@ class PassportController extends Controller
             'mobile'      =>'required|digits:9',
              'email' => 'required|string|email|max:255|unique:users',
              'name' => 'required',
-             'password'=> 'required',
-             'password' =>'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/'
         ]);
 
 
