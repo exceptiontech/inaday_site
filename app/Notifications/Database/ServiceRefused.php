@@ -57,7 +57,7 @@ class ServiceRefused extends Notification
 
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.ServiceRefused'),
+            'title'=> __('notification.ServiceRefused').' - '.$this->service->title,
             'desc'=>__('notification.ServiceRefusedDesc'),
             'url'=> $url,
         ];

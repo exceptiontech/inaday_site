@@ -11,15 +11,18 @@ class ServiceUpdated extends Notification
 {
     use Queueable;
 
+    protected $service;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($service)
     {
-        //
+        $this->service = $service;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -51,7 +54,7 @@ class ServiceUpdated extends Notification
     {
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ServiceUpdated'),
+            'title'=> __('notification.ServiceUpdated').' - '.$this->service->title,
             'desc'=>__('notification.ServiceUpdatedDesc'),
         ];
     }

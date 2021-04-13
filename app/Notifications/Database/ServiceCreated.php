@@ -56,7 +56,7 @@ class ServiceCreated extends Notification
     {
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ServiceCreated'),
+            'title'=> __('notification.ServiceCreated').' - '.$this->service->title,
             'desc'=>__('notification.ServiceCreatedDesc'),
         ];
     }

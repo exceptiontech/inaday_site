@@ -11,14 +11,16 @@ class TeamCreated extends Notification
 {
     use Queueable;
 
+    protected $team;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($team)
     {
-        //
+        $this->team = $team;
     }
 
     /**
@@ -52,7 +54,7 @@ class TeamCreated extends Notification
     {
         return [
             'image'=> url('/images/notifications/update.svg'),
-            'title'=> __('notification.TeamCreated'),
+            'title'=> __('notification.TeamCreated').' - '.$this->team->title,
             'desc'=>__('notification.TeamCreatedDesc'),
         ];
     }

@@ -57,7 +57,7 @@ class ProjectRefused extends Notification
 
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.ProjectRefused'),
+            'title'=> __('notification.ProjectRefused').' - '.$this->project->title,
             'desc'=>__('notification.ProjectRefusedDesc'),
             'url'=> $url,
         ];

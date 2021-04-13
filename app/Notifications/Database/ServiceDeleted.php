@@ -11,15 +11,18 @@ class ServiceDeleted extends Notification
 {
     use Queueable;
 
+    protected $service;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($service)
     {
-        //
+        $this->service = $service;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,7 +53,7 @@ class ServiceDeleted extends Notification
     {
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ServiceDeleted'),
+            'title'=> __('notification.ServiceDeleted').' - '.$this->service->title,
             'desc'=>__('notification.ServiceDeletedDesc'),
         ];
     }

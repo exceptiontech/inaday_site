@@ -11,14 +11,16 @@ class TeamRefusedRequest extends Notification
 {
     use Queueable;
 
+    protected $team;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($team)
     {
-        //
+        $this->team = $team;
     }
 
     /**
@@ -50,7 +52,7 @@ class TeamRefusedRequest extends Notification
     {
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.TeamRefusedRequest'),
+            'title'=> __('notification.TeamRefusedRequest').' - '.$this->team->title,
             'desc'=>__('notification.TeamRefusedRequestDesc'),
         ];
     }

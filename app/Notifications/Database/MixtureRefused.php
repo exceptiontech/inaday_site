@@ -58,7 +58,7 @@ class MixtureRefused extends Notification
 
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.MixtureRefused'),
+            'title'=> __('notification.MixtureRefused').' - '.$this->mixture->title,
             'desc'=>__('notification.MixtureRefusedDesc'),
             'url'=> $url,
         ];

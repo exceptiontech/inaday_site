@@ -11,15 +11,18 @@ class TeamCancelRequest extends Notification
 {
     use Queueable;
 
+    protected $team;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($team)
     {
-        //
+        $this->team = $team;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -50,7 +53,7 @@ class TeamCancelRequest extends Notification
     {
         return [
             'image'=> url('/images/notifications/refuse.svg'),
-            'title'=> __('notification.TeamCancelRequest'),
+            'title'=> __('notification.TeamCancelRequest').' - '.$this->team->title,
             'desc'=>__('notification.TeamCancelRequestDesc'),
         ];
     }

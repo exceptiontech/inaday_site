@@ -11,15 +11,18 @@ class ProjectDeleted extends Notification
 {
     use Queueable;
 
+    protected $project;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -52,7 +55,7 @@ class ProjectDeleted extends Notification
     {
         return [
             'image'=> url('/images/notifications/approve.svg'),
-            'title'=> __('notification.ProjectDeleted'),
+            'title'=> __('notification.ProjectDeleted').' - '.$this->project->title,
             'desc'=>__('notification.ProjectDeletedDesc'),
         ];
     }

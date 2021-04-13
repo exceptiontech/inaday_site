@@ -11,15 +11,18 @@ class MixtureApproved extends Notification
 {
     use Queueable;
 
+    protected $mixture;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mixture)
     {
-        //
+        $this->mixture = $mixture;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -52,7 +55,7 @@ class MixtureApproved extends Notification
     {
         return [
             'image'=> url('/images/notifications/save.svg'),
-            'title'=> __('notification.MixtureApproved'),
+            'title'=> __('notification.MixtureApproved').' - '.$this->mixture->title,
             'desc'=>__('notification.MixtureApprovedDesc'),
         ];
     }

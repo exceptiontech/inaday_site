@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class ServiceApproved extends Notification
 {
     use Queueable;
+    protected $service;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
@@ -51,7 +52,7 @@ class ServiceApproved extends Notification
     {
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ServiceApproved'),
+            'title'=> __('notification.ServiceApproved').' - '.$this->service->title,
             'desc'=>__('notification.ServiceApprovedDesc'),
         ];
     }

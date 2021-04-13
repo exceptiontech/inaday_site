@@ -54,7 +54,7 @@ class ProjectApproved extends Notification
 
         return [
             'image'=> url('/images/notifications/add.svg'),
-            'title'=> __('notification.ProjectCreated'),
+            'title'=> __('notification.ProjectCreated').' - '.$this->project->title,
             'desc'=>__('notification.ProjectCreatedDesc'),
             'url'=> $url,
         ];
