@@ -53,7 +53,8 @@ class ServiceController extends Controller
         }
 
 
-        $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        //$services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
+        $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
         $data['status'] = true;
