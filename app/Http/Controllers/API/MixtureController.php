@@ -57,7 +57,7 @@ class MixtureController extends Controller
 
         }
 
-        return response()->json(['data' => $mixtures->with('team','skills','section','users','users.userdetails','team','team.users.userdetails','team.users','services')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return response()->json(['data' => $mixtures->with('team','skills','section','users','users.userdetails','team','team.users.userdetails','team.users','services','status')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 

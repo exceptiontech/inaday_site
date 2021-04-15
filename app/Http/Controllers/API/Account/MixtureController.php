@@ -44,7 +44,7 @@ class MixtureController extends Controller
         $id = Auth::user()->id;
         $mixtures = Mixture::whereHas('team', function ($query) use ($id) {
                 $query->where('user_id' , $id);
-            })->with('team','skills','section','users','users.userdetails','services','ModelLogs')->paginate(10);
+            })->with('team','skills','section','users','users.userdetails','services','ModelLogs','status')->paginate(10);
 
 
         $data['status'] = true;
