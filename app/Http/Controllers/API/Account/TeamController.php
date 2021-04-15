@@ -335,7 +335,7 @@ class TeamController extends Controller
 
 
         $id = Auth::user()->id;
-        $myteams = Team::where('user_id' , $id)->with('mixtures','mixtures.users','mixtures.services','user','user.userdetails','users','users.userdetails')->paginate(10);
+        $myteams = Team::where('user_id' , $id)->with('mixtures','allusers','allusers.services','allusers.userdetails','user','user.userdetails')->paginate(10);
 
         $data['status'] = true;
         $data['data'] = $myteams;
