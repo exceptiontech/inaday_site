@@ -59,7 +59,7 @@ class TeamController extends Controller
 
         $teams = Team::whereHas('allusers', function ($query) use ($id) {
                 $query->where('team_user.user_id' , $id);
-            })->with('mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
+            })->with('users.mixtures','user','user.userdetails','users','users.userdetails')->paginate(10);
 
 
         $data['status'] = true;
