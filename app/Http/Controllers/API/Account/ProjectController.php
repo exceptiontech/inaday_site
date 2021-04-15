@@ -52,7 +52,7 @@ class ProjectController extends Controller
         }
 
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers,user','offers.team','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers.user','offers.team','ConfirmOffer')->paginate(10);
 
 
         $data['status'] = true;
