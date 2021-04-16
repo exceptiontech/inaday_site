@@ -154,6 +154,7 @@ class MixtureController extends Controller
             }
 
             //users 
+            return $request->users;
             $users = $request->users;
             if ($users) {
                 foreach ($users as $user) {
