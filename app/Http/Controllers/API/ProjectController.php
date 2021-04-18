@@ -55,7 +55,7 @@ class ProjectController extends Controller
         }
 
 
-        return response()->json(['data' => $projects->with('skills','section','offers','user','user.userdetails','offers.user','offers.user.userdetails','ConfirmOffer','status')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return response()->json(['data' => $projects->with('skills','section','offers','user','user.userdetails','offers.user','offers.user.userdetails','ConfirmOffer','status','booking')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
