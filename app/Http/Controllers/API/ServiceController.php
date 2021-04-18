@@ -58,7 +58,7 @@ class ServiceController extends Controller
 
         }
 
-        return response()->json(['data' => $services->with('user','user.userdetails','user.skills','section','reviews')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return response()->json(['data' => $services->with('user','user.userdetails','user.skills','section','reviews','reviews.user','reviews.user.userdetails')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
@@ -74,7 +74,7 @@ class ServiceController extends Controller
         if(is_numeric($id)) {
             $service = Service::where('id',$id)->with('skills','section','user','user.userdetails','user.skills')->get();
         }else {
-            $service = Service::where('title',$id)->with('skills','section','user','user.userdetails','user.skills')->get();
+            $service = Service::where('title',$id)->with('skills','section','user','user.userdetails','user.skills','reviews','reviews.user','reviews.user.userdetails')->get();
 
         }
         return response()->json(['data' => $service], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
