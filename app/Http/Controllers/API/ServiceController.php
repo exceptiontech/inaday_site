@@ -58,7 +58,7 @@ class ServiceController extends Controller
 
         }
 
-        return response()->json(['data' => $services->with('user','user.userdetails','user.skills','section')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return response()->json(['data' => $services->with('user','user.userdetails','user.skills','section','reviews')->latest()->paginate(10)], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     }
 
