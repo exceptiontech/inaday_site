@@ -72,7 +72,7 @@ class ServiceController extends Controller
     public function show($id)
     {
         if(is_numeric($id)) {
-            $service = Service::where('id',$id)->with('skills','section','user','user.userdetails','user.skills')->get();
+            $service = Service::where('id',$id)->with('skills','section','user','user.userdetails','user.skills','reviews','reviews.user','reviews.user.userdetails')->get();
         }else {
             $service = Service::where('title',$id)->with('skills','section','user','user.userdetails','user.skills','reviews','reviews.user','reviews.user.userdetails')->get();
 
