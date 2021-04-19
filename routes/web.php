@@ -170,7 +170,7 @@ Route::group(['middleware'=>'verified'], function() {
 
     //paytabs
     Route::post('/pay_payment/{title}/{model_id}/{offer_id}/charge', 'PaymentController@Paytabs')->name('Paytabs.index');
-    Route::post('/pay_response', 'PaytabsController@PaytabsResponse')->name('Paytabs.result');
+    Route::post('/pay_response', 'PaymentController@PaytabsResponse')->name('Paytabs.result');
 
 
     Route::resource('bookings', 'BookingController', ['names' => 'front_bookings'])->only(['show']);
