@@ -744,9 +744,6 @@ class PaymentController extends Controller
     public function PaytabsResponse(Request $request)
     {
 
-        return $request;
-
-
         function percentPlus($number,$percent) {
             $total = (($percent / 100) * $number) + $number  ;
             return $total;
