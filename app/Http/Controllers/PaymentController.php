@@ -744,6 +744,7 @@ class PaymentController extends Controller
     public function PaytabsResponse(Request $request)
     {
 
+
         function percentPlus($number,$percent) {
             $total = (($percent / 100) * $number) + $number  ;
             return $total;
@@ -756,8 +757,6 @@ class PaymentController extends Controller
 
         $result = Paytabs::getInstance()->verify_payment($request->payment_reference);
 
-        return $result;
-        
         if ($result->response_code == 100) {
 
             $id = Session::get('id');
