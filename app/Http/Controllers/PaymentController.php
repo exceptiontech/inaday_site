@@ -747,12 +747,12 @@ class PaymentController extends Controller
 
         function percentPlus($number,$percent) {
             $total = (($percent / 100) * $number) + $number  ;
-            return $total;
+            return $number;
         }
 
         function percentMinus($number,$percent) {
             $total = $number - (($percent / 100) * $number) ;
-            return $total;
+            return $number;
         }
 
         $result = Paytabs::getInstance()->verify_payment($request->payment_reference);
