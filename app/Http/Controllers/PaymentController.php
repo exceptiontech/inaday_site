@@ -756,6 +756,8 @@ class PaymentController extends Controller
 
         $result = Paytabs::getInstance()->verify_payment($request->payment_reference);
 
+        return $result;
+        
         if ($result->response_code == 100) {
 
             $id = Session::get('id');
