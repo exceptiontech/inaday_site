@@ -274,7 +274,7 @@
 
                             @if(count($mixture->users) > 0 )
                             <div class="col-12 pt-3 pb-5 team block">
-                                <h2 class="mb-3">فريق الخلطة</h2>
+                                <h2 class="mb-3">فريق الشراكة</h2>
                                 <div class="row ">
                                     @foreach($mixture->users as $user)
                                     <div class="col-4 ">
