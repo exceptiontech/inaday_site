@@ -334,7 +334,7 @@ class MixtureController extends Controller
             if ($users) {
                 $mixture->users()->detach();
                 foreach ($users as $user) {
-                    $mixture->users()->attach($user);
+                    $mixture->users()->syncWithoutDetaching($user);
                 }
             }
 
