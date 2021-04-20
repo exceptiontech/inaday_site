@@ -252,6 +252,7 @@ class PaymentController extends Controller
                         $payment->amount = $arr_body['transactions'][0]['amount']['total'];
                         $payment->currency = env('PAYPAL_CURRENCY');
                         $payment->payment_status = $arr_body['state'];
+                        $payment->type = 'paypal';
                         $payment->save();
 
                         if ($payment) {
@@ -341,6 +342,7 @@ class PaymentController extends Controller
                         $payment->amount = $arr_body['transactions'][0]['amount']['total'];
                         $payment->currency = env('PAYPAL_CURRENCY');
                         $payment->payment_status = $arr_body['state'];
+                        $payment->type = 'paypal';
                         $payment->save();
 
                         if ($payment) {
@@ -427,6 +429,7 @@ class PaymentController extends Controller
                     $payment->amount = $arr_body['transactions'][0]['amount']['total'];
                     $payment->currency = env('PAYPAL_CURRENCY');
                     $payment->payment_status = $arr_body['state'];
+                    $payment->type = 'paypal';
                     $payment->save();
 
                     if ($payment) {
@@ -520,6 +523,7 @@ class PaymentController extends Controller
         function percentPlus($number,$percent) {
             $total = (($percent / 100) * $number) + $number  ;
             return $total;
+
         }
 
         function percentMinus($number,$percent) {
@@ -543,13 +547,11 @@ class PaymentController extends Controller
             if($project || $offer)
             {
 
-                Session::put('type','offer');
-                Session::put('id',$offer->id);
+
 
                 if ($request->input('amount') == $offer->price) {
                     $total = percentPlus($request->input('amount') , 7);
-                    //$total = $request->input('amount');
-                    $mount = round($total/3.75,2);
+                    $mount = round($total);
                 }else  {
                     return 'something is wrong';
                 }
@@ -584,7 +586,7 @@ class PaymentController extends Controller
                     //'currency' => "SAR",
                     'discount' => "00.00",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
-                    "reference_no" => $offer->id,      
+                    "reference_no" => 'offer'.$offer->id,      
                 ));
 
 
@@ -610,13 +612,10 @@ class PaymentController extends Controller
             if($service)
             {
 
-                Session::put('type','service');
-                Session::put('id',$service->id);
 
                 if ($request->input('amount') == $service->cost) {
                     $total = percentPlus($request->input('amount') , 7);
-                    //$total = $request->input('amount');
-                    $mount = round($total/3.75,2);
+                    $mount = round($total);
 
                     //return $total . '-'. $mount;
                 }else  {
@@ -653,7 +652,7 @@ class PaymentController extends Controller
                     'discount' => "00.00",
                     //'currency' => "SAR",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
-                    "reference_no" => $service->id,      
+                    "reference_no" => 'service'.$service->id,      
                 ));
 
 
@@ -681,13 +680,9 @@ class PaymentController extends Controller
             if($mixture)
             {
 
-                Session::put('type','mixture');
-                Session::put('id',$mixture->id);
-
                 if ($request->input('amount') == $mixture->cost) {
                     $total = percentPlus($request->input('amount') , 7);
-                    //$total = $request->input('amount');
-                    $mount = round($total/3.75,2);
+                    $mount = round($total);
                 }else  {
                     return 'something is wrong';
                 }
@@ -722,7 +717,7 @@ class PaymentController extends Controller
                     'discount' => "00.00",
                     //'currency' => "SAR",
                     'title' => Auth::user()->first_name." ".Auth::user()->last_name, 
-                    "reference_no" => $mixture->id,      
+                    "reference_no" => 'mixture'.$mixture->id,      
                 ));
 
                 if ($result->response_code == 4012) {
@@ -743,6 +738,9 @@ class PaymentController extends Controller
 
     public function PaytabsResponse(Request $request)
     {
+        $result = Paytabs::getInstance()->verify_payment($request->payment_reference);
+
+        $this->createInvoice((array)$result);
 
 
         function percentPlus($number,$percent) {
@@ -757,33 +755,33 @@ class PaymentController extends Controller
 
         $result = Paytabs::getInstance()->verify_payment($request->payment_reference);
 
+
         if ($result->response_code == 100) {
 
-            $id = Session::get('id');
-            $type = Session::get('type');
-
-            Session::forget('id');        
-            Session::forget('type');        
-
+            if (str_contains($result->reference_no, 'offer')) {
+                $type = 'offer';
+                $id = str_replace("offer","",$result->reference_no);
+            }elseif (str_contains($result->reference_no, 'service')) {
+                $type = 'service';
+                $id = str_replace("service","",$result->reference_no);
+            }elseif (str_contains($result->reference_no, 'mixture')) {
+                $type = 'mixture';
+                $id = str_replace("mixture","",$result->reference_no);
+            }
+            
 
             if ($type == 'offer') {
 
                 $offer = Offer::findorfail($id);
 
-                // The customer has successfully paid.
-                $arr_body = $response->getData();
-         
-                // Insert transaction data into the database
-                $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->latest();
-         
-
                     $payment = new Payment;
-                    $payment->payment_id = $arr_body['id'];
-                    $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
-                    $payment->payer_email = $arr_body['payer']['payer_info']['email'];
-                    $payment->amount = $arr_body['transactions'][0]['amount']['total'];
-                    $payment->currency = env('PAYPAL_CURRENCY');
-                    $payment->payment_status = $arr_body['state'];
+                    $payment->payment_id = $result->pt_invoice_id;
+                    $payment->payer_id = Auth::user()->id;
+                    $payment->payer_email = Auth::user()->email;
+                    $payment->amount = $result->amount;
+                    $payment->currency = $result->currency;
+                    $payment->payment_status = $result->statement_reference;
+                    $payment->type = 'paytabs';
                     $payment->save();
 
                     if ($payment) {
@@ -845,7 +843,7 @@ class PaymentController extends Controller
                         if ($payment && $booking) {
                             $log           = new Log;
                             $log->user_id  = Auth::user()->id;
-                            $log->action   = 'paypal payment '.$payment->id.' for ' . $booking->id;
+                            $log->action   = 'paytabs payment '.$payment->id.' for ' . $booking->id;
                             $log->model    = 'booking';
                             $log->url      = $request->server()['REQUEST_URI'];
                             $log->ip       = $request->server()['REMOTE_ADDR'];
@@ -858,21 +856,17 @@ class PaymentController extends Controller
 
 
             }elseif($type == 'service') {
-                // The customer has successfully paid.
-                $arr_body = $response->getData();
-         
-                // Insert transaction data into the database
-                $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
          
                 $service = Service::findorfail($id);
 
                     $payment = new Payment;
-                    $payment->payment_id = $arr_body['id'];
-                    $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
-                    $payment->payer_email = $arr_body['payer']['payer_info']['email'];
-                    $payment->amount = $arr_body['transactions'][0]['amount']['total'];
-                    $payment->currency = env('PAYPAL_CURRENCY');
-                    $payment->payment_status = $arr_body['state'];
+                    $payment->payment_id = $result->pt_invoice_id;
+                    $payment->payer_id = Auth::user()->id;
+                    $payment->payer_email = Auth::user()->email;
+                    $payment->amount = $result->amount;
+                    $payment->currency = $result->currency;
+                    $payment->payment_status = $result->statement_reference;
+                    $payment->type = 'paytabs';
                     $payment->save();
 
                     if ($payment) {
@@ -931,7 +925,7 @@ class PaymentController extends Controller
                         if ($payment && $booking) {
                             $log           = new Log;
                             $log->user_id  = Auth::user()->id;
-                            $log->action   = 'paypal payment '.$payment->id.' for ' . $booking->id;
+                            $log->action   = 'paytabs payment '.$payment->id.' for ' . $booking->id;
                             $log->model    = 'booking';
                             $log->url      = $request->server()['REQUEST_URI'];
                             $log->ip       = $request->server()['REMOTE_ADDR'];
@@ -943,22 +937,18 @@ class PaymentController extends Controller
          
 
             }elseif($type == 'mixture') {
-
-                // The customer has successfully paid.
-                $arr_body = $response->getData();
          
-                // Insert transaction data into the database
-                $isPaymentExist = Payment::where('payment_id', $arr_body['id'])->first();
 
                 $mixture = Mixture::findorfail($id);
 
                 $payment = new Payment;
-                $payment->payment_id = $arr_body['id'];
-                $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
-                $payment->payer_email = $arr_body['payer']['payer_info']['email'];
-                $payment->amount = $arr_body['transactions'][0]['amount']['total'];
-                $payment->currency = env('PAYPAL_CURRENCY');
-                $payment->payment_status = $arr_body['state'];
+                $payment->payment_id = $result->pt_invoice_id;
+                $payment->payer_id = Auth::user()->id;
+                $payment->payer_email = Auth::user()->email;
+                $payment->amount = $result->amount;
+                $payment->currency = $result->currency;
+                $payment->payment_status = $result->statement_reference;
+                $payment->type = 'paytabs';
                 $payment->save();
 
                 if ($payment) {
@@ -1016,7 +1006,7 @@ class PaymentController extends Controller
                     if ($payment && $booking) {
                         $log           = new Log;
                         $log->user_id  = Auth::user()->id;
-                        $log->action   = 'paypal payment '.$payment->id.' for ' . $booking->id;
+                        $log->action   = 'paytabs payment '.$payment->id.' for ' . $booking->id;
                         $log->model    = 'booking';
                         $log->url      = $request->server()['REQUEST_URI'];
                         $log->ip       = $request->server()['REMOTE_ADDR'];
@@ -1027,19 +1017,28 @@ class PaymentController extends Controller
                 }
      
             } else {
-                return $response->getMessage();
+                return $result->result;
             }
 
 
 
-            $this->createInvoice((array)$result);
+            //$this->createInvoice((array)$result);
         }
         return $result->result;
     }
 
     public function createInvoice($request)
     {
-        $request['order_id'] = $request["reference_no"];
+
+        if (str_contains($request["reference_no"], 'offer')) {
+            $id = str_replace("offer","",$request["reference_no"]);
+        }elseif (str_contains($request["reference_no"], 'service')) {
+            $id = str_replace("service","",$request["reference_no"]);
+        }elseif (str_contains($request["reference_no"], 'mixture')) {
+            $id = str_replace("mixture","",$request["reference_no"]);
+        }
+
+        $request['order_id'] = $id;
         PaytabsInvoice::create($request);
     }
 

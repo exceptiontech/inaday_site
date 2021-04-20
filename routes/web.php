@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
+
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 Route::get('/', 'FrontController@index')->name('home');
@@ -46,6 +49,11 @@ Route::get('/user/{id}/projects', 'UsersController@projects');
 Route::get('/user/{id}/mixtures', 'UsersController@mixtures');
 
 
+//paytabs
+Route::post('/pay_payment/{title}/{model_id}/{offer_id}/charge', 'PaymentController@Paytabs');
+Route::post('/pay_response', 'PaymentController@PaytabsResponse');
+
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'FrontController@index');
@@ -74,7 +82,6 @@ Route::get('services/{id}', 'ServiceController@show')->name('services.show');
 
 Route::get('mixtures', 'MixtureController@index')->name('mixtures.index');
 Route::get('mixtures/{id}', 'MixtureController@show')->name('mixtures.show');
-
 
 
 Route::group(['middleware'=>'verified'], function() {
@@ -168,9 +175,6 @@ Route::group(['middleware'=>'verified'], function() {
     Route::get('paymentsuccess', 'PaymentController@payment_success');
     Route::get('paymenterror', 'PaymentController@payment_error');
 
-    //paytabs
-    Route::post('/pay_payment/{title}/{model_id}/{offer_id}/charge', 'PaymentController@Paytabs')->name('Paytabs.index');
-    Route::post('/pay_response', 'PaymentController@PaytabsResponse')->name('Paytabs.result');
 
 
     Route::resource('bookings', 'BookingController', ['names' => 'front_bookings'])->only(['show']);
