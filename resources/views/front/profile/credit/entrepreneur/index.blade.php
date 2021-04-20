@@ -93,7 +93,7 @@
                                                 @endif
                                               </td>
                                               <td>
-                                                {{round($transaction->booking->payment->amount*3.7504381353)}}  ريال</td>
+                                                {{round($transaction->booking->getTotalByRiyal())}}  ريال</td>
                                               <td dir="ltr">{{$transaction->created_at}}</td>
                                             </tr>
                                           @endforeach

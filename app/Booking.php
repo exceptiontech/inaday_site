@@ -101,7 +101,7 @@ class Booking extends Model
     }
 
     public function getFeesByRiyal() {
-        if ($this->payment->type != 'paytabs') {
+        if ($this->payment->type = 'paytabs') {
             return round((($this->payment->amount*3.7504381353)*7)/100);
         }
         
@@ -113,7 +113,7 @@ class Booking extends Model
     }
 
     public function getTotalByRiyal() {
-        if ($this->payment->type != 'paytabs') {
+        if ($this->payment->currency == 'USD') {
             return round($this->payment->amount*3.7504381353);
         }
         return round($this->payment->amount);
