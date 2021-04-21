@@ -97,11 +97,17 @@ class Booking extends Model
 
 
     public function getFees() {
-        return round((($this->payment->amount)*7)/100);
+
+        if ($this->payment->currency == 'USD') {
+            return round((($this->payment->amount)*7)/100);
+        }
+        
+        return round((($this->payment->amount/3.7504381353)*7)/100);
+
     }
 
     public function getFeesByRiyal() {
-        if ($this->payment->type = 'paytabs') {
+        if ($this->payment->currency == 'USD') {
             return round((($this->payment->amount*3.7504381353)*7)/100);
         }
         
