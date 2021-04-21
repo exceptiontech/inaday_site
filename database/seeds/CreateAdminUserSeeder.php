@@ -101,15 +101,15 @@ class CreateAdminUserSeeder extends Seeder
         ]);
 
 
-        $title  = array();
-        $title['ar'] = 'دبي';
-        $title['en'] = 'dubai';
+        // $title  = array();
+        // $title['ar'] = 'دبي';
+        // $title['en'] = 'dubai';
 
-        $country = City::create([
-            'title' => $title,
-            'slug' => 'dubai',
-            'country_id' => '2',
-        ]);
+        // $country = City::create([
+        //     'title' => $title,
+        //     'slug' => 'dubai',
+        //     'country_id' => '2',
+        // ]);
 
 
 
