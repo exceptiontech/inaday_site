@@ -289,9 +289,9 @@
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
-                                          <div class="modal-body p-0">
+                                          <div class="modal-body pt-0 pb-0">
 
-                                            <div class="d-flex">
+                                            <div class="row">
                                                 <div class="col-12 col-sm-6 text-left p-3">
                                                     <h5>تفاصيل المشروع </h5>
                                                     <div class="row info-menu">
