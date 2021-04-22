@@ -53,13 +53,13 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="widget">
-                    <h2>{{trans('file.available_payment_methods')}}</h2>
+                    <h2 class="mb-4">{{trans('file.available_payment_methods')}}</h2>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><img class="mr-2" style="height:26px;" src="{{url('images/paypal-logo.png') }}"></li>
-<!--                         <li class="list-inline-item"><img class="mr-2" style="height:26px;" src="{{url('images/paytabs-logo.png') }}"></li>
-                        <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/visa.svg') }}"></li>
-                        <li class="list-inline-item"><img class="mr-2" style="height:20px" src="{{url('images/mastercard.svg') }}"></li>
- -->
+                        <li class="list-inline-item"><img class="mr-2" src="{{url('images/mada.png') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" src="{{url('images/visa.png') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" src="{{url('images/mastercard.png') }}"></li>
+                        <li class="list-inline-item"><img class="mr-2" src="{{url('images/paypal.png') }}"></li>
+
                     </ul>
                 </div>
                 <div class="widget mt-5 mb-4">
