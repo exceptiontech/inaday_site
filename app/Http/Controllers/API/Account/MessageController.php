@@ -65,7 +65,7 @@ class MessageController extends Controller
 
         $data['status'] = true;
 
-        $arr = array("status" => 200,"data" => $users->with('userdetails','messages')->latest()->get());
+        $arr = array("status" => 200,"data" => $users->with('userdetail','messages')->latest()->get());
 
         return \Response::json(['data'=> $arr]);
 
