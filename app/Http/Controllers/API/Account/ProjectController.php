@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Skill;
+use App\Offer;
 use App\File;
 use App\ProjectSkill;
 use App\Averagekind;
