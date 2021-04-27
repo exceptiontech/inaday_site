@@ -100,10 +100,17 @@ class NotificationController extends Controller
     {
 
         $notification = Auth::user()->notifications->where('id' , $id)->first();
-        $notification->read_at = Carbon::now();
-        $notification->save();
+        if ($notification) {
+            $notification->read_at = Carbon::now();
+            $notification->save();
 
-        return response()->json(['data' => $notification], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            return response()->json(['data' => $notification], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+
+        $arr = array("status" => 402, "errorMsg" => __('api.not_valid'), "data" => array(),"appearForUser" => true);
+        return \Response::json(['error'=> $arr]);
+
+
     }
 
     /**
