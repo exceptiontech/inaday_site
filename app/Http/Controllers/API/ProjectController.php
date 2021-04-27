@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Notifications\ProjectCreated;
 
 use App\Project;
-use App\offer;
+use App\Offer;
 
 use Auth;
 
