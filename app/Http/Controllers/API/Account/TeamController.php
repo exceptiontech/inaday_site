@@ -192,6 +192,12 @@ class TeamController extends Controller
 
 
         $team= Team::find($id);
+
+        if (!$team) {
+            $arr = array("status" => 402, "errorMsg" => __('api.not_valid'), "data" => array(),"appearForUser" => true);
+            return \Response::json(['error'=> $arr]);
+        }
+
         $team->user_id=Auth::id();
         $team->title=$request->title;
         $team->desc=$request->desc;
@@ -251,11 +257,15 @@ class TeamController extends Controller
     {
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
         elseif(is_null(Team::where('user_id',Auth::id())->first()) == 1)
         {
-            return view('front.errors.denied');
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
         }
 
 
@@ -263,6 +273,11 @@ class TeamController extends Controller
         {
 
             $team = Team::find($id);
+
+            if (!$team) {
+                $arr = array("status" => 402, "errorMsg" => __('api.not_valid'), "data" => array(),"appearForUser" => true);
+                return \Response::json(['error'=> $arr]);
+            }
 
             if (count($team->mixtures) > 0) {
                 foreach ($team->mixtures as $key => $mix) {
@@ -460,6 +475,7 @@ class TeamController extends Controller
 
         $user = User::find($id);
         $team = Team::find($teamid);
+
 
         if (!$user ||  !$team ) {
             $arr = array("status" => 402, "errorMsg" => __('api.parameters_missing'), "data" => array(),"appearForUser" => true);
