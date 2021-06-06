@@ -56,12 +56,10 @@ class ProjectController extends Controller
         $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers.user','offers.user.userdetails','offers.team','ConfirmOffer','status')->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $projects;
 
-
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
     }
 
 
@@ -90,13 +88,15 @@ class ProjectController extends Controller
             return $englishNumbersOnly;
         }
 
+
         $validator = Validator::make($request->all(), [
-            'title'     =>'required|min:3|max:100|string',
+            'title'     =>'required|min:3|max:100|string|unique:projects',
             'desc'      =>'required|min:3|max:500',
             'section_id'      =>'required|integer',
-            'applykind_id'      =>'required',
-            'num_team'      =>'required',
-            'cost'      =>'required',
+            'applykind_id'      =>'required|integer',
+            'num_team'      =>'required|integer',
+            'cost'      =>'required|integer',
+            'files' => 'required',
             'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
             'duration'      =>'required|numeric|min:1|max:24',
             //'skills' =>'required|array',
@@ -200,38 +200,6 @@ class ProjectController extends Controller
                 }
             }
 
-            // $skills = $request->skills;
-
-            // if ($skills) {
-            //     foreach ($skills as $skill) {
-            //         $project->skills()->attach($skill);
-            //     }
-            // }
-
-
-
-            // $other_skill = $request->other_skill;
-
-            // if ($other_skill) {
-            //     $item = Skill::where('title', 'like', '%' . $other_skill . '%')->orWhere('slug', 'like', '%' . $skill . '%')->first();
-
-
-            //     if ($item) {
-            //         $project->skills()->attach($item);
-            //     }else {
-
-            //         $title = array();
-            //         $title['ar'] = $skill;
-            //         $new_skill = new Skill;
-            //         $new_skill->title = $title;
-            //         $new_skill->slug = $skill;
-            //         $new_skill->is_active = 0;
-            //         $new_skill->save();
-
-            //         $project->skills()->attach($new_skill);
-            //     }
-            // }
-
 
         }
 
@@ -243,15 +211,12 @@ class ProjectController extends Controller
         }
 
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers.user','offers.user.userdetails','offers.team','ConfirmOffer','status')->paginate(10);
 
-
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $projects;
 
-
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 
@@ -268,6 +233,8 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
 
+
+
         if (!Auth::user()->isEntrepreneur() || !Auth::user()->isActive() ) {
             $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
 
@@ -282,8 +249,15 @@ class ProjectController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'title'      =>'required|max:500',
-            'desc'      =>'required',
+            'title'     =>'required|min:3|max:100|string|unique:projects,id',
+            'desc'      =>'required|min:3|max:500',
+            'section_id'      =>'required|integer',
+            'applykind_id'      =>'required|integer',
+            'num_team'      =>'required|integer',
+            'cost'      =>'required|integer',
+            'files' => 'required',
+            'files.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,doc',
+            'duration'      =>'required|numeric|min:1|max:24',
         ]);
 
 
@@ -295,6 +269,19 @@ class ProjectController extends Controller
 
 
         $project= Project::find($id);
+
+        if (!$project) {
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+       if ($project->deleted_at) {
+            $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+            
         $project->title=$request->title;
         $project->desc=$request->desc;
         $project->stage_id =$request->stage_id;
@@ -362,6 +349,7 @@ class ProjectController extends Controller
                 $i=1;
                 foreach($files as $file)
                 {
+
                     $destinationPath = 'uploads/projects';
                     $extension =  $file->getClientOriginalExtension();
                     $fileName = date("Y-m-d").'-'.rand(999,9999).'.'.$extension;
@@ -388,8 +376,6 @@ class ProjectController extends Controller
                 }
             }
 
-            //skills
-            //$project->skills()->sync($request->skills);
 
         }
 
@@ -402,15 +388,12 @@ class ProjectController extends Controller
             Auth::user()->notify(new ProjectUpdated($project));
         }
 
-        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers.user','offers.user.userdetails','offers.team','ConfirmOffer','status')->paginate(10);
 
-
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $projects;
 
-
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
     /**
@@ -426,6 +409,13 @@ class ProjectController extends Controller
         if (Auth::user() && Auth::user()->isEntrepreneur() == 1)
         {
             $project= Project::find($id);
+
+
+            if (!$project) {
+                $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
 
 
             if ($project->booking) {
@@ -476,13 +466,104 @@ class ProjectController extends Controller
 
         $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $projects;
 
-
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 
+    public function destroy(Request $request, $id)
+    {
+
+
+        if (Auth::user() && Auth::user()->isEntrepreneur() == 1)
+        {
+
+
+            $project= Project::find($id);
+
+
+            if (!$project) {
+                $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+
+            if ($project->deleted_at) {
+                $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+
+            if ($project->booking) {
+                $arr = array("status" => 401, "errorMsg" => __('api.projectـhaveـbooking') , "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+
+            if (!$project->is_approved ) {
+                $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+            if ($project->user_id != Auth::id() ) {
+                $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+            
+            $project->deleted_at = now();
+            $project->save();
+
+            if ($project) {
+                $log           = new Log;
+                $log->user_id  = Auth::user()->id;
+                $log->action   = 'delete';
+                $log->model    = 'project';
+                $log->url      = $request->server()['REQUEST_URI'];
+                $log->ip       = $request->server()['REMOTE_ADDR'];
+                $log->save();
+            
+
+                Auth::user()->notify(new \App\Notifications\Database\ProjectDeleted($project));
+
+                if (Auth::user()->usersettings && Auth::user()->usersettings->profile_notifications)
+                {
+                    Auth::user()->notify(new ProjectDeleted($project));
+                }
+
+
+                $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','ConfirmOffer')->paginate(10);
+
+                $data['status'] = 200;
+                $data['data'] = $projects;
+
+                return \Response::json($data);
+
+            }
+
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
+
+        }else {
+            $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
+        $projects = Project::where('user_id',Auth::user()->id)->with('skills','section','ModelLogs','offers','offers.user','offers.user.userdetails','offers.team','ConfirmOffer','status')->paginate(10);
+
+        $data['status'] = 200;
+        $data['data'] = $projects;
+
+        return \Response::json($data);
+    }
 }

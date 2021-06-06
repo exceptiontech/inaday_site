@@ -78,8 +78,8 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('account/reviews', 'API\Account\ReviewController')->except(['index','show']);
 
     // Projects
-    Route::resource('account/projects', 'API\Account\ProjectController', ['names' => 'front_projects']);
-    Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete');
+    Route::resource('account/projects', 'API\Account\ProjectController');
+    //Route::get('account/projects/delete/{id}', 'API\Account\ProjectController@delete');
 
     // Offers
     Route::resource('offers', 'API\OfferController')->except(['show']);
@@ -90,8 +90,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('account/unread/notifications/', 'API\Account\NotificationController@unread');
 
     // Services
-    Route::resource('account/services', 'API\Account\ServiceController', ['names' => 'front_services']);
-    Route::get('account/services/delete/{id}', 'API\Account\ServiceController@delete')->name('services.delete');
+    Route::resource('account/services', 'API\Account\ServiceController');
 
     // mixture
     Route::resource('account/mixtures', 'API\Account\MixtureController', ['names' => 'front_mixtures']);

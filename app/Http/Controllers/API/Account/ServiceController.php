@@ -57,12 +57,11 @@ class ServiceController extends Controller
         $services = Service::where('user_id',Auth::user()->id)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $services;
 
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
     }
 
 
@@ -88,6 +87,14 @@ class ServiceController extends Controller
             $num = range(9, 0);
             $englishNumbersOnly = str_replace($arabic, $num, $string);
             return $englishNumbersOnly;
+        }
+
+
+        if (Service::where('user_id',Auth::id())->where('title',$request->title)->first()) {
+            $arr = array("status" => 401, "errorMsg" => __('api.title_found_before'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+
         }
 
         $validator = Validator::make($request->all(), [
@@ -194,12 +201,11 @@ class ServiceController extends Controller
         $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $services;
 
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
 
 
@@ -233,10 +239,10 @@ class ServiceController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'title'     =>'required|max:500',
-            'desc'      =>'required|max:500',
-            'cost'      =>'required|max:10',
-            'duration'  =>'required|max:8',
+            'title'     =>'required|max:100|string|unique:services,id',
+            'desc'      =>'required|min:3|max:500',
+            'cost'      =>'integer|required',
+            'duration'  =>'required|numeric|min:1|max:24',
             //'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8048'
         ]);
 
@@ -249,6 +255,18 @@ class ServiceController extends Controller
         }
 
         $service= Service::find($id);
+
+        if (!$service) {
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if ($service->deleted_at) {
+            $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
 
         $file = $request->img;
         
@@ -303,12 +321,11 @@ class ServiceController extends Controller
         $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $services;
 
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 
@@ -318,12 +335,24 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy(Request $request, $id)
     {
 
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
             $service= Service::find($id);
+
+            if (!$service) {
+                $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
+
+            if ($service->deleted_at) {
+                $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+                return \Response::json(['error'=> $arr]);
+            }
 
             if (!$service->is_approved ) {
                 $arr = array("status" => 401, "errorMsg" => __('api.unapproved'), "data" => array(),"appearForUser" => true);
@@ -352,12 +381,11 @@ class ServiceController extends Controller
         $services = Service::where('user_id',Auth::user()->id)->where('is_approved',1)->with('user','user.userdetails','skills','section','reviews','ModelLogs')->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $services;
 
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 

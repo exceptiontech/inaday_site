@@ -66,7 +66,7 @@ Route::resource('blog','ArticleController');
 Route::resource('faqs','FaqController');
 Route::resource('sponsors','SponsorController');
 Route::resource('pages','PageController');
-Route::resource('messages','MessageController');
+//Route::resource('messages','MessageController');
 
 // Route::get('register/{type}', 'UsersController@register')->name('account');
 // Route::post('register/services_provider/update', 'UsersController@update')->name('services_provider_update');

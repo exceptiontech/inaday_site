@@ -40,12 +40,10 @@ class ExperienceController extends Controller
 
         $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $experiences;
 
-
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
     }
 
 
@@ -100,11 +98,10 @@ class ExperienceController extends Controller
 
         $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $experiences;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
     }
 
     /**
@@ -176,11 +173,10 @@ class ExperienceController extends Controller
 
         $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $experiences;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 
@@ -190,8 +186,10 @@ class ExperienceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
+
+        $experience= Experience::find($id);
 
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
 
@@ -208,9 +206,22 @@ class ExperienceController extends Controller
         }
 
 
+
+        if (!$experience) {
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if ($experience->deleted_at) {
+            $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
-            $experience= Experience::find($id);
             $experience->deleted_at = now();
             $experience->save();
 
@@ -237,23 +248,12 @@ class ExperienceController extends Controller
 
         $experiences = Experience::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $experiences;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json($data);
 
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Experience  $experience
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Experience $experience)
-    {
-        //
-    }
 }

@@ -27,6 +27,9 @@ return [
     'logoutـsuccessfully' => 'تم تسجيل خروج',
     'not_logged' => 'غير مسجل دخول',
     'not_valid' => 'غير صالح',
+    'alreadyـdeleted' => 'تم حذفه  مسبقا' ,
+    'not_found' => 'غير موجود' ,
+    'title_found_before' => 'العنوان محجوز مسبقا' ,
 
     
 ]
