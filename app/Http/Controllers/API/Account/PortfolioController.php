@@ -38,11 +38,10 @@ class PortfolioController extends Controller
 
         $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $portfolios;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json(['data'=> $data]);
 
     }
 
@@ -104,11 +103,10 @@ class PortfolioController extends Controller
 
         $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $portfolios;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json(['data'=> $data]);
 
     }
 
@@ -151,6 +149,19 @@ class PortfolioController extends Controller
 
         $portfolio= Portfolio::find($id);
 
+        if (!$portfolio) {
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if ($portfolio->deleted_at) {
+            $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+
         $file = $request->image;
         if ($file) {
             $destinationPath = 'uploads/portfolios';
@@ -189,11 +200,10 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $portfolios;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json(['data'=> $data]);
 
     }
 
@@ -203,8 +213,11 @@ class PortfolioController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
+
+        $portfolio= Portfolio::find($id);
+
         if (!Auth::user()->isServicesProvider() || !Auth::user()->isActive() ) {
 
             $arr = array("status" => 401, "errorMsg" => __('api.dont_have_permissions'), "data" => array(),"appearForUser" => true);
@@ -219,9 +232,21 @@ class PortfolioController extends Controller
             return \Response::json(['error'=> $arr]);
         }
 
+
+        if (!$portfolio) {
+            $arr = array("status" => 404, "errorMsg" => __('api.not_found'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
+        if ($portfolio->deleted_at) {
+            $arr = array("status" => 404, "errorMsg" => __('api.alreadyـdeleted'), "data" => array(),"appearForUser" => true);
+
+            return \Response::json(['error'=> $arr]);
+        }
+
         if (Auth::user() && Auth::user()->isServicesProvider() == 1)
         {
-            $portfolio= Portfolio::find($id);
             $portfolio->deleted_at = now();
             $portfolio->save();
 
@@ -245,22 +270,12 @@ class PortfolioController extends Controller
 
         $portfolios = Portfolio::where('user_id',Auth::user()->id)->paginate(10);
 
-        $data['status'] = true;
+        $data['status'] = 200;
         $data['data'] = $portfolios;
 
-        $arr = array("status" => 200,"data" => $data);
-        return \Response::json(['data'=> $arr]);
+        return \Response::json(['data'=> $data]);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Portfolio $portfolio)
-    {
-        //
-    }
+
 }
