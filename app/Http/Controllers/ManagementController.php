@@ -92,7 +92,7 @@ class ManagementController extends Controller
 
             $roles = Role::pluck('name','name')->all();
 
-            return view('management.reports.users')->withUsers($users->latest()->get())->withRoles($roles);
+            return view('management.reports.users')->withUsers($users->latest()->paginate(1000))->withRoles($roles);
         }
 
 
