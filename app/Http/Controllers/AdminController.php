@@ -92,7 +92,7 @@ class AdminController extends Controller
 
             $roles = Role::pluck('name','name')->all();
 
-            return view('admin.reports.users')->withUsers($users->latest()->get())->withRoles($roles);
+            return view('admin.reports.users')->withUsers($users->latest()->paginate(1000))->withRoles($roles);
         }
 
 
