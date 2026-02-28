@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="col-12 col-sm-6">
                                                 {!! Form::label('url', trans('forms.url'))!!}
-                                                {!! Form::text('url', null, ['class' => 'form-control','placeholder' => 'http://inaday.cloud']) !!}
+                                                {!! Form::text('url', null, ['class' => 'form-control','placeholder' => 'http://d24.cloud']) !!}
                                             </div>
                                         </div> -->
                                         <div class="row mb-4">

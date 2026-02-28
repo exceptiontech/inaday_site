@@ -48,7 +48,7 @@ return [
     'contact' => 'اتصل بنا',
     'book_services' => 'حجز خدمة',
     'book_mixture' => 'حجز الخلطة',
-    'in_a_day_features' => 'أهم ما يميزنا فى منصة .IN.A.DAY.',
+    'in_a_day_features' => 'أهم ما يميزنا فى منصة .D24.',
     'start_now' => 'أبدا الان',
     'start_your_project' => 'نفذ مشروعك الآن',
     'job_seekers' => 'باحث عن عمل',
@@ -113,7 +113,7 @@ return [
 
     /* Slider*/
     'slider_title' => 'في كل يوم <br/> إنجاز و قصة نجاح تروى',
-    'slider_desc' => 'منصة .IN.A.DAY. هي سوق لجذب الموهوبين و رواد الأعمال لخلق <br/> وظائف عن بعد و تأسيس أعمال تجارية ناجحة.',
+    'slider_desc' => 'منصة .D24. هي سوق لجذب الموهوبين و رواد الأعمال لخلق <br/> وظائف عن بعد و تأسيس أعمال تجارية ناجحة.',
     'free_start' => 'إبدأ مجاناً',
     'introduction' => ' تعريف بالمنصة',
 
@@ -150,7 +150,7 @@ return [
     'interview'=>'مقابلة الكترونية',
     'if_you_have_file_related_in_your_solution'=>'في حال وجود ملف مرتبط بالحل يرجى ارفاقه',
     'free_start' => 'ابدأ مجاناً',
-    'beneficiaries' => 'مستفيدي .IN.A.DAY',
+    'beneficiaries' => 'مستفيدي .D24',
     'other_articles' => 'مقالات اخرى',
     'thank_you_for_being_ambitious_and_seeking_work' => 'شكرا لانك طموح وتسعي للعمل',
     'you_will_achieve_your_dreams_and_the_dreams_of_many_people_around_you..' => 'راح تحقق احلامك واحلام ناس كثير حولك..',
@@ -175,7 +175,7 @@ return [
     'newsleter_register' => 'سجل في القائمة البريدية',
     'email' => 'البريد الإلكترونى',
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ inaday',
+    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ d24',
     'password' => 'كلمة المرور',
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',

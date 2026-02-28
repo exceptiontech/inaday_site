@@ -44,7 +44,7 @@ return [
 
     'chat' => 'المحادثات',
 
-    'how_inaday_work' => 'كيف يعمل IN.A.DAY ؟',
+    'how_d24_work' => 'كيف يعمل D24 ؟',
 
     'notifications_settings' => 'إعدادات الإشعارات',
 
@@ -132,7 +132,7 @@ return [
 
     'no_mixtures' => 'لا توجد شراكات مطابقة',
 
-    'in_a_day_features' => 'مميزات منصة IN.A.DAY',
+    'in_a_day_features' => 'مميزات منصة D24',
 
     'start_now' => 'ابدأ الآن',
 
@@ -154,7 +154,7 @@ return [
 
     'we_offer_you_complete_solutions' => 'بين يديك حلول متكاملة',
 
-    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديثة في منصة .IN.A.DAY. ',
+    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديثة في منصة .D24. ',
 
     'we_offer_you_complete_solutions_desc2' => 'تعمل في الوقت الذي يناسبك، بالقيمة التي تناسبك، في المكان الذي يناسبك',
 
@@ -272,7 +272,7 @@ return [
 
     'slider_title' => 'في كل يوم <br/> إنجاز.. <br/> قصة نجاح تروى',
 
-    'slider_desc' => '<b class="ml-4">   منصة IN.A.DAY </b> <br />
+    'slider_desc' => '<b class="ml-4">   منصة D24 </b> <br />
 
         ـ بيت الموهوبين والمبتكرين.<br />
 
@@ -357,7 +357,7 @@ return [
 
     'free_start' => 'ابدأ مجاناً',
 
-    'beneficiaries' => 'مستفيدي .IN.A.DAY',
+    'beneficiaries' => 'مستفيدي .D24',
 
     'other_articles' => 'مقالات أخرى',
 
@@ -403,7 +403,7 @@ return [
 
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
 
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ inaday',
+    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ d24',
 
     'password' => 'كلمة المرور',
 
@@ -637,7 +637,7 @@ return [
    //booking
 
    'mount' => 'المبلغ',
-   'inaday_fees' => 'رسوم الموقع',
+   'd24_fees' => 'رسوم الموقع',
    'total_price' => 'إجمالي السعر',
 
    'user' => 'صاحب الطلب',

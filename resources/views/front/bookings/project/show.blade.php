@@ -91,7 +91,7 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="col-6 p-0 text-dark font-weight-bolder">
-                                        <h6>{{trans('file.inaday_fees')}}</h6>
+                                        <h6>{{trans('file.d24_fees')}}</h6>
                                     </div>
                                     <div class="col-6 p-0">{{$booking->getFeesByRiyal()}} {{trans('file.riyal')}}</div>
                                 </li>

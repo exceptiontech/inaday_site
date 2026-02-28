@@ -325,8 +325,8 @@ class UsersController extends Controller
 
                 $url = "https://www.msegat.com/gw/sendsms.php";
                 $params = json_encode([
-                    "userName" => "inaday",
-                    "userSender" => "INADAY",
+                    "userName" => "d24",
+                    "userSender" => "D24",
                     "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                     "msg" => "تم تغيير كلمة المرور الخاصة بك بنجاح",
                     "numbers" => $number
@@ -693,8 +693,8 @@ class UsersController extends Controller
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
                 //     $params = json_encode([
-                //         "userName" => "inaday",
-                //         "userSender" => "INADAY",
+                //         "userName" => "d24",
+                //         "userSender" => "D24",
                 //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                 //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                 //         "numbers" => $number
@@ -821,8 +821,8 @@ class UsersController extends Controller
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
                 //     $params = json_encode([
-                //         "userName" => "inaday",
-                //         "userSender" => "INADAY",
+                //         "userName" => "d24",
+                //         "userSender" => "D24",
                 //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                 //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                 //         "numbers" => $number
@@ -945,8 +945,8 @@ class UsersController extends Controller
 
                 //     $url = "https://www.msegat.com/gw/sendsms.php";
                 //     $params = json_encode([
-                //         "userName" => "inaday",
-                //         "userSender" => "INADAY",
+                //         "userName" => "d24",
+                //         "userSender" => "D24",
                 //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                 //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
                 //         "numbers" => $number
@@ -1068,8 +1068,8 @@ class UsersController extends Controller
 
             //     $url = "https://www.msegat.com/gw/sendsms.php";
             //     $params = json_encode([
-            //         "userName" => "inaday",
-            //         "userSender" => "INADAY",
+            //         "userName" => "d24",
+            //         "userSender" => "D24",
             //         "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
             //         "msg" => "تم إنشاء الحساب الخاص بك بنجاح",
             //         "numbers" => $number

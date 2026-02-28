@@ -86,12 +86,12 @@ class ContactusController extends Controller
 
             Mail::send('mail.contactus', ['contactus'=>$contact], function($message) use ($contact)
                 {
-                    $message->to($contact->email, 'info@inaday.sa')->subject($contact->department->title[App::getLocale()]);
+                    $message->to($contact->email, 'info@d24.sa')->subject($contact->department->title[App::getLocale()]);
                 }); 
 
             Mail::send('mail.contactus', ['contactus'=>$contact], function($message) use ($contact)
                 {
-                    $message->to($contact->email, 'support@inaday.sa')->subject($contact->department->title[App::getLocale()]);
+                    $message->to($contact->email, 'support@d24.sa')->subject($contact->department->title[App::getLocale()]);
                 }); 
 
             Session::flash('status', __('file.success'));

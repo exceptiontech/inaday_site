@@ -71,7 +71,7 @@
             </ul>
             <ul class="navbar-nav ml-auto login_menu">
               <li class="nav-item">
-                <a class="nav-link noborder" data-toggle="modal" data-target="#d24Modal">{{trans('file.how_inaday_work')}}  </a>
+                <a class="nav-link noborder" data-toggle="modal" data-target="#d24Modal">{{trans('file.how_d24_work')}}  </a>
                 <!-- d24 -->
                 <div class="modal fade" id="d24Modal" tabindex="-1" role="dialog" aria-labelledby="d24ModalLabel" aria-hidden="true">
                 <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">

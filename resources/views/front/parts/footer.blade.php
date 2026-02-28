@@ -99,10 +99,10 @@
                             <a href="https://www.linkedin.com/company/in-a-day-في-يوم/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://twitter.com/inaday_sa" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/d24" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://instagram.com/inaday_sa" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://instagram.com/d24" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -311,7 +311,7 @@
 
 
 @guest
-<!-- Hotjar Tracking Code for inaday.cloud -->
+<!-- Hotjar Tracking Code for d24.cloud -->
 <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};

@@ -21,7 +21,7 @@ return [
     'register_desc' => 'مرحباً بك.. يمكنك الآن اختيار الدور الذي ترغبه لتكون معنا مساهماً في تحقيق النفع المتبادل',
     'home' => 'الرئيسية',
     'chat' => 'المحادثات',
-    'how_inaday_work' => 'كيف يعمل .IN.A.DAY. ؟',
+    'how_d24_work' => 'كيف يعمل .D24. ؟',
     'notifications_settings' => 'إعدادات الإشعارات',
 
 
@@ -59,7 +59,7 @@ return [
     'themixtures'=>'الخلطات',
     'mixtures' => 'خلطاتي',
     'no_mixtures' => 'لا يوجد خلطات مطابقة',
-    'in_a_day_features' => 'مميزات منصة .IN.A.DAY.',
+    'in_a_day_features' => 'مميزات منصة .D24.',
     'start_now' => 'ابدأ الآن',
     'start_your_project' => 'نفذ مشروعك الآن',
     'job_seekers' => 'باحث عن عمل',
@@ -70,7 +70,7 @@ return [
     'entrepreneur_desc' => 'كل مبادر وصاحب فكرة جديد لديه القدرة على تحويلها إلى مشروع له قيمة اقتصادية ذات نفع متعدد عليه وعلى المجتمع، وملهم لجيل الرؤية.',
     'ready_mixes' => 'شراكات جاهزة',
     'we_offer_you_complete_solutions' => 'نقدم لك الحلول المتكاملة',
-    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديث في منصة .IN.A.DAY. ',
+    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديث في منصة .D24. ',
     'we_offer_you_complete_solutions_desc2' => 'تعمل في الوقت الذي يناسبك، بالقيمة التي تناسبك، في المكان الذي يناسبك',
     'we_offer_you_complete_solutions_desc3' => 'في عملك إجازة، وفي إجازتك عمل.. <br /> ممتع؟ إذا كنت تعتقد أنّك موهوب وتحب العمل جرّب واحسب دخلك.',
     'more_mixes' => 'تعرّف على الشراكات',
@@ -126,7 +126,7 @@ return [
 
     /* Slider*/
     'slider_title' => 'في كل يوم <br/> إنجاز.. <br/> قصة نجاح تروى',
-    'slider_desc' => '<b class="ml-4">   منصة .IN.A.DAY. </b> <br />
+    'slider_desc' => '<b class="ml-4">   منصة .D24. </b> <br />
         ـ بيت الموهوبين والمبتكرين.<br />
         ـ مصنع وظائف عن بُعد، وتأسيس أعمال تجارية متفوقة.<br />
         ـ تأهيل مباشر، وتدريب عملي متطور. ',
@@ -168,7 +168,7 @@ return [
     'interview'=>'مقابلة إلكترونية',
     'if_you_have_file_related_in_your_solution'=>'في حال وجود ملف مرتبط بالحل يرجى إرفاقه',
     'free_start' => 'ابدأ مجاناً',
-    'beneficiaries' => 'مستفيدي .IN.A.DAY',
+    'beneficiaries' => 'مستفيدي .D24',
     'other_articles' => 'مقالات أخرى',
     'thank_you_for_being_ambitious_and_seeking_work' => 'شكراً لأنك طموح وتسعى للعمل',
     'you_will_achieve_your_dreams_and_the_dreams_of_many_people_around_you..' => 'راح تحقق أحلامك وأحلام ناس كثير حولك..',
@@ -191,7 +191,7 @@ return [
     'newsleter_register' => 'سجّل في القائمة البريدية',
     'email' => 'البريد الإلكتروني',
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ inaday',
+    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ d24',
     'password' => 'كلمة المرور',
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',

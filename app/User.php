@@ -471,8 +471,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
                 $url = "https://www.msegat.com/gw/sendsms.php";
                 $params = json_encode([
-                    "userName" => "inaday",
-                    "userSender" => "INADAY",
+                    "userName" => "d24",
+                    "userSender" => "D24",
                     "apiKey" => "7731c731642e783f2e6043091cd6d8a8",
                     "msg" => "رمز التفعيل : ".$user->active_code,
                     "numbers" => $number

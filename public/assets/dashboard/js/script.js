@@ -208,7 +208,7 @@ $(window).on("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/inaday/resources/assets/dashboard/js/script.js */"./resources/assets/dashboard/js/script.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/d24/resources/assets/dashboard/js/script.js */"./resources/assets/dashboard/js/script.js");
 
 
 /***/ })

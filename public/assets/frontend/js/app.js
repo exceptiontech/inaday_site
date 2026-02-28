@@ -32285,10 +32285,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/inaday/resources/assets/frontend/js/app.js */"./resources/assets/frontend/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/inaday/resources/assets/frontend/sass/app.scss */"./resources/assets/frontend/sass/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/inaday/resources/assets/frontend/sass/app-rtl.scss */"./resources/assets/frontend/sass/app-rtl.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/inaday/resources/assets/dashboard/sass/themes/lite-blue.scss */"./resources/assets/dashboard/sass/themes/lite-blue.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/d24/resources/assets/frontend/js/app.js */"./resources/assets/frontend/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/d24/resources/assets/frontend/sass/app.scss */"./resources/assets/frontend/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/d24/resources/assets/frontend/sass/app-rtl.scss */"./resources/assets/frontend/sass/app-rtl.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/d24/resources/assets/dashboard/sass/themes/lite-blue.scss */"./resources/assets/dashboard/sass/themes/lite-blue.scss");
 
 
 /***/ })
