@@ -44,7 +44,7 @@
 <section class="signup new-item">
   <div class="step-app">
     <div class="logo">
-      <a href="{{url('/')}}"> <img src="{{url('assets/images/logo.png')}}" alt="Inaday" title="Inaday"></a>
+      <a href="{{url('/')}}"> <img src="{{url('assets/images/logo.png')}}" alt="d24" title="d24"></a>
     </div>
       <div>
         <h3 style="display:none !important;"></h3>

@@ -4,7 +4,7 @@
       <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{url('images/logo.png') }}" alt="inaday">
+            <img src="{{url('images/logo.png') }}" alt="d24">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,14 +71,14 @@
             </ul>
             <ul class="navbar-nav ml-auto login_menu">
               <li class="nav-item">
-                <a class="nav-link noborder" data-toggle="modal" data-target="#inadayModal">{{trans('file.how_inaday_work')}}  </a>
-                <!-- Inaday -->
-                <div class="modal fade" id="inadayModal" tabindex="-1" role="dialog" aria-labelledby="inadayModalLabel" aria-hidden="true">
+                <a class="nav-link noborder" data-toggle="modal" data-target="#d24Modal">{{trans('file.how_inaday_work')}}  </a>
+                <!-- d24 -->
+                <div class="modal fade" id="d24Modal" tabindex="-1" role="dialog" aria-labelledby="d24ModalLabel" aria-hidden="true">
                 <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-body p-0 ">
                             <center>
-                                <img class="img-fluid" src="{{url('images/Inaday_.jpg') }}" alt="inaday">
+                                <img class="img-fluid" src="{{url('assets/images/d24-logo.png') }}" alt="d24">
                             </center>
 
                         </div>

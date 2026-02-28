@@ -58,7 +58,7 @@
               @foreach ($users as $user)
                 <div class="col-sm-4 bene">
                   <div class="itme">
-                    <div class="photo"><img src="{{ url($user->userdetail->first()->avater ?? 'assets/images/logo.png') }}" alt="Inaday" title="Inaday"></div>
+                    <div class="photo"><img src="{{ url($user->userdetail->first()->avater ?? 'assets/images/logo.png') }}" alt="d24" title="d24"></div>
                     <div class="detas-item"> <span class="text-it">قصة نجاح</span><a class="bottom" href="#">{{$user->first_name .' '. $user->last_name}}</a>
                       <div class="calande"><strong>{{$user->userdetail->first()->average_cost ?? '0'}}</strong><span class="text-it">ريال / بالساعة</span></div>
                     </div>

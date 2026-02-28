@@ -15,7 +15,7 @@
 <section class="signup new-item">
   <div class="step-app">
     <div class="logo">
-      <a href="{{ url('/') }}"> <img src="{{url('assets/images/logo.png') }}" alt="Inaday" title="Inaday"></a>
+      <a href="{{ url('/') }}"> <img src="{{url('assets/images/logo.png') }}" alt="d24" title="d24"></a>
     </div>
     <form class="formsignup" id="contact" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
       <div>
