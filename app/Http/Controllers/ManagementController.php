@@ -7,7 +7,6 @@ use DB;
 use Validator;
 use Session;
 use Redirect;
-use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use Auth;
 use Config;
@@ -268,7 +267,7 @@ class ManagementController extends Controller
         $expense->save();
 
 
-        $image = Input::file('image');
+        $image = $request->file('image');
 
         if (isset($image)) {
             $destinationPath = 'uploads/expenses';
@@ -293,7 +292,7 @@ class ManagementController extends Controller
         $income->save();
 
 
-        $image = Input::file('image');
+        $image = $request->file('image');
 
         if (isset($image)) {
             $destinationPath = 'uploads/incomes';

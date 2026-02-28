@@ -166,7 +166,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-        Basel\Paytabs\PaytabsServiceProvider::class,
 
 
         /*
@@ -235,8 +234,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Input' => Illuminate\Support\Facades\Input::class,
-        'Paytabs' => Basel\Paytabs\Facades\PaytabsFacade::class,
 
     ],
 
