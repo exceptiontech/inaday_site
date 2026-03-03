@@ -107,9 +107,9 @@ return [
 
     'password_is_not_less_than_8_characters' => 'كلمة المرور لا تقل عن ٨ أحرف إنجليزية وتحتوي على الرموز @$!%*#?& أحرف كبيرة وصغيرة وأرقام',
 
-    'all_posts' =>'كل المقالات',
+    'all_posts' => 'كل المقالات',
 
-    'all_faqs' =>'كل الأسئلة',
+    'all_faqs' => 'كل الأسئلة',
 
     'faqs' => 'الأسئلة المتكررة',
 
@@ -119,7 +119,7 @@ return [
 
     'book_services' => 'حجز خدمة',
 
-    'themixtures'=>'الشراكات',
+    'themixtures' => 'الشراكات',
 
     'mixture' => 'شراكة',
     'mixture_title' => 'اسم الشراكة',
@@ -154,7 +154,7 @@ return [
 
     'we_offer_you_complete_solutions' => 'بين يديك حلول متكاملة',
 
-    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديثة في منصة .D24. ',
+    'we_offer_you_complete_solutions_desc1' => 'العمل عن بعد هو أسلوب الحياة الحديثة في منصة D24. ',
 
     'we_offer_you_complete_solutions_desc2' => 'تعمل في الوقت الذي يناسبك، بالقيمة التي تناسبك، في المكان الذي يناسبك',
 
@@ -209,9 +209,9 @@ return [
 
     'service_providers' => 'مقدّم الخدمة',
 
-    'service_providers_register_desc'=>'لديك الرغبة بالتعلم وتطوير مهاراتك وتقديمها كخدمة',
+    'service_providers_register_desc' => 'لديك الرغبة بالتعلم وتطوير مهاراتك وتقديمها كخدمة',
 
-    'entrepreneurs_register_desc'=>'لديك مبادرة جديدة وتسعى إلى تحويلها إلى عمل تجاري ',
+    'entrepreneurs_register_desc' => 'لديك مبادرة جديدة وتسعى إلى تحويلها إلى عمل تجاري ',
 
     'recent_projects' => 'المشاريع',
 
@@ -290,7 +290,7 @@ return [
 
     'search_for' => 'ابحث عن: مصمم ...',
 
-    'you_already_registered_please_fill_following_steps'=>'أنت مسجل دخول بالفعل.. يرجى إتمام باقي بيانات مقدّم الخدمة ليصبح ملفك مكتملاً',
+    'you_already_registered_please_fill_following_steps' => 'أنت مسجل دخول بالفعل.. يرجى إتمام باقي بيانات مقدّم الخدمة ليصبح ملفك مكتملاً',
 
 
 
@@ -298,62 +298,62 @@ return [
 
     'be_the_first_services_provider_add_offer' => 'كن أول من يقوم بإضافة عرض ',
 
-    'no_offer_at_this_time'=>'لا توجد عروض حاليًا',
+    'no_offer_at_this_time' => 'لا توجد عروض حاليًا',
 
-    'date'=>'التاريخ',
+    'date' => 'التاريخ',
 
-    'section'=>'القسم',
+    'section' => 'القسم',
 
-    'add_offer'=>'إضافة عرضك',
+    'add_offer' => 'إضافة عرضك',
 
-    'price'=>'السعر بالريال السعودي',
+    'price' => 'السعر بالريال السعودي',
 
-    'add_your_offer_price_to_this_project'=>'ضع السعر الذي تراه مناسبًا للمشروع',
+    'add_your_offer_price_to_this_project' => 'ضع السعر الذي تراه مناسبًا للمشروع',
 
-    'duration'=>'المدة بالساعات',
+    'duration' => 'المدة بالساعات',
 
-    'add_your_offer_duration_to_this_project'=>'ضع المدة التي تراها مناسبة للمشروع',
+    'add_your_offer_duration_to_this_project' => 'ضع المدة التي تراها مناسبة للمشروع',
 
-    'offer_details'=>'رسالتك لرائد الأعمال',
+    'offer_details' => 'رسالتك لرائد الأعمال',
 
-    'add_your_offer_desc_to_this_project'=>'إضافة تفاصيل عرضك أو أي استفسارات',
+    'add_your_offer_desc_to_this_project' => 'إضافة تفاصيل عرضك أو أي استفسارات',
 
-    'addoffer'=>'إضافة عرضك',
+    'addoffer' => 'إضافة عرضك',
 
-    'create_success_offer'=>'تم إضافة العرض بنجاح',
+    'create_success_offer' => 'تم إضافة العرض بنجاح',
 
-    'no_offers'=>'لم يتم إضافة عروض لهذا المشروع حتى الآن',
+    'no_offers' => 'لم يتم إضافة عروض لهذا المشروع حتى الآن',
 
-    'project_have_booking' => 'لا تملك الصلاحية لحذف المشروع لوجود حجز مرتبط بالمشروع' ,
+    'project_have_booking' => 'لا تملك الصلاحية لحذف المشروع لوجود حجز مرتبط بالمشروع',
 
 
     /* service */
 
-    'servives'=>'الخدمات',
+    'servives' => 'الخدمات',
 
-    'add_servives'=>'إضافة خدمة',
+    'add_servives' => 'إضافة خدمة',
 
-    'service_details'=>'تفاصيل الخدمة',
+    'service_details' => 'تفاصيل الخدمة',
 
-    'book_service'=>'حجز الخدمة',
+    'book_service' => 'حجز الخدمة',
 
     'book_mixture' => 'حجز الشراكة',
 
-    'mixture_details'=>'تفاصيل الشراكة',
+    'mixture_details' => 'تفاصيل الشراكة',
 
 
 
-    'add_servives'=>'إضافة خدمة',
+    'add_servives' => 'إضافة خدمة',
 
-    'riyal'=>'ريال',
+    'riyal' => 'ريال',
 
-    'privacy_policy'=>'سياسة الاستخدام والخصوصية',
+    'privacy_policy' => 'سياسة الاستخدام والخصوصية',
 
-    'usage_policy'=>'سياسة الاستخدام',
+    'usage_policy' => 'سياسة الاستخدام',
 
-    'interview'=>'مقابلة إلكترونية',
+    'interview' => 'مقابلة إلكترونية',
 
-    'if_you_have_file_related_in_your_solution'=>'في حال وجود ملف مرتبط بالحل يرجى إرفاقه',
+    'if_you_have_file_related_in_your_solution' => 'في حال وجود ملف مرتبط بالحل يرجى إرفاقه',
 
     'free_start' => 'ابدأ مجاناً',
 
@@ -517,50 +517,50 @@ return [
 
     'we_will_contact_you_soon' => 'سنتواصل معك قريبًا',
 
-    'approve'=>'اعتمد' ,
+    'approve' => 'اعتمد',
 
-    'this_project_for_teams'=>'هذا المشروع مخصص للفرق' ,
+    'this_project_for_teams' => 'هذا المشروع مخصص للفرق',
 
-    'not_available_right_now'=>'تم حجز المشروع' ,
+    'not_available_right_now' => 'تم حجز المشروع',
 
-    'project_details'=>'تفاصيل المشروع' ,
+    'project_details' => 'تفاصيل المشروع',
 
-    'project_owner'=>'مالك المشروع' ,
+    'project_owner' => 'مالك المشروع',
 
-    'project_status'=>'حالة المشروع' ,
+    'project_status' => 'حالة المشروع',
 
-    'without_status'=>'بدون حالة' ,
+    'without_status' => 'بدون حالة',
 
-    'status_completed'=>'مكتمل' ,
+    'status_completed' => 'مكتمل',
 
-    'status_unavaliable'=>'غير متاح' ,
+    'status_unavaliable' => 'غير متاح',
 
-    'category_section'=>'تصنيف القسم' ,
+    'category_section' => 'تصنيف القسم',
 
-    'targeted_skills'=>'المهارات المستهدفة' ,
+    'targeted_skills' => 'المهارات المستهدفة',
 
-    'project_time_duration'=>'مدّة التنفيذ' ,
+    'project_time_duration' => 'مدّة التنفيذ',
 
-    'day_hour'=>'يوم/ ساعة' ,
+    'day_hour' => 'يوم/ ساعة',
 
-    'day'=>'يوم' ,
+    'day' => 'يوم',
 
-    'project_attach'=>'مرفقات المشروع' ,
+    'project_attach' => 'مرفقات المشروع',
 
-    'project_budget'=>'ميزانية المشروع' ,
-    'mixture_budget'=>'سعر الشراكة' ,
-    'service_budget'=>'سعر الخدمة' ,
+    'project_budget' => 'ميزانية المشروع',
+    'mixture_budget' => 'سعر الشراكة',
+    'service_budget' => 'سعر الخدمة',
 
-    'execution_time'=>'وقت التنفيذ' ,
+    'execution_time' => 'وقت التنفيذ',
 
-    'number_of_offers'=>'عدد العروض' ,
+    'number_of_offers' => 'عدد العروض',
 
-    'offers'=>'العروض' ,
-    'offer'=>'عرض' ,
+    'offers' => 'العروض',
+    'offer' => 'عرض',
 
-    'contact_the_project_owner'=>'تواصل مع صاحب المشروع' ,
+    'contact_the_project_owner' => 'تواصل مع صاحب المشروع',
 
-    'you_must_log_in_first_to_use_the_platforms_services'=>'يجب تسجيل الدخول أولاً للاستفادة من الخدمات' ,
+    'you_must_log_in_first_to_use_the_platforms_services' => 'يجب تسجيل الدخول أولاً للاستفادة من الخدمات',
 
 
 
@@ -568,164 +568,164 @@ return [
 
     //Errors
 
-    'nothavepermissions'=>'لا تملك الصلاحيات',
+    'nothavepermissions' => 'لا تملك الصلاحيات',
 
-    'please_contact_us'=>'فضًلا اتصل بالإدارة',
+    'please_contact_us' => 'فضًلا اتصل بالإدارة',
 
 
 
 
 
-   //profile
+    //profile
 
-   'last_services'=>'آخر الخدمات الخاصة بك',
+    'last_services' => 'آخر الخدمات الخاصة بك',
 
-   'you_dont_have_any_services_right_now'=>'لم تقم بإضافة أي خدمة حتى الآن',
+    'you_dont_have_any_services_right_now' => 'لم تقم بإضافة أي خدمة حتى الآن',
 
-   'you_dont_have_any_projects_right_now'=>'لم تقم بإضافة أي مشروع حتى الآن',
-
-
-
-   //team
-
-   'teams'=>'الفرق',
-
-   'the_team'=>'الفريق',
-
-   'team'=>'فريق',
-
-   'add_team'=>'إضافة فريق',
-
-   'services_providers'=>'مقدّمي الخدمات',
-
-   'myteam'=>'فريقي',
-
-   'team_name'=>'اسم الفريق',
-
-   'team_desc'=>'وصف الفريق',
-
-   'team_logo'=>'شعارالفريق',
-
-   'add_members_to_your_time'=>'إضافة أعضاء لفريقك',
-
-   'skills'=>'المهارات',
-
-   'user_name'=>'اسم العضو',
-
-   'add_user_to_your_team'=>'إرسال دعوة للشراكة',
-
-   'add_user_to_team'=>'تم إرسال الدعوة إلى مقدّم الخدمة',
-
-   'invitation_sent'=>'تم إرسال الدعوة',
-
-   'invitation_refused'=>'تم رفض الدعوة',
-
-   'invitation_accept'=>'تم قبول الدعوة',
-
-   'invitation_cancel'=>'تم إلغاء الدعوة',
-
-   'user_already_added_to_team'=>'مقدّم الخدمة مضاف فعًلا للفريق',
-
-   'no_services_providers_right_now'=>'لا يوجد مقدّم خدمة تنطبق عليه الخيارات المطلوبة',
-
-   'no_skills'=>'لا توجد مهارات مضافة',
-
-   'notfound'=>'الصفحة غير موجودة أو لا تملك صلاحية',
-
-
-
-   //booking
-
-   'mount' => 'المبلغ',
-   'd24_fees' => 'رسوم الموقع',
-   'total_price' => 'إجمالي السعر',
-
-   'user' => 'صاحب الطلب',
-
-   'status' => 'الحالة',
-   'duration_accept' => 'تم تمديد الطلب',
-   'duration_notes' => 'بالملاحظات التالية :',
-   'duration_refused' => 'تم رفض طلب التمديد',
-   'no_message' => 'لا يوجد أي رسائل',
-   'complete_order'=>'الطلب مكتمل',
-   'uncomplete_order'=>'الطلب غير مكتمل أو ملغي',
-   'add_replay'=>'أضف تعليق',
-   'replay'=>'التعليق',
-   'action'=>'الإجراء',
-   'duration_request'=>'طلب إتمام تسليم الطلب',
-   'duration_confirm'=>'تم الاستلام',
-   'duration_refused'=>'التقدم بشكوى للإدارة',
-   'duration_refused_notes'=>'هنا يمكنك كتابة ملاحظات في مرحلة تسليم الطلب',
-   'duration_hour' => 'مدة المهلة ( بالساعة)',
-   'replay_kind'=>'نوع التعليق',
-
-
-
-
-
-
-
-   //replays
-
-   'replays'=>'التعليقات',
-
-   'replay'=>'التعليق',
-
-   'addreplay'=>'إضافة تعليق',
-
-   'no_replays'=>'لا توجد تعليقات حتى الآن',
-
-   'create_success_replay' => 'تم إضافة التعليق بنجاح',
-
-
-
-   //contact us
-
-   'name' => 'الاسم',
-
-   'mobile' => 'الجوال',
-
-   'message' => 'الرسالة',
-
-   'subject' => 'عنوان الموضوع',
-
-
-
-
-
-   //search
-
-
-
-   'search' => 'بحث',
-
-   'results' => 'نتائج البحث',
-
-   'no_results' => 'لا توجد نتائج متطابقة',
-   'no_items' => 'لا توجد نتائج',
-
-
-
-   //verify
-
-
-
-   'code' =>'الكود',
-
-   'verify' =>'تفعيل العضوية',
-
-   'before_verify'=>'فضلاً تأكد من وجود رابط التفعيل في صندوق الوارد او الرسائل غير المرغب و بها في بريدك الإلكتروني',
-
-   'verifyـno_email'=>'في حال عدم استلام بريد ',
-
-   'verifyـnew_email'=>'اعادة إرسال بريد التفعيل',
-
-   'fresh_verify'=>'تم إرسال بريد جديد بمعلومات التفعيل',
+    'you_dont_have_any_projects_right_now' => 'لم تقم بإضافة أي مشروع حتى الآن',
 
 
 
     //team
-    'image'=>'الصورة',
+
+    'teams' => 'الفرق',
+
+    'the_team' => 'الفريق',
+
+    'team' => 'فريق',
+
+    'add_team' => 'إضافة فريق',
+
+    'services_providers' => 'مقدّمي الخدمات',
+
+    'myteam' => 'فريقي',
+
+    'team_name' => 'اسم الفريق',
+
+    'team_desc' => 'وصف الفريق',
+
+    'team_logo' => 'شعارالفريق',
+
+    'add_members_to_your_time' => 'إضافة أعضاء لفريقك',
+
+    'skills' => 'المهارات',
+
+    'user_name' => 'اسم العضو',
+
+    'add_user_to_your_team' => 'إرسال دعوة للشراكة',
+
+    'add_user_to_team' => 'تم إرسال الدعوة إلى مقدّم الخدمة',
+
+    'invitation_sent' => 'تم إرسال الدعوة',
+
+    'invitation_refused' => 'تم رفض الدعوة',
+
+    'invitation_accept' => 'تم قبول الدعوة',
+
+    'invitation_cancel' => 'تم إلغاء الدعوة',
+
+    'user_already_added_to_team' => 'مقدّم الخدمة مضاف فعًلا للفريق',
+
+    'no_services_providers_right_now' => 'لا يوجد مقدّم خدمة تنطبق عليه الخيارات المطلوبة',
+
+    'no_skills' => 'لا توجد مهارات مضافة',
+
+    'notfound' => 'الصفحة غير موجودة أو لا تملك صلاحية',
+
+
+
+    //booking
+
+    'mount' => 'المبلغ',
+    'd24_fees' => 'رسوم الموقع',
+    'total_price' => 'إجمالي السعر',
+
+    'user' => 'صاحب الطلب',
+
+    'status' => 'الحالة',
+    'duration_accept' => 'تم تمديد الطلب',
+    'duration_notes' => 'بالملاحظات التالية :',
+    'duration_refused' => 'تم رفض طلب التمديد',
+    'no_message' => 'لا يوجد أي رسائل',
+    'complete_order' => 'الطلب مكتمل',
+    'uncomplete_order' => 'الطلب غير مكتمل أو ملغي',
+    'add_replay' => 'أضف تعليق',
+    'replay' => 'التعليق',
+    'action' => 'الإجراء',
+    'duration_request' => 'طلب إتمام تسليم الطلب',
+    'duration_confirm' => 'تم الاستلام',
+    'duration_refused' => 'التقدم بشكوى للإدارة',
+    'duration_refused_notes' => 'هنا يمكنك كتابة ملاحظات في مرحلة تسليم الطلب',
+    'duration_hour' => 'مدة المهلة ( بالساعة)',
+    'replay_kind' => 'نوع التعليق',
+
+
+
+
+
+
+
+    //replays
+
+    'replays' => 'التعليقات',
+
+    'replay' => 'التعليق',
+
+    'addreplay' => 'إضافة تعليق',
+
+    'no_replays' => 'لا توجد تعليقات حتى الآن',
+
+    'create_success_replay' => 'تم إضافة التعليق بنجاح',
+
+
+
+    //contact us
+
+    'name' => 'الاسم',
+
+    'mobile' => 'الجوال',
+
+    'message' => 'الرسالة',
+
+    'subject' => 'عنوان الموضوع',
+
+
+
+
+
+    //search
+
+
+
+    'search' => 'بحث',
+
+    'results' => 'نتائج البحث',
+
+    'no_results' => 'لا توجد نتائج متطابقة',
+    'no_items' => 'لا توجد نتائج',
+
+
+
+    //verify
+
+
+
+    'code' => 'الكود',
+
+    'verify' => 'تفعيل العضوية',
+
+    'before_verify' => 'فضلاً تأكد من وجود رابط التفعيل في صندوق الوارد او الرسائل غير المرغب و بها في بريدك الإلكتروني',
+
+    'verifyـno_email' => 'في حال عدم استلام بريد ',
+
+    'verifyـnew_email' => 'اعادة إرسال بريد التفعيل',
+
+    'fresh_verify' => 'تم إرسال بريد جديد بمعلومات التفعيل',
+
+
+
+    //team
+    'image' => 'الصورة',
 
 
 
@@ -754,17 +754,17 @@ return [
     'update_project' => 'تحديث المشروع',
     'update_mixture' => 'تحديث الشراكة',
     'must_looged' => 'يجب تسجيل الدخول أولاً لتتمكن من تقديم عرضك لهذا المشروع',
-    'no_files'=>'لا توجد أي ملفات',
-    'contact_me' =>'تواصل معي',
+    'no_files' => 'لا توجد أي ملفات',
+    'contact_me' => 'تواصل معي',
     'undefined' => 'غير محدد',
 
 
     /* reviews */
-    'the_reviews' =>'التقييمات',
-    'reviews' =>'تقييمات',
-    'review' =>'تقييم',
-    'the_review' =>'التقييم',
-    'no_reviews' =>'لا يوجد تقييم',
+    'the_reviews' => 'التقييمات',
+    'reviews' => 'تقييمات',
+    'review' => 'تقييم',
+    'the_review' => 'التقييم',
+    'no_reviews' => 'لا يوجد تقييم',
 
 
     /* payment */
@@ -779,16 +779,16 @@ return [
 
 
     //contact
-    'voice_heared'=>'صوتك مسموع',
-    'voice_heared_desc'=>'من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.',
-    'message_department'=>'تصنيف الرسالة',
-    'message_content'=>'محتوى الرسالة',
-    'message_type'=>'اكتب رسالتك',
-    'send_message'=>'إرسال الرسالة',
-    'by_skill' =>'حسب المهارة',
-    'by_section' =>'حسب التصنيف',
-    'by_title' =>'حسب الاسم',
-    'by_name' =>'حسب الاسم',
+    'voice_heared' => 'صوتك مسموع',
+    'voice_heared_desc' => 'من هنا يمكنك التواصل معنا وإبلاغنا بالمقترحات أو الاستفسارات أو العقبات التي تواجهك، وسنتواصل معك عاجلاً.',
+    'message_department' => 'تصنيف الرسالة',
+    'message_content' => 'محتوى الرسالة',
+    'message_type' => 'اكتب رسالتك',
+    'send_message' => 'إرسال الرسالة',
+    'by_skill' => 'حسب المهارة',
+    'by_section' => 'حسب التصنيف',
+    'by_title' => 'حسب الاسم',
+    'by_name' => 'حسب الاسم',
 
     //
     'profile' => 'الملف الشخصي',
@@ -814,42 +814,42 @@ return [
     'my_services' => 'خدماتي',
     'my_mixtures' => 'شراكاتي',
     'my_projects' => 'مشاريعي',
-    'my_team'=>'فريقي',
-    'my_teams'=>'شراكة الفرق',
-    'my_credit'=>'محفظتي',
-    'my_bookings'=>'طلباتي',
-    'settings'=>'الإعدادات',
-    'add_newـproject'=>'إضافة مشروع ',
-    'add_newـservice'=>'إضافة خدمة ',
-    'add_newـmixture'=>'إضافة شراكة ',
-    'add_newـexperience'=>'إضافة خبرة ',
-    'add_newـportfolio'=>'إضافة معرض اعمال ',
-    'add_newـteam'=>'إضافة فريق جديد',
+    'my_team' => 'فريقي',
+    'my_teams' => 'شراكة الفرق',
+    'my_credit' => 'محفظتي',
+    'my_bookings' => 'طلباتي',
+    'settings' => 'الإعدادات',
+    'add_newـproject' => 'إضافة مشروع ',
+    'add_newـservice' => 'إضافة خدمة ',
+    'add_newـmixture' => 'إضافة شراكة ',
+    'add_newـexperience' => 'إضافة خبرة ',
+    'add_newـportfolio' => 'إضافة معرض اعمال ',
+    'add_newـteam' => 'إضافة فريق جديد',
 
-    'edit_info'=>'تعديل البيانات',
-    'job_info'=>'البيانات الوظيفية',
-    'note_placeholder'=>'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع',
+    'edit_info' => 'تعديل البيانات',
+    'job_info' => 'البيانات الوظيفية',
+    'note_placeholder' => 'يمكنك كتابة نبذة مختصرة عنك لتدعم مستوى الملف الشخصى لدى رواد الأعمال وأصحاب المشاريع',
 
     'edititem' => 'تحديث',
     'mixture_for' => 'شراكات فريق',
     'without_section' => 'بدون تصنيف',
     'this_team_dont_have_any_mixtures' => 'لا توجد أي شراكة للفريق',
-    'team_members'=>'أعضاء الفريق',
-    'add_team_members'=>'إضافة أعضاء',
-    'no_team_members' =>'لا يوجد أعضاء',
-    'create_your_team'=>'كوّن فريقك الآن',
-    'dont_have_any_invitation'=> 'لا تملك دعوة للشراكة',
+    'team_members' => 'أعضاء الفريق',
+    'add_team_members' => 'إضافة أعضاء',
+    'no_team_members' => 'لا يوجد أعضاء',
+    'create_your_team' => 'كوّن فريقك الآن',
+    'dont_have_any_invitation' => 'لا تملك دعوة للشراكة',
     'team_members' => 'أعضاء الفريق',
 
 
-    'my_mixtures_bookings' =>'طلبات الشراكة',
-    'my_projects_bookings' =>'طلبات المشاريع',
-    'my_services_bookings' =>'طلبات الخدمات',
-    'you_dont_have_mixtures_bookings' =>'لا توجد شراكة محجوزة',
-    'you_dont_have_services_bookings' =>'لا توجد خدمة محجوزة',
-    'you_dont_have_project_bookings' =>'لا يوجد عرض معتمد',
-    'order_details'=>'تفاصيل الطلب',
-    'register_now' =>'سجّل الآن',
+    'my_mixtures_bookings' => 'طلبات الشراكة',
+    'my_projects_bookings' => 'طلبات المشاريع',
+    'my_services_bookings' => 'طلبات الخدمات',
+    'you_dont_have_mixtures_bookings' => 'لا توجد شراكة محجوزة',
+    'you_dont_have_services_bookings' => 'لا توجد خدمة محجوزة',
+    'you_dont_have_project_bookings' => 'لا يوجد عرض معتمد',
+    'order_details' => 'تفاصيل الطلب',
+    'register_now' => 'سجّل الآن',
     'knowـmixtures' => 'تعرّف على الشراكات',
     'knowـprojects' => 'تعرّف على المشاريع',
 
