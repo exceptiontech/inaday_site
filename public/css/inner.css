@@ -389,14 +389,14 @@ div.custom-control-right .custom-control-label::before {
   left: auto; }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: #00EB80;
+  color: #54AC5E;
   border-color: #ffffff;
   background-color: #ffffff;
   border: solid 1px #C6C6C6;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); }
 
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
-  background-color: #00EB80;
+  background-color: #54AC5E;
   transform: translateX(0.75rem); }
 
 
@@ -422,7 +422,7 @@ header .main-header .navbar ul.navbar-nav li {
     padding-right: 20px;
     margin-bottom: 10px; }
     header .main-header .navbar ul.navbar-nav li a.nav-link.active, header .main-header .navbar ul.navbar-nav li a.nav-link:hover {
-      background: #00EB80;
+      background: #54AC5E;
       border-radius: 50px;
       color: #fff; }
   header .main-header .navbar ul.navbar-nav li.notification-item .dropdown-toggle {
@@ -1587,7 +1587,7 @@ input[type="checkbox"] {
 
 
 @media only screen and (min-width : 1200px) {
-  .container { width: 1400px; } 
+  .container { width: 1400px; }
 }
 
 @media (max-width: 480px) {
@@ -1672,7 +1672,7 @@ input[type="checkbox"] {
   .btn-primary{
     border:solid 1px #00C76D
   }
-  
+
   .btn-primary , .btn-danger {
     padding: 10px 6px 13px;
   }
@@ -1685,7 +1685,7 @@ input[type="checkbox"] {
   #features .title h1:before, #features .title h1::after {
     right: 45%;
   }
-  
+
   .inner #innerpage .title h1:after ,
   .login .info-login h2::after ,
   #mix .title h1::after ,
