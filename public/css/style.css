@@ -14,8 +14,8 @@
 
 @font-face {
   font-family: "HelveticaNeueLTR";
-  src: url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.eot");
-  src: url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.woff") format("woff"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.ttf") format("truetype"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.svg#HelveticaNeueLTR") format("svg");
+  src: url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-Regular.eot");
+  src: url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-Regular.woff") format("woff"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.ttf") format("truetype"), url("../fonts/HelveticaNeueLT/regular/HelveticaNeueLT-regular.svg#HelveticaNeueLTR") format("svg");
   font-weight: normal;
   font-style: normal; }
 
