@@ -403,7 +403,7 @@ return [
 
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
 
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ d24',
+    'byـd24ـteam' => 'جميع الحقوق محفوظة لـ D24',
 
     'password' => 'كلمة المرور',
 

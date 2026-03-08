@@ -175,7 +175,7 @@ return [
     'newsleter_register' => 'سجل في القائمة البريدية',
     'email' => 'البريد الإلكترونى',
     'neom_kingdom_of_saudi_arabia' => 'نيوم، المملكة العربية السعودية',
-    'byـinـaـdayـteam' => 'جميع الحقوق محفوظة لـ d24',
+    'byـd24ـteam' => 'جميع الحقوق محفوظة لـ D24',
     'password' => 'كلمة المرور',
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
     'please_enter_the_password?' => 'من فضلك ادخل كلمة السر',
